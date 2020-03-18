@@ -6,31 +6,35 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Home</title>
+<!-- 카카오 API -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width"/>
+
+<title>Login</title>
 <link rel="stylesheet" type="text/css" href="${root }css/bootstrap.css" />
 <link rel="stylesheet" type="text/css" href="${root }css/travel.css" />
-<style type="text/css">
-	.container{
-		font-family: 'Jua';
-		text-align: center;
-		width: 70%;
-	}
-	.thumbnail{
-		width: 330px;
-	}
-	#mainimg{
-		width: 300px;
-		padding-top: 15px;
-		padding-left: 10px;
-		padding-right: 10px;
-		
-	}	
-</style>
 
+<style type="text/css">
+   .container{
+      display: inline-block;
+      font-family: 'Jua';
+      text-align: center;
+      width: 100%; 
+    }
+    .form-horizontal {
+       width:700px;
+       margin: 0px auto;
+    }
+   
+   
+</style>
+<script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="${root }js/bootstrap.js"></script>
 </head>
 <body>
-											<!-- menubar start -->
-	<nav class="navbar navbar-primary">
+
+                        <!-- menubar start -->
+   	<nav class="navbar navbar-primary">
 	  <div class="container-fluid">
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	      <ul class="nav navbar-nav">
@@ -65,95 +69,94 @@
 	            		<li><a href="${root }board/qna">자주묻는질문</a></li>
 	            	</ul>
 	            </li>
-	           <c:if test="${sessionScope.staffcheck ne null }">
-	            <li class="divider"></li>
-	            <li id="system"><a href="#">시스템관리</a>
-	            	<ul id="system_sub">
-	            		<li><a href="${root }system/staff">직원 관리</a></li>
-	            		<li><a href="${root }system/guide">가이드관리</a></li>
-	            		<li><a href="${root }system/client">회원관리</a></li>
-	            		<li><a href="${root }system/paid">결제관리</a></li>
-	            		<li><a href="${root }system/report">신고관리</a></li>
-	            	</ul>
-	            </li>
-	            </c:if>
 	          </ul>
 	        </li>
 	      </ul>
 		<div align="center" style="disply:inline-block;">
-			<a href="${root }"><img src="https://github.com/uniqueHRH/travel/blob/master/travel/src/main/webapp/imgs/logoA.png?raw=true" width=130px></a>
+			<a href="${root }"><img src="https://github.com/uniqueHRH/travel/blob/master/travel/src/main/webapp/imgs/logoB.png?raw=true" width=80px></a>
 	      <ul class="nav navbar-nav navbar-right">
 	        <!-- 로그인시 숨김 -->
-	        <c:if test="${sessionScope.check eq null && sessionScope.staffcheck eq null }">
 	        <li><a id="side" href="${root }main/login" >로그인</a></li>
 	        <li><a id="side" href="${root }main/admin" >회원가입</a></li>
-	        </c:if>
-	        <!-- 직원로그인시 -->
-	        <c:if test="${sessionScope.staffcheck ne null }">
-	        <li class="dropdown">
-	          <a id="side" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">나의페이지<span class="caret"></span></a>
-	          <ul class="dropdown-menu" id="dropdown_sub" role="menu">
-	            <li><a href="${root }main/staffinfo">내정보관리</a></li>
-	            <li><a href="${root }main/logout">로그아웃</a></li>
-	          </ul>
-	        </li>
-	        </c:if>
-	        <!-- 회원로그인시 -->
-	        <c:if test="${sessionScope.check ne null }">
-	        <li class="dropdown">
-	          <a id="side" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">${sessionScope.check.client_nick1}님<span class="caret"></span></a>
-	          <ul class="dropdown-menu" id="dropdown_sub" role="menu">
-	            <li><a href="${root }main/message">쪽지함</a></li>
-	            <li class="divider"></li>
-	            <li><a href="#">최근본상품</a></li>
-	            <li><a href="${root }main/wish">찜한상품</a></li>
-	            <li><a href="#">결제상품</a></li>
-	            <li class="divider"></li>
-	            <li><a href="#">내가쓴글</a></li>
-	            <li class="divider"></li>
-	            <li><a href="${root }main/myinfo">내정보관리</a></li>
-	            <li><a href="${root }main/logout">로그아웃</a></li>
-	          </ul>
-	        </li>
-	        </c:if>
 	      </ul>
 		</div>
 	    </div><!-- /.navbar-collapse -->
 	  </div><!-- /.container-fluid -->
 	</nav>
-<div class="container">     
- <div class="row">
-	<div class="col-md-12">
-		<div class="page-header" align="center">
-	  <h1>중국/일본</h1>
- </div>
+<!-- menubar end -->
+
+<!-- contents start -->
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="page-header" align="center">
+				<h1>예약하기</h1>
+			</div>
+			<img src="${bean.firstimg }">
+			${bean.country }
+			${bean.city }
+			${bean.cost }
+			
+      
+			<form class="form-horizontal" method="post">
+				<div class="form-group" id="insertid">
+					<label for="client_name" class="col-sm-2 control-label">여행일</label>
+					<div class="col-sm-10">
+						<input type="date" class="form-control" id="client_id" name="client_id" placeholder="여행날짜를 선택하세요" style="width:300px">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="client_pw" class="col-sm-2 control-label" >여행자 이름</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="client_pw" name="client_pw" placeholder="대표자 이름을 입력하세요" style="width:300px">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="client_pw" class="col-sm-2 control-label" >여행인원</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="client_pw" name="client_pw" placeholder="여행자 이름을 입력하세요" style="width:300px">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="client_pw" class="col-sm-2 control-label" >여행자 연락처</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="client_pw" name="client_pw" placeholder="대표자연락처를 입력하세요" style="width:300px">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="client_pw" class="col-sm-2 control-label">여행자 생년월일</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="client_pw" name="client_pw" placeholder="대표자 생년월일을 입력하세요" style="width:300px">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="client_pw" class="col-sm-2 control-label">카카오톡 아이디</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="client_pw" name="client_pw" placeholder="카카오톡아이디를 입력하세요(선택)" style="width:300px">
+					</div>
+				</div>
+				
+				<button type="submit" id="loginbtn" class="btn btn-default btn-lg btn-block">예약확인</button>
+			</form>
+			
+			
+		</div>
+
 	</div>
-
-<div class="row">
-	
-<c:forEach items="${list }" var="bean">
-  <a href="${root }tour/eastasia/${bean.tour_no}"><div class="col-sm-6 col-md-4">
-    <div class="thumbnail">
-      <img src="${bean.mainimg }" alt="" id="mainimg">
-      <div class="caption">
-        <h2>${bean.country }(${bean.city })</h2>
-        <p style="font-size: 17px;">${bean.introduce }</p>
-        <p style="color: red; font-size: 20px;">${bean.cost }원</p>
-      </div>
-    </div>
-  </div>
-  </a>
-</c:forEach>
- 
-   </div>
- </div>
 </div>
+<!-- contents end -->
 
-<script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
-<script type="text/javascript" src="${root }js/bootstrap.js"></script>
+ <div class="row">
+   <div class="col-md-12">
+    <div class="footer">
+    	<img id="footer1" src="https://github.com/uniqueHRH/travel/blob/master/src/main/webapp/imgs/footer1.jpg?raw=true" alt="">
+    </div>
+   </div>
+ </div> 
+</body>
 <script type="text/javascript">
-	$(document).ready(function() {
-		$('#tour_sub').hide();
+   $(document).ready(function() {
+	   $('#tour_sub').hide();
 		$('#comm_sub').hide();
 		$('#serv_sub').hide();
 		$('#system_sub').hide();
@@ -162,7 +165,7 @@
 		$('#mainFont2').hide();
 		$('#mainFont3').hide();
 		$('#mainFont4').hide();
-	
+
 		$('#tour').mouseenter(function() {
 			$('#tour_sub').show();
 		}).mouseleave(function() {
@@ -183,10 +186,8 @@
 		}).mouseleave(function() {
 			$('#system_sub').hide();
 		});
-		
+   
 	});
 	
-	
 </script>
-</body>
 </html>

@@ -10,6 +10,7 @@
 	
 	<!-- eastasia join guide -->
 	<resultMap type="EastAsiaBean" id="EastAsiaMap">
+		<result property="tour_no" column="tour_no"/>
 		<result property="country" column="country"/>
 		<result property="city" column="city"/>
 		<result property="cost" column="cost"/>
@@ -28,7 +29,7 @@
 	</resultMap>
 	
 	<select id="selectOne_eastasia" parameterType="EastAsiaBean" resultMap="EastAsiaMap" >
-		select eastasia.country,eastasia.city,eastasia.cost,eastasia.comments,eastasia.course,eastasia.firstimg,eastasia.secondimg,eastasia.thirdimg,guide.guide_name from eastasia inner join guide on eastasia.city=guide.guide_city where eastasia_no=#{value}
+		select eastasia.tour_no,eastasia.country,eastasia.city,eastasia.cost,eastasia.comments,eastasia.course,eastasia.firstimg,eastasia.secondimg,eastasia.thirdimg,guide.guide_name from eastasia inner join guide on eastasia.city=guide.guide_city where tour_no=#{value}
 	</select>
 
 </mapper>

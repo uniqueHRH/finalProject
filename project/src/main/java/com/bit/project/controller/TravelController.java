@@ -165,8 +165,8 @@ public class TravelController {
 		return "tour/eastasia";
 	}
 	@RequestMapping(value = "/tour/eastasia/{idx}", method = RequestMethod.GET)
-	public String detail(Model model, @PathVariable ("idx") int eastasia_no ) {
-		eastasiaservice.selectOne_eastasia(model, eastasia_no);
+	public String detail(Model model, @PathVariable ("idx") int tour_no ) {
+		eastasiaservice.selectOne_eastasia(model, tour_no);
 		return "tour/detaileastasia";
 	}
 
@@ -177,6 +177,11 @@ public class TravelController {
 	@RequestMapping(value = "/tour/southeastasia", method = RequestMethod.GET)
 	public String southasia() {
 	return "tour/southeastasia";
+	}
+	@RequestMapping(value = "/tour/eastasia/{idx}/booking", method = RequestMethod.GET)
+	public String booking(Model model, @PathVariable ("idx") int tour_no) {
+		eastasiaservice.selectOne_eastasia(model, tour_no);
+		return "tour/bookingeastasia";
 	}
 	
 	

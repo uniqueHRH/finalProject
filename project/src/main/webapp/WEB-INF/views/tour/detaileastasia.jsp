@@ -26,6 +26,7 @@
 		width: 100%;
 		height: 40%;
 		margin-bottom: 30px;
+		margin-top: 10px;
 	}
 	.thumbnail{
 		border: none;
@@ -38,7 +39,7 @@
 	#tourtable{		
 	 	width: 600px;
 		position: absolute;
-		left: 90px;
+		left: 60px;
 		height: 150px;
 		display: inline-block;
 		margin: 0px;
@@ -46,7 +47,7 @@
 		margin-top: 10px;
 	}
 	#bookbtn{
-		width: 300px;
+		width: 250px;
 		position: absolute;
 		right: 50px;
 	}
@@ -63,6 +64,63 @@
 	}
 </style>
 
+<script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="${root }js/bootstrap.js"></script>
+<script type="text/javascript" src="http://map.vworld.kr/js/vworldMapInit.js.do?version=2.0&apiKey=C787B2B1-9ED8-3FBF-AFF8-ADF7BCA3B5C6"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#tour_sub').hide();
+		$('#comm_sub').hide();
+		$('#serv_sub').hide();
+		$('#system_sub').hide();
+		
+		$('#mainFont1').hide();
+		$('#mainFont2').hide();
+		$('#mainFont3').hide();
+		$('#mainFont4').hide();
+	
+		$('#tour').mouseenter(function() {
+			$('#tour_sub').show();
+		}).mouseleave(function() {
+			$('#tour_sub').hide();
+		});
+		$('#comm').mouseenter(function() {
+			$('#comm_sub').show();
+		}).mouseleave(function() {
+			$('#comm_sub').hide();
+		});
+		$('#serv').mouseenter(function() {
+			$('#serv_sub').show();
+		}).mouseleave(function() {
+			$('#serv_sub').hide();
+		});
+		$('#system').mouseenter(function() {
+			$('#system_sub').show();
+		}).mouseleave(function() {
+			$('#system_sub').hide();
+		});
+		
+	});
+	var map = null;
+	vworld.showMode = false;
+	vworld.init(
+	"cont1"
+	, "map-first"
+	,function() {
+	map = this.vmap;
+	map.setBaseLayer(map.vworldBaseMap);
+	map.setControlsType({"simpleMap":true});
+	map.setCenterAndZoom(14134975.826087, 4519054.8257785, 14);
+	}
+	,function (obj){SOPPlugin = obj; }
+	,function (msg){alert('oh my god');}
+	);
+	function setModeCallback(){
+	vworld.setModeCallback(modecallback);
+	}
+	
+	
+</script>
 </head>
 <body>
 											<!-- menubar start -->
@@ -211,7 +269,9 @@
 			<td>${bean.cost }원</td>
 		</tr>
 		</table>
-	<button type="button" id="bookbtn" class="btn btn-default btn-lg">예약하기</button>
+	<a href="${root }tour/eastasia/${bean.tour_no}/booking"><button type="button" id="bookbtn" class="btn btn-default btn-lg">예약하기</button></a>
+	
+		<div id="cont1" style="width:500px;bvheight:500px;"></div>
 		
 		<p id="course"> <여행일정> </p>
 		<div id="courseimg">
@@ -228,46 +288,5 @@
     </div>
    </div>
  </div> 
-
 </body>
-
-<script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
-<script type="text/javascript" src="${root }js/bootstrap.js"></script>
-
-<script type="text/javascript">
-	$(document).ready(function() {
-		$('#tour_sub').hide();
-		$('#comm_sub').hide();
-		$('#serv_sub').hide();
-		$('#system_sub').hide();
-		
-		$('#mainFont1').hide();
-		$('#mainFont2').hide();
-		$('#mainFont3').hide();
-		$('#mainFont4').hide();
-	
-		$('#tour').mouseenter(function() {
-			$('#tour_sub').show();
-		}).mouseleave(function() {
-			$('#tour_sub').hide();
-		});
-		$('#comm').mouseenter(function() {
-			$('#comm_sub').show();
-		}).mouseleave(function() {
-			$('#comm_sub').hide();
-		});
-		$('#serv').mouseenter(function() {
-			$('#serv_sub').show();
-		}).mouseleave(function() {
-			$('#serv_sub').hide();
-		});
-		$('#system').mouseenter(function() {
-			$('#system_sub').show();
-		}).mouseleave(function() {
-			$('#system_sub').hide();
-		});
-		
-	});
-	
-</script>
 </html>

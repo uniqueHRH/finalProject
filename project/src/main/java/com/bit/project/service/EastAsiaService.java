@@ -5,5 +5,5 @@ import org.springframework.ui.Model;
 public interface EastAsiaService {
 	
 	void selectAll_eastasia(Model model);
-	void selectOne_eastasia(Model model,int eastasia_no);
+	void selectOne_eastasia(Model model,int tour_no);
 }

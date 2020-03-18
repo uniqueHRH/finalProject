@@ -20,8 +20,8 @@ public class EastAsiaDaoImpl implements EastAsiaDao {
 	}
 
 	@Override
-	public EastAsiaVo selectOne_eastasia(int eastasia_no) throws Exception {
-		return sqlSession.selectOne("eastasia.selectOne_eastasia",eastasia_no);
+	public EastAsiaVo selectOne_eastasia(int tour_no) throws Exception {
+		return sqlSession.selectOne("eastasia.selectOne_eastasia",tour_no);
 	}
 
 }
