@@ -13,6 +13,12 @@
 		<result property="country" column="country"/>
 		<result property="city" column="city"/>
 		<result property="cost" column="cost"/>
+		<result property="comments" column="comments"/>
+		<result property="course" column="course"/>
+		<result property="firstimg" column="firstimg"/>
+		<result property="secondimg" column="secondimg"/>
+		<result property="thirdimg" column="thirdimg"/>
+		
 		<association property="GuideVo" resultMap="GuideVo"/>
 	</resultMap>
 	
@@ -22,7 +28,8 @@
 	</resultMap>
 	
 	<select id="selectOne_eastasia" parameterType="EastAsiaBean" resultMap="EastAsiaMap" >
-		select eastasia.country,eastasia.city,eastasia.cost,guide.guide_name from eastasia inner join guide on eastasia.city=guide.guide_city where eastasia_no=#{value}
+		select eastasia.country,eastasia.city,eastasia.cost,eastasia.comments,eastasia.course,eastasia.firstimg,eastasia.secondimg,eastasia.thirdimg,guide.guide_name from eastasia inner join guide on eastasia.city=guide.guide_city where eastasia_no=#{value}
 	</select>
 
 </mapper>
+
