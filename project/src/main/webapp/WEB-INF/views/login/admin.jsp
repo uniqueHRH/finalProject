@@ -43,137 +43,6 @@
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="${root }js/bootstrap.js"></script>
 
-<script type="text/javascript">
-	$(document).ready(function() {
-		$('#tour_sub').hide();
-		$('#comm_sub').hide();
-		$('#serv_sub').hide();
-		$('#system_sub').hide();
-		
-		$('#mainFont1').hide();
-		$('#mainFont2').hide();
-		$('#mainFont3').hide();
-		$('#mainFont4').hide();
-	
-		$('#tour').mouseenter(function() {
-			$('#tour_sub').show();
-		}).mouseleave(function() {
-			$('#tour_sub').hide();
-		});
-		$('#comm').mouseenter(function() {
-			$('#comm_sub').show();
-		}).mouseleave(function() {
-			$('#comm_sub').hide();
-		});
-		$('#serv').mouseenter(function() {
-			$('#serv_sub').show();
-		}).mouseleave(function() {
-			$('#serv_sub').hide();
-		});
-		$('#system').mouseenter(function() {
-			$('#system_sub').show();
-		}).mouseleave(function() {
-			$('#system_sub').hide();
-		});
-		//clause
-		$('#allclause').click(function() {
-			if($('#allclause').prop("checked")){
-	        	  $("input[name=clause]").prop("checked",true);
-	        }else{
-	              $("input[name=clause]").prop("checked",false);
-	        }
-	    });
-		// content
-		$('#adminbtn').on('click',function() {
-			alert('회원가입이 완료되었습니다');
-		});
-		
-		
-		//유효성검사
-		$('#client_name').blur(function(){
-			var name = /^[가-힣]{2,4}$/;
-			var namecheck = name.test($("#client_name").val());
-			
-			if(namecheck){
-				$('#name_check').text('');
-			}else{
-				$('#name_check').text('이름을 확인해주세요');
-				$('#name_check').css('color', 'red');
-			}
-		});
-		
-		$('#client_nick').blur(function(){
-			var nick =  /^[\w\Wㄱ-ㅎㅏ-ㅣ가-힣]{2,15}$/;
-			var nickcheck = nick.test($("#client_nick").val());
-			
-			if(nickcheck){
-				$('#nick_check').text('');
-			}else{
-				$('#nick_check').text('2~15글자이내만 가능합니다');
-				$('#nick_check').css('color', 'red');
-			}
-		});
-		$('#client_id').blur(function(){
-			var id = /^[A-Za-z0-9]{4,20}$/;
-			var idcheck = id.test($("#client_id").val());
-			
-			if(idcheck){
-				$('#id_check').text('');
-			}else{
-				$('#id_check').text('4-15자이내 영문(대,소),숫자만 가능합니다');
-				$('#id_check').css('color', 'red');
-			}
-		});
-		
-		
-		$('#client_pw1').blur(function(){
-			var pw = /^.*(?=.{8,20})(?=.*[0-9])(?=.*[a-zA-Z]).*$/;
-			var pwcheck = pw.test($("#client_pw1").val());
-			
-			if(pwcheck){
-				$('#pw_check1').text('');
-			}else{
-				$('#pw_check1').text('비밀번호를 확인해주세요');
-				$('#pw_check1').css('color', 'red');
-			}
-		});
-		$('#client_pw2').blur(function(){
-			var pw1 = $("#client_pw1").val();
-			var pw2 = $("#client_pw2").val();
-			if(pw1==pw2){
-				$('#pw_check2').text('');
-			}else{
-				$('#pw_check2').text('비밀번호가 일치하지 않습니다');
-				$('#pw_check2').css('color', 'red');
-			}
-		});
-		$('#client_birth').blur(function(){
-			var birth = /^(19[0-9][0-9]|20\d{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$/;
-			var birthcheck = birth.test($("#client_birth").val());
-			
-			if(birthcheck){
-				$('#birth_check').text('');
-			}else{
-				$('#birth_check').text('8자리로 입력하세요 ex)19920216');
-				$('#birth_check').css('color', 'red');
-			}
-		});
-		$('#client_phone').blur(function(){
-			var phone = /(01[016789])([1-9]{1}[0-9]{2,3})([0-9]{4})$/;
-			var phonecheck = phone.test($("#client_phone").val());
-			
-			if(phonecheck){
-				$('#phone_check').text('');
-				$('#adminbtn').removeAttr('disabled');
-			}else{
-				$('#adminbtn').prop('disabled','disabled');
-				$('#phone_check').text('ex)01012345678');
-				$('#phone_check').css('color', 'red');
-			}
-		});
-	});
-		
-</script>
 </head>
 <body>
 	<!-- menubar start -->
@@ -422,5 +291,136 @@
     </div>
    </div>
  </div> 
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#tour_sub').hide();
+		$('#comm_sub').hide();
+		$('#serv_sub').hide();
+		$('#system_sub').hide();
+		
+		$('#mainFont1').hide();
+		$('#mainFont2').hide();
+		$('#mainFont3').hide();
+		$('#mainFont4').hide();
+	
+		$('#tour').mouseenter(function() {
+			$('#tour_sub').show();
+		}).mouseleave(function() {
+			$('#tour_sub').hide();
+		});
+		$('#comm').mouseenter(function() {
+			$('#comm_sub').show();
+		}).mouseleave(function() {
+			$('#comm_sub').hide();
+		});
+		$('#serv').mouseenter(function() {
+			$('#serv_sub').show();
+		}).mouseleave(function() {
+			$('#serv_sub').hide();
+		});
+		$('#system').mouseenter(function() {
+			$('#system_sub').show();
+		}).mouseleave(function() {
+			$('#system_sub').hide();
+		});
+		//clause
+		$('#allclause').click(function() {
+			if($('#allclause').prop("checked")){
+	        	  $("input[name=clause]").prop("checked",true);
+	        }else{
+	              $("input[name=clause]").prop("checked",false);
+	        }
+	    });
+		// content
+		$('#adminbtn').on('click',function() {
+			alert('회원가입이 완료되었습니다');
+		});
+		
+		//유효성검사
+		$('#client_name').blur(function(){
+			var name = /^[가-힣]{2,4}$/;
+			var namecheck = name.test($("#client_name").val());
+			
+			if(namecheck){
+				$('#name_check').text('');
+			}else{
+				$('#name_check').text('이름을 확인해주세요');
+				$('#name_check').css('color', 'red');
+			}
+		});
+		
+		$('#client_nick').blur(function(){
+			var nick =  /^[\w\Wㄱ-ㅎㅏ-ㅣ가-힣]{2,15}$/;
+			var nickcheck = nick.test($("#client_nick").val());
+			
+			if(nickcheck){
+				$('#nick_check').text('');
+			}else{
+				$('#nick_check').text('2~15글자이내만 가능합니다');
+				$('#nick_check').css('color', 'red');
+			}
+		});
+		$('#client_id').blur(function(){
+			var id = /^[A-Za-z0-9]{4,20}$/;
+			var idcheck = id.test($("#client_id").val());
+			
+			if(idcheck){
+				$('#id_check').text('');
+			}else{
+				$('#id_check').text('4-15자이내 영문(대,소),숫자만 가능합니다');
+				$('#id_check').css('color', 'red');
+			}
+		});
+		
+		
+		$('#client_pw1').blur(function(){
+			var pw = /^.*(?=.{8,20})(?=.*[0-9])(?=.*[a-zA-Z]).*$/;
+			var pwcheck = pw.test($("#client_pw1").val());
+			
+			if(pwcheck){
+				$('#pw_check1').text('');
+			}else{
+				$('#pw_check1').text('비밀번호를 확인해주세요');
+				$('#pw_check1').css('color', 'red');
+			}
+		});
+		$('#client_pw2').blur(function(){
+			var pw1 = $("#client_pw1").val();
+			var pw2 = $("#client_pw2").val();
+			if(pw1==pw2){
+				$('#pw_check2').text('');
+			}else{
+				$('#pw_check2').text('비밀번호가 일치하지 않습니다');
+				$('#pw_check2').css('color', 'red');
+			}
+		});
+		$('#client_birth').blur(function(){
+			var birth = /^(19[0-9][0-9]|20\d{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$/;
+			var birthcheck = birth.test($("#client_birth").val());
+			
+			if(birthcheck){
+				$('#birth_check').text('');
+			}else{
+				$('#birth_check').text('8자리로 입력하세요 ex)19920216');
+				$('#birth_check').css('color', 'red');
+			}
+		});
+		$('#client_phone').blur(function(){
+			var phone = /(01[016789])([1-9]{1}[0-9]{2,3})([0-9]{4})$/;
+			var phonecheck = phone.test($("#client_phone").val());
+			
+			if(phonecheck){
+				$('#phone_check').text('');
+				$('#adminbtn').removeAttr('disabled');
+			}else{
+				$('#adminbtn').prop('disabled','disabled');
+				$('#phone_check').text('ex)01012345678');
+				$('#phone_check').css('color', 'red');
+			}
+		});
+	
+	});
+		
+</script>
 </body>
 </html>
