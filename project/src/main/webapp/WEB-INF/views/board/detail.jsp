@@ -51,7 +51,7 @@
 	#btn {
 		text-align:center;
 	}
-	#btn1 {
+	#replyShow {
 		width:700px;
 		margin:0 auto;
 	}
@@ -78,7 +78,7 @@
 	#reply_content {
 		width:600px;
 	}
-	#edit, #upadte, #dele2, #insert {
+	#edit, #update, #dele2, #insert {
 		text-align:center;
 		width:30px;
 		height:25px;
@@ -100,11 +100,9 @@
 		width:640px;
 		height:25px;
 	}
-	tbody td:nth-child(2),
-	tbody td:nth-child(3),
-	tbody td:nth-child(4) {
-		width:20px;
-		background-color:pink;
+	tbody td:nth-child(2) {
+		width:67px;
+		background-color:red;
 	}
    
 </style>
@@ -249,7 +247,7 @@
       <button type="button" class="btn btn-default" id="goList">목록으로</button>
       <p></p>
       <div>
-         <button type="button" class="btn btn-default btn-lg btn-block" id="btn1">댓글보기</button>
+         <button type="button" class="btn btn-default btn-lg btn-block" id="replyShow">댓글보기</button>
       </div>
       <p></p>
    </div>
@@ -265,9 +263,11 @@
 			</tr>
 			<tr>
 				<td colspan="2"><input type="text" id="reply" name="reply_${beans.reply_no }" value="${beans.reply_content }" disabled></td>
-				<td><button type="button" id="edit" name="edit_${beans.reply_no }" class="btn btn-default"><img src="https://github.com/uniqueHRH/project/blob/master/src/main/webapp/imgs/edit.png?raw=true" width="15px" height="20px" /></td>
-				<td><button type="button" id="update" name="upadte_${beans.reply_no }" class="btn btn-default"><img src="https://github.com/uniqueHRH/project/blob/master/src/main/webapp/imgs/insert.png?raw=true" width="15px" height="20px" /></td>
-				<td><button type="button" id="dele2" name="dele2_${beans.reply_no }" class="btn btn-default"><img src="https://github.com/uniqueHRH/project/blob/master/src/main/webapp/imgs/delete.png?raw=true" width="15px" height="15px"/></td>
+				<td>
+					<button type="button" id="edit" name="edit_${beans.reply_no }" class="btn btn-default">수정</button><!-- <img src="https://github.com/uniqueHRH/project/blob/master/src/main/webapp/imgs/edit.png?raw=true" width="15px" height="20px" /> -->
+					<button type="button" id="update" name="upadte_${beans.reply_no }" class="btn btn-default">완료</button><!-- <img src="https://github.com/uniqueHRH/project/blob/master/src/main/webapp/imgs/insert.png?raw=true" width="15px" height="20px" /> -->
+					<button type="button" id="dele2" name="dele2_${beans.reply_no }" class="btn btn-default">삭제</button><!-- <img src="https://github.com/uniqueHRH/project/blob/master/src/main/webapp/imgs/delete.png?raw=true" width="15px" height="15px"/> -->
+				</td>
             </tr>
          <input type="hidden" id="reply_no" name="reply_no" value="${beans.reply_no}">
          </c:forEach>
@@ -426,7 +426,11 @@
       	});
       
       // 수정버튼
-		$('#update').hide();
+		$('button[id=update]').hide();
+		$('button[name^=edit]').on('click',function() {
+			alert('아 채우식');
+		});
+		/*
       	$('#edit').on('click',function() {
 			$('#reply').attr('disabled',false);
 			$('#edit').hide();
@@ -455,27 +459,52 @@
 				}
 			});
 		});
+      	*/
       
       // 삭제버튼
-      $("button[name^='dele2']").on('click',function() {
-         alert($('#reply_no').val());
-         var con=confirm('삭제하시겠습니까?');
-         if(con) {
-	         $.ajax({
-	            url:'../replyDel',
-	            type:'POST',
-	            data:{key:$('#reply_no').val()},
-	            success:function() {
-	            	alert('삭제완료!');
-	            	location.reload();
-	            },
-	            error:function() {
-	               alert('다시 시도해주세요');
-	            }
-	         });
-         }
-      });
+     	$("button[name^='dele2']").on('click',function() {
+     		var name=$(this).attr('name');
+     		var num=name.replace('dele2_','');   // 버튼의 값
+     		
+     		$('button[name=dele2_'+num+']').on('click',function() {
+     			var con=confirm('삭제하시겠습니까?');
+     			
+     			if(con) {
+     				 $.ajax({
+     		            url:'../replyDel',
+     		            type:'POST',
+     		            data:{key:num},
+     		            success:function() {
+     		            	alert('삭제완료!');
+     		            	location.reload();
+     		            },
+     		            error:function() {
+     		               alert('다시 시도해주세요');
+     		            }
+     		         });
+     			}
+     		});
+     	});
    });
    
 </script>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
