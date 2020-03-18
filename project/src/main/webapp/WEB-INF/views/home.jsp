@@ -163,7 +163,7 @@
 	        <!-- 회원로그인시 -->
 	        <c:if test="${sessionScope.check ne null }">
 	        <li class="dropdown">
-	          <a id="side" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">${sessionScope.check.client_nick1}님<span class="caret"></span></a>
+	          <a id="side" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">${sessionScope.check.client_nick1} 님<span class="caret"></span></a>
 	          <ul class="dropdown-menu" id="dropdown_sub" role="menu">
 	            <li><a href="${root }main/message">쪽지함</a></li>
 	            <li class="divider"></li>
@@ -259,6 +259,8 @@
 			$('#main4').css('opacity',1)
 			$('#maintext4').hide();
 		});
+		
+		
 	});
 </script>
 </html>

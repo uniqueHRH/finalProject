@@ -28,41 +28,6 @@
 </style>
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="${root }js/bootstrap.js"></script>
-<script type="text/javascript">
-	$(document).ready(function() {
-		$('#tour_sub').hide();
-		$('#comm_sub').hide();
-		$('#serv_sub').hide();
-		$('#system_sub').hide();
-		
-		$('#mainFont1').hide();
-		$('#mainFont2').hide();
-		$('#mainFont3').hide();
-		$('#mainFont4').hide();
-
-		$('#tour').mouseenter(function() {
-			$('#tour_sub').show();
-		}).mouseleave(function() {
-			$('#tour_sub').hide();
-		});
-		$('#comm').mouseenter(function() {
-			$('#comm_sub').show();
-		}).mouseleave(function() {
-			$('#comm_sub').hide();
-		});
-		$('#serv').mouseenter(function() {
-			$('#serv_sub').show();
-		}).mouseleave(function() {
-			$('#serv_sub').hide();
-		});
-		$('#system').mouseenter(function() {
-			$('#system_sub').show();
-		}).mouseleave(function() {
-			$('#system_sub').hide();
-		});
-		
-	});
-</script>
 </head>
 <body>
                         <!-- menubar start -->
@@ -124,7 +89,7 @@
      <h1>아이디찾기</h1>
    </div>
    
-   <form action="../findid" class="form-horizontal" method="post">
+   <form action="../login/findid" class="form-horizontal" method="post">
      <div class="form-group" id="insertid">
        <label for="client_name" class="col-sm-2 control-label" id="idd">이름</label>
        <div class="col-sm-10">
@@ -141,7 +106,7 @@
        </div>
      </div>
   </form>   
-  <form action="code_check${dice}" class="form-horizontal" method="post">
+  <form  action="../login/code_check${dice}" class="form-horizontal" method="post">
    <div class="form-group">
        <label for="client_nick" class="col-sm-2 control-label" id="code">인증번호</label>
        <div class="col-sm-10">
@@ -165,6 +130,41 @@
     </div>
    </div>
  </div> 
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#tour_sub').hide();
+		$('#comm_sub').hide();
+		$('#serv_sub').hide();
+		$('#system_sub').hide();
+		
+		$('#mainFont1').hide();
+		$('#mainFont2').hide();
+		$('#mainFont3').hide();
+		$('#mainFont4').hide();
+
+		$('#tour').mouseenter(function() {
+			$('#tour_sub').show();
+		}).mouseleave(function() {
+			$('#tour_sub').hide();
+		});
+		$('#comm').mouseenter(function() {
+			$('#comm_sub').show();
+		}).mouseleave(function() {
+			$('#comm_sub').hide();
+		});
+		$('#serv').mouseenter(function() {
+			$('#serv_sub').show();
+		}).mouseleave(function() {
+			$('#serv_sub').hide();
+		});
+		$('#system').mouseenter(function() {
+			$('#system_sub').show();
+		}).mouseleave(function() {
+			$('#system_sub').hide();
+		});
+		
+	});
+</script>
 </body>
 </html>
 
