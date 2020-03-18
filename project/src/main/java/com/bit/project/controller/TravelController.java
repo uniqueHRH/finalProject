@@ -178,6 +178,11 @@ public class TravelController {
 	public String southasia() {
 	return "tour/southeastasia";
 	}
+	@RequestMapping(value = "/tour/eastasia/{idx}/booking", method = RequestMethod.GET)
+	public String booking(Model model, @PathVariable ("idx") int tour_no) {
+		eastasiaservice.selectOne_eastasia(model, tour_no);
+		return "tour/bookingeastasia";
+	}
 	
 	
 	/*

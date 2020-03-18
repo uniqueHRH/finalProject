@@ -39,7 +39,7 @@
 	#tourtable{		
 	 	width: 600px;
 		position: absolute;
-		left: 90px;
+		left: 60px;
 		height: 150px;
 		display: inline-block;
 		margin: 0px;
@@ -47,7 +47,7 @@
 		margin-top: 10px;
 	}
 	#bookbtn{
-		width: 300px;
+		width: 250px;
 		position: absolute;
 		right: 50px;
 	}
@@ -269,7 +269,7 @@
 			<td>${bean.cost }원</td>
 		</tr>
 		</table>
-	<button type="button" id="bookbtn" class="btn btn-default btn-lg">예약하기</button>
+	<a href="${root }tour/eastasia/${bean.tour_no}/booking"><button type="button" id="bookbtn" class="btn btn-default btn-lg">예약하기</button></a>
 	
 		<div id="cont1" style="width:500px;bvheight:500px;"></div>
 		
