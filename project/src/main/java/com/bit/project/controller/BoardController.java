@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.bit.project.model.entity.BoardVo;
-import com.bit.project.model.entity.Paging;
 import com.bit.project.model.entity.ReplyVo;
 import com.bit.project.service.BoardService;
 import com.bit.project.service.ClientService;
@@ -50,8 +49,8 @@ public class BoardController {
 	EastAsiaService eastasiaservice;
 	
 	
-	
 // 게시판
+	
 	// 후기리스트 이동 (작성순 정렬)
  	@RequestMapping(value = "/board/review", method = RequestMethod.GET)
  	public String review(Model model) throws Exception {
@@ -169,4 +168,5 @@ public class BoardController {
   		replyService.deleteOne_reply(key);
   		return "board/detail";
   	}
+  	
 }

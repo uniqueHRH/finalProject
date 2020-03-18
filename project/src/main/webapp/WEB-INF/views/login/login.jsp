@@ -14,7 +14,9 @@
 <link rel="stylesheet" type="text/css" href="${root }css/bootstrap.css" />
 <link rel="stylesheet" type="text/css" href="${root }css/travel.css" />
 <!-- 카카오 API -->
-<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+
+<title>Login Demo - Kakao JavaScript SDK</title>
+
 <style type="text/css">
    .container{
       display: inline-block;
@@ -49,8 +51,7 @@
        width: 40%;
     }
 </style>
-<script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
-<script type="text/javascript" src="${root }js/bootstrap.js"></script>
+
 </head>
 <body>
 
@@ -166,8 +167,11 @@
     	<img id="footer1" src="https://github.com/uniqueHRH/travel/blob/master/src/main/webapp/imgs/footer1.jpg?raw=true" alt="">
     </div>
    </div>
- </div> 
-</body>
+ </div>
+
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+<script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="${root }js/bootstrap.js"></script>
 <script type="text/javascript">
    $(document).ready(function() {
 	   $('#tour_sub').hide();
@@ -203,20 +207,50 @@
    
    
 	// 카카오 로그인
-	Kakao.init('acc658a670e9ed5918d11647040b5bc5');
-	Kakao.Auth.createLoginButton({
-	      container: '#kakao-login-btn',
-	      success: function(authObj) {
-	        alert(JSON.stringify(authObj));
-	      },
-	      fail: function(err) {
-	         alert(JSON.stringify(err));
-	      }
-	    });
-	
+	// 카카오 로그인으로 받아올 수 있는 정보
+	// 1. id : 유저 고유 ID (String, int)
+	// 2. kaccount_email : 사용자 카카오계정 이메일 (String)
+	// 3. kaccount_email_verified : 인증받은 이메일인지 . 미인증 이메일은 변경될 수 있음 (boolean)
+	// 4. properties : 사용자 정보 . JSON . 키를 지정하면 값을 가져올 수 있다
+	//<![CDATA[
+    // 사용할 앱의 JavaScript 키를 설정해 주세요.
+    Kakao.init('acc658a670e9ed5918d11647040b5bc5');
+    // 카카오 로그인 버튼을 생성합니다.
+    Kakao.Auth.createLoginButton({
+      container: '#kakao-login-btn',
+      success: function(authObj) {
+        // 로그인 성공시, API를 호출합니다.
+        Kakao.API.request({
+          url: '/v2/user/me',
+          success: function(res) {
+			/* 
+            console.log(res);
+			console.log(res.kakao_account);   // 계정정보 전체 받아온다
+            console.log(res.properties.nickname);
+			console.log(res.properties.profile_image);   // 예전거가 뜨긴한데..
+			console.log(res.id);   // 숫자형태의 id
+			console.log(res.kakao_account.email);
+			console.log(res.kakao_account.birthday);   // 생일
+			console.log(res.kakao_account.gender);   // 성별
+			 */
+			
+            
+			// document.write(res.properties.nickname+"님 환영합니다.");   // 정상적으로 화면 전환됨
+          },
+          fail: function(error) {
+            alert(JSON.stringify(error));
+          }
+        });
+      },
+      fail: function(err) {
+        alert(JSON.stringify(err));
+      }
+    });
+  //]]>
 	
 	
 	});
 	
 </script>
+</body>
 </html>
