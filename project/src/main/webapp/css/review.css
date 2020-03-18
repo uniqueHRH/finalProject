@@ -1,0 +1,70 @@
+	.container {
+		width: 100%;
+		display: inline-block;
+		font-family: 'Jua';
+	}
+/* 나라정렬 버튼 */
+	#theme {
+		width:900px;
+		margin:0 auto;
+		padding:0px;
+	}
+/* 정렬버튼 */
+	#dropdownMenu1:hover {
+		background-color:#e8e8e8;
+	}
+/* 나라정렬버튼 + 검색조회버튼 */
+	#dropdownMenu1 {
+		border-radius:5px;
+		font-size:14px;
+		text-align:center;
+		height:33px;
+		width:79px;
+		cursor: pointer;
+		padding:0px 0px 0px 13px;
+		display:inline-block;
+	}
+/* 나라정렬 조회버튼 */
+	#sel {
+		display:inline-block;
+		border-radius:5px;
+		font-size:14px;
+		text-align:center;
+		height:30px;
+		vertical-align:middle;
+	}
+/* 글쓰기 버튼 div */
+	#fff {
+		padding:0px 339px;
+		display:inline-block;
+	}
+/* 글쓰기 <a> 너비 */
+	#wri {
+		width:79px;
+	}
+	#table {
+		width:900px;
+		margin:0 auto;
+		padding:0px;
+		text-align:center;
+		font-family: 'Jua';
+	}
+	#table th {
+		text-align:center;
+	}
+	#table>tbody td {
+		font-size:14px;
+	}
+	#pageNum, #search {
+		width:350px;      
+		margin:0 auto;
+		text-align:center;
+	}
+	tbody td>a {
+		color:black;
+		text-decoration:none;
+   }
+	.dropdown {
+		font-family: 'Jua';
+		font-size: 18px;
+	}

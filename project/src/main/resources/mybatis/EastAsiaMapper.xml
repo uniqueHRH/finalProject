@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="eastasia">
+	<select id="selectAll_eastasia" resultType="EastAsiaBean">
+		select * from eastasia order by country
+	</select>
+	
+	<!-- eastasia join guide -->
+	<resultMap type="EastAsiaBean" id="EastAsiaMap">
+		<result property="country" column="country"/>
+		<result property="city" column="city"/>
+		<result property="cost" column="cost"/>
+		<association property="GuideVo" resultMap="GuideVo"/>
+	</resultMap>
+	
+	<resultMap type="GuideBean" id="GuideVo">
+		<result property="guide_name" column="guide_name"/>
+		<result property="guide_city" column="guide_city"/>
+	</resultMap>
+	
+	<select id="selectOne_eastasia" parameterType="EastAsiaBean" resultMap="EastAsiaMap" >
+		select eastasia.country,eastasia.city,eastasia.cost,guide.guide_name from eastasia inner join guide on eastasia.city=guide.guide_city where eastasia_no=#{value}
+	</select>
+
+</mapper>

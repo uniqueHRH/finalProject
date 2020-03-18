@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--
+	board_id < 투어 : 1 / 후기 : 2 / 동행 : 3 / 게시판 : 4 / 이벤트 : 5 >
+	board_theme < 힐링 : 1 / 스탭 : 2 / 액티비티 : 3 / 먹거리 : 4 / 영화 : 5 / 스포츠 : 6 >
+	board_wish < 안찜 : 0 / 찜 : 1 >
+	staff_team < 경영 : 1 / 인사 : 2 / CS : 3 / 디자인 : 4 / 마케팅 : 5 >
+	paid_state < 미결제 : 0 / 결제 : 1 >
+	paid_confirm < 미확정 : 0 / 확정 : 1 >
+ -->
+ 
+ 
+<mapper namespace="paid">
+	<select id="selectAll_paid" resultType="PaidBean">
+		select * from paid order by paid_no desc
+	</select>
+	
+	<select id="selectOne_paid" resultType="PaidBean" parameterType="int">
+		select * from paid where paid_no=#{board_no} and paid_confirm=1 order by ${paid_date} desc
+	</select>
+	
+	<insert id="insertOne_paid" parameterType="PaidBean">
+		insert into paid (board_sub, paid_name, paid_phone, paid_sex, paid_birth, paid_count, paid_kakaoid, paid_date, paid_state, paid_confirm, board_no) values (#{board_sub}, #{paid_name}, #{paid_phone}, #{paid_sex}, #{paid_birth}, #{paid_count}, #{paid_kakaoid}, now(), #{paid_state}, #{paid_confirm}, #{board_no})
+	</insert>
+	
+	<delete id="deleteOne_paid" parameterType="int">
+		delete from paid where paid_no=#{paid_no}
+	</delete>
+</mapper>

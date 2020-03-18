@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<!--
+	board_id < 투어 : 1 / 후기 : 2 / 동행 : 3 / 게시판 : 4 / 이벤트 : 5 >
+	board_theme < 힐링 : 1 / 스탭 : 2 / 액티비티 : 3 / 먹거리 : 4 / 영화 : 5 / 스포츠 : 6 >
+	board_wish < 안찜 : 0 / 찜 : 1 >
+	staff_team < 경영 : 1 / 인사 : 2 / CS : 3 / 디자인 : 4 / 마케팅 : 5 >
+	paid_state < 미결제 : 0 / 결제 : 1 >
+	paid_confirm < 미확정 : 0 / 확정 : 1 >
+ -->
+ 
+ 
+<mapper namespace="notice">
+	<select id="selectAll_notice" resultType="NoticeBean">
+		select * from notice order by notice_no desc
+	</select>
+	
+	<select id="selectOne_notice" resultType="NoticeBean" parameterType="int">
+		select * from notice where notice_no=#{notice_no}
+	</select>
+	
+	<insert id="insertOne_notice" parameterType="NoticeBean">
+		insert into notice (notice_nick, notice_count, notice_date, notice_sub, notice_content) values ('관리자', #{notice_count}, now(), #{notice_sub}, #{notice_content})
+	</insert>
+	
+	<update id="updateOne_notice" parameterType="NoticeBean">
+		update notice set notice_sub=#{notice_sub}, notice_content=#{notice_content} where notice_no=#{notice_no}
+	</update>
+	
+	<delete id="deleteOne_notice" parameterType="int">
+		delete from notice where notice_no=#{notice_no}
+	</delete>
+</mapper>

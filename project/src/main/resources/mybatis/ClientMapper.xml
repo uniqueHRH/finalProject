@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<!--
+	board_id < 투어 : 1 / 후기 : 2 / 동행 : 3 / 게시판 : 4 / 이벤트 : 5 >
+	board_theme < 힐링 : 1 / 스탭 : 2 / 액티비티 : 3 / 먹거리 : 4 / 영화 : 5 / 스포츠 : 6 >
+	board_wish < 안찜 : 0 / 찜 : 1 >
+	staff_team < 경영 : 1 / 인사 : 2 / CS : 3 / 디자인 : 4 / 마케팅 : 5 >
+	paid_state < 미결제 : 0 / 결제 : 1 >
+	paid_confirm < 미확정 : 0 / 확정 : 1 >
+ -->
+ 
+ 
+
+<mapper namespace="client">
+
+	<select id="selectAll_client" resultType="ClientBean">
+		select * from client order by client_no desc
+	</select>
+	
+	<select id="selectOne_client" resultType="ClientBean" parameterType="int">
+		select * from client where client_no=#{value}
+	</select>
+	<insert id="insertOne_client" parameterType="ClientBean">
+		insert into client (client_nick1,client_nick2,client_name,client_phone,client_sex,client_birth,client_id,client_pw,client_email,client_joindate,client_level,client_point) values (#{client_nick1},#{client_nick1},#{client_name},#{client_phone},#{client_sex},#{client_birth},#{client_id},#{client_pw},#{client_email},now(),0,0)
+	</insert>
+	
+	<update id="updateOne_client" parameterType="ClientBean">
+		update client set client_level=#{client_level}, client_point=#{client_point} where client_no=#{client_no}
+	</update>
+	
+	<delete id="deleteOne_client" parameterType="int">
+		delete from client where client_no=#{value}
+	</delete>
+	
+	<select id="login" resultType="ClientBean">
+		select client_nick1,client_name from client where client_id=#{client_id} and client_pw=#{client_pw}
+	</select>
+	
+	<select id="findId" resultType="ClientBean">
+		select client_id from client where client_name=#{client_name} and client_email=#{client_email}
+	</select>
+	
+</mapper>
+
