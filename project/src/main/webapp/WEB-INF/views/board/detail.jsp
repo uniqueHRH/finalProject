@@ -78,7 +78,7 @@
 	#reply_content {
 		width:600px;
 	}
-	#edit, #update, #dele2, #insert {
+	#edit, #update, #cancel, #dele2, #insert {
 		text-align:center;
 		width:30px;
 		height:25px;
@@ -265,7 +265,8 @@
 				<td colspan="2"><input type="text" id="reply" name="reply_${beans.reply_no }" value="${beans.reply_content }" disabled></td>
 				<td>
 					<button type="button" id="edit" name="edit_${beans.reply_no }" class="btn btn-default">수정</button><!-- <img src="https://github.com/uniqueHRH/project/blob/master/src/main/webapp/imgs/edit.png?raw=true" width="15px" height="20px" /> -->
-					<button type="button" id="update" name="upadte_${beans.reply_no }" class="btn btn-default">완료</button><!-- <img src="https://github.com/uniqueHRH/project/blob/master/src/main/webapp/imgs/insert.png?raw=true" width="15px" height="20px" /> -->
+					<button type="button" id="update" name="update_${beans.reply_no }" class="btn btn-default">완료</button><!-- <img src="https://github.com/uniqueHRH/project/blob/master/src/main/webapp/imgs/insert.png?raw=true" width="15px" height="20px" /> -->
+					<button type="button" id="cancel" name="cancel_${beans.reply_no }" class="btn btn-default">취소</button><!-- <img src="https://github.com/uniqueHRH/project/blob/master/src/main/webapp/imgs/delete.png?raw=true" width="15px" height="15px"/> -->
 					<button type="button" id="dele2" name="dele2_${beans.reply_no }" class="btn btn-default">삭제</button><!-- <img src="https://github.com/uniqueHRH/project/blob/master/src/main/webapp/imgs/delete.png?raw=true" width="15px" height="15px"/> -->
 				</td>
             </tr>
@@ -385,11 +386,20 @@
 	});
       
       // 댓글보기 버튼
-      /* $('#table').hide()
+	$('#table').hide()
+	
+	var show=$('#replyShow');
+	var table=$('#table');
       
-      $('#btn1').on('click',function() {
-         $('#table').show();
-      }); */
+	show.on('click',function() {
+		table.show();
+		show.text('댓글닫기');
+         
+		show.on('click',function() {
+			table.hide();
+			show.text('댓글보기');
+		});
+	});
       
       // 입력 버튼
 		var log=$('#log').val();
@@ -427,42 +437,48 @@
       
       // 수정버튼
 		$('button[id=update]').hide();
+		$('button[id=cancel]').hide();
 		$('button[name^=edit]').on('click',function() {
-			alert('아 채우식');
+     		var name=$(this).attr('name');
+     		var num=name.replace('edit_','');   // 버튼의 값
+     		
+     		$('button[name=edit_'+num+']').on('click',function() {
+				$('input[name=reply_'+num+']').attr('disabled',false);
+				$('button[name=edit_'+num+']').hide();
+				$('button[name=dele2_'+num+']').hide();
+				$('button[name=update_'+num+']').show();
+				$('button[name=cancel_'+num+']').show();
+				$('button[name=cancel_'+num+']').on('click',function() {
+					var con=confirm('수정을 취소하시겠습니까?');
+					if(con) {
+						location.reload();
+					}
+				});
+				
+				$('button[name=update_'+num+']').on('click',function() {
+					var text=$('input[name=reply_'+num+']').val();
+					var con=confirm('수정하시겠습니까?');
+					
+					if(con) {
+						$.ajax({
+				            url:'../replyEdit',
+				            type:'POST',
+				            data:{reply_no:num, reply_content:text},
+				            success:function() {
+								location.reload();
+								alert('성공');
+							},
+							error:function() {
+								alert('다시 시도해주세요');
+							}
+						});
+					} 
+				});
+     		});
 		});
-		/*
-      	$('#edit').on('click',function() {
-			$('#reply').attr('disabled',false);
-			$('#edit').hide();
-			$('#update').show();
-			$('#dele2').on('click',function() {
-				location.reload();
-			});
-			
-			$('#update').on('click',function() {
-				var num=$('#reply_no').val();
-				var text=$('#reply').val();
-				var con=confirm('수정하시겠습니까?');
-				if(con) {
-					$.ajax({
-			            url:'../replyEdit',
-			            type:'POST',
-			            data:{reply_no:num, reply_content:text},
-			            success:function() {
-							location.reload();
-							alert('성공');
-						},
-						error:function() {
-							alert('다시 시도해주세요');
-						}
-					});
-				}
-			});
-		});
-      	*/
       
       // 삭제버튼
-     	$("button[name^='dele2']").on('click',function() {
+     	$('button[name^=dele2]').on('click',function() {
      		var name=$(this).attr('name');
      		var num=name.replace('dele2_','');   // 버튼의 값
      		
@@ -489,22 +505,3 @@
    
 </script>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
