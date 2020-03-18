@@ -100,6 +100,15 @@
 			$('#system_sub').hide();
 		});
 		
+		$('#bookbtn').click(function(){
+			var check = $('#check').val();
+			var check = "";
+			if(!check){
+				$("#bookform").attr("href", "../../main/login");
+			}
+			
+		});
+		
 	});
 	var map = null;
 	vworld.showMode = false;
@@ -118,6 +127,7 @@
 	function setModeCallback(){
 	vworld.setModeCallback(modecallback);
 	}
+	
 	
 	
 </script>
@@ -267,9 +277,10 @@
 			<td>포함</td>
 			<td class="active" style="text-align: center;">상품가</td>
 			<td>${bean.cost }원</td>
+			<td><input type="hidden" id="check" value="${sessionScope.check}"></td>
 		</tr>
 		</table>
-	<a href="${root }tour/eastasia/${bean.tour_no}/booking"><button type="button" id="bookbtn" class="btn btn-default btn-lg">예약하기</button></a>
+	<a id="bookform" href="${root }tour/eastasia/${bean.tour_no}/booking"><button type="button" id="bookbtn" class="btn btn-default btn-lg">예약하기</button></a>
 	
 		<div id="cont1" style="width:500px;bvheight:500px;"></div>
 		

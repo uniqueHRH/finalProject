@@ -120,8 +120,8 @@ public class EmailController {
 	    //이메일로 받은 인증번호를 입력하고 전송 버튼을 누르면 맵핑되는 메소드.
 	    //내가 입력한 인증번호와 메일로 입력한 인증번호가 맞는지 확인해서 맞으면 회원가입 페이지로 넘어가고,
 	    //틀리면 다시 원래 페이지로 돌아오는 메소드
-	    @RequestMapping(value = "/main/login/code_check${dice}", method = RequestMethod.POST)
-	    public ModelAndView code_check( ClientVo bean, String code, @PathVariable String dice, HttpServletRequest req, HttpServletResponse response_equals) throws Exception {
+	    @RequestMapping(value = "/code_check${dice}", method = RequestMethod.POST)
+	    public ModelAndView code_check( ClientVo bean, String code, @PathVariable("dice") String dice, HttpServletRequest req, HttpServletResponse response_equals) throws Exception {
 	 
 	        HttpSession session = req.getSession();
 	        

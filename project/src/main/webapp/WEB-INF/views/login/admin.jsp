@@ -202,8 +202,9 @@
     </div>
   </div>
 	<ul class="list-group">
-	  <li class="list-group-item disabled"><label>
-  <input type="checkbox" id="allclause" value="allclause">&nbsp;전체 약관 동의</label></li>
+	  <li class="list-group-item disabled">
+	  <label><input type="checkbox" id="allclause" value="allclause">&nbsp;전체 약관 동의</label>
+	  </li>
 	  <li class="list-group-item"><input type="checkbox" name="clause" value="clause1">&nbsp;<span data-toggle="modal" data-target="#myModal1">회원 가입 및 운영약관 동의 (필수)></span></li>
 	  <li class="list-group-item"><input type="checkbox" name="clause" value="clause2">&nbsp;<span data-toggle="modal" data-target="#myModal2">개인정보 수집 및 이용 (필수)></span></li>
 	  <li class="list-group-item"><input type="checkbox" name="clause" value="clause3">&nbsp;<span data-toggle="modal" data-target="#myModal3">위치정보 이용약관 (필수)> </span></li>
@@ -418,6 +419,8 @@
 				$('#phone_check').css('color', 'red');
 			}
 		});
+		
+		
 	
 	});
 		

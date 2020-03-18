@@ -106,7 +106,7 @@
        </div>
      </div>
   </form>   
-  <form  action="../login/code_check${dice}" class="form-horizontal" method="post">
+  <form  action="../../code_check${dice}" class="form-horizontal" method="post">
    <div class="form-group">
        <label for="client_nick" class="col-sm-2 control-label" id="code">인증번호</label>
        <div class="col-sm-10">
@@ -162,6 +162,7 @@
 		}).mouseleave(function() {
 			$('#system_sub').hide();
 		});
+		
 		
 	});
 </script>
