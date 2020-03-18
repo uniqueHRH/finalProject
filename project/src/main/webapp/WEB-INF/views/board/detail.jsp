@@ -52,7 +52,6 @@
 		text-align:center;
 	}
 	#btn1 {
-		position: fixed;
 		width:700px;
 		margin:0 auto;
 	}

@@ -34,7 +34,7 @@
 		<interceptors>
  			<interceptor>
   				<mapping path="/board/event" />
-  				<mapping path="/board/review" />
+  				<!-- <mapping path="/board/review" /> -->
   				<mapping path="/board/partner" />
   				<mapping path="/board/free" />
   				<beans:ref bean="loginInterceptor" />
