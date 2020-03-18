@@ -29,5 +29,16 @@
 	
 	<context:component-scan base-package="com.bit.project" />
 	
+	<beans:bean id="loginInterceptor" class="com.bit.project.Interceptor.LoginInterceptor" ></beans:bean>
+
+		<interceptors>
+ 			<interceptor>
+  				<mapping path="/board/event" />
+  				<mapping path="/board/review" />
+  				<mapping path="/board/partner" />
+  				<mapping path="/board/free" />
+  				<beans:ref bean="loginInterceptor" />
+			</interceptor>
+		</interceptors>
 	
 </beans:beans>

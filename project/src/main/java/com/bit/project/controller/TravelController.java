@@ -72,7 +72,7 @@ public class TravelController {
 		if(login==null) {
 			//로그인 실패 시
 			session.setAttribute("staffcheck", null);
-			mav.setViewName("login/stafflogin");
+			mav.setViewName("redirect:/main/stafflogin");
 			mav.addObject("msg", "fail");
 			return mav;
 		}else {
@@ -99,7 +99,7 @@ public class TravelController {
 		if(login==null) {
 			//로그인 실패 시
 			session.setAttribute("check", null);
-			mav.setViewName("login/login");
+			mav.setViewName("redirect:/main/login");
 			mav.addObject("msg", "fail");
 			return mav;
 		}else {

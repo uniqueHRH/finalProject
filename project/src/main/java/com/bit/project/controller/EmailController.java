@@ -1,6 +1,5 @@
 package com.bit.project.controller;
 
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Random;
 
@@ -8,6 +7,7 @@ import javax.inject.Inject;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -35,10 +35,10 @@ public class EmailController {
 	    		public String findid() {
 	    		return "login/findid";
 	    		}
-		
+	    	
 	    	
 	    // mailSending 코드
-	        @RequestMapping( value = "/main/findid" , method=RequestMethod.POST )
+	        @RequestMapping( value = "/main/login/findid" , method=RequestMethod.POST )
 	        public ModelAndView mailSending(HttpServletRequest request, String client_email, String client_name, ClientVo bean,HttpServletResponse response_email) throws Exception {
 	  
 	        	ClientVo findid = clientService.findId(bean);
@@ -120,42 +120,42 @@ public class EmailController {
 	    //이메일로 받은 인증번호를 입력하고 전송 버튼을 누르면 맵핑되는 메소드.
 	    //내가 입력한 인증번호와 메일로 입력한 인증번호가 맞는지 확인해서 맞으면 회원가입 페이지로 넘어가고,
 	    //틀리면 다시 원래 페이지로 돌아오는 메소드
-	    @RequestMapping(value = "/main/code_check${dice}", method = RequestMethod.POST)
-	    public ModelAndView code_check(String code, @PathVariable String dice, HttpServletResponse response_equals) throws IOException {
+	    @RequestMapping(value = "/main/login/code_check${dice}", method = RequestMethod.POST)
+	    public ModelAndView code_check( ClientVo bean, String code, @PathVariable String dice, HttpServletRequest req, HttpServletResponse response_equals) throws Exception {
 	 
+	        HttpSession session = req.getSession();
 	        
-	        
+	        ClientVo IdResult = clientService.findId(bean);
 	        
 	        System.out.println("마지막 : email_injeung : "+code);
 	        
 	        System.out.println("마지막 : dice : "+dice);
 	        
-	        
 	        //페이지이동과 자료를 동시에 하기위해 ModelAndView를 사용해서 이동할 페이지와 자료를 담음
-	         
-	        ModelAndView mv = new ModelAndView();
+	        
+	        ModelAndView mav = new ModelAndView();
+	        
+	        mav.setViewName("/member/join.do");
+	        
+	        mav.addObject("e_mail",code);
 	        
 	        if (code.equals(dice)) {
 	            
 	            //인증번호가 일치할 경우 인증번호가 맞다는 창을 출력하고 회원가입창으로 이동함
 	            
-	            
-	            
-	            mv.setViewName("/login/findidResult");
-	            
+	            session.setAttribute("findid", IdResult);
+	            mav.setViewName("/login/admin");
 	            
 	            //만약 인증번호가 같다면 이메일을 회원가입 페이지로 같이 넘겨서 이메일을
 	            //한번더 입력할 필요가 없게 한다.
 	            
-	            return mv;
+	    
+	            return mav;
 	            
 	            
 	        }else if (code != dice) {
 	            
-	            
-	            ModelAndView mv2 = new ModelAndView(); 
-	            
-	            mv2.setViewName("/login/findid");
+	            mav.setViewName("/login/findid");
 	            
 	            response_equals.setContentType("text/html; charset=UTF-8");
 	            PrintWriter out_equals = response_equals.getWriter();
@@ -163,11 +163,10 @@ public class EmailController {
 	            out_equals.flush();
 	            
 	    
-	            return mv2;
+	            return mav;
 	            
-	        }    
-	    
-	        return mv;
+	        }
+	        return mav;
 	
 	    }
 }
