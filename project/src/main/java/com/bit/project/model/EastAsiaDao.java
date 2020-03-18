@@ -7,5 +7,5 @@ import com.bit.project.model.entity.EastAsiaVo;
 public interface EastAsiaDao {
 	
 	List<EastAsiaVo> selectAll_eastasia() throws Exception;
-	EastAsiaVo selectOne_eastasia(int eastasia_no) throws Exception;
+	EastAsiaVo selectOne_eastasia(int tour_no) throws Exception;
 }

@@ -2,7 +2,7 @@ package com.bit.project.model.entity;
 
 public class EastAsiaVo {
 	
-	private int eastasia_no;
+	private int tour_no;
 	private String country;
 	private String city;
 	private String introduce;
@@ -22,13 +22,13 @@ public class EastAsiaVo {
 	}
 
 
-	public int getEastasia_no() {
-		return eastasia_no;
+	public int getTour_no() {
+		return tour_no;
 	}
 
 
-	public void setEastasia_no(int eastasia_no) {
-		this.eastasia_no = eastasia_no;
+	public void setTour_no(int tour_no) {
+		this.tour_no = tour_no;
 	}
 
 
@@ -144,18 +144,18 @@ public class EastAsiaVo {
 
 	@Override
 	public String toString() {
-		return "EastAsiaVo [eastasia_no=" + eastasia_no + ", country=" + country + ", city=" + city + ", introduce="
-				+ introduce + ", cost=" + cost + ", mainimg=" + mainimg + ", comments=" + comments + ", course="
-				+ course + ", firstimg=" + firstimg + ", secondimg=" + secondimg + ", thirdimg=" + thirdimg
-				+ ", GuideVo=" + GuideVo + "]";
+		return "EastAsiaVo [tour_no=" + tour_no + ", country=" + country + ", city=" + city + ", introduce=" + introduce
+				+ ", cost=" + cost + ", mainimg=" + mainimg + ", comments=" + comments + ", course=" + course
+				+ ", firstimg=" + firstimg + ", secondimg=" + secondimg + ", thirdimg=" + thirdimg + ", GuideVo="
+				+ GuideVo + "]";
 	}
 
 
-	public EastAsiaVo(int eastasia_no, String country, String city, String introduce, int cost, String mainimg,
+	public EastAsiaVo(int tour_no, String country, String city, String introduce, int cost, String mainimg,
 			String comments, String course, String firstimg, String secondimg, String thirdimg,
 			com.bit.project.model.entity.GuideVo guideVo) {
 		super();
-		this.eastasia_no = eastasia_no;
+		this.tour_no = tour_no;
 		this.country = country;
 		this.city = city;
 		this.introduce = introduce;
@@ -168,6 +168,9 @@ public class EastAsiaVo {
 		this.thirdimg = thirdimg;
 		GuideVo = guideVo;
 	}
+
+
+	
 	
 }
 

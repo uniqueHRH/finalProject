@@ -29,9 +29,9 @@ public class EastAsiaServiceImpl implements EastAsiaService{
 	}
 
 	@Override
-	public void selectOne_eastasia(Model model, int eastasia_no) {
+	public void selectOne_eastasia(Model model, int tour_no) {
 		try {
-			model.addAttribute("bean",eastasiaDao.selectOne_eastasia(eastasia_no));
+			model.addAttribute("bean",eastasiaDao.selectOne_eastasia(tour_no));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

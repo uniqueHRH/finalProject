@@ -28,7 +28,7 @@
 	</resultMap>
 	
 	<select id="selectOne_eastasia" parameterType="EastAsiaBean" resultMap="EastAsiaMap" >
-		select eastasia.country,eastasia.city,eastasia.cost,eastasia.comments,eastasia.course,eastasia.firstimg,eastasia.secondimg,eastasia.thirdimg,guide.guide_name from eastasia inner join guide on eastasia.city=guide.guide_city where eastasia_no=#{value}
+		select eastasia.country,eastasia.city,eastasia.cost,eastasia.comments,eastasia.course,eastasia.firstimg,eastasia.secondimg,eastasia.thirdimg,guide.guide_name from eastasia inner join guide on eastasia.city=guide.guide_city where tour_no=#{value}
 	</select>
 
 </mapper>

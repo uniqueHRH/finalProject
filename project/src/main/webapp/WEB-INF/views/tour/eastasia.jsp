@@ -13,13 +13,17 @@
 	.container{
 		font-family: 'Jua';
 		text-align: center;
-		width: 75%;
+		width: 70%;
 	}
 	.thumbnail{
-		border-style: none;
+		width: 330px;
 	}
 	#mainimg{
 		width: 300px;
+		padding-top: 15px;
+		padding-left: 10px;
+		padding-right: 10px;
+		
 	}	
 </style>
 
@@ -128,7 +132,7 @@
 <div class="row">
 	
 <c:forEach items="${list }" var="bean">
-  <a href="${root }tour/eastasia/${bean.eastasia_no}"><div class="col-sm-6 col-md-4">
+  <a href="${root }tour/eastasia/${bean.tour_no}"><div class="col-sm-6 col-md-4">
     <div class="thumbnail">
       <img src="${bean.mainimg }" alt="" id="mainimg">
       <div class="caption">
@@ -144,13 +148,9 @@
    </div>
  </div>
 </div>
-	
-	
 
-</body>
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="${root }js/bootstrap.js"></script>
-
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#tour_sub').hide();
@@ -185,5 +185,8 @@
 		});
 		
 	});
+	
+	
 </script>
+</body>
 </html>
