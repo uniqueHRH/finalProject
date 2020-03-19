@@ -99,32 +99,6 @@
 	      <ul class="nav navbar-nav navbar-right">
 	        <!-- 로그인시 숨김 -->
 	        <li><a id="side" href="${root }main/login" >로그인</a></li>
-	        <li><a id="side" href="${root }main/admin" >회원가입</a></li>
-	        
-	        <!-- 직원로그인시 -->
-	        <li class="dropdown">
-	          <a id="side" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">나의페이지<span class="caret"></span></a>
-	          <ul class="dropdown-menu" id="dropdown_sub" role="menu">
-	            <li><a href="${root }main/staffinfo">내정보관리</a></li>
-	            <li><a href="#">로그아웃</a></li>
-	          </ul>
-	        </li>
-	        <!-- 회원로그인시 -->
-	        <li class="dropdown">
-	          <a id="side" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">나의페이지<span class="caret"></span></a>
-	          <ul class="dropdown-menu" id="dropdown_sub" role="menu">
-	            <li><a href="${root }main/message">쪽지함</a></li>
-	            <li class="divider"></li>
-	            <li><a href="#">최근본상품</a></li>
-	            <li><a href="${root }main/wish">찜한상품</a></li>
-	            <li><a href="#">결제상품</a></li>
-	            <li class="divider"></li>
-	            <li><a href="#">내가쓴글</a></li>
-	            <li class="divider"></li>
-	            <li><a href="${root }main/myinfo">내정보관리</a></li>
-	            <li><a href="#">로그아웃</a></li>
-	          </ul>
-	        </li>
 	      </ul>
 		</div>
 	    </div><!-- /.navbar-collapse -->
@@ -140,7 +114,7 @@
 	</div>
 	
 
-<form action="../main/admin" class="form-horizontal" method="post">
+<form action="../main/admin" name="adm" class="form-horizontal" method="post">
   <div class="form-group">
     <label for="client_name" class="col-sm-2 control-label">이름</label>
     <div class="col-sm-10">
@@ -205,9 +179,9 @@
 	  <li class="list-group-item disabled">
 	  <label><input type="checkbox" id="allclause" value="allclause">&nbsp;전체 약관 동의</label>
 	  </li>
-	  <li class="list-group-item"><input type="checkbox" name="clause" value="clause1">&nbsp;<span data-toggle="modal" data-target="#myModal1">회원 가입 및 운영약관 동의 (필수)></span></li>
-	  <li class="list-group-item"><input type="checkbox" name="clause" value="clause2">&nbsp;<span data-toggle="modal" data-target="#myModal2">개인정보 수집 및 이용 (필수)></span></li>
-	  <li class="list-group-item"><input type="checkbox" name="clause" value="clause3">&nbsp;<span data-toggle="modal" data-target="#myModal3">위치정보 이용약관 (필수)> </span></li>
+	  <li class="list-group-item"><input type="checkbox" id="chk1" name="clause" value="clause1">&nbsp;<span data-toggle="modal" data-target="#myModal1">회원 가입 및 운영약관 동의 (필수)></span></li>
+	  <li class="list-group-item"><input type="checkbox" id="chk2" name="clause" value="clause2">&nbsp;<span data-toggle="modal" data-target="#myModal2">개인정보 수집 및 이용 (필수)></span></li>
+	  <li class="list-group-item"><input type="checkbox" id="chk3" name="clause" value="clause3">&nbsp;<span data-toggle="modal" data-target="#myModal3">위치정보 이용약관 (필수)> </span></li>
 	</ul>
  		
 			<!-- 약관1 start -->
@@ -279,7 +253,7 @@
   </div>
 </div>			
 
-<button type="submit" id="adminbtn" class="btn btn-default btn-lg btn-block" disabled="disabled">회원가입</button>
+<button type="submit" id="adminbtn" class="btn btn-default btn-lg btn-block">회원가입</button>
  </form>
    </div>	
   </div>
@@ -332,10 +306,6 @@
 	              $("input[name=clause]").prop("checked",false);
 	        }
 	    });
-		// content
-		$('#adminbtn').on('click',function() {
-			alert('회원가입이 완료되었습니다');
-		});
 		
 		//유효성검사
 		$('#client_name').blur(function(){
@@ -406,21 +376,37 @@
 				$('#birth_check').css('color', 'red');
 			}
 		});
-		$('#client_phone').blur(function(){
-			var phone = /(01[016789])([1-9]{1}[0-9]{2,3})([0-9]{4})$/;
-			var phonecheck = phone.test($("#client_phone").val());
+	
+			$('#client_phone').blur(function(){
+				var phone = /(01[016789])([1-9]{1}[0-9]{2,3})([0-9]{4})$/;
+				var phonecheck = phone.test($("#client_phone").val());
+				
+				if(phonecheck){
+					$('#phone_check').text('');
+					return true;
+				}else{
+					$('#phone_check').text('ex)01012345678');
+					$('#phone_check').css('color', 'red');
+					return false;
+				}
 			
-			if(phonecheck){
-				$('#phone_check').text('');
-				$('#adminbtn').removeAttr('disabled');
+			});
+			
+		$('form[name="adm"]').bind('submit',function(){
+			if($('#chk1').prop('checked') == false || $('#chk2').prop('checked') == false || $('#chk3').prop('checked') == false){
+		    	alert('필수 약관에 동의 하셔야 합니다.');
+		    	return false;
+			}else if($('#man').prop('checked') == false && $('#woman').prop('checked') == false){
+				alert('성별을 체크해주세요');
+				return false;
 			}else{
-				$('#adminbtn').prop('disabled','disabled');
-				$('#phone_check').text('ex)01012345678');
-				$('#phone_check').css('color', 'red');
+				
+				alert('회원가입이 완료되었습니다');
+				return true;
 			}
 		});
 		
-		
+	
 	
 	});
 		

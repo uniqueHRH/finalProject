@@ -91,7 +91,8 @@ public class EmailController {
 	            	mv.setViewName("/login/findid");     //뷰의이름
 	            	mv.addObject("name", client_name);
 	            	mv.addObject("email", client_email);
-	            
+	            	mv.addObject("dice", dice);
+	            	
 	            	System.out.println("mv : "+mv);
 	 
 	            	response_email.setContentType("text/html; charset=UTF-8");
@@ -120,22 +121,23 @@ public class EmailController {
 	    //이메일로 받은 인증번호를 입력하고 전송 버튼을 누르면 맵핑되는 메소드.
 	    //내가 입력한 인증번호와 메일로 입력한 인증번호가 맞는지 확인해서 맞으면 회원가입 페이지로 넘어가고,
 	    //틀리면 다시 원래 페이지로 돌아오는 메소드
-	    @RequestMapping(value = "/code_check${dice}", method = RequestMethod.POST)
-	    public ModelAndView code_check( ClientVo bean, String code, @PathVariable("dice") String dice, HttpServletRequest req, HttpServletResponse response_equals) throws Exception {
+	    @RequestMapping(value = "/main/code_check{dice}", method = RequestMethod.POST)
+	    public ModelAndView code_check( ClientVo bean,String client_name, String client_email , String code, @PathVariable String dice, HttpServletRequest req, HttpServletResponse response_equals) throws Exception {
 	 
 	        HttpSession session = req.getSession();
 	        
 	        ClientVo IdResult = clientService.findId(bean);
+	        System.out.println(IdResult);
+	        System.out.println("dice = "+dice);
+	        System.out.println("code = "+code);
 	        
-	        System.out.println("마지막 : email_injeung : "+code);
-	        
-	        System.out.println("마지막 : dice : "+dice);
+	        System.out.println(code.equals(dice));
 	        
 	        //페이지이동과 자료를 동시에 하기위해 ModelAndView를 사용해서 이동할 페이지와 자료를 담음
 	        
 	        ModelAndView mav = new ModelAndView();
 	        
-	        mav.setViewName("/member/join.do");
+	        mav.setViewName("/login/findidResult");
 	        
 	        mav.addObject("e_mail",code);
 	        
@@ -144,7 +146,8 @@ public class EmailController {
 	            //인증번호가 일치할 경우 인증번호가 맞다는 창을 출력하고 회원가입창으로 이동함
 	            
 	            session.setAttribute("findid", IdResult);
-	            mav.setViewName("/login/admin");
+	            System.out.println(session.getAttribute("findid"));
+	            mav.setViewName("/login/findidResult");
 	            
 	            //만약 인증번호가 같다면 이메일을 회원가입 페이지로 같이 넘겨서 이메일을
 	            //한번더 입력할 필요가 없게 한다.
@@ -154,12 +157,13 @@ public class EmailController {
 	            
 	            
 	        }else if (code != dice) {
-	            
 	            mav.setViewName("/login/findid");
+	            mav.addObject("name",client_name);
+	            mav.addObject("email",client_email);
 	            
 	            response_equals.setContentType("text/html; charset=UTF-8");
 	            PrintWriter out_equals = response_equals.getWriter();
-	            out_equals.println("<script>alert('인증번호가 일치하지않습니다. 인증번호를 다시 입력해주세요.'); history.go(-1);</script>");
+	            out_equals.println("<script>alert('인증번호가 일치하지않습니다. 인증번호를 다시 입력해주세요.');</script>");
 	            out_equals.flush();
 	            
 	    
