@@ -29,7 +29,7 @@
 
 <!-- 후기 기본 정렬 (작성 순서) -->
 	<select id="selectAll_review" resultType="BoardBean">
-		<![CDATA[select * from board where board_id=2 ORDER BY board_no DESC limit 1, 10]]>
+		select * from board where board_id=2 ORDER BY board_no DESC
 	</select>
 <!-- 후기 도시별 정렬 -->
 	<select id="selectAll_reviewCity" resultType="BoardBean">
@@ -38,10 +38,6 @@
 <!-- 후기 테마별 정렬 -->
 	<select id="selectAll_reviewTheme" resultType="BoardBean">
 		select * from board where board_id=2 ORDER BY board_theme, board_no DESC
-	</select>
-<!-- 후기 update 페이지 나라 조회 -->
-	<select id="select_reviewUpdate" resultType="BoardBean">
-		select board_land from board where board_no=#{board_no}
 	</select>
 <!-- 동행구하기 -->
 	<select id="selectAll_partner" resultType="BoardBean">
@@ -62,10 +58,26 @@
 	</select>
 <!-- 페이징 -->
 	<select id="countBoardList" resultType="Integer">
-    	<![CDATA[ select count(*) from board where board_id=2]]>
+		select count(*) from board where board_id=2
 	</select>
-
-
+<!-- 검색 -->
+<!-- 후기 -->
+	<select id="searchSub_review" resultType="BoardBean">
+		select * from board where board_id=2 and board_sub like concat('%', #{value},'%');
+	</select>
+<!-- 동행 -->
+	<select id="searchSub_partner" resultType="BoardBean">
+		select * from board where board_id=2 and board_sub like concat('%', #{value},'%');
+	</select>
+<!-- 자유게시판 -->
+	<select id="searchSub_free" resultType="BoardBean">
+		select * from board where board_id=2 and board_sub like concat('%', #{value},'%');
+	</select>
+<!-- 이벤트 -->
+	<select id="searchSub_event" resultType="BoardBean">
+		select * from board where board_id=2 and board_sub like concat('%', #{value},'%');
+	</select>
+		
 	<select id="selectOne_tour" resultType="BoardBean" parameterType="int">
 		select * from board where board_id=1 and board_no=#{value}
 	</select>

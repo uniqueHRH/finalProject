@@ -389,7 +389,7 @@
 	});
       
       // 댓글보기 버튼
-	$('#table').hide()
+	/* $('#table').hide()
 	
 	var show=$('#replyShow');
 	var table=$('#table');
@@ -402,7 +402,7 @@
 			table.hide();
 			show.text('댓글보기');
 		});
-	});
+	}); */
       
       // 입력 버튼
 		var log=$('#log').val();
@@ -427,9 +427,10 @@
 				$.ajax({
 		            url:'../reply',
 		            type:'POST',
+   		            cache:false,
 		            data:{board_no:$('#board_no').val(), client_nick1:log, reply_content:reply},
 		            success:function() {
-		               location.reload();
+		            	$('#reply_content').remove();
 		            },
 		            error:function() {
 		               alert('다시 시도해주세요');
@@ -453,7 +454,7 @@
 				$('button[name=cancel_'+num+']').on('click',function() {
 					var con=confirm('수정을 취소하시겠습니까?');
 					if(con) {
-						location.reload();
+						reload();
 					}
 				});
 				
@@ -467,7 +468,7 @@
 				            type:'POST',
 				            data:{reply_no:num, reply_content:text},
 				            success:function() {
-								location.reload();
+				            	reload();
 								alert('성공');
 							},
 							error:function() {
@@ -491,10 +492,10 @@
      				 $.ajax({
      		            url:'../replyDel',
      		            type:'POST',
+     		            cache:false,
      		            data:{key:num},
-     		            success:function() {
+     		            success:function(obj) {
      		            	alert('삭제완료!');
-     		            	location.reload();
      		            },
      		            error:function() {
      		               alert('다시 시도해주세요');
@@ -503,6 +504,14 @@
      			}
      		});
      	});
+      
+      function reload() {
+    	  location.reload();
+      }
+      
+      function time() {
+    	  setTimeout('time()',2000);
+      }
    });
    
 </script>

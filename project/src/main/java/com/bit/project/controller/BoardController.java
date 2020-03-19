@@ -51,6 +51,12 @@ public class BoardController {
 	
 // 게시판
 	
+	// 테스트페이지 이동
+	@RequestMapping("/board/test")
+	public String test() {
+		return "board/test";
+	}
+	
 	// 후기리스트 이동 (작성순 정렬)
  	@RequestMapping(value = "/board/review", method = RequestMethod.GET)
  	public String review(Model model) throws Exception {
