@@ -15,27 +15,21 @@
 <style type="text/css">
 	#table>thead th:nth-child(1) {
 		width:35px;
-		background-color:red;
 	}
 	#table>thead th:nth-child(2) {
 		width:90px;
-		background-color:yellow;
 	}
 	#table>thead th:nth-child(3) {
 		width:70px;
-		background-color:green;
 	}
 	#table>thead th:nth-child(4) {
 		width:315px;
-		background-color:blue;
 	}
 	#table>thead th:nth-child(5) {
 		width:80px;
-		background-color:pink;
 	}
 	#table>thead th:nth-child(7) {
 		width:60px;
-		background-color:pink;
 	}
 	#table>thead th:nth-child(6) {
 		width:50px;

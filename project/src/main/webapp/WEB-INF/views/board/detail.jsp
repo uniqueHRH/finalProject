@@ -60,20 +60,21 @@
 		width:700px;
 		margin:0 auto;
 		border-color:gray;
-		border:1px solid #ccc;
 		padding:10px;
+		border:0;
+		outline:0;
+		background-color:#e8e8e8;
 	}
 	#replyBoard {
 		width:700px;
 		height:100px;
 	}
 	#reply {
-		width:570px;
+		width:600px;
 		height:30px;
 		font-family:'Jua';
 		border:0;
 		outline:0;
-		background-color:gold;
 	}
 	#reply_content {
 		width:600px;
@@ -85,10 +86,10 @@
 		text-align:center;
 		border:0;
 		outline:0;
+		background-color:#e8e8e8;
 	}
 	tbody th:nth-child(1) {
 		width:110px;
-		background-color:pink;
 	}
 	tbody th:nth-child(2) {
 		font-size:13px;
@@ -102,7 +103,6 @@
 	}
 	tbody td:nth-child(2) {
 		width:67px;
-		background-color:red;
 	}
    
 </style>
@@ -264,10 +264,10 @@
 			<tr>
 				<td colspan="2"><input type="text" id="reply" name="reply_${beans.reply_no }" value="${beans.reply_content }" disabled></td>
 				<td>
-					<button type="button" id="edit" name="edit_${beans.reply_no }" class="btn btn-default">수정</button><!-- <img src="https://github.com/uniqueHRH/project/blob/master/src/main/webapp/imgs/edit.png?raw=true" width="15px" height="20px" /> -->
-					<button type="button" id="update" name="update_${beans.reply_no }" class="btn btn-default">완료</button><!-- <img src="https://github.com/uniqueHRH/project/blob/master/src/main/webapp/imgs/insert.png?raw=true" width="15px" height="20px" /> -->
-					<button type="button" id="cancel" name="cancel_${beans.reply_no }" class="btn btn-default">취소</button><!-- <img src="https://github.com/uniqueHRH/project/blob/master/src/main/webapp/imgs/delete.png?raw=true" width="15px" height="15px"/> -->
-					<button type="button" id="dele2" name="dele2_${beans.reply_no }" class="btn btn-default">삭제</button><!-- <img src="https://github.com/uniqueHRH/project/blob/master/src/main/webapp/imgs/delete.png?raw=true" width="15px" height="15px"/> -->
+					<button type="button" id="edit" name="edit_${beans.reply_no }" class="btn btn-default"><img src="https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/edit.png?raw=true" width="15px" height="20px"/></button>
+					<button type="button" id="update" name="update_${beans.reply_no }" class="btn btn-default"><img src="https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/insert.png?raw=true" width="15px" height="20px"/></button>
+					<button type="button" id="cancel" name="cancel_${beans.reply_no }" class="btn btn-default"><img src="https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/delete.png?raw=true" width="15px" height="15px"/></button>
+					<button type="button" id="dele2" name="dele2_${beans.reply_no }" class="btn btn-default"><img src="https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/delete.png?raw=true" width="15px" height="15px"/></button>
 				</td>
             </tr>
          <input type="hidden" id="reply_no" name="reply_no" value="${beans.reply_no}">
@@ -276,7 +276,7 @@
       </table>
       <p></p>
       <input type="text" class="form-control" id="reply_content" name="reply_content">
-      <button type="button" id="insert" class="btn btn-default"><img src="https://github.com/uniqueHRH/project/blob/master/src/main/webapp/imgs/insert.png?raw=true" width="30px" height="27px" style="vertical-align:30px;"/></button>
+      <button type="button" id="insert" class="btn btn-default"><img src="https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/insert.png?raw=true" width="30px" height="27px" style="vertical-align:30px;"/></button>
    </div>
       
 </form>
@@ -310,6 +310,9 @@
       
       $('#subm').hide();
       $('#dele').hide();
+      
+      $('button[id=update]').hide();
+	  $('button[id=cancel]').hide();
    
       $('#tour').mouseenter(function() {
          $('#tour_sub').show();
@@ -436,8 +439,7 @@
       	});
       
       // 수정버튼
-		$('button[id=update]').hide();
-		$('button[id=cancel]').hide();
+		
 		$('button[name^=edit]').on('click',function() {
      		var name=$(this).attr('name');
      		var num=name.replace('edit_','');   // 버튼의 값

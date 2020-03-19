@@ -277,7 +277,7 @@
 			<td>포함</td>
 			<td class="active" style="text-align: center;">상품가</td>
 			<td>${bean.cost }원</td>
-			<td><input type="hidden" id="check" value="${sessionScope.check}"></td>
+			<td><input type="hidden" id="check" value="${sessionScope.check.client_nick1}"></td>
 		</tr>
 		</table>
 	<a id="bookform" href="${root }tour/eastasia/${bean.tour_no}/booking"><button type="button" id="bookbtn" class="btn btn-default btn-lg">예약하기</button></a>
