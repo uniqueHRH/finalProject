@@ -21,12 +21,48 @@
     }
     .form-horizontal {
        width:700px;
-       margin: 0px auto;
+       position: absolute;
+       left: 350px;
+       margin-top: 30px;
+    }
+    #paid_count1{
+    	width: 300px;
+    	
+    }
+    #countlabel{
+    	margin-right: 15px;
     }
     #img{
     	width: 300px;
     	position: absolute;
-    	left: 150px;
+    	right: 400px;
+    	margin-top: 30px;
+    }
+    #infor1{
+    	width: 300px;
+    	position: absolute;
+    	right: 400px;
+    	top: 380px;
+    
+    }
+    #infor2{
+    	width: 300px;
+    	position: absolute;
+    	right: 400px;
+    	top: 470px;
+    
+    }
+    #confirmbtn{
+    	width: 200px;
+    	position: absolute;
+    	left: 570px;
+    	top: 470px;
+    }
+    #bookbtn{
+    	width: 300px;
+    	position: absolute;
+    	right: 400px;
+    	top: 530px;
     }
    
    
@@ -129,7 +165,7 @@
 	    </div><!-- /.navbar-collapse -->
 	  </div><!-- /.container-fluid -->
 	</nav>
-
+								<!-- menubar end -->
 <!-- contents start -->
 <div class="container">
 	<div class="row">
@@ -138,64 +174,90 @@
 				<h1>예약하기</h1>
 			</div>
 			
-	
+	<div id="allinfo">
 		<img id="img" src="${bean.firstimg }">
-			<table>
+			
+			<table class="table" id="infor1">
 				<tr>
-					<td>지역</td>
+					<td class="active" style="width: 100px; text-align: center;">지역</td>
+					
 					<td>${bean.city }</td>
 				</tr>
 				<tr>
-					<td>상품가</td>
-					<td>${bean.cost }</td>	
+					<td class="active" style="text-align: center;">1인 상품가</td>
+					<td>${bean.cost } 원</td>	
 				<tr>	
 			</table>
 			
-      
-			<form class="form-horizontal" method="post">
-				<div class="form-group" id="insertid">
-					<label for="client_name" class="col-sm-2 control-label">여행일</label>
-					<div class="col-sm-10">
-						<input type="date" class="form-control" id="client_id" name="client_id" placeholder="여행날짜를 선택하세요" style="width:300px">
-					</div>
-				</div>
-				<div class="form-group">
-					<label for="client_pw" class="col-sm-2 control-label" >여행자 이름</label>
-					<div class="col-sm-10">
-						<input type="text" class="form-control" id="client_pw" name="client_pw" placeholder="대표자 이름을 입력하세요" style="width:300px">
-					</div>
-				</div>
-				<div class="form-group">
-					<label for="client_pw" class="col-sm-2 control-label" >여행인원</label>
-					<div class="col-sm-10">
-						<input type="text" class="form-control" id="client_pw" name="client_pw" placeholder="여행자 이름을 입력하세요" style="width:300px">
-					</div>
-				</div>
-				<div class="form-group">
-					<label for="client_pw" class="col-sm-2 control-label" >여행자 연락처</label>
-					<div class="col-sm-10">
-						<input type="text" class="form-control" id="client_pw" name="client_pw" placeholder="대표자연락처를 입력하세요" style="width:300px">
-					</div>
-				</div>
-				<div class="form-group">
-					<label for="client_pw" class="col-sm-2 control-label">여행자 생년월일</label>
-					<div class="col-sm-10">
-						<input type="text" class="form-control" id="client_pw" name="client_pw" placeholder="대표자 생년월일을 입력하세요" style="width:300px">
-					</div>
-				</div>
-				<div class="form-group">
-					<label for="client_pw" class="col-sm-2 control-label">카카오톡 아이디</label>
-					<div class="col-sm-10">
-						<input type="text" class="form-control" id="client_pw" name="client_pw" placeholder="카카오톡아이디를 입력하세요(선택)" style="width:300px">
-					</div>
-				</div>
-				
-				<button type="submit" id="loginbtn" class="btn btn-default btn-lg btn-block">예약확인</button>
-			</form>
-			
-			
+			<table class="table" id="infor2">
+				<tr>
+					<td class="active" style="width: 100px; text-align: center;">총 상품가</td>
+					<td> </td>	
+				<tr>	
+			</table>
 		</div>
-
+			<button type="submit" id="bookbtn" class="btn btn-default btn-lg btn-block">예약하기</button>
+      <p style="font-size: 25px; margin-top: 50px; position: absolute; left: 550px; top: 70px;" >예약자 정보</p>
+		<form class="form-horizontal">
+			<div id="form-group">
+				<div class="form-group">
+					<label for="tour_date1" class="col-sm-2 control-label">여행일</label>
+					<div class="col-sm-10">
+						<input type="date" class="form-control" id="tour_date1" style="width:300px" >
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="paid_name1" class="col-sm-2 control-label" >여행자 이름</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="paid_name1" placeholder="대표자 이름을 입력하세요" style="width:300px" >
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="paid_count1" class="col-sm-2 control-label" id="countlabel">여행인원</label>
+					<select class="form-control" id="paid_count1">
+									  <option selected disabled>인원수를 선택해 주세요.</option>
+									  <option value="1">1명</option>
+									  <option value="2">2명</option>
+									  <option value="3">3명</option>
+									  <option value="4">4명</option>
+									  <option value="5">5명</option>
+									  <option value="6">6명</option>
+									  <option value="7">7명</option>
+									  <option value="8">8명</option>
+									  <option value="9">9명</option>
+									  
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="paid_phone1" class="col-sm-2 control-label" >여행자 연락처</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="paid_phone1" placeholder="대표자연락처를 입력하세요" style="width:300px" >
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="paid_birth1" class="col-sm-2 control-label">여행자 생년월일</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="paid_birth1" placeholder="대표자 생년월일을 입력하세요" style="width:300px" >
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="paid_kakaoid1" class="col-sm-2 control-label">카카오톡 아이디</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="paid_kakaoid1" placeholder="카카오톡아이디를 입력하세요(선택)" style="width:300px">
+					</div>
+				</div>
+			</div>	
+		</form> 
+				<button id="confirmbtn" class="btn btn-default btn-lg btn-block">확인 및 총 금액보기</button>
+				
+			<form id="form1">	
+			</form>	
+				
+				
+				
+				
+				
+		</div>	
 	</div>
 </div>
 <!-- contents end -->
@@ -203,14 +265,13 @@
  <div class="row">
    <div class="col-md-12">
     <div class="footer">
-    	<img id="footer1" src="https://github.com/uniqueHRH/travel/blob/master/src/main/webapp/imgs/footer1.jpg?raw=true" alt="">
+    	
     </div>
    </div>
  </div> 
-</body>
 <script type="text/javascript">
    $(document).ready(function() {
-	   $('#tour_sub').hide();
+	    $('#tour_sub').hide();
 		$('#comm_sub').hide();
 		$('#serv_sub').hide();
 		$('#system_sub').hide();
@@ -240,8 +301,43 @@
 		}).mouseleave(function() {
 			$('#system_sub').hide();
 		});
-   
+		$('#confirmbtn').click(function(){
+			
+			
+		if($('#tour_date1').value()=="" || $('#paid_name1').value()=="" || $('#paid_count1').value()=="인원수를 선택해 주세요.") || $('#paid_phone').value()=="" || $('#paid_birth').value()="" ||){
+				alert('빈칸확인');
+			
+		}
+			
+			
+			
+			
+			var tour_date=$('#tour_date1').val();
+			var paid_name=$('#paid_name1').val();
+			var paid_count=$("#paid_count1 option:selected").val();
+			var paid_phone=$('#paid_phone1').val();
+			var paid_birth=$('#paid_birth1').val();
+			var paid_kakaoid=$('#paid_kakaoid1').val();
+			var totalcost=Number(paid_count)*Number(${bean.cost });
+			//총 금액 함수
+			$('#infor2 tr:nth-child(1)>td:last').remove();
+			$('#infor2 tr:nth-child(1)').append('<td style="color: red;">'+totalcost+'&nbsp원</td>');
+			//총금액함수 end
+			//hidden input 값 받아오는 함수
+			$('#form1').append('<input type="text" id="client_name" name="client_name" value="'+'${sessionScope.check.client_name}'+'">');
+			$('#form1').append('<input type="text" id="tour_date" name="tour_date" value="'+tour_date+'">');
+			$('#form1').append('<input type="text" id="paid_name" name="paid_name" value="'+paid_name+'">');
+			$('#form1').append('<input type="text" id="paid_count" name="paid_count" value="'+paid_count+'">');
+			$('#form1').append('<input type="text" id="paid_phone" name="paid_phone" value="'+paid_phone+'">');
+			$('#form1').append('<input type="text" id="paid_birth" name="paid_birth" value="'+paid_birth+'">');
+			$('#form1').append('<input type="text" id="paid_kakaoid" name="paid_kakaoid" value="'+paid_kakaoid+'">');
+			$('#form1').append('<input type="text" id="total_totalcost" name="total_totalcost" value="'+totalcost+'">');
+			//hidden input end
+			
+			
+			
+  		});
 	});
-	
 </script>
+</body>
 </html>
