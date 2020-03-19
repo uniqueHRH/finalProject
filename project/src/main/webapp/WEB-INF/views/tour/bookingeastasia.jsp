@@ -303,15 +303,7 @@
 		});
 		$('#confirmbtn').click(function(){
 			
-			
-		if($('#tour_date1').value()=="" || $('#paid_name1').value()=="" || $('#paid_count1').value()=="인원수를 선택해 주세요.") || $('#paid_phone').value()=="" || $('#paid_birth').value()="" ||){
-				alert('빈칸확인');
-			
-		}
-			
-			
-			
-			
+					
 			var tour_date=$('#tour_date1').val();
 			var paid_name=$('#paid_name1').val();
 			var paid_count=$("#paid_count1 option:selected").val();
