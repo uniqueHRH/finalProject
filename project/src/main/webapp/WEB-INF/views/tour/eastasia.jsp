@@ -29,7 +29,7 @@
 
 </head>
 <body>
-											<!-- menubar start -->
+																				<!-- menubar start -->
 	<nav class="navbar navbar-primary">
 	  <div class="container-fluid">
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -81,7 +81,7 @@
 	        </li>
 	      </ul>
 		<div align="center" style="disply:inline-block;">
-			<a href="${root }"><img src="https://github.com/uniqueHRH/travel/blob/master/travel/src/main/webapp/imgs/logoA.png?raw=true" width=130px></a>
+			<a href="${root }"><img src="https://github.com/uniqueHRH/travel/blob/master/travel/src/main/webapp/imgs/logoB.png?raw=true" width=80px></a>
 	      <ul class="nav navbar-nav navbar-right">
 	        <!-- 로그인시 숨김 -->
 	        <c:if test="${sessionScope.check eq null && sessionScope.staffcheck eq null }">
@@ -90,6 +90,7 @@
 	        </c:if>
 	        <!-- 직원로그인시 -->
 	        <c:if test="${sessionScope.staffcheck ne null }">
+	        <li class="log">${sessionScope.staffcheck.staff_name}님 환영합니다</li>
 	        <li class="dropdown">
 	          <a id="side" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">나의페이지<span class="caret"></span></a>
 	          <ul class="dropdown-menu" id="dropdown_sub" role="menu">
@@ -100,8 +101,9 @@
 	        </c:if>
 	        <!-- 회원로그인시 -->
 	        <c:if test="${sessionScope.check ne null }">
+			<li class="log">${sessionScope.check.client_nick1}님 환영합니다</li>
 	        <li class="dropdown">
-	          <a id="side" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">${sessionScope.check.client_nick1}님<span class="caret"></span></a>
+	          <a id="side" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">나의페이지<span class="caret"></span></a>
 	          <ul class="dropdown-menu" id="dropdown_sub" role="menu">
 	            <li><a href="${root }main/message">쪽지함</a></li>
 	            <li class="divider"></li>

@@ -99,11 +99,10 @@
 		}).mouseleave(function() {
 			$('#system_sub').hide();
 		});
-		
 		$('#bookbtn').click(function(){
 			var check = $('#check').val();
 			var check = "";
-			if(!check){
+			if(!sessionScope.check){
 				$("#bookform").attr("href", "../../main/login");
 			}
 			

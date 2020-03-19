@@ -6,9 +6,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<!-- 카카오 API -->
-<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width"/>
+
 
 <title>Login</title>
 <link rel="stylesheet" type="text/css" href="${root }css/bootstrap.css" />
@@ -25,6 +23,11 @@
        width:700px;
        margin: 0px auto;
     }
+    #img{
+    	width: 300px;
+    	position: absolute;
+    	left: 150px;
+    }
    
    
 </style>
@@ -32,9 +35,8 @@
 <script type="text/javascript" src="${root }js/bootstrap.js"></script>
 </head>
 <body>
-
-                        <!-- menubar start -->
-   	<nav class="navbar navbar-primary">
+										<!-- menubar start -->
+	<nav class="navbar navbar-primary">
 	  <div class="container-fluid">
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	      <ul class="nav navbar-nav">
@@ -69,6 +71,18 @@
 	            		<li><a href="${root }board/qna">자주묻는질문</a></li>
 	            	</ul>
 	            </li>
+	           <c:if test="${sessionScope.staffcheck ne null }">
+	            <li class="divider"></li>
+	            <li id="system"><a href="#">시스템관리</a>
+	            	<ul id="system_sub">
+	            		<li><a href="${root }system/staff">직원 관리</a></li>
+	            		<li><a href="${root }system/guide">가이드관리</a></li>
+	            		<li><a href="${root }system/client">회원관리</a></li>
+	            		<li><a href="${root }system/paid">결제관리</a></li>
+	            		<li><a href="${root }system/report">신고관리</a></li>
+	            	</ul>
+	            </li>
+	            </c:if>
 	          </ul>
 	        </li>
 	      </ul>
@@ -76,14 +90,45 @@
 			<a href="${root }"><img src="https://github.com/uniqueHRH/travel/blob/master/travel/src/main/webapp/imgs/logoB.png?raw=true" width=80px></a>
 	      <ul class="nav navbar-nav navbar-right">
 	        <!-- 로그인시 숨김 -->
+	        <c:if test="${sessionScope.check eq null && sessionScope.staffcheck eq null }">
 	        <li><a id="side" href="${root }main/login" >로그인</a></li>
 	        <li><a id="side" href="${root }main/admin" >회원가입</a></li>
+	        </c:if>
+	        <!-- 직원로그인시 -->
+	        <c:if test="${sessionScope.staffcheck ne null }">
+	        <li class="log">${sessionScope.staffcheck.staff_name}님 환영합니다</li>
+	        <li class="dropdown">
+	          <a id="side" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">나의페이지<span class="caret"></span></a>
+	          <ul class="dropdown-menu" id="dropdown_sub" role="menu">
+	            <li><a href="${root }main/staffinfo">내정보관리</a></li>
+	            <li><a href="${root }main/logout">로그아웃</a></li>
+	          </ul>
+	        </li>
+	        </c:if>
+	        <!-- 회원로그인시 -->
+	        <c:if test="${sessionScope.check ne null }">
+			<li class="log">${sessionScope.check.client_nick1}님 환영합니다</li>
+	        <li class="dropdown">
+	          <a id="side" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">나의페이지<span class="caret"></span></a>
+	          <ul class="dropdown-menu" id="dropdown_sub" role="menu">
+	            <li><a href="${root }main/message">쪽지함</a></li>
+	            <li class="divider"></li>
+	            <li><a href="#">최근본상품</a></li>
+	            <li><a href="${root }main/wish">찜한상품</a></li>
+	            <li><a href="#">결제상품</a></li>
+	            <li class="divider"></li>
+	            <li><a href="#">내가쓴글</a></li>
+	            <li class="divider"></li>
+	            <li><a href="${root }main/myinfo">내정보관리</a></li>
+	            <li><a href="${root }main/logout">로그아웃</a></li>
+	          </ul>
+	        </li>
+	        </c:if>
 	      </ul>
 		</div>
 	    </div><!-- /.navbar-collapse -->
 	  </div><!-- /.container-fluid -->
 	</nav>
-<!-- menubar end -->
 
 <!-- contents start -->
 <div class="container">
@@ -92,10 +137,19 @@
 			<div class="page-header" align="center">
 				<h1>예약하기</h1>
 			</div>
-			<img src="${bean.firstimg }">
-			${bean.country }
-			${bean.city }
-			${bean.cost }
+			
+	
+		<img id="img" src="${bean.firstimg }">
+			<table>
+				<tr>
+					<td>지역</td>
+					<td>${bean.city }</td>
+				</tr>
+				<tr>
+					<td>상품가</td>
+					<td>${bean.cost }</td>	
+				<tr>	
+			</table>
 			
       
 			<form class="form-horizontal" method="post">
