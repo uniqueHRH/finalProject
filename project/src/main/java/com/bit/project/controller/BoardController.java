@@ -45,8 +45,6 @@ public class BoardController {
 	SendService sendService;
 	@Autowired
 	StaffService staffService;
-	@Autowired
-	TourService eastasiaservice;
 	
 	
 // °Ô½ÃÆÇ
@@ -61,12 +59,6 @@ public class BoardController {
  	@RequestMapping(value = "/board/review", method = RequestMethod.GET)
  	public String review(Model model) throws Exception {
  		boardService.selectAll_review(model);
- 		
-		/*
-		 * Paging pg=new Paging(); pg.setBoardVo(boardVo);
-		 * pg.setTotalCount(boardService.countBoardListTotal());
-		 * model.addAttribute("pg",pg);
-		 */
  		return "board/review";
  	}
  	
