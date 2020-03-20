@@ -69,36 +69,30 @@
 			<ul class="login">
 		        <!-- 로그인시 숨김 -->
 		        <c:if test="${sessionScope.check eq null && sessionScope.staffcheck eq null }">
-		        <li><a id="side" href="${root }main/login" >로그인</a> &nbsp; &nbsp; &nbsp; &nbsp;
-		        <a id="side" href="${root }main/admin" >회원가입</a></li>
+		        <li>
+		        	<a id="side" href="${root }main/login" >로그인</a> &nbsp; &nbsp; &nbsp; &nbsp;
+		        	<a id="side" href="${root }main/admin" >회원가입</a>
+		        </li>
 		        </c:if>
 		        <!-- 직원로그인시 -->
 		        <c:if test="${sessionScope.staffcheck ne null }">
-		        <li class="dropdown">
-		          <a id="side" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">나의페이지<span class="caret"></span></a>
-		          <ul class="dropdown-menu" id="dropdown_sub" role="menu">
-		            <li><a href="${root }main/staffinfo">내정보관리</a></li>
-		            <li><a href="${root }main/logout">로그아웃</a></li>
-		          </ul>
-		        </li>
+				<select id="side" onchange="location.href=this.value">
+		            <option value="${root }main/staffinfo">내정보관리</option>
+		            <option value="${root }main/logout">로그아웃</option>
+		        </select>
 		        </c:if>
 		        <!-- 회원로그인시 -->
 		        <c:if test="${sessionScope.check ne null }">
-		        <li class="dropdown">
-		          <a id="side" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">${sessionScope.check.client_nick1} 님<span class="caret"></span></a>
-		          <ul class="dropdown-menu" id="dropdown_sub" role="menu">
-		            <li><a href="${root }main/message">쪽지함</a></li>
-		            <li class="divider"></li>
-		            <li><a href="#">최근본상품</a></li>
-		            <li><a href="${root }main/wish">찜한상품</a></li>
-		            <li><a href="#">결제상품</a></li>
-		            <li class="divider"></li>
-		            <li><a href="#">내가쓴글</a></li>
-		            <li class="divider"></li>
-		            <li><a href="${root }main/myinfo">내정보관리</a></li>
-		            <li><a href="${root }main/logout">로그아웃</a></li>
-		          </ul>
-		        </li>
+				<select id="side" onchange="location.href=this.value">
+					<option id="hide">${sessionScope.check.client_nick1} 님<span class="caret"></span></option>
+		            <option value="${root }main/message">쪽지함</option>
+		            <option value="#">최근본상품</option>
+		            <option value="${root }main/wish">찜한상품</option>
+		            <option value="#">결제상품</option>
+		            <option value="#">내가쓴글</option>
+		            <option value="${root }main/myinfo">내정보관리</option>
+		            <option value="${root }main/logout">로그아웃</option>
+		          </select>
 		        </c:if>
 			</ul>
 			<ul class="nav nav-pills nav-stacked" id="hamb">
@@ -153,13 +147,10 @@
   <div class="row">
    <div class="col-md-12">
       <div class="page-header" id="page-header" align="center">
-     <h1>후기</h1>
+     <h1>REVIEW</h1>
    </div>
    
 	
-   
-   
-   
    
 <table class="table table-hover" id="table">
 <!-- 정렬 드롭다운 -->
@@ -172,6 +163,7 @@
 		<a class="btn btn-default" href="#" role="button" id="sel">조회</a>
 		<div id="fff"></div>
 	   <a class="btn btn-default" href="${root }board/write" role="button" id="wri">글쓰기</a>
+	   <input type="hidden" id="loginCk" value="${sessionScope.check.client_nick1}"/>
 	</div>
 
 <!-- 리스트 출력 -->
@@ -254,6 +246,7 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#hamb').hide();
+		$('#hide').hide();
 		
 		$('#tour_sub').hide();
 		$('#comm_sub').hide();
@@ -331,8 +324,13 @@
 	    });
 	  //]]>
 		
-		
-		
+		$('#hide').hide();
+		// 로그인 후 글쓰기 이용 가능
+		var loginBool=$('#loginCk').val();
+
+		if(!loginBool) {
+			$('#wri').hide();
+		}
 //////////////////////////////////////////////////////////////////////////////////////////		
 		
 		// 검색기능

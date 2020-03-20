@@ -10,11 +10,14 @@
 <link rel="stylesheet" type="text/css" href="${root }css/bootstrap.css" />
 <link rel="stylesheet" type="text/css" href="${root }css/travel.css" />
 <style type="text/css">
-	.container {
-		width: 100%;
-		display: inline-block;
+	h1 {
 		font-family: 'Jua';
+	}
+	form {
+		width:700px;      
 		margin:0 auto;
+		font-family: 'Jua';
+		font-size:18px;
 	}
 	#hambI {
 		border:1px solid #474747;
@@ -121,36 +124,30 @@
 			<ul class="login">
 		        <!-- 로그인시 숨김 -->
 		        <c:if test="${sessionScope.check eq null && sessionScope.staffcheck eq null }">
-		        <li><a id="side" href="${root }main/login" >로그인</a> &nbsp; &nbsp; &nbsp; &nbsp;
-		        <a id="side" href="${root }main/admin" >회원가입</a></li>
+		        <li>
+		        	<a id="side" href="${root }main/login" >로그인</a> &nbsp; &nbsp; &nbsp; &nbsp;
+		        	<a id="side" href="${root }main/admin" >회원가입</a>
+		        </li>
 		        </c:if>
 		        <!-- 직원로그인시 -->
 		        <c:if test="${sessionScope.staffcheck ne null }">
-		        <li class="dropdown">
-		          <a id="side" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">나의페이지<span class="caret"></span></a>
-		          <ul class="dropdown-menu" id="dropdown_sub" role="menu">
-		            <li><a href="${root }main/staffinfo">내정보관리</a></li>
-		            <li><a href="${root }main/logout">로그아웃</a></li>
-		          </ul>
-		        </li>
+				<select id="side" onchange="location.href=this.value">
+		            <option value="${root }main/staffinfo">내정보관리</option>
+		            <option value="${root }main/logout">로그아웃</option>
+		        </select>
 		        </c:if>
 		        <!-- 회원로그인시 -->
 		        <c:if test="${sessionScope.check ne null }">
-		        <li class="dropdown">
-		          <a id="side" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">${sessionScope.check.client_nick1} 님<span class="caret"></span></a>
-		          <ul class="dropdown-menu" id="dropdown_sub" role="menu">
-		            <li><a href="${root }main/message">쪽지함</a></li>
-		            <li class="divider"></li>
-		            <li><a href="#">최근본상품</a></li>
-		            <li><a href="${root }main/wish">찜한상품</a></li>
-		            <li><a href="#">결제상품</a></li>
-		            <li class="divider"></li>
-		            <li><a href="#">내가쓴글</a></li>
-		            <li class="divider"></li>
-		            <li><a href="${root }main/myinfo">내정보관리</a></li>
-		            <li><a href="${root }main/logout">로그아웃</a></li>
-		          </ul>
-		        </li>
+				<select id="side" onchange="location.href=this.value">
+					<option id="hide">${sessionScope.check.client_nick1} 님<span class="caret"></span></option>
+		            <option value="${root }main/message">쪽지함</option>
+		            <option value="#">최근본상품</option>
+		            <option value="${root }main/wish">찜한상품</option>
+		            <option value="#">결제상품</option>
+		            <option value="#">내가쓴글</option>
+		            <option value="${root }main/myinfo">내정보관리</option>
+		            <option value="${root }main/logout">로그아웃</option>
+		          </select>
 		        </c:if>
 			</ul>
 			<ul class="nav nav-pills nav-stacked" id="hamb">
@@ -216,8 +213,8 @@
       <input type="hidden" id="board_no" name="board_no" value="${bean.board_no }">
    </div>
    <p></p>
-   <div align="right">
-      <div class="form-group">
+   <div>
+      <div class="form-group" align="left">
          <input type="hidden" class="form-control" id="board_theme" value="${bean.board_theme }" style="cursor:default" disabled>
          <input type="text" class="form-control" id="board_theme1" style="cursor:default" disabled>
          <input type="text" class="form-control" id="board_theme2" style="cursor:default" disabled>
@@ -227,11 +224,9 @@
          <input type="text" class="form-control" id="client_nick1" value="${bean.client_nick1 }" style="cursor:default" disabled>
       </div>
       <div class="form-group">
-      &nbsp; &nbsp;
          <label for="exampleInputEmail2">조회수</label>
          <input type="text" class="form-control" id="board_count" value="${bean.board_count }" style="cursor:default" disabled>
          <input type="hidden" id="log" name="log" value="${sessionScope.check.client_nick1}">
-      &nbsp; &nbsp;
       </div>
    </div>
    <p></p>
@@ -297,6 +292,7 @@
 <script type="text/javascript">
    $(document).ready(function() {
 		$('#hamb').hide();
+		$('#hide').hide();
 		
 		$('#tour_sub').hide();
 		$('#comm_sub').hide();

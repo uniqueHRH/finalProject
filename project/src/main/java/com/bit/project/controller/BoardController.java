@@ -161,18 +161,23 @@ public class BoardController {
  		return "board/detail";
  	}
  	
- // ´ñ±Û ÀÔ·Â
+	// ´ñ±Û ÀÔ·Â
   	@RequestMapping(value="/board/replyEdit", method=RequestMethod.POST)
   	public String replyEdit(@ModelAttribute ReplyVo bean) {
   		replyService.updateOne_reply(bean);
   		return "board/detail";
   	}
   	
- // ´ñ±Û »èÁ¦
+	// ´ñ±Û »èÁ¦
   	@RequestMapping(value="/board/replyDel", method=RequestMethod.POST)
   	public String replyDel(int key) {
   		replyService.deleteOne_reply(key);
   		return "board/detail";
   	}
   	
+  	// ³»°¡ ¾´ ±Û ÀÌµ¿
+  	@RequestMapping(value="/main/myBoard", method=RequestMethod.GET)
+  	public String myBoard() {
+  		return "mypage/myBoard";
+  	}
 }

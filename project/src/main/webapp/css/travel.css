@@ -3,6 +3,14 @@
 		width:97%;
 		text-align:right;
 	}
+	#dropdown ul {
+		width:97%;
+		text-align:right;
+	}
+	#dropdown ul>li {
+		width:97%;
+		text-align:right;
+	}
 	#hambI {
 		border:1px solid #474747;
 		padding:0;
@@ -64,8 +72,23 @@
 		background-color:rgba(0,0,0,0);
 		font-family: 'Jua';
 		font-size: 18px;
+		border:0;
+		outline:0;
+		height:30px;
+		cursor:pointer;
+		padding:0 0 0 30px;
 	}
-	
+	#side>option { 
+		color:black;
+		text-decoration: none;
+		font-family: 'Jua';
+		font-size: 15px;
+		border:0;
+		outline:0;
+		height:30px;
+		cursor:pointer;
+		text-align:center;
+	}
 	
 /* footer */
 	#footer1 {
