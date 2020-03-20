@@ -1,4 +1,20 @@
 /* 메뉴바 수정 */
+	.login {
+		width:97%;
+		text-align:right;
+	}
+	#hambI {
+		border:1px solid #474747;
+		padding:0;
+		border-radius:10px;
+	}
+	#hambBtn {
+		position:fixed;
+		border:0;
+		outline:0;
+		background-color:rgba(0,0,0,0);
+		display:inline-block;
+	}
 	#hamb {
 		width:200px;
 		display:inline-block;
@@ -6,6 +22,9 @@
 		background-color:#e8e8e8;
 		font-family: 'Jua';
 		border-radius: 2px;
+		border:1px solid #474747;
+		padding:0;
+		border-radius:10px;
 	}
 	#hamb>li>a {
 		font-size:2rem;
