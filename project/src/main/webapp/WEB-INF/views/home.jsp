@@ -12,11 +12,11 @@
 <link rel="stylesheet" type="text/css" href="${root }css/bootstrap.css" />
 <link rel="stylesheet" type="text/css" href="${root }css/travel.css" />
 <style type="text/css">
-	.jumbotron {
-		background-image:url("https://github.com/uniqueHRH/travel/blob/master/travel/src/main/webapp/imgs/background1.jpg?raw=true");
+	.jumbotron { 
+		background-image:url("https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/background.jpg?raw=true");
 		background-size: cover;
 		width: 100%;
-	}	
+	}
 	
 	.log {
 		color:white;
@@ -91,13 +91,108 @@
 </style>
 </head>
 <body>
+
+
+
+
+
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Brand</a>
+    </div>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">Link</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+
+
+<div>
+	<button id="hambBtn">버어튼</button>
+</div>
+
+
+
+
+
+<ul class="nav nav-pills nav-stacked" id="hamb">
+	<li id="hamSub"><a href="#">투어</a>
+  		<ul>
+  			<li><a href="${root }tour/eastasia">중국/일본</a></li>
+       		<li><a href="${root }tour/southeastasia">동남아시아</a></li>
+       		<li><a href="${root }tour/america">아 메 리 카</a></li>
+       		<li><a href="${root }tour/europe">유 &nbsp; &nbsp; &nbsp; &nbsp;럽</a></li>
+       		<li><a href="${root }tour/pacific">남 태 평 양</a></li>
+       		<li><a href="${root }tour/africa">아 프 리 카</a></li>
+       		<li><a href="${root }tour/theme">테 마 여 행</a></li>
+  		</ul>
+  	</li>
+	<li id="hamSub"><a href="#">커뮤니티</a>
+		<ul>
+  			<li><a href="${root }board/review">여행후기</a></li>
+       		<li><a href="${root }board/partner">동행구하기</a></li>
+       		<li><a href="${root }board/free">자유게시판</a></li>
+  		</ul>
+  	</li>
+	<li id="hamSub"><a href="#">이벤트</a></li>
+	<li><a href="#">고객센터</a>
+		<ul>
+  			<li><a href="${root }board/notice">공 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;지</a></li>
+	        <li><a href="${root }board/qna">자주묻는질문</a></li>
+  		</ul>
+  	</li>
+	<li id="hamSub"><a href="#">관리자센터</a>
+		<ul>
+  			<li><a href="${root }system/staff">직원 관리</a></li>
+       		<li><a href="${root }system/guide">가이드관리</a></li>
+       		<li><a href="${root }system/client">회원관리</a></li>
+       		<li><a href="${root }system/paid">결제관리</a></li>
+       		<li><a href="${root }system/report">신고관리</a></li>
+  		</ul>
+  	</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
 <div class="jumbotron">
 	<nav class="navbar navbar-primary">
 	  <div class="container-fluid">
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-	      <ul class="nav navbar-nav">
+	      <ul class="nav nav-pils nav-stacked">
 	        <li class="dropdown">
-	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><img src="https://github.com/uniqueHRH/travel/blob/master/travel/src/main/webapp/imgs/menubar.png?raw=true" width=40px, height=40px/></a>
+	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"></a>
 	          <ul class="dropdown-menu" role="menu">
 	            <li id="tour"><a href="#">투어</a>
 	            	<ul id="tour_sub">
@@ -143,7 +238,7 @@
 	        </li>
 	      </ul>
 		<div align="center" style="disply:inline-block;">
-			<a href="${root }"><img src="https://github.com/uniqueHRH/travel/blob/master/travel/src/main/webapp/imgs/logoA.png?raw=true" width=130px></a>
+			<a href="${root }"><img src="https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/Mlogo.png?raw=true" width=130px></a>
 	      <ul class="nav navbar-nav navbar-right">
 	        <!-- 로그인시 숨김 -->
 	        <c:if test="${sessionScope.check eq null && sessionScope.staffcheck eq null }">
@@ -195,11 +290,13 @@
      	<a href="#"><div id="main3"><p id="maintext3">뉴욕</p></div></a>
       	<a href="#"><div id="main4"><p id="maintext4">시드니</p></div></a>
      </div>
-</body>
+
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="${root }js/bootstrap.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
+		$('#hamb').hide();
+		
 		$('#tour_sub').hide();
 		$('#comm_sub').hide();
 		$('#serv_sub').hide();
@@ -209,6 +306,15 @@
 		$('#maintext2').hide();
 		$('#maintext3').hide();
 		$('#maintext4').hide();
+		
+		$('#hambBtn').mouseenter(function() {
+			$('#hamb').show();
+			$('#hambBtn').hide();
+		});
+		$('#hamb').mouseleave(function() {
+			$('#hamb').hide();
+			$('#hambBtn').show();
+		});
 		
 		$('#tour').mouseenter(function() {
 			$('#tour_sub').show();
@@ -263,4 +369,5 @@
 		
 	});
 </script>
+</body>
 </html>

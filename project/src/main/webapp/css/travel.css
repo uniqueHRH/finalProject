@@ -1,29 +1,44 @@
-	#tour,#comm,#event,#serv,#system {
-		font-family: 'Jua';
-		font-size: 18px;
-	}
-	#tour_sub,#comm_sub,#serv_sub, #system_sub {
-		text-align: center;
-		font-size: 16px;
-	}
-	.dropdown-menu>li>ul>li>a {
-		color:black;
-		font-family: 'Jua';
-		text-decoration:none;
-		font-family: 'Jua';
-		text-align:center;
-	}
-	.dropdown-menu>li>ul>li:hover {
+/* 메뉴바 수정 */
+	#hamb {
+		width:200px;
 		display:inline-block;
-		font-weight:bold;
-		font-size:17px;
+		position:fixed;
+		background-color:#e8e8e8;
 		font-family: 'Jua';
-		text-align:center;
+		border-radius: 2px;
 	}
-	#dropdown_sub>li {
-		text-align:center;
-		font-family: 'Jua';
+	#hamb>li>a {
+		font-size:2rem;
+		text-shadow: 0px -2px rgba(0, 0, 0, 0.44);
+		margin:0;
+		padding:0 0 0 10px;
 	}
+	#hamb>li>ul>li {
+		text-align:center;
+		width:200px;
+	}
+	#hamb>li>ul>li>a {
+		display:inline-block;
+		text-decoration: none;
+		font-size:1.5rem;
+		padding:5px 58px;
+		margin:0;
+		border-radius: 5px;
+	}
+	#hamb>li>ul>li>a:hover {
+		text-decoration:none;
+		background-color:gray;
+		color:white;
+	}
+	#hamb a {
+		color:black;
+	}
+
+	ul {
+		list-style:none;
+	}
+	
+/* 로그인 & 회원가입 */
 	#side {
 		color:black;
 		text-decoration: none;
@@ -31,9 +46,9 @@
 		font-family: 'Jua';
 		font-size: 18px;
 	}
-	ul {
-		list-style:none;
-	}
+	
+	
+/* footer */
 	#footer1 {
 		position: absolute;
 		padding-top: 30px;
