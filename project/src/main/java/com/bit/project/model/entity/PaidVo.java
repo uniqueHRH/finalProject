@@ -1,33 +1,46 @@
 package com.bit.project.model.entity;
 
+import java.sql.Date;
+
 public class PaidVo {
 	
 	private int paid_no;
-	private String board_sub;
+	private int tour_no;
+	private String client_name;
 	private String paid_name;
-	private String paid_phone;
-	private int paid_sex;
-	private String paid_birth;
+	private int paid_phone;
+	private int paid_birth;
 	private int paid_count;
 	private String paid_kakaoid;
-	private int board_no;
+	private String tour_date;
+	private Date book_date;
+	private int paid_total;
+	private Date paid_date;
+	private int paid_state;
+	private int paid_confirm;
 	
 	
 	public PaidVo() {
+		// TODO Auto-generated constructor stub
 	}
-
-
+	
 	public int getPaid_no() {
 		return paid_no;
 	}
 	public void setPaid_no(int paid_no) {
 		this.paid_no = paid_no;
 	}
-	public String getBoard_sub() {
-		return board_sub;
+	public int getTour_no() {
+		return tour_no;
 	}
-	public void setBoard_sub(String board_sub) {
-		this.board_sub = board_sub;
+	public void setTour_no(int tour_no) {
+		this.tour_no = tour_no;
+	}
+	public String getClient_name() {
+		return client_name;
+	}
+	public void setClient_name(String client_name) {
+		this.client_name = client_name;
 	}
 	public String getPaid_name() {
 		return paid_name;
@@ -35,22 +48,16 @@ public class PaidVo {
 	public void setPaid_name(String paid_name) {
 		this.paid_name = paid_name;
 	}
-	public String getPaid_phone() {
+	public int getPaid_phone() {
 		return paid_phone;
 	}
-	public void setPaid_phone(String paid_phone) {
+	public void setPaid_phone(int paid_phone) {
 		this.paid_phone = paid_phone;
 	}
-	public int getPaid_sex() {
-		return paid_sex;
-	}
-	public void setPaid_sex(int paid_sex) {
-		this.paid_sex = paid_sex;
-	}
-	public String getPaid_birth() {
+	public int getPaid_birth() {
 		return paid_birth;
 	}
-	public void setPaid_birth(String paid_birth) {
+	public void setPaid_birth(int paid_birth) {
 		this.paid_birth = paid_birth;
 	}
 	public int getPaid_count() {
@@ -65,35 +72,71 @@ public class PaidVo {
 	public void setPaid_kakaoid(String paid_kakaoid) {
 		this.paid_kakaoid = paid_kakaoid;
 	}
-	public int getBoard_no() {
-		return board_no;
+	public String getTour_date() {
+		return tour_date;
 	}
-	public void setBoard_no(int board_no) {
-		this.board_no = board_no;
+	public void setTour_date(String tour_date) {
+		this.tour_date = tour_date;
 	}
-
-
+	public Date getBook_date() {
+		return book_date;
+	}
+	public void setBook_date(Date book_date) {
+		this.book_date = book_date;
+	}
+	public int getPaid_total() {
+		return paid_total;
+	}
+	public void setPaid_total(int paid_total) {
+		this.paid_total = paid_total;
+	}
+	public Date getPaid_date() {
+		return paid_date;
+	}
+	public void setPaid_date(Date paid_date) {
+		this.paid_date = paid_date;
+	}
+	public int getPaid_state() {
+		return paid_state;
+	}
+	public void setPaid_state(int paid_state) {
+		this.paid_state = paid_state;
+	}
+	public int getPaid_confirm() {
+		return paid_confirm;
+	}
+	public void setPaid_confirm(int paid_confirm) {
+		this.paid_confirm = paid_confirm;
+	}
 	@Override
 	public String toString() {
-		return "PaidVo [paid_no=" + paid_no + ", board_sub=" + board_sub + ", paid_name=" + paid_name + ", paid_phone="
-				+ paid_phone + ", paid_sex=" + paid_sex + ", paid_birth=" + paid_birth + ", paid_count=" + paid_count
-				+ ", paid_kakaoid=" + paid_kakaoid + ", board_no=" + board_no + "]";
+		return "PaidVo [paid_no=" + paid_no + ", tour_no=" + tour_no + ", client_name=" + client_name + ", paid_name="
+				+ paid_name + ", paid_phone=" + paid_phone + ", paid_birth=" + paid_birth + ", paid_count=" + paid_count
+				+ ", paid_kakaoid=" + paid_kakaoid + ", tour_date=" + tour_date + ", book_date=" + book_date
+				+ ", paid_total=" + paid_total + ", paid_date=" + paid_date + ", paid_state=" + paid_state
+				+ ", paid_confirm=" + paid_confirm + "]";
 	}
-
-
-	public PaidVo(int paid_no, String board_sub, String paid_name, String paid_phone, int paid_sex, String paid_birth,
-			int paid_count, String paid_kakaoid, int board_no) {
+	public PaidVo(int paid_no, int tour_no, String client_name, String paid_name, int paid_phone, int paid_birth,
+			int paid_count, String paid_kakaoid, String tour_date, Date book_date, int paid_total, Date paid_date,
+			int paid_state, int paid_confirm) {
 		super();
 		this.paid_no = paid_no;
-		this.board_sub = board_sub;
+		this.tour_no = tour_no;
+		this.client_name = client_name;
 		this.paid_name = paid_name;
 		this.paid_phone = paid_phone;
-		this.paid_sex = paid_sex;
 		this.paid_birth = paid_birth;
 		this.paid_count = paid_count;
 		this.paid_kakaoid = paid_kakaoid;
-		this.board_no = board_no;
+		this.tour_date = tour_date;
+		this.book_date = book_date;
+		this.paid_total = paid_total;
+		this.paid_date = paid_date;
+		this.paid_state = paid_state;
+		this.paid_confirm = paid_confirm;
 	}
-
+	
+	
+	
 	
 }

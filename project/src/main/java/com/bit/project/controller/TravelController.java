@@ -179,13 +179,13 @@ public class TravelController {
 	return "tour/southeastasia";
 	}
 	@RequestMapping(value = "/tour/eastasia/{idx}/booking", method = RequestMethod.GET)
-	public String booking(Model model, @PathVariable ("idx") int tour_no) {
+	public String bookingeastasia(Model model, @PathVariable ("idx") int tour_no) {
 		tourservice.selectOne_eastasia(model, tour_no);
 		return "tour/booking";
 	}
 	@RequestMapping(value = "/tour/eastasia/{idx}/booking", method = RequestMethod.POST)
-	public String booking(@ModelAttribute TourVo bean) {
-		tourservice.insert(bean);
+	public String bookingeastasia(@ModelAttribute PaidVo bean) {
+		tourservice.insertOne_eastasia(bean);
 		return "home";
 	}
 	
