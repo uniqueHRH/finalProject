@@ -16,68 +16,18 @@ public class BoardVo {
 	private String board_theme;
 	private int board_wish;
 	private int board_cost;
-	
-	private int page;
-	private int pageCount;
-	
-	private int replyCount;
-	
-//	최초 게시판 접근시, 기본 세팅	
+	private String board_img;
+	private String board_thumb;
+
+
 	public BoardVo() {
-		this.page=1;
-		this.pageCount=10;   // 페이지당 게시글은 10개씩 출력
 	}
 
-	
-//	페이징
-	public int pageStart() {
-		return (this.page-1)*pageCount;
-	}
-	
-	public int getPage() {
-		return page;
-	}
-
-	public void setPage(int page) {
-		if(page<=0) {   // page 값이 음수일 때, 첫페이지 출력
-			this.page=1;
-		} else {
-			this.page = page;
-		}
-	}
-
-	public int getPageCount() {
-		return pageCount;
-	}
-
-	public void setPageCount(int pageCount) {
-		int cnt=this.pageCount;
-		if(pageCount!=cnt) {
-			this.pageCount=cnt;
-		} else {
-			this.pageCount = pageCount;
-		}
-	}
-//	페이징 끝
-	
-// 댓글 갯수
-	public int getReplyCount() {
-		return replyCount;
-	}
-
-	public void setReplyCount(int replyCount) {
-		this.replyCount = replyCount;
-	}
-// 댓글갯수 끝
-
-	
 
 	public int getBoard_no() {
 		return board_no;
 	}
 
-
-	
 
 	public void setBoard_no(int board_no) {
 		this.board_no = board_no;
@@ -194,19 +144,39 @@ public class BoardVo {
 	}
 
 
+	public String getBoard_img() {
+		return board_img;
+	}
+
+
+	public void setBoard_img(String board_img) {
+		this.board_img = board_img;
+	}
+
+
+	public String getBoard_thumb() {
+		return board_thumb;
+	}
+
+
+	public void setBoard_thumb(String board_thumb) {
+		this.board_thumb = board_thumb;
+	}
+
+
 	@Override
 	public String toString() {
 		return "BoardVo [board_no=" + board_no + ", board_id=" + board_id + ", board_sub=" + board_sub
 				+ ", board_count=" + board_count + ", board_content=" + board_content + ", client_nick1=" + client_nick1
 				+ ", board_date=" + board_date + ", board_land=" + board_land + ", board_city=" + board_city
 				+ ", board_theme=" + board_theme + ", board_wish=" + board_wish + ", board_cost=" + board_cost
-				+ "]";
+				+ ", board_img=" + board_img + ", board_thumb=" + board_thumb + "]";
 	}
 
 
 	public BoardVo(int board_no, int board_id, String board_sub, int board_count, String board_content,
 			String client_nick1, Date board_date, String board_land, String board_city, String board_theme,
-			String board_theme2, String board_theme3, int board_wish, int board_cost) {
+			int board_wish, int board_cost, String board_img, String board_thumb) {
 		super();
 		this.board_no = board_no;
 		this.board_id = board_id;
@@ -220,8 +190,9 @@ public class BoardVo {
 		this.board_theme = board_theme;
 		this.board_wish = board_wish;
 		this.board_cost = board_cost;
+		this.board_img = board_img;
+		this.board_thumb = board_thumb;
 	}
 
-
-
+	
 }
