@@ -24,7 +24,7 @@
     	margin-top: 10px;
     	width: 40%;
     }
-    
+   
 </style>
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="${root }js/bootstrap.js"></script>
@@ -86,38 +86,38 @@
   <div class="row">
    <div class="col-md-12">
       <div class="page-header" align="center">
-     <h1>아이디찾기</h1>
+     <h1>아이디 찾기</h1>
    </div>
    
-   <form action="../login/findid" class="form-horizontal" method="post">
+   <form action="../code_check" name="cac" class="form-horizontal" method="post">
      <div class="form-group" id="insertid">
        <label for="client_name" class="col-sm-2 control-label" id="idd">이름</label>
        <div class="col-sm-10">
-         <input type="text" class="form-control" id="client_name" name="client_name" placeholder="이름을 입력하세요" style="width:280px" value="${name }">
+         <input type="text" class="form-control" id="client_name" name="client_name" placeholder="이름을 입력하세요" style="width:280px">
        </div>
      </div>
      <div class="form-group">
        <label for="client_nick" class="col-sm-2 control-label" id="emaill">이메일</label>
        <div class="col-sm-10">
-         <input type="text" class="form-control" id="client_email" name="client_email" placeholder="이메일을 입력하세요" style="width:280px;float:left" value="${email }">
+         <input type="text" class="form-control" id="client_email" name="client_email" placeholder="이메일을 입력하세요" style="width:280px;float:left">
          <span class="input-group-btn">
-		<button class="btn btn-default" type="submit">인증요청</button>
+			<button class="btn btn-default" type="button" id="codebtn">인증요청</button>
 	      </span>
        </div>
      </div>
-  </form>   
-  <form  action="../code_check${dice}" class="form-horizontal" method="post">
    <div class="form-group">
-       <label for="client_nick" class="col-sm-2 control-label" id="code">인증번호</label>
+       <label for="code" class="col-sm-2 control-label">인증번호</label>
        <div class="col-sm-10">
          <input type="text" class="form-control" id="code" name="code" placeholder="이메일로 전송된 인증번호를 입력하세요" style="width:280px">
        </div>
      </div>
      <p>
-  		<button type="submit" id="confirmbtn" class="btn btn-default btn-lg">확인</button>
-  		<button type="button" id="resetbtn" class="btn btn-default btn-lg" onclick="history.go(-1)">취소</button>
+  		<button type="button" id="confirmbtn" class="btn btn-default btn-lg">확인</button>
+  		<button type="button" id="resetbtn" class="btn btn-default btn-lg" onclick="location.href='/main/login'">취소</button>
 	</p>
-  </form>
+  </form>   
+	<input type="text" class="input">
+	<input type="hidden" id="dice" name="dice" value="${dice}">
   </div>
  </div>
 </div>
@@ -162,8 +162,93 @@
 		}).mouseleave(function() {
 			$('#system_sub').hide();
 		});
+	
+		
+		//인증번호 요청
+		$('#codebtn').on('click',function() {
+			var name = $('#client_name').val();
+			var email = $('#client_email').val();
+			
+			if(!name || !email){
+				alert('이름과 이메일을 확인해주세요');
+				return false;
+				event.preventDefault();
+			}else{
+				$.ajax({
+					url:'../login/findid',
+					type:'POST',
+					data:{client_name:name, client_email:email},
+					beforeSend:function(){
+						alert('인증번호 발송');
+				    },
+				    success:function(data){
+				    	var item = data.dice;
+				    	alert(item);
+				    },
+					error:function(){
+						alert('제한시간 내에 입력해주세요');
+					},
+				    complete:function(){
+				    	alert('ajax완료');
+				    }
+				
+				});
+			}
+	      
+				var num = 60 * 3; // 몇분을 설정할지의 대한 변수 선언
+			    var myVar;
+			    function time(){
+			        myVar = setInterval(alertFunc, 1000); 
+			    }
+			    time();
+			 
+			    function alertFunc() {
+			        var min = num / 60; 
+			        min = Math.floor(min);
+			         
+			        var sec = num - (60 * min);
+			 
+			        var $input = $('.input').val(min + '분' + sec + '초');
+			 
+			        if(num == 0){
+			            clearInterval(myVar) // num 이 0초가 되었을대 clearInterval로 타이머 종료
+			        }
+			        num--;
+			    }
+	    });
 		
 		
+		//form submit 제한 , 인증확인
+		$('#confirmbtn').on('click',function() {
+			var name = $('#client_name').val();
+			var email = $('#client_email').val();
+			var code = $('#code').val();
+			var dice = $('#dice').val();
+			
+			if(!name || !email){
+				alert('이름과 이메일을 확인해주세요~');
+				return false;
+			}else if(!code){
+				alert('인증번호를 입력해주세요');
+				return false;
+			}else{
+				$.ajax({
+					url:'../code_check',
+					type:'POST',
+					data:{client_name:name, client_email:email, code:code, dice:dice },
+					success:function(){
+						alert(dice);
+						alert('아이디 결과창으로 갑시다');
+					},
+					error:function(){
+						alert('실패');
+					}
+				
+				});
+				
+				
+			}
+		});
 	});
 </script>
 </body>

@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bit.project.model.entity.ClientVo;
@@ -38,6 +39,7 @@ public class EmailController {
 	    	
 	    	
 	    // mailSending 코드
+	    	@ResponseBody
 	        @RequestMapping( value = "/main/login/findid" , method=RequestMethod.POST )
 	        public ModelAndView mailSending(HttpServletRequest request, String client_email, String client_name, ClientVo bean,HttpServletResponse response_email) throws Exception {
 	  
@@ -86,32 +88,30 @@ public class EmailController {
 	            } catch (Exception e) {
 	                System.out.println(e);
 	            }
-	            
-	            	ModelAndView mv = new ModelAndView();    //ModelAndView로 보낼 페이지를 지정하고, 보낼 값을 지정한다.
-	            	mv.setViewName("/login/findid");     //뷰의이름
-	            	mv.addObject("name", client_name);
-	            	mv.addObject("email", client_email);
-	            	mv.addObject("dice", dice);
-	            	
-	            	System.out.println("mv : "+mv);
-	 
-	            	response_email.setContentType("text/html; charset=UTF-8");
-	            	PrintWriter out_email = response_email.getWriter();
-	            	out_email.println("<script>alert('이메일이 발송되었습니다. 인증번호를 입력해주세요.');</script>");
-	            	out_email.flush();
-	            
-	            
+	            ModelAndView mv = new ModelAndView();    //ModelAndView로 보낼 페이지를 지정하고, 보낼 값을 지정한다.
+	            mv.setViewName("/login/findid");     //뷰의이름
+	            mv.addObject("dice", dice);
+	            System.out.println("메일전송 : " + mv.getModelMap());
+//	            	mv.addObject("name", client_name);
+//	            	mv.addObject("email", client_email);
+//	            	
+//	            	System.out.println("mv : "+mv);
+//	 
+//	            	response_email.setContentType("text/html; charset=UTF-8");
+//	            	PrintWriter out_email = response_email.getWriter();
+//	            	out_email.println("<script>alert('이메일이 발송되었습니다. 인증번호를 입력해주세요.');</script>");
+//	            	out_email.flush();
 	            	return mv;
 	        	}else{
-	        		 response_email.setContentType("text/html; charset=UTF-8");
-	 	            PrintWriter out_email = response_email.getWriter();
-	 	            out_email.println("<script>alert('이름 또는 이메일을 확인해주세요');</script>");
-	 	            out_email.flush();
+//	        		 response_email.setContentType("text/html; charset=UTF-8");
+//	 	            PrintWriter out_email = response_email.getWriter();
+//	 	            out_email.println("<script>alert('이름 또는 이메일을 확인해주세요');</script>");
+//	 	            out_email.flush();
 	 	            
 	 	            ModelAndView mv = new ModelAndView();
-		            mv.setViewName("/login/findid");  
-		            mv.addObject("name", client_name);
-	            	mv.addObject("email", client_email);
+		            mv.setViewName("/login/findid");
+//		            mv.addObject("name", client_name);
+//	            	mv.addObject("email", client_email);
 		            return mv;
 	        	}
 	            
@@ -121,13 +121,11 @@ public class EmailController {
 	    //이메일로 받은 인증번호를 입력하고 전송 버튼을 누르면 맵핑되는 메소드.
 	    //내가 입력한 인증번호와 메일로 입력한 인증번호가 맞는지 확인해서 맞으면 회원가입 페이지로 넘어가고,
 	    //틀리면 다시 원래 페이지로 돌아오는 메소드
-	    @RequestMapping(value = "/main/code_check{dice}", method = RequestMethod.POST)
-	    public ModelAndView code_check( ClientVo bean,String client_name, String client_email , String code, @PathVariable String dice, HttpServletRequest req, HttpServletResponse response_equals) throws Exception {
-	 
-	        HttpSession session = req.getSession();
+	    @RequestMapping(value = "/main/code_check", method = RequestMethod.POST)
+	    public ModelAndView code_check( ClientVo bean,String client_name, String client_email , String code, String dice) throws Exception {
 	        
 	        ClientVo IdResult = clientService.findId(bean);
-	        System.out.println(IdResult);
+	        
 	        System.out.println("dice = "+dice);
 	        System.out.println("code = "+code);
 	        
@@ -136,18 +134,16 @@ public class EmailController {
 	        //페이지이동과 자료를 동시에 하기위해 ModelAndView를 사용해서 이동할 페이지와 자료를 담음
 	        
 	        ModelAndView mav = new ModelAndView();
+//	        mav.setViewName("/login/findidResult");
 	        
-	        mav.setViewName("/login/findidResult");
-	        
-	        mav.addObject("e_mail",code);
+//	        mav.addObject("e_mail",code);
 	        
 	        if (code.equals(dice)) {
 	            
 	            //인증번호가 일치할 경우 인증번호가 맞다는 창을 출력하고 회원가입창으로 이동함
-	            
-	            session.setAttribute("findid", IdResult);
-	            System.out.println(session.getAttribute("findid"));
+//	        	ModelAndView mav = new ModelAndView();
 	            mav.setViewName("/login/findidResult");
+	            mav.addObject("ID", IdResult.getClient_id());
 	            
 	            //만약 인증번호가 같다면 이메일을 회원가입 페이지로 같이 넘겨서 이메일을
 	            //한번더 입력할 필요가 없게 한다.
@@ -157,15 +153,16 @@ public class EmailController {
 	            
 	            
 	        }else if (code != dice) {
+//	        	ModelAndView mav = new ModelAndView();
 	            mav.setViewName("/login/findid");
 	            mav.addObject("name",client_name);
 	            mav.addObject("email",client_email);
 	            
-	            response_equals.setContentType("text/html; charset=UTF-8");
-	            PrintWriter out_equals = response_equals.getWriter();
-	            out_equals.println("<script>alert('인증번호가 일치하지않습니다. 인증번호를 다시 입력해주세요.');</script>");
-	            out_equals.flush();
-	            
+//	            response_equals.setContentType("text/html; charset=UTF-8");
+//	            PrintWriter out_equals = response_equals.getWriter();
+//	            out_equals.println("<script>alert('인증번호가 일치하지않습니다. 인증번호를 다시 입력해주세요.');</script>");
+//	            out_equals.flush();
+//	            
 	    
 	            return mav;
 	            

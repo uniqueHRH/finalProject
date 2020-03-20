@@ -135,9 +135,9 @@
 						<input type="password" class="form-control" id="client_pw" name="client_pw" placeholder="비밀번호를 입력하세요" style="width:350px">
 					</div>
 				</div>
-				<%--  <c:if test="${msg == 'fail' }">
+				<c:if test="${msg == 'fail' }">
 		     		 <div style="color:red">아이디와 비밀번호를 확인해주세요</div>
-				</c:if> --%>
+				</c:if>
 				<button type="submit" id="loginbtn" class="btn btn-default btn-lg btn-block">로그인</button>
 				<input type="hidden" id="check" value="${sessionScope.check}">
 			</form>

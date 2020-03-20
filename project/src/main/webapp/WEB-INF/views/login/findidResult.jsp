@@ -77,8 +77,7 @@
    <form class="form-horizontal" method="post">
      <div class="form-group" id="insertid">
        <label class="col-sm-2 control-label" id="idd">아이디</label>
-       <div class="col-sm-10">${sessionScope.findid.client_id }</div>
-       <%System.out.println(session.getAttribute("findid")); %>
+       <div class="col-sm-10">${ID}</div>
      </div>
      <p>
   		<button type="button" id="confirmbtn" class="btn btn-default btn-lg" onclick="location.href='${root }main/login/findpw'">비밀번호 찾기</button>
