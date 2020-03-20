@@ -201,7 +201,6 @@
 				<tr>	
 			</table>
 		</div>
-			<button type="submit" id="bookbtn" class="btn btn-default btn-lg btn-block">예약하기</button>
       <p style="font-size: 25px; margin-top: 50px; position: absolute; left: 550px; top: 70px;" >예약자 정보</p>
 		<form class="form-horizontal">
 			<div id="form-group">
@@ -254,8 +253,11 @@
 			</div>	
 		</form> 
 				<button id="confirmbtn" class="btn btn-default btn-lg btn-block">확인</button>
-				
-			<form id="form1">	
+			
+			<!-- jquery로 생성되는 form tag -->	
+			<form id="form1" method="post">	
+				<input type="hidden" id="tour_no" name="tour_no" value="${bean.tour_no }">
+			<button type="submit" id="bookbtn" class="btn btn-default btn-lg btn-block">예약하기</button>
 			</form>	
 				
 				
