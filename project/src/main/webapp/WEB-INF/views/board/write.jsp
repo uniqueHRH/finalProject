@@ -18,7 +18,7 @@
       margin:0 auto;
       font-family: 'Jua';
       font-size:18px;
-   }
+	}
 	label {
       font-size:15px;
       font-weight:normal;
