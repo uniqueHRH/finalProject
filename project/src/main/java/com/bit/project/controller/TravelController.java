@@ -39,7 +39,7 @@ public class TravelController {
 	@Autowired
 	StaffService staffService;
 	@Autowired
-	EastAsiaService eastasiaservice;
+	TourService tourservice;
 	
 	
 	
@@ -161,12 +161,12 @@ public class TravelController {
 	//중국/일본으로 이동
 	@RequestMapping(value = "/tour/eastasia", method = RequestMethod.GET)
 	public String eastasia(Model model) {
-		eastasiaservice.selectAll_eastasia(model);
+		tourservice.selectAll_eastasia(model);
 		return "tour/eastasia";
 	}
 	@RequestMapping(value = "/tour/eastasia/{idx}", method = RequestMethod.GET)
 	public String detail(Model model, @PathVariable ("idx") int tour_no ) {
-		eastasiaservice.selectOne_eastasia(model, tour_no);
+		tourservice.selectOne_eastasia(model, tour_no);
 		return "tour/detaileastasia";
 	}
 
@@ -180,8 +180,13 @@ public class TravelController {
 	}
 	@RequestMapping(value = "/tour/eastasia/{idx}/booking", method = RequestMethod.GET)
 	public String booking(Model model, @PathVariable ("idx") int tour_no) {
-		eastasiaservice.selectOne_eastasia(model, tour_no);
-		return "tour/bookingeastasia";
+		tourservice.selectOne_eastasia(model, tour_no);
+		return "tour/booking";
+	}
+	@RequestMapping(value = "/tour/eastasia/{idx}/booking", method = RequestMethod.POST)
+	public String booking(@ModelAttribute TourVo bean) {
+		tourservice.insert(bean);
+		return "home";
 	}
 	
 	

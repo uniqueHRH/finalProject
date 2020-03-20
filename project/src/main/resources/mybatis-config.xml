@@ -15,7 +15,7 @@
   		<typeAlias alias="ReplyBean" type="com.bit.project.model.entity.ReplyVo"/>
   		<typeAlias alias="SendBean" type="com.bit.project.model.entity.SendVo"/>
   		<typeAlias alias="StaffBean" type="com.bit.project.model.entity.StaffVo"/>
-  		<typeAlias alias="EastAsiaBean" type="com.bit.project.model.entity.EastAsiaVo"/>
+  		<typeAlias alias="TourBean" type="com.bit.project.model.entity.TourVo"/>
   
   	</typeAliases>
   	<mappers>
@@ -29,6 +29,6 @@
   		<mapper resource="mybatis/ReplyMapper.xml"/>
   		<mapper resource="mybatis/SendMapper.xml"/>
   		<mapper resource="mybatis/StaffMapper.xml"/>
-  		<mapper resource="mybatis/EastAsiaMapper.xml"/>
+  		<mapper resource="mybatis/TourMapper.xml"/>
   	</mappers>
   </configuration>

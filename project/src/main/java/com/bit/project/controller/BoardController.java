@@ -12,7 +12,7 @@ import com.bit.project.model.entity.BoardVo;
 import com.bit.project.model.entity.ReplyVo;
 import com.bit.project.service.BoardService;
 import com.bit.project.service.ClientService;
-import com.bit.project.service.EastAsiaService;
+import com.bit.project.service.TourService;
 import com.bit.project.service.FaqService;
 import com.bit.project.service.GuideService;
 import com.bit.project.service.NoticeService;
@@ -46,7 +46,7 @@ public class BoardController {
 	@Autowired
 	StaffService staffService;
 	@Autowired
-	EastAsiaService eastasiaservice;
+	TourService eastasiaservice;
 	
 	
 // °Ô½ÃÆÇ
