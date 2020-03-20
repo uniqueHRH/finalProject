@@ -113,7 +113,7 @@ public class BoardController {
  	public String write() {
  		return "board/write";
  	}
- 	
+ 	      
  	// 글쓰기 완료, list 로 이동
  	@RequestMapping(value = "/board/write", method = RequestMethod.POST)
  	public String write(@ModelAttribute BoardVo bean, MultipartFile file) throws Exception {

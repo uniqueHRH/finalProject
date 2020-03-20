@@ -2,7 +2,7 @@ package com.bit.project.model.entity;
 
 import java.sql.Date;
 
-public class BoardVo {
+public class BoardVo {     
 
 	private int board_no;
 	private int board_id;
