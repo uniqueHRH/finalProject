@@ -27,7 +27,6 @@
     }
     #paid_count1{
     	width: 300px;
-    	
     }
     #countlabel{
     	margin-right: 15px;
@@ -35,22 +34,27 @@
     #img{
     	width: 300px;
     	position: absolute;
-    	right: 400px;
+    	right: 450px;
     	margin-top: 30px;
     }
     #infor1{
     	width: 300px;
     	position: absolute;
-    	right: 400px;
+    	right: 450px;
     	top: 380px;
     
     }
     #infor2{
     	width: 300px;
     	position: absolute;
-    	right: 400px;
+    	right: 450px;
     	top: 470px;
     
+    }
+    #checkcostbtn{
+    	position: absolute;
+    	right: 450px;
+    	top: 423px;
     }
     #confirmbtn{
     	width: 200px;
@@ -61,7 +65,7 @@
     #bookbtn{
     	width: 300px;
     	position: absolute;
-    	right: 400px;
+    	right: 450px;
     	top: 530px;
     }
    
@@ -188,6 +192,7 @@
 					<td>${bean.cost } 원</td>	
 				<tr>	
 			</table>
+			 <button type="button" id="checkcostbtn" class="btn btn-default">총 금액확인</button>
 			
 			<table class="table" id="infor2">
 				<tr>
@@ -248,7 +253,7 @@
 				</div>
 			</div>	
 		</form> 
-				<button id="confirmbtn" class="btn btn-default btn-lg btn-block">확인 및 총 금액보기</button>
+				<button id="confirmbtn" class="btn btn-default btn-lg btn-block">확인</button>
 				
 			<form id="form1">	
 			</form>	
@@ -302,19 +307,15 @@
 			$('#system_sub').hide();
 		});
 		$('#confirmbtn').click(function(){
-			
-					
+							
 			var tour_date=$('#tour_date1').val();
 			var paid_name=$('#paid_name1').val();
 			var paid_count=$("#paid_count1 option:selected").val();
 			var paid_phone=$('#paid_phone1').val();
 			var paid_birth=$('#paid_birth1').val();
 			var paid_kakaoid=$('#paid_kakaoid1').val();
-			var totalcost=Number(paid_count)*Number(${bean.cost });
-			//총 금액 함수
-			$('#infor2 tr:nth-child(1)>td:last').remove();
-			$('#infor2 tr:nth-child(1)').append('<td style="color: red;">'+totalcost+'&nbsp원</td>');
-			//총금액함수 end
+			var paid_total=Number(paid_count)*Number(${bean.cost });
+	
 			//hidden input 값 받아오는 함수
 			$('#form1').append('<input type="text" id="client_name" name="client_name" value="'+'${sessionScope.check.client_name}'+'">');
 			$('#form1').append('<input type="text" id="tour_date" name="tour_date" value="'+tour_date+'">');
@@ -323,12 +324,19 @@
 			$('#form1').append('<input type="text" id="paid_phone" name="paid_phone" value="'+paid_phone+'">');
 			$('#form1').append('<input type="text" id="paid_birth" name="paid_birth" value="'+paid_birth+'">');
 			$('#form1').append('<input type="text" id="paid_kakaoid" name="paid_kakaoid" value="'+paid_kakaoid+'">');
-			$('#form1').append('<input type="text" id="total_totalcost" name="total_totalcost" value="'+totalcost+'">');
+			$('#form1').append('<input type="text" id="paid_total" name="paid_total" value="'+paid_total+'">');
 			//hidden input end
-			
-			
-			
   		});
+		
+		$('#checkcostbtn').click(function(){
+			
+			var paid_count=$("#paid_count1 option:selected").val();
+			var paid_total=Number(paid_count)*Number(${bean.cost });
+			//총 금액 함수
+			$('#infor2 tr:nth-child(1)>td:last').remove();
+			$('#infor2 tr:nth-child(1)').append('<td style="color: red;">'+paid_total+'&nbsp원</td>');
+			//총금액함수 end
+		});
 	});
 </script>
 </body>
