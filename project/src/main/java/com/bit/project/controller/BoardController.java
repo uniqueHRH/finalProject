@@ -1,5 +1,10 @@
 package com.bit.project.controller;
 
+import java.io.File;
+import java.io.IOException;
+
+import javax.annotation.Resource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,7 +12,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.bit.project.file.UploadFileUtils;
 import com.bit.project.model.entity.BoardVo;
 import com.bit.project.model.entity.ReplyVo;
 import com.bit.project.service.BoardService;
@@ -46,71 +53,93 @@ public class BoardController {
 	@Autowired
 	StaffService staffService;
 	
+	@Resource(name="uploadPath")
+	private String uploadPath;
 	
-// °Ô½ÃÆÇ
 	
-	// Å×½ºÆ®ÆäÀÌÁö ÀÌµ¿
+	
+// ê²Œì‹œíŒ
+	
+	// í…ŒìŠ¤íŠ¸í˜ì´ì§€ ì´ë™
 	@RequestMapping("/board/test")
 	public String test() {
 		return "board/test";
 	}
 	
-	// ÈÄ±â¸®½ºÆ® ÀÌµ¿ (ÀÛ¼º¼ø Á¤·Ä)
+	// í›„ê¸°ë¦¬ìŠ¤íŠ¸ ì´ë™ (ì‘ì„±ìˆœ ì •ë ¬)
  	@RequestMapping(value = "/board/review", method = RequestMethod.GET)
  	public String review(Model model) throws Exception {
  		boardService.selectAll_review(model);
  		return "board/review";
  	}
  	
- 	// ÈÄ±â¸®½ºÆ® ÀÌµ¿ (Áö¿ªº° Á¤·Ä)
+ 	// í›„ê¸°ë¦¬ìŠ¤íŠ¸ ì´ë™ (ì§€ì—­ë³„ ì •ë ¬)
  	@RequestMapping(value="/board/reviewLocal", method=RequestMethod.GET)
  	public String reviewLocal(Model model) {
  		boardService.selectAll_reviewCity(model);
  		return "board/review";
  	}
  	
- 	// ÈÄ±â¸®½ºÆ® ÀÌµ¿ (Å×¸¶º° Á¤·Ä)
+ 	// í›„ê¸°ë¦¬ìŠ¤íŠ¸ ì´ë™ (í…Œë§ˆë³„ ì •ë ¬)
  	@RequestMapping(value="/board/reviewTheme", method=RequestMethod.GET)
  	public String reviewTheme(Model model) {
  		boardService.selectAll_reviewTheme(model);
  		return "board/review";
  	}
  	
- 	// µ¿Çà¸®½ºÆ® ÀÌµ¿
+ 	// ë™í–‰ë¦¬ìŠ¤íŠ¸ ì´ë™
  	@RequestMapping(value = "/board/partner", method = RequestMethod.GET)
  	public String partner(Model model) {
  		boardService.selectAll_partner(model);
  		return "board/partner";
  	}
  	
- 	//ÀÚÀ¯°Ô½ÃÆÇ¸®½ºÆ®·Î ÀÌµ¿
+ 	//ììœ ê²Œì‹œíŒë¦¬ìŠ¤íŠ¸ë¡œ ì´ë™
  	@RequestMapping(value = "/board/free", method = RequestMethod.GET)
  	public String free(Model model) {
  		boardService.selectAll_free(model);
  		return "board/free";
  	}
  	
- 	//ÀÌº¥Æ®¸®½ºÆ®·Î ÀÌµ¿
+ 	//ì´ë²¤íŠ¸ë¦¬ìŠ¤íŠ¸ë¡œ ì´ë™
  	@RequestMapping(value = "/board/event", method = RequestMethod.GET)
  	public String event(Model model) {
  		boardService.selectAll_event(model);
  		return "board/event";
  	}
  	
- 	// ±Û¾²±â·Î ÀÌµ¿
+ 	// ê¸€ì“°ê¸°ë¡œ ì´ë™
  	@RequestMapping(value = "/board/write", method = RequestMethod.GET)
  	public String write() {
  		return "board/write";
  	}
  	
- 	// ±Û¾²±â ¿Ï·á, list ·Î ÀÌµ¿
+ 	// ê¸€ì“°ê¸° ì™„ë£Œ, list ë¡œ ì´ë™
  	@RequestMapping(value = "/board/write", method = RequestMethod.POST)
- 	public String write(@ModelAttribute BoardVo bean) {
+ 	public String write(@ModelAttribute BoardVo bean, MultipartFile file) throws Exception {
+ 		
+ 		String imgUploadPath = uploadPath + File.separator + "imgUpload";
+ 		String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
+ 		String fileName = null;
+
+ 		if(file!=null) {
+ 			fileName=UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath); 
+ 		} else {
+ 			fileName = uploadPath + File.separator + "images" + File.separator + "none.png";
+ 		}
+
+ 		bean.setBoard_img(File.separator + "imgUpload" + ymdPath + File.separator + "#"+fileName);
+ 		bean.setBoard_thumb(File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
+ 		
+ 		
+ 		
+ 		
+ 		
  		boardService.insertOne_review(bean);
  		return "redirect:review";
  	}
  	
- 	// »ó¼¼ÆäÀÌÁö ÀÌµ¿
+ 	// ìƒì„¸í˜ì´ì§€ ì´ë™
  	@RequestMapping(value="/board/detail/{idx}",method=RequestMethod.GET)
  	public String detail(@PathVariable("idx") int key, Model model) {
  		boardService.selectOne_review(key, model);
@@ -118,56 +147,56 @@ public class BoardController {
  		return "board/detail";
  	}
  	
- 	// ¼öÁ¤ÆäÀÌÁö·Î ÀÌµ¿
+ 	// ìˆ˜ì •í˜ì´ì§€ë¡œ ì´ë™
  	@RequestMapping(value = "/board/update/{idx}", method = RequestMethod.GET)
  	public String update(@PathVariable("idx") int key, Model model) {
  		boardService.selectOne_review(key, model);
  		return "board/update";
  	}
  	
- 	// ¼öÁ¤ÆäÀÌÁö ³ª¶ó Á¶È¸
+ 	// ìˆ˜ì •í˜ì´ì§€ ë‚˜ë¼ ì¡°íšŒ
  	@RequestMapping(value="/board/updateLand", method=RequestMethod.POST)
  	public String updateLand(int key, Model model) {
  		boardService.select_land(key, model);
  		return "board/update";
  	}
  	
- 	// ¼öÁ¤ ÈÄ »ó¼¼ÆäÀÌÁö·Î ÀÌµ¿
+ 	// ìˆ˜ì • í›„ ìƒì„¸í˜ì´ì§€ë¡œ ì´ë™
  	@RequestMapping(value="/board/update/{idx}", method=RequestMethod.POST)
  	public String update(@ModelAttribute BoardVo bean) {
  		boardService.updateOne_review(bean);
  		return "redirect:../detail/"+bean.getBoard_no();
  	}
 
- 	// °Ô½Ã±Û»èÁ¦
+ 	// ê²Œì‹œê¸€ì‚­ì œ
  	@RequestMapping(value="/board/delete", method=RequestMethod.POST)
  	public String delete(int key) {
  		boardService.deleteOne_review(key);
  		return "redirect:review";
  	}
  	
- 	// ´ñ±Û ÀÔ·Â
+ 	// ëŒ“ê¸€ ì…ë ¥
  	@RequestMapping(value="/board/reply", method=RequestMethod.POST)
  	public String reply(@ModelAttribute ReplyVo bean) {
  		replyService.insertOne_reply(bean);
  		return "board/detail";
  	}
  	
-	// ´ñ±Û ÀÔ·Â
+	// ëŒ“ê¸€ ì…ë ¥
   	@RequestMapping(value="/board/replyEdit", method=RequestMethod.POST)
   	public String replyEdit(@ModelAttribute ReplyVo bean) {
   		replyService.updateOne_reply(bean);
   		return "board/detail";
   	}
   	
-	// ´ñ±Û »èÁ¦
+	// ëŒ“ê¸€ ì‚­ì œ
   	@RequestMapping(value="/board/replyDel", method=RequestMethod.POST)
   	public String replyDel(int key) {
   		replyService.deleteOne_reply(key);
   		return "board/detail";
   	}
   	
-  	// ³»°¡ ¾´ ±Û ÀÌµ¿
+  	// ë‚´ê°€ ì“´ ê¸€ ì´ë™
   	@RequestMapping(value="/main/myBoard", method=RequestMethod.GET)
   	public String myBoard() {
   		return "mypage/myBoard";

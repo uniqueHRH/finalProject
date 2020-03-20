@@ -230,11 +230,15 @@
       </div>
    </div>
    <p></p>
-   <div>
-      <textarea class="form-control" id="board_content" placeholder="${bean.board_content }" style="cursor:default" disabled></textarea>
+   <div contenteditable="false" id="contentM">
+		<br/>
+		<img src="${root }resources/${bean.board_thumb }"/><br/>
+		<br/>
+		${bean.board_content }
    </div>
    <p></p>
    <div id="btn">
+		<br/>
       <button type="button" class="btn btn-default" id="subm">수정하기</button>
       <button type="button" class="btn btn-default" id="dele">삭제하기</button>
       <button type="button" class="btn btn-default" id="goList">목록으로</button>
@@ -316,6 +320,16 @@
 			$('#hambBtn').show();
 		});
 		
+		// 이미지가 없을 때 출력되지 않도록
+		var img=$('#contentM img').val().split('#');;
+		console.log(img[1]);
+		
+		if(img==null) {
+			console.log('없어!');
+		} else {
+			console.log('있어!');
+		}
+		
       // 테마 출력
       var themeVal=$('#board_theme').val();
       var themeLength=themeVal.length;
@@ -370,7 +384,7 @@
 	});
       
       // 댓글보기 버튼
-	/* $('#table').hide()
+	$('#table').hide()
 	
 	var show=$('#replyShow');
 	var table=$('#table');
@@ -383,7 +397,7 @@
 			table.hide();
 			show.text('댓글보기');
 		});
-	}); */
+	});
       
       // 입력 버튼
 		var log=$('#log').val();

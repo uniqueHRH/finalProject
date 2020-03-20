@@ -136,7 +136,7 @@
    </div>
       
 <!-- 나라 선택 -->
-<form class="form-inline" method="POST">
+<form class="form-inline" method="POST" enctype="multipart/form-data">
 <div>
 	<select id="land" name="board_land" style="cursor:pointer">
 		<option>나라 선택</option>
