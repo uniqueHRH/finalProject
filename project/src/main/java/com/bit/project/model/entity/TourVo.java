@@ -1,10 +1,13 @@
 package com.bit.project.model.entity;
 
-public class EastAsiaVo {
+public class TourVo {
 	
 	private int tour_no;
+	private String land;
 	private String country;
 	private String city;
+	private String theme;
+	private String vehicle;
 	private String introduce;
 	private int cost;
 	private String mainimg;
@@ -14,10 +17,10 @@ public class EastAsiaVo {
 	private String secondimg;
 	private String thirdimg;
 	
-	private GuideVo GuideVo;
+	private GuideVo GuideVo;// 가이드 조인위해
 	
 	
-	public EastAsiaVo() {
+	public TourVo() {
 		// TODO Auto-generated constructor stub
 	}
 
@@ -29,6 +32,16 @@ public class EastAsiaVo {
 
 	public void setTour_no(int tour_no) {
 		this.tour_no = tour_no;
+	}
+
+
+	public String getLand() {
+		return land;
+	}
+
+
+	public void setLand(String land) {
+		this.land = land;
 	}
 
 
@@ -49,6 +62,26 @@ public class EastAsiaVo {
 
 	public void setCity(String city) {
 		this.city = city;
+	}
+
+
+	public String getTheme() {
+		return theme;
+	}
+
+
+	public void setTheme(String theme) {
+		this.theme = theme;
+	}
+
+
+	public String getVehicle() {
+		return vehicle;
+	}
+
+
+	public void setVehicle(String vehicle) {
+		this.vehicle = vehicle;
 	}
 
 
@@ -144,20 +177,23 @@ public class EastAsiaVo {
 
 	@Override
 	public String toString() {
-		return "EastAsiaVo [tour_no=" + tour_no + ", country=" + country + ", city=" + city + ", introduce=" + introduce
-				+ ", cost=" + cost + ", mainimg=" + mainimg + ", comments=" + comments + ", course=" + course
-				+ ", firstimg=" + firstimg + ", secondimg=" + secondimg + ", thirdimg=" + thirdimg + ", GuideVo="
-				+ GuideVo + "]";
+		return "TourVo [tour_no=" + tour_no + ", land=" + land + ", country=" + country + ", city=" + city + ", theme="
+				+ theme + ", vehicle=" + vehicle + ", introduce=" + introduce + ", cost=" + cost + ", mainimg="
+				+ mainimg + ", comments=" + comments + ", course=" + course + ", firstimg=" + firstimg + ", secondimg="
+				+ secondimg + ", thirdimg=" + thirdimg + ", GuideVo=" + GuideVo + "]";
 	}
 
 
-	public EastAsiaVo(int tour_no, String country, String city, String introduce, int cost, String mainimg,
-			String comments, String course, String firstimg, String secondimg, String thirdimg,
-			com.bit.project.model.entity.GuideVo guideVo) {
+	public TourVo(int tour_no, String land, String country, String city, String theme, String vehicle, String introduce,
+			int cost, String mainimg, String comments, String course, String firstimg, String secondimg,
+			String thirdimg, com.bit.project.model.entity.GuideVo guideVo) {
 		super();
 		this.tour_no = tour_no;
+		this.land = land;
 		this.country = country;
 		this.city = city;
+		this.theme = theme;
+		this.vehicle = vehicle;
 		this.introduce = introduce;
 		this.cost = cost;
 		this.mainimg = mainimg;
@@ -170,7 +206,7 @@ public class EastAsiaVo {
 	}
 
 
-	
+
 	
 }
 

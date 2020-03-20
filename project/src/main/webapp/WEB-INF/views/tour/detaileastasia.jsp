@@ -272,7 +272,7 @@
       </tr>
       <tr>
          <td class="active" style="text-align: center;">차량</td>
-         <td>포함</td>
+         <td>${bean.vehicle }</td>
          <td class="active" style="text-align: center;">상품가</td>
          <td>${bean.cost }원</td>
          <td><input type="hidden" id="check" value="${sessionScope.check}"></td>

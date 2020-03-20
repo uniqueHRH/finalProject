@@ -7,20 +7,20 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.bit.project.model.ClientDao;
-import com.bit.project.model.EastAsiaDao;
-import com.bit.project.model.entity.EastAsiaVo;
+import com.bit.project.model.TourDao;
+import com.bit.project.model.entity.TourVo;
 
 @Service
-public class EastAsiaServiceImpl implements EastAsiaService{
+public class TourServiceImpl implements TourService{
 
 	@Autowired
-	EastAsiaDao eastasiaDao;
+	TourDao eastasiaDao;
 	
 	@Override
 	public void selectAll_eastasia(Model model) {
 	
 		try {
-			List<EastAsiaVo> list = eastasiaDao.selectAll_eastasia();
+			List<TourVo> list = eastasiaDao.selectAll_eastasia();
 			model.addAttribute("list",list);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -35,6 +35,12 @@ public class EastAsiaServiceImpl implements EastAsiaService{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+	}
+
+	@Override
+	public void insert(TourVo bean) {
+		// TODO Auto-generated method stub
 		
 	}
 
