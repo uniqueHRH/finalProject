@@ -1,7 +1,6 @@
 package com.bit.project.controller;
 
 import java.io.File;
-import java.io.IOException;
 
 import javax.annotation.Resource;
 
@@ -19,7 +18,6 @@ import com.bit.project.model.entity.BoardVo;
 import com.bit.project.model.entity.ReplyVo;
 import com.bit.project.service.BoardService;
 import com.bit.project.service.ClientService;
-import com.bit.project.service.TourService;
 import com.bit.project.service.FaqService;
 import com.bit.project.service.GuideService;
 import com.bit.project.service.NoticeService;
@@ -58,63 +56,62 @@ public class BoardController {
 	
 	
 	
-// ê²Œì‹œíŒ
 	
-	// í…ŒìŠ¤íŠ¸í˜ì´ì§€ ì´ë™
+	// Å×½ºÆ®ÆäÀÌÁö ÀÌµ¿
 	@RequestMapping("/board/test")
 	public String test() {
 		return "board/test";
 	}
 	
-	// í›„ê¸°ë¦¬ìŠ¤íŠ¸ ì´ë™ (ì‘ì„±ìˆœ ì •ë ¬)
+	// ÈÄ±â¸®½ºÆ® ÀÌµ¿ (ÀÛ¼º¼ø Á¤·Ä)
  	@RequestMapping(value = "/board/review", method = RequestMethod.GET)
  	public String review(Model model) throws Exception {
  		boardService.selectAll_review(model);
  		return "board/review";
  	}
  	
- 	// í›„ê¸°ë¦¬ìŠ¤íŠ¸ ì´ë™ (ì§€ì—­ë³„ ì •ë ¬)
+ 	// ÈÄ±â¸®½ºÆ® ÀÌµ¿ (Áö¿ªº° Á¤·Ä)
  	@RequestMapping(value="/board/reviewLocal", method=RequestMethod.GET)
  	public String reviewLocal(Model model) {
  		boardService.selectAll_reviewCity(model);
  		return "board/review";
  	}
  	
- 	// í›„ê¸°ë¦¬ìŠ¤íŠ¸ ì´ë™ (í…Œë§ˆë³„ ì •ë ¬)
+ 	// ÈÄ±â¸®½ºÆ® ÀÌµ¿ (Å×¸¶º° Á¤·Ä)
  	@RequestMapping(value="/board/reviewTheme", method=RequestMethod.GET)
  	public String reviewTheme(Model model) {
  		boardService.selectAll_reviewTheme(model);
  		return "board/review";
  	}
  	
- 	// ë™í–‰ë¦¬ìŠ¤íŠ¸ ì´ë™
+ 	// µ¿Çà¸®½ºÆ® ÀÌµ¿
  	@RequestMapping(value = "/board/partner", method = RequestMethod.GET)
  	public String partner(Model model) {
  		boardService.selectAll_partner(model);
  		return "board/partner";
  	}
  	
- 	//ììœ ê²Œì‹œíŒë¦¬ìŠ¤íŠ¸ë¡œ ì´ë™
+ 	//ÀÚÀ¯°Ô½ÃÆÇ¸®½ºÆ®·Î ÀÌµ¿
  	@RequestMapping(value = "/board/free", method = RequestMethod.GET)
  	public String free(Model model) {
  		boardService.selectAll_free(model);
  		return "board/free";
  	}
  	
- 	//ì´ë²¤íŠ¸ë¦¬ìŠ¤íŠ¸ë¡œ ì´ë™
+ 	//ÀÌº¥Æ®¸®½ºÆ®·Î ÀÌµ¿
  	@RequestMapping(value = "/board/event", method = RequestMethod.GET)
  	public String event(Model model) {
  		boardService.selectAll_event(model);
  		return "board/event";
  	}
  	
- 	// ê¸€ì“°ê¸°ë¡œ ì´ë™
+ 	// ±Û¾²±â·Î ÀÌµ¿
  	@RequestMapping(value = "/board/write", method = RequestMethod.GET)
  	public String write() {
  		return "board/write";
  	}
  	      
- 	// ê¸€ì“°ê¸° ì™„ë£Œ, list ë¡œ ì´ë™
+ 	// ±Û¾²±â ¿Ï·á, list ·Î ÀÌµ¿
  	@RequestMapping(value = "/board/write", method = RequestMethod.POST)
  	public String write(@ModelAttribute BoardVo bean, MultipartFile file) throws Exception {
  		
@@ -139,7 +136,7 @@ public class BoardController {
  		return "redirect:review";
  	}
  	
- 	// ìƒì„¸í˜ì´ì§€ ì´ë™
+ 	// »ó¼¼ÆäÀÌÁö ÀÌµ¿
  	@RequestMapping(value="/board/detail/{idx}",method=RequestMethod.GET)
  	public String detail(@PathVariable("idx") int key, Model model) {
  		boardService.selectOne_review(key, model);
@@ -147,56 +144,56 @@ public class BoardController {
  		return "board/detail";
  	}
  	
- 	// ìˆ˜ì •í˜ì´ì§€ë¡œ ì´ë™
+ 	// ¼öÁ¤ÆäÀÌÁö·Î ÀÌµ¿
  	@RequestMapping(value = "/board/update/{idx}", method = RequestMethod.GET)
  	public String update(@PathVariable("idx") int key, Model model) {
  		boardService.selectOne_review(key, model);
  		return "board/update";
  	}
  	
- 	// ìˆ˜ì •í˜ì´ì§€ ë‚˜ë¼ ì¡°íšŒ
+ 	// ¼öÁ¤ÆäÀÌÁö ³ª¶ó Á¶È¸
  	@RequestMapping(value="/board/updateLand", method=RequestMethod.POST)
  	public String updateLand(int key, Model model) {
  		boardService.select_land(key, model);
  		return "board/update";
  	}
  	
- 	// ìˆ˜ì • í›„ ìƒì„¸í˜ì´ì§€ë¡œ ì´ë™
+ 	// ¼öÁ¤ ÈÄ »ó¼¼ÆäÀÌÁö·Î ÀÌµ¿
  	@RequestMapping(value="/board/update/{idx}", method=RequestMethod.POST)
  	public String update(@ModelAttribute BoardVo bean) {
  		boardService.updateOne_review(bean);
  		return "redirect:../detail/"+bean.getBoard_no();
  	}
 
- 	// ê²Œì‹œê¸€ì‚­ì œ
+ 	// °Ô½Ã±Û»èÁ¦
  	@RequestMapping(value="/board/delete", method=RequestMethod.POST)
  	public String delete(int key) {
  		boardService.deleteOne_review(key);
  		return "redirect:review";
  	}
  	
- 	// ëŒ“ê¸€ ì…ë ¥
+ 	// ´ñ±Û ÀÔ·Â
  	@RequestMapping(value="/board/reply", method=RequestMethod.POST)
  	public String reply(@ModelAttribute ReplyVo bean) {
  		replyService.insertOne_reply(bean);
  		return "board/detail";
  	}
  	
-	// ëŒ“ê¸€ ì…ë ¥
+	// ´ñ±Û ÀÔ·Â
   	@RequestMapping(value="/board/replyEdit", method=RequestMethod.POST)
   	public String replyEdit(@ModelAttribute ReplyVo bean) {
   		replyService.updateOne_reply(bean);
   		return "board/detail";
   	}
   	
-	// ëŒ“ê¸€ ì‚­ì œ
+	// ´ñ±Û »èÁ¦
   	@RequestMapping(value="/board/replyDel", method=RequestMethod.POST)
   	public String replyDel(int key) {
   		replyService.deleteOne_reply(key);
   		return "board/detail";
   	}
   	
-  	// ë‚´ê°€ ì“´ ê¸€ ì´ë™
+  	// ³»°¡ ¾´ ±Û ÀÌµ¿
   	@RequestMapping(value="/main/myBoard", method=RequestMethod.GET)
   	public String myBoard() {
   		return "mypage/myBoard";

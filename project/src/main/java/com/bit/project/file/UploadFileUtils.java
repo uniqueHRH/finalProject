@@ -14,7 +14,7 @@ public class UploadFileUtils {
 	static final int THUMB_HEIGHT = 300;
 	 
 	 public static String fileUpload(String uploadPath, String fileName, byte[] fileData, String ymdPath) throws Exception {
-		 UUID uid = UUID.randomUUID();
+		 UUID uid = UUID.randomUUID();   // 고유한 파일명을 만든다
 		 String newFileName = uid + "_" + fileName;
 		 String imgPath = uploadPath + ymdPath;
 

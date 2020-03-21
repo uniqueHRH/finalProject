@@ -13,9 +13,12 @@
 <link rel="stylesheet" type="text/css" href="${root }css/travel.css" />
 <style type="text/css">
 	.jumbotron {
-		background-image:url("https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/background.jpg?raw=true");
+		background-image:url(https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/background1.jpg?raw=true);
 		background-size: cover;
 		width: 100%;
+	}
+	p {
+		font-family: 'Jua';
 	}
 	.log {
 		color:white;
@@ -166,7 +169,7 @@
 	<div>
 		<button id="hambBtn"><img src="https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/menu.jpg?raw=true" width="100px" id="hambI"></button>
 	</div>
-	<p id="comment"><br/><br/><br/><br/><br/>(회사로고 또는 이름)<br/>문구 생각해주세요~~<br/><br/><br/></p>
+	<p id="comment"><br/><br/><br/><br/><br/>떠나요<br/><img src="https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/logoC.png?raw=true" width="300px"><br/><br/><br/></p>
 </div>
 
 
