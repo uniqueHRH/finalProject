@@ -195,37 +195,41 @@
 					type:'POST',
 					data:{client_name:name, client_email:email},
 					beforeSend:function(){
-						alert('인증번호 발송');
+						alert('인증번호 발송 중..');
 				    },
 				    success:function(data){
 				    	$('input[name=dice]').attr('value',data.Dice);
+				    	var check = data.FindId
+				    	if(check == null){
+				    		alert('가입하신 이름과 이메일을 입력해주세요');
+				    	}else{
+						var num = 60 * 3; // 몇분을 설정할지의 대한 변수 선언
+			    		var myVar;
+			   			 function time(){
+			       			 myVar = setInterval(alertFunc, 1000); 
+			   			 }
+			  			  time();
+			 
+			  			 function alertFunc() {
+			        		var min = num / 60; 
+			       			min = Math.floor(min);
+			        		var sec = num - (60 * min);
+			        		var $input = $('.input').val(min + '분' + sec + '초');
+			       			if(num == 0){
+			            		clearInterval(myVar);
+			            		alert('요청 시간이 만료되었습니다.');
+			            		// num 이 0초가 되었을대 clearInterval로 타이머 종료
+			        		}
+			        		num--;
+			   			}
+				    	}
 				    },
 					error:function(){
-						alert('제한시간 내에 입력해주세요');
+						alert('요청 실패');
 					}
 				});
 	      		
 				
-				var num = 60 * 3; // 몇분을 설정할지의 대한 변수 선언
-			    var myVar;
-			    function time(){
-			        myVar = setInterval(alertFunc, 1000); 
-			    }
-			    time();
-			 
-			    function alertFunc() {
-			        var min = num / 60; 
-			        min = Math.floor(min);
-			         
-			        var sec = num - (60 * min);
-			 
-			        var $input = $('.input').val(min + '분' + sec + '초');
-			 
-			        if(num == 0){
-			            clearInterval(myVar) // num 이 0초가 되었을대 clearInterval로 타이머 종료
-			        }
-			        num--;
-			    }
 			}
 	    });
 		
