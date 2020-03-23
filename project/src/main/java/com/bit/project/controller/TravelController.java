@@ -95,7 +95,6 @@ public class TravelController {
 		
 		HttpSession session = req.getSession();
 		ClientVo login= clientService.loginCheck(bean);
-		 
 		if(login==null) {
 			//로그인 실패 시
 			session.setAttribute("check", null);

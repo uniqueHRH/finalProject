@@ -1,3 +1,5 @@
+<%@page import="org.springframework.web.servlet.config.MvcNamespaceHandler"%>
+<%@page import="org.springframework.web.servlet.ModelAndView"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page pageEncoding="utf-8" %>
 <link href="https://fonts.googleapis.com/css?family=Jua&display=swap&subset=korean" rel="stylesheet">
@@ -88,7 +90,6 @@
       <div class="page-header" align="center">
      <h1>아이디 찾기</h1>
    </div>
-   
    <form action="../code_check" name="cac" class="form-horizontal" method="post">
      <div class="form-group" id="insertid">
        <label for="client_name" class="col-sm-2 control-label" id="idd">이름</label>
@@ -108,16 +109,18 @@
    <div class="form-group">
        <label for="code" class="col-sm-2 control-label">인증번호</label>
        <div class="col-sm-10">
-         <input type="text" class="form-control" id="code" name="code" placeholder="이메일로 전송된 인증번호를 입력하세요" style="width:280px">
+         <span>
+         	<input type="text" class="form-control" id="code" name="code" placeholder="이메일로 전송된 인증번호를 입력하세요" style="width:280px">
+	   	 	<input type="text" class="input">
+	   	 </span>
+	     <input type="hidden" id="dice" name="dice" value="" style="display: none;">
        </div>
      </div>
      <p>
-  		<button type="button" id="confirmbtn" class="btn btn-default btn-lg">확인</button>
+  		<button type="submit" id="confirmbtn" class="btn btn-default btn-lg">확인</button>
   		<button type="button" id="resetbtn" class="btn btn-default btn-lg" onclick="location.href='/main/login'">취소</button>
 	</p>
   </form>   
-	<input type="text" class="input">
-	<input type="hidden" id="dice" name="dice" value="${dice}">
   </div>
  </div>
 </div>
@@ -182,19 +185,14 @@
 						alert('인증번호 발송');
 				    },
 				    success:function(data){
-				    	var item = data.dice;
-				    	alert(item);
+				    	$('input[name=dice]').attr('value',data.Dice);
 				    },
 					error:function(){
 						alert('제한시간 내에 입력해주세요');
-					},
-				    complete:function(){
-				    	alert('ajax완료');
-				    }
-				
+					}
 				});
-			}
-	      
+	      		
+				
 				var num = 60 * 3; // 몇분을 설정할지의 대한 변수 선언
 			    var myVar;
 			    function time(){
@@ -215,6 +213,7 @@
 			        }
 			        num--;
 			    }
+			}
 	    });
 		
 		
@@ -231,22 +230,11 @@
 			}else if(!code){
 				alert('인증번호를 입력해주세요');
 				return false;
+			}else if(code != dice){
+				alert('인증번호가 일치하지않습니다');
+				return false;
 			}else{
-				$.ajax({
-					url:'../code_check',
-					type:'POST',
-					data:{client_name:name, client_email:email, code:code, dice:dice },
-					success:function(){
-						alert(dice);
-						alert('아이디 결과창으로 갑시다');
-					},
-					error:function(){
-						alert('실패');
-					}
-				
-				});
-				
-				
+				return true;
 			}
 		});
 	});

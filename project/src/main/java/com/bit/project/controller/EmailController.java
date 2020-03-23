@@ -39,14 +39,9 @@ public class EmailController {
 	    	
 	    	
 	    // mailSending 코드
-	    	@ResponseBody
 	        @RequestMapping( value = "/main/login/findid" , method=RequestMethod.POST )
-	        public ModelAndView mailSending(HttpServletRequest request, String client_email, String client_name, ClientVo bean,HttpServletResponse response_email) throws Exception {
-	  
+	        public ModelAndView mailSending(HttpServletRequest request, ClientVo bean,HttpServletResponse response_email) throws Exception {
 	        	ClientVo findid = clientService.findId(bean);
-	        	
-	        	if(findid != null) {
-	        		
 	            Random r = new Random();
 	            int dice = r.nextInt(4589362) + 49311; //이메일로 받는 인증코드 부분 (난수)
 	            
@@ -88,33 +83,11 @@ public class EmailController {
 	            } catch (Exception e) {
 	                System.out.println(e);
 	            }
-	            ModelAndView mv = new ModelAndView();    //ModelAndView로 보낼 페이지를 지정하고, 보낼 값을 지정한다.
-	            mv.setViewName("/login/findid");     //뷰의이름
-	            mv.addObject("dice", dice);
-	            System.out.println("메일전송 : " + mv.getModelMap());
-//	            	mv.addObject("name", client_name);
-//	            	mv.addObject("email", client_email);
-//	            	
-//	            	System.out.println("mv : "+mv);
-//	 
-//	            	response_email.setContentType("text/html; charset=UTF-8");
-//	            	PrintWriter out_email = response_email.getWriter();
-//	            	out_email.println("<script>alert('이메일이 발송되었습니다. 인증번호를 입력해주세요.');</script>");
-//	            	out_email.flush();
-	            	return mv;
-	        	}else{
-//	        		 response_email.setContentType("text/html; charset=UTF-8");
-//	 	            PrintWriter out_email = response_email.getWriter();
-//	 	            out_email.println("<script>alert('이름 또는 이메일을 확인해주세요');</script>");
-//	 	            out_email.flush();
-	 	            
-	 	            ModelAndView mv = new ModelAndView();
-		            mv.setViewName("/login/findid");
-//		            mv.addObject("name", client_name);
-//	            	mv.addObject("email", client_email);
-		            return mv;
-	        	}
 	            
+	            ModelAndView mav= new ModelAndView();
+	            mav.addObject("Dice", dice);
+	            mav.setViewName("jsonView");
+	            return mav;
 	        }
 	    
 	    
