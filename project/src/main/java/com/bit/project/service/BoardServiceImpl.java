@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 
 import com.bit.project.model.BoardDao;
 import com.bit.project.model.entity.BoardVo;
+import com.bit.project.paging.Pagination;
 
 @Service
 public class BoardServiceImpl implements BoardService {
@@ -18,10 +19,9 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public void selectAll_tour(Model model) {
 		try {
-			List<BoardVo> list = boardDao.selectAll_tour();
+			List<BoardVo> list= boardDao.selectAll_tour();
 			model.addAttribute("list",list);
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch(Exception e) { e.printStackTrace();
 		}
 	}
 
@@ -44,7 +44,12 @@ public class BoardServiceImpl implements BoardService {
 			e.printStackTrace();
 		}
 	}
-
+	
+	@Override
+	public List<BoardVo> selectAll_review(Pagination pagination) throws Exception {
+		return boardDao.selectAll_review(pagination);
+	}
+/*
 	@Override
 	public void selectAll_review(Model model) {
 		try {
@@ -54,7 +59,7 @@ public class BoardServiceImpl implements BoardService {
 			e.printStackTrace();
 		}
 	}
-
+*/
 	@Override
 	public void selectAll_reviewCity(Model model) {
 		try {
@@ -167,12 +172,6 @@ public class BoardServiceImpl implements BoardService {
 
 	}
 
-	@Override
-	public int countBoardListTotal() throws Exception {
-		return boardDao.countBoardListTotal();
-	}
-
-	
 	@Override
 	public void insertOne_tour(BoardVo bean) {
 		try {
@@ -306,6 +305,11 @@ public class BoardServiceImpl implements BoardService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public int getBoardListCnt() throws Exception {
+		return boardDao.getBoardListCnt();
 	}
 
 	

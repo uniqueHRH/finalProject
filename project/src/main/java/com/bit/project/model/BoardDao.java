@@ -3,6 +3,7 @@ package com.bit.project.model;
 import java.util.List;
 
 import com.bit.project.model.entity.BoardVo;
+import com.bit.project.paging.Pagination;
 
 public interface BoardDao {
 
@@ -17,7 +18,9 @@ public interface BoardDao {
 	List<BoardVo> selectAll_tourTheme() throws Exception;
 	 
 //	후기 기본 정렬 (작성 순서)
-	List<BoardVo> selectAll_review() throws Exception;
+	List<BoardVo> selectAll_review(Pagination pagination) throws Exception;
+
+	/* List<BoardVo> selectAll_review() throws Exception; */
 //	후기 도시별 정렬
 	List<BoardVo> selectAll_reviewCity() throws Exception;
 //	후기 테마별 정렬
@@ -29,7 +32,6 @@ public interface BoardDao {
 	
 //	update 페이지 나라 조회	
 	BoardVo select_land(int key) throws Exception;
-	int countBoardListTotal() throws Exception;
 	
 //	DETAIL
 	BoardVo selectOne_tour(int key) throws Exception;
@@ -54,9 +56,6 @@ public interface BoardDao {
 	int updateOne_free(BoardVo bean) throws Exception;
 	int updateOne_event(BoardVo bean) throws Exception;
 
-//	조회수
-	int updateCnt(int key) throws Exception;
-	 
 //	DELETE
 	int deleteOne_tour(int key) throws Exception;
 	int deleteOne_review(int key) throws Exception;
@@ -64,5 +63,8 @@ public interface BoardDao {
 	int deleteOne_free(int key) throws Exception;
 	int deleteOne_event(int key) throws Exception;
 	
-	 
+//	조회수
+	int updateCnt(int key) throws Exception;
+//	게시물 총 갯수
+	public int getBoardListCnt() throws Exception;
 }
