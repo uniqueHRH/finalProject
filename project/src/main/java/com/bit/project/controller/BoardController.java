@@ -1,5 +1,9 @@
 package com.bit.project.controller;
 
+import java.io.File;
+
+import javax.annotation.Resource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,12 +11,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.bit.project.file.UploadFileUtils;
 import com.bit.project.model.entity.BoardVo;
 import com.bit.project.model.entity.ReplyVo;
 import com.bit.project.service.BoardService;
 import com.bit.project.service.ClientService;
-import com.bit.project.service.TourService;
 import com.bit.project.service.FaqService;
 import com.bit.project.service.GuideService;
 import com.bit.project.service.NoticeService;
@@ -45,11 +50,12 @@ public class BoardController {
 	SendService sendService;
 	@Autowired
 	StaffService staffService;
-	@Autowired
-	TourService eastasiaservice;
+	
+	@Resource(name="uploadPath")
+	private String uploadPath;
 	
 	
-// 게시판
+	
 	
 	// 테스트페이지 이동
 	@RequestMapping("/board/test")
@@ -61,12 +67,6 @@ public class BoardController {
  	@RequestMapping(value = "/board/review", method = RequestMethod.GET)
  	public String review(Model model) throws Exception {
  		boardService.selectAll_review(model);
- 		
-		/*
-		 * Paging pg=new Paging(); pg.setBoardVo(boardVo);
-		 * pg.setTotalCount(boardService.countBoardListTotal());
-		 * model.addAttribute("pg",pg);
-		 */
  		return "board/review";
  	}
  	
@@ -110,10 +110,28 @@ public class BoardController {
  	public String write() {
  		return "board/write";
  	}
- 	
+ 	      
  	// 글쓰기 완료, list 로 이동
  	@RequestMapping(value = "/board/write", method = RequestMethod.POST)
- 	public String write(@ModelAttribute BoardVo bean) {
+ 	public String write(@ModelAttribute BoardVo bean, MultipartFile file) throws Exception {
+ 		
+ 		String imgUploadPath = uploadPath + File.separator + "imgUpload";
+ 		String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
+ 		String fileName = null;
+
+ 		if(file!=null) {
+ 			fileName=UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath); 
+ 		} else {
+ 			fileName = uploadPath + File.separator + "images" + File.separator + "none.png";
+ 		}
+
+ 		bean.setBoard_img(File.separator + "imgUpload" + ymdPath + File.separator + "#"+fileName);
+ 		bean.setBoard_thumb(File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
+ 		
+ 		
+ 		
+ 		
+ 		
  		boardService.insertOne_review(bean);
  		return "redirect:review";
  	}

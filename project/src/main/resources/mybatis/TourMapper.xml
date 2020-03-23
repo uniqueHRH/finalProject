@@ -32,6 +32,10 @@
 	<select id="selectOne_eastasia" parameterType="TourBean" resultMap="EastAsiaMap" >
 		select tour.tour_no,tour.country,tour.city,tour.cost,tour.vehicle,tour.comments,tour.course,tour.firstimg,tour.secondimg,tour.thirdimg,guide.guide_name from tour inner join guide on tour.city=guide.guide_city where tour_no=#{value}
 	</select>
+	
+	<insert id="insertOne_eastasia" parameterType="PaidBean">
+		insert into paid (tour_no,client_name,paid_name,paid_phone,paid_birth,paid_count,paid_kakaoid,tour_date,book_date,paid_total) values (#{tour_no},#{client_name},#{paid_name},#{paid_phone},#{paid_birth},#{paid_count},#{paid_kakaoid},#{tour_date},now(),#{paid_total})
+	</insert>
 
 </mapper>
 

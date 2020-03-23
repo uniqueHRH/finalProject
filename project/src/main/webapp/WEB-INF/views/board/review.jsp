@@ -43,6 +43,7 @@
 	#table>tbody td>a:hover {
 		color:black;
 	}
+	
 /* 리모컨 */ 
 	#remote {
 		position:fixed;
@@ -212,13 +213,13 @@
 <!-- 검색 -->
    <div class="topMenu" id="search">
 		<select id="dropdownMenu2">
-		    <option value="정렬">검 &nbsp;색</option>
+		    <option value="제목">제 &nbsp; 목</option>
 		    <option value="나라별">나라별</option>
 		    <option value="테마별">테마별</option>
 		</select>
       <input type="text" class="form-control" id="client_id" name="wri" style="width:200px; display:inline-block;">
 		<a class="btn btn-default" href="#" role="button" id="searchGo">G O</a>
-		<div id="fff"></div>
+		<input type="text" value="n개의 게시물이 있습니다"/>
 	</div>
 	
 </nav>

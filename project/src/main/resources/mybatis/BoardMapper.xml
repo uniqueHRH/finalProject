@@ -56,27 +56,6 @@
 	<select id="select_land" resultType="BoardBean">
 		select board_land from board where board_no=#{value}
 	</select>
-<!-- 페이징 -->
-	<select id="countBoardList" resultType="Integer">
-		select count(*) from board where board_id=2
-	</select>
-<!-- 검색 -->
-<!-- 후기 -->
-	<select id="searchSub_review" resultType="BoardBean">
-		select * from board where board_id=2 and board_sub like concat('%', #{value},'%');
-	</select>
-<!-- 동행 -->
-	<select id="searchSub_partner" resultType="BoardBean">
-		select * from board where board_id=2 and board_sub like concat('%', #{value},'%');
-	</select>
-<!-- 자유게시판 -->
-	<select id="searchSub_free" resultType="BoardBean">
-		select * from board where board_id=2 and board_sub like concat('%', #{value},'%');
-	</select>
-<!-- 이벤트 -->
-	<select id="searchSub_event" resultType="BoardBean">
-		select * from board where board_id=2 and board_sub like concat('%', #{value},'%');
-	</select>
 		
 	<select id="selectOne_tour" resultType="BoardBean" parameterType="int">
 		select * from board where board_id=1 and board_no=#{value}
@@ -105,7 +84,7 @@
 	</insert>
 	
 	<insert id="insertOne_review" parameterType="BoardBean">
-		insert into board (board_id, board_sub, board_count, board_content, client_nick1, board_date, board_land, board_theme) values (2,#{board_sub}, 0, #{board_content}, #{client_nick1}, now(), #{board_land}, #{board_theme})
+		insert into board (board_id, board_sub, board_count, board_content, client_nick1, board_date, board_land, board_theme, board_img, board_thumb) values (2,#{board_sub}, 0, #{board_content}, #{client_nick1}, now(), #{board_land}, #{board_theme}, #{board_img}, #{board_thumb})
 	</insert>
 	
 	<insert id="insertOne_partner" parameterType="BoardBean">

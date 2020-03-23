@@ -201,7 +201,6 @@
 				<tr>	
 			</table>
 		</div>
-			<button type="submit" id="bookbtn" class="btn btn-default btn-lg btn-block">예약하기</button>
       <p style="font-size: 25px; margin-top: 50px; position: absolute; left: 550px; top: 70px;" >예약자 정보</p>
 		<form class="form-horizontal">
 			<div id="form-group">
@@ -209,18 +208,20 @@
 					<label for="tour_date1" class="col-sm-2 control-label">여행일</label>
 					<div class="col-sm-10">
 						<input type="date" class="form-control" id="tour_date1" style="width:300px" >
+						<div id="date_check"></div>
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="paid_name1" class="col-sm-2 control-label" >여행자 이름</label>
 					<div class="col-sm-10">
 						<input type="text" class="form-control" id="paid_name1" placeholder="대표자 이름을 입력하세요" style="width:300px" >
+						<div id="name_check"></div>
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="paid_count1" class="col-sm-2 control-label" id="countlabel">여행인원</label>
 					<select class="form-control" id="paid_count1">
-									  <option selected disabled>인원수를 선택해 주세요.</option>
+									  <option value="">인원수를 선택해 주세요.</option>
 									  <option value="1">1명</option>
 									  <option value="2">2명</option>
 									  <option value="3">3명</option>
@@ -229,20 +230,22 @@
 									  <option value="6">6명</option>
 									  <option value="7">7명</option>
 									  <option value="8">8명</option>
-									  <option value="9">9명</option>
-									  
+									  <option value="9">9명</option>				  
 					</select>
+					<div id="count_check"></div>
 				</div>
 				<div class="form-group">
 					<label for="paid_phone1" class="col-sm-2 control-label" >여행자 연락처</label>
 					<div class="col-sm-10">
 						<input type="text" class="form-control" id="paid_phone1" placeholder="대표자연락처를 입력하세요" style="width:300px" >
+						<div id="phone_check"></div>
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="paid_birth1" class="col-sm-2 control-label">여행자 생년월일</label>
 					<div class="col-sm-10">
 						<input type="text" class="form-control" id="paid_birth1" placeholder="대표자 생년월일을 입력하세요" style="width:300px" >
+					<div id="birth_check"></div>
 					</div>
 				</div>
 				<div class="form-group">
@@ -254,8 +257,11 @@
 			</div>	
 		</form> 
 				<button id="confirmbtn" class="btn btn-default btn-lg btn-block">확인</button>
-				
-			<form id="form1">	
+			
+			<!-- jquery로 생성되는 form tag -->	
+			<form id="form1" method="post">	
+				<input type="hidden" id="tour_no" name="tour_no" value="${bean.tour_no }">
+			<button type="submit" id="bookbtn" class="btn btn-default btn-lg btn-block">예약하기</button>
 			</form>	
 				
 				
@@ -316,6 +322,10 @@
 			var paid_kakaoid=$('#paid_kakaoid1').val();
 			var paid_total=Number(paid_count)*Number(${bean.cost });
 	
+			if(tour_date=="" && paid_name=="" && paid_count=="" && paid_phone=="" && paid_birth==""){
+						alert('빈칸을 입력해주세요');
+				return false;
+			}else{
 			//hidden input 값 받아오는 함수
 			$('#form1').append('<input type="text" id="client_name" name="client_name" value="'+'${sessionScope.check.client_name}'+'">');
 			$('#form1').append('<input type="text" id="tour_date" name="tour_date" value="'+tour_date+'">');
@@ -326,6 +336,7 @@
 			$('#form1').append('<input type="text" id="paid_kakaoid" name="paid_kakaoid" value="'+paid_kakaoid+'">');
 			$('#form1').append('<input type="text" id="paid_total" name="paid_total" value="'+paid_total+'">');
 			//hidden input end
+			}
   		});
 		
 		$('#checkcostbtn').click(function(){
@@ -337,6 +348,64 @@
 			$('#infor2 tr:nth-child(1)').append('<td style="color: red;">'+paid_total+'&nbsp원</td>');
 			//총금액함수 end
 		});
+		//날짜 유효성검사
+		$('#tour_date1').blur(function(){
+			var tour_date1 = /^(19|20)\d{2}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[0-1])$/; 
+			var datecheck = tour_date1.test($("#tour_date1").val());
+			
+			if(datecheck){
+				$('#date_check').text('');
+			}else{
+				$('#date_check').text('날짜를 선택해주세요');
+				$('#date_check').css('color', 'red');
+			}
+		});
+		//이름 유효성검사
+		$('#paid_name1').blur(function(){
+			var name = /^[가-힣]{2,4}$/;
+			var namecheck = name.test($("#paid_name1").val());
+			
+			if(namecheck){
+				$('#name_check').text('');
+			}else{
+				$('#name_check').text('이름을 확인해주세요');
+				$('#name_check').css('color', 'red');
+			}
+		});
+		$('#paid_count1').blur(function(){
+			if($('#paid_count1').val()==""){
+				$('#count_check').text('인원수를 선택해주세요');
+				$('#count_check').css('color', 'red');
+				return false;
+			}
+		});
+		$('#paid_phone1').blur(function(){
+			var phone = /(01[016789])([1-9]{1}[0-9]{2,3})([0-9]{4})$/;
+			var phonecheck = phone.test($("#paid_phone1").val());
+			
+			if(phonecheck){
+				$('#phone_check').text('');
+				return true;
+			}else{
+				$('#phone_check').text('양식에 맞게 작성해주세요 ex)01012345678');
+				$('#phone_check').css('color', 'red');
+				return false;
+			}
+		
+		});
+		$('#paid_birth1').blur(function(){
+			var birth = /^(19[0-9][0-9]|20\d{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$/;
+			var birthcheck = birth.test($("#paid_birth1").val());
+			
+			if(birthcheck){
+				$('#birth_check').text('');
+			}else{
+				$('#birth_check').text('8자리로 입력하세요 ex)19920216');
+				$('#birth_check').css('color', 'red');
+			}
+		});
+		
+		
 	});
 </script>
 </body>

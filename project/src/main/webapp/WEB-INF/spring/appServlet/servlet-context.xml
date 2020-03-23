@@ -30,7 +30,6 @@
 	<context:component-scan base-package="com.bit.project" />
 	
 	<beans:bean id="loginInterceptor" class="com.bit.project.Interceptor.LoginInterceptor" ></beans:bean>
-
 		<interceptors>
  			<interceptor>
   				<mapping path="/board/event" />
@@ -40,5 +39,18 @@
   				<beans:ref bean="loginInterceptor" />
 			</interceptor>
 		</interceptors>
+	
+	<!-- 파일업로드 -->
+	<!-- 업로드 패스 설정 --> 
+	<beans:bean class="java.lang.String" id="uploadPath">
+		<beans:constructor-arg value="C:\wokspace2\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\project\resources"/>
+	</beans:bean>
+	
+	<!-- 일반 파일 업로드 경로 -->
+	<resources mapping="/imgUpload/**" location="/resources/imgUpload/"/>
+	
+	<beans:bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver" id="multipartResolver">
+		<beans:property name="maxUploadSize" value="10485760"/>
+	</beans:bean>
 	
 </beans:beans>

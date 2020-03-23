@@ -47,9 +47,10 @@
       margin-top: 10px;
    }
    #bookbtn{
-      width: 250px;
+      width: 350px;
       position: absolute;
-      right: 50px;
+      left: 890px;
+      top: 980px;
    }
    #course{
       position: absolute;
@@ -62,73 +63,16 @@
       left: 70px;
       top: 780px;
    }
+   #map {
+        width: 370px;
+        height: 400px;
+        position: relative fixed; 
+        left: 870px;
+      }
 </style>
 
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="${root }js/bootstrap.js"></script>
-<script type="text/javascript" src="http://map.vworld.kr/js/vworldMapInit.js.do?version=2.0&apiKey=C787B2B1-9ED8-3FBF-AFF8-ADF7BCA3B5C6"></script>
-<script type="text/javascript">
-   $(document).ready(function() {
-      $('#tour_sub').hide();
-      $('#comm_sub').hide();
-      $('#serv_sub').hide();
-      $('#system_sub').hide();
-      
-      $('#mainFont1').hide();
-      $('#mainFont2').hide();
-      $('#mainFont3').hide();
-      $('#mainFont4').hide();
-   
-      $('#tour').mouseenter(function() {
-         $('#tour_sub').show();
-      }).mouseleave(function() {
-         $('#tour_sub').hide();
-      });
-      $('#comm').mouseenter(function() {
-         $('#comm_sub').show();
-      }).mouseleave(function() {
-         $('#comm_sub').hide();
-      });
-      $('#serv').mouseenter(function() {
-         $('#serv_sub').show();
-      }).mouseleave(function() {
-         $('#serv_sub').hide();
-      });
-      $('#system').mouseenter(function() {
-         $('#system_sub').show();
-      }).mouseleave(function() {
-         $('#system_sub').hide();
-      });
-      $('#bookbtn').click(function(){
-            var check = $('#check').val();
-            if(!check){
-               $("#bookform").attr("href", "../../main/login");
-            }
-            
-         });
-      
-   });
-   var map = null;
-   vworld.showMode = false;
-   vworld.init(
-   "cont1"
-   , "map-first"
-   ,function() {
-   map = this.vmap;
-   map.setBaseLayer(map.vworldBaseMap);
-   map.setControlsType({"simpleMap":true});
-   map.setCenterAndZoom(14134975.826087, 4519054.8257785, 14);
-   }
-   ,function (obj){SOPPlugin = obj; }
-   ,function (msg){alert('oh my god');}
-   );
-   function setModeCallback(){
-   vworld.setModeCallback(modecallback);
-   }
-   
-   
-   
-</script>
 </head>
 <body>
                                  <!-- menubar start -->
@@ -278,6 +222,9 @@
          <td><input type="hidden" id="check" value="${sessionScope.check}"></td>
       </tr>
       </table>
+      
+      <div id="map"></div>
+      
    <a id="bookform" href="${root }tour/eastasia/${bean.tour_no}/booking"><button type="button" id="bookbtn" class="btn btn-default btn-lg">예약하기</button></a>
    
       <div id="cont1" style="width:500px;bvheight:500px;"></div>
@@ -296,6 +243,65 @@
        
     </div>
    </div>
- </div> 
+ </div>
+ 
+ <script type="text/javascript">
+   $(document).ready(function() {
+      $('#tour_sub').hide();
+      $('#comm_sub').hide();
+      $('#serv_sub').hide();
+      $('#system_sub').hide();
+      
+      $('#mainFont1').hide();
+      $('#mainFont2').hide();
+      $('#mainFont3').hide();
+      $('#mainFont4').hide();
+   
+      $('#tour').mouseenter(function() {
+         $('#tour_sub').show();
+      }).mouseleave(function() {
+         $('#tour_sub').hide();
+      });
+      $('#comm').mouseenter(function() {
+         $('#comm_sub').show();
+      }).mouseleave(function() {
+         $('#comm_sub').hide();
+      });
+      $('#serv').mouseenter(function() {
+         $('#serv_sub').show();
+      }).mouseleave(function() {
+         $('#serv_sub').hide();
+      });
+      $('#system').mouseenter(function() {
+         $('#system_sub').show();
+      }).mouseleave(function() {
+         $('#system_sub').hide();
+      });
+      $('#bookbtn').click(function(){
+            var check = $('#check').val();
+            if(!check){
+               $("#bookform").attr("href", "../../main/login");
+            }           
+         });     
+   });
+   //구글맵관련 
+   function initMap() {
+  	var myLatLng = myLatlng = new google.maps.LatLng(35.6684415,139.600781);//구글맵좌표
+
+ 	 var map = new google.maps.Map(document.getElementById('map'), {
+    	zoom: 7,
+    	center: myLatLng
+  });
+	//for문 돌려서 marker 다량 선택가능
+ 	 var marker = new google.maps.Marker({
+    position: myLatLng,//좌표선택해주면됨
+    map: map,
+    title: '도쿄'
+  });
+}
+    
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBOqxnoiL8ERSpf1bmFqxC7SjKeup1twK8&callback=initMap"
+    async defer></script> 
 </body>
 </html>

@@ -40,9 +40,10 @@
 		text-align:center;
 		font-weight:normal;
 	}
-	
-<!-- 파일업로드 -->
-   
+
+	.board_img img {
+		margin:20px 0;
+	}
 </style>
 </head>
 <body>
@@ -135,7 +136,7 @@
    </div>
       
 <!-- 나라 선택 -->
-<form class="form-inline" method="POST">
+<form class="form-inline" method="POST" enctype="multipart/form-data">
 <div>
 	<select id="land" name="board_land" style="cursor:pointer">
 		<option>나라 선택</option>
@@ -183,7 +184,13 @@
 		<input type="hidden" id="board_theme" name="board_theme">
 	</div>
 <!-- file upload -->
-
+	<div class="upload">
+		<label for="board_img">이미지</label>
+		<input type="file" id="board_img" name="file" />
+		<div class="board_img"><img src="" /></div>
+		
+		<%=request.getRealPath("/") %>
+	</div>
 
 <!-- 버튼 -->
 	<p></p>
@@ -236,6 +243,17 @@
 			$('#hambBtn').show();
 		});
 
+		// 파일업로드
+		$('#board_img').change(function(){
+			if(this.files && this.files[0]) {
+				var reader = new FileReader;
+				reader.onload = function(data) {
+					$('.board_img img').attr('src', data.target.result).width(200);        
+				}
+				reader.readAsDataURL(this.files[0]);
+			}
+		});
+		
 		// 나라선택 (드롭창)
 		$('#fir').on('click',function() {
 			$('#dropdownMenu1').html('중국  / 일본');
