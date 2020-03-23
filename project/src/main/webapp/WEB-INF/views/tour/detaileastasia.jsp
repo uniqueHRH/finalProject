@@ -245,10 +245,8 @@
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
-    
-       	<div id="map1"></div>
-      </div>
-     
+         	<div id="map1"></div>
+      </div>    
 </div>
 <!-- model end -->
       <p id="course"> <여행일정> </p>
