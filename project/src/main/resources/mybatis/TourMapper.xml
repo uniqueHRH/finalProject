@@ -17,6 +17,7 @@
 		<result property="vehicle" column="vehicle"/>
 		<result property="comments" column="comments"/>
 		<result property="course" column="course"/>
+		<result property="latlng" column="latlng"/>
 		<result property="firstimg" column="firstimg"/>
 		<result property="secondimg" column="secondimg"/>
 		<result property="thirdimg" column="thirdimg"/>
@@ -30,7 +31,7 @@
 	</resultMap>
 	
 	<select id="selectOne_eastasia" parameterType="TourBean" resultMap="EastAsiaMap" >
-		select tour.tour_no,tour.country,tour.city,tour.cost,tour.vehicle,tour.comments,tour.course,tour.firstimg,tour.secondimg,tour.thirdimg,guide.guide_name from tour inner join guide on tour.city=guide.guide_city where tour_no=#{value}
+		select tour.tour_no,tour.country,tour.city,tour.cost,tour.vehicle,tour.comments,tour.course,tour.latlng,tour.firstimg,tour.secondimg,tour.thirdimg,guide.guide_name from tour inner join guide on tour.city=guide.guide_city where tour_no=#{value}
 	</select>
 	
 	<insert id="insertOne_eastasia" parameterType="PaidBean">
