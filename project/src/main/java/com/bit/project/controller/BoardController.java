@@ -1,8 +1,10 @@
 package com.bit.project.controller;
 
 import java.io.File;
+import java.io.IOException;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,101 +19,78 @@ import com.bit.project.file.UploadFileUtils;
 import com.bit.project.model.entity.BoardVo;
 import com.bit.project.model.entity.ReplyVo;
 import com.bit.project.service.BoardService;
-import com.bit.project.service.ClientService;
-import com.bit.project.service.FaqService;
-import com.bit.project.service.GuideService;
-import com.bit.project.service.NoticeService;
-import com.bit.project.service.PaidService;
-import com.bit.project.service.ReceiveService;
 import com.bit.project.service.ReplyService;
-import com.bit.project.service.SendService;
-import com.bit.project.service.StaffService;
 
 @Controller
 public class BoardController {
 
 	@Autowired
-	ClientService clientService;
-	@Autowired
 	BoardService boardService;
 	@Autowired
-	FaqService faqService;
-	@Autowired
-	GuideService guideService;
-	@Autowired
-	NoticeService noticeService;
-	@Autowired
-	PaidService paidService;
-	@Autowired
-	ReceiveService receiveService;
-	@Autowired
 	ReplyService replyService;
-	@Autowired
-	SendService sendService;
-	@Autowired
-	StaffService staffService;
 	
 	@Resource(name="uploadPath")
 	private String uploadPath;
 	
 	
 	
+// ê²Œì‹œíŒ
 	
-	// Å×½ºÆ®ÆäÀÌÁö ÀÌµ¿
+	// í…ŒìŠ¤íŠ¸í˜ì´ì§€ ì´ë™
 	@RequestMapping("/board/test")
 	public String test() {
 		return "board/test";
 	}
 	
-	// ÈÄ±â¸®½ºÆ® ÀÌµ¿ (ÀÛ¼º¼ø Á¤·Ä)
+	// í›„ê¸°ë¦¬ìŠ¤íŠ¸ ì´ë™ (ì‘ì„±ìˆœ ì •ë ¬)
  	@RequestMapping(value = "/board/review", method = RequestMethod.GET)
  	public String review(Model model) throws Exception {
  		boardService.selectAll_review(model);
  		return "board/review";
  	}
  	
- 	// ÈÄ±â¸®½ºÆ® ÀÌµ¿ (Áö¿ªº° Á¤·Ä)
+ 	// í›„ê¸°ë¦¬ìŠ¤íŠ¸ ì´ë™ (ì§€ì—­ë³„ ì •ë ¬)
  	@RequestMapping(value="/board/reviewLocal", method=RequestMethod.GET)
  	public String reviewLocal(Model model) {
  		boardService.selectAll_reviewCity(model);
  		return "board/review";
  	}
  	
- 	// ÈÄ±â¸®½ºÆ® ÀÌµ¿ (Å×¸¶º° Á¤·Ä)
+ 	// í›„ê¸°ë¦¬ìŠ¤íŠ¸ ì´ë™ (í…Œë§ˆë³„ ì •ë ¬)
  	@RequestMapping(value="/board/reviewTheme", method=RequestMethod.GET)
  	public String reviewTheme(Model model) {
  		boardService.selectAll_reviewTheme(model);
  		return "board/review";
  	}
  	
- 	// µ¿Çà¸®½ºÆ® ÀÌµ¿
+ 	// ë™í–‰ë¦¬ìŠ¤íŠ¸ ì´ë™
  	@RequestMapping(value = "/board/partner", method = RequestMethod.GET)
  	public String partner(Model model) {
  		boardService.selectAll_partner(model);
  		return "board/partner";
  	}
  	
- 	//ÀÚÀ¯°Ô½ÃÆÇ¸®½ºÆ®·Î ÀÌµ¿
+ 	//ììœ ê²Œì‹œíŒë¦¬ìŠ¤íŠ¸ë¡œ ì´ë™
  	@RequestMapping(value = "/board/free", method = RequestMethod.GET)
  	public String free(Model model) {
  		boardService.selectAll_free(model);
  		return "board/free";
  	}
  	
- 	//ÀÌº¥Æ®¸®½ºÆ®·Î ÀÌµ¿
+ 	//ì´ë²¤íŠ¸ë¦¬ìŠ¤íŠ¸ë¡œ ì´ë™
  	@RequestMapping(value = "/board/event", method = RequestMethod.GET)
  	public String event(Model model) {
  		boardService.selectAll_event(model);
  		return "board/event";
  	}
  	
- 	// ±Û¾²±â·Î ÀÌµ¿
+ 	// ê¸€ì“°ê¸°ë¡œ ì´ë™
  	@RequestMapping(value = "/board/write", method = RequestMethod.GET)
  	public String write() {
  		return "board/write";
  	}
  	      
- 	// ±Û¾²±â ¿Ï·á, list ·Î ÀÌµ¿
+ 	// ê¸€ì“°ê¸° ì™„ë£Œ, list ë¡œ ì´ë™
  	@RequestMapping(value = "/board/write", method = RequestMethod.POST)
  	public String write(@ModelAttribute BoardVo bean, MultipartFile file) throws Exception {
  		
@@ -125,18 +104,14 @@ public class BoardController {
  			fileName = uploadPath + File.separator + "images" + File.separator + "none.png";
  		}
 
- 		bean.setBoard_img(File.separator + "imgUpload" + ymdPath + File.separator + "#"+fileName);
+ 		bean.setBoard_img(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
  		bean.setBoard_thumb(File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
- 		
- 		
- 		
- 		
  		
  		boardService.insertOne_review(bean);
  		return "redirect:review";
  	}
  	
- 	// »ó¼¼ÆäÀÌÁö ÀÌµ¿
+ 	// ìƒì„¸í˜ì´ì§€ ì´ë™
  	@RequestMapping(value="/board/detail/{idx}",method=RequestMethod.GET)
  	public String detail(@PathVariable("idx") int key, Model model) {
  		boardService.selectOne_review(key, model);
@@ -144,56 +119,77 @@ public class BoardController {
  		return "board/detail";
  	}
  	
- 	// ¼öÁ¤ÆäÀÌÁö·Î ÀÌµ¿
+ 	// ìˆ˜ì •í˜ì´ì§€ë¡œ ì´ë™
  	@RequestMapping(value = "/board/update/{idx}", method = RequestMethod.GET)
  	public String update(@PathVariable("idx") int key, Model model) {
  		boardService.selectOne_review(key, model);
  		return "board/update";
  	}
  	
- 	// ¼öÁ¤ÆäÀÌÁö ³ª¶ó Á¶È¸
+ 	// ìˆ˜ì •í˜ì´ì§€ ë‚˜ë¼ ì¡°íšŒ
  	@RequestMapping(value="/board/updateLand", method=RequestMethod.POST)
  	public String updateLand(int key, Model model) {
  		boardService.select_land(key, model);
  		return "board/update";
  	}
  	
- 	// ¼öÁ¤ ÈÄ »ó¼¼ÆäÀÌÁö·Î ÀÌµ¿
+ 	// ìˆ˜ì • í›„ ìƒì„¸í˜ì´ì§€ë¡œ ì´ë™
  	@RequestMapping(value="/board/update/{idx}", method=RequestMethod.POST)
- 	public String update(@ModelAttribute BoardVo bean) {
+	public String update(@ModelAttribute BoardVo bean, MultipartFile file, HttpServletRequest req) throws IOException, Exception {
+ 		
+ 		// ìƒˆë¡œìš´ íŒŒì¼ì´ ë“±ë¡ë˜ì—ˆëŠ”ì§€ í™•ì¸
+ 		if(file.getOriginalFilename()!= null && file.getOriginalFilename()!="") {
+ 			// ê¸°ì¡´ íŒŒì¼ì„ ì‚­ì œ
+ 			new File(uploadPath + req.getParameter("board_img")).delete();
+ 			new File(uploadPath + req.getParameter("board_thumb")).delete();
+ 		  
+ 			// ìƒˆë¡œ ì²¨ë¶€í•œ íŒŒì¼ì„ ë“±ë¡
+ 			String imgUploadPath = uploadPath + File.separator + "imgUpload";
+ 			String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
+ 			String fileName = UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath);
+ 		  
+ 			bean.setBoard_img(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
+ 			bean.setBoard_thumb(File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
+ 		  
+ 		} else {   // ìƒˆë¡œìš´ íŒŒì¼ì´ ë“±ë¡ë˜ì§€ ì•Šì•˜ë‹¤ë©´
+ 			// ê¸°ì¡´ ì´ë¯¸ì§€ë¥¼ ê·¸ëŒ€ë¡œ ì‚¬ìš©
+ 			bean.setBoard_img(req.getParameter("board_img"));
+ 			bean.setBoard_thumb(req.getParameter("board_thumb"));
+ 		 }
+ 		 
  		boardService.updateOne_review(bean);
  		return "redirect:../detail/"+bean.getBoard_no();
  	}
 
- 	// °Ô½Ã±Û»èÁ¦
+ 	// ê²Œì‹œê¸€ì‚­ì œ
  	@RequestMapping(value="/board/delete", method=RequestMethod.POST)
  	public String delete(int key) {
  		boardService.deleteOne_review(key);
  		return "redirect:review";
  	}
  	
- 	// ´ñ±Û ÀÔ·Â
+ 	// ëŒ“ê¸€ ì…ë ¥
  	@RequestMapping(value="/board/reply", method=RequestMethod.POST)
  	public String reply(@ModelAttribute ReplyVo bean) {
  		replyService.insertOne_reply(bean);
  		return "board/detail";
  	}
  	
-	// ´ñ±Û ÀÔ·Â
+	// ëŒ“ê¸€ ì…ë ¥
   	@RequestMapping(value="/board/replyEdit", method=RequestMethod.POST)
   	public String replyEdit(@ModelAttribute ReplyVo bean) {
   		replyService.updateOne_reply(bean);
   		return "board/detail";
   	}
   	
-	// ´ñ±Û »èÁ¦
+	// ëŒ“ê¸€ ì‚­ì œ
   	@RequestMapping(value="/board/replyDel", method=RequestMethod.POST)
   	public String replyDel(int key) {
   		replyService.deleteOne_reply(key);
   		return "board/detail";
   	}
   	
-  	// ³»°¡ ¾´ ±Û ÀÌµ¿
+  	// ë‚´ê°€ ì“´ ê¸€ ì´ë™
   	@RequestMapping(value="/main/myBoard", method=RequestMethod.GET)
   	public String myBoard() {
   		return "mypage/myBoard";

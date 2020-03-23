@@ -112,6 +112,23 @@
 	tbody td:nth-child(2) {
 		width:67px;
 	}
+/* content */
+	#contentM {
+		margin:20px 20px;
+		border:2px solid #e8e8e8;
+		border-radius:10px;
+	}
+	#contentC {
+		width:670px;
+		margin:20px 5px;
+		background-color:white;
+		border:0;
+		outline:0;
+		text-align:left;
+	}
+	#board_thumb {
+		margin:20px 5px;
+	}
    
 </style>
 
@@ -231,14 +248,12 @@
    </div>
    <p></p>
    <div contenteditable="false" id="contentM">
-		<br/>
-		<img src="${root }resources/${bean.board_thumb }"/><br/>
-		<br/>
-		${bean.board_content }
+		<img src="${root }resources/${bean.board_thumb }" id="board_thumb"/>
+		<input type="hidden" id="hiddenI" value="${bean.board_thumb }"/>
+		<input type="text" id="contentC" value="${bean.board_content }" disabled/>
    </div>
    <p></p>
    <div id="btn">
-		<br/>
       <button type="button" class="btn btn-default" id="subm">수정하기</button>
       <button type="button" class="btn btn-default" id="dele">삭제하기</button>
       <button type="button" class="btn btn-default" id="goList">목록으로</button>
@@ -252,13 +267,13 @@
 <!-- 댓글 출력 -->
    <div id="table">
       <table>
-         <tbody>
+         <tbody id="tbody">
          <c:forEach items="${list }" var="beans">
-            <tr>
-               <th>${beans.client_nick1 }</th>
-               <th>${beans.reply_date }</th>
+            <tr id="tr1">
+               <th id="th">${beans.client_nick1 }</th>
+               <th id="th">${beans.reply_date }</th>
 			</tr>
-			<tr>
+			<tr id="tr2">
 				<td colspan="2"><input type="text" id="reply" name="reply_${beans.reply_no }" value="${beans.reply_content }" disabled></td>
 				<td>
 					<button type="button" id="edit" name="edit_${beans.reply_no }" class="btn btn-default"><img src="https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/edit.png?raw=true" width="15px" height="20px"/></button>
@@ -298,6 +313,9 @@
 		$('#hamb').hide();
 		$('#hide').hide();
 		
+		$('#subm').hide();
+		$('#dele').hide();
+	      
 		$('#tour_sub').hide();
 		$('#comm_sub').hide();
 		$('#serv_sub').hide();
@@ -321,13 +339,10 @@
 		});
 		
 		// 이미지가 없을 때 출력되지 않도록
-		var img=$('#contentM img').val().split('#');;
-		console.log(img[1]);
+		var img=$('#hiddenI').val();
 		
-		if(img==null) {
-			console.log('없어!');
-		} else {
-			console.log('있어!');
+		if(!img) {
+			$('#board_thumb').remove();
 		}
 		
       // 테마 출력
@@ -360,24 +375,30 @@
       });
       
       // 삭제버튼
-      $('#dele').on('click',function() {
-         var con=confirm('삭제하시겠습니까?');
-         if(con) {
-            $.ajax({
-                  url:'../delete',
-                  type:'POST',
-                  data:{key:$('input[type=hidden]').val()},
-                  success:function() {
-                      alert('삭제되었습니다');
-                      location.href="../review";
-                  },
-                  error:function() {
-                     alert('삭제에 실패했습니다');
-                  }
-            });
-         }
-      });
-      
+		$('#dele').on('click',function() {
+			var con=confirm('삭제하시겠습니까?');
+			var replyCnt=$('#reply').length;
+			
+			if(con) {
+				if(replyCnt>0) {
+					alert('댓글이 작성된 게시물은 삭제가 불가능합니다');
+				} else {
+					$.ajax({
+		                  url:'../delete',
+		                  type:'POST',
+		                  data:{key:$('input[type=hidden]').val()},
+		                  success:function() {
+		                      alert('삭제되었습니다');
+		                      location.href="../review";
+		                  },
+		                  error:function() {
+		                     alert('삭제에 실패했습니다');
+		                  }
+		            });
+				}
+			}
+		});
+            
 	// 목록버튼
 	$('#goList').on('click',function() {
 		location.href="../review";
@@ -425,7 +446,7 @@
    		            cache:false,
 		            data:{board_no:$('#board_no').val(), client_nick1:log, reply_content:reply},
 		            success:function() {
-		            	$('#reply_content').remove();
+		            	reload();
 		            },
 		            error:function() {
 		               alert('다시 시도해주세요');
@@ -434,8 +455,9 @@
 			}
       	});
       
-      // 수정버튼
-		
+      // 댓글 수정버튼
+		$('button[name^=cancel_').hide();
+		$('button[name^=update_').hide();
 		$('button[name^=edit]').on('click',function() {
      		var name=$(this).attr('name');
      		var num=name.replace('edit_','');   // 버튼의 값
@@ -443,9 +465,8 @@
      		$('button[name=edit_'+num+']').on('click',function() {
 				$('input[name=reply_'+num+']').attr('disabled',false);
 				$('button[name=edit_'+num+']').hide();
-				$('button[name=dele2_'+num+']').hide();
 				$('button[name=update_'+num+']').show();
-				$('button[name=cancel_'+num+']').show();
+				$('button[name^=cancel_'+num+']').show();
 				$('button[name=cancel_'+num+']').on('click',function() {
 					var con=confirm('수정을 취소하시겠습니까?');
 					if(con) {
