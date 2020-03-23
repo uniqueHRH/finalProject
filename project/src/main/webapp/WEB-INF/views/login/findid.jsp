@@ -12,19 +12,33 @@
 <link rel="stylesheet" type="text/css" href="${root }css/bootstrap.css" />
 <link rel="stylesheet" type="text/css" href="${root }css/travel.css" />
 <style type="text/css">
-   .container{
-      display: inline-block;
-      font-family: 'Jua';
-      text-align: center;
-    }
-    .form-horizontal {
-       width:450px;
-      margin: 0 auto;
-    }
+    h1 {
+		font-family: 'Jua';
+	}
+	form {
+		width:500px;      
+		margin:0 auto;
+		font-family: 'Jua';
+		padding:0;
+	}
     #resetbtn,#confirmbtn{
     	text-align: center;
     	margin-top: 10px;
     	width: 40%;
+    }
+    form label {
+    	width:100px;
+    	span:0 5px;
+    }
+    form input {
+    	width:300px
+    }
+    #count {
+    	border:0px;
+    	width:100px;
+    }
+    #code, #dice {
+    	display:inline-block;
     }
    
 </style>
@@ -90,36 +104,32 @@
       <div class="page-header" align="center">
      <h1>아이디 찾기</h1>
    </div>
+   
+   
    <form action="../code_check" name="cac" class="form-horizontal" method="post">
-     <div class="form-group" id="insertid">
-       <label for="client_name" class="col-sm-2 control-label" id="idd">이름</label>
-       <div class="col-sm-10">
-         <input type="text" class="form-control" id="client_name" name="client_name" placeholder="이름을 입력하세요" style="width:280px">
-       </div>
-     </div>
-     <div class="form-group">
-       <label for="client_nick" class="col-sm-2 control-label" id="emaill">이메일</label>
-       <div class="col-sm-10">
-         <input type="text" class="form-control" id="client_email" name="client_email" placeholder="이메일을 입력하세요" style="width:280px;float:left">
-         <span class="input-group-btn">
-			<button class="btn btn-default" type="button" id="codebtn">인증요청</button>
-	      </span>
-       </div>
-     </div>
-   <div class="form-group">
-       <label for="code" class="col-sm-2 control-label">인증번호</label>
-       <div class="col-sm-10">
-         <span>
-         	<input type="text" class="form-control" id="code" name="code" placeholder="이메일로 전송된 인증번호를 입력하세요" style="width:280px">
-	   	 	<input type="text" class="input">
-	   	 </span>
-	     <input type="hidden" id="dice" name="dice" value="" style="display: none;">
-       </div>
-     </div>
-     <p>
-  		<button type="submit" id="confirmbtn" class="btn btn-default btn-lg">확인</button>
-  		<button type="button" id="resetbtn" class="btn btn-default btn-lg" onclick="location.href='/main/login'">취소</button>
-	</p>
+   		<div id="tableM">
+	   		<div>
+				<label for="client_name" class="col-sm-2 control-label" id="idd">이름</label>
+				<input type="text" class="form-control" id="client_name" name="client_name" placeholder="이름을 입력하세요" style="width:280px">
+			</div>
+			<p></p>
+	   		<div>
+				<label for="client_nick" class="col-sm-2 control-label" id="emaill">이메일</label>
+				<input type="text" class="form-control" id="client_email" name="client_email" placeholder="이메일을 입력하세요" style="width:280px;float:left">
+				&nbsp;<button class="btn btn-default" type="button" id="codebtn">인증요청</button>
+			</div>
+			<p></p>
+			<div>
+				<label for="code" class="col-sm-2 control-label">인증번호</label>
+	         	<input type="text" class="form-control" id="code" name="code" placeholder="이메일로 전송된 인증번호를 입력하세요" style="width:280px"><input type="text" class="input" id="count">
+		     	<input type="hidden" id="dice" name="dice" value="" style="display: none;">
+		     </div>
+			<p></p>
+	     <div id="btn">
+	  		<button type="submit" id="confirmbtn" class="btn btn-default btn-lg">확인</button>
+	  		<button type="button" id="resetbtn" class="btn btn-default btn-lg" onclick="location.href='/main/login'">취소</button>
+	  	</div>
+	</div>
   </form>   
   </div>
  </div>
