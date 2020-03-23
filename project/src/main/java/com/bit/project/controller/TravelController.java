@@ -116,13 +116,6 @@ public class TravelController {
 		return "redirect:/";
 	}
 	
-	
-	//비밀번호찾기창으로 이동
-	@RequestMapping(value = "/main/login/findpw", method = RequestMethod.GET)
-	public String findpw() {
-		return "login/findpw";
-	}
-	
 // 회원
 	//내정보(직원)으로 이동
 	@RequestMapping(value = "/main/staffinfo", method = RequestMethod.GET)
