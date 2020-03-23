@@ -317,7 +317,7 @@
  	//for문 돌려서 marker 다량 선택가능
  	 var marker = new google.maps.Marker({
     position: myLatLng,//좌표선택해주면됨
-    icon:"${root}imgs/icon(small).png",
+    icon:"${root}imgs/icon(big).png",
     map: map,
     title: '${bean.city}'//marker  표시
   });
