@@ -99,6 +99,7 @@
 	      <ul class="nav navbar-nav navbar-right">
 	        <!-- 로그인시 숨김 -->
 	        <li><a id="side" href="${root }main/login" >로그인</a></li>
+	        <li><a id="side" href="${root }main/admin" >회원가입</a></li>
 	      </ul>
 		</div>
 	    </div><!-- /.navbar-collapse -->
