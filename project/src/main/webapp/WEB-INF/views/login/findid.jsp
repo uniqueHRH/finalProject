@@ -36,6 +36,7 @@
     #count {
     	border:0px;
     	width:100px;
+    	background-color:white;
     }
     #code, #dice {
     	display:inline-block;
@@ -121,7 +122,8 @@
 			<p></p>
 			<div>
 				<label for="code" class="col-sm-2 control-label">인증번호</label>
-	         	<input type="text" class="form-control" id="code" name="code" placeholder="이메일로 전송된 인증번호를 입력하세요" style="width:280px"><input type="text" class="input" id="count">
+	         	<input type="text" class="form-control" id="code" name="code" placeholder="이메일로 전송된 인증번호를 입력하세요" style="width:280px">
+	         	&nbsp;<input type="text" class="input" id="count" disabled>
 		     	<input type="hidden" id="dice" name="dice" value="" style="display: none;">
 		     </div>
 			<p></p>
