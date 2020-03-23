@@ -245,8 +245,10 @@
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
-         	<div id="map1"></div>
-      </div>    
+    
+       	<div id="map1"></div>
+      </div>
+     
 </div>
 <!-- model end -->
       <p id="course"> <여행일정> </p>
@@ -317,7 +319,7 @@
  	//for문 돌려서 marker 다량 선택가능
  	 var marker = new google.maps.Marker({
     position: myLatLng,//좌표선택해주면됨
-    icon:"${root}imgs/icon(big).png",
+    icon:"${root}imgs/icon(small).png",
     map: map,
     title: '${bean.city}'//marker  표시
   });
