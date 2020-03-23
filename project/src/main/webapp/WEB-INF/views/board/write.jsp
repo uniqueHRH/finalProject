@@ -187,7 +187,7 @@
 	<div class="upload">
 		<label for="board_img">이미지</label>
 		<input type="file" id="board_img" name="file" />
-		<div class="board_img"><img src="" /></div>
+		<div class="board_img"><img src=""/></div>
 		
 		<%=request.getRealPath("/") %>
 	</div>
@@ -296,8 +296,6 @@
 					pick_cnt++;
 				}
 			}
-			alert(pick);
-			
 			$('#board_theme').val(pick);
 			
 		});

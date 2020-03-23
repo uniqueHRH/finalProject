@@ -62,6 +62,7 @@
 	#btn {
 		text-align:center;
 	}
+/* 이미지 수정 */
 	
 </style>
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
@@ -157,7 +158,7 @@
    </div>
       
 <!-- 제목 -->
-<form class="form-inline" method="POST">
+<form class="form-inline" method="POST" enctype="multipart/form-data">
 	<div id="pl">
 		<select id="board_land" name="board_land" style="cursor:pointer">
 			<option value="${bean.board_land }">${bean.board_land }</option>
@@ -216,6 +217,17 @@
 		<label class="custom-control-label" for="jb-checkbox">스포츠</label>
 		
 		<input type="hidden" id="board_theme" name="board_theme" value="${bean.board_theme }">
+	</div>
+<!-- 이미지 수정 -->
+	<div class="upload">
+		<label for="board_img">이미지</label>
+		<input type="file" id="board_img" name="file" />
+		<div class="board_img">
+			<img src="${root }resources/${bean.board_thumb }" id="uploadI"/>
+			<input type="hidden" name="board_img" value="${bean.board_thumb }"/>
+			<input type="hidden" name="board_thumb" value="${bean.board_img }"/>
+		</div>
+		
 	</div>
 	<p></p>	
 	
@@ -279,13 +291,7 @@
 					chkbox[j].checked=true;
 				}
 			}
-			//theme[i] 를 theme 과 비교해서 value 가 같은 값에 체크한다
 		}
-/* 
-		board_theme 에 값을 불러온다
-		불러온 값을 split ',' 로 자른다
-		자른 각각의 값을 value 와 비교해서 일치하는 값에  체크한다 
-*/
 		
 		// 체크박스 값 넘기기
 		$('#subm').on('click',function() {
@@ -301,6 +307,16 @@
 			}
 			$('#board_theme').val(pick);
 			
+		});
+		// 이미지 수정
+		$('#board_img').change(function(){
+			if(this.files && this.files[0]) {
+				var reader = new FileReader;
+				reader.onload = function(data) {
+					$('.board_img img').attr('src', data.target.result).width(200);        
+				}
+				reader.readAsDataURL(this.files[0]);
+			}
 		});
 		
 		// 목록버튼

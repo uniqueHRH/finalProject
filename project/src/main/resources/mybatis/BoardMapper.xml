@@ -58,23 +58,23 @@
 	</select>
 		
 	<select id="selectOne_tour" resultType="BoardBean" parameterType="int">
-		select * from board where board_id=1 and board_no=#{value}
+		select * from board where board_no=#{value}
 	</select>
 	
 	<select id="selectOne_review" resultType="BoardBean" parameterType="int">
-		select * from board where board_id=2 and board_no=#{value}
+		select * from board where board_no=#{value}
 	</select>
 	
 	<select id="selectOne_partner" resultType="BoardBean" parameterType="int">
-		select * from board where board_id=3 and board_no=#{value}
+		select * from board where board_no=#{value}
 	</select>
 	
 	<select id="selectOne_free" resultType="BoardBean" parameterType="int">
-		select * from board where board_id=4 and board_no=#{value}
+		select * from board where board_no=#{value}
 	</select>
 	
 	<select id="selectOne_event" resultType="BoardBean" parameterType="int">
-		select * from board where board_id=5 and board_no=#{value}
+		select * from board where board_no=#{value}
 	</select>
 	
 	
@@ -84,7 +84,7 @@
 	</insert>
 	
 	<insert id="insertOne_review" parameterType="BoardBean">
-		insert into board (board_id, board_sub, board_count, board_content, client_nick1, board_date, board_land, board_theme, board_img, board_thumb) values (2,#{board_sub}, 0, #{board_content}, #{client_nick1}, now(), #{board_land}, #{board_theme}, #{board_img}, #{board_thumb})
+		insert into board (board_id, board_sub, board_count, board_content, client_nick1, board_date, board_land, board_theme, board_img, board_thumb) values (2,#{board_sub}, 0, #{board_content}, #{client_nick1}, now(), #{board_land}, #{board_theme}, #{board_img, jdbcType=VARCHAR}, #{board_thumb, jdbcType=VARCHAR})
 	</insert>
 	
 	<insert id="insertOne_partner" parameterType="BoardBean">
@@ -102,23 +102,23 @@
 	
 <!-- 테마가 3개 미만일 때, board_theme 에 null 출력 -->
 	<update id="updateOne_tour" parameterType="BoardBean">
-		update board set board_sub=#{board_sub}, board_content=#{board_content}, board_land=#{board_land}, board_city=#{board_city}, board_theme=#{board_theme}, board_theme2=#{board_theme2}, board_theme3=#{board_theme3}, board_cost=#{board_cost} where board_id=1 and board_no=#{value}
+		update board set board_sub=#{board_sub}, board_content=#{board_content}, board_land=#{board_land}, board_city=#{board_city}, board_theme=#{board_theme}, board_theme2=#{board_theme2}, board_theme3=#{board_theme3}, board_cost=#{board_cost} where board_no=#{value}
 	</update>
 	
 	<update id="updateOne_review" parameterType="BoardBean">
-		update board set board_sub=#{board_sub}, board_content=#{board_content}, board_land=#{board_land}, board_theme=#{board_theme} where board_id=2 and board_no=#{board_no}
+		update board set board_sub=#{board_sub}, board_content=#{board_content}, board_land=#{board_land}, board_theme=#{board_theme}, board_img=#{board_img}, board_thumb=#{board_thumb} where board_no=#{board_no}
 	</update>
 	
 	<update id="updateOne_partner" parameterType="BoardBean">
-		update board set board_sub=#{board_sub}, board_content=#{board_content} where board_id=3 and board_no=#{board_no}
+		update board set board_sub=#{board_sub}, board_content=#{board_content} where board_no=#{board_no}
 	</update>
 	
 	<update id="updateOne_free" parameterType="BoardBean">
-		update board set board_sub=#{board_sub}, board_content=#{board_content} where board_id=4 and board_no=#{board_no}
+		update board set board_sub=#{board_sub}, board_content=#{board_content} where board_no=#{board_no}
 	</update>
 	
 	<update id="updateOne_event" parameterType="BoardBean">
-		update board set board_sub=#{board_sub}, board_content=#{board_content} where board_id=5 and board_no=#{board_no}
+		update board set board_sub=#{board_sub}, board_content=#{board_content} where board_no=#{board_no}
 	</update>
 	
 <!-- 조회수 -->
@@ -129,23 +129,23 @@
 
 
 	<delete id="deleteOne_tour" parameterType="int">
-		delete from board where board_id=1 and board_no=#{value}
+		delete from board where board_no=#{value}
 	</delete>
 	
 	<delete id="deleteOne_review" parameterType="int">
-		delete from board where board_id=2 and board_no=#{value}
+		delete from board where board_no=#{value}
 	</delete>
 	
 	<delete id="deleteOne_partner" parameterType="int">
-		delete from board where board_id=3 and board_no=#{value}
+		delete from board where board_no=#{value}
 	</delete>
 	
 	<delete id="deleteOne_free" parameterType="int">
-		delete from board where board_id=4 and board_no=#{value}
+		delete from board wher board_no=#{value}
 	</delete>
 	
 	<delete id="deleteOne_event" parameterType="int">
-		delete from board where board_id=5 and board_no=#{value}
+		delete from board where board_no=#{value}
 	</delete>
 	
 </mapper>

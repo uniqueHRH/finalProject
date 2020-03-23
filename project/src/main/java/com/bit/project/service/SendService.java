@@ -4,7 +4,6 @@ import org.springframework.ui.Model;
 
 import com.bit.project.model.entity.SendVo;
 
-
 public interface SendService {
 
 	void selectAll_send(Model model);
