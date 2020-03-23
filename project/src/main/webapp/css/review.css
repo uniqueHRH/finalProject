@@ -21,7 +21,7 @@
 		background-color:#e8e8e8;
 	}
 /* 나라정렬버튼 + 검색조회버튼 */
-	#dropdownMenu1, #dropdownMenu2 {
+	#dropdownMenu1, #searchType {
 		border-radius:5px;
 		font-size:14px;
 		text-align:center;

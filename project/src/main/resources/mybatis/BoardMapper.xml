@@ -57,6 +57,7 @@
 	<update id="updateCnt" parameterType="int">
 		update board set board_count=board_count+1 where board_no=#{value}
 	</update>
+	
 <!-- update 페이지 나라 조회 -->
 	<select id="select_land" resultType="BoardBean">
 		select board_land from board where board_no=#{value}
@@ -66,6 +67,7 @@
 	<select id="getBoardListCnt" resultType="int">
 		select count(*) from board
 	</select>
+	
 <!-- 검색 -->	
 	<select id="search_sub" resultType="BoardBean">
 		select * from board where board_sub='%테스트%'

@@ -220,12 +220,12 @@
 
 <!-- 검색 -->
    <div class="topMenu" id="search">
-		<select id="dropdownMenu2">
+		<select id="searchType">
 		    <option value="제목">제 &nbsp; 목</option>
 		    <option value="나라별">나라별</option>
 		    <option value="테마별">테마별</option>
 		</select>
-      <input type="text" class="form-control" id="client_id" name="wri" style="width:200px; display:inline-block;">
+      <input type="text" class="form-control" id="keyword" name="keyword" style="width:200px; display:inline-block;">
 		<a class="btn btn-default" href="#" role="button" id="searchGo">G O</a>
 	</div>
 	
@@ -339,6 +339,17 @@
 		if(!loginBool) {
 			$('#wri').hide();
 		}
+//////////////////////////////////////////////////////////////////////////////////////////		
+		// 검색
+		$('#searchGo').on('click',function() {
+			var url='${root }board/review';
+			url=url+'?searchType='+$('#searchType').val();
+			url=url+'&keyword='+$('#keyword').val();
+			
+			location.href=url;
+			console.log(url);
+		});
+		
    });
 //////////////////////////////////////////////////////////////////////////////////////////		
 		// 페이징
