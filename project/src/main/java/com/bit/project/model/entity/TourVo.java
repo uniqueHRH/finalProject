@@ -13,6 +13,7 @@ public class TourVo {
 	private String mainimg;
 	private String comments;
 	private String course;
+	private String latlng;
 	private String firstimg;
 	private String secondimg;
 	private String thirdimg;
@@ -135,6 +136,16 @@ public class TourVo {
 	}
 
 
+	public String getLatlng() {
+		return latlng;
+	}
+
+
+	public void setLatlng(String latlng) {
+		this.latlng = latlng;
+	}
+
+
 	public String getFirstimg() {
 		return firstimg;
 	}
@@ -179,13 +190,13 @@ public class TourVo {
 	public String toString() {
 		return "TourVo [tour_no=" + tour_no + ", land=" + land + ", country=" + country + ", city=" + city + ", theme="
 				+ theme + ", vehicle=" + vehicle + ", introduce=" + introduce + ", cost=" + cost + ", mainimg="
-				+ mainimg + ", comments=" + comments + ", course=" + course + ", firstimg=" + firstimg + ", secondimg="
-				+ secondimg + ", thirdimg=" + thirdimg + ", GuideVo=" + GuideVo + "]";
+				+ mainimg + ", comments=" + comments + ", course=" + course + ", latlng=" + latlng + ", firstimg="
+				+ firstimg + ", secondimg=" + secondimg + ", thirdimg=" + thirdimg + ", GuideVo=" + GuideVo + "]";
 	}
 
 
 	public TourVo(int tour_no, String land, String country, String city, String theme, String vehicle, String introduce,
-			int cost, String mainimg, String comments, String course, String firstimg, String secondimg,
+			int cost, String mainimg, String comments, String course, String latlng, String firstimg, String secondimg,
 			String thirdimg, com.bit.project.model.entity.GuideVo guideVo) {
 		super();
 		this.tour_no = tour_no;
@@ -199,6 +210,7 @@ public class TourVo {
 		this.mainimg = mainimg;
 		this.comments = comments;
 		this.course = course;
+		this.latlng = latlng;
 		this.firstimg = firstimg;
 		this.secondimg = secondimg;
 		this.thirdimg = thirdimg;
@@ -206,10 +218,4 @@ public class TourVo {
 	}
 
 
-
-	
 }
-
-	
-
-	
