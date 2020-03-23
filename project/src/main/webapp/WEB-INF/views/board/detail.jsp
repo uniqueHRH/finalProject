@@ -446,7 +446,8 @@
    		            cache:false,
 		            data:{board_no:$('#board_no').val(), client_nick1:log, reply_content:reply},
 		            success:function() {
-		            	reload();
+		            	$('#tr1').append("<tbody><th>"+log+"</th><th>"+reply+"</th><td>"+reply+"</td></tbody>");
+		            	$('#reply').val('');
 		            },
 		            error:function() {
 		               alert('다시 시도해주세요');

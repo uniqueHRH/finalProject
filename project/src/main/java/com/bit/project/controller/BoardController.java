@@ -13,11 +13,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.bit.project.file.UploadFileUtils;
 import com.bit.project.model.entity.BoardVo;
 import com.bit.project.model.entity.ReplyVo;
+import com.bit.project.paging.Pagination;
 import com.bit.project.service.BoardService;
 import com.bit.project.service.ReplyService;
 
@@ -28,7 +30,9 @@ public class BoardController {
 	BoardService boardService;
 	@Autowired
 	ReplyService replyService;
-	
+	@Resource
+	Pagination pagination;
+
 	@Resource(name="uploadPath")
 	private String uploadPath;
 	
@@ -44,11 +48,30 @@ public class BoardController {
 	
 	// 후기리스트 이동 (작성순 정렬)
  	@RequestMapping(value = "/board/review", method = RequestMethod.GET)
- 	public String review(Model model) throws Exception {
- 		boardService.selectAll_review(model);
+ 	public String review(Model model, @RequestParam(required = false, defaultValue = "1") int page, @RequestParam(required = false, defaultValue = "1") int range) throws Exception {
+
+ 		//전체 게시글 개수
+ 		int listCnt=0;
+		try {
+			listCnt = boardService.getBoardListCnt();
+			pagination.pageInfo(page, range, listCnt);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		model.addAttribute("pagination", pagination);
+		model.addAttribute("list",boardService.selectAll_review(pagination));
+		model.addAttribute("listCnt",listCnt);
  		return "board/review";
  	}
  	
+	/*
+	@RequestMapping(value = "/board/review", method = RequestMethod.GET) public
+	String review(Model model) {
+		boardService.selectAll_review(model);
+		return "board/review";
+	}
+	*/
  	// 후기리스트 이동 (지역별 정렬)
  	@RequestMapping(value="/board/reviewLocal", method=RequestMethod.GET)
  	public String reviewLocal(Model model) {

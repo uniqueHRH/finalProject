@@ -14,138 +14,83 @@
  
  
 <mapper namespace="board">
-<!-- 투어 기본 정렬 (작성 순서) -->
-	<select id="selectAll_tour" resultType="BoardBean">
-		select * from board where board_id=1 and order by board_no DESC
-	</select>
-<!-- 투어 도시별 정렬 -->
-	<select id="selectAll_tourCity" resultType="BoardBean">
-		select * from board where board_id=1 order by board_land, board_no DESC
-	</select>
-<!-- 투어 테마별 정렬 -->
-	<select id="selectAll_tourTheme" resultType="BoardBean">
-		select * from board where board_id=1 order by board_theme, board_no DESC
-	</select>
 
 <!-- 후기 기본 정렬 (작성 순서) -->
 	<select id="selectAll_review" resultType="BoardBean">
-		select * from board where board_id=2 ORDER BY board_no DESC
+		select * from board ORDER BY board_no DESC LIMIT #{startList}, #{listSize}
 	</select>
 <!-- 후기 도시별 정렬 -->
 	<select id="selectAll_reviewCity" resultType="BoardBean">
-		select * from board where board_id=2 ORDER BY board_land, board_no DESC
+		select * from board ORDER BY board_land, board_no DESC
 	</select>
 <!-- 후기 테마별 정렬 -->
 	<select id="selectAll_reviewTheme" resultType="BoardBean">
-		select * from board where board_id=2 ORDER BY board_theme, board_no DESC
+		select * from board ORDER BY board_theme, board_no DESC
 	</select>
-<!-- 동행구하기 -->
-	<select id="selectAll_partner" resultType="BoardBean">
-		select * from board where board_id=3 order by board_no DESC
-	</select>
-<!-- 자유게시판 -->
-	<select id="selectAll_free" resultType="BoardBean">
-		select * from board where board_id=4 order by board_no DESC
-	</select>
-	<!-- 이벤트 -->
-	<select id="selectAll_event" resultType="BoardBean">
-		select * from board where board_id=5 order by board_no DESC
-	</select>
+	
 
-<!-- update 페이지 나라 조회 -->
-	<select id="select_land" resultType="BoardBean">
-		select board_land from board where board_no=#{value}
-	</select>
-		
-	<select id="selectOne_tour" resultType="BoardBean" parameterType="int">
-		select * from board where board_no=#{value}
-	</select>
 	
 	<select id="selectOne_review" resultType="BoardBean" parameterType="int">
 		select * from board where board_no=#{value}
 	</select>
 	
-	<select id="selectOne_partner" resultType="BoardBean" parameterType="int">
-		select * from board where board_no=#{value}
-	</select>
-	
-	<select id="selectOne_free" resultType="BoardBean" parameterType="int">
-		select * from board where board_no=#{value}
-	</select>
-	
-	<select id="selectOne_event" resultType="BoardBean" parameterType="int">
-		select * from board where board_no=#{value}
-	</select>
-	
-	
-<!-- 테마가 3개 미만일 때, board_theme 에 null 출력 -->
-	<insert id="insertOne_tour" parameterType="BoardBean">
-		insert into board, board_sub, board_content, board_land, board_city, board_theme, board_wish, board_cost) values (1, #{board_sub}, #{board_content}, #{board_land}, #{board_city}, #{board_theme}, #{board_wish}, #{board_cost})
-	</insert>
 	
 	<insert id="insertOne_review" parameterType="BoardBean">
 		insert into board (board_id, board_sub, board_count, board_content, client_nick1, board_date, board_land, board_theme, board_img, board_thumb) values (2,#{board_sub}, 0, #{board_content}, #{client_nick1}, now(), #{board_land}, #{board_theme}, #{board_img, jdbcType=VARCHAR}, #{board_thumb, jdbcType=VARCHAR})
 	</insert>
 	
-	<insert id="insertOne_partner" parameterType="BoardBean">
-		insert into board (board_id, board_sub, board_count, board_content, client_nick1, board_date) values (3,#{board_sub}, 0, #{board_content}, #{client_nick1}, now())
-	</insert>
 	
-	<insert id="insertOne_free" parameterType="BoardBean">
-		insert into board (board_id, board_sub, board_count, board_content, client_nick1, board_date) values (4,#{board_sub}, 0, #{board_content}, #{client_nick1}, now())
-	</insert>
-	
-	<insert id="insertOne_event" parameterType="BoardBean">
-		insert into board (board_id, board_sub, board_count, board_content, client_nick1, board_date) values (5,#{board_sub}, 0, #{board_content}, #{client_nick1}, now())
-	</insert>
-	
-	
-<!-- 테마가 3개 미만일 때, board_theme 에 null 출력 -->
-	<update id="updateOne_tour" parameterType="BoardBean">
-		update board set board_sub=#{board_sub}, board_content=#{board_content}, board_land=#{board_land}, board_city=#{board_city}, board_theme=#{board_theme}, board_theme2=#{board_theme2}, board_theme3=#{board_theme3}, board_cost=#{board_cost} where board_no=#{value}
-	</update>
 	
 	<update id="updateOne_review" parameterType="BoardBean">
 		update board set board_sub=#{board_sub}, board_content=#{board_content}, board_land=#{board_land}, board_theme=#{board_theme}, board_img=#{board_img}, board_thumb=#{board_thumb} where board_no=#{board_no}
 	</update>
 	
-	<update id="updateOne_partner" parameterType="BoardBean">
-		update board set board_sub=#{board_sub}, board_content=#{board_content} where board_no=#{board_no}
-	</update>
+
+
+	<delete id="deleteOne_review" parameterType="int">
+		delete from board where board_no=#{value}
+	</delete>
 	
-	<update id="updateOne_free" parameterType="BoardBean">
-		update board set board_sub=#{board_sub}, board_content=#{board_content} where board_no=#{board_no}
-	</update>
 	
-	<update id="updateOne_event" parameterType="BoardBean">
-		update board set board_sub=#{board_sub}, board_content=#{board_content} where board_no=#{board_no}
-	</update>
 	
 <!-- 조회수 -->
 	<update id="updateCnt" parameterType="int">
 		update board set board_count=board_count+1 where board_no=#{value}
 	</update>
-
-
-
-	<delete id="deleteOne_tour" parameterType="int">
-		delete from board where board_no=#{value}
-	</delete>
+<!-- update 페이지 나라 조회 -->
+	<select id="select_land" resultType="BoardBean">
+		select board_land from board where board_no=#{value}
+	</select>
 	
-	<delete id="deleteOne_review" parameterType="int">
-		delete from board where board_no=#{value}
-	</delete>
-	
-	<delete id="deleteOne_partner" parameterType="int">
-		delete from board where board_no=#{value}
-	</delete>
-	
-	<delete id="deleteOne_free" parameterType="int">
-		delete from board wher board_no=#{value}
-	</delete>
-	
-	<delete id="deleteOne_event" parameterType="int">
-		delete from board where board_no=#{value}
-	</delete>
-	
+<!-- 총게시글 갯수 -->
+	<select id="getBoardListCnt" resultType="int">
+		select count(*) from board
+	</select>
+<!-- 검색 -->	
+	<select id="search_sub" resultType="BoardBean">
+		select * from board where board_sub='%테스트%'
+	</select>
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -195,14 +195,15 @@
 					type:'POST',
 					data:{client_name:name, client_email:email},
 					beforeSend:function(){
-						alert('인증번호 발송 중..');
+						/* alert('인증번호 발송 중..'); */
+						 document.style.cursor ="wait";
 				    },
 				    success:function(data){
-				    	$('input[name=dice]').attr('value',data.Dice);
 				    	var check = data.FindId
 				    	if(check == null){
 				    		alert('가입하신 이름과 이메일을 입력해주세요');
 				    	}else{
+				    	$('input[name=dice]').attr('value',data.Dice);
 						var num = 60 * 3; // 몇분을 설정할지의 대한 변수 선언
 			    		var myVar;
 			   			 function time(){

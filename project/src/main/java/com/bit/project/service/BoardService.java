@@ -1,8 +1,11 @@
 package com.bit.project.service;
 
+import java.util.List;
+
 import org.springframework.ui.Model;
 
 import com.bit.project.model.entity.BoardVo;
+import com.bit.project.paging.Pagination;
 
 public interface BoardService {
 
@@ -10,7 +13,8 @@ public interface BoardService {
 	void selectAll_tourCity(Model model);
 	void selectAll_tourTheme(Model model);
 	
-	void selectAll_review(Model model);
+	List<BoardVo> selectAll_review(Pagination pagination) throws Exception;
+	/* void selectAll_review(Model model); */
 	void selectAll_reviewCity(Model model);
 	void selectAll_reviewTheme(Model model);
 	
@@ -23,10 +27,6 @@ public interface BoardService {
 	void selectOne_partner(int key,Model model);
 	void selectOne_free(int key,Model model);
 	void selectOne_event(int key,Model model);
-	
-	void select_land(int key, Model model);
-//	ÆäÀÌÂ¡
-	int countBoardListTotal() throws Exception; 
 	
 	void insertOne_tour(BoardVo bean);
 	void insertOne_review(BoardVo bean);
@@ -45,4 +45,9 @@ public interface BoardService {
 	void deleteOne_partner(int key);
 	void deleteOne_free(int key);
 	void deleteOne_event(int key);
+	
+	void select_land(int key, Model model);
+//	°Ô½Ã¹° ÃÑ °¹¼ö
+	public int getBoardListCnt() throws Exception;
 }
+

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.bit.project.model.entity.BoardVo;
+import com.bit.project.paging.Pagination;
 
 @Repository
 public class BoardDaoImpl implements BoardDao {
@@ -14,8 +15,8 @@ public class BoardDaoImpl implements BoardDao {
 	@Autowired
 	SqlSession sqlSession;
 
-	@Override
-	public List<BoardVo> selectAll_tour() throws Exception {
+	
+	@Override public List<BoardVo> selectAll_tour() throws Exception {
 		return sqlSession.selectList("board.selectAll_tour");
 	}
 
@@ -30,9 +31,13 @@ public class BoardDaoImpl implements BoardDao {
 	}
 
 	@Override
-	public List<BoardVo> selectAll_review() throws Exception {
-		return sqlSession.selectList("board.selectAll_review");
+	public List<BoardVo> selectAll_review(Pagination pagination) throws Exception {
+		return sqlSession.selectList("board.selectAll_review", pagination);
 	}
+	/*
+	 * @Override public List<BoardVo> selectAll_review() throws Exception { return
+	 * sqlSession.selectList("board.selectAll_review"); }
+	 */
 
 	@Override
 	public List<BoardVo> selectAll_reviewCity() throws Exception {
@@ -88,12 +93,6 @@ public class BoardDaoImpl implements BoardDao {
 	@Override
 	public BoardVo selectOne_event(int key) throws Exception {
 		return sqlSession.selectOne("board.selectOne_event",key);
-	}
-
-/* ∆‰¿Ã¬° */
-	@Override
-	public int countBoardListTotal() throws Exception {
-		return sqlSession.selectOne("board.countBoardList");
 	}
 
 	@Override
@@ -176,5 +175,10 @@ public class BoardDaoImpl implements BoardDao {
 		return sqlSession.update("board.updateCnt",key);
 	}
 
-	
+	@Override
+	public int getBoardListCnt() throws Exception {
+		return sqlSession.selectOne("board.getBoardListCnt");
+	}
+
+
 }
