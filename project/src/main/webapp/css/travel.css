@@ -90,6 +90,23 @@
 		text-align:center;
 	}
 	
+	/* 리모컨 */ 
+	#remote {
+		position:fixed;
+		left:1350px;
+		top:245px;
+		width:100px;
+	}
+	#kakaoChat, #top {
+		height:40px;
+	}
+/* 페이징 */
+	#listCnt {
+		width:250px;
+		background-color:white;
+		border:0;
+		color:gray;
+	}
 /* footer */
 	#footer1 {
 		position: absolute;

@@ -14,12 +14,12 @@ public interface BoardDao {
 
 	/* List<BoardVo> selectAll_review() throws Exception; */
 //	후기 도시별 정렬
-	List<BoardVo> selectAll_reviewCity() throws Exception;
+	List<BoardVo> selectAll_reviewCity(Search search) throws Exception;
 //	후기 테마별 정렬
-	List<BoardVo> selectAll_reviewTheme() throws Exception;
+	List<BoardVo> selectAll_reviewTheme(Search search) throws Exception;
 	 
 	
-//	update 페이지 나라 조회	
+//	update 페이지 나라 조회
 	BoardVo select_land(int key) throws Exception;
 	
 //	DETAIL

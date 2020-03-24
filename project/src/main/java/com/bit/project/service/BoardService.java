@@ -11,8 +11,8 @@ public interface BoardService {
 
 	
 	List<BoardVo> selectAll_review(Search search) throws Exception;
-	void selectAll_reviewCity(Model model);
-	void selectAll_reviewTheme(Model model);
+	List<BoardVo> selectAll_reviewCity(Search search) throws Exception;
+	List<BoardVo> selectAll_reviewTheme(Search search) throws Exception;
 	
 	void selectOne_review(int key,Model model);
 	

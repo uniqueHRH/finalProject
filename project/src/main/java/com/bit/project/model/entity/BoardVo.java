@@ -5,7 +5,6 @@ import java.sql.Date;
 public class BoardVo {     
 
 	private int board_no;
-	private int board_id;
 	private String board_sub;
 	private int board_count;
 	private String board_content;
@@ -14,8 +13,6 @@ public class BoardVo {
 	private String board_land;
 	private String board_city;
 	private String board_theme;
-	private int board_wish;
-	private int board_cost;
 	private String board_img;
 	private String board_thumb;
 
@@ -31,16 +28,6 @@ public class BoardVo {
 
 	public void setBoard_no(int board_no) {
 		this.board_no = board_no;
-	}
-
-
-	public int getBoard_id() {
-		return board_id;
-	}
-
-
-	public void setBoard_id(int board_id) {
-		this.board_id = board_id;
 	}
 
 
@@ -123,27 +110,6 @@ public class BoardVo {
 		this.board_theme = board_theme;
 	}
 
-
-	public int getBoard_wish() {
-		return board_wish;
-	}
-
-
-	public void setBoard_wish(int board_wish) {
-		this.board_wish = board_wish;
-	}
-
-
-	public int getBoard_cost() {
-		return board_cost;
-	}
-
-
-	public void setBoard_cost(int board_cost) {
-		this.board_cost = board_cost;
-	}
-
-
 	public String getBoard_img() {
 		return board_img;
 	}
@@ -166,11 +132,10 @@ public class BoardVo {
 
 	@Override
 	public String toString() {
-		return "BoardVo [board_no=" + board_no + ", board_id=" + board_id + ", board_sub=" + board_sub
+		return "BoardVo [board_no=" + board_no + ", board_sub=" + board_sub
 				+ ", board_count=" + board_count + ", board_content=" + board_content + ", client_nick1=" + client_nick1
 				+ ", board_date=" + board_date + ", board_land=" + board_land + ", board_city=" + board_city
-				+ ", board_theme=" + board_theme + ", board_wish=" + board_wish + ", board_cost=" + board_cost
-				+ ", board_img=" + board_img + ", board_thumb=" + board_thumb + "]";
+				+ ", board_theme=" + board_theme + ", board_img=" + board_img + ", board_thumb=" + board_thumb + "]";
 	}
 
 
@@ -179,7 +144,6 @@ public class BoardVo {
 			int board_wish, int board_cost, String board_img, String board_thumb) {
 		super();
 		this.board_no = board_no;
-		this.board_id = board_id;
 		this.board_sub = board_sub;
 		this.board_count = board_count;
 		this.board_content = board_content;
@@ -188,8 +152,6 @@ public class BoardVo {
 		this.board_land = board_land;
 		this.board_city = board_city;
 		this.board_theme = board_theme;
-		this.board_wish = board_wish;
-		this.board_cost = board_cost;
 		this.board_img = board_img;
 		this.board_thumb = board_thumb;
 	}

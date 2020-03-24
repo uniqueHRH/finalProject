@@ -20,8 +20,14 @@ import com.bit.project.common.Pagination;
 import com.bit.project.common.Search;
 import com.bit.project.file.UploadFileUtils;
 import com.bit.project.model.entity.BoardVo;
+import com.bit.project.model.entity.EventVo;
+import com.bit.project.model.entity.FreeVo;
+import com.bit.project.model.entity.PartnerVo;
 import com.bit.project.model.entity.ReplyVo;
 import com.bit.project.service.BoardService;
+import com.bit.project.service.EventService;
+import com.bit.project.service.FreeService;
+import com.bit.project.service.PartnerService;
 import com.bit.project.service.ReplyService;
 
 @Controller
@@ -31,6 +37,13 @@ public class BoardController {
 	BoardService boardService;
 	@Autowired
 	ReplyService replyService;
+	@Autowired
+	PartnerService partnerService;
+	@Autowired
+	FreeService freeService;
+	@Autowired
+	EventService eventService;
+	
 	@Resource
 	Pagination pagination;
 	@Resource
@@ -39,16 +52,9 @@ public class BoardController {
 	private String uploadPath;
 	
 	
+//	리스트 출력
 	
-// 게시판
-	
-	// 테스트페이지 이동
-	@RequestMapping("/board/test")
-	public String test() {
-		return "board/test";
-	}
-	
-	// 후기리스트 이동 (작성순 정렬)
+	// 후기리스트 (기본정렬)
  	@RequestMapping(value = "/board/review", method = RequestMethod.GET)
  	public String review(Model model, @RequestParam(required = false, defaultValue = "1") int page,
  			@RequestParam(required=false, defaultValue="1") int range,
@@ -61,7 +67,7 @@ public class BoardController {
  		search.setSearchType(searchType);
  		search.setKeyword(keyword);
  		
- 		//전체 게시글 개수
+ 		// 전체 게시글 갯수
  		int listCnt=0;
 		try {
 			listCnt = boardService.getBoardListCnt(search);
@@ -76,57 +82,172 @@ public class BoardController {
  		return "board/review";
  	}
  	
-	/*
-	@RequestMapping(value = "/board/review", method = RequestMethod.GET)
-	public String review(Model model) {
-		boardService.selectAll_review(model);
-		return "board/review";
-	}
-	*/
- 	// 후기리스트 이동 (지역별 정렬)
+ 	// 후기리스트 (지역별)
  	@RequestMapping(value="/board/reviewLocal", method=RequestMethod.GET)
- 	public String reviewLocal(Model model) {
- 		boardService.selectAll_reviewCity(model);
+ 	public String reviewLocal(Model model, @RequestParam(required = false, defaultValue = "1") int page,
+ 			@RequestParam(required=false, defaultValue="1") int range,
+ 			@RequestParam(required=false, defaultValue="board_sub") String searchType,
+ 			@RequestParam(required=false) String keyword,
+ 			@ModelAttribute("search") Search search
+ 			) throws Exception {
+
+ 		model.addAttribute("search", search);
+ 		search.setSearchType(searchType);
+ 		search.setKeyword(keyword);
+ 		
+ 		// 전체 게시글 갯수
+ 		int listCnt=0;
+		try {
+			listCnt = boardService.getBoardListCnt(search);
+			search.pageInfo(page, range, listCnt);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		model.addAttribute("pagination", search);
+		model.addAttribute("list",boardService.selectAll_review(search));
+		model.addAttribute("listCnt",listCnt);
  		return "board/review";
  	}
  	
- 	// 후기리스트 이동 (테마별 정렬)
+ 	// 후기리스트 (테마별)
  	@RequestMapping(value="/board/reviewTheme", method=RequestMethod.GET)
- 	public String reviewTheme(Model model) {
- 		boardService.selectAll_reviewTheme(model);
+ 	public String reviewTheme(Model model, @RequestParam(required = false, defaultValue = "1") int page,
+ 			@RequestParam(required=false, defaultValue="1") int range,
+ 			@RequestParam(required=false, defaultValue="board_sub") String searchType,
+ 			@RequestParam(required=false) String keyword,
+ 			@ModelAttribute("search") Search search
+ 			) throws Exception {
+
+ 		model.addAttribute("search", search);
+ 		search.setSearchType(searchType);
+ 		search.setKeyword(keyword);
+ 		
+ 		// 전체 게시글 갯수
+ 		int listCnt=0;
+		try {
+			listCnt = boardService.getBoardListCnt(search);
+			search.pageInfo(page, range, listCnt);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		model.addAttribute("pagination", search);
+		model.addAttribute("list",boardService.selectAll_review(search));
+		model.addAttribute("listCnt",listCnt);
  		return "board/review";
  	}
-/* 	
- 	// 동행리스트 이동
+ 	
+ 	// 동행리스트
  	@RequestMapping(value = "/board/partner", method = RequestMethod.GET)
- 	public String partner(Model model) {
- 		boardService.selectAll_partner(model);
- 		return "board/partner";
+ 	public String partner(Model model, @RequestParam(required = false, defaultValue = "1") int page,
+ 			@RequestParam(required=false, defaultValue="1") int range,
+ 			@RequestParam(required=false, defaultValue="board_sub") String searchType,
+ 			@RequestParam(required=false) String keyword,
+ 			@ModelAttribute("search") Search search
+ 			) throws Exception {
+
+ 		model.addAttribute("search", search);
+ 		search.setSearchType(searchType);
+ 		search.setKeyword(keyword);
+ 		
+ 		// 전체 게시글 갯수
+ 		int listCnt=0;
+		try {
+			listCnt = partnerService.getPartnerListCnt(search);
+			search.pageInfo(page, range, listCnt);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		model.addAttribute("pagination", search);
+		model.addAttribute("list",partnerService.selectAll_partner(search));
+		model.addAttribute("listCnt",listCnt);
+ 		return "partner/partner";
  	}
  	
- 	//자유게시판리스트로 이동
+ 	// 자유게시판 리스트
  	@RequestMapping(value = "/board/free", method = RequestMethod.GET)
- 	public String free(Model model) {
- 		boardService.selectAll_free(model);
- 		return "board/free";
+ 	public String free(Model model, @RequestParam(required = false, defaultValue = "1") int page,
+ 			@RequestParam(required=false, defaultValue="1") int range,
+ 			@RequestParam(required=false, defaultValue="board_sub") String searchType,
+ 			@RequestParam(required=false) String keyword,
+ 			@ModelAttribute("search") Search search
+ 			) throws Exception {
+
+ 		model.addAttribute("search", search);
+ 		search.setSearchType(searchType);
+ 		search.setKeyword(keyword);
+ 		
+ 		// 전체 게시글 갯수
+ 		int listCnt=0;
+		try {
+			listCnt = freeService.getFreeListCnt(search);
+			search.pageInfo(page, range, listCnt);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		model.addAttribute("pagination", search);
+		model.addAttribute("list",freeService.selectAll_free(search));
+		model.addAttribute("listCnt",listCnt);
+ 		return "free/free";
  	}
  	
- 	//이벤트리스트로 이동
+ 	// 이벤트리스트
  	@RequestMapping(value = "/board/event", method = RequestMethod.GET)
- 	public String event(Model model) {
- 		boardService.selectAll_event(model);
- 		return "board/event";
+ 	public String event(Model model, @RequestParam(required = false, defaultValue = "1") int page,
+ 			@RequestParam(required=false, defaultValue="1") int range,
+ 			@RequestParam(required=false, defaultValue="board_sub") String searchType,
+ 			@RequestParam(required=false) String keyword,
+ 			@ModelAttribute("search") Search search
+ 			) throws Exception {
+
+ 		model.addAttribute("search", search);
+ 		search.setSearchType(searchType);
+ 		search.setKeyword(keyword);
+ 		
+ 		// 전체 게시글 갯수
+ 		int listCnt=0;
+		try {
+			listCnt = eventService.getEventListCnt(search);
+			search.pageInfo(page, range, listCnt);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		model.addAttribute("pagination", search);
+		model.addAttribute("list",eventService.selectAll_event(search));
+		model.addAttribute("listCnt",listCnt);
+ 		return "event/event";
  	}
- */
  	
- 	// 글쓰기로 이동
- 	@RequestMapping(value = "/board/write", method = RequestMethod.GET)
- 	public String write() {
+//	글쓰기 페이지
+ 	// 후기
+ 	@RequestMapping(value = "/board/reviewIns", method = RequestMethod.GET)
+ 	public String reviewIns() {
  		return "board/write";
  	}
- 	// 글쓰기 완료, list 로 이동
- 	@RequestMapping(value = "/board/write", method = RequestMethod.POST)
- 	public String write(@ModelAttribute BoardVo bean, MultipartFile file) throws Exception {
+ 	// 동행
+ 	@RequestMapping(value = "/board/partnerIns", method = RequestMethod.GET)
+ 	public String partnerIns() {
+ 		return "partner/write";
+ 	}
+ 	// 자유게시판
+ 	@RequestMapping(value = "/board/freeIns", method = RequestMethod.GET)
+ 	public String freeIns() {
+ 		return "free/write";
+ 	}
+ 	// 이벤트
+ 	@RequestMapping(value = "/board/eventIns", method = RequestMethod.GET)
+ 	public String eventIns() {
+ 		return "event/write";
+ 	}
+ 	
+//	작성완료, 리스트로 이동
+ 	// 후기
+ 	@RequestMapping(value = "/board/reviewIns", method = RequestMethod.POST)
+ 	public String reviewIns(@ModelAttribute BoardVo bean, MultipartFile file) throws Exception {
  		
  		String imgUploadPath = uploadPath + File.separator + "imgUpload";
  		String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
@@ -144,40 +265,142 @@ public class BoardController {
  		boardService.insertOne_review(bean);
  		return "redirect:review";
  	}
- 	
- 	// 상세페이지 이동
- 	@RequestMapping(value="/board/detail/{idx}",method=RequestMethod.GET)
- 	public String detail(@PathVariable("idx") int key, Model model) {
+	// 동행
+  	@RequestMapping(value = "/board/partnerIns", method = RequestMethod.POST)
+  	public String partnerIns(@ModelAttribute PartnerVo bean, MultipartFile file) throws Exception {
+  		
+  		String imgUploadPath = uploadPath + File.separator + "imgUpload";
+  		String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
+  		String fileName = null;
+
+  		if(file!=null) {
+  			fileName=UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath); 
+  		} else {
+  			fileName = uploadPath + File.separator + "images" + File.separator + "none.png";
+  		}
+
+  		bean.setPartner_img(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
+  		bean.setPartner_thumb(File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
+  		
+  		partnerService.insertOne_partner(bean);
+  		return "redirect:partner";
+  	}
+  	// 자유게시판
+  	@RequestMapping(value = "/board/freeIns", method = RequestMethod.POST)
+  	public String freeIns(@ModelAttribute FreeVo bean, MultipartFile file) throws Exception {
+  		
+  		String imgUploadPath = uploadPath + File.separator + "imgUpload";
+  		String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
+  		String fileName = null;
+
+  		if(file!=null) {
+  			fileName=UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath); 
+  		} else {
+  			fileName = uploadPath + File.separator + "images" + File.separator + "none.png";
+  		}
+
+  		bean.setFree_img(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
+  		bean.setFree_thumb(File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
+  		
+  		freeService.insertOne_free(bean);
+  		return "redirect:free";
+  	}
+  	// 이벤트
+  	@RequestMapping(value = "/board/eventIns", method = RequestMethod.POST)
+  	public String eventIns(@ModelAttribute EventVo bean, MultipartFile file) throws Exception {
+  		
+  		String imgUploadPath = uploadPath + File.separator + "imgUpload";
+  		String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
+  		String fileName = null;
+
+  		if(file!=null) {
+  			fileName=UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath); 
+  		} else {
+  			fileName = uploadPath + File.separator + "images" + File.separator + "none.png";
+  		}
+
+  		bean.setEvent_img(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
+  		bean.setEvent_thumb(File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
+  		
+  		eventService.insertOne_event(bean);
+  		return "redirect:event";
+  	}
+  	
+// 상세페이지 이동
+ 	// 후기
+ 	@RequestMapping(value="/board/reviewDe/{idx}",method=RequestMethod.GET)
+ 	public String detailReview(@PathVariable("idx") int key, Model model) {
  		boardService.selectOne_review(key, model);
  		replyService.selectAll_reply(key, model);
  		return "board/detail";
  	}
- 	
- 	// 수정페이지로 이동
- 	@RequestMapping(value = "/board/update/{idx}", method = RequestMethod.GET)
+ 	// 동행
+ 	@RequestMapping(value="/board/partnerDe/{idx}",method=RequestMethod.GET)
+ 	public String detailPartner(@PathVariable("idx") int key, Model model) {
+ 		partnerService.selectOne_partner(key, model);
+ 		replyService.selectAll_reply(key, model);
+ 		return "partner/detail";
+ 	}
+ 	// 자유게시판
+ 	@RequestMapping(value="/board/freeDe/{idx}",method=RequestMethod.GET)
+ 	public String detailFree(@PathVariable("idx") int key, Model model) {
+ 		freeService.selectOne_free(key, model);
+ 		replyService.selectAll_reply(key, model);
+ 		return "free/detail";
+ 	}
+ 	// 이벤트
+ 	@RequestMapping(value="/board/eventDe/{idx}",method=RequestMethod.GET)
+ 	public String detailEvent(@PathVariable("idx") int key, Model model) {
+ 		eventService.selectOne_event(key, model);
+ 		replyService.selectAll_reply(key, model);
+ 		return "event/detail";
+ 	}
+
+// 수정페이지 이동
+ 	// 후기
+ 	@RequestMapping(value = "/board/reviewUp/{idx}", method = RequestMethod.GET)
  	public String update(@PathVariable("idx") int key, Model model) {
  		boardService.selectOne_review(key, model);
  		return "board/update";
  	}
- 	
- 	// 수정페이지 나라 조회
+ 	// 동행
+ 	@RequestMapping(value = "/board/partnerUp/{idx}", method = RequestMethod.GET)
+ 	public String partnerUp(@PathVariable("idx") int key, Model model) {
+ 		partnerService.selectOne_partner(key, model);
+ 		return "partner/update";
+ 	}
+ 	// 자유게시판
+ 	@RequestMapping(value = "/board/freeUp/{idx}", method = RequestMethod.GET)
+ 	public String freeUp(@PathVariable("idx") int key, Model model) {
+ 		freeService.selectOne_free(key, model);
+ 		return "free/update";
+ 	}
+ 	// 이벤트
+ 	@RequestMapping(value = "/board/eventUp/{idx}", method = RequestMethod.GET)
+ 	public String eventUp(@PathVariable("idx") int key, Model model) {
+ 		eventService.selectOne_event(key, model);
+ 		return "event/update";
+ 	}
+
+//	후기 수정페이지 나라조회 (selectbox)
  	@RequestMapping(value="/board/updateLand", method=RequestMethod.POST)
  	public String updateLand(int key, Model model) {
  		boardService.select_land(key, model);
  		return "board/update";
  	}
  	
- 	// 수정 후 상세페이지로 이동
- 	@RequestMapping(value="/board/update/{idx}", method=RequestMethod.POST)
-	public String update(@ModelAttribute BoardVo bean, MultipartFile file, HttpServletRequest req) throws IOException, Exception {
+//	수정 후 상세페이지로 이동
+ 	// 후기
+ 	@RequestMapping(value="/board/reviewUp/{idx}", method=RequestMethod.POST)
+	public String reviewUp(@ModelAttribute BoardVo bean, MultipartFile file, HttpServletRequest req) throws IOException, Exception {
  		
  		// 새로운 파일이 등록되었는지 확인
  		if(file.getOriginalFilename()!= null && file.getOriginalFilename()!="") {
- 			// 기존 파일을 삭제
+ 			// 기존 파일 삭제
  			new File(uploadPath + req.getParameter("board_img")).delete();
  			new File(uploadPath + req.getParameter("board_thumb")).delete();
  		  
- 			// 새로 첨부한 파일을 등록
+ 			// 새로 첨부한 파일 등록
  			String imgUploadPath = uploadPath + File.separator + "imgUpload";
  			String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
  			String fileName = UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath);
@@ -185,45 +408,203 @@ public class BoardController {
  			bean.setBoard_img(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
  			bean.setBoard_thumb(File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
  		  
- 		} else {   // 새로운 파일이 등록되지 않았다면
- 			// 기존 이미지를 그대로 사용
+ 		} else {
+ 			// 기존 이미지 그대로 사용
  			bean.setBoard_img(req.getParameter("board_img"));
  			bean.setBoard_thumb(req.getParameter("board_thumb"));
  		 }
  		 
  		boardService.updateOne_review(bean);
- 		return "redirect:../detail/"+bean.getBoard_no();
+ 		return "redirect:../reviewDe/"+bean.getBoard_no();
  	}
-
- 	// 게시글삭제
- 	@RequestMapping(value="/board/delete", method=RequestMethod.POST)
- 	public String delete(int key) {
+ 	// 동행
+ 	@RequestMapping(value="/board/partnerUp/{idx}", method=RequestMethod.POST)
+	public String partnerUp(@ModelAttribute PartnerVo bean, MultipartFile file, HttpServletRequest req) throws IOException, Exception {
+ 		
+ 		// 새로운 파일이 등록되었는지 확인
+ 		if(file.getOriginalFilename()!= null && file.getOriginalFilename()!="") {
+ 			// 기존 파일 삭제
+ 			new File(uploadPath + req.getParameter("board_img")).delete();
+ 			new File(uploadPath + req.getParameter("board_thumb")).delete();
+ 		  
+ 			// 새로 첨부한 파일 등록
+ 			String imgUploadPath = uploadPath + File.separator + "imgUpload";
+ 			String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
+ 			String fileName = UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath);
+ 		  
+ 			bean.setPartner_img(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
+ 			bean.setPartner_thumb(File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
+ 		  
+ 		} else {
+ 			// 기존 이미지 그대로 사용
+ 			bean.setPartner_img(req.getParameter("board_img"));
+ 			bean.setPartner_thumb(req.getParameter("board_thumb"));
+ 		 }
+ 		 
+ 		partnerService.updateOne_partner(bean);
+ 		return "redirect:../partnerDe/"+bean.getBoard_no();
+ 	}
+ 	// 자유게시판
+ 	@RequestMapping(value="/board/freeUp/{idx}", method=RequestMethod.POST)
+	public String freeUp(@ModelAttribute FreeVo bean, MultipartFile file, HttpServletRequest req) throws IOException, Exception {
+ 		
+ 		// 새로운 파일이 등록되었는지 확인
+ 		if(file.getOriginalFilename()!= null && file.getOriginalFilename()!="") {
+ 			// 기존 파일 삭제
+ 			new File(uploadPath + req.getParameter("board_img")).delete();
+ 			new File(uploadPath + req.getParameter("board_thumb")).delete();
+ 		  
+ 			// 새로 첨부한 파일 등록
+ 			String imgUploadPath = uploadPath + File.separator + "imgUpload";
+ 			String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
+ 			String fileName = UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath);
+ 		  
+ 			bean.setFree_img(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
+ 			bean.setFree_thumb(File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
+ 		  
+ 		} else {
+ 			// 기존 이미지 그대로 사용
+ 			bean.setFree_img(req.getParameter("board_img"));
+ 			bean.setFree_thumb(req.getParameter("board_thumb"));
+ 		 }
+ 		 
+ 		freeService.updateOne_free(bean);
+ 		return "redirect:../freeDe/"+bean.getBoard_no();
+ 	}
+ 	// 이벤트
+ 	@RequestMapping(value="/board/eventUp/{idx}", method=RequestMethod.POST)
+	public String eventUp(@ModelAttribute EventVo bean, MultipartFile file, HttpServletRequest req) throws IOException, Exception {
+ 		
+ 		// 새로운 파일이 등록되었는지 확인
+ 		if(file.getOriginalFilename()!= null && file.getOriginalFilename()!="") {
+ 			// 기존 파일 삭제
+ 			new File(uploadPath + req.getParameter("board_img")).delete();
+ 			new File(uploadPath + req.getParameter("board_thumb")).delete();
+ 		  
+ 			// 새로 첨부한 파일 등록
+ 			String imgUploadPath = uploadPath + File.separator + "imgUpload";
+ 			String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
+ 			String fileName = UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath);
+ 		  
+ 			bean.setEvent_img(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
+ 			bean.setEvent_thumb(File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
+ 		  
+ 		} else {
+ 			// 기존 이미지 그대로 사용
+ 			bean.setEvent_img(req.getParameter("board_img"));
+ 			bean.setEvent_thumb(req.getParameter("board_thumb"));
+ 		 }
+ 		 
+ 		eventService.updateOne_event(bean);
+ 		return "redirect:../eventDe/"+bean.getBoard_no();
+ 	}
+//	게시글 삭제
+ 	// 후기
+ 	@RequestMapping(value="/board/reviewDel", method=RequestMethod.POST)
+ 	public String reviewDel(int key) {
  		boardService.deleteOne_review(key);
  		return "redirect:review";
  	}
+ 	// 동행
+ 	@RequestMapping(value="/board/partnerDel", method=RequestMethod.POST)
+ 	public String partnerDel(int key) {
+ 		partnerService.deleteOne_partner(key);
+ 		return "redirect:partner";
+ 	}
+ 	// 자유게시판
+ 	@RequestMapping(value="/board/freeDel", method=RequestMethod.POST)
+ 	public String freeDel(int key) {
+ 		freeService.deleteOne_free(key);
+ 		return "redirect:free";
+ 	}
+ 	// 이벤트
+ 	@RequestMapping(value="/board/eventDel", method=RequestMethod.POST)
+ 	public String eventDel(int key) {
+ 		eventService.deleteOne_event(key);
+ 		return "redirect:event";
+ 	}
  	
- 	// 댓글 입력
- 	@RequestMapping(value="/board/reply", method=RequestMethod.POST)
- 	public String reply(@ModelAttribute ReplyVo bean) {
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ 	
+//	댓글 입력
+ 	// 후기
+ 	@RequestMapping(value="/board/reviewRepIn", method=RequestMethod.POST)
+ 	public String reviewRepIn(@ModelAttribute ReplyVo bean) {
  		replyService.insertOne_reply(bean);
  		return "board/detail";
  	}
- 	
-	// 댓글 입력
-  	@RequestMapping(value="/board/replyEdit", method=RequestMethod.POST)
-  	public String replyEdit(@ModelAttribute ReplyVo bean) {
+	// 동행
+  	@RequestMapping(value="/board/partnerRepIn", method=RequestMethod.POST)
+  	public String partnerRepIn(@ModelAttribute ReplyVo bean) {
+  		replyService.insertOne_reply(bean);
+  		return "partner/detail";
+  	}
+	// 자유게시판
+  	@RequestMapping(value="/board/freeRepIn", method=RequestMethod.POST)
+  	public String freeRepIn(@ModelAttribute ReplyVo bean) {
+  		replyService.insertOne_reply(bean);
+  		return "free/detail";
+  	}
+	// 이벤트
+  	@RequestMapping(value="/board/eventRepIn", method=RequestMethod.POST)
+  	public String eventRepIn(@ModelAttribute ReplyVo bean) {
+  		replyService.insertOne_reply(bean);
+  		return "event/detail";
+  	}
+
+//	댓글 수정
+  	// 후기
+  	@RequestMapping(value="/board/reviewRepUp", method=RequestMethod.POST)
+  	public String reviewRepUp(@ModelAttribute ReplyVo bean) {
   		replyService.updateOne_reply(bean);
   		return "board/detail";
   	}
+	// 동행
+   	@RequestMapping(value="/board/partnerRepUp", method=RequestMethod.POST)
+   	public String partnerRepUp(@ModelAttribute ReplyVo bean) {
+   		replyService.updateOne_reply(bean);
+   		return "partner/detail";
+   	}
+	// 자유게시판
+   	@RequestMapping(value="/board/freeRepup", method=RequestMethod.POST)
+   	public String freeRepup(@ModelAttribute ReplyVo bean) {
+   		replyService.updateOne_reply(bean);
+   		return "free/detail";
+   	}
+	// 이벤트
+   	@RequestMapping(value="/board/eventRepUp", method=RequestMethod.POST)
+   	public String eventRepUp(@ModelAttribute ReplyVo bean) {
+   		replyService.updateOne_reply(bean);
+   		return "event/detail";
+   	}
   	
-	// 댓글 삭제
-  	@RequestMapping(value="/board/replyDel", method=RequestMethod.POST)
-  	public String replyDel(int key) {
+//	댓글 삭제
+   	// 후기
+  	@RequestMapping(value="/board/reviewRepDel", method=RequestMethod.POST)
+  	public String reviewRepDel(int key) {
   		replyService.deleteOne_reply(key);
   		return "board/detail";
   	}
+   	// 동행
+  	@RequestMapping(value="/board/partnerRepDel", method=RequestMethod.POST)
+  	public String partnerRepDel(int key) {
+  		replyService.deleteOne_reply(key);
+  		return "partner/detail";
+  	}
+   	// 자유게시판
+  	@RequestMapping(value="/board/freeRepDel", method=RequestMethod.POST)
+  	public String freeRepDel(int key) {
+  		replyService.deleteOne_reply(key);
+  		return "free/detail";
+  	}
+   	// 이벤트
+  	@RequestMapping(value="/board/eventRepDel", method=RequestMethod.POST)
+  	public String eventRepDel(int key) {
+  		replyService.deleteOne_reply(key);
+  		return "event/detail";
+  	}
   	
-  	// 내가 쓴 글 이동
+//	내가 쓴 글
   	@RequestMapping(value="/main/myBoard", method=RequestMethod.GET)
   	public String myBoard() {
   		return "mypage/myBoard";

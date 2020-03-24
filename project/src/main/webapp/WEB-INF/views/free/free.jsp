@@ -11,7 +11,7 @@
 
 <link rel="stylesheet" type="text/css" href="${root }css/bootstrap.css" />
 <link rel="stylesheet" type="text/css" href="${root }css/travel.css" />
-<link rel="stylesheet" type="text/css" href="${root }css/review.css" />
+<link rel="stylesheet" type="text/css" href="${root }css/board.css" />
 <style type="text/css">
 
 </style>
@@ -69,7 +69,7 @@
 			       		<li><a href="${root }board/free">자유게시판</a></li>
 			  		</ul>
 			  	</li>
-				<li id="hamSub"><a href="${root }board/event">이벤트</a></li>
+				<li id="hamSub"><a href="#">이벤트</a></li>
 				<li><a href="#">고객센터</a>
 					<ul>
 			  			<li><a href="${root }board/notice">공 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;지</a></li>
@@ -102,23 +102,16 @@
   <div class="row">
    <div class="col-md-12">
       <div class="page-header" id="page-header" align="center">
-     <h1>REVIEW</h1>
+     <h1>FREE</h1>
    </div>
    
 	
    
 <table class="table table-hover" id="table">
-<!-- 정렬 드롭다운 -->
 	<div class="topMenu" id="theme">
-		<select id="dropdownMenu1">
-		    <option value="정렬">정 &nbsp;렬</option>
-		    <option value="나라별">나라별</option>
-		    <option value="테마별">테마별</option>
-		</select>
-		<a class="btn btn-default" href="#" role="button" id="sel">조회</a>
 		<input type="text" value="<c:out value="${listCnt}"></c:out>개의 게시물이 조회되었습니다" id="listCnt" disabled/>
 		<div id="fff"></div>
-	   <a class="btn btn-default" href="${root }board/reviewIns" role="button" id="wri">글쓰기</a>
+	   <a class="btn btn-default" href="${root }board/freeIns" role="button" id="wri">글쓰기</a>
 	   <input type="hidden" id="loginCk" value="${sessionScope.check.client_nick1}"/>
 	</div>
 
@@ -126,8 +119,6 @@
    <thead>
       <tr class="active">
          <th>#</th>
-         <th>나라</th>
-         <th>테마</th>
          <th>제 목</th>
          <th>글쓴이</th>
          <th>날 짜</th>
@@ -138,12 +129,10 @@
 		<c:forEach items="${list }" var="bean">
 		<tr>
 			<td>${bean.board_no }</td>
-			<td><a href="reviewDe/${bean.board_no }">[${bean.board_land }]</a></td>
-			<td><a href="reviewDe/${bean.board_no }">[${bean.board_theme }]</a></td>
-			<td><a href="reviewDe/${bean.board_no }">${bean.board_sub }</a></td>
-			<td><a href="reviewDe/${bean.board_no }">${bean.client_nick1 }</a></td>
-			<td><a href="reviewDe/${bean.board_no }">${bean.board_date}</a></td>
-			<td><a href="reviewDe/${bean.board_no }">${bean.board_count }</a></td>
+			<td><a href="freeDe/${bean.board_no }">${bean.free_sub }</a></td>
+			<td><a href="freeDe/${bean.board_no }">${bean.client_nick1 }</a></td>
+			<td><a href="freeDe/${bean.board_no }">${bean.free_date}</a></td>
+			<td><a href="freeDe/${bean.board_no }">${bean.free_count }</a></td>
 		</tr>
 		</c:forEach>
    </tbody>
@@ -169,8 +158,7 @@
    <div class="topMenu" id="search">
 		<select id="searchType">
 		    <option value="board_sub">제 &nbsp; 목</option>
-		    <option value="board_land">나라별</option>
-		    <option value="board_theme">테마별</option>
+		    <option value="client_nick1">닉네임</option>
 		</select>
       <input type="text" class="form-control" id="keyword" name="keyword" style="width:200px; display:inline-block;">
 		<a class="btn btn-default" href="#" role="button" id="searchGo">G O</a>

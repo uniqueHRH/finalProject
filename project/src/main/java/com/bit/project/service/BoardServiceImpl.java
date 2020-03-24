@@ -24,24 +24,14 @@ public class BoardServiceImpl implements BoardService {
 
 	
 	@Override
-	public void selectAll_reviewCity(Model model) {
-		try {
-			List<BoardVo> list = boardDao.selectAll_reviewCity();
-			model.addAttribute("list",list);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	public List<BoardVo> selectAll_reviewCity(Search search) throws Exception {
+		return boardDao.selectAll_reviewCity(search);
 	}
 
 	
 	@Override
-	public void selectAll_reviewTheme(Model model) {
-		try {
-			List<BoardVo> list = boardDao.selectAll_reviewTheme();
-			model.addAttribute("list",list);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	public List<BoardVo> selectAll_reviewTheme(Search search) throws Exception {
+		return boardDao.selectAll_reviewTheme(search);
 	}
 
 

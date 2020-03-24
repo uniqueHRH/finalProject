@@ -1,0 +1,42 @@
+	h1 {
+		font-family: 'Jua';
+	}
+	form {
+   		width:800px;
+	   	margin:0 auto;
+	   	align:center;
+		font-family: 'Jua';
+	   	text-align:center;
+	   	padding:0px;
+	}
+	#board_sub, #client_nick1, #board_date, #board_count, #board_content {
+		background-color:white;
+	}
+	label {
+		width:35px;
+	}
+	#board_sub {
+		width:700px;
+		align:left;
+		text-align:left;
+	}
+	#client_nick1, #board_date, #board_count {
+		width:161px;
+	}
+	#board_content {
+		width:700px;
+		height:300px;
+	}
+	textarea {
+		background-color:pink;
+		color:black;
+	}
+/* 테마 선택 */
+	label {
+		width:50px;
+	}	
+	#btn {
+		text-align:center;
+	}
+/* 이미지 수정 */
+	

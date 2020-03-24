@@ -9,127 +9,9 @@
 <title>DETAIL</title>
 <link rel="stylesheet" type="text/css" href="${root }css/bootstrap.css" />
 <link rel="stylesheet" type="text/css" href="${root }css/travel.css" />
+<link rel="stylesheet" type="text/css" href="${root }css/boardDetail.css" />
 <style type="text/css">
-	h1 {
-		font-family: 'Jua';
-	}
-	form {
-		width:700px;      
-		margin:0 auto;
-		font-family: 'Jua';
-		font-size:18px;
-	}
-	#hambI {
-		border:1px solid #474747;
-		padding:0;
-		border-radius:10px;
-	}
-	form {
-		width:750px;
-		margin:0 auto;
-		align:center;
-		text-align:center;
-		padding:0px;
-	}
-	#board_theme1, #board_theme2, #board_theme3, #board_land, #board_sub, #client_nick1, #board_date, #board_count, #board_content, #replyBoard {
-		background-color:white;
-	}
-	#board_sub {
-		width:575px;
-		align:left;
-		text-align:left;
-	}
-	#board_theme1, #board_theme2, #board_theme3 {
-		text-align:center;
-		font-size:13px;
-		font-weight:normal;
-		width:90px;
-		border-color:white;
-	}
-	#board_date {
-		width:120px;
-	}
-	#client_nick1, #board_count {
-		width:140px;
-	}
-	#board_content {
-		width:700px;
-		height:300px;
-	}
-	#btn {
-		text-align:center;
-	}
-	#replyShow {
-		width:700px;
-		margin:0 auto;
-	}
-	/* 댓글 */
-	#table {
-		width:700px;
-		margin:0 auto;
-		border-color:gray;
-		padding:10px;
-		border:0;
-		outline:0;
-		background-color:#e8e8e8;
-	}
-	#replyBoard {
-		width:700px;
-		height:100px;
-	}
-	#reply {
-		width:600px;
-		height:30px;
-		font-family:'Jua';
-		border:0;
-		outline:0;
-	}
-	#reply_content {
-		width:600px;
-	}
-	#edit, #update, #cancel, #dele2, #insert {
-		text-align:center;
-		width:30px;
-		height:25px;
-		text-align:center;
-		border:0;
-		outline:0;
-		background-color:#e8e8e8;
-	}
-	tbody th:nth-child(1) {
-		width:110px;
-	}
-	tbody th:nth-child(2) {
-		font-size:13px;
-		font-weight:normal;
-		color:gray;
-	}
-	tbody td:nth-child(1) {
-		font-size:13px;
-		width:640px;
-		height:25px;
-	}
-	tbody td:nth-child(2) {
-		width:67px;
-	}
-/* content */
-	#contentM {
-		margin:20px 20px;
-		border:2px solid #e8e8e8;
-		border-radius:10px;
-	}
-	#contentC {
-		width:670px;
-		margin:20px 5px;
-		background-color:white;
-		border:0;
-		outline:0;
-		text-align:left;
-	}
-	#board_thumb {
-		margin:20px 5px;
-	}
-   
+	
 </style>
 
 </head>
@@ -225,32 +107,32 @@
 <!-- 제목 -->
 <form class="form-inline" method="POST">
    <div>
-      <input type="text" class="form-control" id="board_sub" name="board_sub" value="[${bean.board_land }] ${bean.board_sub }" style="cursor:default" disabled>
-      <input type="text" class="form-control" id="board_date" value="${bean.board_date }" style="cursor:default" disabled>
+      <input type="text" class="form-control" id="board_sub" name="board_sub" value="${bean.partner_sub }" style="cursor:default" disabled>
       <input type="hidden" id="board_no" name="board_no" value="${bean.board_no }">
    </div>
    <p></p>
    <div>
       <div class="form-group" align="left">
-         <input type="hidden" class="form-control" id="board_theme" value="${bean.board_theme }" style="cursor:default" disabled>
-         <input type="text" class="form-control" id="board_theme1" style="cursor:default" disabled>
-         <input type="text" class="form-control" id="board_theme2" style="cursor:default" disabled>
-         <input type="text" class="form-control" id="board_theme3" style="cursor:default" disabled>
-      &nbsp; &nbsp;
          <label for="exampleInputName2">닉네임</label>
          <input type="text" class="form-control" id="client_nick1" value="${bean.client_nick1 }" style="cursor:default" disabled>
       </div>
+      &nbsp; &nbsp;
       <div class="form-group">
          <label for="exampleInputEmail2">조회수</label>
-         <input type="text" class="form-control" id="board_count" value="${bean.board_count }" style="cursor:default" disabled>
+         <input type="text" class="form-control" id="board_count" value="${bean.partner_count }" style="cursor:default" disabled>
          <input type="hidden" id="log" name="log" value="${sessionScope.check.client_nick1}">
+      </div>
+      &nbsp; &nbsp;
+      <div class="form-group" align="left">
+		<label for="exampleInputEmail2">작성일</label>
+		<input type="text" class="form-control" id="board_date" value="${bean.partner_date }" style="cursor:default" disabled>
       </div>
    </div>
    <p></p>
    <div contenteditable="false" id="contentM">
-		<img src="${root }resources/${bean.board_thumb }" id="board_thumb"/>
-		<input type="hidden" id="hiddenI" value="${bean.board_thumb }"/>
-		<input type="text" id="contentC" value="${bean.board_content }" disabled/>
+		<img src="${root }resources/${bean.partner_thumb }" id="board_thumb"/>
+		<input type="hidden" id="hiddenI" value="${bean.partner_thumb }"/>
+		<input type="text" id="contentC" value="${bean.partner_content }" disabled/>
    </div>
    <p></p>
    <div id="btn">
@@ -345,21 +227,6 @@
 			$('#board_thumb').remove();
 		}
 		
-      // 테마 출력
-      var themeVal=$('#board_theme').val();
-      var themeLength=themeVal.length;
-      var themeSplit=themeVal.split(',');
-      
-      for(i=0; i<themeSplit.length; i++) {
-         var themeFir=themeSplit[0];
-         var themeSec=themeSplit[1];
-         var themeThi=themeSplit[2];
-         
-         $('#board_theme1').val('#'+themeFir);
-         $('#board_theme2').val('#'+themeSec);
-         $('#board_theme3').val('#'+themeThi);
-      }
-      
       // 작성자만 수정/삭제 가능
       var mas=$('#client_nick1').val();
       var log=$('#log').val();
@@ -371,7 +238,7 @@
       
       // 수정버튼
       $('#subm').on('click',function() {
-         location.href="../reviewUp/${bean.board_no}";
+         location.href="../partnerUp/${bean.board_no}";
       });
       
       // 삭제버튼
@@ -384,12 +251,12 @@
 					alert('댓글이 작성된 게시물은 삭제가 불가능합니다');
 				} else {
 					$.ajax({
-		                  url:'../reviewDel',
+		                  url:'../partnerDel',
 		                  type:'POST',
 		                  data:{key:$('input[type=hidden]').val()},
 		                  success:function() {
 		                      alert('삭제되었습니다');
-		                      location.href="../review";
+		                      location.href="../partner";
 		                  },
 		                  error:function() {
 		                     alert('삭제에 실패했습니다');
@@ -401,7 +268,7 @@
             
 	// 목록버튼
 	$('#goList').on('click',function() {
-		location.href="../review";
+		location.href="../partner";
 	});
       
       // 댓글보기 버튼
@@ -441,13 +308,12 @@
 				event.preventDefault();
 			} else {
 				$.ajax({
-		            url:'../reviewRepIn',
+		            url:'../partnerRepIn',
 		            type:'POST',
    		            cache:false,
 		            data:{board_no:$('#board_no').val(), client_nick1:log, reply_content:reply},
 		            success:function() {
-		            	$('#tr1').append("<tbody><th>"+log+"</th><th>"+reply+"</th><td>"+reply+"</td></tbody>");
-		            	$('#reply').val('');
+		            	reload();
 		            },
 		            error:function() {
 		               alert('다시 시도해주세요');
@@ -481,7 +347,7 @@
 					
 					if(con) {
 						$.ajax({
-				            url:'../reviewRepUp',
+				            url:'../partnerRepUp',
 				            type:'POST',
 				            data:{reply_no:num, reply_content:text},
 				            success:function() {
@@ -507,7 +373,7 @@
      			
      			if(con) {
      				 $.ajax({
-     		            url:'../reviewRepDel',
+     		            url:'../partnerRepDel',
      		            type:'POST',
      		            cache:false,
      		            data:{key:num},
