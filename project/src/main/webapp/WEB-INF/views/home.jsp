@@ -90,6 +90,24 @@
 		background-image:url(https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/sydney.jpg?raw=true);
 	}
 	
+/* 검색 */
+	#MainSea {
+		width:1000px;
+		margin:0 auto;
+		font-family:'Jua';
+		text-align:center;
+		align:center;
+	}
+	#keyword {
+		width:500px;
+		height:50px;
+		font-size:18px;
+		display:inline-block;
+	}
+	#searchGo {
+		width:60px;
+		height:50px;
+	}
 </style>
 </head>
 <body>
@@ -169,7 +187,11 @@
 	<div>
 		<button id="hambBtn"><img src="https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/menu.jpg?raw=true" width="100px" id="hambI"></button>
 	</div>
-	<p id="comment"><br/><br/><br/><br/><br/>떠나요<br/><img src="https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/logoC.png?raw=true" width="300px"><br/><br/><br/></p>
+	<p id="comment"><br/><br/><br/><br/><br/>떠나요<br/><img src="https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/logoC.png?raw=true" width="300px"></p>
+	<div id="MainSea">
+		<input type="text" class="form-control" id="keyword" name="keyword" placeholder="도시명 검색 (DB 확인후 기능 예정)">
+		<a class="btn btn-default" href="#" role="button" id="searchGo">G O</a>
+	</div>
 </div>
 
 
@@ -212,6 +234,16 @@
 			$('#hambBtn').show();
 		});
 		
+		
+		// 검색
+		$('#searchGo').on('click',function() {
+			var url='${root }board/review';
+			url=url+'?searchType='+$('#searchType').val();
+			url=url+'&keyword='+$('#keyword').val();
+			
+			location.href=url;
+			console.log(url);
+		});
 	});
 </script>
 </body>

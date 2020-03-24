@@ -114,7 +114,7 @@
    <div>
       <div class="form-group" align="left">
          <label for="exampleInputName2">닉네임</label>
-         <input type="text" class="form-control" id="client_nick1" value="${bean.client_nick1 }" style="cursor:default" disabled>
+         <input type="text" class="form-control" id="client_nick1" name="client_nick1" value="${bean.client_nick1 }" style="cursor:default" disabled>
       </div>
       &nbsp; &nbsp;
       <div class="form-group">

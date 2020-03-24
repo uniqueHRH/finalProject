@@ -20,17 +20,7 @@
 	#dropdownMenu1:hover {
 		background-color:#e8e8e8;
 	}
-/* 나라정렬버튼 + 검색조회버튼 */
-	#dropdownMenu1, #searchType {
-		border-radius:5px;
-		font-size:14px;
-		text-align:center;
-		height:33px;
-		width:79px;
-		cursor: pointer;
-		padding:0px 0px 0px 13px;
-		display:inline-block;
-	}
+
 /* 나라정렬 조회버튼 */
 	#sel {
 		display:inline-block;
