@@ -16,10 +16,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.bit.project.common.Pagination;
+import com.bit.project.common.Search;
 import com.bit.project.file.UploadFileUtils;
 import com.bit.project.model.entity.BoardVo;
 import com.bit.project.model.entity.ReplyVo;
-import com.bit.project.paging.Pagination;
 import com.bit.project.service.BoardService;
 import com.bit.project.service.ReplyService;
 
@@ -32,7 +33,8 @@ public class BoardController {
 	ReplyService replyService;
 	@Resource
 	Pagination pagination;
-
+	@Resource
+	Search search;
 	@Resource(name="uploadPath")
 	private String uploadPath;
 	
@@ -48,26 +50,33 @@ public class BoardController {
 	
 	// 후기리스트 이동 (작성순 정렬)
  	@RequestMapping(value = "/board/review", method = RequestMethod.GET)
- 	public String review(Model model, @RequestParam(required = false, defaultValue = "1") int page, @RequestParam(required = false, defaultValue = "1") int range) throws Exception {
+ 	public String review(Model model, @RequestParam(required = false, defaultValue = "1") int page,
+ 			@RequestParam(required=false, defaultValue="1") int range,
+ 			@RequestParam(required=false, defaultValue="board_sub") String searchType,
+ 			@RequestParam(required=false) String keyword
+ 			) throws Exception {
 
+ 		search.setSearchType(searchType);
+ 		search.setKeyword(keyword);
+ 		
  		//전체 게시글 개수
  		int listCnt=0;
 		try {
-			listCnt = boardService.getBoardListCnt();
-			pagination.pageInfo(page, range, listCnt);
+			listCnt = boardService.getBoardListCnt(search);
+			search.pageInfo(page, range, listCnt);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		model.addAttribute("pagination", pagination);
-		model.addAttribute("list",boardService.selectAll_review(pagination));
+		model.addAttribute("pagination", search);
+		model.addAttribute("list",boardService.selectAll_review(search));
 		model.addAttribute("listCnt",listCnt);
  		return "board/review";
  	}
  	
 	/*
-	@RequestMapping(value = "/board/review", method = RequestMethod.GET) public
-	String review(Model model) {
+	@RequestMapping(value = "/board/review", method = RequestMethod.GET)
+	public String review(Model model) {
 		boardService.selectAll_review(model);
 		return "board/review";
 	}

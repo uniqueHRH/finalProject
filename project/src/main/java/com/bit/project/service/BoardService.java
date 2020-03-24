@@ -4,13 +4,13 @@ import java.util.List;
 
 import org.springframework.ui.Model;
 
+import com.bit.project.common.Search;
 import com.bit.project.model.entity.BoardVo;
-import com.bit.project.paging.Pagination;
 
 public interface BoardService {
 
 	
-	List<BoardVo> selectAll_review(Pagination pagination) throws Exception;
+	List<BoardVo> selectAll_review(Search search) throws Exception;
 	void selectAll_reviewCity(Model model);
 	void selectAll_reviewTheme(Model model);
 	
@@ -24,6 +24,6 @@ public interface BoardService {
 	
 	void select_land(int key, Model model);
 //	°Ô½Ã¹° ÃÑ °¹¼ö
-	public int getBoardListCnt() throws Exception;
+	public int getBoardListCnt(Search search) throws Exception;
 }
 

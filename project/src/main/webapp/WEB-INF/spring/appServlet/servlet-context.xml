@@ -20,6 +20,7 @@
 	<resources mapping="/slick-1.8.1/**" location="/slick-1.8.1/" />
 	<resources mapping="/slick/**" location="/slick/" />
 	
+	
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -43,7 +44,7 @@
 	<!-- 파일업로드 -->
 	<!-- 업로드 패스 설정 --> 
 	<beans:bean class="java.lang.String" id="uploadPath">
-		<beans:constructor-arg value="C:\wokspace2\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\project\resources"/>
+		<beans:constructor-arg value="C:\wokspace2\.metadata\.plugins\org.eclipse.wst.server.core\tmp1\wtpwebapps\project\resources"/>
 	</beans:bean>
 	
 	<!-- 일반 파일 업로드 경로 -->

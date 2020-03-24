@@ -2,8 +2,8 @@ package com.bit.project.model;
 
 import java.util.List;
 
+import com.bit.project.common.Search;
 import com.bit.project.model.entity.BoardVo;
-import com.bit.project.paging.Pagination;
 
 public interface BoardDao {
 
@@ -18,7 +18,7 @@ public interface BoardDao {
 	List<BoardVo> selectAll_tourTheme() throws Exception;
 	 
 //	후기 기본 정렬 (작성 순서)
-	List<BoardVo> selectAll_review(Pagination pagination) throws Exception;
+	List<BoardVo> selectAll_review(Search search) throws Exception;
 
 	/* List<BoardVo> selectAll_review() throws Exception; */
 //	후기 도시별 정렬
@@ -66,5 +66,5 @@ public interface BoardDao {
 //	조회수
 	int updateCnt(int key) throws Exception;
 //	게시물 총 갯수
-	public int getBoardListCnt() throws Exception;
+	public int getBoardListCnt(Search search) throws Exception;
 }

@@ -1,4 +1,4 @@
-package com.bit.project.paging;
+package com.bit.project.common;
 
 import org.springframework.stereotype.Repository;
 

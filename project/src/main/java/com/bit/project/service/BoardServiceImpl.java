@@ -6,9 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+import com.bit.project.common.Search;
 import com.bit.project.model.BoardDao;
 import com.bit.project.model.entity.BoardVo;
-import com.bit.project.paging.Pagination;
 
 @Service
 public class BoardServiceImpl implements BoardService {
@@ -18,8 +18,8 @@ public class BoardServiceImpl implements BoardService {
 	
 	
 	@Override
-	public List<BoardVo> selectAll_review(Pagination pagination) throws Exception {
-		return boardDao.selectAll_review(pagination);
+	public List<BoardVo> selectAll_review(Search search) throws Exception {
+		return boardDao.selectAll_review(search);
 	}
 
 	
@@ -97,8 +97,8 @@ public class BoardServiceImpl implements BoardService {
 
 	
 	@Override
-	public int getBoardListCnt() throws Exception {
-		return boardDao.getBoardListCnt();
+	public int getBoardListCnt(Search search) throws Exception {
+		return boardDao.getBoardListCnt(search);
 	}
 
 	

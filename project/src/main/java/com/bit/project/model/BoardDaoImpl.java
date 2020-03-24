@@ -6,8 +6,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.bit.project.common.Search;
 import com.bit.project.model.entity.BoardVo;
-import com.bit.project.paging.Pagination;
 
 @Repository
 public class BoardDaoImpl implements BoardDao {
@@ -31,8 +31,8 @@ public class BoardDaoImpl implements BoardDao {
 	}
 
 	@Override
-	public List<BoardVo> selectAll_review(Pagination pagination) throws Exception {
-		return sqlSession.selectList("board.selectAll_review", pagination);
+	public List<BoardVo> selectAll_review(Search search) throws Exception {
+		return sqlSession.selectList("board.selectAll_review", search);
 	}
 	/*
 	 * @Override public List<BoardVo> selectAll_review() throws Exception { return
@@ -176,7 +176,7 @@ public class BoardDaoImpl implements BoardDao {
 	}
 
 	@Override
-	public int getBoardListCnt() throws Exception {
+	public int getBoardListCnt(Search search) throws Exception {
 		return sqlSession.selectOne("board.getBoardListCnt");
 	}
 

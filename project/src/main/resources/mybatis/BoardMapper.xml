@@ -11,13 +11,25 @@
 	paid_state < 미결제 : 0 / 결제 : 1 >
 	paid_confirm < 미확정 : 0 / 확정 : 1 >
  -->
- 
+
  
 <mapper namespace="board">
 
 <!-- 후기 기본 정렬 (작성 순서) -->
 	<select id="selectAll_review" resultType="BoardBean">
-		select * from board ORDER BY board_no DESC LIMIT #{startList}, #{listSize}
+		select * from board ORDER BY board_no DESC
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="searchType=='board_sub' and keyword != null and keyword != '' ">
+				AND board_sub like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType=='board_land' and keyword != null and keyword != '' ">
+				AND board_land like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType=='board_theme' and keyword != null and keyword != '' ">
+				AND board_theme like CONCAT('%', #{keyword}, '%')
+			</if>	
+		</trim>
+		LIMIT #{startList}, #{listSize}
 	</select>
 <!-- 후기 도시별 정렬 -->
 	<select id="selectAll_reviewCity" resultType="BoardBean">
@@ -66,12 +78,19 @@
 <!-- 총게시글 갯수 -->
 	<select id="getBoardListCnt" resultType="int">
 		select count(*) from board
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="searchType=='board_sub' and keyword != null and keyword != '' ">
+				AND board_sub like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType=='board_land' and keyword != null and keyword != '' ">
+				AND board_land like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType=='board_theme' and keyword != null and keyword != '' ">
+				AND board_theme like CONCAT('%', #{keyword}, '%')
+			</if>
+		</trim>
 	</select>
 	
-<!-- 검색 -->	
-	<select id="search_sub" resultType="BoardBean">
-		select * from board where board_sub='%테스트%'
-	</select>
 </mapper>
 
 

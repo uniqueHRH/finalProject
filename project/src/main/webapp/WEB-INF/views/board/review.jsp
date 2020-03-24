@@ -220,12 +220,12 @@
 
 <!-- 검색 -->
    <div class="topMenu" id="search">
-		<select id="dropdownMenu2">
-		    <option value="제목">제 &nbsp; 목</option>
-		    <option value="나라별">나라별</option>
-		    <option value="테마별">테마별</option>
+		<select id="searchType">
+		    <option value="board_sub">제 &nbsp; 목</option>
+		    <option value="board_land">나라별</option>
+		    <option value="board_theme">테마별</option>
 		</select>
-      <input type="text" class="form-control" id="client_id" name="wri" style="width:200px; display:inline-block;">
+      <input type="text" class="form-control" id="keyword" name="keyword" style="width:200px; display:inline-block;">
 		<a class="btn btn-default" href="#" role="button" id="searchGo">G O</a>
 	</div>
 	
@@ -339,6 +339,17 @@
 		if(!loginBool) {
 			$('#wri').hide();
 		}
+//////////////////////////////////////////////////////////////////////////////////////////		
+		// 검색
+		$('#searchGo').on('click',function() {
+			var url='${root }board/review';
+			url=url+'?searchType='+$('#searchType').val();
+			url=url+'&keyword='+$('#keyword').val();
+			
+			location.href=url;
+			console.log(url);
+		});
+		
    });
 //////////////////////////////////////////////////////////////////////////////////////////		
 		// 페이징
@@ -367,19 +378,6 @@
 			url = url + "&range=" + range;
 			location.href = url;
 		}
-
-		// 검색기능
-		$('#search').on('click',function() {
-			var search=$('#dropdownMenu2').val();
-			
-			console.log(search);
-			/* if(up==나라별) {
-				alert('나라별');
-			}
-			if(up==테마별) {
-				alert('테마별');
-			} */
-		});
 		
 		
 </script>
