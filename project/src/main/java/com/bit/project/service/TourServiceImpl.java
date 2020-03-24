@@ -33,6 +33,7 @@ public class TourServiceImpl implements TourService{
 	@Override
 	public void selectOne_eastasia(Model model, int tour_no) {
 		try {
+			
 			model.addAttribute("bean",tourDao.selectOne_eastasia(tour_no));
 		} catch (Exception e) {
 			e.printStackTrace();

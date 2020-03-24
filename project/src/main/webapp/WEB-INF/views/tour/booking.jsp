@@ -22,7 +22,7 @@
     .form-horizontal {
        width:700px;
        position: absolute;
-       left: 350px;
+       left: 400px;
        margin-top: 30px;
     }
     #paid_count1{
@@ -34,41 +34,46 @@
     #img{
     	width: 300px;
     	position: absolute;
-    	right: 450px;
+    	right: 540px;
     	margin-top: 30px;
     }
     #infor1{
     	width: 300px;
     	position: absolute;
-    	right: 450px;
+    	right: 540px;
     	top: 380px;
     
     }
     #infor2{
     	width: 300px;
     	position: absolute;
-    	right: 450px;
+    	right: 540px;
     	top: 470px;
     
     }
     #checkcostbtn{
     	position: absolute;
-    	right: 450px;
+    	right: 540px;
     	top: 423px;
     }
     #confirmbtn{
     	width: 200px;
     	position: absolute;
-    	left: 570px;
+    	left: 600px;
     	top: 470px;
     }
     #bookbtn{
     	width: 300px;
     	position: absolute;
-    	right: 450px;
+    	right: 540px;
     	top: 530px;
     }
-   
+   #resetbtn{
+   	width: 300px;
+    	position: absolute;
+    	left: 540px;
+    	top: 530px;
+   }
    
 </style>
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
@@ -263,11 +268,6 @@
 				<input type="hidden" id="tour_no" name="tour_no" value="${bean.tour_no }">
 			<button type="submit" id="bookbtn" class="btn btn-default btn-lg btn-block">예약하기</button>
 			</form>	
-				
-				
-				
-				
-				
 		</div>	
 	</div>
 </div>
@@ -313,7 +313,7 @@
 			$('#system_sub').hide();
 		});
 		$('#confirmbtn').click(function(){
-							
+			
 			var tour_date=$('#tour_date1').val();
 			var paid_name=$('#paid_name1').val();
 			var paid_count=$("#paid_count1 option:selected").val();
@@ -322,22 +322,31 @@
 			var paid_kakaoid=$('#paid_kakaoid1').val();
 			var paid_total=Number(paid_count)*Number(${bean.cost });
 	
-			if(tour_date=="" && paid_name=="" && paid_count=="" && paid_phone=="" && paid_birth==""){
+			if(tour_date=="" | paid_name=="" | paid_count=="" | paid_phone=="" | paid_birth==""){
 						alert('빈칸을 입력해주세요');
 				return false;
 			}else{
 			//hidden input 값 받아오는 함수
-			$('#form1').append('<input type="text" id="client_name" name="client_name" value="'+'${sessionScope.check.client_name}'+'">');
-			$('#form1').append('<input type="text" id="tour_date" name="tour_date" value="'+tour_date+'">');
-			$('#form1').append('<input type="text" id="paid_name" name="paid_name" value="'+paid_name+'">');
-			$('#form1').append('<input type="text" id="paid_count" name="paid_count" value="'+paid_count+'">');
-			$('#form1').append('<input type="text" id="paid_phone" name="paid_phone" value="'+paid_phone+'">');
-			$('#form1').append('<input type="text" id="paid_birth" name="paid_birth" value="'+paid_birth+'">');
-			$('#form1').append('<input type="text" id="paid_kakaoid" name="paid_kakaoid" value="'+paid_kakaoid+'">');
-			$('#form1').append('<input type="text" id="paid_total" name="paid_total" value="'+paid_total+'">');
+			$('#form1').append('<input type="hidden" id="client_name" name="client_name" value="'+'${sessionScope.check.client_name}'+'">');
+			$('#form1').append('<input type="hidden" id="tour_date" name="tour_date" value="'+tour_date+'">');
+			$('#form1').append('<input type="hidden" id="paid_name" name="paid_name" value="'+paid_name+'">');
+			$('#form1').append('<input type="hidden" id="paid_count" name="paid_count" value="'+paid_count+'">');
+			$('#form1').append('<input type="hidden" id="paid_phone" name="paid_phone" value="'+paid_phone+'">');
+			$('#form1').append('<input type="hidden" id="paid_birth" name="paid_birth" value="'+paid_birth+'">');
+			$('#form1').append('<input type="hidden" id="paid_kakaoid" name="paid_kakaoid" value="'+paid_kakaoid+'">');
+			$('#form1').append('<input type="hidden" id="paid_total" name="paid_total" value="'+paid_total+'">');
 			//hidden input end
+			$(this).hide();
+			$('#tour_date1').attr('readonly',true);
+			$('#paid_name1').attr('readonly',true);
+			$('#paid_count1').attr('readonly',true);
+			$('#paid_phone1').attr('readonly',true);
+			$('#paid_birth1').attr('readonly',true);
+			$('#paid_kakaoid1').attr('readonly',true);
+			
 			}
   		});
+		
 		
 		$('#checkcostbtn').click(function(){
 			
@@ -377,6 +386,8 @@
 				$('#count_check').text('인원수를 선택해주세요');
 				$('#count_check').css('color', 'red');
 				return false;
+			}else{
+				$('#count_check').text('');
 			}
 		});
 		$('#paid_phone1').blur(function(){

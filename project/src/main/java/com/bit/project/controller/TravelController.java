@@ -157,7 +157,7 @@ public class TravelController {
 		return "tour/eastasia";
 	}
 	@RequestMapping(value = "/tour/eastasia/{idx}", method = RequestMethod.GET)
-	public String detail(Model model, @PathVariable ("idx") int tour_no ) {
+	public String detail(Model model, @PathVariable ("idx") int tour_no) {
 		tourservice.selectOne_eastasia(model, tour_no);
 		return "tour/detaileastasia";
 	}

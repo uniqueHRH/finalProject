@@ -236,11 +236,8 @@
       
       <div id="map"></div>
     
-   <a id="bookform" href="${root }tour/eastasia/${bean.tour_no}/booking"><button type="button" id="bookbtn" class="btn btn-default btn-lg">예약하기</button></a>
-   
-      <div id="cont1" style="width:500px;bvheight:500px;"></div>
       <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" id="mapbtn">자세히보기</button>
+	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" id="mapbtn">자세히보기</button>
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -249,6 +246,9 @@
       </div>    
 </div>
 <!-- model end -->
+   <a id="bookform" href="${root }tour/eastasia/${bean.tour_no}/booking"><button type="button" id="bookbtn" class="btn btn-default btn-lg">예약하기</button></a>
+   
+      
       <p id="course"> <여행일정> </p>
       <div id="courseimg">
       <img src="${bean.course }">
@@ -307,23 +307,24 @@
  
    //구글맵관련 
    function initMap() {
-  	var myLatLng = myLatlng = new google.maps.LatLng(${bean.latlng});//구글맵좌표
+  	var myLatLng = myLatlng = new google.maps.LatLng(${bean.latlng});//메인구글맵좌표
   	var myLatLng1 = myLatlng = new google.maps.LatLng(${bean.latlng});//구글맵좌표
-	
+	//메인구글맵 start
  	 var map = new google.maps.Map(document.getElementById('map'), {
     	zoom: 7,
     	center: myLatLng
       });
- 	//for문 돌려서 marker 다량 선택가능
+ 
  	 var marker = new google.maps.Marker({
     position: myLatLng,//좌표선택해주면됨
     icon:"${root}imgs/icon(big).png",
     map: map,
     title: '${bean.city}'//marker  표시
   });
+ 	//메인구글맵end
  	
  	var map1 = new google.maps.Map(document.getElementById('map1'), {
-    	zoom: 7,
+    	zoom: 10,
     	center: myLatLng1
       });
  	//for문 돌려서 marker 다량 선택가능
