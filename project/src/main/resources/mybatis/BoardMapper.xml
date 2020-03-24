@@ -17,7 +17,7 @@
 
 <!-- 후기 기본 정렬 (작성 순서) -->
 	<select id="selectAll_review" resultType="BoardBean">
-		select * from board ORDER BY board_no DESC
+		select * from board
 		<trim prefix="WHERE" prefixOverrides="AND|OR">
 			<if test="searchType=='board_sub' and keyword != null and keyword != '' ">
 				AND board_sub like CONCAT('%', #{keyword}, '%')
@@ -29,6 +29,7 @@
 				AND board_theme like CONCAT('%', #{keyword}, '%')
 			</if>	
 		</trim>
+		ORDER BY board_no DESC
 		LIMIT #{startList}, #{listSize}
 	</select>
 <!-- 후기 도시별 정렬 -->
@@ -48,7 +49,7 @@
 	
 	
 	<insert id="insertOne_review" parameterType="BoardBean">
-		insert into board (board_id, board_sub, board_count, board_content, client_nick1, board_date, board_land, board_theme, board_img, board_thumb) values (2,#{board_sub}, 0, #{board_content}, #{client_nick1}, now(), #{board_land}, #{board_theme}, #{board_img, jdbcType=VARCHAR}, #{board_thumb, jdbcType=VARCHAR})
+		insert into board (board_sub, board_count, board_content, client_nick1, board_date, board_land, board_theme, board_img, board_thumb) values (#{board_sub}, 0, #{board_content}, #{client_nick1}, now(), #{board_land}, #{board_theme}, #{board_img, jdbcType=VARCHAR}, #{board_thumb, jdbcType=VARCHAR})
 	</insert>
 	
 	
@@ -87,31 +88,8 @@
 			</if>
 			<if test="searchType=='board_theme' and keyword != null and keyword != '' ">
 				AND board_theme like CONCAT('%', #{keyword}, '%')
-			</if>
+			</if>	
 		</trim>
 	</select>
 	
 </mapper>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -53,9 +53,11 @@ public class BoardController {
  	public String review(Model model, @RequestParam(required = false, defaultValue = "1") int page,
  			@RequestParam(required=false, defaultValue="1") int range,
  			@RequestParam(required=false, defaultValue="board_sub") String searchType,
- 			@RequestParam(required=false) String keyword
+ 			@RequestParam(required=false) String keyword,
+ 			@ModelAttribute("search") Search search
  			) throws Exception {
 
+ 		model.addAttribute("search", search);
  		search.setSearchType(searchType);
  		search.setKeyword(keyword);
  		
@@ -115,13 +117,13 @@ public class BoardController {
  		boardService.selectAll_event(model);
  		return "board/event";
  	}
+ */
  	
  	// 글쓰기로 이동
  	@RequestMapping(value = "/board/write", method = RequestMethod.GET)
  	public String write() {
  		return "board/write";
  	}
-*/
  	// 글쓰기 완료, list 로 이동
  	@RequestMapping(value = "/board/write", method = RequestMethod.POST)
  	public String write(@ModelAttribute BoardVo bean, MultipartFile file) throws Exception {

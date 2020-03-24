@@ -9,6 +9,11 @@ public class Search extends Pagination{
 	private String keyword;
 	
 	
+	
+	public Search() {
+	}
+	
+	
 	public String getSearchType() {
 		return searchType;
 	}
