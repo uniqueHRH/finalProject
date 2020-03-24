@@ -13,4 +13,5 @@ public interface ClientService {
 	void deleteOne_client(int key);
 	public ClientVo loginCheck(ClientVo bean) throws Exception;
 	public ClientVo findId(ClientVo bean) throws Exception;
+	public ClientVo findPw(ClientVo bean) throws Exception;
 }

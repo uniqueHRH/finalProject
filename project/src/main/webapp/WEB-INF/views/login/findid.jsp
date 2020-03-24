@@ -9,6 +9,7 @@
 <head>
 <meta charset="utf-8">
 <title>Home</title>
+
 <link rel="stylesheet" type="text/css" href="${root }css/bootstrap.css" />
 <link rel="stylesheet" type="text/css" href="${root }css/travel.css" />
 <style type="text/css">
@@ -48,82 +49,55 @@
 </head>
 <body>
                         <!-- menubar start -->
-<div class="menubar">
-	<nav>
-		<div>
-			<ul class="login">
-		        <!-- 로그인시 숨김 -->
-		        <c:if test="${sessionScope.check eq null && sessionScope.staffcheck eq null }">
-		        <li>
-		        	<a id="side" href="${root }main/login" >로그인</a> &nbsp; &nbsp; &nbsp; &nbsp;
-		        	<a id="side" href="${root }main/admin" >회원가입</a>
-		        </li>
-		        </c:if>
-		        <!-- 직원로그인시 -->
-		        <c:if test="${sessionScope.staffcheck ne null }">
-				<select id="side" onchange="location.href=this.value">
-		            <option value="${root }main/staffinfo">내정보관리</option>
-		            <option value="${root }main/logout">로그아웃</option>
-		        </select>
-		        </c:if>
-		        <!-- 회원로그인시 -->
-		        <c:if test="${sessionScope.check ne null }">
-				<select id="side" onchange="location.href=this.value">
-					<option id="hide">${sessionScope.check.client_nick1} 님<span class="caret"></span></option>
-		            <option value="${root }main/message">쪽지함</option>
-		            <option value="#">최근본상품</option>
-		            <option value="${root }main/wish">찜한상품</option>
-		            <option value="#">결제상품</option>
-		            <option value="#">내가쓴글</option>
-		            <option value="${root }main/myinfo">내정보관리</option>
-		            <option value="${root }main/logout">로그아웃</option>
-		          </select>
-		        </c:if>
-			</ul>
-			<ul class="nav nav-pills nav-stacked" id="hamb">
-				<li id="hamSub"><a href="#">투어</a>
-			  		<ul>
-			  			<li><a href="${root }tour/eastasia">중국/일본</a></li>
-			       		<li><a href="${root }tour/southeastasia">동남아시아</a></li>
-			       		<li><a href="${root }tour/america">아 메 리 카</a></li>
-			       		<li><a href="${root }tour/europe">유 &nbsp; &nbsp; &nbsp; &nbsp;럽</a></li>
-			       		<li><a href="${root }tour/pacific">남 태 평 양</a></li>
-			       		<li><a href="${root }tour/africa">아 프 리 카</a></li>
-			       		<li><a href="${root }tour/theme">테 마 여 행</a></li>
-			  		</ul>
-			  	</li>
-				<li id="hamSub"><a href="#">커뮤니티</a>
-					<ul>
-			  			<li><a href="${root }board/review">여행후기</a></li>
-			       		<li><a href="${root }board/partner">동행구하기</a></li>
-			       		<li><a href="${root }board/free">자유게시판</a></li>
-			  		</ul>
-			  	</li>
-				<li id="hamSub"><a href="#">이벤트</a></li>
-				<li><a href="#">고객센터</a>
-					<ul>
-			  			<li><a href="${root }board/notice">공 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;지</a></li>
-				        <li><a href="${root }board/qna">자주묻는질문</a></li>
-			  		</ul>
-			  	</li>
-			  	<c:if test="${sessionScope.staffcheck ne null }">
-					<li id="hamSub"><a href="#">관리자센터</a>
-						<ul>
-				  			<li><a href="${root }system/staff">직원 관리</a></li>
-				       		<li><a href="${root }system/guide">가이드관리</a></li>
-				       		<li><a href="${root }system/client">회원관리</a></li>
-				       		<li><a href="${root }system/paid">결제관리</a></li>
-				       		<li><a href="${root }system/report">신고관리</a></li>
-				  		</ul>
-				  	</li>
-			  	</c:if>
-			</ul>
-		</div><!-- /.navbar-collapse -->
-	</nav><!-- /.container-fluid -->
-	<div>
-		<button id="hambBtn"><img src="https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/menu.jpg?raw=true" width="100px" id="hambI"></button>
-	</div>
-</div>
+   	<nav class="navbar navbar-primary">
+	  <div class="container-fluid">
+	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	      <ul class="nav navbar-nav">
+	        <li class="dropdown">
+	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><img src="https://github.com/uniqueHRH/travel/blob/master/travel/src/main/webapp/imgs/menubar.png?raw=true" width=40px, height=40px/></a>
+	          <ul class="dropdown-menu" role="menu">
+	            <li id="tour"><a href="#">투어</a>
+	            	<ul id="tour_sub">
+	            		<li><a href="${root }tour/eastasia">중국/일본</a></li>
+	            		<li><a href="${root }tour/southeastasia">동남아시아</a></li>
+	            		<li><a href="${root }tour/america">아 메 리 카</a></li>
+	            		<li><a href="${root }tour/europe">유 &nbsp; &nbsp; &nbsp; &nbsp;럽</a></li>
+	            		<li><a href="${root }tour/pacific">남 태 평 양</a></li>
+	            		<li><a href="${root }tour/africa">아 프 리 카</a></li>
+	            		<li><a href="${root }tour/theme">테 마 여 행</a></li>
+	            	</ul>
+	            </li>
+	            <li class="divider"></li>
+	            <li id="comm"><a href="#">커뮤니티</a>
+		            <ul id="comm_sub">
+	            		<li><a href="${root }board/review">여행후기</a></li>
+	            		<li><a href="${root }board/partner">동행구하기</a></li>
+	            		<li><a href="${root }board/free">자유게시판</a></li>
+	            	</ul>
+            	</li>
+	            <li class="divider"></li>
+	            <li><a id="event"href="${root }board/event">이벤트</a></li>
+	            <li class="divider"></li>
+	            <li id="serv"><a href="#">고객센터</a>
+	            	<ul id="serv_sub">
+	            		<li><a href="${root }board/notice">공 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;지</a></li>
+	            		<li><a href="${root }board/qna">자주묻는질문</a></li>
+	            	</ul>
+	            </li>
+	          </ul>
+	        </li>
+	      </ul>
+		<div align="center" style="disply:inline-block;">
+			<a href="${root }"><img src="https://github.com/uniqueHRH/travel/blob/master/travel/src/main/webapp/imgs/logoB.png?raw=true" width=80px></a>
+	      <ul class="nav navbar-nav navbar-right">
+	        <!-- 로그인시 숨김 -->
+	        <li><a id="side" href="${root }main/login" >로그인</a></li>
+	        <li><a id="side" href="${root }main/admin" >회원가입</a></li>
+	      </ul>
+		</div>
+	    </div><!-- /.navbar-collapse -->
+	  </div><!-- /.container-fluid -->
+	</nav>
 <!-- menubar end -->
                      <!-- contents start -->
 <div class="container">
@@ -156,7 +130,7 @@
 			<p></p>
 	     <div id="btn">
 	  		<button type="submit" id="confirmbtn" class="btn btn-default btn-lg">확인</button>
-	  		<button type="button" id="resetbtn" class="btn btn-default btn-lg" onclick="location.href='/main/login'">취소</button>
+	  		<button type="button" id="resetbtn" class="btn btn-default btn-lg" onclick="location.href='../login'">취소</button>
 	  	</div>
 	</div>
   </form>   
@@ -175,29 +149,35 @@
  </div> 
 <script type="text/javascript">
 	$(document).ready(function() {
-		$('#hamb').hide();
-		$('#hide').hide();
-		
 		$('#tour_sub').hide();
 		$('#comm_sub').hide();
 		$('#serv_sub').hide();
 		$('#system_sub').hide();
 		
-		$('#maintext1').hide();
-		$('#maintext2').hide();
-		$('#maintext3').hide();
-		$('#maintext4').hide();
-		
-		$('#hambBtn').mouseenter(function() {
-			$('#hamb').show();
-			$(this).hide();
-		});
-		$('#hamb').mouseenter(function() {
-			$(this).show();
-			$('#hambBtn').hide();
+		$('#mainFont1').hide();
+		$('#mainFont2').hide();
+		$('#mainFont3').hide();
+		$('#mainFont4').hide();
+
+		$('#tour').mouseenter(function() {
+			$('#tour_sub').show();
 		}).mouseleave(function() {
-			$('#hamb').hide();
-			$('#hambBtn').show();
+			$('#tour_sub').hide();
+		});
+		$('#comm').mouseenter(function() {
+			$('#comm_sub').show();
+		}).mouseleave(function() {
+			$('#comm_sub').hide();
+		});
+		$('#serv').mouseenter(function() {
+			$('#serv_sub').show();
+		}).mouseleave(function() {
+			$('#serv_sub').hide();
+		});
+		$('#system').mouseenter(function() {
+			$('#system_sub').show();
+		}).mouseleave(function() {
+			$('#system_sub').hide();
 		});
 	
 		
@@ -216,8 +196,7 @@
 					type:'POST',
 					data:{client_name:name, client_email:email},
 					beforeSend:function(){
-						/* alert('인증번호 발송 중..'); */
-						 document.style.cursor ="wait";
+						alert('인증번호 발송 중..');
 				    },
 				    success:function(data){
 				    	var check = data.FindId
@@ -225,6 +204,7 @@
 				    		alert('가입하신 이름과 이메일을 입력해주세요');
 				    	}else{
 				    	$('input[name=dice]').attr('value',data.Dice);
+				    	alert('인증번호를 발송했습니다.이메일을 확인해주세요');
 						var num = 60 * 3; // 몇분을 설정할지의 대한 변수 선언
 			    		var myVar;
 			   			 function time(){
@@ -264,7 +244,7 @@
 			var dice = $('#dice').val();
 			
 			if(!name || !email){
-				alert('이름과 이메일을 확인해주세요~');
+				alert('이름과 이메일을 확인해주세요');
 				return false;
 			}else if(!code){
 				alert('인증번호를 입력해주세요');

@@ -71,6 +71,11 @@ public class ClientServiceImpl implements ClientService {
 		return clientDao.findId(bean);
 	}
 
+	@Override
+	public ClientVo findPw(ClientVo bean) throws Exception {
+		return clientDao.findPw(bean);
+	}
+
 }
 
 	

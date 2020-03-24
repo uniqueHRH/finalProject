@@ -101,35 +101,24 @@ public class EmailController {
 	    //내가 입력한 인증번호와 메일로 입력한 인증번호가 맞는지 확인해서 맞으면 아이디 찾기 결과 페이지로 넘어가고,
 	    //틀리면 그대로 남음
 	    @RequestMapping(value = "/main/code_check", method = RequestMethod.POST)
-	    public ModelAndView code_check( ClientVo bean,String client_name, String client_email , String code, String dice) throws Exception {
+	    public ModelAndView code_check( ClientVo bean) throws Exception {
 	        
 	        ClientVo IdResult = clientService.findId(bean);
 	        
-	        System.out.println("dice = "+dice);
-	        System.out.println("code = "+code);
-	        
-	        System.out.println(code.equals(dice));
-	        
-	        //페이지이동과 자료를 동시에 하기위해 ModelAndView를 사용해서 이동할 페이지와 자료를 담음
 	        
 	        ModelAndView mav = new ModelAndView();
 	        
 	        
-	        if (code.equals(dice)) {
 	            
-	            //인증번호가 일치할 경우 인증번호가 맞다는 창을 출력하고 회원가입창으로 이동함
+	            //뷰에서 인증번호 일치 시 아이디 찾기 결과 페이지로 이동하기위해 페이지 저장.
 	            mav.setViewName("/login/findidResult");
+	            //아이디 결과 페이지에 띄우기 위해 아이디 저장.
 	            mav.addObject("ID", IdResult.getClient_id());
 	            
-	            //만약 인증번호가 같다면 이메일을 회원가입 페이지로 같이 넘겨서 이메일을
-	            //한번더 입력할 필요가 없게 한다.
-	            
 	    
-	            return mav;
-	            
-	            
-	        }
 	        return mav;
+	            
+	            
 	
 	    }
 	    
@@ -137,13 +126,13 @@ public class EmailController {
 	    //비밀번호 찾기 인증코드 이메일 발송
 	    @RequestMapping( value = "/main/login/findpw" , method=RequestMethod.POST )
 	    public ModelAndView mailSending2(HttpServletRequest request, ClientVo bean,HttpServletResponse response_email) throws Exception {
-	    	ClientVo findid = clientService.findId(bean);
+	    	ClientVo findpw = clientService.findPw(bean);
 	    	Random r = new Random();
-	    	int dice = r.nextInt(4589362) + 49311; //이메일로 받는 인증코드 부분 (난수)
+	    	int dice2 = r.nextInt(4589362) + 49311; //이메일로 받는 인증코드 부분 (난수)
 	    	
 	    	String setfrom = "wjdwlans9303@gmail.com";
 	    	String tomail = request.getParameter("client_email"); // 받는 사람 이메일
-	    	String title = "아이디 찾기 인증 이메일 입니다."; // 제목
+	    	String title = "비밀번호 찾기 인증 이메일 입니다."; // 제목
 	    	String content =
 	    			
 	    			System.getProperty("line.separator")+ //한줄씩 줄간격을 두기위해 작성
@@ -156,7 +145,7 @@ public class EmailController {
 	            
 	            System.getProperty("line.separator")+
 	            
-	            " 인증번호는 " +dice+ " 입니다. "
+	            " 인증번호는 " +dice2+ " 입니다. "
 	            
 	            +System.getProperty("line.separator")+
 	            
@@ -181,7 +170,8 @@ public class EmailController {
 	    	}
 	    	
 	    	ModelAndView mav= new ModelAndView();
-	    	mav.addObject("Dice", dice);
+	    	mav.addObject("Dice2", dice2);
+	    	mav.addObject("FindPw", findpw);
 	    	mav.setViewName("jsonView");
 	    	return mav;
 	    }
@@ -191,34 +181,18 @@ public class EmailController {
 	    //내가 입력한 인증번호와 메일로 입력한 인증번호가 맞는지 확인해서 맞으면 비밀번호 찾기 결과 페이지로 넘어가고,
 	    //틀리면 그대로 남음.
 	    @RequestMapping(value = "/main/code_check2", method = RequestMethod.POST)
-	    public ModelAndView code_check2( ClientVo bean,String client_name, String client_email , String code, String dice) throws Exception {
+	    public ModelAndView code_check2( ClientVo bean) throws Exception {
 	    	
-	    	ClientVo IdResult = clientService.findId(bean);
+	    	ClientVo PwResult = clientService.findPw(bean);
 	    	
-	    	System.out.println("dice = "+dice);
-	    	System.out.println("code = "+code);
-	    	
-	    	System.out.println(code.equals(dice));
 	    	
 	    	//페이지이동과 자료를 동시에 하기위해 ModelAndView를 사용해서 이동할 페이지와 자료를 담음
 	    	
 	    	ModelAndView mav = new ModelAndView();
-	    	
-	    	
-	    	if (code.equals(dice)) {
 	    		
-	    		//인증번호가 일치할 경우 인증번호가 맞다는 창을 출력하고 회원가입창으로 이동함
-	    		mav.setViewName("/login/findidResult");
-	    		mav.addObject("ID", IdResult.getClient_id());
+	    		//인증번호가 일치할 경우 비밀번호변경페이지로 이동함
+	    		mav.setViewName("/mypage/changepw");
 	    		
-	    		//만약 인증번호가 같다면 이메일을 회원가입 페이지로 같이 넘겨서 이메일을
-	    		//한번더 입력할 필요가 없게 한다.
-	    		
-	    		
-	    		return mav;
-	    		
-	    		
-	    	}
 	    	return mav;
 	    	
 	    }

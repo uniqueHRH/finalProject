@@ -43,5 +43,12 @@
 		select client_id from client where client_name=#{client_name} and client_email=#{client_email}
 	</select>
 	
+	<select id="findPw" resultType="ClientBean">
+		select client_pw from client where client_name=#{client_name} and client_id=#{client_id} and client_email=#{client_email}
+	</select>
+	
+	<update id="changePw" parameterType="ClientBean">
+		update client set client_pw=#{client_pw} where client_name=#{client_name} and client_id=#{client_id} and client_email=#{client_email};
+	</update>
 </mapper>
 

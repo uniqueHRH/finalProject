@@ -50,6 +50,11 @@ public class ClientDaoImpl implements ClientDao {
 		return sqlSession.selectOne("client.findId", bean);
 	}
 
+	@Override
+	public ClientVo findPw(ClientVo bean) throws Exception {
+		return sqlSession.selectOne("client.findPw", bean);
+	}
+
 
 
 }

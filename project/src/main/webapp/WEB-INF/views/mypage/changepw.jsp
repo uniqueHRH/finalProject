@@ -173,18 +173,20 @@
      <div class="form-group">
        <label for="client_newpw" class="col-sm-2 control-label" id="pww">새비밀번호</label>
        <div class="col-sm-10">
-          <input type="password" class="form-control" id="client_newpw" name="client_pw"style="width:350px">
+          <input type="password" class="form-control" id="client_newpw" name="client_pw" placeholder="영문+숫자 조합 8자리이상" style="width:350px">
        </div>
      </div>
      
      <div class="form-group">
        <label for="client_newpw" class="col-sm-2 control-label" id="pww">새비밀번호(확인)</label>
        <div class="col-sm-10">
-          <input type="password" class="form-control" id="client_newpw" name="client_pw" style="width:350px">
+          <input type="password" class="form-control" id="client_newpw" name="client_pw" placeholder="비밀번호를 한번 더 입력해주세요" style="width:350px">
        </div>
      </div>
-     
-     <button type="submit" id="changepwbtn" class="btn btn-default btn-lg btn-block">변경완료</button>
+     <div>
+     	<button type="submit" id="changepwbtn" class="btn btn-default btn-lg btn-block">변경완료</button>
+     	<button type="button" id="resetbtn" class="btn btn-default btn-lg" onclick="location.href='../login'">취소</button>
+     </div>
      </form>
      
      </div>   

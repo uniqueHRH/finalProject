@@ -13,5 +13,6 @@ public interface ClientDao {
 	int deleteOne_client(int key) throws Exception;
 	public ClientVo loginCheck(ClientVo bean) throws Exception;
 	public ClientVo findId(ClientVo bean) throws Exception;
+	public ClientVo findPw(ClientVo bean) throws Exception;
 	
 }
