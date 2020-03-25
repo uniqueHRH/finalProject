@@ -50,19 +50,7 @@ public class EmailController {
 	    		mav.setViewName("redirect:login");
 	    		return mav;
 	    	}
-	    		/*
-	    	@RequestMapping(value = "/main/PwUpdate", method = RequestMethod.POST)
-	    	public String PwUpdate(ClientVo bean) {
-	    		try {
-					clientService.findPw(bean);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-	    		System.out.println(bean);
-	    		return "login/login";
-	    	}
-	    	
-	    	 */
+	    
 	    // 인증코드 이메일 발송
 	        @RequestMapping( value = "/main/login/findid" , method=RequestMethod.POST )
 	        public ModelAndView mailSending(HttpServletRequest request, ClientVo bean,HttpServletResponse response_email) throws Exception {
