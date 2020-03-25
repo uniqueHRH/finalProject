@@ -398,6 +398,14 @@
 				}
 			}
 		});
+      
+	// 쪽지보내기
+	var log=$('#log').val();   // 세션정보
+	var nick=$('#client_nick1').val()   // 글쓴이
+	
+	if(log)
+	$('#client_nick1').on('click',function() {});
+	
             
 	// 목록버튼
 	$('#goList').on('click',function() {
