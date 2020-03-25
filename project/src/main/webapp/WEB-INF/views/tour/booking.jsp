@@ -32,29 +32,29 @@
     	margin-right: 15px;
     }
     #img{
-    	width: 300px;
+    	width: 380px;
     	position: absolute;
-    	right: 540px;
-    	margin-top: 30px;
+    	right: 500px;
+    	margin-top: 50px;
     }
     #infor1{
-    	width: 300px;
+    	width: 330px;
     	position: absolute;
-    	right: 540px;
-    	top: 380px;
+    	right: 550px;
+    	top: 470px;
     
     }
     #infor2{
-    	width: 300px;
+    	width: 280px;
     	position: absolute;
-    	right: 540px;
-    	top: 470px;
+    	right: 600px;
+    	top: 570px;
     
     }
     #checkcostbtn{
     	position: absolute;
-    	right: 540px;
-    	top: 423px;
+    	right: 520px;
+    	top: 575px;
     }
     #confirmbtn{
     	width: 200px;
@@ -65,16 +65,40 @@
     #bookbtn{
     	width: 300px;
     	position: absolute;
-    	right: 540px;
-    	top: 530px;
+    	right: 560px;
+    	top: 650px;
     }
-   #resetbtn{
-   	width: 300px;
+    .page-header1{
     	position: absolute;
-    	left: 540px;
-    	top: 530px;
+    	top: 720px;
+    	left: 300px;
+    }
+    .page-header2{
+    	position: absolute;
+    	top: 1020px;
+    	left: 300px;
+    }
+   #caution{
+   		position: absolute;
+   		top: 780px;
+   		left: 300px;
+   	
    }
-   
+   #clause{
+   		position: absolute;
+   		width: 800px;
+   		top: 1100px;
+    	left: 300px;
+   }
+   .checkbox{
+   		position: absolute;
+   		top: 1670px;
+    	left: 730px;	
+   }
+   input[type="checkbox"]{
+		width: 17px; 
+		height: 17px; 
+}
 </style>
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="${root }js/bootstrap.js"></script>
@@ -262,9 +286,46 @@
 			</div>	
 		</form> 
 				<button id="confirmbtn" class="btn btn-default btn-lg btn-block">확인</button>
-			
+				
+				<div class="page-header1" >
+				  <h2>주의사항 </h2>
+				</div>
+		<img id="caution" src="https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/caution.png?raw=true">
+		<div class="page-header2" >
+				  <h2>약관</h2>
+				</div>
+		 <!-- Nav tabs -->
+<div id="clause"> 
+  <div>
+	  <ul class="nav nav-tabs" role="tablist">
+	    <li role="presentation" class="active"><a href="#healing" aria-controls="healing" role="tab" data-toggle="tab" style="width: 250px;">특별약관(필수)</a></li>
+	    <li role="presentation"><a href="#snap" aria-controls="snap" role="tab" data-toggle="tab" style="width: 250px;">개인정보 수정 및 이용동의(필수)</a></li>
+	    <li role="presentation"><a href="#activity" aria-controls="activity" role="tab" data-toggle="tab" style="width: 250px;">개인정보 수정 및 이용동의(필수)</a></li>
+	    
+	  </ul>
+  </div>
+  <!-- Tab panes -->
+	  <div class="tab-content">
+	    <div role="tabpanel" class="tab-pane active" id="healing">
+	    	<img src="https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/clause1.png?raw=true">
+	    </div>
+	    <div role="tabpanel" class="tab-pane" id="snap">
+	    	<img src="https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/clause2.png?raw=true">
+	    </div>
+	    <div role="tabpanel" class="tab-pane" id="activity">
+	    	<img src="https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/clause3.png?raw=true">
+	    </div>
+	    
+	  </div>
+</div> 	
+
+<div class="checkbox">
+    <label style="font-size: 23px;">
+      <input id="allclause" type="checkbox">위 약관에 모두 동의합니다.
+    </label>
+  </div>  
 			<!-- jquery로 생성되는 form tag -->	
-			<form id="form1" method="post">	
+			<form id="bookform" name="bookform" method="post">	
 				<input type="hidden" id="tour_no" name="tour_no" value="${bean.tour_no }">
 			<button type="submit" id="bookbtn" class="btn btn-default btn-lg btn-block">예약하기</button>
 			</form>	
@@ -328,14 +389,14 @@
 				return false;
 			}else{
 			//hidden input 값 받아오는 함수
-			$('#form1').append('<input type="hidden" id="client_name" name="client_name" value="'+'${sessionScope.check.client_name}'+'">');
-			$('#form1').append('<input type="hidden" id="tour_date" name="tour_date" value="'+tour_date+'">');
-			$('#form1').append('<input type="hidden" id="paid_name" name="paid_name" value="'+paid_name+'">');
-			$('#form1').append('<input type="hidden" id="paid_count" name="paid_count" value="'+paid_count+'">');
-			$('#form1').append('<input type="hidden" id="paid_phone" name="paid_phone" value="'+paid_phone+'">');
-			$('#form1').append('<input type="hidden" id="paid_birth" name="paid_birth" value="'+paid_birth+'">');
-			$('#form1').append('<input type="hidden" id="paid_kakaoid" name="paid_kakaoid" value="'+paid_kakaoid+'">');
-			$('#form1').append('<input type="hidden" id="paid_total" name="paid_total" value="'+paid_total+'">');
+			$('#bookform').append('<input type="hidden" id="client_name" name="client_name" value="'+'${sessionScope.check.client_name}'+'">');
+			$('#bookform').append('<input type="hidden" id="tour_date" name="tour_date" value="'+tour_date+'">');
+			$('#bookform').append('<input type="hidden" id="paid_name" name="paid_name" value="'+paid_name+'">');
+			$('#bookform').append('<input type="hidden" id="paid_count" name="paid_count" value="'+paid_count+'">');
+			$('#bookform').append('<input type="hidden" id="paid_phone" name="paid_phone" value="'+paid_phone+'">');
+			$('#bookform').append('<input type="hidden" id="paid_birth" name="paid_birth" value="'+paid_birth+'">');
+			$('#bookform').append('<input type="hidden" id="paid_kakaoid" name="paid_kakaoid" value="'+paid_kakaoid+'">');
+			$('#bookform').append('<input type="hidden" id="paid_total" name="paid_total" value="'+paid_total+'">');
 			//hidden input end
 			$(this).hide();
 			$('#tour_date1').attr('readonly',true);
@@ -358,6 +419,16 @@
 				alert('예약자정보를 입력해주세요');
 				return false;
 			}
+			$('form[name="bookform"]').bind('submit',function(){
+				if($('#allclause').prop('checked') == false){
+			    	alert('필수 약관에 동의 하셔야 합니다.');
+			    	return false;
+				}else{
+					alert('회원가입이 완료되었습니다.');
+					return true;
+				}
+			});
+			
 		});
 		
 		
