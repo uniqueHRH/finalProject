@@ -42,7 +42,27 @@ public class EmailController {
 	    			return "login/findpw";
 	    	}
 	    	
+	    	//임시 비밀번호 발급 후 로그인 클릭 시 로그인 창으로 감
+	    	@RequestMapping(value = "/main/PwUpdate", method = RequestMethod.POST)
+	    	public ModelAndView PwUpdate (ClientVo bean) throws Exception{
+	    		clientService.pwUpdate(bean);
+	    		ModelAndView mav=new ModelAndView();
+	    		mav.setViewName("redirect:login");
+	    		return mav;
+	    	}
+	    		/*
+	    	@RequestMapping(value = "/main/PwUpdate", method = RequestMethod.POST)
+	    	public String PwUpdate(ClientVo bean) {
+	    		try {
+					clientService.findPw(bean);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+	    		System.out.println(bean);
+	    		return "login/login";
+	    	}
 	    	
+	    	 */
 	    // 인증코드 이메일 발송
 	        @RequestMapping( value = "/main/login/findid" , method=RequestMethod.POST )
 	        public ModelAndView mailSending(HttpServletRequest request, ClientVo bean,HttpServletResponse response_email) throws Exception {
@@ -181,19 +201,33 @@ public class EmailController {
 	    //내가 입력한 인증번호와 메일로 입력한 인증번호가 맞는지 확인해서 맞으면 비밀번호 찾기 결과 페이지로 넘어가고,
 	    //틀리면 그대로 남음.
 	    @RequestMapping(value = "/main/code_check2", method = RequestMethod.POST)
-	    public ModelAndView code_check2( ClientVo bean) throws Exception {
+	    public ModelAndView code_check2(ClientVo bean) throws Exception {
+	    	ClientVo id = clientService.findPw(bean);
 	    	
-	    	ClientVo PwResult = clientService.findPw(bean);
 	    	
+	    	//임시 비밀번호 생성
+	    	StringBuffer buffer = new StringBuffer();
+	    	Random random = new Random();
+	    	String chars[] = "A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,0,1,2,3,4,5,6,7,8,9".split(",");
+	    	for (int i = 0; i < 7; i++) {
+
+	    	buffer.append(chars[random.nextInt(chars.length)]);
+
+	    	}
+	    	
+	    	String password = buffer.toString();
 	    	
 	    	//페이지이동과 자료를 동시에 하기위해 ModelAndView를 사용해서 이동할 페이지와 자료를 담음
 	    	
 	    	ModelAndView mav = new ModelAndView();
-	    		
+	    		//임시비밀번호 부여
+	    		mav.addObject("Password", password);
+	    		mav.addObject("id", id.getClient_id());
 	    		//인증번호가 일치할 경우 비밀번호변경페이지로 이동함
-	    		mav.setViewName("/mypage/changepw");
-	    		
+	    		mav.setViewName("/login/findpwResult");
+	    		System.out.println(mav.getModel());
 	    	return mav;
 	    	
 	    }
+	    
 }

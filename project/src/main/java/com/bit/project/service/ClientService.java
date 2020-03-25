@@ -14,4 +14,5 @@ public interface ClientService {
 	public ClientVo loginCheck(ClientVo bean) throws Exception;
 	public ClientVo findId(ClientVo bean) throws Exception;
 	public ClientVo findPw(ClientVo bean) throws Exception;
+	void pwUpdate(ClientVo bean) throws Exception;
 }

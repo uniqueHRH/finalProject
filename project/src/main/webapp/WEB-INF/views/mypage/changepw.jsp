@@ -24,10 +24,11 @@
     #idd,#pww {
        display:inline block;  
     }
-    #changepwbtn{
-   	   position: relative;
-   	   left: 280px;
-       width: 200px;
+   
+    #resetbtn,#changepwbtn{
+    	text-align: center;
+    	margin-top: 10px;
+    	width: 30%;
     }
 </style>
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
@@ -162,25 +163,25 @@
       <div class="page-header" align="center">
      <h1>비밀번호변경</h1>
    </div>
-   <form class="form-horizontal">
+   <form action="../mypage/changepw" class="form-horizontal" method="post">
      <div class="form-group" id="insertid">
        <label for="client_pw" class="col-sm-2 control-label" id="idd">현재비밀번호</label>
        <div class="col-sm-10">
-         <input type="password" class="form-control" id="client_id" name="client_pw"style="width:350px">
+         <input type="password" class="form-control" id="client_pw" name="client_pw"style="width:350px">
        </div>
      </div>
      
      <div class="form-group">
-       <label for="client_newpw" class="col-sm-2 control-label" id="pww">새비밀번호</label>
+       <label for="client_newpw1" class="col-sm-2 control-label" id="pww">새비밀번호</label>
        <div class="col-sm-10">
-          <input type="password" class="form-control" id="client_newpw" name="client_pw" placeholder="영문+숫자 조합 8자리이상" style="width:350px">
+          <input type="password" class="form-control" id="client_newpw1" name="client_pw" placeholder="영문+숫자 조합 8자리이상" style="width:350px">
        </div>
      </div>
      
      <div class="form-group">
-       <label for="client_newpw" class="col-sm-2 control-label" id="pww">새비밀번호(확인)</label>
+       <label for="client_newpw2" class="col-sm-2 control-label" id="pww">새비밀번호(확인)</label>
        <div class="col-sm-10">
-          <input type="password" class="form-control" id="client_newpw" name="client_pw" placeholder="비밀번호를 한번 더 입력해주세요" style="width:350px">
+          <input type="password" class="form-control" id="client_newpw2" placeholder="비밀번호를 한번 더 입력해주세요" style="width:350px">
        </div>
      </div>
      <div>

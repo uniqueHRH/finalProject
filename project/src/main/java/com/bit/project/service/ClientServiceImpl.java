@@ -76,6 +76,19 @@ public class ClientServiceImpl implements ClientService {
 		return clientDao.findPw(bean);
 	}
 
+	@Override
+	public void pwUpdate(ClientVo bean) throws Exception {
+		try {
+		clientDao.pwUpdate(bean);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	
+
+	
+
 }
 
 	
