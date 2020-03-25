@@ -9,6 +9,9 @@
 	   	text-align:center;
 	   	padding:0px;
 	}
+	textarea {
+		resize:none;
+	}
 	#board_sub, #client_nick1, #board_date, #board_count, #board_content {
 		background-color:white;
 	}

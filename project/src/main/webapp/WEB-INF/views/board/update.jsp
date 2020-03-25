@@ -21,6 +21,9 @@
 	   	text-align:center;
 	   	padding:0px;
 	}
+	textarea {
+		resize:none;
+	}
 /* 나라 드롭창 div */
 	#pl {
 		padding:0px 620px 0px 0px;

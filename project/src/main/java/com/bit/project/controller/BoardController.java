@@ -24,11 +24,13 @@ import com.bit.project.model.entity.EventVo;
 import com.bit.project.model.entity.FreeVo;
 import com.bit.project.model.entity.PartnerVo;
 import com.bit.project.model.entity.ReplyVo;
+import com.bit.project.model.entity.SendVo;
 import com.bit.project.service.BoardService;
 import com.bit.project.service.EventService;
 import com.bit.project.service.FreeService;
 import com.bit.project.service.PartnerService;
 import com.bit.project.service.ReplyService;
+import com.bit.project.service.SendService;
 
 @Controller
 public class BoardController {
@@ -43,6 +45,8 @@ public class BoardController {
 	FreeService freeService;
 	@Autowired
 	EventService eventService;
+	@Autowired
+	SendService sendService;
 	
 	@Resource
 	Pagination pagination;
@@ -604,6 +608,19 @@ public class BoardController {
   		return "event/detail";
   	}
   	
+//	쪽지보내기
+  	// 쪽지페이지 이동
+ 	@RequestMapping(value = "/partner/msg={id}", method = RequestMethod.GET)
+ 	public String msg(@PathVariable("id") String id) {
+ 		return "partner/message";
+ 	}
+ 	// 쪽지 발송후 페이지 닫기
+ 	@RequestMapping(value = "/partner/msg={id}", method = RequestMethod.POST)
+ 	public String msgSend(SendVo bean) {
+ 		sendService.insertOne_send(bean);
+ 		return "partner/message";
+ 	}
+ 	
 //	내가 쓴 글
   	@RequestMapping(value="/main/myBoard", method=RequestMethod.GET)
   	public String myBoard() {
