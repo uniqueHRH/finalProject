@@ -59,7 +59,7 @@
     #confirmbtn{
     	width: 200px;
     	position: absolute;
-    	left: 600px;
+    	left: 620px;
     	top: 470px;
     }
     #bookbtn{
@@ -206,7 +206,7 @@
 				<tr>	
 			</table>
 		</div>
-      <p style="font-size: 25px; margin-top: 50px; position: absolute; left: 550px; top: 70px;" >예약자 정보</p>
+      <p style="font-size: 25px; margin-top: 50px; position: absolute; left: 600px; top: 70px;" >예약자 정보</p>
 		<form class="form-horizontal">
 			<div id="form-group">
 				<div class="form-group">
@@ -291,6 +291,7 @@
 		$('#mainFont2').hide();
 		$('#mainFont3').hide();
 		$('#mainFont4').hide();
+	
 
 		$('#tour').mouseenter(function() {
 			$('#tour_sub').show();
@@ -323,7 +324,7 @@
 			var paid_total=Number(paid_count)*Number(${bean.cost });
 	
 			if(tour_date=="" | paid_name=="" | paid_count=="" | paid_phone=="" | paid_birth==""){
-						alert('빈칸을 입력해주세요');
+						alert('예약자정보를 입력해주세요');
 				return false;
 			}else{
 			//hidden input 값 받아오는 함수
@@ -346,12 +347,28 @@
 			
 			}
   		});
+		$('#bookbtn').click(function(){
+			var tour_date=$('#tour_date1').val();
+			var paid_name=$('#paid_name1').val();
+			var paid_count=$("#paid_count1 option:selected").val();
+			var paid_phone=$('#paid_phone1').val();
+			var paid_birth=$('#paid_birth1').val();
+		
+			if(tour_date=="" | paid_name=="" | paid_count=="" | paid_phone=="" | paid_birth==""){
+				alert('예약자정보를 입력해주세요');
+				return false;
+			}
+		});
 		
 		
 		$('#checkcostbtn').click(function(){
 			
 			var paid_count=$("#paid_count1 option:selected").val();
 			var paid_total=Number(paid_count)*Number(${bean.cost });
+			if(paid_count==""){
+				alert("인원수를 선택해주세요");
+				return false;
+			}
 			//총 금액 함수
 			$('#infor2 tr:nth-child(1)>td:last').remove();
 			$('#infor2 tr:nth-child(1)').append('<td style="color: red;">'+paid_total+'&nbsp원</td>');
