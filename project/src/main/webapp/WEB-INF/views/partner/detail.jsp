@@ -11,9 +11,8 @@
 <link rel="stylesheet" type="text/css" href="${root }css/travel.css" />
 <link rel="stylesheet" type="text/css" href="${root }css/boardDetail.css" />
 <style type="text/css">
-	
-</style>
 
+</style>
 </head>
 <body>
 <!-- menubar start -->
@@ -114,7 +113,8 @@
    <div>
       <div class="form-group" align="left">
          <label for="exampleInputName2">닉네임</label>
-         <input type="text" class="form-control" id="client_nick1" name="client_nick1" value="${bean.client_nick1 }" style="cursor:default" disabled>
+         <input type="text" class="form-control" id="client_nick1" name="client_nick1" value="${bean.client_nick1 }" disabled>
+         <button type="button" class="btn btn-default" id="sendMsg">쪽지</button>
       </div>
       &nbsp; &nbsp;
       <div class="form-group">
@@ -189,7 +189,6 @@
 </body>
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="${root }js/bootstrap.js"></script>
-
 <script type="text/javascript">
    $(document).ready(function() {
 		$('#hamb').hide();
@@ -219,7 +218,25 @@
 			$('#hamb').hide();
 			$('#hambBtn').show();
 		});
+///////////////////////////////////////////////////////////////////////////
+
+		// 쪽지보내기 기능
+		var log=$('#log').val();
+		var nick=$('#client_nick1').val();
 		
+		
+		if(log=='' || log==nick) {
+		} else {
+			$('#sendMsg').on('click',function() {
+				var childForm;
+				var data=$('#client_nick1').val();
+				childForm=window.open('../../partner/msg='+data,'쪽지보내기','width=470, height=340, left=500, top=50');
+				
+			});
+		}
+		
+///////////////////////////////////////////////////////////////////////////
+
 		// 이미지가 없을 때 출력되지 않도록
 		var img=$('#hiddenI').val();
 		

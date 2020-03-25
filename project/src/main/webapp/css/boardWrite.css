@@ -1,4 +1,4 @@
-h1 {
+	h1 {
 		font-family: 'Jua';
 	}
 	form {
@@ -6,6 +6,9 @@ h1 {
       margin:0 auto;
       font-family: 'Jua';
       font-size:18px;
+	}
+	textarea {
+		resize:none;
 	}
 	label {
       font-size:15px;

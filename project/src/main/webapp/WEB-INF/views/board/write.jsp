@@ -23,6 +23,9 @@
       font-size:15px;
       font-weight:normal;
 	}
+	textarea {
+		resize:none;
+	}
 /* 나라 선택 */	
 	#land {
 		border-radius:5px;
