@@ -254,14 +254,14 @@
 		function prev(page, range, rangeSize) {
 			var page=((range-2)*rangeSize)+1;
 			var range=range-1;
-			var url="${root }board/review";
+			var url="${root }board/partner";
 			url=url+"?page="+page;
 			url=url+"&range="+range;
 			location.href=url;
 		}
 		//페이지 번호 클릭
 		function pagination(page, range, rangeSize, searchType, keyword) {
-			var url="${root }board/review";
+			var url="${root }board/partner";
 			url=url+"?page="+page;
 			url=url+"&range="+range;
 			url=url+"&searchType="+$('#searchType').val();
@@ -272,7 +272,7 @@
 		function next(page, range, rangeSize) {
 			var page=parseInt((range*rangeSize))+1;
 			var range=parseInt(range)+1;
-			var url="${root }board/review";
+			var url="${root }board/partner";
 			url=url+"?page="+page;
 			url=url+"&range="+range;
 			location.href=url;

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+import com.bit.project.common.Search;
 import com.bit.project.model.ReceiveDao;
 import com.bit.project.model.entity.ReceiveVo;
 
@@ -16,13 +17,8 @@ public class ReceiveServiceImpl implements ReceiveService {
 	ReceiveDao receiveDao;
 	
 	@Override
-	public void selectAll_receive(Model model) {
-		try {
-			List<ReceiveVo> list=receiveDao.selectAll_receive();
-			model.addAttribute("list",list);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	public List<ReceiveVo> selectAll_receive(Search search) throws Exception {
+		return receiveDao.selectAll_receive(search);
 	}
 
 	@Override
@@ -43,5 +39,10 @@ public class ReceiveServiceImpl implements ReceiveService {
 		}
 	}
 
+	@Override
+	public int getReceiveListCnt(Search search) throws Exception {
+		return receiveDao.getReceiveListCnt(search);
+	}
+	
 
 }

@@ -228,10 +228,8 @@
 		if(log=='' || log==nick) {
 		} else {
 			$('#sendMsg').on('click',function() {
-				var childForm;
 				var data=$('#client_nick1').val();
-				childForm=window.open('../../partner/msg='+data,'쪽지보내기','width=470, height=340, left=500, top=50');
-				
+				window.open('../../partner/?msg='+data,'쪽지보내기','width=470, height=340, left=500, top=50');
 			});
 		}
 		
