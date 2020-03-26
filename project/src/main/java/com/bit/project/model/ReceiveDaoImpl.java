@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.bit.project.common.Search;
 import com.bit.project.model.entity.ReceiveVo;
 
 @Repository
@@ -15,8 +16,8 @@ public class ReceiveDaoImpl implements ReceiveDao {
 	SqlSession sqlSession;
 	
 	@Override
-	public List<ReceiveVo> selectAll_receive() throws Exception {
-		return sqlSession.selectList("receive.selectAll_receive");
+	public List<ReceiveVo> selectAll_receive(Search search) throws Exception {
+		return sqlSession.selectList("receive.selectAll_receive", search);
 	}
 
 	@Override
@@ -29,5 +30,10 @@ public class ReceiveDaoImpl implements ReceiveDao {
 		return sqlSession.delete("receive.deleteOne_receive",value);
 	}
 
-
+	@Override
+	public int getReceiveListCnt(Search search) throws Exception {
+		return sqlSession.selectOne("receive.getReceiveListCnt", search);
+	}
+	
+	
 }

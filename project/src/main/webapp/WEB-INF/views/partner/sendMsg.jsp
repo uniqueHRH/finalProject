@@ -9,40 +9,9 @@
 <title>DETAIL</title>
 <link rel="stylesheet" type="text/css" href="${root }css/bootstrap.css" />
 <link rel="stylesheet" type="text/css" href="${root }css/travel.css" />
+<link rel="stylesheet" type="text/css" href="${root }css/message.css" />
 <style type="text/css">
-	form {
-		font-family:"Jua";
-		background-color:#e8e8e8;
-		width:500px;
-		margin:0 auto;
-	}
-	#formTb {
-		width:490px;
-		margin:0 auto;
-		padding:15px 15px 5px 20px;
-	}
-	#receiver, #client_nick2 {
-		font-size:15px;
-		display:inline-block;
-		border:0;
-		outline:0;
-		background-color:rgba(1,1,1,0);
-	}
-	#receiver {
-		font-weight:bold;
-		width:80px;
-	}
-	#send_content {
-		width:450px;
-		height:250px;
-		resize:none;
-	}
-	#btn {
-		padding:0 0 0 220px;
-	}
-	#sendMsg, #cancel {
-		width:100px;
-	}
+
 </style>
 </head>
 <body>

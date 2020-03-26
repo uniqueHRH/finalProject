@@ -16,7 +16,17 @@
  
 <mapper namespace="receive">
 	<select id="selectAll_receive" resultType="ReceiveBean">
-		select * from receive order by receive_no desc
+		select * from receive
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="searchType=='receive_content' and keyword != null and keyword != '' ">
+				AND receive_content like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType=='client_nick1' and keyword != null and keyword != '' ">
+				AND client_nick1 like CONCAT('%', #{keyword}, '%')
+			</if>
+		</trim>
+		ORDER BY receive_no DESC
+		LIMIT #{startList}, #{listSize}
 	</select>
 	
 	<select id="selectOne_receive" resultType="ReceiveBean" parameterType="int">
@@ -26,5 +36,17 @@
 	<delete id="deleteOne_receive" parameterType="int">
 		delete from receive where receive_no=#{receive_no}
 	</delete>
-	
+
+<!-- 총게시글 갯수 -->
+	<select id="getReceiveListCnt" resultType="int">
+		select count(*) from receive
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="searchType=='receive_content' and keyword != null and keyword != '' ">
+				AND receive_content like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType=='client_nick1' and keyword != null and keyword != '' ">
+				AND client_nick1 like CONCAT('%', #{keyword}, '%')
+			</if>
+		</trim>
+	</select>
 </mapper>

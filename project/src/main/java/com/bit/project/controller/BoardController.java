@@ -146,7 +146,7 @@ public class BoardController {
  	@RequestMapping(value = "/board/partner", method = RequestMethod.GET)
  	public String partner(Model model, @RequestParam(required = false, defaultValue = "1") int page,
  			@RequestParam(required=false, defaultValue="1") int range,
- 			@RequestParam(required=false, defaultValue="board_sub") String searchType,
+ 			@RequestParam(required=false, defaultValue="partner_sub") String searchType,
  			@RequestParam(required=false) String keyword,
  			@ModelAttribute("search") Search search
  			) throws Exception {
@@ -174,7 +174,7 @@ public class BoardController {
  	@RequestMapping(value = "/board/free", method = RequestMethod.GET)
  	public String free(Model model, @RequestParam(required = false, defaultValue = "1") int page,
  			@RequestParam(required=false, defaultValue="1") int range,
- 			@RequestParam(required=false, defaultValue="board_sub") String searchType,
+ 			@RequestParam(required=false, defaultValue="free_sub") String searchType,
  			@RequestParam(required=false) String keyword,
  			@ModelAttribute("search") Search search
  			) throws Exception {
@@ -202,7 +202,7 @@ public class BoardController {
  	@RequestMapping(value = "/board/event", method = RequestMethod.GET)
  	public String event(Model model, @RequestParam(required = false, defaultValue = "1") int page,
  			@RequestParam(required=false, defaultValue="1") int range,
- 			@RequestParam(required=false, defaultValue="board_sub") String searchType,
+ 			@RequestParam(required=false, defaultValue="event_sub") String searchType,
  			@RequestParam(required=false) String keyword,
  			@ModelAttribute("search") Search search
  			) throws Exception {
@@ -614,6 +614,7 @@ public class BoardController {
  	public String msg(String id) {
  		return "partner/sendMsg";
  	}
+ 	
  	// 쪽지 발송
  	@RequestMapping(value = "/partner", method = RequestMethod.POST)
  	public String msgSend(SendVo bean) {
@@ -621,7 +622,7 @@ public class BoardController {
  		return "partner/sendMsg";
  	}
  	
-////////////////////////////////////////////////////////////////////////////////////////////////// 	
+//////////////////////////////////////////////////////////////////////////////////////////////////
  	// 웹소켓테스트
  	@RequestMapping(value = "/partner/sendMsg", method = RequestMethod.GET)
  	public String sendMsg() {
@@ -633,9 +634,5 @@ public class BoardController {
  		return "/partner/receiveMsg";
  	}
  	
-//	내가 쓴 글
-  	@RequestMapping(value="/main/myBoard", method=RequestMethod.GET)
-  	public String myBoard() {
-  		return "mypage/myBoard";
-  	}
+
 }

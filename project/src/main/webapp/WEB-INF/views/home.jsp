@@ -134,7 +134,7 @@
 		        <c:if test="${sessionScope.check ne null }">
 				<select id="side" onchange="location.href=this.value">
 					<option id="hide">${sessionScope.check.client_nick1} 님<span class="caret"></span></option>
-		            <option value="${root }main/message" style="background:rgba(0,0,0,0);">쪽지함</option>
+		            <option value="${root }main/message">쪽지함</option>
 		            <option value="#">최근본상품</option>
 		            <option value="${root }main/wish">찜한상품</option>
 		            <option value="#">결제상품</option>
@@ -233,7 +233,6 @@
 			$('#hamb').hide();
 			$('#hambBtn').show();
 		});
-		
 		
 		// 검색
 		$('#searchGo').on('click',function() {
