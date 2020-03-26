@@ -15,39 +15,46 @@
 </style>
 </head>
 <body>
+<div class="container">
+  <div class="row">
+   <div class="col-md-12">
    <!-- menubar start -->
 <div class="menubar">
 	<nav>
 		<div>
-			<ul class="login">
-		        <!-- 로그인시 숨김 -->
-		        <c:if test="${sessionScope.check eq null && sessionScope.staffcheck eq null }">
-		        <li>
-		        	<a id="side" href="${root }main/login" >로그인</a> &nbsp; &nbsp; &nbsp; &nbsp;
-		        	<a id="side" href="${root }main/admin" >회원가입</a>
-		        </li>
-		        </c:if>
-		        <!-- 직원로그인시 -->
-		        <c:if test="${sessionScope.staffcheck ne null }">
-				<select id="side" onchange="location.href=this.value">
-		            <option value="${root }main/staffinfo">내정보관리</option>
-		            <option value="${root }main/logout">로그아웃</option>
-		        </select>
-		        </c:if>
-		        <!-- 회원로그인시 -->
-		        <c:if test="${sessionScope.check ne null }">
-				<select id="side" onchange="location.href=this.value">
-					<option id="hide">${sessionScope.check.client_nick1} 님<span class="caret"></span></option>
-		            <option value="${root }main/message">쪽지함</option>
-		            <option value="#">최근본상품</option>
-		            <option value="${root }main/wish">찜한상품</option>
-		            <option value="#">결제상품</option>
-		            <option value="#">내가쓴글</option>
-		            <option value="${root }main/myinfo">내정보관리</option>
-		            <option value="${root }main/logout">로그아웃</option>
-		          </select>
-		        </c:if>
-			</ul>
+			<div align="right">
+				<ul class="login">
+			        <!-- 로그인시 숨김 -->
+			        <c:if test="${sessionScope.check eq null && sessionScope.staffcheck eq null }">
+			        <li>
+			        	<a id="side" href="${root }main/login" >로그인</a> &nbsp; &nbsp; &nbsp; &nbsp;
+			        	<a id="side" href="${root }main/admin" >회원가입</a>
+			        </li>
+			        </c:if>
+			        <!-- 직원로그인시 -->
+			        <c:if test="${sessionScope.staffcheck ne null }">
+					<select id="side" onchange="location.href=this.value">
+			            <option value="${root }main/staffinfo">내정보관리</option>
+			            <option value="${root }main/logout">로그아웃</option>
+			        </select>
+			        </c:if>
+			        <!-- 회원로그인시 -->
+			        <c:if test="${sessionScope.check ne null }">
+					<select id="side" onchange="location.href=this.value">
+						<option id="hide">${sessionScope.check.client_nick1} 님<span class="caret"></span></option>
+			            <option value="${root }main/message">쪽지함</option>
+			            <option value="#">최근본상품</option>
+			            <option value="${root }main/wish">찜한상품</option>
+			            <option value="#">결제상품</option>
+			            <option value="#">내가쓴글</option>
+			            <option value="${root }main/myinfo">내정보관리</option>
+			            <option value="${root }main/logout">로그아웃</option>
+			          </select>
+			        </c:if>
+				</ul>
+			</div>
+			
+			
 			<ul class="nav nav-pills nav-stacked" id="hamb">
 				<li id="hamSub"><a href="#">투어</a>
 			  		<ul>
@@ -67,10 +74,10 @@
 			       		<li><a href="${root }board/free">자유게시판</a></li>
 			  		</ul>
 			  	</li>
-				<li id="hamSub"><a href="#">이벤트</a></li>
+				<li id="hamSub"><a href="${root }board/event">이벤트</a></li>
 				<li><a href="#">고객센터</a>
 					<ul>
-			  			<li><a href="${root }board/notice">공 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;지</a></li>
+			  			<li><a href="${root }board/notice">공 &nbsp; &nbsp; &nbsp; &nbsp;지</a></li>
 				        <li><a href="${root }board/qna">자주묻는질문</a></li>
 			  		</ul>
 			  	</li>
@@ -88,17 +95,11 @@
 			</ul>
 		</div><!-- /.navbar-collapse -->
 	</nav><!-- /.container-fluid -->
-	<div>
-		<button id="hambBtn"><img src="https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/menu.jpg?raw=true" width="100px" id="hambI"></button>
-	</div>
 </div>
 
 
 
 <!-- contents start -->
-<div class="container">
-  <div class="row">
-   <div class="col-md-12">
       <div class="page-header" id="page-header" align="center">
      <h1>INSERT</h1>
    </div>

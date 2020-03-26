@@ -55,10 +55,9 @@ public class BoardController {
 	@Resource(name="uploadPath")
 	private String uploadPath;
 	
-	
-//	리스트 출력
-	
-	// 후기리스트 (기본정렬)
+
+//	리스트
+	// 후기 (기본정렬)
  	@RequestMapping(value = "/board/review", method = RequestMethod.GET)
  	public String review(Model model, @RequestParam(required = false, defaultValue = "1") int page,
  			@RequestParam(required=false, defaultValue="1") int range,
@@ -86,7 +85,7 @@ public class BoardController {
  		return "board/review";
  	}
  	
- 	// 후기리스트 (지역별)
+ 	// 후기 (나라정렬)
  	@RequestMapping(value="/board/reviewLocal", method=RequestMethod.GET)
  	public String reviewLocal(Model model, @RequestParam(required = false, defaultValue = "1") int page,
  			@RequestParam(required=false, defaultValue="1") int range,
@@ -114,7 +113,7 @@ public class BoardController {
  		return "board/review";
  	}
  	
- 	// 후기리스트 (테마별)
+ 	// 후기 (테마정렬)
  	@RequestMapping(value="/board/reviewTheme", method=RequestMethod.GET)
  	public String reviewTheme(Model model, @RequestParam(required = false, defaultValue = "1") int page,
  			@RequestParam(required=false, defaultValue="1") int range,
@@ -142,7 +141,7 @@ public class BoardController {
  		return "board/review";
  	}
  	
- 	// 동행리스트
+ 	// 동행
  	@RequestMapping(value = "/board/partner", method = RequestMethod.GET)
  	public String partner(Model model, @RequestParam(required = false, defaultValue = "1") int page,
  			@RequestParam(required=false, defaultValue="1") int range,
@@ -170,7 +169,7 @@ public class BoardController {
  		return "partner/partner";
  	}
  	
- 	// 자유게시판 리스트
+ 	// 자유게시판
  	@RequestMapping(value = "/board/free", method = RequestMethod.GET)
  	public String free(Model model, @RequestParam(required = false, defaultValue = "1") int page,
  			@RequestParam(required=false, defaultValue="1") int range,
@@ -198,7 +197,7 @@ public class BoardController {
  		return "free/free";
  	}
  	
- 	// 이벤트리스트
+ 	// 이벤트
  	@RequestMapping(value = "/board/event", method = RequestMethod.GET)
  	public String event(Model model, @RequestParam(required = false, defaultValue = "1") int page,
  			@RequestParam(required=false, defaultValue="1") int range,
@@ -226,7 +225,7 @@ public class BoardController {
  		return "event/event";
  	}
  	
-//	글쓰기 페이지
+//	글쓰기페이지
  	// 후기
  	@RequestMapping(value = "/board/reviewIns", method = RequestMethod.GET)
  	public String reviewIns() {
@@ -248,7 +247,7 @@ public class BoardController {
  		return "event/write";
  	}
  	
-//	작성완료, 리스트로 이동
+//	작성완료
  	// 후기
  	@RequestMapping(value = "/board/reviewIns", method = RequestMethod.POST)
  	public String reviewIns(@ModelAttribute BoardVo bean, MultipartFile file) throws Exception {
@@ -330,8 +329,8 @@ public class BoardController {
   		return "redirect:event";
   	}
   	
-// 상세페이지 이동
- 	// 후기
+//	상세페이지로 이동
+  	// 후기
  	@RequestMapping(value="/board/reviewDe/{idx}",method=RequestMethod.GET)
  	public String detailReview(@PathVariable("idx") int key, Model model) {
  		boardService.selectOne_review(key, model);
@@ -360,7 +359,7 @@ public class BoardController {
  		return "event/detail";
  	}
 
-// 수정페이지 이동
+//	수정페이지 이동
  	// 후기
  	@RequestMapping(value = "/board/reviewUp/{idx}", method = RequestMethod.GET)
  	public String update(@PathVariable("idx") int key, Model model) {
@@ -386,7 +385,7 @@ public class BoardController {
  		return "event/update";
  	}
 
-//	후기 수정페이지 나라조회 (selectbox)
+//	후기 �닔�젙�럹�씠吏� �굹�씪議고쉶 (selectbox)
  	@RequestMapping(value="/board/updateLand", method=RequestMethod.POST)
  	public String updateLand(int key, Model model) {
  		boardService.select_land(key, model);
@@ -502,7 +501,7 @@ public class BoardController {
  		eventService.updateOne_event(bean);
  		return "redirect:../eventDe/"+bean.getBoard_no();
  	}
-//	게시글 삭제
+//	삭제
  	// 후기
  	@RequestMapping(value="/board/reviewDel", method=RequestMethod.POST)
  	public String reviewDel(int key) {
@@ -530,7 +529,7 @@ public class BoardController {
  	
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
  	
-//	댓글 입력
+//	댓글작성
  	// 후기
  	@RequestMapping(value="/board/reviewRepIn", method=RequestMethod.POST)
  	public String reviewRepIn(@ModelAttribute ReplyVo bean) {
@@ -556,7 +555,7 @@ public class BoardController {
   		return "event/detail";
   	}
 
-//	댓글 수정
+//	댓글수정
   	// 후기
   	@RequestMapping(value="/board/reviewRepUp", method=RequestMethod.POST)
   	public String reviewRepUp(@ModelAttribute ReplyVo bean) {
@@ -582,7 +581,7 @@ public class BoardController {
    		return "event/detail";
    	}
   	
-//	댓글 삭제
+//	댓글삭제
    	// 후기
   	@RequestMapping(value="/board/reviewRepDel", method=RequestMethod.POST)
   	public String reviewRepDel(int key) {
@@ -609,13 +608,13 @@ public class BoardController {
   	}
   	
 //	쪽지보내기
-  	// 쪽지페이지 이동
+  	// 쪽지발송 페이지
  	@RequestMapping(value = "/partner", method = RequestMethod.GET)
  	public String msg(String id) {
  		return "partner/sendMsg";
  	}
  	
- 	// 쪽지 발송
+ 	// 쪽지 발송 완료
  	@RequestMapping(value = "/partner", method = RequestMethod.POST)
  	public String msgSend(SendVo bean) {
  		sendService.insertOne_send(bean);
@@ -623,6 +622,7 @@ public class BoardController {
  	}
  	
 //////////////////////////////////////////////////////////////////////////////////////////////////
+ 	
  	// 웹소켓테스트
  	@RequestMapping(value = "/partner/sendMsg", method = RequestMethod.GET)
  	public String sendMsg() {

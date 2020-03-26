@@ -1,9 +1,11 @@
 	h1, input {
 		font-family: 'Jua';
 	}
-	table {
-		width:700px;      
+	#table {
+		width:950px;
 		margin:0 auto;
+		padding:0px;
+		text-align:center;
 		font-family: 'Jua';
 		font-size:18px;
 	}
@@ -12,7 +14,7 @@
 	}
 /* 나라정렬 버튼 */
 	#theme {
-		width:900px;
+		width:950px;
 		margin:0 auto;
 		padding:0px;
 	}
@@ -32,29 +34,55 @@
 	}
 /* 글쓰기 버튼 div */
 	#fff {
-		padding:0px 213px;
+		padding:0px 238px;
 		display:inline-block;
 	}
-	#table>thead th:nth-child(1) {
+/* 글쓰기 <a> 너비 */
+	#wri {
+		width:79px;
+	}
+	#table th {
+		text-align:center;
+	}
+	#table>tbody td,
+	#table>tbody td>a {
+		font-size:15px;
+	}
+/*
 		width:35px;
+		width:90px;
+		width:70px;
+		width:80px;
+		width:60px;
+		width:50px;
+*/
+	#table>thead th:nth-child(1) {
+		width:65px;
+		background-color:red;
 	}
 	#table>thead th:nth-child(2) {
-		width:90px;
+		width:65px;
+		background-color:blue;
 	}
 	#table>thead th:nth-child(3) {
-		width:70px;
+		width:140px;
+		background-color:green;
 	}
 	#table>thead th:nth-child(4) {
-		width:315px;
+		background-color:gold;
+		width:390px;
 	}
 	#table>thead th:nth-child(5) {
 		width:80px;
+		background-color:pink;
 	}
 	#table>thead th:nth-child(7) {
 		width:60px;
+		background-color:gray;
 	}
 	#table>thead th:nth-child(6) {
-		width:50px;
+		width:70px;
+		background-color:purple;
 	}
 	#table>tbody td:nth-child(4) {
 		text-align:left;
@@ -64,23 +92,6 @@
 	}
 	#table>tbody td>a:hover {
 		color:black;
-	}
-/* 글쓰기 <a> 너비 */
-	#wri {
-		width:79px;
-	}
-	#table {
-		width:900px;
-		margin:0 auto;
-		padding:0px;
-		text-align:center;
-		font-family: 'Jua';
-	}
-	#table th {
-		text-align:center;
-	}
-	#table>tbody td {
-		font-size:14px;
 	}
 	#pageNum, #search {
 		width:350px;      

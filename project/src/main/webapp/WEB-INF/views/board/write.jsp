@@ -50,39 +50,46 @@
 </style>
 </head>
 <body>
+<div class="container">
+  <div class="row">
+   <div class="col-md-12">
    <!-- menubar start -->
 <div class="menubar">
 	<nav>
 		<div>
-			<ul class="login">
-		        <!-- 로그인시 숨김 -->
-		        <c:if test="${sessionScope.check eq null && sessionScope.staffcheck eq null }">
-		        <li>
-		        	<a id="side" href="${root }main/login" >로그인</a> &nbsp; &nbsp; &nbsp; &nbsp;
-		        	<a id="side" href="${root }main/admin" >회원가입</a>
-		        </li>
-		        </c:if>
-		        <!-- 직원로그인시 -->
-		        <c:if test="${sessionScope.staffcheck ne null }">
-				<select id="side" onchange="location.href=this.value">
-		            <option value="${root }main/staffinfo">내정보관리</option>
-		            <option value="${root }main/logout">로그아웃</option>
-		        </select>
-		        </c:if>
-		        <!-- 회원로그인시 -->
-		        <c:if test="${sessionScope.check ne null }">
-				<select id="side" onchange="location.href=this.value">
-					<option id="hide">${sessionScope.check.client_nick1} 님<span class="caret"></span></option>
-		            <option value="${root }main/message">쪽지함</option>
-		            <option value="#">최근본상품</option>
-		            <option value="${root }main/wish">찜한상품</option>
-		            <option value="#">결제상품</option>
-		            <option value="#">내가쓴글</option>
-		            <option value="${root }main/myinfo">내정보관리</option>
-		            <option value="${root }main/logout">로그아웃</option>
-		          </select>
-		        </c:if>
-			</ul>
+			<div align="right">
+				<ul class="login">
+			        <!-- 로그인시 숨김 -->
+			        <c:if test="${sessionScope.check eq null && sessionScope.staffcheck eq null }">
+			        <li>
+			        	<a id="side" href="${root }main/login" >로그인</a> &nbsp; &nbsp; &nbsp; &nbsp;
+			        	<a id="side" href="${root }main/admin" >회원가입</a>
+			        </li>
+			        </c:if>
+			        <!-- 직원로그인시 -->
+			        <c:if test="${sessionScope.staffcheck ne null }">
+					<select id="side" onchange="location.href=this.value">
+			            <option value="${root }main/staffinfo">내정보관리</option>
+			            <option value="${root }main/logout">로그아웃</option>
+			        </select>
+			        </c:if>
+			        <!-- 회원로그인시 -->
+			        <c:if test="${sessionScope.check ne null }">
+					<select id="side" onchange="location.href=this.value">
+						<option id="hide">${sessionScope.check.client_nick1} 님<span class="caret"></span></option>
+			            <option value="${root }main/message">쪽지함</option>
+			            <option value="#">최근본상품</option>
+			            <option value="${root }main/wish">찜한상품</option>
+			            <option value="#">결제상품</option>
+			            <option value="#">내가쓴글</option>
+			            <option value="${root }main/myinfo">내정보관리</option>
+			            <option value="${root }main/logout">로그아웃</option>
+			          </select>
+			        </c:if>
+				</ul>
+			</div>
+			
+			
 			<ul class="nav nav-pills nav-stacked" id="hamb">
 				<li id="hamSub"><a href="#">투어</a>
 			  		<ul>
@@ -102,10 +109,10 @@
 			       		<li><a href="${root }board/free">자유게시판</a></li>
 			  		</ul>
 			  	</li>
-				<li id="hamSub"><a href="#">이벤트</a></li>
+				<li id="hamSub"><a href="${root }board/event">이벤트</a></li>
 				<li><a href="#">고객센터</a>
 					<ul>
-			  			<li><a href="${root }board/notice">공 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;지</a></li>
+			  			<li><a href="${root }board/notice">공 &nbsp; &nbsp; &nbsp; &nbsp;지</a></li>
 				        <li><a href="${root }board/qna">자주묻는질문</a></li>
 			  		</ul>
 			  	</li>
@@ -123,17 +130,11 @@
 			</ul>
 		</div><!-- /.navbar-collapse -->
 	</nav><!-- /.container-fluid -->
-	<div>
-		<button id="hambBtn"><img src="https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/menu.jpg?raw=true" width="100px" id="hambI"></button>
-	</div>
 </div>
 
 
 
 <!-- contents start -->
-<div class="container">
-  <div class="row">
-   <div class="col-md-12">
       <div class="page-header" id="page-header" align="center">
      <h1>INSERT</h1>
    </div>
@@ -210,42 +211,25 @@
 
 
 <!-- contents end -->
-     
-   <div class="footer">
-    	<img id="footer1" src="https://github.com/uniqueHRH/travel/blob/master/src/main/webapp/imgs/footer1.jpg?raw=true" alt="">
-    </div>
-</body>
+<div id="footerM">
+     <div class="footerS">
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 이용약관 &nbsp; 개인정보처리방침 &nbsp; 여행약관 &nbsp; 사업자정보확인<br/><br/>
+(주) 여행사용설명서 | 대표자: 홍길동 | 사업자등록번호 : 123-45-67890<br/>
+통신판매업신고번호 : 강남01-0013호 | 개인정보 보호책임자 : 홍길동<br/>
+[06134]서울 강남구 테헤란로5길 11 유빌딩 2층, 3층<br/>
+여행사용설명서 고객센터 : 1234-5678| FAX : 1234-5679<br/>
+이메일 : 12345@traveler.com | 호스팅 서비스 사업자 : (주) 여행사용설명서<br/>
+관광사업자 등록번호 : 제2020-000001호 | 영업보증보험 : 22억 1천만원 가입<br/><br/>
+부득이한 사정에 의해 여행일정이 변경되는 경우 여행자의 사전 동의를 받습니다.<br/>
+COPYRIGHT ⓒ HANATOUR SERVICE INC. ALL RIGHT RESERVED
+	</div>
+</div>
 
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="${root }js/bootstrap.js"></script>
 
 <script type="text/javascript">
 	$(document).ready(function() {
-		$('#hamb').hide();
-		$('#hide').hide();
-		
-		$('#tour_sub').hide();
-		$('#comm_sub').hide();
-		$('#serv_sub').hide();
-		$('#system_sub').hide();
-		
-		$('#maintext1').hide();
-		$('#maintext2').hide();
-		$('#maintext3').hide();
-		$('#maintext4').hide();
-		
-		$('#hambBtn').mouseenter(function() {
-			$('#hamb').show();
-			$(this).hide();
-		});
-		$('#hamb').mouseenter(function() {
-			$(this).show();
-			$('#hambBtn').hide();
-		}).mouseleave(function() {
-			$('#hamb').hide();
-			$('#hambBtn').show();
-		});
-
 		// 파일업로드
 		$('#board_img').change(function(){
 			if(this.files && this.files[0]) {
