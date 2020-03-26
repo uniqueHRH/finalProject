@@ -21,26 +21,9 @@ public class TravelController {
 	@Autowired
 	ClientService clientService;
 	@Autowired
-	BoardService boardService;
-	@Autowired
-	FaqService faqService;
-	@Autowired
-	GuideService guideService;
-	@Autowired
-	NoticeService noticeService;
-	@Autowired
-	PaidService paidService;
-	@Autowired
-	ReceiveService receiveService;
-	@Autowired
-	ReplyService replyService;
-	@Autowired
-	SendService sendService;
+	TourService tourservice;
 	@Autowired
 	StaffService staffService;
-	@Autowired
-	TourService tourservice;
-	
 	
 	
 // 로그인
@@ -116,38 +99,7 @@ public class TravelController {
 		return "redirect:/";
 	}
 	
-// 회원
-	//내정보(직원)으로 이동
-	@RequestMapping(value = "/main/staffinfo", method = RequestMethod.GET)
-	public String staffinfo() {
-		return "mypage/staffinfo";
-	}
-	
-	//내정보관리로 이동
-	@RequestMapping(value = "/main/myinfo")
-	public String myinfo(Model model,@PathVariable("idx") int client_no) {
-		return "mypage/myinfo";
-	}
-	
-	//내정보  변경으로 이동
-	@RequestMapping(value = "/main/myinfo/changeinfo", method = RequestMethod.GET)
-	public String changemyinfo() {
-		return "mypage/changemyinfo";
-	}
-	//내정보 변경에서 비밀번호 변경으로 이동
-	@RequestMapping(value = "/main/myinfo/changeinfo/changepw", method = RequestMethod.GET)
-	public String changepw() {
-		return "mypage/changepw";
-	}
-	@RequestMapping(value = "/main/message", method = RequestMethod.GET)
-	public String message() {
-		return "mypage/message";
-	}
-	@RequestMapping(value = "/main/wish", method = RequestMethod.GET)
-	public String wish() {
-		return "mypage/wish";
-	}
-	
+
 	
 // 투어   
 	//중국/일본으로 이동
@@ -181,30 +133,4 @@ public class TravelController {
 		return "home";
 	}
 	
-// 시스템관리
- 	//직원관리페이지로 이동
- 	@RequestMapping(value = "/system/staff", method = RequestMethod.GET)
- 	public String staff() {
- 		return "system/staff";
- 	}
- 	
- 	//가이드관리페이지로 이동
- 	@RequestMapping(value = "/system/guide", method = RequestMethod.GET)
- 	public String guide() {
- 		return "system/guide";
- 	}
- 	
- 	//회원관리페이지로 이동
- 	 @RequestMapping(value = "/system/client", method = RequestMethod.GET)
- 	 public String client() {
- 		return "system/client";
- 	 }
- 	 
- 	 //결제관리페이지로 이동
- 	@RequestMapping(value = "/system/paid", method = RequestMethod.GET)
-	 public String paid() {
-		return "system/paid";
-	 }
- 	
- 	
 }
