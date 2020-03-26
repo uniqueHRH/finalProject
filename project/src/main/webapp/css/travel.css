@@ -16,7 +16,7 @@
 		padding:10px 10px 10px 20px;
 	}
 	#hamb>li>a:hover {
-		color:black;
+		color:black; 
 	}
 	#hamb>li>ul>li {
 		text-align:center;
