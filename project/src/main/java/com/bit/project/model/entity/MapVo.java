@@ -5,7 +5,9 @@ public class MapVo {
 	private int latlng_no;
 	private String country;
 	private String city;
+	private String tour_name;
 	private String spot;
+	private String latlng;
 	
 	public MapVo() {
 		// TODO Auto-generated constructor stub
@@ -35,6 +37,14 @@ public class MapVo {
 		this.city = city;
 	}
 
+	public String getTour_name() {
+		return tour_name;
+	}
+
+	public void setTour_name(String tour_name) {
+		this.tour_name = tour_name;
+	}
+
 	public String getSpot() {
 		return spot;
 	}
@@ -43,17 +53,30 @@ public class MapVo {
 		this.spot = spot;
 	}
 
-	@Override
-	public String toString() {
-		return "MapVo [latlng_no=" + latlng_no + ", country=" + country + ", city=" + city + ", spot=" + spot + "]";
+	public String getLatlng() {
+		return latlng;
 	}
 
-	public MapVo(int latlng_no, String country, String city, String spot) {
+	public void setLatlng(String latlng) {
+		this.latlng = latlng;
+	}
+
+	@Override
+	public String toString() {
+		return "MapVo [latlng_no=" + latlng_no + ", country=" + country + ", city=" + city + ", tour_name=" + tour_name
+				+ ", spot=" + spot + ", latlng=" + latlng + "]";
+	}
+
+	public MapVo(int latlng_no, String country, String city, String tour_name, String spot, String latlng) {
 		super();
 		this.latlng_no = latlng_no;
 		this.country = country;
 		this.city = city;
+		this.tour_name = tour_name;
 		this.spot = spot;
+		this.latlng = latlng;
 	}
+
+	
 	
 }

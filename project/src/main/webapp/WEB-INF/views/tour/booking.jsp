@@ -23,7 +23,7 @@
        width:700px;
        position: absolute;
        left: 400px;
-       margin-top: 30px;
+       top: 230px;
     }
     #paid_count1{
     	width: 300px;
@@ -60,7 +60,7 @@
     	width: 200px;
     	position: absolute;
     	left: 620px;
-    	top: 470px;
+    	top: 570px;
     }
     #bookbtn{
     	width: 300px;
@@ -212,9 +212,9 @@
 			
 			<table class="table" id="infor1">
 				<tr>
-					<td class="active" style="width: 100px; text-align: center;">지역</td>
+					<td class="active" style="width: 100px; text-align: center;">상품명</td>
 					
-					<td>${bean.city }</td>
+					<td>${bean.name }</td>
 				</tr>
 				<tr>
 					<td class="active" style="text-align: center;">1인 상품가</td>
@@ -230,7 +230,7 @@
 				<tr>	
 			</table>
 		</div>
-      <p style="font-size: 25px; margin-top: 50px; position: absolute; left: 600px; top: 70px;" >예약자 정보</p>
+      <p style="font-size: 25px; margin-top: 50px; position: absolute; left: 600px; top: 130px;" >예약자 정보</p>
 		<form class="form-horizontal">
 			<div id="form-group">
 				<div class="form-group">

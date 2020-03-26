@@ -138,8 +138,8 @@
     <div class="thumbnail">
       <img src="${bean.mainimg }" alt="" id="mainimg">
       <div class="caption">
-        <h2>${bean.country }(${bean.city })</h2>
-        <p style="font-size: 17px;">${bean.introduce }</p>
+        <h3>${bean.name }</h3>
+        <p style="font-size: 20px;">${bean.city }(${bean.country })</p>
         <p style="color: red; font-size: 20px;">${bean.cost }원</p>
       </div>
     </div>

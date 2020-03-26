@@ -37,7 +37,7 @@
    }
    
    #tourtable{      
-       width: 600px;
+       width: 700px;
       position: absolute;
       left: 60px;
       height: 150px;
@@ -61,7 +61,7 @@
       position: absolute;
       font-size: 30px;
       left: 350px;
-      top: 730px;
+      top: 750px;
    }
    #courseimg{
       position: absolute;
@@ -184,7 +184,7 @@
  <div class="row">
    <div class="col-md-12">
       <div class="page-header" align="center">
-     <h1>${bean.country }(${bean.city })</h1>
+     <h1>${bean.name }</h1>
  </div>
    <!-- contenets start -->
   <p id="comments">여행의 포인트 : ${bean.comments }</p>   
@@ -214,10 +214,10 @@
      
     <table class="table table-condensed" id="tourtable">
       <tr>
-         <td class="active" style="text-align: center; width: 150px">여행도시</td>
-         <td style="width: 200px;">${bean.city }</td>
-         <td class="active" style="text-align: center; width: 150px">최소출발인원</td>
-         <td width="200px;">1명</td>
+         <td class="active" style="text-align: center; width: 150px">상풍명</td>
+         <td style="width: 350px;">${bean.name }</td>
+         <td class="active" style="text-align: center; width: 150px">지역</td>
+         <td width="200px;">${bean.city }</td>
       </tr>
       <tr>
          <td class="active" style="text-align: center;">투어일</td>

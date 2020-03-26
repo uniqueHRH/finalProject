@@ -8,7 +8,7 @@ public class TourVo {
 	private String city;
 	private String theme;
 	private String vehicle;
-	private String introduce;
+	private String name;
 	private int cost;
 	private String mainimg;
 	private String comments;
@@ -18,7 +18,7 @@ public class TourVo {
 	private String secondimg;
 	private String thirdimg;
 	
-	private GuideVo GuideVo;// 가이드 조인위해
+	private GuideVo GuideVo;// 가이드 조인위해 
 	
 	
 	public TourVo() {
@@ -86,13 +86,13 @@ public class TourVo {
 	}
 
 
-	public String getIntroduce() {
-		return introduce;
+	public String getName() {
+		return name;
 	}
 
 
-	public void setIntroduce(String introduce) {
-		this.introduce = introduce;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 
@@ -189,13 +189,13 @@ public class TourVo {
 	@Override
 	public String toString() {
 		return "TourVo [tour_no=" + tour_no + ", land=" + land + ", country=" + country + ", city=" + city + ", theme="
-				+ theme + ", vehicle=" + vehicle + ", introduce=" + introduce + ", cost=" + cost + ", mainimg="
-				+ mainimg + ", comments=" + comments + ", course=" + course + ", latlng=" + latlng + ", firstimg="
-				+ firstimg + ", secondimg=" + secondimg + ", thirdimg=" + thirdimg + ", GuideVo=" + GuideVo + "]";
+				+ theme + ", vehicle=" + vehicle + ", name=" + name + ", cost=" + cost + ", mainimg=" + mainimg
+				+ ", comments=" + comments + ", course=" + course + ", latlng=" + latlng + ", firstimg=" + firstimg
+				+ ", secondimg=" + secondimg + ", thirdimg=" + thirdimg + ", GuideVo=" + GuideVo + "]";
 	}
 
 
-	public TourVo(int tour_no, String land, String country, String city, String theme, String vehicle, String introduce,
+	public TourVo(int tour_no, String land, String country, String city, String theme, String vehicle, String name,
 			int cost, String mainimg, String comments, String course, String latlng, String firstimg, String secondimg,
 			String thirdimg, com.bit.project.model.entity.GuideVo guideVo) {
 		super();
@@ -205,7 +205,7 @@ public class TourVo {
 		this.city = city;
 		this.theme = theme;
 		this.vehicle = vehicle;
-		this.introduce = introduce;
+		this.name = name;
 		this.cost = cost;
 		this.mainimg = mainimg;
 		this.comments = comments;
@@ -216,6 +216,9 @@ public class TourVo {
 		this.thirdimg = thirdimg;
 		GuideVo = guideVo;
 	}
+
+
+	
 
 
 }
