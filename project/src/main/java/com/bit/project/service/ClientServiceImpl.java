@@ -85,6 +85,16 @@ public class ClientServiceImpl implements ClientService {
 		}
 	}
 
+	@Override
+	public ClientVo nickDupli(ClientVo bean) throws Exception {
+		return clientDao.nickDupli(bean);
+	}
+
+	@Override
+	public ClientVo idDupli(ClientVo bean) throws Exception {
+		return clientDao.idDupli(bean);
+	}
+
 	
 
 	

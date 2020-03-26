@@ -10,37 +10,62 @@
 <link rel="stylesheet" type="text/css" href="${root }css/bootstrap.css" />
 <link rel="stylesheet" type="text/css" href="${root }css/travel.css" />
 <style type="text/css">
-   h1 {
-		font-family: 'Jua';
-	}
-    form {
-		width:500px;      
-		margin:0 auto;
-		font-family: 'Jua';
-		padding:0;
-	}
-    #resetbtn,#confirmbtn{
-    	text-align: center;
-    	margin-top: 10px;
-    	width: 40%;
-    }
-    form label {
-    	width:100px;
-    	span:0 5px;
-    }
-    form input {
-    	width:300px
-    }
-    #count {
-    	border:0px;
-    	width:100px;
-    	background-color:white;
-    }
-    
-    #code2, #dice2 {
-    	display:inline-block;
-    }
-    
+h1 {
+	font-family: 'Jua';
+}
+
+form {
+	width: 500px;
+	margin: 0 auto;
+	font-family: 'Jua';
+	padding: 0;
+}
+
+#resetbtn, #confirmbtn {
+	text-align: center;
+	margin-top: 10px;
+	width: 40%;
+}
+
+form label {
+	width: 100px;
+	span: 0 5px;
+}
+
+form input {
+	width: 300px
+}
+
+#count {
+	border: 0px;
+	width: 100px;
+	background-color: white;
+}
+
+#code2, #dice2 {
+	display: inline-block;
+}
+
+#loading {
+	width: 100%;
+	height: 100%;
+	top: 0px;
+	left: 0px;
+	position: fixed;
+	opacity: 0.7;
+	z-index: 99;
+	text-align: center;
+	background-color: #898686;
+	display: none;
+}
+
+#imgs {
+	display: none;
+	position: absolute;
+	left: 45%;
+	top: 45%;
+	z-index: 100;
+}
 </style>
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="${root }js/bootstrap.js"></script>
@@ -93,15 +118,16 @@
 					type:'POST',
 					data:{client_name:name, client_id:id, client_email:email},
 					beforeSend:function(){
-						alert('인증번호 발송 중..');
+						$('#loading').css('display','block');
+						$('#imgs').css('display','block');
 				    },
 				    success:function(data){
 				    	var check = data.FindPw
 				    	if(check == null){
+				    		$('#loading').css('display','none');
+				    		$('#imgs').css('display','none');
 				    		alert('가입하신 이름,아이디,이메일을 입력해주세요');
 				    	}else{
-				    	$('input[name=dice2]').attr('value',data.Dice2);
-				    	alert('인증번호를 발송했습니다.이메일을 확인해주세요');
 						var num = 60 * 3; // 몇분을 설정할지의 대한 변수 선언
 			    		var myVar;
 			   			 function time(){
@@ -121,6 +147,10 @@
 			        		}
 			        		num--;
 			   			}
+				    	$('#loading').css('display','none');
+				    	$('#imgs').css('display','none');
+				    	$('input[name=dice2]').attr('value',data.Dice2);
+				    	alert('인증번호를 발송했습니다.이메일을 확인해주세요');
 				    	}
 				    },
 					error:function(){
@@ -215,6 +245,12 @@
       <div class="page-header" align="center">
      <h1>비밀번호찾기</h1>
    </div>
+   
+    <div id="loading">
+   	<img id="imgs" src="../../imgs/loadingbar.gif"/>
+   </div>
+   
+   
    <form action="../code_check2" name="cac2" class="form-horizontal" method="post">
    		<div id="tableM">
 	   		<div>
