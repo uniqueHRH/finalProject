@@ -251,7 +251,7 @@
       
       <p id="course"> <여행일정> </p>
       <div id="courseimg">
-      <img src="${bean.course }">
+     <img src="${bean.course }">
       </div>
    </div>
   </div>
@@ -260,7 +260,7 @@
  <div class="row">
    <div class="col-md-12">
     <div class="footer">
-       
+    
     </div>
    </div>
  </div>
@@ -302,13 +302,13 @@
             if(!check){
                $("#bookform").attr("href", "../../main/login");
             }           
-         });     
+         });
    });
  
    //구글맵관련 
    function initMap() {
-  	var myLatLng = myLatlng = new google.maps.LatLng(${bean.latlng});//메인구글맵좌표
-  	var myLatLng1 = myLatlng = new google.maps.LatLng(${bean.latlng});//구글맵좌표
+  	 var myLatLng = myLatlng = new google.maps.LatLng(${bean.latlng});//메인구글맵좌표
+  	  
 	//메인구글맵 start
  	 var map = new google.maps.Map(document.getElementById('map'), {
     	zoom: 7,
@@ -320,23 +320,34 @@
     icon:"${root}imgs/icon(big).png",
     map: map,
     title: '${bean.city}'//marker  표시
-  });
+  }); 
  	//메인구글맵end
  	
  	var map1 = new google.maps.Map(document.getElementById('map1'), {
     	zoom: 10,
-    	center: myLatLng1
+    	center: myLatLng
       });
- 	//for문 돌려서 marker 다량 선택가능
- 	 var marker1 = new google.maps.Marker({
-    position: myLatLng1,//좌표선택해주면됨
-    icon:"${root}imgs/icon(small).png",
-    map: map1,
-    title: '${bean.city}'//marker  표시
-  });
- 	
-}
- 
+ 	var spot=new Array();
+ 	var latlng1=new Array();
+ 	<c:forEach items="${lists}" var="bean1">
+ 	spot.push("${bean1.spot}");// 배열에 spot이 담겨있음
+ 	latlng1.push("${bean1.latlng}");//배열에 좌표가 담겨있음.
+    </c:forEach>
+	    console.log(latlng1);
+	    console.log(spot);
+	
+ 	for(var i=0; i<latlng1.length; i++){
+ 		var myLatLng1 = myLatlng1 = new google.maps.LatLng(latlng1[i]);//메인구글맵좌표
+	   	var marker1 = new google.maps.Marker({
+		    position:myLatLng1,//좌표선택해주면됨
+	    	map: map1,
+	    	title: spot[i]//marker  표시
+ 	 });
+	   	
+   }
+		console.log(spot[1]);
+		console.log(myLatLng1);
+} 
     
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBOqxnoiL8ERSpf1bmFqxC7SjKeup1twK8&callback=initMap"

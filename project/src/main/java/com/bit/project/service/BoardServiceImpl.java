@@ -20,6 +20,7 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public List<BoardVo> selectAll_review(Search search) throws Exception {
 		return boardDao.selectAll_review(search);
+		
 	}
 
 	
