@@ -8,18 +8,19 @@
 	<!-- eastasia join guide -->
 	<resultMap type="MapBean" id="MapMap">
 		<result property="tour_name" column="tour_name"/>
+		<result property="spot" column="spot"/>
 		<result property="latlng" column="latlng"/>
 				
 		<association property="TourVo" resultMap="TourVo"/>
 	</resultMap>
 	
-	<resultMap type="TourBean" id="GuideVo">
+	<resultMap type="TourBean" id="TourVo">
 		<result property="name" column="name"/>
 		<result property="tour_no" column="tour_no"/>
 	</resultMap>
 	
 	<select id="selectAll_map" parameterType="int" resultMap="MapMap" >
-		select map.tour_name, map.latlng from map inner join tour on tour.name=map.tour_name where tour.tour_no=#{tour_no}
+		select map.tour_name, map.spot,map.latlng from map inner join tour on tour.name=map.tour_name where tour.tour_no=#{tour_no}
 	</select>
 
 </mapper>
