@@ -251,7 +251,7 @@
       
       <p id="course"> <여행일정> </p>
       <div id="courseimg">
-      <img src="${bean.course }">
+      <!-- <img src="${bean.course }">-->
       </div>
    </div>
   </div>
@@ -260,7 +260,15 @@
  <div class="row">
    <div class="col-md-12">
     <div class="footer">
-       
+
+
+<c:forEach items="${lists }" var="bean3">
+	<tr>
+		<td>${bean3.latlng }</td>
+	</tr>
+</c:forEach>
+    
+    
     </div>
    </div>
  </div>

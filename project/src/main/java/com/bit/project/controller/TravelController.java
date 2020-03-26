@@ -24,6 +24,8 @@ public class TravelController {
 	TourService tourservice;
 	@Autowired
 	StaffService staffService;
+	@Autowired
+	MapService mapservice;
 	
 	
 // ·Î±×ÀÎ
@@ -111,6 +113,7 @@ public class TravelController {
 	@RequestMapping(value = "/tour/eastasia/{idx}", method = RequestMethod.GET)
 	public String detail(Model model, @PathVariable ("idx") int tour_no) {
 		tourservice.selectOne_eastasia(model, tour_no);
+		mapservice.selectAll_map(model,tour_no);
 		return "tour/detaileastasia";
 	}
 

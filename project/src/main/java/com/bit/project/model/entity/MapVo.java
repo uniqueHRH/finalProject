@@ -9,6 +9,8 @@ public class MapVo {
 	private String spot;
 	private String latlng;
 	
+	private TourVo tourVo;// 상세지도 조인
+	
 	public MapVo() {
 		// TODO Auto-generated constructor stub
 	}
@@ -61,13 +63,22 @@ public class MapVo {
 		this.latlng = latlng;
 	}
 
+	public TourVo getTourVo() {
+		return tourVo;
+	}
+
+	public void setTourVo(TourVo tourVo) {
+		this.tourVo = tourVo;
+	}
+
 	@Override
 	public String toString() {
 		return "MapVo [latlng_no=" + latlng_no + ", country=" + country + ", city=" + city + ", tour_name=" + tour_name
-				+ ", spot=" + spot + ", latlng=" + latlng + "]";
+				+ ", spot=" + spot + ", latlng=" + latlng + ", tourVo=" + tourVo + "]";
 	}
 
-	public MapVo(int latlng_no, String country, String city, String tour_name, String spot, String latlng) {
+	public MapVo(int latlng_no, String country, String city, String tour_name, String spot, String latlng,
+			TourVo tourVo) {
 		super();
 		this.latlng_no = latlng_no;
 		this.country = country;
@@ -75,7 +86,10 @@ public class MapVo {
 		this.tour_name = tour_name;
 		this.spot = spot;
 		this.latlng = latlng;
+		this.tourVo = tourVo;
 	}
+
+	
 
 	
 	

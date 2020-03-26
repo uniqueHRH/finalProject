@@ -16,8 +16,12 @@
   		<typeAlias alias="SendBean" type="com.bit.project.model.entity.SendVo"/>
   		<typeAlias alias="StaffBean" type="com.bit.project.model.entity.StaffVo"/>
   		<typeAlias alias="TourBean" type="com.bit.project.model.entity.TourVo"/>
-  
+  		<typeAlias alias="FreeBean" type="com.bit.project.model.entity.FreeVo"/>
+  		<typeAlias alias="PartnerBean" type="com.bit.project.model.entity.PartnerVo"/>
+  		<typeAlias alias="EventBean" type="com.bit.project.model.entity.EventVo"/>
+  		<typeAlias alias="MapBean" type="com.bit.project.model.entity.MapVo"/>
   	</typeAliases>
+  	
   	<mappers>
   		<mapper resource="mybatis/BoardMapper.xml"/>
   		<mapper resource="mybatis/ClientMapper.xml"/>
@@ -30,5 +34,9 @@
   		<mapper resource="mybatis/SendMapper.xml"/>
   		<mapper resource="mybatis/StaffMapper.xml"/>
   		<mapper resource="mybatis/TourMapper.xml"/>
+  		<mapper resource="mybatis/FreeMapper.xml"/>
+  		<mapper resource="mybatis/PartnerMapper.xml"/>
+  		<mapper resource="mybatis/EventMapper.xml"/>
+  		<mapper resource="mybatis/MapMapper.xml"/>
   	</mappers>
   </configuration>
