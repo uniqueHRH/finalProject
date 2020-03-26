@@ -610,15 +610,27 @@ public class BoardController {
   	
 //	쪽지보내기
   	// 쪽지페이지 이동
- 	@RequestMapping(value = "/partner/msg={id}", method = RequestMethod.GET)
- 	public String msg(@PathVariable("id") String id) {
- 		return "partner/message";
+ 	@RequestMapping(value = "/partner", method = RequestMethod.GET)
+ 	public String msg(String id) {
+ 		return "partner/sendMsg";
  	}
- 	// 쪽지 발송후 페이지 닫기
- 	@RequestMapping(value = "/partner/msg={id}", method = RequestMethod.POST)
+ 	// 쪽지 발송
+ 	@RequestMapping(value = "/partner", method = RequestMethod.POST)
  	public String msgSend(SendVo bean) {
  		sendService.insertOne_send(bean);
- 		return "partner/message";
+ 		return "partner/sendMsg";
+ 	}
+ 	
+////////////////////////////////////////////////////////////////////////////////////////////////// 	
+ 	// 웹소켓테스트
+ 	@RequestMapping(value = "/partner/sendMsg", method = RequestMethod.GET)
+ 	public String sendMsg() {
+ 		return "/partner/sendMsg";
+ 	}
+ 	
+ 	@RequestMapping(value = "/partner/receiveMsg", method = RequestMethod.GET)
+ 	public String receiveMsg() {
+ 		return "/partner/receiveMsg";
  	}
  	
 //	내가 쓴 글
