@@ -56,40 +56,6 @@
 			$('#hambBtn').show();
 		});
 		
-		$('#codebtn').on('click',function() {
-			var name = $('#client_name').val();
-			var email = $('#client_email').val();
-			
-			if(!name || !email){
-				alert('이름과 이메일을 확인해주세요');
-				return false;
-				event.preventDefault();
-			}else{
-				$.ajax({
-					url:'../login/findid',
-					type:'POST',
-					data:{client_name:name, client_email:email},
-					beforeSend:function(){
-						alert('인증번호 발송 중..');
-				    },
-				    success:function(data){
-				    	var check = data.FindId
-				    	if(check == null){
-				    		alert('가입하신 이름과 이메일을 입력해주세요');
-				    	}else{
-				    	$('input[name=dice]').attr('value',data.Dice);
-				    	alert('인증번호를 발송했습니다.이메일을 확인해주세요');
-				    	}
-				    },
-					error:function(){
-						alert('요청 실패');
-					}
-				});
-	      		
-				
-			}
-	    });
-		
 	});
 </script>
 </head>
