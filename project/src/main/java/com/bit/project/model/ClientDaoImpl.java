@@ -26,7 +26,6 @@ public class ClientDaoImpl implements ClientDao {
 
 	@Override
 	public void insertOne_client(ClientVo bean) throws Exception {
-		System.out.println("sqlSession:"+sqlSession);
 		sqlSession.insert("client.insertOne_client",bean);
 	}
 
@@ -58,6 +57,16 @@ public class ClientDaoImpl implements ClientDao {
 	@Override
 	public int pwUpdate(ClientVo bean) throws Exception {
 		return sqlSession.update("client.pwUpdate", bean);
+	}
+
+	@Override
+	public ClientVo nickDupli(ClientVo bean) throws Exception {
+		return sqlSession.selectOne("client.nickDupli", bean);
+	}
+
+	@Override
+	public ClientVo idDupli(ClientVo bean) throws Exception {
+		return sqlSession.selectOne("client.idDupli", bean);
 	}
 
 	

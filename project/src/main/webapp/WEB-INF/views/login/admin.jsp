@@ -139,17 +139,17 @@
     </div>
   </div>
   <div class="form-group">
-    <label for="client_nick" class="col-sm-2 control-label">닉네임</label>
+    <label for="client_nick1" class="col-sm-2 control-label">닉네임</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="client_nick" name="client_nick1" placeholder="닉네임을 입력하세요" style="width:400px">
-      <div id="nick_check"></div>
+      <input type="text" class="form-control" id="client_nick1" name="client_nick1" placeholder="2-15자 이내만 가능합니다" style="width:400px" maxlength="15"><button type="button" id="nickdupli">중복 확인</button>
+	<input type="hidden" id="duplicheck1" name="duplicheck1" value="0" style="display: none;">
     </div>
   </div>
   <div class="form-group">
     <label for="client_id" class="col-sm-2 control-label">아이디</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="client_id" name="client_id" placeholder="아이디를 입력하세요" style="width:400px">
-      <div id="id_check"></div>
+      <input type="text" class="form-control" id="client_id" name="client_id" placeholder="4-15자이내 영문(대,소),숫자만 가능합니다" style="width:400px" maxlength="15"><button type="button" id="iddupli">중복 확인</button>
+ 	  <input type="hidden" id="duplicheck2" name="duplicheck2" value="0" style="display: none;">
     </div>
   </div>
   <div class="form-group">
@@ -174,13 +174,14 @@
   <div class="form-group">
     <label for="client_birth" class="col-sm-2 control-label">이메일</label>
     <div class="col-sm-10">
-      <input type="email" class="form-control" id="client_email" name="client_email" placeholder="E-mail을 입력하세요" style="width:400px">
+      <input type="text" class="form-control" id="client_email" name="client_email" placeholder="E-mail을 입력하세요" style="width:400px">
+	  <div id="email_check"></div>
   	</div>
   </div>
   <div class="form-group">
     <label for="client_birth" class="col-sm-2 control-label">생년월일</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="client_birth" name="client_birth" placeholder="8자리로 입력하세요 ex)19920216" style="width:400px">
+      <input type="text" class="form-control" id="client_birth" name="client_birth" placeholder="8자리로 입력하세요 ex)19920216" style="width:400px" maxlength="8">
       <div id="birth_check"></div>
   	</div>
   </div>
@@ -317,7 +318,64 @@
 	        }
 	    });
 		
+	//닉네임 중복 검사
+	$('#nickdupli').on('click',function() {
+			 
+		var nick = $('#client_nick1').val();
+		var nickname =  /^[\w\Wㄱ-ㅎㅏ-ㅣ가-힣]{2,15}$/;
+		var nickcheck = nickname.test($("#client_nick1").val());
+		$.ajax({
+					url:'../main/nickdupli',
+					type:'POST',
+					data:{client_nick1:nick},
+				    success:function(data){
+				    	
+				    	var check = data.Nickdupli
+				    	
+				    	if(check == null && nickcheck != false){
+				    		alert('사용 가능한 닉네임입니다');
+				    		$('input[name=duplicheck1]').attr('value', 1);
+				    	}else if(nickcheck == false){
+				    		alert('형식에 맞게 입력하세요');
+				    	}else{
+				    		alert('이미 사용중인 닉네임입니다');
+				    	}
+				    }
+		});
+	});
+	
+	//아이디 중복검사
+	$('#iddupli').on('click',function() {
+			 
+		var id = $('#client_id').val();
+		
+		var Id = /^[A-Za-z0-9]{4,20}$/;
+		var idcheck = Id.test($("#client_id").val());
+		
+		$.ajax({
+					url:'../main/iddupli',
+					type:'POST',
+					data:{client_id:id},
+				    success:function(data){
+				    	
+				    	var check = data.Iddupli
+				    	
+				    	if(check == null && idcheck != false){
+				    		 alert('사용 가능한 아이디입니다');
+				    		 $('input[name=duplicheck2]').attr('value', 1);
+				    	}else if(idcheck == false){
+				    		alert('형식에 맞게 입력하세요');
+				    	}else{
+				    		alert('이미 사용중인 아이디입니다');
+				    	}
+				    }
+		});
+	});
+		
+		
 		//유효성검사
+		
+		//이름 정규식
 		$('#client_name').blur(function(){
 			var name = /^[가-힣]{2,4}$/;
 			var namecheck = name.test($("#client_name").val());
@@ -330,30 +388,7 @@
 			}
 		});
 		
-		$('#client_nick').blur(function(){
-			var nick =  /^[\w\Wㄱ-ㅎㅏ-ㅣ가-힣]{2,15}$/;
-			var nickcheck = nick.test($("#client_nick").val());
-			
-			if(nickcheck){
-				$('#nick_check').text('');
-			}else{
-				$('#nick_check').text('2~15글자이내만 가능합니다');
-				$('#nick_check').css('color', 'red');
-			}
-		});
-		$('#client_id').blur(function(){
-			var id = /^[A-Za-z0-9]{4,20}$/;
-			var idcheck = id.test($("#client_id").val());
-			
-			if(idcheck){
-				$('#id_check').text('');
-			}else{
-				$('#id_check').text('4-15자이내 영문(대,소),숫자만 가능합니다');
-				$('#id_check').css('color', 'red');
-			}
-		});
-		
-		
+		//비밀번호 정규식
 		$('#client_pw1').blur(function(){
 			var pw = /^.*(?=.{8,20})(?=.*[0-9])(?=.*[a-zA-Z]).*$/;
 			var pwcheck = pw.test($("#client_pw1").val());
@@ -365,6 +400,8 @@
 				$('#pw_check1').css('color', 'red');
 			}
 		});
+		
+		//비밀번호 일치 확인
 		$('#client_pw2').blur(function(){
 			var pw1 = $("#client_pw1").val();
 			var pw2 = $("#client_pw2").val();
@@ -375,22 +412,78 @@
 				$('#pw_check2').css('color', 'red');
 			}
 		});
-		$('#client_birth').blur(function(){
-			var birth = /^(19[0-9][0-9]|20\d{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$/;
-			var birthcheck = birth.test($("#client_birth").val());
+		
+		//이메일 정규식
+		$('#client_email').blur(function(){
+			var email = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
+			var emailcheck = email.test($("#client_email").val());
 			
-			if(birthcheck){
-				$('#birth_check').text('');
+			if(emailcheck){
+				$('#email_check').text('');
 			}else{
+				$('#email_check').text('이메일 형식이 아닙니다.');
+				$('#email_check').css('color','red');
+			}
+		});
+		
+		
+		//생년월일 정규식
+		$('#client_birth').blur(function(){
+			
+			var client_birth = $("#client_birth").val();
+			
+			var year = Number(client_birth.substr(0,4));
+			var month = Number(client_birth.substr(4,2));
+			var day = Number(client_birth.substr(6,2));
+			var today=new Date();
+			var yearNow = today.getFullYear()-1;
+			
+			if( client_birth.length <=8 ){
+				if( year>yearNow || year<1900){ // 1900년 - 2019년까지만 입력가능
+					
+					$('#birth_check').text('생년월일을 확인해주세요');
+					$('#birth_check').css('color', 'red');
+					
+				}else if(month<1 || month>12){ // 1월 - 12월까지만 입력가능
+					
+					$('#birth_check').text('생년월일을 확인해주세요');
+					$('#birth_check').css('color', 'red');
+					
+				}else if(day<1 || day>31){ // 1일 - 31일까지 입력가능
+					
+					$('#birth_check').text('생년월일을 확인해주세요');
+					$('#birth_check').css('color', 'red');
+					
+				}else if((month==4 || month==6 || month==9 || month==11) && day == 31){ // 30일까지 있는 달에 31일이 들어가지못하게
+					
+					$('#birth_check').text('생년월일을 확인해주세요');
+					$('#birth_check').css('color', 'red');
+					
+				}else if(month==2){
+					var isleap = (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0)); //윤년
+			       	
+			     	if (day>29 || (day==29 && !isleap)) { // 28일까지 입력 가능, 윤년은 29일까지 가능
+			     		
+			     		$('#birth_check').text('생년월일을 확인해주세요 :)');
+						$('#birth_check').css('color', 'red'); 
+			    	
+					}else{
+						$('#birth_check').text('');
+					}
+				}else{
+					$('#birth_check').text(''); 
+				}
+			}else{
+				
 				$('#birth_check').text('8자리로 입력하세요 ex)19920216');
 				$('#birth_check').css('color', 'red');
 			}
 		});
-	
-			$('#client_phone').blur(function(){
+		
+			//핸드폰 정규식
+			 $('#client_phone').blur(function(){
 				var phone = /(01[016789])([1-9]{1}[0-9]{2,3})([0-9]{4})$/;
 				var phonecheck = phone.test($("#client_phone").val());
-				
 				if(phonecheck){
 					$('#phone_check').text('');
 					return true;
@@ -403,17 +496,98 @@
 			});
 			
 		$('form[name="adm"]').bind('submit',function(){
-			if($('#chk1').prop('checked') == false || $('#chk2').prop('checked') == false || $('#chk3').prop('checked') == false){
-		    	alert('필수 약관에 동의 하셔야 합니다.');
-		    	return false;
+			var name = /^[가-힣]{2,4}$/;
+			var namecheck = name.test($("#client_name").val());
+			
+			var nick =  /^[\w\Wㄱ-ㅎㅏ-ㅣ가-힣]{2,15}$/;
+			var nickcheck = nick.test($("#client_nick1").val());
+			
+			var id = /^[A-Za-z0-9]{4,20}$/;
+			var idcheck = id.test($("#client_id").val());
+			
+			var pw = /^.*(?=.{8,20})(?=.*[0-9])(?=.*[a-zA-Z]).*$/;
+			var pwcheck = pw.test($("#client_pw1").val());
+			
+			var pw1 = $("#client_pw1").val();
+			var pw2 = $("#client_pw2").val();
+			
+			var email = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
+			var emailcheck = email.test($("#client_email").val());
+			
+			var phone = /(01[016789])([1-9]{1}[0-9]{2,3})([0-9]{4})$/;
+			var phonecheck = phone.test($("#client_phone").val());
+			
+			var client_birth = $("#client_birth").val();
+			var year = Number(client_birth.substr(0,4));
+			var month = Number(client_birth.substr(4,2));
+			var day = Number(client_birth.substr(6,2));
+			var today=new Date();
+			var yearNow = today.getFullYear();
+			
+			var duplicheck1 = $("#duplicheck1").val();
+			var duplicheck2 = $("#duplicheck2").val();
+			
+			if(namecheck != true){
+				alert('이름을 확인해주세요');
+				return false;
+			}else if(nickcheck != true){
+				alert('닉네임을 확인해주세요');
+				return false;
+			}else if(duplicheck1 == 0){
+				alert('닉네임 중복 확인을 해주세요');
+				return false;
+			}else if(idcheck != true){
+				alert('아이디를 확인해주세요');
+				return false;
+			}else if(duplicheck2 == 0){
+				alert('아이디 중복 확인을 해주세요');
+				return false;
+			}else if(pwcheck != true){
+				alert('비밀번호를 확인해주세요');
+				return false;
+			}else if(pw1 != pw2){
+				alert('비밀번호가 일치하지 않습니다');
+				return false;
 			}else if($('#man').prop('checked') == false && $('#woman').prop('checked') == false){
 				alert('성별을 체크해주세요');
 				return false;
+			}else if(emailcheck != true){
+				alert('이메일을 확인해주세요');
+				return false;
+			}else if(client_birth.length <=8){
+				if( year>2019 || year<1900){ // 1900년 - 2019년까지만 입력가능
+					alert('생년월일을 확인해주세요');
+					return false;
+				}else if(month<1 || month>12){ // 1월 - 12월까지만 입력가능
+					alert('생년월일을 확인해주세요');
+					return false;
+				}else if(day<1 || day>31){ // 1일 - 31일까지 입력가능
+					alert('생년월일을 확인해주세요');
+					return false;
+				}else if((month==4 || month==6 || month==9 || month==11) && day == 31){ // 30일까지 있는 달에 31일이 들어가지못하게
+					alert('생년월일을 확인해주세요');
+					return false;
+				}else if(month==2){
+					var isleap = (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0)); //윤년
+						       	
+					if (day>29 || (day==29 && !isleap)) { // 28일까지 입력 가능, 윤년은 29일까지 가능
+						alert('생년월일을 확인해주세요');
+						return false;
+					}else{
+						return true;
+					}
+				}else{
+					return true;
+				}
+				return false;
+			}else if(phonecheck != true){
+				alert('연락처를 확인해주세요');
+				return false;
 			}else{
-				
 				alert('회원가입이 완료되었습니다');
 				return true;
 			}
+			
 		});
 		
 	

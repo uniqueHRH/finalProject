@@ -101,7 +101,25 @@ public class TravelController {
 		return "redirect:/";
 	}
 	
-
+	//닉네임 중복검사
+	@RequestMapping(value="/main/nickdupli", method=RequestMethod.POST)
+	public ModelAndView NickDupli(ClientVo bean) throws Exception{
+		ClientVo nickdupli = clientService.nickDupli(bean);
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("Nickdupli", nickdupli);
+		mav.setViewName("jsonView");
+		return mav;
+	}
+	
+	//아이디 중복검사
+	@RequestMapping(value="/main/iddupli", method=RequestMethod.POST)
+	public ModelAndView IdDupli(ClientVo bean) throws Exception{
+		ClientVo iddupli = clientService.idDupli(bean);
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("Iddupli", iddupli);
+		mav.setViewName("jsonView");
+		return mav;
+	}
 	
 // 투어   
 	//중국/일본으로 이동
