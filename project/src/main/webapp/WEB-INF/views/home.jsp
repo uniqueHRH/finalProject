@@ -115,35 +115,39 @@
 <div class="jumbotron">
 	<nav>
 		<div>
-			<ul class="login">
-		        <!-- 로그인시 숨김 -->
-		        <c:if test="${sessionScope.check eq null && sessionScope.staffcheck eq null }">
-		        <li>
-		        	<a id="side" href="${root }main/login" >로그인</a> &nbsp; &nbsp; &nbsp; &nbsp;
-		        	<a id="side" href="${root }main/admin" >회원가입</a>
-		        </li>
-		        </c:if>
-		        <!-- 직원로그인시 -->
-		        <c:if test="${sessionScope.staffcheck ne null }">
-				<select id="side" onchange="location.href=this.value">
-		            <option value="${root }main/staffinfo">내정보관리</option>
-		            <option value="${root }main/logout">로그아웃</option>
-		        </select>
-		        </c:if>
-		        <!-- 회원로그인시 -->
-		        <c:if test="${sessionScope.check ne null }">
-				<select id="side" onchange="location.href=this.value">
-					<option id="hide">${sessionScope.check.client_nick1} 님<span class="caret"></span></option>
-		            <option value="${root }main/message">쪽지함</option>
-		            <option value="#">최근본상품</option>
-		            <option value="${root }main/wish">찜한상품</option>
-		            <option value="#">결제상품</option>
-		            <option value="${root }main/myBoard">내가쓴글</option>
-		            <option value="${root }main/myinfo">내정보관리</option>
-		            <option value="${root }main/logout">로그아웃</option>
-		          </select>
-		        </c:if>
-			</ul>
+			<div align="right">
+				<ul class="login">
+			        <!-- 로그인시 숨김 -->
+			        <c:if test="${sessionScope.check eq null && sessionScope.staffcheck eq null }">
+			        <li>
+			        	<a id="side" href="${root }main/login" >로그인</a> &nbsp; &nbsp; &nbsp; &nbsp;
+			        	<a id="side" href="${root }main/admin" >회원가입</a>
+			        </li>
+			        </c:if>
+			        <!-- 직원로그인시 -->
+			        <c:if test="${sessionScope.staffcheck ne null }">
+					<select id="side" onchange="location.href=this.value">
+			            <option value="${root }main/staffinfo">내정보관리</option>
+			            <option value="${root }main/logout">로그아웃</option>
+			        </select>
+			        </c:if>
+			        <!-- 회원로그인시 -->
+			        <c:if test="${sessionScope.check ne null }">
+					<select id="side" onchange="location.href=this.value">
+						<option id="hide">${sessionScope.check.client_nick1} 님<span class="caret"></span></option>
+			            <option value="${root }main/message">쪽지함</option>
+			            <option value="#">최근본상품</option>
+			            <option value="${root }main/wish">찜한상품</option>
+			            <option value="#">결제상품</option>
+			            <option value="#">내가쓴글</option>
+			            <option value="${root }main/myinfo">내정보관리</option>
+			            <option value="${root }main/logout">로그아웃</option>
+			          </select>
+			        </c:if>
+				</ul>
+			</div>
+			
+			
 			<ul class="nav nav-pills nav-stacked" id="hamb">
 				<li id="hamSub"><a href="#">투어</a>
 			  		<ul>
@@ -184,9 +188,6 @@
 			</ul>
 		</div><!-- /.navbar-collapse -->
 	</nav><!-- /.container-fluid -->
-	<div>
-		<button id="hambBtn"><img src="https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/menu.jpg?raw=true" width="100px" id="hambI"></button>
-	</div>
 	<p id="comment"><br/><br/><br/><br/><br/>떠나요<br/><img src="https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/logoC.png?raw=true" width="300px"></p>
 	<div id="MainSea">
 		<input type="text" class="form-control" id="keyword" name="keyword" placeholder="도시명 검색 (DB 확인후 기능 예정)">
@@ -209,31 +210,6 @@
 <script type="text/javascript" src="${root }js/bootstrap.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-		$('#hamb').hide();
-		$('#hide').hide();
-		
-		$('#tour_sub').hide();
-		$('#comm_sub').hide();
-		$('#serv_sub').hide();
-		$('#system_sub').hide();
-		
-		$('#maintext1').hide();
-		$('#maintext2').hide();
-		$('#maintext3').hide();
-		$('#maintext4').hide();
-		
-		$('#hambBtn').mouseenter(function() {
-			$('#hamb').show();
-			$(this).hide();
-		});
-		$('#hamb').mouseenter(function() {
-			$(this).show();
-			$('#hambBtn').hide();
-		}).mouseleave(function() {
-			$('#hamb').hide();
-			$('#hambBtn').show();
-		});
-		
 		// 검색
 		$('#searchGo').on('click',function() {
 			var url='${root }board/review';
