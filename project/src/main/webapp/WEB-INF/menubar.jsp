@@ -8,6 +8,11 @@
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 <style type="text/css">
+	#logo {
+		position:fixed;
+		top:25;
+		width:350px;
+	}
 	/* 메뉴바 */
 	#top1 {
 		height:100px;
@@ -21,7 +26,7 @@
 	#menubar {
 		margin:0 auto;
 		text-align:center;
-		padding:35 350 0 420;
+		padding:35 270 0 500;
 	}
 	#menubar>li {
 		padding:0 20px 0 0;
@@ -58,6 +63,7 @@
 	<nav class="navbar navbar-default navbar-fixed-top" id="top1">
 		<div class="container-fluid" id="top2">
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<a href="${root }"><img src="https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/logo.png?raw=true" id="logo"></a>
 				<!-- 로그인 -->
 				<div id="login">
 					<ul class="nav navbar-nav navbar-right">
