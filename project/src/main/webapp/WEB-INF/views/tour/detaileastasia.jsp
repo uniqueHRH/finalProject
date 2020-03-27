@@ -49,24 +49,24 @@
    #mapbtn{
    	  position: absolute;
       left: 1150px;
-      top: 1080px;
+      top: 950px;
    }
    #bookbtn{
       width: 350px;
       position: absolute;
       left: 880px;
-      top: 1150px;
+      top: 1010px;
    }
    #course{
       position: absolute;
       font-size: 30px;
       left: 350px;
-      top: 840px;
+      top: 700px;
    }
    #courseimg{
       position: absolute;
       left: 70px;
-      top: 920px;
+      top: 800px;
    }
    #map {
         width: 370px;
