@@ -49,35 +49,35 @@
    #mapbtn{
    	  position: absolute;
       left: 1150px;
-      top: 1000px;
+      top: 1080px;
    }
    #bookbtn{
       width: 350px;
       position: absolute;
       left: 880px;
-      top: 1050px;
+      top: 1150px;
    }
    #course{
       position: absolute;
       font-size: 30px;
       left: 350px;
-      top: 750px;
+      top: 840px;
    }
    #courseimg{
       position: absolute;
       left: 70px;
-      top: 830px;
+      top: 920px;
    }
    #map {
         width: 370px;
         height: 400px;
         position: relative fixed; 
         left: 870px;
-      }
+   }
    #map1{
    		width: 600px;
         height: 500px;
-        position: relative fixed; 
+        position: relative fixed;
         left: 400px;
    }
 </style>
@@ -86,7 +86,10 @@
 <script type="text/javascript" src="${root }js/bootstrap.js"></script>
 </head>
 <body>
-                                 <!-- menubar start -->
+<div class="container">     
+ <div class="row">
+   <div class="col-md-12">
+                 <!-- menubar start -->
    <nav class="navbar navbar-primary">
      <div class="container-fluid">
        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -180,9 +183,7 @@
        </div><!-- /.navbar-collapse -->
      </div><!-- /.container-fluid -->
    </nav>
-<div class="container">     
- <div class="row">
-   <div class="col-md-12">
+
       <div class="page-header" align="center">
      <h1>${bean.name }</h1>
  </div>
@@ -267,36 +268,6 @@
  
  <script type="text/javascript">
    $(document).ready(function() {
-      $('#tour_sub').hide();
-      $('#comm_sub').hide();
-      $('#serv_sub').hide();
-      $('#system_sub').hide();
-      
-      $('#mainFont1').hide();
-      $('#mainFont2').hide();
-      $('#mainFont3').hide();
-      $('#mainFont4').hide();
-   
-      $('#tour').mouseenter(function() {
-         $('#tour_sub').show();
-      }).mouseleave(function() {
-         $('#tour_sub').hide();
-      });
-      $('#comm').mouseenter(function() {
-         $('#comm_sub').show();
-      }).mouseleave(function() {
-         $('#comm_sub').hide();
-      });
-      $('#serv').mouseenter(function() {
-         $('#serv_sub').show();
-      }).mouseleave(function() {
-         $('#serv_sub').hide();
-      });
-      $('#system').mouseenter(function() {
-         $('#system_sub').show();
-      }).mouseleave(function() {
-         $('#system_sub').hide();
-      });
       $('#bookbtn').click(function(){
             var check = $('#check').val();
             if(!check){
@@ -317,7 +288,7 @@
  
  	 var marker = new google.maps.Marker({
     position: myLatLng,//좌표선택해주면됨
-    icon:"${root}imgs/icon(big).png",
+    icon:"https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/pin.png?raw=true",
     map: map,
     title: '${bean.city}'//marker  표시
   }); 
@@ -333,20 +304,17 @@
  	spot.push("${bean1.spot}");// 배열에 spot이 담겨있음
  	latlng1.push("${bean1.latlng}");//배열에 좌표가 담겨있음.
     </c:forEach>
-	    console.log(latlng1);
-	    console.log(spot);
+	    
 	
  	for(var i=0; i<latlng1.length; i++){
- 		var myLatLng1 = myLatlng1 = new google.maps.LatLng(latlng1[i]);//메인구글맵좌표
+ 		var myLatLng1 ={lat:Number(latlng1[i].split(",")[0]), lng:Number(latlng1[i].split(",")[1])};//디테일구글맵좌표
 	   	var marker1 = new google.maps.Marker({
 		    position:myLatLng1,//좌표선택해주면됨
 	    	map: map1,
 	    	title: spot[i]//marker  표시
  	 });
-	   	
+			   	
    }
-		console.log(spot[1]);
-		console.log(myLatLng1);
 } 
     
 </script>

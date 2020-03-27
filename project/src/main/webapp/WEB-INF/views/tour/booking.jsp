@@ -343,37 +343,6 @@
  </div> 
 <script type="text/javascript">
    $(document).ready(function() {
-	    $('#tour_sub').hide();
-		$('#comm_sub').hide();
-		$('#serv_sub').hide();
-		$('#system_sub').hide();
-		
-		$('#mainFont1').hide();
-		$('#mainFont2').hide();
-		$('#mainFont3').hide();
-		$('#mainFont4').hide();
-	
-
-		$('#tour').mouseenter(function() {
-			$('#tour_sub').show();
-		}).mouseleave(function() {
-			$('#tour_sub').hide();
-		});
-		$('#comm').mouseenter(function() {
-			$('#comm_sub').show();
-		}).mouseleave(function() {
-			$('#comm_sub').hide();
-		});
-		$('#serv').mouseenter(function() {
-			$('#serv_sub').show();
-		}).mouseleave(function() {
-			$('#serv_sub').hide();
-		});
-		$('#system').mouseenter(function() {
-			$('#system_sub').show();
-		}).mouseleave(function() {
-			$('#system_sub').hide();
-		});
 		$('#confirmbtn').click(function(){
 			
 			var tour_date=$('#tour_date1').val();
