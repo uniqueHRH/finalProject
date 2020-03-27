@@ -65,20 +65,20 @@
 		font-family: 'Jua';
 		font-size:50px;
 		text-decoration: none;
-		line-height:300px;
+		line-height:340px;
 		padding:60px;
 	}
 	#main1 {	
-		background-image:url(https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/barcelona.jpg?raw=true);		
+		background-image:url(https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/mainbarcelona.jpg?raw=true);		
 	}
 	#main2 {
-		background-image:url(https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/danang.jpg?raw=true);		
+		background-image:url(https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/maindanang.jpg?raw=true);		
 	}
 	#main3 {
-		background-image:url(https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/newyork.jpg?raw=true);		
+		background-image:url(https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/mainnewyork.jpg?raw=true);		
 	}
 	#main4 {
-		background-image:url(https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/sydney.jpg?raw=true);
+		background-image:url(https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/mainsydney.jpg?raw=true);
 	}
 	
 /* 검색 */
