@@ -13,6 +13,7 @@
 		top:25;
 		width:350px;
 	}
+	
 	/* ¸Þ´º¹Ù */
 	#top1 {
 		height:100px;
