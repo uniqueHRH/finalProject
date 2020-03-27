@@ -1,48 +1,48 @@
 /* 메뉴바 */
-	#hamb {
-		position:fixed;
-		left:0;
-		top:100px;
-		width:300px;
-		position:fixed;
-		background-color:#141414;
+	#top1 {
+		height:100px;
 		font-family: 'Jua';
 	}
-	#hamb>li>a {
-		color:white;
-		font-size:2.5rem;
-		text-shadow: 0px -2px rgba(0, 0, 0, 0.44);
-		margin:0;
-		padding:10px 10px 10px 20px;
+	#top2 {
+		background-color:141414;
+		height:100px;
+		line-height:30px;
 	}
-	#hamb>li>a:hover {
-		color:black; 
-	}
-	#hamb>li>ul>li {
+	#menubar {
+		margin:0 auto;
 		text-align:center;
-		padding:5px 0;
+		padding:35 350 0 420;
 	}
-	#hamb>li>ul>li>a {
+	#menubar>li {
+		padding:0 20px 0 0;
+		text-align:center;
+	}
+	#menubar>li>a {
+		font-size:20px;
+		font-weight:bold;
 		color:white;
-		text-decoration: none;
-		font-size:2rem;
-		margin:0;
-		padding:7px 80px;
-		border-radius: 5px;
+		padding:20 60;
+		text-align:center;
 	}
-	#hamb>li>ul>li>a:hover {
-		text-decoration:none;
-		background-color:#e8e8e8;
+	#menubar li>ul>li>a {
+		font-size:15px;
 		color:black;
 	}
-	#hamb a {
+	#login {
+	}
+	#login li>a {
+		color:white;
+		padding:20;
+	}
+	#login li>ul>li>a {
 		color:black;
+		text-align:center;
 	}
-	ul {
-		list-style:none;
+	body {
+		padding-top:100px;
 	}
-	
-/* 로그인 & 회원가입 */
+/*
+로그인 & 회원가입
 	#side {
 		color:black;
 		text-decoration: none;
@@ -66,6 +66,7 @@
 		cursor:pointer;
 		text-align:center;
 	}
+*/	
 /* 나라정렬버튼 + 검색조회버튼 */
 	#dropdownMenu1, #searchType {
 		border-radius:5px;

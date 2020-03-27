@@ -18,7 +18,7 @@
 		margin:0 auto;
 		padding:0px;
 	}
-/* 정렬버튼 */ 
+/* 정렬버튼 */
 	#dropdownMenu1:hover {
 		background-color:#e8e8e8;
 	}
@@ -58,31 +58,24 @@
 */
 	#table>thead th:nth-child(1) {
 		width:65px;
-		background-color:red;
 	}
 	#table>thead th:nth-child(2) {
 		width:65px;
-		background-color:blue;
 	}
 	#table>thead th:nth-child(3) {
 		width:140px;
-		background-color:green;
 	}
 	#table>thead th:nth-child(4) {
-		background-color:gold;
 		width:390px;
 	}
 	#table>thead th:nth-child(5) {
 		width:80px;
-		background-color:pink;
 	}
 	#table>thead th:nth-child(7) {
 		width:60px;
-		background-color:gray;
 	}
 	#table>thead th:nth-child(6) {
 		width:70px;
-		background-color:purple;
 	}
 	#table>tbody td:nth-child(4) {
 		text-align:left;
