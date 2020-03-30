@@ -47,12 +47,15 @@
        width: 90%;
     }
     #idd,#pww {
-       display:inline block;
+       display:inline-block;
     }
     #facebookbtn,#naverbtn {
        margin: 0px auto;
        text-align:center;
        width:60%;
+    }
+    #logBn {
+    	
     }
 </style>
 
@@ -98,17 +101,17 @@
 				<a href="${root }main/login/findid"><button type="button" id="findid" class="btn btn-default btn-lg">아이디 찾기</button></a>
 				<a href="${root }main/login/findpw"><button type="button" id="findpw" class="btn btn-default btn-lg">비밀번호 찾기</button></a>
 			</div>
-			<p><p>--------------------------------------또는--------------------------------------</p></p>
-			<p>
-				<a id="kakao-login-btn"></a>
-				<a href="http://developers.kakao.com/logout"></a>
-			</p>
-		     <p>
-		        <button type="button" id="facebookbtn" class="btn btn-default btn-lg btn-block">페이스북으로 로그인</button>
-		    </p>
-		     <p>
-		        <button type="button" id="naverbtn" class="btn btn-default btn-lg btn-block">네이버로 로그인</button>
-		     </p>
+				<p><p>--------------------------------------또는--------------------------------------</p></p>
+				<p>
+					<a id="kakao-login-btn"></a>
+					<a href="http://developers.kakao.com/logout"></a>
+				</p>
+			     <p>
+			        <button type="button" id="facebookbtn" class="btn btn-default btn-lg btn-block">페이스북으로 로그인</button>
+			    </p>
+			     <p>
+			        <button type="button" id="naverbtn" class="btn btn-default btn-lg btn-block">네이버로 로그인</button>
+			     </p>
 			</form>
 		</div>
 <!-- 고객로그인 end -->   
@@ -116,14 +119,7 @@
 </div>
 <!-- contents end -->
 
- <div class="row">
-   <div class="col-md-12">
-    <div class="footer">
-    	<img id="footer1" src="https://github.com/uniqueHRH/travel/blob/master/src/main/webapp/imgs/footer1.jpg?raw=true" alt="">
-    </div>
-   </div>
- </div>
-
+<jsp:include page="/WEB-INF/footer.jsp"/>
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="${root }js/bootstrap.js"></script>

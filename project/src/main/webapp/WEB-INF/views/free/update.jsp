@@ -75,7 +75,7 @@
 
 <!-- contents end -->
      
-<jsp:include page="/WEB-INF/footer.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/footer.jsp"/>
 </body>
 <script type="text/javascript">
 	$(document).ready(function() {
