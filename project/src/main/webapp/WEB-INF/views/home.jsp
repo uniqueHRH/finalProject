@@ -54,6 +54,8 @@
 		color:black;
 	}
 	#login {
+		font-size:16px;
+		padding:0 30 0 0;
 	}
 	#login li>a {
 		color:white;
@@ -127,22 +129,29 @@
 		height:50px;
 	}
 /* footer*/
-	#footerM {
-		margin:100 0 0 0;
-		padding:50px;
-		background-color:#e8e8e8;
+	#footer{
+		width: 1800px;
 		font-family:"Jua";
-		text-align:center;
+		font-size: 15px;
+		color: silver;
+		margin-bottom: 0px;
+		padding-bottom: 0px;
+		float: right;
 	}
-	.footerS, .footerM, .footerF {
-		font-size:15px;
-		width:430px;
-		height:200px;
-		margin:0 auto;
-		display:inline-block;
-		padding:0px;
-		text-align:center;
+	#footer1{
+		padding-top: 20px;
+		padding-left: 380px;
 	}
+	#footer2{
+		margin-top: 10px;
+		padding-left: 380px;
+	}
+	#footer3{
+		padding-top: 23px;
+		padding-left: 380px;
+		padding-bottom: 20px;
+	}
+
 </style>
 </head>
 <body>
@@ -172,9 +181,10 @@
 						</li>
 				        <!-- 회원로그인시 -->
 				        <c:if test="${sessionScope.staffcheck eq null and sessionScope.check ne null }">
+				        <input type="hidden" id="session" value="${sessionScope.check.client_nick1}"/>
 					        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">${sessionScope.check.client_nick1} 님<span class="caret"></span></a>
 					        	<ul class="dropdown-menu" role="menu">
-					        		<li><a href="${root }main/message">쪽지함</a></li>
+					        		<li><a href="${root }main/message" id="msg">쪽지함</a></li>
 					        		<li><a href="#">최근본상품</a></li>
 					        		<li><a href="${root }main/wish">찜한상품</a></li>
 					        		<li><a href="#">결제상품</a></li>
@@ -207,7 +217,7 @@
 					       		<li><a href="${root }board/free">자유게시판</a></li>
 							</ul>
 				        </li>
-				        <li class="dropdown"><a href="${root }board/event" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">이벤트</a>
+				        <li class="dropdown"><a href="${root }board/event">이벤트</li></a>
 				        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">고객센터</a>
 							<ul class="dropdown-menu" role="menu">
 					            <li><a href="${root }board/notice">공 &nbsp; &nbsp; &nbsp; &nbsp;지</a></li>
@@ -233,18 +243,11 @@
 	</nav>
 </div>
 
-
-
-
-
-
 	<div id="MainSea">
 		<input type="text" class="form-control" id="keyword" name="keyword" placeholder="도시명 검색 (DB 확인후 기능 예정)">
 		<a class="btn btn-default" href="#" role="button" id="searchGo">G O</a>
 	</div>
 </div>   <!-- 점보트론 -->
-
-
 
 	<!-- 추천상품img -->
 	<div id="mainI">
@@ -253,38 +256,44 @@
 		<div id="main2"><a href="#">다 &nbsp; &nbsp; &nbsp;낭</a></div>
 		<div id="main3"><a href="#">뉴&nbsp; &nbsp; &nbsp;욕</a></div>
 		<div id="main4"><a href="#">시 드 니</a></div>
-		<!-- 
-	   	<a href="#"><div id="main1"><p id="maintext1">바르셀로나</p></div></a>
-	   	<a href="#"><div id="main2"><p id="maintext2">다낭</p></div></a>
-	   	<a href="#"><div id="main3"><p id="maintext3"></p></div></a>
-	   	<a href="#"><div id="main4"><p id="maintext4">시드니</p></div></a>
-	   	 -->
 	</div>
-
-
-
-<div id="footerM">
-	<div class="footerS">
-		(주) 여행사용설명서<br/><br/>
-		대표자: 홍길동<br/><br/>
-		사업자등록번호 : 123-45-67890
+	
+<!-- footer -->
+<div id="footer">
+<hr style="border: solid 1px silver;">
+	<div id="footer1">
+	상호명 (주)여행사용설명서 | 대표 정지문 | 개인정보보호책임자 홍혜리 | 사업자등록번호 100-00-00000 사업자정보확인 | 통신판매업신고번호 2020-서울강남-0000
 	</div>
-	<div class="footerM">
-		통신판매업신고번호 : 강남01-0013호<br/><br/>
-		관광사업자 등록번호 : 제2020-000001호<br/><br/>
-		영업보증보험 : 22억 1천만원 가입
+	<div id="footer2">
+	주소 서울특별시 서초구 강남대로 459 | 이메일 help@tripinstruction.com | 마케팅/제휴 문의 marketing@tripinstruction.com
 	</div>
-	<div class="footerF">
-		1234-5678<br/><br/>
-		12345@traveler.com<br/><br/>
-		[06134] 서울 강남구 테헤란로5길 11 유빌딩 2층, 3층<br/>
+	<div id="footer3">
+	자사는 서울특별시관광협회 공제영업보증보험에 가입되어 있습니다. 여행사용설명서는 통신판매중개자이며 통신판매의 당사자가 아닙니다. 따라서 상품·거래정보 및 거래에 대하여 책임을 지지않습니다.
 	</div>
-		COPYRIGHT ⓒ HANATOUR SERVICE INC. ALL RIGHT RESERVED
 </div>
+<!-- footer end -->
+	
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="${root }js/bootstrap.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
+		// session 정보
+		$('#msg').on('click',function() {
+			var id=$('#session').val();
+			console.log(id);
+			
+			$.ajax({
+				url:'../project/main/message',
+				type:'GET',
+				data:{client_nick2:id},
+				success:function() {
+				},
+				error:function() {
+					alert('실패');
+				}
+			});
+		});
+		
 		// 검색
 		$('#searchGo').on('click',function() {
 			var url='${root }board/review';

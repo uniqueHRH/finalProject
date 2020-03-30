@@ -46,7 +46,7 @@
 	자사는 서울특별시관광협회 공제영업보증보험에 가입되어 있습니다. 여행사용설명서는 통신판매중개자이며 통신판매의 당사자가 아닙니다. 따라서 상품·거래정보 및 거래에 대하여 책임을 지지않습니다.
 	</div>
 </div>
-</nav>
+
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
 <script type="text/javascript">
 </script>
