@@ -39,25 +39,5 @@ COPYRIGHT ¨Ï HANATOUR SERVICE INC. ALL RIGHT RESERVED
 </div>
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
 <script type="text/javascript">
-	$(document).ready(function() {
-		$('#tourS').hide();
-		$('#boardS').hide();
-		$('#serviceS').hide();
-		$('#systemS').hide();
-		
-		$('#tourM').on('click',function() {
-			$('#tourS').toggle();
-		});
-		$('#boardM').on('click',function() {
-			$('#boardS').toggle();
-		});
-		$('#serviceM').on('click',function() {
-			$('#serviceS').toggle();
-		});
-		$('#systemM').on('click',function() {
-			$('#systemS').toggle();
-		});
-	});
-</script>
 </body>
 </html>
