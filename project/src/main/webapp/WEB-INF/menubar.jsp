@@ -44,6 +44,9 @@
 		border-bottom:1px solid #e8e8e8;
 		cursor:pointer;
 	}
+	#tourM {
+		padding:50 0 15 0;
+	}
 /* 하위 메뉴 */
 	#menubar>div>a {
 		padding:20 80;
