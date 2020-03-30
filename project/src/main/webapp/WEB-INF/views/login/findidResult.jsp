@@ -58,13 +58,7 @@
 </div>
       
                          <!-- contents end --> 
- <div class="row">
-   <div class="col-md-12">
-    <div class="footer">
-    	<img id="footer1" src="https://github.com/uniqueHRH/travel/blob/master/src/main/webapp/imgs/footer1.jpg?raw=true" alt="">
-    </div>
-   </div>
- </div> 
+<jsp:include page="/WEB-INF/footer.jsp"/>
 </body>
 </html>
 

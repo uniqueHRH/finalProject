@@ -58,7 +58,7 @@
 
 <!-- contents end -->
      
-<jsp:include page="/WEB-INF/footer.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/footer.jsp"/>
 </body>
 
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>

@@ -197,13 +197,7 @@
   </div>
 </div>
     <!-- 약관3 end --> 
- <div class="row">
-   <div class="col-md-12">
-    <div class="footer">
-       <img id="footer1" src="https://github.com/uniqueHRH/travel/blob/master/src/main/webapp/imgs/footer1.jpg?raw=true" alt="">
-    </div>
-   </div>
- </div>
+<jsp:include page="/WEB-INF/footer.jsp"/>
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="${root }js/bootstrap.js"></script>
 <script type="text/javascript">

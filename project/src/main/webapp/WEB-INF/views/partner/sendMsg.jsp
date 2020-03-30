@@ -35,7 +35,7 @@
 			</div>
 		</div>
 	</form>
-<jsp:include page="/WEB-INF/footer.jsp"></jsp:include>	
+<jsp:include page="/WEB-INF/footer.jsp"/>
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="${root }js/bootstrap.js"></script>
 <script type="text/javascript">

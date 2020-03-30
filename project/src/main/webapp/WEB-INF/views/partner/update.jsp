@@ -70,17 +70,12 @@
 		<button type="button" class="btn btn-default" id="goList">작성취소</button>
 	</div>
 </form>
-      </div>
-   </div>
-</div>
-
 
 
 
 <!-- contents end -->
-     
 
-<jsp:include page="/WEB-INF/footer.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/footer.jsp"/>
 </body>
 <script type="text/javascript">
 	$(document).ready(function() {
