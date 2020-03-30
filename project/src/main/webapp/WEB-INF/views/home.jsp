@@ -36,7 +36,7 @@
 	#menubar {
 		margin:0 auto;
 		text-align:center;
-		padding:35 270 0 500;
+		padding:35 240 0 470;
 	}
 	#menubar>li {
 		padding:0 20px 0 0;
@@ -46,7 +46,7 @@
 		font-size:20px;
 		font-weight:bold;
 		color:white;
-		padding:20 60;
+		padding:20 50;
 		text-align:center;
 	}
 	#menubar li>ul>li>a {
