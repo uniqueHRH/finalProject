@@ -9,30 +9,31 @@
 <title>Insert title here</title>
 <style type="text/css">
 	#footer{
+		width: 1500px;
 		font-family:"Jua";
 		font-size: 15px;
 		color: silver;
+		margin-bottom: 0px;
+		padding-bottom: 0px;
+		float: right;
 	}
 	#footer1{
 		padding-top: 20px;
-		padding-left: 350px;
+		padding-left: 90px;
 	}
 	#footer2{
 		margin-top: 10px;
-		padding-left: 350px;
+		padding-left: 90px;
 	}
 	#footer3{
 		padding-top: 23px;
-		padding-left: 350px;
+		padding-left: 90px;
 		padding-bottom: 20px;
-	}
-	#footer{
-		position: relative;
-		bottom: 0;
 	}
 </style>
 </head>
 <body>
+
 <div id="footer">
 <hr style="border: solid 1px silver;">
 	<div id="footer1">
@@ -45,6 +46,7 @@
 	자사는 서울특별시관광협회 공제영업보증보험에 가입되어 있습니다. 여행사용설명서는 통신판매중개자이며 통신판매의 당사자가 아닙니다. 따라서 상품·거래정보 및 거래에 대하여 책임을 지지않습니다.
 	</div>
 </div>
+</nav>
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
 <script type="text/javascript">
 </script>
