@@ -8,52 +8,38 @@
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 <style type="text/css">
-	#footerM {
-		margin:100 0 0 0;
-		padding:50px;
-		background-color:#e8e8e8;
+	#footer{
 		font-family:"Jua";
-		text-align:center;
+		font-size: 15px;
+		color: silver;
 	}
-	.footerS, .footerM, .footerF {
-		font-size:15px;
-		width:430px;
-		height:200px;
-		margin:0 auto;
-		display:inline-block;
-		padding:0px;
-		text-align:center;
+	#footer1{
+		padding-top: 20px;
+		padding-left: 350px;
 	}
-	.pas {
-		display:inline-block;
-		width:280px;
+	#footer2{
+		margin-top: 10px;
+		padding-left: 350px;
 	}
-	p{
-		width:800px;
-		margin:0 auto;
-		padding:0 0 0 250px;
+	#footer3{
+		padding-top: 23px;
+		padding-left: 350px;
+		padding-bottom: 20px;
 	}
 </style>
 </head>
 <body>
-<div id="footerM">
-	<div class="pas"></div>
-	<div class="footerS">
-		(주) 여행사용설명서<br/><br/>
-		대표자: 홍길동<br/><br/>
-		사업자등록번호 : 123-45-67890
+<div id="footer">
+<hr style="border: solid 1px silver;">
+	<div id="footer1">
+	상호명 (주)여행사용설명서 | 대표 정지문 | 개인정보보호책임자 홍혜리 | 사업자등록번호 100-00-00000 사업자정보확인 | 통신판매업신고번호 2020-서울강남-0000
 	</div>
-	<div class="footerM">
-		통신판매업신고번호 : 강남01-0013호<br/><br/>
-		관광사업자 등록번호 : 제2020-000001호<br/><br/>
-		영업보증보험 : 22억 1천만원 가입
+	<div id="footer2">
+	주소 서울특별시 서초구 강남대로 459 | 이메일 help@tripinstruction.com | 마케팅/제휴 문의 marketing@tripinstruction.com
 	</div>
-	<div class="footerF">
-		1234-5678<br/><br/>
-		12345@traveler.com<br/><br/>
-		[06134] 서울 강남구 테헤란로5길 11 유빌딩 2층, 3층<br/>
+	<div id="footer3">
+	자사는 서울특별시관광협회 공제영업보증보험에 가입되어 있습니다. 여행사용설명서는 통신판매중개자이며 통신판매의 당사자가 아닙니다. 따라서 상품·거래정보 및 거래에 대하여 책임을 지지않습니다.
 	</div>
-		<p>COPYRIGHT ⓒ HANATOUR SERVICE INC. ALL RIGHT RESERVED</p>
 </div>
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
 <script type="text/javascript">
