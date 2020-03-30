@@ -10,11 +10,9 @@
 <link rel="stylesheet" type="text/css" href="${root }css/bootstrap.css" />
 <link rel="stylesheet" type="text/css" href="${root }css/travel.css" />
 <style type="text/css">
-   .container{
-      display: inline-block;
-      font-family: 'Jua';
-      text-align: center;
-    }
+   #table{
+   		font-family: "Jua";
+   }
     .form-horizontal {
        width:450px;
       margin: 0 auto;
@@ -36,9 +34,7 @@
 <jsp:include page="/WEB-INF/menubar.jsp"/>
                       
                      <!-- contents start -->
-<div class="container">
-  <div class="row">
-   <div class="col-md-12">
+<div id="table">
       <div class="page-header" align="center">
      <h1>아이디찾기 결과</h1>
    </div>
@@ -53,8 +49,6 @@
   		<button type="button" id="resetbtn" class="btn btn-default btn-lg" onclick="location.href='${root }main/login'">로그인</button>
 	</p>
   </form>
-  </div>
- </div>
 </div>
       
                          <!-- contents end --> 

@@ -36,7 +36,7 @@
 	</delete>
 	
 	<select id="login" resultType="ClientBean">
-		select client_nick1,client_name from client where client_id=#{client_id} and client_pw=#{client_pw}
+		select * from client where client_id=#{client_id} and client_pw=#{client_pw}
 	</select>
 	
 	<select id="findId" resultType="ClientBean">
@@ -58,5 +58,9 @@
 	<select id="idDupli" resultType="ClientBean">
 		select client_id from client where client_id=#{client_id}
 	</select>
+	
+	<update id="changeInfo" parameterType="ClientBean">
+		update client set client_nick1=#{client_nick1}, client_nick2=#{client_nick1}, client_phone=#{client_phone} where client_id=#{client_id}
+	</update> 
 </mapper>
 

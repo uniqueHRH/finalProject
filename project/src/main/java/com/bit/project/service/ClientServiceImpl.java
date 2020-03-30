@@ -79,7 +79,7 @@ public class ClientServiceImpl implements ClientService {
 	@Override
 	public void pwUpdate(ClientVo bean) throws Exception {
 		try {
-		clientDao.pwUpdate(bean);
+			clientDao.pwUpdate(bean);
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -93,6 +93,15 @@ public class ClientServiceImpl implements ClientService {
 	@Override
 	public ClientVo idDupli(ClientVo bean) throws Exception {
 		return clientDao.idDupli(bean);
+	}
+
+	@Override
+	public void changeInfo(ClientVo bean) throws Exception {
+		try {
+			clientDao.changeInfo(bean);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	
