@@ -19,12 +19,13 @@
    .container{
       font-family: 'Jua';
       text-align: center;
-      width: 75%;
+      width: 70%;
+      margin-left: 300px;
    }
    #firstimg,#secondimg,#thirdimg{
       display: inline-block;
-      width: 100%;
-      height: 40%;
+      width: 360px;
+      height: 330px;
       margin-bottom: 30px;
       margin-top: 10px;
    }
@@ -48,13 +49,13 @@
    }
    #mapbtn{
    	  position: absolute;
-      left: 1150px;
+      left: 1110px;
       top: 950px;
    }
    #bookbtn{
-      width: 350px;
+      width: 300px;
       position: absolute;
-      left: 880px;
+      left: 900px;
       top: 1010px;
    }
    #course{
@@ -69,8 +70,8 @@
       top: 800px;
    }
    #map {
-        width: 370px;
-        height: 400px;
+        width: 330px;
+        height: 350px;
         position: relative fixed; 
         left: 870px;
    }
@@ -80,6 +81,11 @@
         position: relative fixed;
         left: 400px;
    }
+   #footer{
+   		position: relative;
+   		bottom: 0;
+   }
+   
 </style>
 
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
@@ -173,7 +179,9 @@
     </div>
    </div>
  </div>
- 
+ <div id="footer">
+ <jsp:include page="/WEB-INF/footer.jsp"/>
+ </div>
  <script type="text/javascript">
    $(document).ready(function() {
       $('#bookbtn').click(function(){

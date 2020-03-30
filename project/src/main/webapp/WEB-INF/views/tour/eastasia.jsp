@@ -13,7 +13,8 @@
 	.container{
 		font-family: 'Jua';
 		text-align: center;
-		width: 70%;
+		width: 1200px;
+		margin-left: 330px;
 	}
 	.thumbnail{
 		width: 330px;
@@ -22,9 +23,12 @@
 		width: 300px;
 		padding-top: 15px;
 		padding-left: 10px;
-		padding-right: 10px;
-		
+		padding-right: 10px;		
 	}	
+	.caption div{
+		width:100%;
+		height:30px;		
+	}
 </style>
 
 </head>
@@ -47,18 +51,24 @@
       <img src="${bean.mainimg }" alt="" id="mainimg">
       <div class="caption">
         <h3>${bean.name }</h3>
-        <p style="font-size: 20px;">${bean.city }(${bean.country })</p>
-        <p style="color: red; font-size: 20px;">${bean.cost }원</p>
+        <div style="font-size: 20px;">
+        	${bean.city }(${bean.country })
+        </div>
+        <div style="color: red; font-size: 20px;">
+        ${bean.cost }원
+        </div>
       </div>
     </div>
-  </div>
-  </a>
+  </div> 
+  </a> 
 </c:forEach>
  
-   </div>
+  </div>
  </div>
 </div>
-
+<div id="footer">
+<jsp:include page="/WEB-INF/footer.jsp"/>
+</div>
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="${root }js/bootstrap.js"></script>
 <script type="text/javascript">
