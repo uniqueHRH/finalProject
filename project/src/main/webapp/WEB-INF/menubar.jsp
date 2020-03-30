@@ -10,38 +10,54 @@
 <style type="text/css">
 	#logo {
 		position:fixed;
-		top:25;
+		top:30;
+		left:700;
 		width:350px;
 	}
 	
 	/* 메뉴바 */
 	#top1 {
-		height:100px;
+		height:110px;
 		font-family: 'Jua';
 	}
 	#top2 {
 		background-color:141414;
-		height:100px;
+		height:110px;
 		line-height:30px;
 	}
-	#menubar {
-		margin:0 auto;
+	#top3 {
+		position:fixed;
+		font-size:17px;
+		font-family: 'Jua';
+		background-color:141414;
+		width:260px;
+		height:1000px;
 		text-align:center;
-		padding:35 270 0 500;
+		list-style:none;
 	}
-	#menubar>li {
-		padding:0 20px 0 0;
+/* 메뉴 */
+	#tourM, #boardM, #serviceM, #eventM, #systemM {
+		font-size:23px;
 		text-align:center;
-	}
-	#menubar>li>a {
-		font-size:20px;
-		font-weight:bold;
 		color:white;
-		padding:20 60;
-		text-align:center;
+		padding:15 70;
+		border-bottom:1px solid #e8e8e8;
+		cursor:pointer;
 	}
-	#menubar li>ul>li>a {
-		font-size:15px;
+/* 하위 메뉴 */
+	#menubar>div>a {
+		padding:20 80;
+		font-size:18px;
+		color:white;
+		text-decoration:none;
+	}
+	#tourS, #boardS, #serviceS, #systemS {
+		background-color:#0F0F0F;
+	}
+	#menubar>div>a:hover {
+		background-color:#e8e8e8;
+		font-weight:bold;
+		font-size:20px;
 		color:black;
 	}
 	#login {
@@ -56,6 +72,22 @@
 	}
 	body {
 		padding-top:100px;
+	}
+	#ser {
+		padding:400px 0 0 0;
+		position:fixed;
+	}
+	p {
+		color:white;
+		font-weight:none;
+		font-size:13px;
+		display:inline-block;
+	}
+	#kakao-talk-channel-chat-button {
+		width:50px;
+		padding:0;
+		margin:0;
+		display:inline-block;
 	}
 </style>
 </head>
@@ -99,51 +131,85 @@
 						</c:if>
 					</ul>
 				</div>
-				<div id="top3" align="center">
-					<!-- 메뉴바 -->
-					<ul class="nav navbar-nav" id="menubar">
-				        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">투&nbsp; &nbsp; &nbsp;어</a>
-							<ul class="dropdown-menu" role="menu">
-					            <li><a href="${root }tour/eastasia">중국/일본</a></li>
-					       		<li><a href="${root }tour/southeastasia">동남아시아</a></li>
-					       		<li><a href="${root }tour/america">아 메 리 카</a></li>
-					       		<li><a href="${root }tour/europe">유 &nbsp; &nbsp; &nbsp; &nbsp;럽</a></li>
-					       		<li><a href="${root }tour/pacific">남 태 평 양</a></li>
-					       		<li><a href="${root }tour/africa">아 프 리 카</a></li>
-					       		<li><a href="${root }tour/theme">테 마 여 행</a></li>
-							</ul>
-				        </li>
-				        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">커뮤니티</a>
-							<ul class="dropdown-menu" role="menu">
-					            <li><a href="${root }board/review">여행후기</a></li>
-					       		<li><a href="${root }board/partner">동행구하기</a></li>
-					       		<li><a href="${root }board/free">자유게시판</a></li>
-							</ul>
-				        </li>
-				        <li class="dropdown"><a href="${root }board/event" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">이벤트</a>
-				        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">고객센터</a>
-							<ul class="dropdown-menu" role="menu">
-					            <li><a href="${root }board/notice">공 &nbsp; &nbsp; &nbsp; &nbsp;지</a></li>
-							    <li><a href="${root }board/qna">자주묻는질문</a></li>
-							</ul>
-				        </li>
-				        <c:if test="${sessionScope.staffcheck ne null }">
-					        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">관리자센터</a>
-								<ul class="dropdown-menu" role="menu">
-						            <li><a href="${root }system/staff">직원 관리</a></li>
-						       		<li><a href="${root }system/guide">가이드관리</a></li>
-						       		<li><a href="${root }system/client">회원관리</a></li>
-						       		<li><a href="${root }system/paid">결제관리</a></li>
-						       		<li><a href="${root }system/report">신고관리</a></li>
-								</ul>
-					        </li>
-				        </c:if>
-					</ul>
-				</div>   <!-- 메뉴바 -->
-				
 			</div><!-- /.navbar-collapse -->
 		</div><!-- /.container-fluid -->
 	</nav>
+	
+	
+	<div id="top3">
+		<div id="menubar">
+	        <li id="tourM">투&nbsp; &nbsp; &nbsp;어</li>
+        	<div id="tourS">
+			    <a href="${root }tour/eastasia">중국 /일본</a>
+			    <a href="${root }tour/southeastasia">동남아시아</a>
+		    	<a href="${root }tour/america">아 메 리 카</a>
+	    		<a href="${root }tour/europe">유 &nbsp; &nbsp; &nbsp; &nbsp;럽</a>
+	       		<a href="${root }tour/pacific">남 태 평 양</a>
+	       		<a href="${root }tour/africa">아 프 리 카</a>
+	       		<a href="${root }tour/theme">테 마 여 행</a>
+	       	</div>
+	        <li id="boardM">커뮤니티</li>
+        	<div id="boardS">
+	            <a href="${root }board/review">여행 후기</a>
+	            <a href="${root }board/partner">동행구하기</a>
+	       		<a href="${root }board/free">자유게시판</a>
+		        <a href="${root }board/event">이 &nbsp;벤 &nbsp;트</a>
+	       	</div>
+	       	<li id="eventM">이벤트</li>
+	        <li id="serviceM">고객센터</li>
+        	<div id="serviceS">
+	            <a href="${root }board/notice">공 &nbsp; &nbsp; &nbsp; &nbsp;지</a>
+			    <a href="${root }board/qna">자주묻는질문</a>
+	       	</div>
+	        
+	        <c:if test="${sessionScope.staffcheck ne null }">
+	        <li id="systemM">관리자센터</li>
+        	<div id="systemS">
+	            <a href="${root }system/staff">직원 관리</a>
+	       		<a href="${root }system/guide">가이드관리</a>
+	       		<a href="${root }system/client">회원 관리</a>
+	       		<a href="${root }system/paid">결제 관리</a>
+	       		<a href="${root }system/report">신고 관리</a>
+	       	</div>
+	        </c:if>
+		</div>
+		<div id="ser">
+			<p>카카오톡 상담문의 &nbsp; <div id="kakao-talk-channel-chat-button"></div> &nbsp; &nbsp; </p><br/>
+			<p> &nbsp; 고객센터 문의시간 : 09:00 ~ 18:00 (월~금)</p> 
+		</div>
+	</div>
 </div>
+<script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#tourS').hide();
+		$('#boardS').hide();
+		$('#serviceS').hide();
+		$('#systemS').hide();
+		
+		$('#tourM').on('click',function() {
+			$('#tourS').toggle();
+		});
+		$('#boardM').on('click',function() {
+			$('#boardS').toggle();
+		});
+		$('#serviceM').on('click',function() {
+			$('#serviceS').toggle();
+		});
+		$('#systemM').on('click',function() {
+			$('#systemS').toggle();
+		});
+		
+		//<![CDATA[
+	    // 사용할 앱의 JavaScript 키를 설정해 주세요.
+	    Kakao.init('acc658a670e9ed5918d11647040b5bc5');
+	    // 카카오톡 채널 1:1채팅 버튼을 생성합니다.
+	    Kakao.Channel.createChatButton({
+	      container: '#kakao-talk-channel-chat-button',
+	      channelPublicId: '_wxfwxfxb' // 카카오톡 채널 홈 URL에 명시된 id로 설정합니다.
+	    });
+	  //]]>
+	});
+</script>
 </body>
 </html>

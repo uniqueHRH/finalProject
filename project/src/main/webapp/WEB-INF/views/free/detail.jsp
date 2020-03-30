@@ -193,16 +193,8 @@
       // 댓글보기 버튼
 	$('#table').hide()
 	
-	var show=$('#replyShow');
-	var table=$('#table');
-      
-	show.on('click',function() {
-		table.show();
-		show.text('댓글닫기');
-         
-		show.on('click',function() {
-			table.hide();
-			show.text('댓글보기');
+	$('#replyShow').on('click',function() {
+		$('#table').toggle(function() {
 		});
 	});
       
