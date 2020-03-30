@@ -18,6 +18,7 @@ public class ReceiveServiceImpl implements ReceiveService {
 	
 	@Override
 	public List<ReceiveVo> selectAll_receive(Search search) throws Exception {
+		System.out.println("service : "+search);
 		return receiveDao.selectAll_receive(search);
 	}
 

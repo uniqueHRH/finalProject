@@ -24,12 +24,14 @@ public class MypageController {
  			@RequestParam(required=false, defaultValue="1") int range,
  			@RequestParam(required=false, defaultValue="receive_content") String searchType,
  			@RequestParam(required=false) String keyword,
+ 			@RequestParam(required=false) String client_nick2,
  			@ModelAttribute("search") Search search
  			) throws Exception {
 
  		model.addAttribute("search", search);
  		search.setSearchType(searchType);
  		search.setKeyword(keyword);
+ 		search.setClient_nick2(client_nick2);
  		
  		// 전체 게시글 갯수
  		int listCnt=0;

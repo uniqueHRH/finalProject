@@ -29,9 +29,8 @@
 		width:280px;
 	}
 	p{
-		width:800px;
 		margin:0 auto;
-		padding:0 0 0 250px;
+		padding:0 0 0 300px;
 	}
 </style>
 </head>

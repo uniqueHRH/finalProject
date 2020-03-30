@@ -54,6 +54,8 @@
 		color:black;
 	}
 	#login {
+		font-size:16px;
+		padding:0 30 0 0;
 	}
 	#login li>a {
 		color:white;
@@ -140,8 +142,11 @@
 		height:200px;
 		margin:0 auto;
 		display:inline-block;
-		padding:0px;
+		padding:100px;
 		text-align:center;
+	}
+	.footerT {
+		padding:80 0 30 0;
 	}
 </style>
 </head>
@@ -172,9 +177,10 @@
 						</li>
 				        <!-- 회원로그인시 -->
 				        <c:if test="${sessionScope.staffcheck eq null and sessionScope.check ne null }">
+				        <input type="hidden" id="session" value="${sessionScope.check.client_nick1}"/>
 					        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">${sessionScope.check.client_nick1} 님<span class="caret"></span></a>
 					        	<ul class="dropdown-menu" role="menu">
-					        		<li><a href="${root }main/message">쪽지함</a></li>
+					        		<li><a href="${root }main/message" id="msg">쪽지함</a></li>
 					        		<li><a href="#">최근본상품</a></li>
 					        		<li><a href="${root }main/wish">찜한상품</a></li>
 					        		<li><a href="#">결제상품</a></li>
@@ -207,7 +213,7 @@
 					       		<li><a href="${root }board/free">자유게시판</a></li>
 							</ul>
 				        </li>
-				        <li class="dropdown"><a href="${root }board/event" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">이벤트</a>
+				        <li class="dropdown"><a href="${root }board/event">이벤트</li></a>
 				        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">고객센터</a>
 							<ul class="dropdown-menu" role="menu">
 					            <li><a href="${root }board/notice">공 &nbsp; &nbsp; &nbsp; &nbsp;지</a></li>
@@ -279,12 +285,31 @@
 		12345@traveler.com<br/><br/>
 		[06134] 서울 강남구 테헤란로5길 11 유빌딩 2층, 3층<br/>
 	</div>
+	<div class="footerT">
 		COPYRIGHT ⓒ HANATOUR SERVICE INC. ALL RIGHT RESERVED
+	</div>
 </div>
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="${root }js/bootstrap.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
+		// session 정보
+		$('#msg').on('click',function() {
+			var id=$('#session').val();
+			console.log(id);
+			
+			$.ajax({
+				url:'../project/main/message',
+				type:'GET',
+				data:{client_nick2:id},
+				success:function() {
+				},
+				error:function() {
+					alert('실패');
+				}
+			});
+		});
+		
 		// 검색
 		$('#searchGo').on('click',function() {
 			var url='${root }board/review';

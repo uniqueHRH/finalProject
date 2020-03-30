@@ -73,7 +73,7 @@
 <!-- 검색 -->
    <div class="topMenu" id="search">
 		<select id="searchType">
-		    <option value="board_sub">내 &nbsp;용</option>
+		    <option value="receive_content">내 &nbsp;용</option>
 		    <option value="client_nick1">보낸이</option>
 		</select>
       <input type="text" class="form-control" id="keyword" name="keyword" style="width:200px; display:inline-block;">
