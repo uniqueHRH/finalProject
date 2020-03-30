@@ -58,11 +58,11 @@
   			 <!-- loginbar end -->
       
    	<!-- 직원로그인start -->
-   <form class="form-horizontal" method="post">
+   <form class="form-horizontal" name="sac" method="post">
      <div class="form-group" id="insertid">
        <label for="staff_no" class="col-sm-2 control-label" id="idd">사번</label>
        <div class="col-sm-10">
-         <input type="text" class="form-control" id=staff_no" name="staff_no" placeholder="사번을 입력하세요" style="width:350px">
+         <input type="text" class="form-control" id="staff_no" name="staff_no" placeholder="사번을 입력하세요" style="width:350px">
        </div>
      </div>
      <div class="form-group">
@@ -88,7 +88,18 @@
  <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="${root }js/bootstrap.js"></script>
 <script type="text/javascript">
-  
+$('form[name="sac"]').bind('submit',function(){
+	var id = $("#staff_no").val();
+	var pw = $("#staff_pw").val();
+	if(!id || !pw){
+		alert('사번과 비밀번호를 확인해주세요');
+		return false;
+	}else{
+		return true;
+	}
+	
+});
+
 </script>
 </body>
 
