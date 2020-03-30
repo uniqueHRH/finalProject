@@ -36,7 +36,7 @@
 	#menubar {
 		margin:0 auto;
 		text-align:center;
-		padding:35 240 0 470;
+		padding:35 220 0 450;
 	}
 	#menubar>li {
 		padding:0 20px 0 0;
