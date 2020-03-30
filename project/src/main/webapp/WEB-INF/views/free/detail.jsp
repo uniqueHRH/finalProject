@@ -93,18 +93,10 @@
    </div>
       
 </form>
-      </div>
-   </div>
-</div>
-
-    
-
 
 <!-- contents end -->
      
-   <div class="footer">
-       <img id="footer1" src="https://www.gravatar.com/avatar/f6562ca8eeff16dc45e7cf16e0390009?d=identicon&s=40" alt="">
-    </div>
+<jsp:include page="/WEB-INF/footer.jsp"></jsp:include>
 </body>
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="${root }js/bootstrap.js"></script>

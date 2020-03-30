@@ -73,22 +73,6 @@
 	body {
 		padding-top:100px;
 	}
-	#ser {
-		padding:400px 0 0 0;
-		position:fixed;
-	}
-	p {
-		color:white;
-		font-weight:none;
-		font-size:13px;
-		display:inline-block;
-	}
-	#kakao-talk-channel-chat-button {
-		width:50px;
-		padding:0;
-		margin:0;
-		display:inline-block;
-	}
 </style>
 </head>
 <body>
@@ -173,10 +157,6 @@
 	       	</div>
 	        </c:if>
 		</div>
-		<div id="ser">
-			<p>카카오톡 상담문의 &nbsp; <div id="kakao-talk-channel-chat-button"></div> &nbsp; &nbsp; </p><br/>
-			<p> &nbsp; 고객센터 문의시간 : 09:00 ~ 18:00 (월~금)</p> 
-		</div>
 	</div>
 </div>
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
@@ -200,15 +180,6 @@
 			$('#systemS').toggle();
 		});
 		
-		//<![CDATA[
-	    // 사용할 앱의 JavaScript 키를 설정해 주세요.
-	    Kakao.init('acc658a670e9ed5918d11647040b5bc5');
-	    // 카카오톡 채널 1:1채팅 버튼을 생성합니다.
-	    Kakao.Channel.createChatButton({
-	      container: '#kakao-talk-channel-chat-button',
-	      channelPublicId: '_wxfwxfxb' // 카카오톡 채널 홈 URL에 명시된 id로 설정합니다.
-	    });
-	  //]]>
 	});
 </script>
 </body>

@@ -28,15 +28,3 @@
 		border:0;
 		color:gray;
 	}
-/* footer */
-	#footerM {
-		padding:50px;
-	}
-	.footerS {
-		font-family:"Jua";
-		font-size:15px;
-		width:500px;
-		margin:0 auto;
-		vertical-align:middle;
-		background-color:gold;
-	}

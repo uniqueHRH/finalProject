@@ -122,11 +122,7 @@
 </form>
 
       
-      </div>
-   </div>
-</div>
-
-
+<jsp:include page="/WEB-INF/footer.jsp"></jsp:include>
 <!-- contents end -->
 <div id="footerM">
      <div class="footerS">
