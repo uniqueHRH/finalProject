@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+import com.bit.project.common.Search;
 import com.bit.project.model.NoticeDao;
 import com.bit.project.model.entity.NoticeVo;
 
@@ -16,19 +17,15 @@ public class NoticeServiceImpl implements NoticeService {
 	NoticeDao noticeDao;
 	
 	@Override
-	public void selectAll_notice(Model model) {
-		try {
-			List<NoticeVo> list=noticeDao.selectAll_notice();
-			model.addAttribute("list",list);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	public List<NoticeVo> selectAll_notice(Search search) throws Exception {
+		return noticeDao.selectAll_notice(search);
 	}
 
 	@Override
 	public void selectOne_notice(int key, Model model) {
 		try {
 			model.addAttribute("bean",noticeDao.selectOne_notice(key));
+			noticeDao.updateCnt(key);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -59,6 +56,11 @@ public class NoticeServiceImpl implements NoticeService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public int getNoticeListCnt(Search search) throws Exception {
+		return noticeDao.getNoticeListCnt(search);
 	}
 
 	

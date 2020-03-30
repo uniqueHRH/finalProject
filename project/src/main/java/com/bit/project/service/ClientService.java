@@ -17,4 +17,5 @@ public interface ClientService {
 	void pwUpdate(ClientVo bean) throws Exception;
 	public ClientVo nickDupli(ClientVo bean) throws Exception;
 	public ClientVo idDupli(ClientVo bean) throws Exception;
+	void changeInfo(ClientVo bean) throws Exception;
 }

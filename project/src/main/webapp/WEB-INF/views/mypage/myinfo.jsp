@@ -42,6 +42,50 @@
    }
    
 </style>
+</head>
+<body>
+  <jsp:include page="/WEB-INF/menubar.jsp"/>
+<!-- menubar end -->
+                     <!-- contents start -->
+ <div class="container">
+  <div class="row">
+   <div class="col-md-12">
+ 
+  <div class="page-header" align="center">
+     <h1>내 정보관리</h1>
+   </div>
+   <p id="infocomm">내정보를 최신정보로 관리해주세요</p>
+ 	 <a href="${root }main/myinfo/changeinfo"><button type="button" id="changeinfobtn" class="btn btn-default">정보수정</button></a>
+
+	<div id="table">
+   	  <table class="table table-hover">
+		<tr>
+			<td width="30%">아이디</td>
+			<td width="40%">여행사용설명서 아이디</td>
+			<td width="50%">${sessionScope.check.client_id }</td>
+		</tr>
+		<tr>
+			<td>닉네임/연락처</td>
+			<td>닉네임<br/></br>연락처</td>
+			<td>${sessionScope.check.client_nick1 }<br/></br>${sessionScope.check.client_phone }</td>
+		</tr>
+		<tr>
+			<td>이름/생년월일</td>
+			<td>이름<br/><br/>생년월일</td>
+			<td>${sessionScope.check.client_name }<br/><br/>${sessionScope.check.client_birth }</td>
+		</tr>
+		<tr>
+			<td>알림설정</td>
+			<td>소식/광고알림</td>
+			<td>수신함</td>
+		</tr>
+	   </table>
+	 </div>  
+    </div>
+  </div>
+</div>
+      
+                         <!-- contents end --> 
 <jsp:include page="/WEB-INF/footer.jsp"/>
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="${root }js/bootstrap.js"></script>
@@ -80,142 +124,5 @@
       
    });
 </script>
-</head>
-<body>
-                        <!-- menubar start -->
-   	<nav class="navbar navbar-primary">
-	  <div class="container-fluid">
-	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-	      <ul class="nav navbar-nav">
-	        <li class="dropdown">
-	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><img src="https://github.com/uniqueHRH/travel/blob/master/travel/src/main/webapp/imgs/menubar.png?raw=true" width=40px, height=40px/></a>
-	          <ul class="dropdown-menu" role="menu">
-	            <li id="tour"><a href="#">투어</a>
-	            	<ul id="tour_sub">
-	            		<li><a href="${root }tour/eastasia">중국/일본</a></li>
-	            		<li><a href="${root }tour/southeastasia">동남아시아</a></li>
-	            		<li><a href="${root }tour/america">아 메 리 카</a></li>
-	            		<li><a href="${root }tour/europe">유 &nbsp; &nbsp; &nbsp; &nbsp;럽</a></li>
-	            		<li><a href="${root }tour/pacific">남 태 평 양</a></li>
-	            		<li><a href="${root }tour/africa">아 프 리 카</a></li>
-	            		<li><a href="${root }tour/theme">테 마 여 행</a></li>
-	            	</ul>
-	            </li>
-	            <li class="divider"></li>
-	            <li id="comm"><a href="#">커뮤니티</a>
-		            <ul id="comm_sub">
-	            		<li><a href="${root }board/review">여행후기</a></li>
-	            		<li><a href="${root }board/partner">동행구하기</a></li>
-	            		<li><a href="${root }board/free">자유게시판</a></li>
-	            	</ul>
-            	</li>
-	            <li class="divider"></li>
-	            <li><a id="event"href="${root }board/event">이벤트</a></li>
-	            <li class="divider"></li>
-	            <li id="serv"><a href="#">고객센터</a>
-	            	<ul id="serv_sub">
-	            		<li><a href="${root }board/notice">공 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;지</a></li>
-	            		<li><a href="${root }board/qna">자주묻는질문</a></li>
-	            	</ul>
-	            </li>
-	            <li class="divider"></li>
-	            <li id="system"><a href="#">시스템관리</a>
-	            	<ul id="system_sub">
-	            		<li><a href="${root }system/staff">직원 관리</a></li>
-	            		<li><a href="${root }system/guide">가이드관리</a></li>
-	            		<li><a href="${root }system/client">회원관리</a></li>
-	            		<li><a href="${root }system/paid">결제관리</a></li>
-	            		<li><a href="${root }system/report">신고관리</a></li>
-	            	</ul>
-	            </li>
-	          </ul>
-	        </li>
-	      </ul>
-		<div align="center" style="disply:inline-block;">
-			<a href="${root }"><img src="https://github.com/uniqueHRH/travel/blob/master/travel/src/main/webapp/imgs/logoB.png?raw=true" width=80px></a>
-	      <ul class="nav navbar-nav navbar-right">
-	        <!-- 로그인시 숨김 -->
-	        <li><a id="side" href="${root }main/login" >로그인</a></li>
-	        <li><a id="side" href="${root }main/admin" >회원가입</a></li>
-	        
-	        <!-- 직원로그인시 -->
-	        <li class="dropdown">
-	          <a id="side" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">나의페이지<span class="caret"></span></a>
-	          <ul class="dropdown-menu" id="dropdown_sub" role="menu">
-	            <li><a href="${root }main/staffinfo">내정보관리</a></li>
-	            <li><a href="#">로그아웃</a></li>
-	          </ul>
-	        </li>
-	        <!-- 회원로그인시 -->
-	        <li class="dropdown">
-	          <a id="side" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">나의페이지<span class="caret"></span></a>
-	          <ul class="dropdown-menu" id="dropdown_sub" role="menu">
-	            <li><a href="${root }main/message">쪽지함</a></li>
-	            <li class="divider"></li>
-	            <li><a href="#">최근본상품</a></li>
-	            <li><a href="${root }main/wish">찜한상품</a></li>
-	            <li><a href="#">결제상품</a></li>
-	            <li class="divider"></li>
-	            <li><a href="#">내가쓴글</a></li>
-	            <li class="divider"></li>
-	            <li><a href="${root }main/myinfo">내정보관리</a></li>
-	            <li><a href="#">로그아웃</a></li>
-	          </ul>
-	        </li>
-	      </ul>
-		</div>
-	    </div><!-- /.navbar-collapse -->
-	  </div><!-- /.container-fluid -->
-	</nav>
-<!-- menubar end -->
-                     <!-- contents start -->
- <div class="container">
-  <div class="row">
-   <div class="col-md-12">
- 
-  <div class="page-header" align="center">
-     <h1>내 정보관리</h1>
-   </div>
-   <p id="infocomm">내정보를 최신정보로 관리해주세요</p>
- 	 <a href="${root }main/myinfo/changeinfo"><button type="button" id="changeinfobtn" class="btn btn-default">정보수정</button></a>
-
-	<div id="table">
-   	  <table class="table table-hover">
-		<tr>
-			<td width="30%">아이디</td>
-			<td width="40%">여행사용설명서 아이디</td>
-			<td width="50%">${bean.client_id }</td>
-		</tr>
-		<tr>
-			<td>닉네임/연락처</td>
-			<td>닉네임<br/></br>연락처</td>
-			<td>${bean.clint_nick }<br/></br>${bean.client_phone }</td>
-		</tr>
-		<tr>
-			<td>이름/생년월일</td>
-			<td>이름<br/><br/>생년월일</td>
-			<td>${bean.client_name }<br/><br/>${bean.client_birth }</td>
-		</tr>
-		<tr>
-			<td>알림설정</td>
-			<td>소식/광고알림</td>
-			<td>수신함</td>
-		</tr>
-	   </table>
-	 </div>  
- 
-     
-    </div>
-  </div>
-</div>
-      
-                         <!-- contents end --> 
- <div class="row">
-   <div class="col-md-12">
-    <div class="footer">
-    	<img id="footer1" src="https://github.com/uniqueHRH/travel/blob/master/src/main/webapp/imgs/footer1.jpg?raw=true" alt="">
-    </div>
-   </div>
- </div> 
 </body>
 </html>

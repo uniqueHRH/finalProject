@@ -69,6 +69,11 @@ public class ClientDaoImpl implements ClientDao {
 		return sqlSession.selectOne("client.idDupli", bean);
 	}
 
+	@Override
+	public int changeInfo(ClientVo bean) throws Exception {
+		return sqlSession.update("client.changeInfo", bean);
+	}
+
 	
 
 

@@ -10,12 +10,9 @@
 <link rel="stylesheet" type="text/css" href="${root }css/bootstrap.css" />
 <link rel="stylesheet" type="text/css" href="${root }css/travel.css" />
 <style type="text/css">
-   .container{
-		display: inline-block;
-		font-family: 'Jua';
-		text-align: center;
-		width: 100%;
-    }
+   #table{
+   		font-family: "Jua";
+   }
     form {
       	width:600px;
       	margin: 0 auto;
@@ -44,9 +41,7 @@
 
 <!-- menubar end -->
                      <!-- contents start -->
-   <div class="container">
-  <div class="row">
-   <div class="col-md-12">
+  <div id="table">
       <div class="page-header" align="center">
      <h1>로그인</h1>
    </div>
@@ -76,13 +71,10 @@
      </c:if>
      <button type="submit" id="loginbtn" class="btn btn-default btn-lg btn-block">로그인</button>
      </form>
-     
+    </div>
      
      								<!-- 직원로그인 end -->   
-     </div>
-  </div>
-</div>
-      
+   
                          <!-- contents end --> 
 <jsp:include page="/WEB-INF/footer.jsp"/> 
  <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
