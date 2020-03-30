@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.bit.project.common.Search;
 import com.bit.project.model.entity.NoticeVo;
 
 @Repository
@@ -15,8 +16,8 @@ public class NoticeDaoImpl implements NoticeDao {
 	SqlSession sqlSession;
 	
 	@Override
-	public List<NoticeVo> selectAll_notice() throws Exception {
-		return sqlSession.selectList("notice.selectAll_notice");
+	public List<NoticeVo> selectAll_notice(Search search) throws Exception {
+		return sqlSession.selectList("notice.selectAll_notice", search);
 	}
 
 	@Override
@@ -37,6 +38,16 @@ public class NoticeDaoImpl implements NoticeDao {
 	@Override
 	public int deleteOne_notice(int key) throws Exception {
 		return sqlSession.delete("notice.deleteOne_notice",key);
+	}
+
+	@Override
+	public int updateCnt(int key) throws Exception {
+		return sqlSession.update("notice.updateCnt",key);
+	}
+
+	@Override
+	public int getNoticeListCnt(Search search) throws Exception {
+		return sqlSession.selectOne("notice.getNoticeListCnt",search);
 	}
 
 }

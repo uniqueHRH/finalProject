@@ -16,7 +16,14 @@
  
 <mapper namespace="notice">
 	<select id="selectAll_notice" resultType="NoticeBean">
-		select * from notice order by notice_no desc
+		select * from notice
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="searchType=='notice_sub' and keyword != null and keyword != '' ">
+				AND notice_sub like CONCAT('%', #{keyword}, '%')
+			</if>
+		</trim>
+		order by notice_no desc
+		LIMIT #{startList}, #{listSize}
 	</select>
 	
 	<select id="selectOne_notice" resultType="NoticeBean" parameterType="int">
@@ -34,4 +41,20 @@
 	<delete id="deleteOne_notice" parameterType="int">
 		delete from notice where notice_no=#{notice_no}
 	</delete>
+	
+	
+	<!-- 조회수 -->
+	<update id="updateCnt" parameterType="int">
+		update notice set notice_count=notice_count+1 where notice_no=#{value}
+	</update>
+	
+<!-- 총게시글 갯수 -->
+	<select id="getNoticeListCnt" resultType="int">
+		select count(*) from notice
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="searchType=='notice_sub' and keyword != null and keyword != '' ">
+				AND notice_sub like CONCAT('%', #{keyword}, '%')
+			</if>
+		</trim>
+	</select>
 </mapper>

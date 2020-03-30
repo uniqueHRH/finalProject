@@ -44,6 +44,12 @@
 		border-bottom:1px solid #e8e8e8;
 		cursor:pointer;
 	}
+	#eventM>a {
+		text-decoration:none;
+	}
+	#eventM>a:visited {
+		color:white;
+	}
 	#tourM {
 		padding:50 0 15 0;
 	}
@@ -64,6 +70,7 @@
 		color:black;
 	}
 	#login {
+		padding:0 30 0 0;
 	}
 	#login li>a {
 		color:white;
@@ -93,19 +100,18 @@
 			        	</c:if>
 						
 						<!-- 직원로그인시 -->
-					    <c:if test="${sessionScope.check eq null and sessionScope.staffcheck ne null }">
-				        	<li class="dropdown">
-					        	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">${sessionScope.staffcheck.staff_name} 님<span class="caret"></span></a>
+				        <li class="dropdown">
+					        <c:if test="${sessionScope.staffcheck ne null }">
+					        	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">내정보관리<span class="caret"></span></a>
 					        	<ul class="dropdown-menu" role="menu">
 					        		<li><a href="${root }main/staffinfo">내정보관리</a></li>
 				            		<li><a href="${root }main/logout">로그아웃</a></li>
 					        	</ul>
-							</li>
-					    </c:if>
+					        </c:if>
+						</li>
 				        <!-- 회원로그인시 -->
-				        <c:if test="${sessionScope.staffcheck eq null and sessionScope.check ne null }">
-					        <li class="dropdown">
-					        	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">${sessionScope.check.client_nick1} 님<span class="caret"></span></a>
+				        <c:if test="${sessionScope.check ne null }">
+					        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">${sessionScope.check.client_nick1} 님<span class="caret"></span></a>
 					        	<ul class="dropdown-menu" role="menu">
 					        		<li><a href="${root }main/message">쪽지함</a></li>
 					        		<li><a href="#">최근본상품</a></li>
@@ -141,9 +147,8 @@
 	            <a href="${root }board/review">여행 후기</a>
 	            <a href="${root }board/partner">동행구하기</a>
 	       		<a href="${root }board/free">자유게시판</a>
-		        <a href="${root }board/event">이 &nbsp;벤 &nbsp;트</a>
 	       	</div>
-	       	<li id="eventM">이벤트</li>
+	       	<li id="eventM"><a href="${root }board/event">이 벤 트</a></li>
 	        <li id="serviceM">고객센터</li>
         	<div id="serviceS">
 	            <a href="${root }board/notice">공 &nbsp; &nbsp; &nbsp; &nbsp;지</a>
