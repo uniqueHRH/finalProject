@@ -18,16 +18,13 @@
 <title>Login Demo - Kakao JavaScript SDK</title>
 
 <style type="text/css">
-	.container{
-		display: inline-block;
-		font-family: 'Jua';
-		text-align: center;
-		width: 100%;
-	 }
+    #table {
+      	font-family:"Jua";
+    }
     input {
     	text-align:center;
     }
-    form {
+     form {
       	width:600px;
       	margin: 0 auto;
       	text-align: center;
@@ -64,11 +61,8 @@
 <jsp:include page="/WEB-INF/menubar.jsp"/>
                         <!-- menubar start -->
 <!-- menubar end -->
-
+	<div id="table">
 <!-- contents start -->
-<div class="container">
-	<div class="row">
-		<div class="col-md-12">
 			<div class="page-header" align="center">
 				<h1>로그인</h1>
 			</div>
@@ -100,23 +94,14 @@
 			<div>
 				<a href="${root }main/login/findid"><button type="button" id="findid" class="btn btn-default btn-lg">아이디 찾기</button></a>
 				<a href="${root }main/login/findpw"><button type="button" id="findpw" class="btn btn-default btn-lg">비밀번호 찾기</button></a>
-			</div>
-				<p><p>--------------------------------------또는--------------------------------------</p></p>
-				<p>
+				<br/>--------------------------------------또는--------------------------------------
 					<a id="kakao-login-btn"></a>
 					<a href="http://developers.kakao.com/logout"></a>
-				</p>
-			     <p>
 			        <button type="button" id="facebookbtn" class="btn btn-default btn-lg btn-block">페이스북으로 로그인</button>
-			    </p>
-			     <p>
 			        <button type="button" id="naverbtn" class="btn btn-default btn-lg btn-block">네이버로 로그인</button>
-			     </p>
+			</div>
 			</form>
-		</div>
-<!-- 고객로그인 end -->   
 	</div>
-</div>
 <!-- contents end -->
 
 <jsp:include page="/WEB-INF/footer.jsp"/>
@@ -124,7 +109,6 @@
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="${root }js/bootstrap.js"></script>
 <script type="text/javascript">
-
    $(document).ready(function() {
 	   
 	$('form[name="lac"]').bind('submit',function(){

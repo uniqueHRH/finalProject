@@ -11,7 +11,7 @@
 <link rel="stylesheet" type="text/css" href="${root }css/travel.css" />
 <style type="text/css">
    .container{
-      display: inline-block;
+		display: inline-block;
 		font-family: 'Jua';
 		text-align: center;
 		width: 100%;
