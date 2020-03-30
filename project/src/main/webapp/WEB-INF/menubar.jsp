@@ -93,18 +93,19 @@
 			        	</c:if>
 						
 						<!-- 직원로그인시 -->
-				        <li class="dropdown">
-					        <c:if test="${sessionScope.staffcheck ne null }">
-					        	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">내정보관리<span class="caret"></span></a>
+					    <c:if test="${sessionScope.check eq null and sessionScope.staffcheck ne null }">
+				        	<li class="dropdown">
+					        	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">${sessionScope.staffcheck.staff_name} 님<span class="caret"></span></a>
 					        	<ul class="dropdown-menu" role="menu">
 					        		<li><a href="${root }main/staffinfo">내정보관리</a></li>
 				            		<li><a href="${root }main/logout">로그아웃</a></li>
 					        	</ul>
-					        </c:if>
-						</li>
+							</li>
+					    </c:if>
 				        <!-- 회원로그인시 -->
-				        <c:if test="${sessionScope.check ne null }">
-					        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">${sessionScope.check.client_nick1} 님<span class="caret"></span></a>
+				        <c:if test="${sessionScope.staffcheck eq null and sessionScope.check ne null }">
+					        <li class="dropdown">
+					        	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">${sessionScope.check.client_nick1} 님<span class="caret"></span></a>
 					        	<ul class="dropdown-menu" role="menu">
 					        		<li><a href="${root }main/message">쪽지함</a></li>
 					        		<li><a href="#">최근본상품</a></li>

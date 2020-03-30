@@ -50,23 +50,22 @@ public class TravelController {
 	
 	//직원 로그인
 	@RequestMapping(value= "/main/stafflogin", method=RequestMethod.POST)
-	public ModelAndView stafflogin(StaffVo bean, HttpServletRequest req, ModelAndView mav) throws Exception{
+	public ModelAndView stafflogin(StaffVo bean, HttpServletRequest req) throws Exception{
 		
 		HttpSession session = req.getSession();
 		StaffVo login= staffService.loginCheck(bean);
-		 
-		if(login==null) {
-			//로그인 실패 시
-			session.setAttribute("staffcheck", null);
-			mav.setViewName("login/stafflogin");
-			mav.addObject("msg", "fail");
-			return mav;
-		}else {
+		ModelAndView mav=new ModelAndView();
+		if(login!=null) {
 			//로그인 성공 시
 			session.setAttribute("staffcheck", login);
-			mav.setViewName("home");
-			return mav;
+			mav.setViewName("redirect:/");
+		}else {
+			//로그인 실패 시
+			session.setAttribute("staffcheck", null);
+			mav.addObject("msg", "fail");
+			mav.setViewName("login/stafflogin");
 		}
+		return mav;
 	}
 	
 	//로그인창으로 이동
