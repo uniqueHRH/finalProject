@@ -26,6 +26,10 @@
 		padding-left: 350px;
 		padding-bottom: 20px;
 	}
+	#footer{
+		position: relative;
+		bottom: 0;
+	}
 </style>
 </head>
 <body>
