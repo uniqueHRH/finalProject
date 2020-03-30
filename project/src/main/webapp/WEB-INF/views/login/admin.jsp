@@ -10,125 +10,46 @@
 <link rel="stylesheet" type="text/css" href="${root }css/bootstrap.css" />
 <link rel="stylesheet" type="text/css" href="${root }css/travel.css" />
 <style type="text/css">
-	.container{
-		display: inline-block;
-		font-family: 'Jua';
-		text-align: center;
-		width: 100%;
-	 }
-	 .form-horizontal {
-      	width:570px;
-      	margin: 0 auto;
-      	text-align: center;
+   .container{
+      display: inline-block;
+      font-family: 'Jua';
+      text-align: center;
+      width: 100%;
+    }
+    .form-horizontal {
+         width:570px;
+         margin: 0 auto;
+         text-align: center;
     }
     .table table-hover{
-    	width:570px;
-      	margin: 0 auto;
-      	text-align: center;
+       width:570px;
+         margin: 0 auto;
+         text-align: center;
     }
     .list-group{
-    	width: 90%;
+       width: 90%;
     }
     #adminbtn{
-    	width: 90%;
+       width: 90%;
     }
     #client_sex{
-    	width: 400px;
-    	margin: 0px auto;
-    	text-align: center;
+       width: 400px;
+       margin: 0px auto;
+       text-align: center;
     }
 </style>
 </head>
 <body>
+<jsp:include page="/WEB-INF/menubar.jsp"/>
+
+<!-- contents start -->
 <div class="container">
   <div class="row">
    <div class="col-md-12">
-   <!-- menubar start -->
-<div class="menubar">
-	<nav>
-		<div>
-			<div align="right">
-				<ul class="login">
-			        <!-- 로그인시 숨김 -->
-			        <c:if test="${sessionScope.check eq null && sessionScope.staffcheck eq null }">
-			        <li>
-			        	<a id="side" href="${root }main/login" >로그인</a> &nbsp; &nbsp; &nbsp; &nbsp;
-			        	<a id="side" href="${root }main/admin" >회원가입</a>
-			        </li>
-			        </c:if>
-			        <!-- 직원로그인시 -->
-			        <c:if test="${sessionScope.staffcheck ne null }">
-					<select id="side" onchange="location.href=this.value">
-			            <option value="${root }main/staffinfo">내정보관리</option>
-			            <option value="${root }main/logout">로그아웃</option>
-			        </select>
-			        </c:if>
-			        <!-- 회원로그인시 -->
-			        <c:if test="${sessionScope.check ne null }">
-					<select id="side" onchange="location.href=this.value">
-						<option id="hide">${sessionScope.check.client_nick1} 님<span class="caret"></span></option>
-			            <option value="${root }main/message">쪽지함</option>
-			            <option value="#">최근본상품</option>
-			            <option value="${root }main/wish">찜한상품</option>
-			            <option value="#">결제상품</option>
-			            <option value="#">내가쓴글</option>
-			            <option value="${root }main/myinfo">내정보관리</option>
-			            <option value="${root }main/logout">로그아웃</option>
-			          </select>
-			        </c:if>
-				</ul>
-			</div>
-			
-			
-			<ul class="nav nav-pills nav-stacked" id="hamb">
-				<li id="hamSub"><a href="#">투어</a>
-			  		<ul>
-			  			<li><a href="${root }tour/eastasia">중국/일본</a></li>
-			       		<li><a href="${root }tour/southeastasia">동남아시아</a></li>
-			       		<li><a href="${root }tour/america">아 메 리 카</a></li>
-			       		<li><a href="${root }tour/europe">유 &nbsp; &nbsp; &nbsp; &nbsp;럽</a></li>
-			       		<li><a href="${root }tour/pacific">남 태 평 양</a></li>
-			       		<li><a href="${root }tour/africa">아 프 리 카</a></li>
-			       		<li><a href="${root }tour/theme">테 마 여 행</a></li>
-			  		</ul>
-			  	</li>
-				<li id="hamSub"><a href="#">커뮤니티</a>
-					<ul>
-			  			<li><a href="${root }board/review">여행후기</a></li>
-			       		<li><a href="${root }board/partner">동행구하기</a></li>
-			       		<li><a href="${root }board/free">자유게시판</a></li>
-			  		</ul>
-			  	</li>
-				<li id="hamSub"><a href="${root }board/event">이벤트</a></li>
-				<li><a href="#">고객센터</a>
-					<ul>
-			  			<li><a href="${root }board/notice">공 &nbsp; &nbsp; &nbsp; &nbsp;지</a></li>
-				        <li><a href="${root }board/qna">자주묻는질문</a></li>
-			  		</ul>
-			  	</li>
-			  	<c:if test="${sessionScope.staffcheck ne null }">
-					<li id="hamSub"><a href="#">관리자센터</a>
-						<ul>
-				  			<li><a href="${root }system/staff">직원 관리</a></li>
-				       		<li><a href="${root }system/guide">가이드관리</a></li>
-				       		<li><a href="${root }system/client">회원관리</a></li>
-				       		<li><a href="${root }system/paid">결제관리</a></li>
-				       		<li><a href="${root }system/report">신고관리</a></li>
-				  		</ul>
-				  	</li>
-			  	</c:if>
-			</ul>
-		</div><!-- /.navbar-collapse -->
-	</nav><!-- /.container-fluid -->
-</div>
-
-
-
-<!-- contents start -->
-      <div class="page-header" id="page-header" align="center">
-	  <h1>회원가입</h1>
-	</div>
-	
+    <div class="page-header" id="page-header" align="center">
+     <h1>회원가입</h1>
+   </div>
+   
 
 <form action="../main/admin" name="adm" class="form-horizontal" method="post">
   <div class="form-group">
@@ -142,14 +63,14 @@
     <label for="client_nick1" class="col-sm-2 control-label">닉네임</label>
     <div class="col-sm-10">
       <input type="text" class="form-control" id="client_nick1" name="client_nick1" placeholder="2-15자 이내만 가능합니다" style="width:400px" maxlength="15"><button type="button" id="nickdupli">중복 확인</button>
-	<input type="hidden" id="duplicheck1" name="duplicheck1" value="0" style="display: none;">
+   <input type="hidden" id="duplicheck1" name="duplicheck1" value="0" style="display: none;">
     </div>
   </div>
   <div class="form-group">
     <label for="client_id" class="col-sm-2 control-label">아이디</label>
     <div class="col-sm-10">
       <input type="text" class="form-control" id="client_id" name="client_id" placeholder="4-15자이내 영문(대,소),숫자만 가능합니다" style="width:400px" maxlength="15"><button type="button" id="iddupli">중복 확인</button>
- 	  <input type="hidden" id="duplicheck2" name="duplicheck2" value="0" style="display: none;">
+      <input type="hidden" id="duplicheck2" name="duplicheck2" value="0" style="display: none;">
     </div>
   </div>
   <div class="form-group">
@@ -175,15 +96,15 @@
     <label for="client_birth" class="col-sm-2 control-label">이메일</label>
     <div class="col-sm-10">
       <input type="text" class="form-control" id="client_email" name="client_email" placeholder="E-mail을 입력하세요" style="width:400px">
-	  <div id="email_check"></div>
-  	</div>
+     <div id="email_check"></div>
+     </div>
   </div>
   <div class="form-group">
     <label for="client_birth" class="col-sm-2 control-label">생년월일</label>
     <div class="col-sm-10">
       <input type="text" class="form-control" id="client_birth" name="client_birth" placeholder="8자리로 입력하세요 ex)19920216" style="width:400px" maxlength="8">
       <div id="birth_check"></div>
-  	</div>
+     </div>
   </div>
   <div class="form-group">
     <label for="client_phone" class="col-sm-2 control-label">연락처</label>
@@ -192,16 +113,16 @@
       <div id="phone_check"></div>
     </div>
   </div>
-	<ul class="list-group">
-	  <li class="list-group-item disabled">
-	  <label><input type="checkbox" id="allclause" value="allclause">&nbsp;전체 약관 동의</label>
-	  </li>
-	  <li class="list-group-item"><input type="checkbox" id="chk1" name="clause" value="clause1">&nbsp;<span data-toggle="modal" data-target="#myModal1">회원 가입 및 운영약관 동의 (필수)></span></li>
-	  <li class="list-group-item"><input type="checkbox" id="chk2" name="clause" value="clause2">&nbsp;<span data-toggle="modal" data-target="#myModal2">개인정보 수집 및 이용 (필수)></span></li>
-	  <li class="list-group-item"><input type="checkbox" id="chk3" name="clause" value="clause3">&nbsp;<span data-toggle="modal" data-target="#myModal3">위치정보 이용약관 (필수)> </span></li>
-	</ul>
- 		
-			<!-- 약관1 start -->
+   <ul class="list-group">
+     <li class="list-group-item disabled">
+     <label><input type="checkbox" id="allclause" value="allclause">&nbsp;전체 약관 동의</label>
+     </li>
+     <li class="list-group-item"><input type="checkbox" id="chk1" name="clause" value="clause1">&nbsp;<span data-toggle="modal" data-target="#myModal1">회원 가입 및 운영약관 동의 (필수)></span></li>
+     <li class="list-group-item"><input type="checkbox" id="chk2" name="clause" value="clause2">&nbsp;<span data-toggle="modal" data-target="#myModal2">개인정보 수집 및 이용 (필수)></span></li>
+     <li class="list-group-item"><input type="checkbox" id="chk3" name="clause" value="clause3">&nbsp;<span data-toggle="modal" data-target="#myModal3">위치정보 이용약관 (필수)> </span></li>
+   </ul>
+       
+         <!-- 약관1 start -->
 <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -224,9 +145,9 @@
       </div>
     </div>
   </div>
-</div>			
-			<!--약관1 end-->
-	<!-- 약관2 start -->
+</div>         
+         <!--약관1 end-->
+   <!-- 약관2 start -->
 <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -248,9 +169,9 @@
       </div>
     </div>
   </div>
-</div>			
-			<!--약관2 end-->
-			<!-- 약관3 start -->
+</div>         
+         <!--약관2 end-->
+         <!-- 약관3 start -->
 <div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -268,310 +189,310 @@
       </div>
     </div>
   </div>
-</div>			
+</div>         
 
 <button type="submit" id="adminbtn" class="btn btn-default btn-lg btn-block">회원가입</button>
  </form>
-   </div>	
+   </div>   
   </div>
 </div>
     <!-- 약관3 end --> 
  <div class="row">
-	<div class="col-md-12">
+   <div class="col-md-12">
     <div class="footer">
-    	<img id="footer1" src="https://github.com/uniqueHRH/travel/blob/master/src/main/webapp/imgs/footer1.jpg?raw=true" alt="">
+       <img id="footer1" src="https://github.com/uniqueHRH/travel/blob/master/src/main/webapp/imgs/footer1.jpg?raw=true" alt="">
     </div>
    </div>
  </div>
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="${root }js/bootstrap.js"></script>
 <script type="text/javascript">
-	$(document).ready(function() {
-		//clause
-		$('#allclause').click(function() {
-			if($('#allclause').prop("checked")){
-	        	  $("input[name=clause]").prop("checked",true);
-	        }else{
-	              $("input[name=clause]").prop("checked",false);
-	        }
-	    });
-		
-	//닉네임 중복 검사
-	$('#nickdupli').on('click',function() {
-			 
-		var nick = $('#client_nick1').val();
-		var nickname =  /^[\w\Wㄱ-ㅎㅏ-ㅣ가-힣]{2,15}$/;
-		var nickcheck = nickname.test($("#client_nick1").val());
-		$.ajax({
-					url:'../main/nickdupli',
-					type:'POST',
-					data:{client_nick1:nick},
-				    success:function(data){
-				    	
-				    	var check = data.Nickdupli;
-				    	
-				    	if(check == null && nickcheck != false){
-				    		alert('사용 가능한 닉네임입니다');
-				    		$('input[name=duplicheck1]').attr('value', 1);
-				    	}else if(nickcheck == false){
-				    		alert('형식에 맞게 입력하세요');
-				    	}else{
-				    		alert('이미 사용중인 닉네임입니다');
-				    	}
-				    }
-		});
-	});
-	
-	//아이디 중복검사
-	$('#iddupli').on('click',function() {
-			 
-		var id = $('#client_id').val();
-		
-		var Id = /^[A-Za-z0-9]{4,20}$/;
-		var idcheck = Id.test($("#client_id").val());
-		
-		$.ajax({
-					url:'../main/iddupli',
-					type:'POST',
-					data:{client_id:id},
-				    success:function(data){
-				    	
-				    	var check = data.Iddupli
-				    	
-				    	if(check == null && idcheck != false){
-				    		 alert('사용 가능한 아이디입니다');
-				    		 $('input[name=duplicheck2]').attr('value', 1);
-				    	}else if(idcheck == false){
-				    		alert('형식에 맞게 입력하세요');
-				    	}else{
-				    		alert('이미 사용중인 아이디입니다');
-				    	}
-				    }
-		});
-	});
-		
-		
-		//유효성검사
-		
-		//이름 정규식
-		$('#client_name').blur(function(){
-			var name = /^[가-힣]{2,4}$/;
-			var namecheck = name.test($("#client_name").val());
-			
-			if(namecheck){
-				$('#name_check').text('');
-			}else{
-				$('#name_check').text('이름을 확인해주세요');
-				$('#name_check').css('color', 'red');
-			}
-		});
-		
-		//비밀번호 정규식
-		$('#client_pw1').blur(function(){
-			var pw = /^.*(?=.{8,20})(?=.*[0-9])(?=.*[a-zA-Z]).*$/;
-			var pwcheck = pw.test($("#client_pw1").val());
-			
-			if(pwcheck){
-				$('#pw_check1').text('');
-			}else{
-				$('#pw_check1').text('비밀번호를 확인해주세요');
-				$('#pw_check1').css('color', 'red');
-			}
-		});
-		
-		//비밀번호 일치 확인
-		$('#client_pw2').blur(function(){
-			var pw1 = $("#client_pw1").val();
-			var pw2 = $("#client_pw2").val();
-			if(pw1==pw2){
-				$('#pw_check2').text('');
-			}else{
-				$('#pw_check2').text('비밀번호가 일치하지 않습니다');
-				$('#pw_check2').css('color', 'red');
-			}
-		});
-		
-		//이메일 정규식
-		$('#client_email').blur(function(){
-			var email = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
-			var emailcheck = email.test($("#client_email").val());
-			
-			if(emailcheck){
-				$('#email_check').text('');
-			}else{
-				$('#email_check').text('이메일 형식이 아닙니다.');
-				$('#email_check').css('color','red');
-			}
-		});
-		
-		
-		//생년월일 정규식
-		$('#client_birth').blur(function(){
-			
-			var client_birth = $("#client_birth").val();
-			
-			var year = Number(client_birth.substr(0,4));
-			var month = Number(client_birth.substr(4,2));
-			var day = Number(client_birth.substr(6,2));
-			var today=new Date();
-			var yearNow = today.getFullYear()-1;
-			
-			if( client_birth.length <=8 ){
-				if( year>yearNow || year<1900){ // 1900년 - 2019년까지만 입력가능
-					
-					$('#birth_check').text('생년월일을 확인해주세요');
-					$('#birth_check').css('color', 'red');
-					
-				}else if(month<1 || month>12){ // 1월 - 12월까지만 입력가능
-					
-					$('#birth_check').text('생년월일을 확인해주세요');
-					$('#birth_check').css('color', 'red');
-					
-				}else if(day<1 || day>31){ // 1일 - 31일까지 입력가능
-					
-					$('#birth_check').text('생년월일을 확인해주세요');
-					$('#birth_check').css('color', 'red');
-					
-				}else if((month==4 || month==6 || month==9 || month==11) && day == 31){ // 30일까지 있는 달에 31일이 들어가지못하게
-					
-					$('#birth_check').text('생년월일을 확인해주세요');
-					$('#birth_check').css('color', 'red');
-					
-				}else if(month==2){
-					var isleap = (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0)); //윤년
-			       	
-			     	if (day>29 || (day==29 && !isleap)) { // 28일까지 입력 가능, 윤년은 29일까지 가능
-			     		
-			     		$('#birth_check').text('생년월일을 확인해주세요 :)');
-						$('#birth_check').css('color', 'red'); 
-			    	
-					}else{
-						$('#birth_check').text('');
-					}
-				}else{
-					$('#birth_check').text(''); 
-				}
-			}else{
-				
-				$('#birth_check').text('8자리로 입력하세요 ex)19920216');
-				$('#birth_check').css('color', 'red');
-			}
-		});
-		
-			//핸드폰 정규식
-			 $('#client_phone').blur(function(){
-				var phone = /(01[016789])([1-9]{1}[0-9]{2,3})([0-9]{4})$/;
-				var phonecheck = phone.test($("#client_phone").val());
-				if(phonecheck){
-					$('#phone_check').text('');
-					return true;
-				}else{
-					$('#phone_check').text('ex)01012345678');
-					$('#phone_check').css('color', 'red');
-					return false;
-				}
-			
-			});
-			
-		$('form[name="adm"]').bind('submit',function(){
-			var name = /^[가-힣]{2,4}$/;
-			var namecheck = name.test($("#client_name").val());
-			
-			var nick =  /^[\w\Wㄱ-ㅎㅏ-ㅣ가-힣]{2,15}$/;
-			var nickcheck = nick.test($("#client_nick1").val());
-			
-			var id = /^[A-Za-z0-9]{4,20}$/;
-			var idcheck = id.test($("#client_id").val());
-			
-			var pw = /^.*(?=.{8,20})(?=.*[0-9])(?=.*[a-zA-Z]).*$/;
-			var pwcheck = pw.test($("#client_pw1").val());
-			
-			var pw1 = $("#client_pw1").val();
-			var pw2 = $("#client_pw2").val();
-			
-			var email = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
-			var emailcheck = email.test($("#client_email").val());
-			
-			var phone = /(01[016789])([1-9]{1}[0-9]{2,3})([0-9]{4})$/;
-			var phonecheck = phone.test($("#client_phone").val());
-			
-			var client_birth = $("#client_birth").val();
-			var year = Number(client_birth.substr(0,4));
-			var month = Number(client_birth.substr(4,2));
-			var day = Number(client_birth.substr(6,2));
-			var today=new Date();
-			var yearNow = today.getFullYear();
-			
-			var duplicheck1 = $("#duplicheck1").val();
-			var duplicheck2 = $("#duplicheck2").val();
-			
-			if(namecheck != true){
-				alert('이름을 확인해주세요');
-				return false;
-			}else if(nickcheck != true){
-				alert('닉네임을 확인해주세요');
-				return false;
-			}else if(duplicheck1 == 0){
-				alert('닉네임 중복 확인을 해주세요');
-				return false;
-			}else if(idcheck != true){
-				alert('아이디를 확인해주세요');
-				return false;
-			}else if(duplicheck2 == 0){
-				alert('아이디 중복 확인을 해주세요');
-				return false;
-			}else if(pwcheck != true){
-				alert('비밀번호를 확인해주세요');
-				return false;
-			}else if(pw1 != pw2){
-				alert('비밀번호가 일치하지 않습니다');
-				return false;
-			}else if($('#man').prop('checked') == false && $('#woman').prop('checked') == false){
-				alert('성별을 체크해주세요');
-				return false;
-			}else if(emailcheck != true){
-				alert('이메일을 확인해주세요');
-				return false;
-			}else if(client_birth.length <=8){
-				if( year>2019 || year<1900){ // 1900년 - 2019년까지만 입력가능
-					alert('생년월일을 확인해주세요');
-					return false;
-				}else if(month<1 || month>12){ // 1월 - 12월까지만 입력가능
-					alert('생년월일을 확인해주세요');
-					return false;
-				}else if(day<1 || day>31){ // 1일 - 31일까지 입력가능
-					alert('생년월일을 확인해주세요');
-					return false;
-				}else if((month==4 || month==6 || month==9 || month==11) && day == 31){ // 30일까지 있는 달에 31일이 들어가지못하게
-					alert('생년월일을 확인해주세요');
-					return false;
-				}else if(month==2){
-					var isleap = (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0)); //윤년
-						       	
-					if (day>29 || (day==29 && !isleap)) { // 28일까지 입력 가능, 윤년은 29일까지 가능
-						alert('생년월일을 확인해주세요');
-						return false;
-					}else{
-						return true;
-					}
-				}else{
-					return true;
-				}
-				return false;
-			}else if(phonecheck != true){
-				alert('연락처를 확인해주세요');
-				return false;
-			}else{
-				alert('회원가입이 완료되었습니다');
-				return true;
-			}
-			
-		});
-		
-	
-	
-	});
-		
+   $(document).ready(function() {
+      //clause
+      $('#allclause').click(function() {
+         if($('#allclause').prop("checked")){
+                $("input[name=clause]").prop("checked",true);
+           }else{
+                 $("input[name=clause]").prop("checked",false);
+           }
+       });
+      
+   //닉네임 중복 검사
+   $('#nickdupli').on('click',function() {
+          
+      var nick = $('#client_nick1').val();
+      var nickname =  /^[\w\Wㄱ-ㅎㅏ-ㅣ가-힣]{2,15}$/;
+      var nickcheck = nickname.test($("#client_nick1").val());
+      $.ajax({
+               url:'../main/nickdupli',
+               type:'POST',
+               data:{client_nick1:nick},
+                success:function(data){
+                   
+                   var check = data.Nickdupli;
+                   
+                   if(check == null && nickcheck != false){
+                      alert('사용 가능한 닉네임입니다');
+                      $('input[name=duplicheck1]').attr('value', 1);
+                   }else if(nickcheck == false){
+                      alert('형식에 맞게 입력하세요');
+                   }else{
+                      alert('이미 사용중인 닉네임입니다');
+                   }
+                }
+      });
+   });
+   
+   //아이디 중복검사
+   $('#iddupli').on('click',function() {
+          
+      var id = $('#client_id').val();
+      
+      var Id = /^[A-Za-z0-9]{4,20}$/;
+      var idcheck = Id.test($("#client_id").val());
+      
+      $.ajax({
+               url:'../main/iddupli',
+               type:'POST',
+               data:{client_id:id},
+                success:function(data){
+                   
+                   var check = data.Iddupli
+                   
+                   if(check == null && idcheck != false){
+                       alert('사용 가능한 아이디입니다');
+                       $('input[name=duplicheck2]').attr('value', 1);
+                   }else if(idcheck == false){
+                      alert('형식에 맞게 입력하세요');
+                   }else{
+                      alert('이미 사용중인 아이디입니다');
+                   }
+                }
+      });
+   });
+      
+      
+      //유효성검사
+      
+      //이름 정규식
+      $('#client_name').blur(function(){
+         var name = /^[가-힣]{2,4}$/;
+         var namecheck = name.test($("#client_name").val());
+         
+         if(namecheck){
+            $('#name_check').text('');
+         }else{
+            $('#name_check').text('이름을 확인해주세요');
+            $('#name_check').css('color', 'red');
+         }
+      });
+      
+      //비밀번호 정규식
+      $('#client_pw1').blur(function(){
+         var pw = /^.*(?=.{8,20})(?=.*[0-9])(?=.*[a-zA-Z]).*$/;
+         var pwcheck = pw.test($("#client_pw1").val());
+         
+         if(pwcheck){
+            $('#pw_check1').text('');
+         }else{
+            $('#pw_check1').text('비밀번호를 확인해주세요');
+            $('#pw_check1').css('color', 'red');
+         }
+      });
+      
+      //비밀번호 일치 확인
+      $('#client_pw2').blur(function(){
+         var pw1 = $("#client_pw1").val();
+         var pw2 = $("#client_pw2").val();
+         if(pw1==pw2){
+            $('#pw_check2').text('');
+         }else{
+            $('#pw_check2').text('비밀번호가 일치하지 않습니다');
+            $('#pw_check2').css('color', 'red');
+         }
+      });
+      
+      //이메일 정규식
+      $('#client_email').blur(function(){
+         var email = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
+         var emailcheck = email.test($("#client_email").val());
+         
+         if(emailcheck){
+            $('#email_check').text('');
+         }else{
+            $('#email_check').text('이메일 형식이 아닙니다.');
+            $('#email_check').css('color','red');
+         }
+      });
+      
+      
+      //생년월일 정규식
+      $('#client_birth').blur(function(){
+         
+         var client_birth = $("#client_birth").val();
+         
+         var year = Number(client_birth.substr(0,4));
+         var month = Number(client_birth.substr(4,2));
+         var day = Number(client_birth.substr(6,2));
+         var today=new Date();
+         var yearNow = today.getFullYear()-1;
+         
+         if( client_birth.length <=8 ){
+            if( year>yearNow || year<1900){ // 1900년 - 2019년까지만 입력가능
+               
+               $('#birth_check').text('생년월일을 확인해주세요');
+               $('#birth_check').css('color', 'red');
+               
+            }else if(month<1 || month>12){ // 1월 - 12월까지만 입력가능
+               
+               $('#birth_check').text('생년월일을 확인해주세요');
+               $('#birth_check').css('color', 'red');
+               
+            }else if(day<1 || day>31){ // 1일 - 31일까지 입력가능
+               
+               $('#birth_check').text('생년월일을 확인해주세요');
+               $('#birth_check').css('color', 'red');
+               
+            }else if((month==4 || month==6 || month==9 || month==11) && day == 31){ // 30일까지 있는 달에 31일이 들어가지못하게
+               
+               $('#birth_check').text('생년월일을 확인해주세요');
+               $('#birth_check').css('color', 'red');
+               
+            }else if(month==2){
+               var isleap = (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0)); //윤년
+                   
+                 if (day>29 || (day==29 && !isleap)) { // 28일까지 입력 가능, 윤년은 29일까지 가능
+                    
+                    $('#birth_check').text('생년월일을 확인해주세요 :)');
+                  $('#birth_check').css('color', 'red'); 
+                
+               }else{
+                  $('#birth_check').text('');
+               }
+            }else{
+               $('#birth_check').text(''); 
+            }
+         }else{
+            
+            $('#birth_check').text('8자리로 입력하세요 ex)19920216');
+            $('#birth_check').css('color', 'red');
+         }
+      });
+      
+         //핸드폰 정규식
+          $('#client_phone').blur(function(){
+            var phone = /(01[016789])([1-9]{1}[0-9]{2,3})([0-9]{4})$/;
+            var phonecheck = phone.test($("#client_phone").val());
+            if(phonecheck){
+               $('#phone_check').text('');
+               return true;
+            }else{
+               $('#phone_check').text('ex)01012345678');
+               $('#phone_check').css('color', 'red');
+               return false;
+            }
+         
+         });
+         
+      $('form[name="adm"]').bind('submit',function(){
+         var name = /^[가-힣]{2,4}$/;
+         var namecheck = name.test($("#client_name").val());
+         
+         var nick =  /^[\w\Wㄱ-ㅎㅏ-ㅣ가-힣]{2,15}$/;
+         var nickcheck = nick.test($("#client_nick1").val());
+         
+         var id = /^[A-Za-z0-9]{4,20}$/;
+         var idcheck = id.test($("#client_id").val());
+         
+         var pw = /^.*(?=.{8,20})(?=.*[0-9])(?=.*[a-zA-Z]).*$/;
+         var pwcheck = pw.test($("#client_pw1").val());
+         
+         var pw1 = $("#client_pw1").val();
+         var pw2 = $("#client_pw2").val();
+         
+         var email = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
+         var emailcheck = email.test($("#client_email").val());
+         
+         var phone = /(01[016789])([1-9]{1}[0-9]{2,3})([0-9]{4})$/;
+         var phonecheck = phone.test($("#client_phone").val());
+         
+         var client_birth = $("#client_birth").val();
+         var year = Number(client_birth.substr(0,4));
+         var month = Number(client_birth.substr(4,2));
+         var day = Number(client_birth.substr(6,2));
+         var today=new Date();
+         var yearNow = today.getFullYear();
+         
+         var duplicheck1 = $("#duplicheck1").val();
+         var duplicheck2 = $("#duplicheck2").val();
+         
+         if(namecheck != true){
+            alert('이름을 확인해주세요');
+            return false;
+         }else if(nickcheck != true){
+            alert('닉네임을 확인해주세요');
+            return false;
+         }else if(duplicheck1 == 0){
+            alert('닉네임 중복 확인을 해주세요');
+            return false;
+         }else if(idcheck != true){
+            alert('아이디를 확인해주세요');
+            return false;
+         }else if(duplicheck2 == 0){
+            alert('아이디 중복 확인을 해주세요');
+            return false;
+         }else if(pwcheck != true){
+            alert('비밀번호를 확인해주세요');
+            return false;
+         }else if(pw1 != pw2){
+            alert('비밀번호가 일치하지 않습니다');
+            return false;
+         }else if($('#man').prop('checked') == false && $('#woman').prop('checked') == false){
+            alert('성별을 체크해주세요');
+            return false;
+         }else if(emailcheck != true){
+            alert('이메일을 확인해주세요');
+            return false;
+         }else if(client_birth.length <=8){
+            if( year>2019 || year<1900){ // 1900년 - 2019년까지만 입력가능
+               alert('생년월일을 확인해주세요');
+               return false;
+            }else if(month<1 || month>12){ // 1월 - 12월까지만 입력가능
+               alert('생년월일을 확인해주세요');
+               return false;
+            }else if(day<1 || day>31){ // 1일 - 31일까지 입력가능
+               alert('생년월일을 확인해주세요');
+               return false;
+            }else if((month==4 || month==6 || month==9 || month==11) && day == 31){ // 30일까지 있는 달에 31일이 들어가지못하게
+               alert('생년월일을 확인해주세요');
+               return false;
+            }else if(month==2){
+               var isleap = (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0)); //윤년
+                            
+               if (day>29 || (day==29 && !isleap)) { // 28일까지 입력 가능, 윤년은 29일까지 가능
+                  alert('생년월일을 확인해주세요');
+                  return false;
+               }else{
+                  return true;
+               }
+            }else{
+               return true;
+            }
+            return false;
+         }else if(phonecheck != true){
+            alert('연락처를 확인해주세요');
+            return false;
+         }else{
+            alert('회원가입이 완료되었습니다');
+            return true;
+         }
+         
+      });
+      
+   
+   
+   });
+      
 </script>
 </body>
 </html>

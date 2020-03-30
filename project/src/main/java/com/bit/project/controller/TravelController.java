@@ -1,6 +1,9 @@
 package com.bit.project.controller;
 
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bit.project.model.entity.*;
@@ -57,7 +61,7 @@ public class TravelController {
 		if(login==null) {
 			//로그인 실패 시
 			session.setAttribute("staffcheck", null);
-			mav.setViewName("redirect:/main/stafflogin");
+			mav.setViewName("login/stafflogin");
 			mav.addObject("msg", "fail");
 			return mav;
 		}else {
@@ -76,22 +80,23 @@ public class TravelController {
 	
 	//회원 로그인
 	@RequestMapping(value="/main/login", method=RequestMethod.POST)
-	public ModelAndView login(ClientVo bean, HttpServletRequest req, ModelAndView mav) throws Exception{
+	public ModelAndView login(ClientVo bean, HttpServletRequest req) throws Exception{
 		
 		HttpSession session = req.getSession();
 		ClientVo login= clientService.loginCheck(bean);
-		if(login==null) {
-			//로그인 실패 시
-			session.setAttribute("check", null);
-			mav.setViewName("redirect:/main/login");
-			mav.addObject("msg", "fail");
-			return mav;
-		}else {
+		ModelAndView mav=new ModelAndView();
+		if(login!=null) {
 			//로그인 성공 시
 			session.setAttribute("check", login);
-			mav.setViewName("home");
-			return mav;
+			mav.setViewName("redirect:/");
+			
+		}else {
+			//로그인 실패 시
+			session.setAttribute("check", null);
+			mav.addObject("msg", "fail");
+			mav.setViewName("login/login");
 		}
+		return mav;
 	}
     //로그아웃
 	@RequestMapping(value="/main/logout",method=RequestMethod.GET)

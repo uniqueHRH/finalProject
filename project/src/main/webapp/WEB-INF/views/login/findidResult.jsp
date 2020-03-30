@@ -29,36 +29,11 @@
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="${root }js/bootstrap.js"></script>
 <script type="text/javascript">
-	$(document).ready(function() {
-		$('#hamb').hide();
-		$('#hide').hide();
-		
-		$('#tour_sub').hide();
-		$('#comm_sub').hide();
-		$('#serv_sub').hide();
-		$('#system_sub').hide();
-		
-		$('#maintext1').hide();
-		$('#maintext2').hide();
-		$('#maintext3').hide();
-		$('#maintext4').hide();
-		
-		$('#hambBtn').mouseenter(function() {
-			$('#hamb').show();
-			$(this).hide();
-		});
-		$('#hamb').mouseenter(function() {
-			$(this).show();
-			$('#hambBtn').hide();
-		}).mouseleave(function() {
-			$('#hamb').hide();
-			$('#hambBtn').show();
-		});
-		
-	});
+
 </script>
 </head>
 <body>
+<jsp:include page="/WEB-INF/menubar.jsp"/>
                       
                      <!-- contents start -->
 <div class="container">
