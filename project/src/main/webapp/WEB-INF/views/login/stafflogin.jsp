@@ -12,20 +12,20 @@
 <style type="text/css">
    .container{
       display: inline-block;
-      font-family: 'Jua';
-      text-align: center;
-     
+		font-family: 'Jua';
+		text-align: center;
+		width: 100%;
+    }
+    form {
+      	width:600px;
+      	margin: 0 auto;
+      	text-align: center;
     }
     #loginbar{
     	width: 600px;
     	margin: 0px auto;
     	padding-bottom: 30px;
     }
-    .form-horizontal {
-       width:450px;
-      margin: 0 auto;
-    }
-   
     #loginbtn{
        margin: 0px auto;
        text-align:center;
