@@ -102,7 +102,7 @@
 						<!-- 직원로그인시 -->
 				        <li class="dropdown">
 					        <c:if test="${sessionScope.staffcheck ne null }">
-					        	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">내정보관리<span class="caret"></span></a>
+					        	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">${sessionScope.staffcheck.staff_name} 님<span class="caret"></span></a>
 					        	<ul class="dropdown-menu" role="menu">
 					        		<li><a href="${root }main/staffinfo">내정보관리</a></li>
 				            		<li><a href="${root }main/logout">로그아웃</a></li>

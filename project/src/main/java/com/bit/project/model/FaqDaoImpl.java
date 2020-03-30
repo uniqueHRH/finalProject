@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.bit.project.common.Search;
 import com.bit.project.model.entity.FaqVo;
 
 @Repository
@@ -15,8 +16,8 @@ public class FaqDaoImpl implements FaqDao {
 	SqlSession sqlSession;
 	
 	@Override
-	public List<FaqVo> selectAll_faq() throws Exception {
-		return sqlSession.selectList("faq.selectAll_faq");
+	public List<FaqVo> selectAll_faq(Search search) throws Exception {
+		return sqlSession.selectList("faq.selectAll_faq", search);
 	}
 
 	@Override
@@ -37,6 +38,16 @@ public class FaqDaoImpl implements FaqDao {
 	@Override
 	public int deleteOne_faq(int key) throws Exception {
 		return sqlSession.delete("faq.deleteOne_faq",key);
+	}
+
+	@Override
+	public int updateCnt(int key) throws Exception {
+		return sqlSession.update("faq.updateCnt",key);
+	}
+
+	@Override
+	public int getFaqListCnt(Search search) throws Exception {
+		return sqlSession.selectOne("faq.getFaqListCnt",search);
 	}
 
 }

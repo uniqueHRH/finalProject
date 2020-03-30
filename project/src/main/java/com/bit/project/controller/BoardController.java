@@ -22,12 +22,14 @@ import com.bit.project.file.UploadFileUtils;
 import com.bit.project.model.entity.BoardVo;
 import com.bit.project.model.entity.EventVo;
 import com.bit.project.model.entity.FreeVo;
+import com.bit.project.model.entity.NoticeVo;
 import com.bit.project.model.entity.PartnerVo;
 import com.bit.project.model.entity.ReplyVo;
 import com.bit.project.model.entity.SendVo;
 import com.bit.project.service.BoardService;
 import com.bit.project.service.EventService;
 import com.bit.project.service.FreeService;
+import com.bit.project.service.NoticeService;
 import com.bit.project.service.PartnerService;
 import com.bit.project.service.ReplyService;
 import com.bit.project.service.SendService;
@@ -47,6 +49,8 @@ public class BoardController {
 	EventService eventService;
 	@Autowired
 	SendService sendService;
+	@Autowired
+	NoticeService noticeService;
 	
 	@Resource
 	Pagination pagination;
@@ -225,6 +229,33 @@ public class BoardController {
  		return "event/event";
  	}
  	
+ // 공지사항
+  	@RequestMapping(value = "/board/notice", method = RequestMethod.GET)
+  	public String notice(Model model, @RequestParam(required = false, defaultValue = "1") int page,
+  			@RequestParam(required=false, defaultValue="1") int range,
+  			@RequestParam(required=false, defaultValue="notice_sub") String searchType,
+  			@RequestParam(required=false) String keyword,
+  			@ModelAttribute("search") Search search
+  			) throws Exception {
+
+  		model.addAttribute("search", search);
+  		search.setSearchType(searchType);
+  		search.setKeyword(keyword);
+  		
+  		// 전체 게시글 갯수
+  		int listCnt=0;
+ 		try {
+ 			listCnt = noticeService.getNoticeListCnt(search);
+ 			search.pageInfo(page, range, listCnt);
+ 		} catch (Exception e) {
+ 			e.printStackTrace();
+ 		}
+
+ 		model.addAttribute("pagination", search);
+ 		model.addAttribute("list",noticeService.selectAll_notice(search));
+ 		model.addAttribute("listCnt",listCnt);
+  		return "notice/notice";
+  	}
 //	글쓰기페이지
  	// 후기
  	@RequestMapping(value = "/board/reviewIns", method = RequestMethod.GET)
@@ -245,6 +276,11 @@ public class BoardController {
  	@RequestMapping(value = "/board/eventIns", method = RequestMethod.GET)
  	public String eventIns() {
  		return "event/write";
+ 	}
+ 	// 공지사항
+ 	@RequestMapping(value="/board/noticeIns", method=RequestMethod.GET)
+ 	public String notice() {
+ 		return "notice/write";
  	}
  	
 //	작성완료
@@ -328,7 +364,27 @@ public class BoardController {
   		eventService.insertOne_event(bean);
   		return "redirect:event";
   	}
-  	
+ // 이벤트
+   	@RequestMapping(value = "/board/noticeIns", method = RequestMethod.POST)
+   	public String noticetIns(@ModelAttribute NoticeVo bean, MultipartFile file) throws Exception {
+   		
+   		String imgUploadPath = uploadPath + File.separator + "imgUpload";
+   		String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
+   		String fileName = null;
+
+   		if(file!=null) {
+   			fileName=UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath); 
+   		} else {
+   			fileName = uploadPath + File.separator + "images" + File.separator + "none.png";
+   		}
+
+   		bean.setNotice_img(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
+   		bean.setNotice_thumb(File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
+   		
+   		noticeService.insertOne_notice(bean);
+   		return "redirect:notice";
+   	}
+   	
 //	상세페이지로 이동
   	// 후기
  	@RequestMapping(value="/board/reviewDe/{idx}",method=RequestMethod.GET)
@@ -358,7 +414,13 @@ public class BoardController {
  		replyService.selectAll_reply(key, model);
  		return "event/detail";
  	}
-
+	// 공지사항
+  	@RequestMapping(value="/board/noticeDe/{idx}",method=RequestMethod.GET)
+  	public String noticeEvent(@PathVariable("idx") int key, Model model) {
+  		noticeService.selectOne_notice(key, model);
+  		replyService.selectAll_reply(key, model);
+  		return "notice/detail";
+  	}
 //	수정페이지 이동
  	// 후기
  	@RequestMapping(value = "/board/reviewUp/{idx}", method = RequestMethod.GET)
@@ -384,7 +446,12 @@ public class BoardController {
  		eventService.selectOne_event(key, model);
  		return "event/update";
  	}
-
+ 	// 이벤트
+ 	@RequestMapping(value = "/board/noticeUp/{idx}", method = RequestMethod.GET)
+ 	public String noticeUp(@PathVariable("idx") int key, Model model) {
+ 		noticeService.selectOne_notice(key, model);
+ 		return "notice/update";
+ 	}
 //	후기 �닔�젙�럹�씠吏� �굹�씪議고쉶 (selectbox)
  	@RequestMapping(value="/board/updateLand", method=RequestMethod.POST)
  	public String updateLand(int key, Model model) {

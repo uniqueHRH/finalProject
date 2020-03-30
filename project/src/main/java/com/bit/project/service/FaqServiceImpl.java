@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+import com.bit.project.common.Search;
 import com.bit.project.model.FaqDao;
 import com.bit.project.model.entity.FaqVo;
 
@@ -16,19 +17,15 @@ public class FaqServiceImpl implements FaqService {
 	FaqDao faqDao;
 	
 	@Override
-	public void selectAll_faq(Model model) {
-		try {
-			List<FaqVo> list=faqDao.selectAll_faq();
-			model.addAttribute("list",list);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	public List<FaqVo> selectAll_faq(Search search) throws Exception {
+		return faqDao.selectAll_faq(search);
 	}
 
 	@Override
 	public void selectOne_faq(int key, Model model) {
 		try {
 			model.addAttribute("bean",faqDao.selectOne_faq(key));
+			faqDao.updateCnt(key);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -59,6 +56,11 @@ public class FaqServiceImpl implements FaqService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public int getFaqListCnt(Search search) throws Exception {
+		return faqDao.getFaqListCnt(search);
 	}
 
 

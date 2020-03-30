@@ -31,7 +31,7 @@
 	</select>
 	
 	<insert id="insertOne_notice" parameterType="NoticeBean">
-		insert into notice (notice_nick, notice_count, notice_date, notice_sub, notice_content) values ('관리자', #{notice_count}, now(), #{notice_sub}, #{notice_content})
+		insert into notice (notice_count, notice_date, notice_sub, notice_content, notice_img, notice_thumb) values (0, now(), #{notice_sub}, #{notice_content}, #{notice_img, jdbcType=VARCHAR}, #{notice_thumb, jdbcType=VARCHAR})
 	</insert>
 	
 	<update id="updateOne_notice" parameterType="NoticeBean">

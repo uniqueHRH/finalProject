@@ -13,7 +13,6 @@
 <link rel="stylesheet" type="text/css" href="${root }css/travel.css" />
 <link rel="stylesheet" type="text/css" href="${root }css/board.css" />
 <style type="text/css">
-
 </style>
 </head>
 <body>	
@@ -31,8 +30,8 @@
 	<div class="topMenu" id="theme">
 		<input type="text" value="<c:out value="${listCnt}"></c:out>개의 게시물이 조회되었습니다" id="listCnt" disabled/>
 		<div id="fff"></div>
-	   <a class="btn btn-default" href="${root }board/freeIns" role="button" id="wri">글쓰기</a>
-	   <input type="text" id="loginCk" value="${sessionScope.staffcheck.staff_name}"/>
+	   <a class="btn btn-default" href="${root }board/noticeIns" role="button" id="wri">글쓰기</a>
+	   <input type="hidden" id="loginCk" value="${sessionScope.staffcheck.staff_name}"/>
 	</div>
 
 <!-- 리스트 출력 -->
@@ -49,10 +48,10 @@
 		<c:forEach items="${list }" var="bean">
 		<tr>
 			<td>${bean.notice_no }</td>
-			<td><a href="freeDe/${bean.notice_no }">${bean.notice_sub }</a></td>
-			<td><a href="freeDe/${bean.notice_no }">관리자</a></td>
-			<td><a href="freeDe/${bean.notice_no }">${bean.notice_date}</a></td>
-			<td><a href="freeDe/${bean.notice_no }">${bean.notice_count }</a></td>
+			<td><a href="noticeDe/${bean.notice_no }">${bean.notice_sub }</a></td>
+			<td><a href="noticeDe/${bean.notice_no }">관리자</a></td>
+			<td><a href="noticeDe/${bean.notice_no }">${bean.notice_date}</a></td>
+			<td><a href="noticeDe/${bean.notice_no }">${bean.notice_count }</a></td>
 		</tr>
 		</c:forEach>
    </tbody>
@@ -117,7 +116,6 @@
 		$('#hide').hide();
 		// 로그인 후 글쓰기 이용 가능
 		var loginBool=$('#loginCk').val();
-
 		if(!loginBool) {
 			$('#wri').hide();
 		}
