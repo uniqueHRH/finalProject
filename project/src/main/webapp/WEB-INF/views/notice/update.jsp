@@ -28,27 +28,27 @@
 <!-- 제목 -->
 <form class="form-inline" method="POST" enctype="multipart/form-data">
 	<div>
-		<input type="text" class="form-control" id="board_sub" name="free_sub" value="${bean.free_sub }">
-		<input type="hidden" id="board_no" name="board_no" value="${bean.board_no }">
+		<input type="text" class="form-control" id="board_sub" name="notice_sub" value="${bean.notice_sub }">
+		<input type="hidden" id="board_no" name="notice_no" value="${bean.notice_no }">
 	</div>
 	<p></p>
 	<div class="form-group">
 		<label for="exampleInputName2">닉네임</label>
-		<input type="text" class="form-control" id="client_nick1" name="client_nick1" value="${bean.client_nick1 }" style="cursor:default" disabled>
+		<input type="text" class="form-control" id="client_nick1" value="관리자" style="cursor:default" disabled>
 	</div>
 	<div class="form-group">
 	&nbsp; &nbsp;
 		<label for="exampleInputEmail2">작성일</label>
-		<input type="email" class="form-control" id="board_date" name="free_date" value="${bean.free_date }" style="cursor:default" disabled>
+		<input type="email" class="form-control" id="board_date" name="notice_date" value="${bean.notice_date }" style="cursor:default" disabled>
 	</div>
 	<div class="form-group">
 	&nbsp; &nbsp;
 		<label for="exampleInputEmail2">조회수</label>
-		<input type="email" class="form-control" id="board_count" name="free_count" value="${bean.free_count }" style="cursor:default" disabled>
+		<input type="email" class="form-control" id="board_count" name="notice_count" value="${bean.notice_count }" style="cursor:default" disabled>
 	</div>
 	<p></p>
 	<div>
-		<textarea class="form-control" id="board_content" name="free_content">${bean.free_content }</textarea>
+		<textarea class="form-control" id="board_content" name="notice_content">${bean.notice_content }</textarea>
 	</div>
 	<p></p>
 <!-- 이미지 수정 -->
@@ -56,9 +56,9 @@
 		<label for="board_img">이미지</label>
 		<input type="file" id="board_img" name="file" />
 		<div class="board_img">
-			<img src="${root }resources/${bean.free_thumb }" id="uploadI"/>
-			<input type="hidden" name="free_thumb" value="${bean.free_thumb }"/>
-			<input type="hidden" name="free_img" value="${bean.free_img }"/>
+			<img src="${root }resources/${bean.notice_thumb }" id="uploadI"/>
+			<input type="hidden" name="notice_thumb" value="${bean.notice_thumb }"/>
+			<input type="hidden" name="notice_img" value="${bean.notice_img }"/>
 		</div>
 		
 	</div>
@@ -79,31 +79,6 @@
 </body>
 <script type="text/javascript">
 	$(document).ready(function() {
-		$('#hamb').hide();
-		$('#hide').hide();
-		
-		$('#tour_sub').hide();
-		$('#comm_sub').hide();
-		$('#serv_sub').hide();
-		$('#system_sub').hide();
-		
-		$('#maintext1').hide();
-		$('#maintext2').hide();
-		$('#maintext3').hide();
-		$('#maintext4').hide();
-		
-		$('#hambBtn').mouseenter(function() {
-			$('#hamb').show();
-			$(this).hide();
-		});
-		$('#hamb').mouseenter(function() {
-			$(this).show();
-			$('#hambBtn').hide();
-		}).mouseleave(function() {
-			$('#hamb').hide();
-			$('#hambBtn').show();
-		});
-		
 		// 이미지 수정
 		$('#board_img').change(function(){
 			if(this.files && this.files[0]) {
@@ -119,7 +94,7 @@
 		$('#goList').on('click',function() {
 			var con=confirm('작성내용이 사라집니다\n그래도 돌아가시겠습니까?');
 			if(con) {
-				location.href="../freeDe/${bean.board_no}";
+				location.href="../freeDe/${bean.notice_no}";
 			}
 		});      
    });

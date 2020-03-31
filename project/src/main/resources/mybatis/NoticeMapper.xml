@@ -35,7 +35,7 @@
 	</insert>
 	
 	<update id="updateOne_notice" parameterType="NoticeBean">
-		update notice set notice_sub=#{notice_sub}, notice_content=#{notice_content} where notice_no=#{notice_no}
+		update notice set notice_sub=#{notice_sub}, notice_content=#{notice_content}, notice_img=#{notice_img}, notice_thumb=#{notice_thumb}  where notice_no=#{notice_no}
 	</update>
 	
 	<delete id="deleteOne_notice" parameterType="int">

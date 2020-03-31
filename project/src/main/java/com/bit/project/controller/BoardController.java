@@ -446,13 +446,13 @@ public class BoardController {
  		eventService.selectOne_event(key, model);
  		return "event/update";
  	}
- 	// 이벤트
+ 	// 공지사항
  	@RequestMapping(value = "/board/noticeUp/{idx}", method = RequestMethod.GET)
  	public String noticeUp(@PathVariable("idx") int key, Model model) {
  		noticeService.selectOne_notice(key, model);
  		return "notice/update";
  	}
-//	후기 �닔�젙�럹�씠吏� �굹�씪議고쉶 (selectbox)
+//	후기 수정페이지 (selectbox)
  	@RequestMapping(value="/board/updateLand", method=RequestMethod.POST)
  	public String updateLand(int key, Model model) {
  		boardService.select_land(key, model);
@@ -568,6 +568,33 @@ public class BoardController {
  		eventService.updateOne_event(bean);
  		return "redirect:../eventDe/"+bean.getBoard_no();
  	}
+ 	// 공지사항
+ 	@RequestMapping(value="/board/noticeUp/{idx}", method=RequestMethod.POST)
+	public String noticeUp(@ModelAttribute NoticeVo bean, MultipartFile file, HttpServletRequest req) throws IOException, Exception {
+ 		
+ 		// 새로운 파일이 등록되었는지 확인
+ 		if(file.getOriginalFilename()!= null && file.getOriginalFilename()!="") {
+ 			// 기존 파일 삭제
+ 			new File(uploadPath + req.getParameter("notice_img")).delete();
+ 			new File(uploadPath + req.getParameter("notice_thumb")).delete();
+ 		  
+ 			// 새로 첨부한 파일 등록
+ 			String imgUploadPath = uploadPath + File.separator + "imgUpload";
+ 			String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
+ 			String fileName = UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath);
+ 		  
+ 			bean.setNotice_img(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
+ 			bean.setNotice_thumb(File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
+ 		  
+ 		} else {
+ 			// 기존 이미지 그대로 사용
+ 			bean.setNotice_img(req.getParameter("notice_img"));
+ 			bean.setNotice_thumb(req.getParameter("notice_thumb"));
+ 		 }
+ 		 
+ 		noticeService.updateOne_notice(bean);
+ 		return "redirect:../noticeDe/"+bean.getNotice_no();
+ 	}
 //	삭제
  	// 후기
  	@RequestMapping(value="/board/reviewDel", method=RequestMethod.POST)
@@ -593,7 +620,12 @@ public class BoardController {
  		eventService.deleteOne_event(key);
  		return "redirect:event";
  	}
- 	
+ 	// 공지사항
+  	@RequestMapping(value="/board/noticeDel", method=RequestMethod.POST)
+  	public String noticeDel(int key) {
+  		noticeService.deleteOne_notice(key);
+  		return "redirect:notice";
+  	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
  	
 //	댓글작성
