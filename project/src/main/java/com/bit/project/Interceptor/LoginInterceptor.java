@@ -8,6 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import com.bit.project.model.entity.ClientVo;
+import com.bit.project.model.entity.StaffVo;
 
 public class LoginInterceptor extends HandlerInterceptorAdapter{
 	
@@ -17,14 +18,18 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 		
 		HttpSession session = request.getSession();
 		ClientVo bean=(ClientVo)session.getAttribute("check");
+		StaffVo bean2 = (StaffVo)session.getAttribute("staffcheck");
 		
-		if(bean == null) {
+		if(bean2 != null || bean !=null) {
+			
+			return true;
+			
+		}else{
 			
 			response.sendRedirect("../main/login");
 			return false;
 		}
 		
-		return true;
 	}
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
