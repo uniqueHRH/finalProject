@@ -130,7 +130,7 @@
 				<tr>
 					<td class="active" style="width: 100px; text-align: center;">상품명</td>
 					
-					<td>${bean.name }</td>
+					<td>${bean.name }(${bean.city })</td>
 				</tr>
 				<tr>
 					<td class="active" style="text-align: center;">1인 상품가</td>
