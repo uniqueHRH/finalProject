@@ -37,7 +37,6 @@
 <div class="container">     
  <div class="row">
 	<div class="col-md-12">	
-					
 		<div class="page-header" align="center">
 	  <h1>중국/일본</h1>
  </div>
@@ -66,9 +65,9 @@
   </div>
  </div>
 </div>
-<div id="footer">
-<jsp:include page="/WEB-INF/footer.jsp"/>
-</div>
+	<div id="footer">
+		<jsp:include page="/WEB-INF/footer.jsp"/>
+	</div>
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="${root }js/bootstrap.js"></script>
 <script type="text/javascript">

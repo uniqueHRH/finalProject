@@ -17,12 +17,13 @@
       display: inline-block;
       font-family: 'Jua';
       text-align: center;
-      width: 100%; 
+      width: 1200px;
+      margin-left: 330px;
     }
     .form-horizontal {
        width:700px;
        position: absolute;
-       left: 400px;
+       left: 200px;
        top: 230px;
     }
     #paid_count1{
@@ -34,71 +35,77 @@
     #img{
     	width: 380px;
     	position: absolute;
-    	right: 500px;
     	margin-top: 50px;
+    	left: 720px;
     }
     #infor1{
     	width: 330px;
     	position: absolute;
-    	right: 550px;
+    	left: 750px;
     	top: 470px;
     
     }
     #infor2{
-    	width: 280px;
+    	width: 250px;
     	position: absolute;
-    	right: 600px;
+    	left: 750px;
     	top: 570px;
     
     }
     #checkcostbtn{
     	position: absolute;
-    	right: 520px;
+    	left: 1010px;
     	top: 575px;
     }
     #confirmbtn{
     	width: 200px;
-    	position: absolute;
-    	left: 620px;
-    	top: 570px;
+    	position: relative;
+    	left: 400px;
+    	top: 500px;
     }
     #bookbtn{
     	width: 300px;
     	position: absolute;
-    	right: 560px;
+    	left: 800px;
     	top: 650px;
     }
     .page-header1{
     	position: absolute;
     	top: 720px;
-    	left: 300px;
+    	left: 200px;
     }
     .page-header2{
     	position: absolute;
     	top: 1020px;
-    	left: 300px;
+    	left: 200px;
     }
    #caution{
    		position: absolute;
    		top: 780px;
-   		left: 300px;
+   		left: 200px;
    	
    }
    #clause{
    		position: absolute;
    		width: 800px;
    		top: 1100px;
-    	left: 300px;
+    	left: 200px;
    }
    .checkbox{
    		position: absolute;
    		top: 1670px;
-    	left: 730px;	
+    	left: 630px;	
+   }
    }
    input[type="checkbox"]{
 		width: 17px; 
 		height: 17px; 
-}
+   }
+   #footer{
+   		position: relative;
+   		bottom: -1000px;
+   }
+
 </style>
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="${root }js/bootstrap.js"></script>
@@ -139,7 +146,7 @@
 				<tr>	
 			</table>
 		</div>
-      <p style="font-size: 25px; margin-top: 50px; position: absolute; left: 600px; top: 130px;" >예약자 정보</p>
+      <p style="font-size: 25px; margin-top: 50px; position: absolute; left: 400px; top: 130px;" >예약자 정보</p>
 		<form class="form-horizontal">
 			<div id="form-group">
 				<div class="form-group">
@@ -242,14 +249,9 @@
 	</div>
 </div>
 <!-- contents end -->
-
- <div class="row">
-   <div class="col-md-12">
-    <div class="footer">
-    	
-    </div>
-   </div>
- </div> 
+<div id="footer">
+ 	<jsp:include page="/WEB-INF/footer.jsp"/>
+</div>
 <script type="text/javascript">
    $(document).ready(function() {
 		$('#confirmbtn').click(function(){

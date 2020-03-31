@@ -17,10 +17,10 @@
 
 <style type="text/css">
    .container{
-      font-family: 'Jua';
-      text-align: center;
-      width: 70%;
-      margin-left: 300px;
+      	font-family: 'Jua';
+		text-align: center;
+		width: 1200px;
+		margin-left: 330px;
    }
    #firstimg,#secondimg,#thirdimg{
       display: inline-block;
@@ -50,24 +50,24 @@
    #mapbtn{
    	  position: absolute;
       left: 1110px;
-      top: 950px;
+      top: 1000px;
    }
    #bookbtn{
       width: 300px;
       position: absolute;
       left: 900px;
-      top: 1010px;
+      top: 1050px;
    }
    #course{
       position: absolute;
       font-size: 30px;
       left: 350px;
-      top: 700px;
+      top: 770px;
    }
    #courseimg{
       position: absolute;
       left: 70px;
-      top: 800px;
+      top: 830px;
    }
    #map {
         width: 330px;
@@ -83,7 +83,7 @@
    }
    #footer{
    		position: relative;
-   		bottom: 0;
+   		bottom: -400px;
    }
    
 </style>
@@ -97,10 +97,10 @@
  <div class="row">
    <div class="col-md-12">
    
- 
       <div class="page-header" align="center">
      <h1>${bean.name }</h1>
- </div>
+ 	</div>
+ 	
    <!-- contenets start -->
   <p id="comments">여행의 포인트 : ${bean.comments }</p>   
    <!-- img넣기 -->
@@ -121,10 +121,11 @@
       <img id="thirdimg" src="${bean.thirdimg }" >
     
   </div>
+ </div>
       <!-- img end -->
       
       
-           <div style="padding-top: 100px;"><h1>여행정보</h1></div>
+           <div style="padding-top: 30px;"><h1>여행정보</h1></div>
            
      
     <table class="table table-condensed" id="tourtable">
@@ -164,24 +165,18 @@
    <a id="bookform" href="${root }tour/eastasia/${bean.tour_no}/booking"><button type="button" id="bookbtn" class="btn btn-default btn-lg">예약하기</button></a>
    
       
-      <p id="course"> <여행일정> </p>
+      <div id="course"> <여행일정> </div>
       <div id="courseimg">
      <img src="${bean.course }">
-      </div>
-   </div>
-  </div>
- </div>
-</div>
- <div class="row">
-   <div class="col-md-12">
-    <div class="footer">
-    
+     </div>
+     
     </div>
-   </div>
- </div>
- <div id="footer">
- <jsp:include page="/WEB-INF/footer.jsp"/>
- </div>
+  </div>
+</div>
+<div id="footer">
+<jsp:include page="/WEB-INF/footer.jsp"/>
+</div>
+
  <script type="text/javascript">
    $(document).ready(function() {
       $('#bookbtn').click(function(){
