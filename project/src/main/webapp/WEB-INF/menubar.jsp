@@ -135,7 +135,7 @@
 	        <li id="tourM">투&nbsp; &nbsp; &nbsp;어</li>
         	<div id="tourS">
 			    <a href="${root }tour/eastasia">중국 /일본</a>
-			    <a href="${root }tour/southeastasia">동남아시아</a>
+			    <a href="${root }tour/southasia">동남아시아</a>
 		    	<a href="${root }tour/america">아 메 리 카</a>
 	    		<a href="${root }tour/europe">유 &nbsp; &nbsp; &nbsp; &nbsp;럽</a>
 	       		<a href="${root }tour/pacific">남 태 평 양</a>
