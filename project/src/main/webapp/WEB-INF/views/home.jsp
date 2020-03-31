@@ -285,7 +285,7 @@
 			$.ajax({
 				url:'../project/main/message',
 				type:'GET',
-				data:{client_nick2:id},
+				data:{key:id},
 				success:function() {
 				},
 				error:function() {

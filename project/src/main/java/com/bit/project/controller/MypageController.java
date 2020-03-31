@@ -30,29 +30,10 @@ public class MypageController {
 	ClientService clientService;
 //	쪽지함
 	@RequestMapping(value="/main/message", method=RequestMethod.GET)
-	public String receiveMsg(Model model, @RequestParam(required = false, defaultValue = "1") int page,
- 			@RequestParam(required=false, defaultValue="1") int range,
- 			@RequestParam(required=false, defaultValue="receive_content") String searchType,
- 			@RequestParam(required=false) String keyword,
- 			@ModelAttribute("search") Search search
- 			) throws Exception {
-
- 		model.addAttribute("search", search);
- 		search.setSearchType(searchType);
- 		search.setKeyword(keyword);
- 		
- 		// 전체 게시글 갯수
- 		int listCnt=0;
-		try {
-			listCnt = receiveService.getReceiveListCnt(search);
-			search.pageInfo(page, range, listCnt);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		model.addAttribute("pagination", search);
-		model.addAttribute("list",receiveService.selectAll_receive(search));
-		model.addAttribute("listCnt",listCnt);
+	public String receiveMsg(String key, Model model) throws Exception {
+		receiveService.selectAll_receive(key, model);
+		System.out.println("controller : "+key);
+		System.out.println("controller : "+model);
 		return "mypage/message";
 	}
 	
