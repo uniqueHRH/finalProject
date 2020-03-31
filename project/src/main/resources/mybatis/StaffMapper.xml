@@ -35,6 +35,6 @@
 	</delete>
 	
 	<select id="stafflogin" resultType="StaffBean">
-		select staff_name from staff where staff_no=#{staff_no} and staff_pw=#{staff_pw}
+		select * from staff where staff_no=#{staff_no} and staff_pw=#{staff_pw}
 	</select>
 </mapper>

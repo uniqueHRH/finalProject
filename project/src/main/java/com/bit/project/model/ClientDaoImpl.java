@@ -74,6 +74,11 @@ public class ClientDaoImpl implements ClientDao {
 		return sqlSession.update("client.changeInfo", bean);
 	}
 
+	@Override
+	public int changePw(ClientVo bean) throws Exception {
+		return sqlSession.update("client.changePw", bean);
+	}
+
 	
 
 

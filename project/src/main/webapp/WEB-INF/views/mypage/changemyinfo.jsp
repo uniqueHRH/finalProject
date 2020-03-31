@@ -49,7 +49,7 @@
    </div>
    <p id="infocomm">내정보를 최신정보로 관리해주세요</p>
 
-<form action="../myinfo/changeinfo" method="post">
+<form action="../mypage/changemyinfo" method="post">
 	<div id="table">
    	  <table class="table table-hover">
 		<tr>
@@ -79,7 +79,7 @@
 	 
 <p>
   <button type="submit" class="btn btn-default" id="resetbtn">변경 완료</button>
-  <a href="${root }main/myinfo/changeinfo/changepw"><button type="button" class="btn btn-default" id="resetbtn">비밀번호변경</button></a>
+  <a href="${root }main/mypage/changepw"><button type="button" class="btn btn-default" id="resetbtn">비밀번호변경</button></a>
   <button type="button" class="btn btn-default" id="resetbtn" onclick="location.href='../myinfo'">취 소</button>
 </p>
 </form>   

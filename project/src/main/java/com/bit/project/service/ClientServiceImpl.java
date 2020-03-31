@@ -104,6 +104,15 @@ public class ClientServiceImpl implements ClientService {
 		}
 	}
 
+	@Override
+	public void changePw(ClientVo bean) throws Exception {
+		try {
+			clientDao.changePw(bean);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 	
 
 	

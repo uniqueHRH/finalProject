@@ -55,7 +55,7 @@
      <h1>내 정보관리</h1>
    </div>
    <p id="infocomm">내정보를 최신정보로 관리해주세요</p>
- 	 <a href="${root }main/myinfo/changeinfo"><button type="button" id="changeinfobtn" class="btn btn-default">정보수정</button></a>
+ 	 <a href="${root }main/mypage/lock"><button type="button" id="changeinfobtn" class="btn btn-default">정보수정</button></a>
 
 	<div id="table">
    	  <table class="table table-hover">

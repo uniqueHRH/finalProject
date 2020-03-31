@@ -1,5 +1,11 @@
 package com.bit.project.controller;
 
+import java.nio.channels.SeekableByteChannel;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.apache.ibatis.executor.ReuseExecutor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -64,23 +70,66 @@ public class MypageController {
   	}
   	
   	
+  	
   	//내정보관리
   	@RequestMapping(value="/main/myinfo", method=RequestMethod.GET)
   	public String Myinfo() {
   		return "mypage/myinfo";
   	}
   	
-  	//내정보수정
-  	@RequestMapping(value="/main/myinfo/changeinfo", method=RequestMethod.GET)
+  	//내정보수정 비밀번호 확인
+  	@RequestMapping(value="/main/mypage/lock", method=RequestMethod.GET)
   	public String Changeinfo() {
-  		return "mypage/changemyinfo";
+  		return "mypage/lock";
   	}
-  	@RequestMapping(value="/main/myinfo/changeinfo", method=RequestMethod.POST)
-  	public ModelAndView Changeinfo(ClientVo bean) throws Exception {
+  	
+  	//내정보수정 비밀번호 확인
+  	@RequestMapping(value="/main/mypage/lock", method=RequestMethod.POST)
+  	public ModelAndView Lock(ClientVo bean) throws Exception {
+  		ClientVo pwcheck = clientService.loginCheck(bean);
+  		ModelAndView mav=new ModelAndView();
+  		if(pwcheck != null) {
+  			mav.setViewName("mypage/changemyinfo");
+  		}else {
+  			mav.addObject("msg", "fail");
+  			mav.setViewName("mypage/lock");
+  		}
+  		return mav;
+  	}
+  	
+  	//내정보수정
+  	@RequestMapping(value="/main/mypage/changemyinfo", method=RequestMethod.POST)
+  	public ModelAndView Changeinfo(ClientVo bean, HttpServletRequest req) throws Exception {
+  		
   		clientService.changeInfo(bean);
-  		System.out.println(bean);
+  		HttpSession session=req.getSession();
+  		ClientVo update = (ClientVo)session.getAttribute("check");
+  		update.setClient_nick1(bean.getClient_nick1());
+  		update.setClient_nick2(bean.getClient_nick1());
+  		update.setClient_phone(bean.getClient_phone());
+  		System.out.println(session.getAttribute("check"));
   		ModelAndView mav=new ModelAndView();
   		mav.setViewName("redirect:/main/myinfo");
   		return mav;
   	}
+  	
+  	//비밀번호 변경
+  	@RequestMapping(value="/main/mypage/changepw", method=RequestMethod.GET)
+  	public String Changepw() {
+  		return "mypage/changepw";
+  	}
+  	
+  	@RequestMapping(value="/main/mypage/changepw", method=RequestMethod.POST)
+  	public ModelAndView Changepw(ClientVo bean, HttpServletRequest req) throws Exception {
+  		ModelAndView mav=new ModelAndView();
+  		clientService.changePw(bean);
+  		HttpSession session=req.getSession();
+  		ClientVo change = (ClientVo)session.getAttribute("check");
+  		mav.addObject("changepw", change.getClient_pw());
+  		mav.setViewName("jsonView");
+  		session.invalidate();
+  		return mav;
+  	}
+  	
+  	
 }

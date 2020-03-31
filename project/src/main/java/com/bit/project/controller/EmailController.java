@@ -213,7 +213,6 @@ public class EmailController {
 	    		mav.addObject("id", id.getClient_id());
 	    		//인증번호가 일치할 경우 비밀번호변경페이지로 이동함
 	    		mav.setViewName("/login/findpwResult");
-	    		System.out.println(mav.getModel());
 	    	return mav;
 	    	
 	    }
