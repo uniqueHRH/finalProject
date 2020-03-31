@@ -7,9 +7,12 @@
 	<select id="selectAll_eastasia" resultType="TourBean">
 		select * from tour where land='동아시아' order by country
 	</select>
+	<select id="selectAll_southeastasia" resultType="TourBean">
+		select * from tour where land='동남아시아' order by country
+	</select>
 	
-	<!-- eastasia join guide -->
-	<resultMap type="TourBean" id="EastAsiaMap">
+	<!--  detail join guide -->
+	<resultMap type="TourBean" id="TourMap">
 		<result property="tour_no" column="tour_no"/>
 		<result property="country" column="country"/>
 		<result property="city" column="city"/>
@@ -31,13 +34,14 @@
 		<result property="guide_city" column="guide_city"/>
 	</resultMap>
 	
-	<select id="selectOne_eastasia" parameterType="TourBean" resultMap="EastAsiaMap" >
+	<select id="selectOne_tour" parameterType="TourBean" resultMap="TourMap" >
 		select tour.tour_no,tour.name,tour.city,tour.cost,tour.vehicle,tour.comments,tour.course,tour.latlng,tour.firstimg,tour.secondimg,tour.thirdimg,guide.guide_name from tour inner join guide on tour.city=guide.guide_city where tour_no=#{value}
 	</select>
 	
-	<insert id="insertOne_eastasia" parameterType="PaidBean">
+	<!-- paidDB 에 넣는 쿼리문 -->
+	<insert id="insertOne_tour" parameterType="PaidBean">
 		insert into paid (tour_no,client_name,paid_name,paid_phone,paid_birth,paid_count,paid_kakaoid,tour_date,book_date,paid_total) values (#{tour_no},#{client_name},#{paid_name},#{paid_phone},#{paid_birth},#{paid_count},#{paid_kakaoid},#{tour_date},now(),#{paid_total})
 	</insert>
-
+	
 </mapper>
 

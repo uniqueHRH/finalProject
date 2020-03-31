@@ -8,6 +8,11 @@ import com.bit.project.model.entity.TourVo;
 public interface TourService {
 	
 	void selectAll_eastasia(Model model);
-	void selectOne_eastasia(Model model,int tour_no);
-	void insertOne_eastasia(PaidVo bean);
+	void selectAll_southeastasia(Model model);
+	
+	
+	
+	void selectOne_tour(Model model,int tour_no);
+	void insertOne_tour(PaidVo bean);
+	
 }

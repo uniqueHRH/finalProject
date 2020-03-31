@@ -88,8 +88,6 @@
    
 </style>
 
-<script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
-<script type="text/javascript" src="${root }js/bootstrap.js"></script>
 </head>
 <body>
 <jsp:include page="/WEB-INF/menubar.jsp"/>
@@ -162,7 +160,7 @@
       </div>    
 </div>
 <!-- model end -->
-   <a id="bookform" href="${root }tour/eastasia/${bean.tour_no}/booking"><button type="button" id="bookbtn" class="btn btn-default btn-lg">예약하기</button></a>
+   <a id="bookform" href="${root }tour/${bean.tour_no}/booking"><button type="button" id="bookbtn" class="btn btn-default btn-lg">예약하기</button></a>
    
       
       <div id="course"> <여행일정> </div>
@@ -177,6 +175,8 @@
 <jsp:include page="/WEB-INF/footer.jsp"/>
 </div>
 
+<script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="${root }js/bootstrap.js"></script>
  <script type="text/javascript">
    $(document).ready(function() {
       $('#bookbtn').click(function(){

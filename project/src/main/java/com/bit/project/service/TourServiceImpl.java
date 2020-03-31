@@ -31,10 +31,9 @@ public class TourServiceImpl implements TourService{
 	}
 
 	@Override
-	public void selectOne_eastasia(Model model, int tour_no) {
+	public void selectOne_tour(Model model, int tour_no) {
 		try {
-			
-			model.addAttribute("bean",tourDao.selectOne_eastasia(tour_no));
+			model.addAttribute("bean",tourDao.selectOne_tour(tour_no));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -42,13 +41,25 @@ public class TourServiceImpl implements TourService{
 	}
 
 	@Override
-	public void insertOne_eastasia(PaidVo bean) {
+	public void insertOne_tour(PaidVo bean) {
 		try {
 			tourDao.insertOne(bean);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
+	}
+
+	@Override
+	public void selectAll_southeastasia(Model model) {
+		List<TourVo> list;
+		try {
+			list = tourDao.selectAll_southeastasia();
+			model.addAttribute("list",list);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

@@ -21,15 +21,20 @@ public class TourDaoImpl implements TourDao {
 	}
 
 	@Override
-	public TourVo selectOne_eastasia(int tour_no) throws Exception {
+	public TourVo selectOne_tour(int tour_no) throws Exception {
 		
-		return sqlSession.selectOne("tour.selectOne_eastasia",tour_no);
+		return sqlSession.selectOne("tour.selectOne_tour",tour_no);
 	}
 
 	@Override
 	public void insertOne(PaidVo bean) {
-		sqlSession.insert("tour.insertOne_eastasia",bean);
+		sqlSession.insert("tour.insertOne_tour",bean);
 		
+	}
+
+	@Override
+	public List<TourVo> selectAll_southeastasia() throws Exception {
+		return sqlSession.selectList("tour.selectAll_southeastasia");
 	}
 
 }

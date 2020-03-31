@@ -45,7 +45,7 @@
 <div class="row">
 	
 <c:forEach items="${list }" var="bean">
-  <a href="${root }tour/eastasia/${bean.tour_no}"><div class="col-sm-6 col-md-4">
+  <a href="${root }tour/detail/${bean.tour_no}"><div class="col-sm-6 col-md-4">
     <div class="thumbnail">
       <img src="${bean.mainimg }" alt="" id="mainimg">
       <div class="caption">
@@ -53,8 +53,8 @@
         <div style="font-size: 20px;">
         	${bean.city }(${bean.country })
         </div>
-        <div style="color: red; font-size: 20px;">
-        ${bean.cost }원
+        <div id="cost" style="color: red; font-size: 20px;">
+       		${bean.cost }원
         </div>
       </div>
     </div>
@@ -71,7 +71,7 @@
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="${root }js/bootstrap.js"></script>
 <script type="text/javascript">
-	
+
 </script>
 </body>
 </html>

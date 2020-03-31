@@ -8,6 +8,8 @@ import com.bit.project.model.entity.TourVo;
 public interface TourDao {
 	
 	List<TourVo> selectAll_eastasia() throws Exception;
-	TourVo selectOne_eastasia(int tour_no) throws Exception;
+	List<TourVo> selectAll_southeastasia() throws Exception;
+	
+	TourVo selectOne_tour(int tour_no) throws Exception;
 	void insertOne(PaidVo bean) throws Exception;
 }
