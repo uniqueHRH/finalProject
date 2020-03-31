@@ -32,8 +32,8 @@ public class MypageController {
 	@RequestMapping(value="/main/message", method=RequestMethod.GET)
 	public String receiveMsg(String key, Model model) throws Exception {
 		receiveService.selectAll_receive(key, model);
-		System.out.println("controller : "+key);
-		System.out.println("controller : "+model);
+		System.out.println("controller1 : "+key);
+		System.out.println("controller2 : "+model);
 		return "mypage/message";
 	}
 	
@@ -41,6 +41,8 @@ public class MypageController {
 	@RequestMapping(value="/main/messageDe/{idx}", method=RequestMethod.GET)
 	public String receiveMsg(@PathVariable("idx") int key, Model model) {
 		receiveService.selectOne_receive(key, model);
+		System.out.println("controller1 : "+key);
+		System.out.println("controller2 : "+model);
 		return "mypage/receiveMsg";
 	}
 	

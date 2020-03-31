@@ -22,7 +22,7 @@ public class ReceiveServiceImpl implements ReceiveService {
 		try {
 			List<ReceiveVo> list=receiveDao.selectAll_receive(key);
 			model.addAttribute("list", list);
-			System.out.println("service : "+key);
+			System.out.println("service1 : "+key);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

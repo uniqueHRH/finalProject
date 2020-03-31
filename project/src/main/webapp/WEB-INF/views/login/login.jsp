@@ -52,7 +52,9 @@
        width:60%;
     }
     #logBn {
-    	
+    }
+    form{
+    	padding:0 0 150 0;
     }
 </style>
 
@@ -94,11 +96,11 @@
 			<div>
 				<a href="${root }main/login/findid"><button type="button" id="findid" class="btn btn-default btn-lg">아이디 찾기</button></a>
 				<a href="${root }main/login/findpw"><button type="button" id="findpw" class="btn btn-default btn-lg">비밀번호 찾기</button></a>
-				<br/>--------------------------------------또는--------------------------------------
+				<!-- <br/>--------------------------------------또는--------------------------------------
 					<a id="kakao-login-btn"></a>
 					<a href="http://developers.kakao.com/logout"></a>
 			        <button type="button" id="facebookbtn" class="btn btn-default btn-lg btn-block">페이스북으로 로그인</button>
-			        <button type="button" id="naverbtn" class="btn btn-default btn-lg btn-block">네이버로 로그인</button>
+			        <button type="button" id="naverbtn" class="btn btn-default btn-lg btn-block">네이버로 로그인</button> -->
 			</div>
 			</form>
 	</div>
