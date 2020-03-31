@@ -21,11 +21,6 @@ public class FaqDaoImpl implements FaqDao {
 	}
 
 	@Override
-	public FaqVo selectOne_faq(int key) throws Exception {
-		return sqlSession.selectOne("faq.selectOne_faq",key);
-	}
-
-	@Override
 	public void insertOne_faq(FaqVo bean) throws Exception {
 		sqlSession.insert("faq.insertOne_faq",bean);
 	}
@@ -40,14 +35,5 @@ public class FaqDaoImpl implements FaqDao {
 		return sqlSession.delete("faq.deleteOne_faq",key);
 	}
 
-	@Override
-	public int updateCnt(int key) throws Exception {
-		return sqlSession.update("faq.updateCnt",key);
-	}
-
-	@Override
-	public int getFaqListCnt(Search search) throws Exception {
-		return sqlSession.selectOne("faq.getFaqListCnt",search);
-	}
 
 }

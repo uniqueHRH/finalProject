@@ -18,16 +18,11 @@
 	<select id="selectAll_faq" resultType="FaqBean">
 		select * from faq
 		<trim prefix="WHERE" prefixOverrides="AND|OR">
-			<if test="searchType=='faq_sub' and keyword != null and keyword != '' ">
-				AND faq_sub like CONCAT('%', #{keyword}, '%')
+			<if test="searchType=='faq_question' and keyword != null and keyword != '' ">
+				AND faq_question like CONCAT('%', #{keyword}, '%')
 			</if>
 		</trim>
 		order by faq_no desc
-		LIMIT #{startList}, #{listSize}
-	</select>
-	
-	<select id="selectOne_faq" resultType="FaqBean" parameterType="int">
-		select * from faq where faq_no=#{faq_no}
 	</select>
 	
 	<insert id="insertOne_faq" parameterType="FaqBean">
@@ -35,27 +30,10 @@
 	</insert>
 	
 	<update id="updateOne_faq" parameterType="FaqBean">
-		update faq set faq_question=#{faq_question}, faq_answer=#{faq_answer}
+		update faq set faq_question=#{faq_question}, faq_answer=#{faq_answer} where faq_no=#{faq_no}
 	</update>
 	
 	<delete id="deleteOne_faq" parameterType="int">
 		delete from faq where faq_no=#{faq_no}
 	</delete>
-	
-	
-	
-	<!-- 조회수 -->
-	<update id="updateCnt" parameterType="int">
-		update faq set faq_count=faq_count+1 where faq_no=#{value}
-	</update>
-	
-<!-- 총게시글 갯수 -->
-	<select id="getFaqListCnt" resultType="int">
-		select count(*) from free
-		<trim prefix="WHERE" prefixOverrides="AND|OR">
-			<if test="searchType=='faq_sub' and keyword != null and keyword != '' ">
-				AND faq_sub like CONCAT('%', #{keyword}, '%')
-			</if>
-		</trim>
-	</select>
 </mapper>

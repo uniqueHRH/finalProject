@@ -103,34 +103,6 @@
 
 <script type="text/javascript">
    $(document).ready(function() {
-		$('#hamb').hide();
-		$('#hide').hide();
-		
-		$('#subm').hide();
-		$('#dele').hide();
-	      
-		$('#tour_sub').hide();
-		$('#comm_sub').hide();
-		$('#serv_sub').hide();
-		$('#system_sub').hide();
-		
-		$('#maintext1').hide();
-		$('#maintext2').hide();
-		$('#maintext3').hide();
-		$('#maintext4').hide();
-		
-		$('#hambBtn').mouseenter(function() {
-			$('#hamb').show();
-			$(this).hide();
-		});
-		$('#hamb').mouseenter(function() {
-			$(this).show();
-			$('#hambBtn').hide();
-		}).mouseleave(function() {
-			$('#hamb').hide();
-			$('#hambBtn').show();
-		});
-		
 		// 이미지가 없을 때 출력되지 않도록
 		var img=$('#hiddenI').val();
 		

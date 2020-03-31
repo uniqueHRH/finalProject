@@ -21,6 +21,7 @@ import com.bit.project.common.Search;
 import com.bit.project.file.UploadFileUtils;
 import com.bit.project.model.entity.BoardVo;
 import com.bit.project.model.entity.EventVo;
+import com.bit.project.model.entity.FaqVo;
 import com.bit.project.model.entity.FreeVo;
 import com.bit.project.model.entity.NoticeVo;
 import com.bit.project.model.entity.PartnerVo;
@@ -28,6 +29,7 @@ import com.bit.project.model.entity.ReplyVo;
 import com.bit.project.model.entity.SendVo;
 import com.bit.project.service.BoardService;
 import com.bit.project.service.EventService;
+import com.bit.project.service.FaqService;
 import com.bit.project.service.FreeService;
 import com.bit.project.service.NoticeService;
 import com.bit.project.service.PartnerService;
@@ -51,6 +53,8 @@ public class BoardController {
 	SendService sendService;
 	@Autowired
 	NoticeService noticeService;
+	@Autowired
+	FaqService faqService;
 	
 	@Resource
 	Pagination pagination;
@@ -256,6 +260,23 @@ public class BoardController {
  		model.addAttribute("listCnt",listCnt);
   		return "notice/notice";
   	}
+  	// 자주묻는질문
+  	@RequestMapping(value="/board/faq", method=RequestMethod.GET)
+  	public String faq(Model model, @RequestParam(required=false, defaultValue="faq_question") String searchType,
+  			@RequestParam(required=false) String keyword,
+  			@ModelAttribute("search") Search search
+  			) throws Exception {
+
+  		model.addAttribute("search", search);
+  		search.setSearchType(searchType);
+  		search.setKeyword(keyword);
+  		
+
+ 		model.addAttribute("pagination", search);
+ 		model.addAttribute("list",faqService.selectAll_faq(search));
+  		return "faq/faq";
+  	}
+  	
 //	글쓰기페이지
  	// 후기
  	@RequestMapping(value = "/board/reviewIns", method = RequestMethod.GET)
@@ -364,7 +385,7 @@ public class BoardController {
   		eventService.insertOne_event(bean);
   		return "redirect:event";
   	}
- // 이벤트
+  	// 공지사항
    	@RequestMapping(value = "/board/noticeIns", method = RequestMethod.POST)
    	public String noticetIns(@ModelAttribute NoticeVo bean, MultipartFile file) throws Exception {
    		
@@ -383,6 +404,12 @@ public class BoardController {
    		
    		noticeService.insertOne_notice(bean);
    		return "redirect:notice";
+   	}
+   	// 자주묻는질문
+   	@RequestMapping(value="/board/faqIns", method=RequestMethod.POST)
+   	public String faqIns(@ModelAttribute FaqVo bean) {
+   		faqService.insertOne_faq(bean);
+   		return "redirect:faq";
    	}
    	
 //	상세페이지로 이동
@@ -595,6 +622,11 @@ public class BoardController {
  		noticeService.updateOne_notice(bean);
  		return "redirect:../noticeDe/"+bean.getNotice_no();
  	}
+ 	@RequestMapping(value="/board/faqUp", method=RequestMethod.POST)
+ 	public String faqUp(@ModelAttribute FaqVo bean) {
+ 		faqService.updateOne_faq(bean);
+ 		return "redirect:faq";
+ 	}
 //	삭제
  	// 후기
  	@RequestMapping(value="/board/reviewDel", method=RequestMethod.POST)
@@ -625,6 +657,11 @@ public class BoardController {
   	public String noticeDel(int key) {
   		noticeService.deleteOne_notice(key);
   		return "redirect:notice";
+  	}
+  	@RequestMapping(value="/board/faqDel", method=RequestMethod.POST)
+  	public String fqaDel(int key) {
+  		faqService.deleteOne_faq(key);
+  		return "redirect:faq";
   	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
  	

@@ -25,6 +25,7 @@
 				AND client_nick1 like CONCAT('%', #{keyword}, '%')
 			</if>
 		</trim>
+		where client_nick2=#{client_nick2}
 		ORDER BY receive_no DESC
 		LIMIT #{startList}, #{listSize}
 	</select>
@@ -48,5 +49,6 @@
 				AND client_nick1 like CONCAT('%', #{keyword}, '%')
 			</if>
 		</trim>
+		where client_nick2=#{client_nick2}
 	</select>
 </mapper>
