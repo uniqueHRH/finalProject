@@ -61,6 +61,10 @@
 	
 	<update id="changeInfo" parameterType="ClientBean">
 		update client set client_nick1=#{client_nick1}, client_nick2=#{client_nick1}, client_phone=#{client_phone} where client_id=#{client_id}
-	</update> 
+	</update>
+	
+	<update id="changePw" parameterType="ClientBean">
+		update client set client_pw=#{client_pw} where client_id=#{client_id}
+	</update>
 </mapper>
 

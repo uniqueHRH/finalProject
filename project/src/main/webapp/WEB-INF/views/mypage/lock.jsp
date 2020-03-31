@@ -39,39 +39,23 @@
   <div class="row">
    <div class="col-md-12">
       <div class="page-header" align="center">
-     <h1>비밀번호변경</h1>
+     <h1>비밀번호 확인</h1>
    </div>
-   <form action="../mypage/changepw" class="form-horizontal" method="post">
+   <form action="../mypage/lock" class="form-horizontal" method="post">
      <div class="form-group" id="insertid">
-       <label for="client_pw" class="col-sm-2 control-label" id="idd">현재비밀번호</label>
+       <label for="client_pw" class="col-sm-2 control-label" id="idd">현재 비밀번호</label>
        <div class="col-sm-10">
          <input type="password" class="form-control" id="client_pw" name="client_pw"style="width:350px">
-         <input type="hidden" class="form-control" id="client_id" name="client_id" value="${sessionScope.check.client_id}">
-         <input type="hidden" class="form-control" id="client_pw2" name="client_pw2" value="${sessionScope.check.client_pw}">
+     	 <input type="hidden" class="form-control" id="client_id" name="client_id" value="${sessionScope.check.client_id}">
        </div>
+       <c:if test="${msg == 'fail' }">
+       	<%out.println("<script>alert('비밀번호를 확인해주세요');</script>");%>
+       </c:if>
      </div>
-     
-     <div class="form-group">
-       <label for="client_newpw1" class="col-sm-2 control-label" id="pww">새비밀번호</label>
-       <div class="col-sm-10">
-          <input type="password" class="form-control" id="client_newpw1" name="client_newpw1" placeholder="영문+숫자 조합 8자리이상" style="width:350px">
-       </div>
-     </div>
-     
-     <div class="form-group">
-       <label for="client_newpw2" class="col-sm-2 control-label" id="pww">새비밀번호(확인)</label>
-       <div class="col-sm-10">
-          <input type="password" class="form-control" id="client_newpw2" name="client_newpw2" placeholder="비밀번호를 한번 더 입력해주세요" style="width:350px">
-       </div>
-     </div>
-     <div>
-     	<button type="button" id="changepwbtn" class="btn btn-default btn-lg btn-block">변경완료</button>
+     	<button type="submit" id="changepwbtn" class="btn btn-default btn-lg btn-block">확인</button>
      	<button type="button" id="resetbtn" class="btn btn-default btn-lg" onclick="location.href='../myinfo'">취소</button>
-     </div>
      </form>
-     
      </div>   
-     
   </div>
 </div>
       
@@ -112,43 +96,6 @@
 			$('#system_sub').hide();
 		});
       
-		
-		
-		$("#changepwbtn").on('click',function(){
-			var id = $('#client_id').val();
-			var pw = $('#client_pw').val();
-			var pw2 = $('#client_pw2').val();
-			var newpw1 = $('#client_newpw1').val();
-			var newpw2 = $('#client_newpw2').val();
-			
-			 var newpw = /^.*(?=.{8,20})(?=.*[0-9])(?=.*[a-zA-Z]).*$/;
-	         var pwcheck = newpw.test($("#client_newpw1").val());
-			
-			if(!pw || !newpw1 || !newpw2){
-				alert('빈칸을 입력해주세요');
-				return false;
-			}else if(newpw1 != newpw2){
-				alert('새비밀번호가 일치하지않습니다');
-				return false;
-			}else if(pw2 != pw){
-				alert('현재비밀번호가 일치하지않습니다');
-				return false;
-			}else if(!pwcheck){
-				alert('비밀번호는 영문+숫자 조합 8자리이상입니다');
-				return false;
-			}else{
-				$.ajax({
-					url:'../mypage/changepw',
-					type:'POST',
-					data:{client_pw:newpw1, client_id:id},
-					success:function(){
-						alert('비밀번호 변경이 완료되었습니다. 로그인을 다시 해주세요');
-						location.href="../login";
-					},
-				});
-			}
-		});
-		
    });
 </script>
 </body>

@@ -46,6 +46,7 @@
 	}
 	#eventM>a {
 		text-decoration:none;
+		color:white;
 	}
 	#eventM>a:visited {
 		color:white;
@@ -152,7 +153,7 @@
 	        <li id="serviceM">고객센터</li>
         	<div id="serviceS">
 	            <a href="${root }board/notice">공 &nbsp; &nbsp; &nbsp; &nbsp;지</a>
-			    <a href="${root }board/qna">자주묻는질문</a>
+			    <a href="${root }board/faq">자주묻는질문</a>
 	       	</div>
 	        
 	        <c:if test="${sessionScope.staffcheck ne null }">

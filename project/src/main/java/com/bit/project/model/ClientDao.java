@@ -18,4 +18,6 @@ public interface ClientDao {
 	public ClientVo nickDupli(ClientVo bean) throws Exception;
 	public ClientVo idDupli(ClientVo bean) throws Exception;
 	int changeInfo(ClientVo bean) throws Exception;
+	int changePw(ClientVo bean) throws Exception;
+	
 }

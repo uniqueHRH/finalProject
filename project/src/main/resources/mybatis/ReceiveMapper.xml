@@ -15,18 +15,8 @@
  
  
 <mapper namespace="receive">
-	<select id="selectAll_receive" resultType="ReceiveBean">
-		select * from receive
-		<trim prefix="WHERE" prefixOverrides="AND|OR">
-			<if test="searchType=='receive_content' and keyword != null and keyword != '' ">
-				AND receive_content like CONCAT('%', #{keyword}, '%')
-			</if>
-			<if test="searchType=='client_nick1' and keyword != null and keyword != '' ">
-				AND client_nick1 like CONCAT('%', #{keyword}, '%')
-			</if>
-		</trim>
-		ORDER BY receive_no DESC
-		LIMIT #{startList}, #{listSize}
+	<select id="selectAll_receive" resultType="ReceiveBean" parameterType="ReceiveBean">
+		select * from receive where client_nick2=#{client_nick2} order by receive_no desc
 	</select>
 	
 	<select id="selectOne_receive" resultType="ReceiveBean" parameterType="int">
@@ -48,5 +38,6 @@
 				AND client_nick1 like CONCAT('%', #{keyword}, '%')
 			</if>
 		</trim>
+		where client_nick2=#{client_nick2}
 	</select>
 </mapper>

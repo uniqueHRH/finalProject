@@ -16,8 +16,9 @@ public class ReceiveDaoImpl implements ReceiveDao {
 	SqlSession sqlSession;
 	
 	@Override
-	public List<ReceiveVo> selectAll_receive(Search search) throws Exception {
-		return sqlSession.selectList("receive.selectAll_receive", search);
+	public List<ReceiveVo> selectAll_receive(String key) throws Exception {
+		System.out.println("dao : "+key);
+		return sqlSession.selectList("receive.selectAll_receive", key);
 	}
 
 	@Override

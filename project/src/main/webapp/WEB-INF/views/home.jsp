@@ -221,7 +221,7 @@
 				        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">고객센터</a>
 							<ul class="dropdown-menu" role="menu">
 					            <li><a href="${root }board/notice">공 &nbsp; &nbsp; &nbsp; &nbsp;지</a></li>
-							    <li><a href="${root }board/qna">자주묻는질문</a></li>
+							    <li><a href="${root }board/faq">자주묻는질문</a></li>
 							</ul>
 				        </li>
 				        <c:if test="${sessionScope.staffcheck ne null }">
@@ -285,7 +285,7 @@
 			$.ajax({
 				url:'../project/main/message',
 				type:'GET',
-				data:{client_nick2:id},
+				data:{key:id},
 				success:function() {
 				},
 				error:function() {

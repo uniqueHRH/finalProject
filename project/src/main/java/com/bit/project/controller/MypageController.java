@@ -1,5 +1,11 @@
 package com.bit.project.controller;
 
+import java.nio.channels.SeekableByteChannel;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.apache.ibatis.executor.ReuseExecutor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,29 +30,10 @@ public class MypageController {
 	ClientService clientService;
 //	쪽지함
 	@RequestMapping(value="/main/message", method=RequestMethod.GET)
-	public String receiveMsg(Model model, @RequestParam(required = false, defaultValue = "1") int page,
- 			@RequestParam(required=false, defaultValue="1") int range,
- 			@RequestParam(required=false, defaultValue="receive_content") String searchType,
- 			@RequestParam(required=false) String keyword,
- 			@ModelAttribute("search") Search search
- 			) throws Exception {
-
- 		model.addAttribute("search", search);
- 		search.setSearchType(searchType);
- 		search.setKeyword(keyword);
- 		
- 		// 전체 게시글 갯수
- 		int listCnt=0;
-		try {
-			listCnt = receiveService.getReceiveListCnt(search);
-			search.pageInfo(page, range, listCnt);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		model.addAttribute("pagination", search);
-		model.addAttribute("list",receiveService.selectAll_receive(search));
-		model.addAttribute("listCnt",listCnt);
+	public String receiveMsg(String key, Model model) throws Exception {
+		receiveService.selectAll_receive(key, model);
+		System.out.println("controller : "+key);
+		System.out.println("controller : "+model);
 		return "mypage/message";
 	}
 	
@@ -64,23 +51,66 @@ public class MypageController {
   	}
   	
   	
+  	
   	//내정보관리
   	@RequestMapping(value="/main/myinfo", method=RequestMethod.GET)
   	public String Myinfo() {
   		return "mypage/myinfo";
   	}
   	
-  	//내정보수정
-  	@RequestMapping(value="/main/myinfo/changeinfo", method=RequestMethod.GET)
+  	//내정보수정 비밀번호 확인
+  	@RequestMapping(value="/main/mypage/lock", method=RequestMethod.GET)
   	public String Changeinfo() {
-  		return "mypage/changemyinfo";
+  		return "mypage/lock";
   	}
-  	@RequestMapping(value="/main/myinfo/changeinfo", method=RequestMethod.POST)
-  	public ModelAndView Changeinfo(ClientVo bean) throws Exception {
+  	
+  	//내정보수정 비밀번호 확인
+  	@RequestMapping(value="/main/mypage/lock", method=RequestMethod.POST)
+  	public ModelAndView Lock(ClientVo bean) throws Exception {
+  		ClientVo pwcheck = clientService.loginCheck(bean);
+  		ModelAndView mav=new ModelAndView();
+  		if(pwcheck != null) {
+  			mav.setViewName("mypage/changemyinfo");
+  		}else {
+  			mav.addObject("msg", "fail");
+  			mav.setViewName("mypage/lock");
+  		}
+  		return mav;
+  	}
+  	
+  	//내정보수정
+  	@RequestMapping(value="/main/mypage/changemyinfo", method=RequestMethod.POST)
+  	public ModelAndView Changeinfo(ClientVo bean, HttpServletRequest req) throws Exception {
+  		
   		clientService.changeInfo(bean);
-  		System.out.println(bean);
+  		HttpSession session=req.getSession();
+  		ClientVo update = (ClientVo)session.getAttribute("check");
+  		update.setClient_nick1(bean.getClient_nick1());
+  		update.setClient_nick2(bean.getClient_nick1());
+  		update.setClient_phone(bean.getClient_phone());
+  		System.out.println(session.getAttribute("check"));
   		ModelAndView mav=new ModelAndView();
   		mav.setViewName("redirect:/main/myinfo");
   		return mav;
   	}
+  	
+  	//비밀번호 변경
+  	@RequestMapping(value="/main/mypage/changepw", method=RequestMethod.GET)
+  	public String Changepw() {
+  		return "mypage/changepw";
+  	}
+  	
+  	@RequestMapping(value="/main/mypage/changepw", method=RequestMethod.POST)
+  	public ModelAndView Changepw(ClientVo bean, HttpServletRequest req) throws Exception {
+  		ModelAndView mav=new ModelAndView();
+  		clientService.changePw(bean);
+  		HttpSession session=req.getSession();
+  		ClientVo change = (ClientVo)session.getAttribute("check");
+  		mav.addObject("changepw", change.getClient_pw());
+  		mav.setViewName("jsonView");
+  		session.invalidate();
+  		return mav;
+  	}
+  	
+  	
 }

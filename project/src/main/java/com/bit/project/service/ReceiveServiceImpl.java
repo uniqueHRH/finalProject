@@ -1,5 +1,6 @@
 package com.bit.project.service;
 
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,13 +13,19 @@ import com.bit.project.model.entity.ReceiveVo;
 
 @Service
 public class ReceiveServiceImpl implements ReceiveService {
-
+	
 	@Autowired
 	ReceiveDao receiveDao;
 	
 	@Override
-	public List<ReceiveVo> selectAll_receive(Search search) throws Exception {
-		return receiveDao.selectAll_receive(search);
+	public void selectAll_receive(String key, Model model) {
+		try {
+			List<ReceiveVo> list=receiveDao.selectAll_receive(key);
+			model.addAttribute("list", list);
+			System.out.println("service : "+key);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
