@@ -130,7 +130,21 @@ public class TravelController {
 		tourservice.selectAll_eastasia(model);
 		return "tour/eastasia";
 	}
-	//디테일PAGE(중국/일본)
+	//동남아시아로 이동
+	@RequestMapping(value = "/tour/southeastasia", method = RequestMethod.GET)
+	public String southeastasia(Model model) {
+		tourservice.selectAll_southeastasia(model);
+		return "tour/southeastasia";
+	}
+	//동남아시아로 이동
+		@RequestMapping(value = "/tour/america", method = RequestMethod.GET)
+		public String america(Model model) {
+			tourservice.selectAll_america(model);
+			return "tour/america";
+	}
+	
+	
+	//디테일PAGE
 	@RequestMapping(value = "/tour/detail/{idx}", method = RequestMethod.GET)
 	public String detail(Model model, @PathVariable ("idx") int tour_no) {
 		tourservice.selectOne_tour(model, tour_no);
@@ -143,17 +157,11 @@ public class TravelController {
 		tourservice.selectOne_tour(model, tour_no);
 		return "tour/booking";
 	}
-	//예약하기(INSERT )
+	//예약하기(INSERT)
 	@RequestMapping(value = "/tour/{idx}/booking", method = RequestMethod.POST)
 	public String bookingeastasia(@ModelAttribute PaidVo bean) {
 		tourservice.insertOne_tour(bean);
 		return "home";
-	}
-	//동남아시아로 이동
-	@RequestMapping(value = "/tour/southeastasia", method = RequestMethod.GET)
-	public String southeastasia(Model model) {
-		tourservice.selectAll_southeastasia(model);
-		return "tour/southeastasia";
 	}
 	
 	@RequestMapping(value = "/tour/theme", method = RequestMethod.GET)

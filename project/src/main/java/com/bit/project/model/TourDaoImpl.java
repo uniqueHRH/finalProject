@@ -37,4 +37,9 @@ public class TourDaoImpl implements TourDao {
 		return sqlSession.selectList("tour.selectAll_southeastasia");
 	}
 
+	@Override
+	public List<TourVo> selectAll_america() throws Exception {
+		return sqlSession.selectList("tour.selectAll_america");
+	}
+
 }

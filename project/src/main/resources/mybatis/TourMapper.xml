@@ -10,6 +10,10 @@
 	<select id="selectAll_southeastasia" resultType="TourBean">
 		select * from tour where land='동남아시아' order by country
 	</select>
+
+	<select id="selectAll_america" resultType="TourBean">
+		select * from tour where land='아메리카' order by country
+	</select>
 	
 	<!--  detail join guide -->
 	<resultMap type="TourBean" id="TourMap">
