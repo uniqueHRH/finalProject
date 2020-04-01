@@ -224,8 +224,9 @@
 		
 		// 이미지가 없을 때 출력되지 않도록
 		var img=$('#hiddenI').val();
+		console.log(img);
 		
-		if(!img) {
+		if(img=='') {
 			$('#board_thumb').remove();
 		}
       // 테마 출력

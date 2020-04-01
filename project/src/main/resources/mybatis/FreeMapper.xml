@@ -37,7 +37,7 @@
 	
 	
 	<insert id="insertOne_free" parameterType="FreeBean">
-		insert into free (free_sub, free_count, free_content, client_nick1, free_date, free_img, free_thumb) values (#{free_sub}, 0, #{free_content}, #{client_nick1}, now(), #{free_img, jdbcType=VARCHAR}, #{free_thumb, jdbcType=VARCHAR})
+		insert into free (board_id, free_sub, free_count, free_content, client_nick1, free_date, free_img, free_thumb) values (4, #{free_sub}, 0, #{free_content}, #{client_nick1}, now(), #{free_img, jdbcType=VARCHAR}, #{free_thumb, jdbcType=VARCHAR})
 	</insert>
 	
 	

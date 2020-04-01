@@ -12,12 +12,12 @@ public class UploadFileUtils {
      
 	static final int THUMB_WIDTH = 300;
 	static final int THUMB_HEIGHT = 300;
-	 
-	 public static String fileUpload(String uploadPath, String fileName, byte[] fileData, String ymdPath) throws Exception {
-		 UUID uid = UUID.randomUUID();   // 고유한 파일명을 만든다
-		 String newFileName = uid + "_" + fileName;
-		 String imgPath = uploadPath + ymdPath;
-
+	
+	public static String fileUpload(String uploadPath, String fileName, byte[] fileData, String ymdPath) throws Exception {
+		UUID uid=UUID.randomUUID();   // 고유한 파일명을 만든다
+		String newFileName=uid+"_"+fileName;
+		String imgPath = uploadPath + ymdPath;
+		 
 		File target = new File(imgPath, newFileName);
 		FileCopyUtils.copy(fileData, target);
 	  
@@ -26,25 +26,26 @@ public class UploadFileUtils {
 
 		File thumbnail = new File(imgPath + File.separator + "s" + File.separator + thumbFileName);
 
-		if (image.exists()) {
+		if(image.exists()) {
 			thumbnail.getParentFile().mkdirs();
-			Thumbnails.of(image).size(THUMB_WIDTH, THUMB_HEIGHT).toFile(thumbnail);
+			Thumbnails.of(image).size(THUMB_WIDTH, THUMB_HEIGHT).toFile(thumbnail);   // Thumbnails.of : 썸네일 정보 / toFile : 파일 저장
 		}
 		return newFileName;
 	}
 
+	// 이미지를 저장할 디렉토리 경로 설정
 	public static String calcPath(String uploadPath) {
 		Calendar cal = Calendar.getInstance();
 		String yearPath = File.separator + cal.get(Calendar.YEAR);
 		String monthPath = yearPath + File.separator + new DecimalFormat("00").format(cal.get(Calendar.MONTH) + 1);
 		String datePath = monthPath + File.separator + new DecimalFormat("00").format(cal.get(Calendar.DATE));
-
+		
 		makeDir(uploadPath, yearPath, monthPath, datePath);
-		makeDir(uploadPath, yearPath, monthPath, datePath + "\\s");
-
-		return datePath;
+		
+	return datePath;
 	}
 
+	// 디렉토리 생성
 	private static void makeDir(String uploadPath, String... paths) {
 		if (new File(paths[paths.length - 1]).exists()) { return; }
 
