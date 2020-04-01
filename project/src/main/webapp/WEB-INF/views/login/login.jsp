@@ -21,9 +21,7 @@
     #table {
       	font-family:"Jua";
     }
-    input {
-    	text-align:center;
-    }
+ 
      form {
       	width:600px;
       	margin: 0 auto;

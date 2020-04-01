@@ -182,7 +182,7 @@
 				        <!-- 회원로그인시 -->
 				        <c:if test="${sessionScope.staffcheck eq null and sessionScope.check ne null }">
 				        <input type="hidden" id="session" value="${sessionScope.check.client_nick1}"/>
-					        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">${sessionScope.check.client_nick1} 님<span class="caret"></span></a>
+					        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">${sessionScope.check.client_nick1} 님<span class="caret"></span></a>
 					        	<ul class="dropdown-menu" role="menu">
 					        		<li><a href="${root }main/message" id="msg">쪽지함</a></li>
 					        		<li><a href="#">최근본상품</a></li>

@@ -15,8 +15,6 @@
    }
     #infocomm{
     	font-size: 20px;
-    	position: relative;
-    	right: 200px;
     }
     #table {
     	width:50%;
@@ -30,10 +28,9 @@
    		text-align: center;
    		font-size: 15px;
    }
-   #resetbtn,#submitbtn{
+   #resetbtn,#submitbtn,#changebtn{
+   		
    		width: 200px;
-   		position: relative;
-   		left: 150px;
    }
    		
    
@@ -46,10 +43,10 @@
  
   <div class="page-header" align="center">
      <h1>내 정보관리</h1>
-   </div>
    <p id="infocomm">내정보를 최신정보로 관리해주세요</p>
+   </div>
 
-<form action="../mypage/changemyinfo" method="post">
+<form action="../mypage/changemyinfo" name="cac" method="post">
 	<div id="table">
    	  <table class="table table-hover">
 		<tr>
@@ -76,12 +73,11 @@
 	   </table>
 	 </div>
 	<input type="hidden" id="client_id" name="client_id" value="${sessionScope.check.client_id }"/>
-	 
-<p>
-  <button type="submit" class="btn btn-default" id="resetbtn">변경 완료</button>
-  <a href="${root }main/mypage/changepw"><button type="button" class="btn btn-default" id="resetbtn">비밀번호변경</button></a>
+<div align="center">	 
+  <button type="submit" class="btn btn-default" id="submitbtn">변경 완료</button>
+  <a href="${root }main/mypage/changepw"><button type="button" class="btn btn-default" id="changebtn">비밀번호변경</button></a>
   <button type="button" class="btn btn-default" id="resetbtn" onclick="location.href='../myinfo'">취 소</button>
-</p>
+</div>
 </form>   
 </div>
                          <!-- contents end --> 
@@ -121,6 +117,15 @@
 			$('#system_sub').hide();
 		});
       
+		/*  $('form[name="cac"]').bind('submit',function(){
+			 var nick=$("#client_nick1").val();
+			 var phone=$("#client_phone").val();
+			 
+			 if(nick == ''){
+				 
+			 }
+		 }); */
+		
    });
 </script>
 </body>
