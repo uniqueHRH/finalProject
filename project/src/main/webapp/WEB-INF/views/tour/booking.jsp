@@ -304,7 +304,7 @@
 			    	alert('필수 약관에 동의 하셔야 합니다.');
 			    	return false;
 				}else{
-					alert('회원가입이 완료되었습니다.');
+					alert('예약이 완료되었습니다.');
 					return true;
 				}
 			});
