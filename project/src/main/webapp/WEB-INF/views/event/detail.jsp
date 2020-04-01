@@ -98,6 +98,14 @@
 
 <script type="text/javascript">
    $(document).ready(function() {
+		$('#subm').hide();
+		$('#dele').hide();
+		
+		$('button[name^=cancel_').hide();
+		$('button[name^=update_').hide();
+		$('button[name^=edit_').hide();
+		$('button[name^=dele2_').hide();
+		
 		// 이미지가 없을 때 출력되지 않도록
 		var img=$('#hiddenI').val();
 		
@@ -110,9 +118,12 @@
       var log=$('#log').val();
       
       if(mas==log) {
-	      $('#subm').show();
-	      $('#dele').show();
-      }
+			$('#subm').show();
+			$('#dele').show();
+	      
+			$('button[name^=edit_').show();
+			$('button[name^=dele2_').show();
+		}
       
       // 수정버튼
       $('#subm').on('click',function() {

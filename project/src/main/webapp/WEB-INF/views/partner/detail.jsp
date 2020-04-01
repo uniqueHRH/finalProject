@@ -100,6 +100,13 @@
 <script type="text/javascript" src="${root }js/bootstrap.js"></script>
 <script type="text/javascript">
    $(document).ready(function() {
+		$('#subm').hide();
+		$('#dele').hide();
+		
+		$('button[name^=cancel_').hide();
+		$('button[name^=update_').hide();
+		$('button[name^=edit_').hide();
+		$('button[name^=dele2_').hide();
 		// 쪽지보내기 기능
 		var log=$('#log').val();
 		var nick=$('#client_nick1').val();
@@ -127,9 +134,12 @@
       var log=$('#log').val();
       
       if(mas==log) {
-	      $('#subm').show();
-	      $('#dele').show();
-      }
+			$('#subm').show();
+			$('#dele').show();
+	      
+			$('button[name^=edit_').show();
+			$('button[name^=dele2_').show();
+		}
       
       // 수정버튼
       $('#subm').on('click',function() {
