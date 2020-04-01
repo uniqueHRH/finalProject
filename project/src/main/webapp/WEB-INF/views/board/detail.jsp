@@ -58,10 +58,7 @@
 	}
 	#btn {
 		text-align:center;
-	}
-	#replyShow {
-		width:700px;
-		margin:0 auto;
+		padding: 0 0 30 0;
 	}
 	/* 댓글 */
 	#table {
@@ -162,7 +159,7 @@
       <div class="form-group">
          <label for="exampleInputEmail2">조회수</label>
          <input type="text" class="form-control" id="board_count" value="${bean.board_count }" style="cursor:default" disabled>
-         <input type="hidden" id="log" name="log" value="${sessionScope.check.client_nick1}">
+         <input type="hide" id="log" name="log" value="${sessionScope.check.client_nick1}">
       </div>
    </div>
    <p></p>
@@ -176,10 +173,6 @@
       <button type="button" class="btn btn-default" id="subm">수정하기</button>
       <button type="button" class="btn btn-default" id="dele">삭제하기</button>
       <button type="button" class="btn btn-default" id="goList">목록으로</button>
-      <p></p>
-      <div>
-         <button type="button" class="btn btn-default btn-lg btn-block" id="replyShow">댓글보기</button>
-      </div>
       <p></p>
    </div>
 
@@ -219,6 +212,14 @@
 
 <script type="text/javascript">
    $(document).ready(function() {
+		$('#subm').hide();
+		$('#dele').hide();
+		
+		$('button[name^=cancel_').hide();
+		$('button[name^=update_').hide();
+		$('button[name^=edit_').hide();
+		$('button[name^=dele2_').hide();
+		
 		// 이미지가 없을 때 출력되지 않도록
 		var img=$('#hiddenI').val();
 		
@@ -227,28 +228,31 @@
 		}
 		
       // 테마 출력
-      var themeVal=$('#board_theme').val();
-      var themeLength=themeVal.length;
-      var themeSplit=themeVal.split(',');
+		var themeVal=$('#board_theme').val();
+		var themeLength=themeVal.length;
+		var themeSplit=themeVal.split(',');
       
-      for(i=0; i<themeSplit.length; i++) {
-         var themeFir=themeSplit[0];
-         var themeSec=themeSplit[1];
-         var themeThi=themeSplit[2];
-         
-         $('#board_theme1').val('#'+themeFir);
-         $('#board_theme2').val('#'+themeSec);
-         $('#board_theme3').val('#'+themeThi);
-      }
+		for(i=0; i<themeSplit.length; i++) {
+			var themeFir=themeSplit[0];
+			var themeSec=themeSplit[1];
+			var themeThi=themeSplit[2];
+			
+			$('#board_theme1').val('#'+themeFir);
+			$('#board_theme2').val('#'+themeSec);
+			$('#board_theme3').val('#'+themeThi);
+		}
       
-      // 작성자만 수정/삭제 가능
-      var mas=$('#client_nick1').val();
-      var log=$('#log').val();
+		// 작성자만 수정/삭제 가능
+		var mas=$('#client_nick1').val();
+		var log=$('#log').val();
       
-      if(mas==log) {
-	      $('#subm').show();
-	      $('#dele').show();
-      }
+		if(mas==log) {
+			$('#subm').show();
+			$('#dele').show();
+	      
+			$('button[name^=edit_').show();
+			$('button[name^=dele2_').show();
+		}
       
       // 수정버튼
       $('#subm').on('click',function() {
@@ -293,14 +297,6 @@
 		location.href="../review";
 	});
       
-      // 댓글보기 버튼
-	$('#table').hide()
-	
-	$('#replyShow').on('click',function() {
-		$('#table').toggle(function() {
-		});
-	});
-      
       // 입력 버튼
 		var log=$('#log').val();
 		
@@ -328,7 +324,6 @@
 		            data:{board_no:$('#board_no').val(), client_nick1:log, reply_content:reply},
 		            success:function() {
 		            	reload();
-		            	$('#reply').val('');
 		            },
 		            error:function() {
 		               alert('다시 시도해주세요');
@@ -338,8 +333,6 @@
       	});
       
       // 댓글 수정버튼
-		$('button[name^=cancel_').hide();
-		$('button[name^=update_').hide();
 		$('button[name^=edit]').on('click',function() {
      		var name=$(this).attr('name');
      		var num=name.replace('edit_','');   // 버튼의 값
@@ -347,6 +340,7 @@
      		$('button[name=edit_'+num+']').on('click',function() {
 				$('input[name=reply_'+num+']').attr('disabled',false);
 				$('button[name=edit_'+num+']').hide();
+				$('button[name=dele2_'+num+']').hide();
 				$('button[name=update_'+num+']').show();
 				$('button[name^=cancel_'+num+']').show();
 				$('button[name=cancel_'+num+']').on('click',function() {

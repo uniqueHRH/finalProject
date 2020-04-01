@@ -58,11 +58,6 @@
       <button type="button" class="btn btn-default" id="subm">수정하기</button>
       <button type="button" class="btn btn-default" id="dele">삭제하기</button>
       <button type="button" class="btn btn-default" id="goList">목록으로</button>
-      <p></p>
-      <div>
-         <button type="button" class="btn btn-default btn-lg btn-block" id="replyShow">댓글보기</button>
-      </div>
-      <p></p>
    </div>
 
 <!-- 댓글 출력 -->
@@ -103,33 +98,13 @@
 
 <script type="text/javascript">
    $(document).ready(function() {
-		$('#hamb').hide();
-		$('#hide').hide();
-		
 		$('#subm').hide();
 		$('#dele').hide();
-	      
-		$('#tour_sub').hide();
-		$('#comm_sub').hide();
-		$('#serv_sub').hide();
-		$('#system_sub').hide();
 		
-		$('#maintext1').hide();
-		$('#maintext2').hide();
-		$('#maintext3').hide();
-		$('#maintext4').hide();
-		
-		$('#hambBtn').mouseenter(function() {
-			$('#hamb').show();
-			$(this).hide();
-		});
-		$('#hamb').mouseenter(function() {
-			$(this).show();
-			$('#hambBtn').hide();
-		}).mouseleave(function() {
-			$('#hamb').hide();
-			$('#hambBtn').show();
-		});
+		$('button[name^=cancel_').hide();
+		$('button[name^=update_').hide();
+		$('button[name^=edit_').hide();
+		$('button[name^=dele2_').hide();
 		
 		// 이미지가 없을 때 출력되지 않도록
 		var img=$('#hiddenI').val();
@@ -143,9 +118,12 @@
       var log=$('#log').val();
       
       if(mas==log) {
-	      $('#subm').show();
-	      $('#dele').show();
-      }
+			$('#subm').show();
+			$('#dele').show();
+	      
+			$('button[name^=edit_').show();
+			$('button[name^=dele2_').show();
+		}
       
       // 수정버튼
       $('#subm').on('click',function() {
@@ -180,14 +158,6 @@
 	// 목록버튼
 	$('#goList').on('click',function() {
 		location.href="../free";
-	});
-      
-      // 댓글보기 버튼
-	$('#table').hide()
-	
-	$('#replyShow').on('click',function() {
-		$('#table').toggle(function() {
-		});
 	});
       
       // 입력 버튼
@@ -235,6 +205,7 @@
      		$('button[name=edit_'+num+']').on('click',function() {
 				$('input[name=reply_'+num+']').attr('disabled',false);
 				$('button[name=edit_'+num+']').hide();
+				$('button[name=dele2_'+num+']').hide();
 				$('button[name=update_'+num+']').show();
 				$('button[name^=cancel_'+num+']').show();
 				$('button[name=cancel_'+num+']').on('click',function() {
