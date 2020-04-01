@@ -159,7 +159,8 @@
       <div class="form-group">
          <label for="exampleInputEmail2">조회수</label>
          <input type="text" class="form-control" id="board_count" value="${bean.board_count }" style="cursor:default" disabled>
-         <input type="hide" id="log" name="log" value="${sessionScope.check.client_nick1}">
+         <input type="hidden" id="log" name="log" value="${sessionScope.check.client_nick1}">
+         <input type="hidden" id="staffLog" name="staffLog" value="${sessionScope.staffcheck.staff_name}">
       </div>
    </div>
    <p></p>
@@ -182,8 +183,9 @@
          <tbody id="tbody">
          <c:forEach items="${list }" var="beans">
             <tr id="tr1">
-               <th id="th">${beans.client_nick1 }</th>
-               <th id="th">${beans.reply_date }</th>
+				<th id="th">${beans.client_nick1 }</th>
+				<th id="th">${beans.reply_date }</th>
+				<th><input type="hidden" id="repId" name="repId_${beans.reply_no }" value="${beans.client_nick1 }"><th>
 			</tr>
 			<tr id="tr2">
 				<td colspan="2"><input type="text" id="reply" name="reply_${beans.reply_no }" value="${beans.reply_content }" disabled></td>
@@ -226,7 +228,6 @@
 		if(!img) {
 			$('#board_thumb').remove();
 		}
-		
       // 테마 출력
 		var themeVal=$('#board_theme').val();
 		var themeLength=themeVal.length;
@@ -237,23 +238,52 @@
 			var themeSec=themeSplit[1];
 			var themeThi=themeSplit[2];
 			
-			$('#board_theme1').val('#'+themeFir);
-			$('#board_theme2').val('#'+themeSec);
-			$('#board_theme3').val('#'+themeThi);
-		}
+			if(themeSec==undefined) {
+				$('#board_theme1').val('#'+themeFir);
+				$('#board_theme2').val('');
+				$('#board_theme3').val('');
+			} else if(themeThi==undefined) {
+				$('#board_theme1').val('#'+themeFir);
+				$('#board_theme2').val('#'+themeSec);
+				$('#board_theme3').val('');
+			} else {
+				$('#board_theme1').val('#'+themeFir);
+				$('#board_theme2').val('#'+themeSec);
+				$('#board_theme3').val('#'+themeThi);
+			}
+		};
       
-		// 작성자만 수정/삭제 가능
+		// 작성자+관리자만 수정/삭제 가능
 		var mas=$('#client_nick1').val();
 		var log=$('#log').val();
-      
+		var repLog=$('input[name^=repId_').val();
+		var staffLog=$('#staffLog').val();
+		
 		if(mas==log) {
 			$('#subm').show();
 			$('#dele').show();
-	      
-			$('button[name^=edit_').show();
-			$('button[name^=dele2_').show();
 		}
-      
+		if(staffLog) {
+			$('#subm').show();
+			$('#dele').show();
+		}
+		
+		$('input[name^=repId').each(function() {
+			var log=$('#log').val();
+			var id=$(this).val();
+			var num=$(this).attr('name');
+			num=num.split('_');
+			num=num[1];
+			
+			if(log==id) {
+				$('button[name^=edit_'+num+']').show();
+				$('button[name=dele2_'+num+']').show();
+			} else if(staffLog) {
+				$('button[name^=edit_'+num+']').show();
+				$('button[name=dele2_'+num+']').show();
+			}
+		});
+		
       // 수정버튼
       $('#subm').on('click',function() {
          location.href="../reviewUp/${bean.board_no}";
@@ -299,12 +329,14 @@
       
       // 입력 버튼
 		var log=$('#log').val();
-		
-		if(!log) {
-			$('#reply_content').val('로그인 후 이용이 가능합니다').attr('disabled',true);
-			return false;
-		} else {
+		var staffLog=$('#staffLog').val();
+		if(log) {
 			$('#reply_content').attr('disabled',false);
+			return false;
+		} else if(staffLog) {
+			$('#reply_content').attr('disabled',false);
+		} else {
+			$('#reply_content').val('로그인 후 이용이 가능합니다').attr('disabled',true);
 		}
 			
 		$('#insert').on('click',function() {
@@ -336,7 +368,7 @@
 		$('button[name^=edit]').on('click',function() {
      		var name=$(this).attr('name');
      		var num=name.replace('edit_','');   // 버튼의 값
-     		
+
      		$('button[name=edit_'+num+']').on('click',function() {
 				$('input[name=reply_'+num+']').attr('disabled',false);
 				$('button[name=edit_'+num+']').hide();
