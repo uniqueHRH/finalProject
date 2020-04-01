@@ -58,10 +58,7 @@
 	}
 	#btn {
 		text-align:center;
-	}
-	#replyShow {
-		width:700px;
-		margin:0 auto;
+		padding: 0 0 30 0;
 	}
 	/* 댓글 */
 	#table {
@@ -177,10 +174,6 @@
       <button type="button" class="btn btn-default" id="dele">삭제하기</button>
       <button type="button" class="btn btn-default" id="goList">목록으로</button>
       <p></p>
-      <div>
-         <button type="button" class="btn btn-default btn-lg btn-block" id="replyShow">댓글보기</button>
-      </div>
-      <p></p>
    </div>
 
 <!-- 댓글 출력 -->
@@ -293,14 +286,6 @@
 		location.href="../review";
 	});
       
-      // 댓글보기 버튼
-	$('#table').hide()
-	
-	$('#replyShow').on('click',function() {
-		$('#table').toggle(function() {
-		});
-	});
-      
       // 입력 버튼
 		var log=$('#log').val();
 		
@@ -328,7 +313,6 @@
 		            data:{board_no:$('#board_no').val(), client_nick1:log, reply_content:reply},
 		            success:function() {
 		            	reload();
-		            	$('#reply').val('');
 		            },
 		            error:function() {
 		               alert('다시 시도해주세요');
@@ -347,6 +331,7 @@
      		$('button[name=edit_'+num+']').on('click',function() {
 				$('input[name=reply_'+num+']').attr('disabled',false);
 				$('button[name=edit_'+num+']').hide();
+				$('button[name=dele2_'+num+']').hide();
 				$('button[name=update_'+num+']').show();
 				$('button[name^=cancel_'+num+']').show();
 				$('button[name=cancel_'+num+']').on('click',function() {

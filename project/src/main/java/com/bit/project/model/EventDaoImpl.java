@@ -23,7 +23,7 @@ public class EventDaoImpl implements EventDao {
 
 	@Override
 	public EventVo selectOne_event(int key) throws Exception {
-		return sqlSession.selectOne("event.selectAll_event",key);
+		return sqlSession.selectOne("event.selectOne_event",key);
 	}
 
 	@Override
