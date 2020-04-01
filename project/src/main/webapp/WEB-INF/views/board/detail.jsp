@@ -327,7 +327,7 @@
    		            cache:false,
 		            data:{board_no:$('#board_no').val(), client_nick1:log, reply_content:reply},
 		            success:function() {
-		            	$('#tr1').append("<tbody><th>"+log+"</th><th>"+reply+"</th><td>"+reply+"</td></tbody>");
+		            	reload();
 		            	$('#reply').val('');
 		            },
 		            error:function() {
