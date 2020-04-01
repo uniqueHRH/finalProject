@@ -38,7 +38,7 @@
  <div class="row">
 	<div class="col-md-12">	
 		<div class="page-header" align="center">
-	  <h1>중국/일본</h1>
+	  <h1>어디로 떠나세요?</h1>
  </div>
 	</div>
 

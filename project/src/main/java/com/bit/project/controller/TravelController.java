@@ -128,21 +128,27 @@ public class TravelController {
 	@RequestMapping(value = "/tour/eastasia", method = RequestMethod.GET)
 	public String eastasia(Model model) {
 		tourservice.selectAll_eastasia(model);
-		return "tour/eastasia";
+		return "tour/maintour";
 	}
 	//동남아시아로 이동
 	@RequestMapping(value = "/tour/southeastasia", method = RequestMethod.GET)
 	public String southeastasia(Model model) {
 		tourservice.selectAll_southeastasia(model);
-		return "tour/southeastasia";
+		return "tour/maintour";
 	}
-	//동남아시아로 이동
-		@RequestMapping(value = "/tour/america", method = RequestMethod.GET)
-		public String america(Model model) {
-			tourservice.selectAll_america(model);
-			return "tour/america";
+	//아메리카로 이동
+	@RequestMapping(value = "/tour/america", method = RequestMethod.GET)
+	public String america(Model model) {
+		tourservice.selectAll_america(model);
+		return "tour/maintour";
 	}
-	
+	//유럽로 이동	
+	@RequestMapping(value = "/tour/europe", method = RequestMethod.GET)
+	public String europe(Model model) {
+		tourservice.selectAll_europe(model);
+		return "tour/maintour";
+	}
+		
 	
 	//디테일PAGE
 	@RequestMapping(value = "/tour/detail/{idx}", method = RequestMethod.GET)

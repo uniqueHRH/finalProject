@@ -62,14 +62,25 @@ public class TourServiceImpl implements TourService{
 
 	@Override
 	public void selectAll_america(Model model) {
-		List<TourVo> list;
 		try {
-			list = tourDao.selectAll_america();
+			List<TourVo> list = tourDao.selectAll_america();
 			model.addAttribute("list",list);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
+	}
+
+	@Override
+	public void selectAll_europe(Model model) {
+		List<TourVo> list;
+		try {
+			list = tourDao.selectAll_europe();
+			model.addAttribute("list",list);
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
 	}
 
 }
