@@ -37,7 +37,7 @@
 	
 	
 	<insert id="insertOne_partner" parameterType="PartnerBean">
-		insert into partner (partner_sub, partner_count, partner_content, client_nick1, partner_date, partner_img, partner_thumb) values (#{partner_sub}, 0, #{partner_content}, #{client_nick1}, now(), #{partner_img, jdbcType=VARCHAR}, #{partner_thumb, jdbcType=VARCHAR})
+		insert into partner (board_id, partner_sub, partner_count, partner_content, client_nick1, partner_date, partner_img, partner_thumb) values (3, #{partner_sub}, 0, #{partner_content}, #{client_nick1}, now(), #{partner_img, jdbcType=VARCHAR}, #{partner_thumb, jdbcType=VARCHAR})
 	</insert>
 	
 	

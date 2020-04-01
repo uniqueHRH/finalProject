@@ -143,7 +143,7 @@
 	</div>
 <!-- 이미지 수정 -->
 	<div class="upload">
-		<label for="board_img">이미지</label>
+		<label for="board_img">이미지</label><a class="btn btn-default" role="button" id="dele">삭제</a>
 		<input type="file" id="board_img" name="file" />
 		<div class="board_img">
 			<img src="${root }resources/${bean.board_thumb }" id="uploadI"/>
@@ -165,6 +165,7 @@
 </body>
 <script type="text/javascript">
 	$(document).ready(function() {
+		$('#dele').hide();
 		// 테마 불러오기
 		var theme=$('#board_theme').val();
 		var chkbox=$('.custom-control-input');
@@ -204,6 +205,10 @@
 			$('#board_theme').val(pick);
 			
 		});
+		var thu=$('input[name=board_thumb]').val();
+		if(thu) {
+			$('#dele').show();
+		}
 		// 이미지 수정
 		$('#board_img').change(function(){
 			if(this.files && this.files[0]) {

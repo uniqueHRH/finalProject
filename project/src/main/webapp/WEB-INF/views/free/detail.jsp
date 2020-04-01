@@ -40,6 +40,7 @@
          <label for="exampleInputEmail2">조회수</label>
          <input type="text" class="form-control" id="board_count" value="${bean.free_count }" style="cursor:default" disabled>
          <input type="hidden" id="log" name="log" value="${sessionScope.check.client_nick1}">
+         <input type="hidden" id="staffLog" name="staffLog" value="${sessionScope.staffcheck.staff_name}">
       </div>
       &nbsp; &nbsp;
       <div class="form-group" align="left">
@@ -113,17 +114,36 @@
 			$('#board_thumb').remove();
 		}
 		
-      // 작성자만 수정/삭제 가능
-      var mas=$('#client_nick1').val();
-      var log=$('#log').val();
-      
-      if(mas==log) {
+		// 작성자+관리자만 수정/삭제 가능
+		var mas=$('#client_nick1').val();
+		var log=$('#log').val();
+		var repLog=$('input[name^=repId_').val();
+		var staffLog=$('#staffLog').val();
+		
+		if(mas==log) {
 			$('#subm').show();
 			$('#dele').show();
-	      
-			$('button[name^=edit_').show();
-			$('button[name^=dele2_').show();
 		}
+		if(staffLog) {
+			$('#subm').show();
+			$('#dele').show();
+		}
+		
+		$('input[name^=repId').each(function() {
+			var log=$('#log').val();
+			var id=$(this).val();
+			var num=$(this).attr('name');
+			num=num.split('_');
+			num=num[1];
+			
+			if(log==id) {
+				$('button[name^=edit_'+num+']').show();
+				$('button[name=dele2_'+num+']').show();
+			} else if(staffLog) {
+				$('button[name^=edit_'+num+']').show();
+				$('button[name=dele2_'+num+']').show();
+			}
+		});
       
       // 수정버튼
       $('#subm').on('click',function() {

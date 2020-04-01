@@ -10,19 +10,15 @@
 <link rel="stylesheet" type="text/css" href="${root }css/bootstrap.css" />
 <link rel="stylesheet" type="text/css" href="${root }css/travel.css" />
 <style type="text/css">
-	h1 {
+	#table1 {
 		font-family: 'Jua';
 	}
-	table, p {
-		width:700px;      
+	p {
 		margin:0 auto;
-		font-family: 'Jua';
 		font-size:18px;
 	}
     #infocomm{
     	font-size: 20px;
-    	position: relative;
-    	right: 200px;
     }
     #table {
     	width:50%;
@@ -36,6 +32,7 @@
    		text-align: center;
    		font-size: 15px;
    }
+   		
 </style>
 </head>
 <body>
@@ -43,37 +40,33 @@
 
 <!-- menubar end -->
                      <!-- contents start -->
- <div class="container">
-  <div class="row">
-   <div class="col-md-12">
  
-  <div class="page-header" align="center">
-     <h1>내 정보관리(직원용)</h1>
-   </div>
-
+ <div id="table1">
+ 	 <div class="page-header" align="center">
+    	 <h1>내 정보관리(직원용)</h1>
+  	 </div>
+  	 
+	<p id="infocomm" align="center">내정보를 최신정보로 관리해주세요</p>
+	
 	<div id="table">
-   	  <table class="table table-hover">
-	   <p id="infocomm">내정보를 최신정보로 관리해주세요</p>
+		<table class="table table-hover">
 		<tr>
 			<td width="30%">사번/이름</td>
 			<td width="40%">사번<br/></br>이름</td>
-			<td width="50%">20200101<br/></br>채우식</td>
+			<td width="50%">${sessionScope.staffcheck.staff_no }<br/></br>${sessionScope.staffcheck.staff_name }</td>
 		</tr>
 		<tr>
 			<td>연락처/이메일</td>
 			<td>연락처<br/><br/>이메일</td>
-			<td>01088163279<br/><br/>c920216@naver.com</td>
+			<td>${sessionScope.staffcheck.staff_phone }<br/><br/>${sessionScope.staffcheck.staff_email }</td>
 		</tr>
 		<tr>
-			<td>입사일/비밀번호</td>
-			<td>입사일<br/><br/>비밀번호</td>
-			<td>20200101<br/><br/>비밀번호?</td>
+			<td>입사일</td>
+			<td>입사일</td>
+			<td>${sessionScope.staffcheck.staff_joindate }</td>
 		</tr>
 	   </table>
 	 </div>  
-     
-    </div>
-  </div>
 </div>
       
                          <!-- contents end --> 

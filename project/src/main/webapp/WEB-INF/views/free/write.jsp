@@ -38,7 +38,7 @@
 	<p></p>
 <!-- file upload -->
 	<div class="upload">
-		<label for="board_img">이미지</label>
+		<label for="board_img">이미지</label> &nbsp; &nbsp; <a class="btn btn-default" role="button" id="dele">삭제</a>
 		<input type="file" id="board_img" name="file" />
 		<div class="board_img"><img src=""/></div>
 		
@@ -62,31 +62,7 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
-		$('#hamb').hide();
-		$('#hide').hide();
-		
-		$('#tour_sub').hide();
-		$('#comm_sub').hide();
-		$('#serv_sub').hide();
-		$('#system_sub').hide();
-		
-		$('#maintext1').hide();
-		$('#maintext2').hide();
-		$('#maintext3').hide();
-		$('#maintext4').hide();
-		
-		$('#hambBtn').mouseenter(function() {
-			$('#hamb').show();
-			$(this).hide();
-		});
-		$('#hamb').mouseenter(function() {
-			$(this).show();
-			$('#hambBtn').hide();
-		}).mouseleave(function() {
-			$('#hamb').hide();
-			$('#hambBtn').show();
-		});
-
+		$('#dele').hide();
 		// 파일업로드
 		$('#board_img').change(function(){
 			if(this.files && this.files[0]) {
@@ -95,7 +71,13 @@
 					$('.board_img img').attr('src', data.target.result).width(200);        
 				}
 				reader.readAsDataURL(this.files[0]);
+				$('#dele').toggle();
 			}
+		});
+		// 이미지 삭제
+		$('#dele').on('click',function() {
+			$('#board_img').val('');
+			$('#img').remove();
 		});
 
 		// 뒤로 버튼

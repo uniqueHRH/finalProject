@@ -10,24 +10,20 @@
 <link rel="stylesheet" type="text/css" href="${root }css/bootstrap.css" />
 <link rel="stylesheet" type="text/css" href="${root }css/travel.css" />
 <style type="text/css">
-   .container{
-      display: inline-block;
-      font-family: 'Jua';
-      text-align: center;
-      width: 100%;
+   #table {
+      	font-family:"Jua";
     }
     .form-horizontal {
     	text-align: center;
        width:750px;
       margin: 0 auto;
     }
-    #idd,#pww {
-       display:inline block;  
+    #idd{
+       position: relative;
+       right: 150px;
     }
    
     #resetbtn,#changepwbtn{
-    	text-align: center;
-    	margin-top: 10px;
     	width: 30%;
     }
 </style>
@@ -35,30 +31,26 @@
 <body>
 <jsp:include page="/WEB-INF/menubar.jsp"/>
                      <!-- contents start -->
-   <div class="container">
-  <div class="row">
-   <div class="col-md-12">
-      <div class="page-header" align="center">
+<div id="table">
+    <div class="page-header" align="center">
      <h1>비밀번호 확인</h1>
-   </div>
+   	</div>
    <form action="../mypage/lock" class="form-horizontal" method="post">
-     <div class="form-group" id="insertid">
-       <label for="client_pw" class="col-sm-2 control-label" id="idd">현재 비밀번호</label>
-       <div class="col-sm-10">
-         <input type="password" class="form-control" id="client_pw" name="client_pw"style="width:350px">
-     	 <input type="hidden" class="form-control" id="client_id" name="client_id" value="${sessionScope.check.client_id}">
-       </div>
+     <div class="form-group" id="insertid" align="center">
+       	 <label for="client_pw" class="col-sm-2 control-label" id="cpw">현재 비밀번호</label>
+         <input type="password" class="form-control" id="client_pw" name="client_pw" style="width:350px">
+         <input type="hidden" class="form-control" id="client_id" name="client_id" value="${sessionScope.check.client_id}" >
+     </div>
        <c:if test="${msg == 'fail' }">
        	<%out.println("<script>alert('비밀번호를 확인해주세요');</script>");%>
        </c:if>
-     </div>
-     	<button type="submit" id="changepwbtn" class="btn btn-default btn-lg btn-block">확인</button>
+     <div align="center">
+     	<button type="submit" id="changepwbtn" class="btn btn-default btn-lg">확인</button>
      	<button type="button" id="resetbtn" class="btn btn-default btn-lg" onclick="location.href='../myinfo'">취소</button>
+     </div>
      </form>
-     </div>   
-  </div>
-</div>
-      
+</div>   
+
                          <!-- contents end --> 
 <jsp:include page="/WEB-INF/footer.jsp"/>
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>

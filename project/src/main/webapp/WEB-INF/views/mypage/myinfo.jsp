@@ -10,16 +10,13 @@
 <link rel="stylesheet" type="text/css" href="${root }css/bootstrap.css" />
 <link rel="stylesheet" type="text/css" href="${root }css/travel.css" />
 <style type="text/css">
-   .container{
-   	  	width: 100%;
-      	display: inline-block;
-      	font-family: 'Jua';
-      	text-align: center;
+   
+    #table1{
+    	font-family: 'Jua';
     }
+    
     #infocomm{
     	font-size: 20px;
-    	position: relative;
-    	right: 200px;
     }
     #table {
     	width:50%;
@@ -35,28 +32,27 @@
    }
    #changeinfobtn{
    		width: 150px;
-   		position: relative;
-   		left: 250px;
+   		position:relative;
+   		left: 1050px;
    		margin-bottom: 20px;
    		
    }
-   
+  
 </style>
 </head>
 <body>
   <jsp:include page="/WEB-INF/menubar.jsp"/>
 <!-- menubar end -->
                      <!-- contents start -->
- <div class="container">
-  <div class="row">
-   <div class="col-md-12">
+<div id=table1>
  
   <div class="page-header" align="center">
      <h1>내 정보관리</h1>
    </div>
-   <p id="infocomm">내정보를 최신정보로 관리해주세요</p>
- 	 <a href="${root }main/mypage/lock"><button type="button" id="changeinfobtn" class="btn btn-default">정보수정</button></a>
-
+				<p id="infocomm" align="center">내정보를 최신정보로 관리해주세요</p>
+				<div id="changebtn">
+				<a href="${root }main/mypage/lock"><button type="button" id="changeinfobtn" class="btn btn-default">정보수정</button></a>
+				</div>
 	<div id="table">
    	  <table class="table table-hover">
 		<tr>
@@ -82,8 +78,7 @@
 	   </table>
 	 </div>  
     </div>
-  </div>
-</div>
+  
       
                          <!-- contents end --> 
 <jsp:include page="/WEB-INF/footer.jsp"/>
