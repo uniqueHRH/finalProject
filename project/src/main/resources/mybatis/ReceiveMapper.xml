@@ -16,7 +16,7 @@
  
 <mapper namespace="receive">
 	<select id="selectAll_receive" resultType="ReceiveBean" parameterType="ReceiveBean">
-		select * from receive where client_nick2=#{client_nick2} order by receive_no desc
+		select * from receive where client_nick2=#{client_nick2}
 	</select>
 	
 	<select id="selectOne_receive" resultType="ReceiveBean" parameterType="int">

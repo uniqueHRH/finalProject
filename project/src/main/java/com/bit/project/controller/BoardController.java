@@ -417,35 +417,34 @@ public class BoardController {
  	@RequestMapping(value="/board/reviewDe/{idx}",method=RequestMethod.GET)
  	public String detailReview(@PathVariable("idx") int key, Model model) {
  		boardService.selectOne_review(key, model);
- 		replyService.selectAll_reply(key, model);
+ 		replyService.selectAll_Board_reply(key, model);
  		return "board/detail";
  	}
  	// 동행
  	@RequestMapping(value="/board/partnerDe/{idx}",method=RequestMethod.GET)
  	public String detailPartner(@PathVariable("idx") int key, Model model) {
  		partnerService.selectOne_partner(key, model);
- 		replyService.selectAll_reply(key, model);
+ 		replyService.selectAll_Partner_reply(key, model);
  		return "partner/detail";
  	}
  	// 자유게시판
  	@RequestMapping(value="/board/freeDe/{idx}",method=RequestMethod.GET)
  	public String detailFree(@PathVariable("idx") int key, Model model) {
  		freeService.selectOne_free(key, model);
- 		replyService.selectAll_reply(key, model);
+ 		replyService.selectAll_Free_reply(key, model);
  		return "free/detail";
  	}
  	// 이벤트
  	@RequestMapping(value="/board/eventDe/{idx}",method=RequestMethod.GET)
  	public String detailEvent(@PathVariable("idx") int key, Model model) {
  		eventService.selectOne_event(key, model);
- 		replyService.selectAll_reply(key, model);
+ 		replyService.selectAll_Event_reply(key, model);
  		return "event/detail";
  	}
 	// 공지사항
   	@RequestMapping(value="/board/noticeDe/{idx}",method=RequestMethod.GET)
   	public String noticeEvent(@PathVariable("idx") int key, Model model) {
   		noticeService.selectOne_notice(key, model);
-  		replyService.selectAll_reply(key, model);
   		return "notice/detail";
   	}
 //	수정페이지 이동
@@ -669,25 +668,25 @@ public class BoardController {
  	// 후기
  	@RequestMapping(value="/board/reviewRepIn", method=RequestMethod.POST)
  	public String reviewRepIn(@ModelAttribute ReplyVo bean) {
- 		replyService.insertOne_reply(bean);
+ 		replyService.insertOne_Board_reply(bean);
  		return "board/detail";
  	}
 	// 동행
   	@RequestMapping(value="/board/partnerRepIn", method=RequestMethod.POST)
   	public String partnerRepIn(@ModelAttribute ReplyVo bean) {
-  		replyService.insertOne_reply(bean);
+  		replyService.insertOne_Partner_reply(bean);
   		return "partner/detail";
   	}
 	// 자유게시판
   	@RequestMapping(value="/board/freeRepIn", method=RequestMethod.POST)
   	public String freeRepIn(@ModelAttribute ReplyVo bean) {
-  		replyService.insertOne_reply(bean);
+  		replyService.insertOne_Free_reply(bean);
   		return "free/detail";
   	}
 	// 이벤트
   	@RequestMapping(value="/board/eventRepIn", method=RequestMethod.POST)
   	public String eventRepIn(@ModelAttribute ReplyVo bean) {
-  		replyService.insertOne_reply(bean);
+  		replyService.insertOne_Event_reply(bean);
   		return "event/detail";
   	}
 

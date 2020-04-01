@@ -16,20 +16,71 @@ public class ReplyServiceImpl implements ReplyService {
 	ReplyDao replyDao;
 	
 	@Override
-	public void selectAll_reply(int key, Model model) {
+	public void selectAll_Board_reply(int key, Model model) {
 		try {
-			List<ReplyVo> list=replyDao.selectAll_reply(key);
+			List<ReplyVo> list=replyDao.selectAll_Board_reply(key);
 			model.addAttribute("list",list);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
 	}
-
-	@Override
-	public void insertOne_reply(ReplyVo bean) {
+	public void selectAll_Partner_reply(int key, Model model) {
 		try {
-			replyDao.insertOne_reply(bean);
+			List<ReplyVo> list=replyDao.selectAll_Partner_reply(key);
+			model.addAttribute("list",list);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	public void selectAll_Free_reply(int key, Model model) {
+		try {
+			List<ReplyVo> list=replyDao.selectAll_Free_reply(key);
+			model.addAttribute("list",list);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	public void selectAll_Event_reply(int key, Model model) {
+		try {
+			List<ReplyVo> list=replyDao.selectAll_Event_reply(key);
+			model.addAttribute("list",list);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	@Override
+	public void insertOne_Board_reply(ReplyVo bean) {
+		try {
+			replyDao.insertOne_Board_reply(bean);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	@Override
+	public void insertOne_Partner_reply(ReplyVo bean) {
+		try {
+			replyDao.insertOne_Partner_reply(bean);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	@Override
+	public void insertOne_Free_reply(ReplyVo bean) {
+		try {
+			replyDao.insertOne_Free_reply(bean);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	@Override
+	public void insertOne_Event_reply(ReplyVo bean) {
+		try {
+			replyDao.insertOne_Event_reply(bean);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

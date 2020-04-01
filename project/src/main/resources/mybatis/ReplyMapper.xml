@@ -14,13 +14,42 @@
  
  
 <mapper namespace="reply">
-	<select id="selectAll_reply" resultType="ReplyBean">
-		select * from reply where board_no=#{value} order by reply_no asc
+<!-- 후기 -->
+	<select id="selectAll_Board_reply" resultType="ReplyBean">
+		select * from reply where board_no=#{value} and board_id=2 order by reply_no asc
 	</select>
 	
-	<insert id="insertOne_reply" parameterType="ReplyBean">
-		insert into reply (board_no, client_nick1, reply_content, reply_date) values (#{board_no}, #{client_nick1}, #{reply_content}, now())
+	<insert id="insertOne_Board_reply" parameterType="ReplyBean">
+		insert into reply (board_no, board_id, client_nick1, reply_content, reply_date) values (#{board_no}, 2, #{client_nick1}, #{reply_content}, now())
 	</insert>
+	
+<!-- 동행 -->
+	<select id="selectAll_Partner_reply" resultType="ReplyBean">
+		select * from reply where board_no=#{value} and board_id=3 order by reply_no asc
+	</select>
+	
+	<insert id="insertOne_Partner_reply" parameterType="ReplyBean">
+		insert into reply (board_no, board_id, client_nick1, reply_content, reply_date) values (#{board_no}, 3, #{client_nick1}, #{reply_content}, now())
+	</insert>
+	
+<!-- 자유게시판 -->
+	<select id="selectAll_Free_reply" resultType="ReplyBean">
+		select * from reply where board_no=#{value} and board_id=4 order by reply_no asc
+	</select>
+	
+	<insert id="insertOne_Free_reply" parameterType="ReplyBean">
+		insert into reply (board_no, board_id, client_nick1, reply_content, reply_date) values (#{board_no}, 4, #{client_nick1}, #{reply_content}, now())
+	</insert>
+	
+<!-- 이벤트 -->
+	<select id="selectAll_Event_reply" resultType="ReplyBean">
+		select * from reply where board_no=#{value} and board_id=5 order by reply_no asc
+	</select>
+	
+	<insert id="insertOne_Event_reply" parameterType="ReplyBean">
+		insert into reply (board_no, board_id, client_nick1, reply_content, reply_date) values (#{board_no}, 5, #{client_nick1}, #{reply_content}, now())
+	</insert>
+	
 	
 	<update id="updateOne_reply" parameterType="ReplyBean">
 		update reply set reply_content=#{reply_content} where reply_no=#{reply_no}

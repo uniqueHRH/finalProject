@@ -15,13 +15,37 @@ public class ReplyDaoImpl implements ReplyDao {
 	SqlSession sqlSession;
 	
 	@Override
-	public List<ReplyVo> selectAll_reply(int key) throws Exception {
-		return sqlSession.selectList("reply.selectAll_reply", key);
+	public List<ReplyVo> selectAll_Board_reply(int key) throws Exception {
+		return sqlSession.selectList("reply.selectAll_Board_reply", key);
+	}
+	@Override
+	public List<ReplyVo> selectAll_Partner_reply(int key) throws Exception {
+		return sqlSession.selectList("reply.selectAll_Partner_reply", key);
+	}
+	@Override
+	public List<ReplyVo> selectAll_Free_reply(int key) throws Exception {
+		return sqlSession.selectList("reply.selectAll_Free_reply", key);
+	}
+	@Override
+	public List<ReplyVo> selectAll_Event_reply(int key) throws Exception {
+		return sqlSession.selectList("reply.selectAll_Event_reply", key);
 	}
 
 	@Override
-	public void insertOne_reply(ReplyVo bean) throws Exception {
-		sqlSession.insert("reply.insertOne_reply",bean);
+	public void insertOne_Board_reply(ReplyVo bean) throws Exception {
+		sqlSession.insert("reply.insertOne_Board_reply",bean);
+	}
+	@Override
+	public void insertOne_Partner_reply(ReplyVo bean) throws Exception {
+		sqlSession.insert("reply.insertOne_Partner_reply",bean);
+	}
+	@Override
+	public void insertOne_Free_reply(ReplyVo bean) throws Exception {
+		sqlSession.insert("reply.insertOne_Free_reply",bean);
+	}
+	@Override
+	public void insertOne_Event_reply(ReplyVo bean) throws Exception {
+		sqlSession.insert("reply.insertOne_Event_reply",bean);
 	}
 
 	@Override
