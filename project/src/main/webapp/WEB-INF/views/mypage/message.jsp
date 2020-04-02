@@ -141,14 +141,14 @@
 			var page=((range-2)*rangeSize)+1;
 			var range=range-1;
 			var url='${root }main/message/?id=${sessionScope.check.client_nick1}';
-			url=url+"?page="+page;
+			url=url+"&page="+page;
 			url=url+"&range="+range;
 			location.href=url;
 		}
 		//페이지 번호 클릭
 		function pagination(page, range, rangeSize, searchType, keyword) {
 			var url='${root }main/message/?id=${sessionScope.check.client_nick1}';
-			url=url+"?page="+page;
+			url=url+"&page="+page;
 			url=url+"&range="+range;
 			url=url+"&searchType="+$('#searchType').val();
 			url=url+"&keyword="+keyword;
@@ -159,7 +159,7 @@
 			var page=parseInt((range*rangeSize))+1;
 			var range=parseInt(range)+1;
 			var url='${root }main/message/?id=${sessionScope.check.client_nick1}';
-			url=url+"?page="+page;
+			url=url+"&page="+page;
 			url=url+"&range="+range;
 			location.href=url;
 		}
