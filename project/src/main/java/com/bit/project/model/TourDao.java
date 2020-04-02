@@ -11,6 +11,7 @@ public interface TourDao {
 	List<TourVo> selectAll_southeastasia() throws Exception;
 	List<TourVo> selectAll_america() throws Exception;
 	List<TourVo> selectAll_europe() throws Exception;
+	List<TourVo> selectAll_pacific() throws Exception;
 	
 	
 	TourVo selectOne_tour(int tour_no) throws Exception;

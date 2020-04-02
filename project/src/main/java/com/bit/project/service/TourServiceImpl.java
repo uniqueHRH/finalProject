@@ -83,4 +83,16 @@ public class TourServiceImpl implements TourService{
 		}
 	}
 
+	@Override
+	public void selectAll_pacific(Model model) {
+		List<TourVo> list;
+		try {
+			list = tourDao.selectAll_pacific();
+			model.addAttribute("list",list);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+
 }
