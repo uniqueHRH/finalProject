@@ -73,7 +73,7 @@
 <!-- 검색 -->
    <div class="topMenu" id="search">
 		<select id="searchType">
-		    <option value="board_sub">내 &nbsp;용</option>
+		    <option value="receive_content">내 &nbsp;용</option>
 		    <option value="client_nick1">보낸이</option>
 		</select>
       <input type="text" class="form-control" id="keyword" name="keyword" style="width:200px; display:inline-block;">
@@ -140,14 +140,14 @@
 		function prev(page, range, rangeSize) {
 			var page=((range-2)*rangeSize)+1;
 			var range=range-1;
-			var url="${root }main/message";
+			var url='${root }main/message/?id=${sessionScope.check.client_nick1}';
 			url=url+"?page="+page;
 			url=url+"&range="+range;
 			location.href=url;
 		}
 		//페이지 번호 클릭
 		function pagination(page, range, rangeSize, searchType, keyword) {
-			var url="${root }main/message";
+			var url='${root }main/message/?id=${sessionScope.check.client_nick1}';
 			url=url+"?page="+page;
 			url=url+"&range="+range;
 			url=url+"&searchType="+$('#searchType').val();
@@ -158,7 +158,7 @@
 		function next(page, range, rangeSize) {
 			var page=parseInt((range*rangeSize))+1;
 			var range=parseInt(range)+1;
-			var url="${root }main/message";
+			var url='${root }main/message/?id=${sessionScope.check.client_nick1}';
 			url=url+"?page="+page;
 			url=url+"&range="+range;
 			location.href=url;

@@ -27,6 +27,7 @@
 		</trim>
 		where client_nick2=#{client_nick2}
 		order by receive_no desc
+		LIMIT #{startList}, #{listSize}
 	</select>
 	
 	<select id="selectOne_receive" resultType="ReceiveBean" parameterType="int">
