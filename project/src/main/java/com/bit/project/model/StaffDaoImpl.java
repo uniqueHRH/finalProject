@@ -38,7 +38,7 @@ public class StaffDaoImpl implements StaffDao {
 
 	@Override
 	public void insertOne_staff(StaffVo bean) throws Exception {
-		sqlSession.insert("staff.insertOne_staff",bean);
+		 sqlSession.insert("staff.insertOne_staff",bean);
 	}
 
 	@Override

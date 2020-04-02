@@ -8,7 +8,7 @@ public class StaffVo {
 	private String staff_name;
 	private String staff_phone;
 	private String staff_email;
-	private int staff_team;
+	private String staff_team;
 	private Date staff_joindate;
 	private String staff_pw;
 	
@@ -42,10 +42,10 @@ public class StaffVo {
 	public void setStaff_email(String staff_email) {
 		this.staff_email = staff_email;
 	}
-	public int getStaff_team() {
+	public String getStaff_team() {
 		return staff_team;
 	}
-	public void setStaff_team(int staff_team) {
+	public void setStaff_team(String staff_team) {
 		this.staff_team = staff_team;
 	}
 	public Date getStaff_joindate() {
@@ -72,7 +72,7 @@ public class StaffVo {
 
 
 	
-	public StaffVo(int staff_no, String staff_name, String staff_phone, String staff_email, int staff_team,
+	public StaffVo(int staff_no, String staff_name, String staff_phone, String staff_email, String staff_team,
 			Date staff_joindate, String staff_pw) {
 		super();
 		this.staff_no = staff_no;

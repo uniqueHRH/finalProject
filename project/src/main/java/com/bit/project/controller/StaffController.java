@@ -112,9 +112,12 @@ public class StaffController {
  		return "/system/enroll";
  	}
  	
-// 	@RequestMapping(value="/system/staffIns",method=RequestMethod.POST)
-//    public 
-// 	
+ 	@RequestMapping(value="/system/staffIns",method=RequestMethod.POST)
+    public String staffIns(StaffVo bean) {
+ 		staffService.insertOne_staff(bean);
+ 		return "redirect:/system/staff";
+ 	}
+ 	
  	
 // 	@RequestMapping(value="/system/staffDe/{idx}",method=RequestMethod.GET)
 // 	public String detailstaff(@PathVariable("idx") int key, Model model) {
