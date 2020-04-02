@@ -6,6 +6,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.bit.project.common.Search;
+import com.bit.project.model.entity.BoardVo;
 import com.bit.project.model.entity.StaffVo;
 
 @Repository
@@ -15,10 +17,20 @@ public class StaffDaoImpl implements StaffDao {
 	SqlSession sqlSession;
 	
 	@Override
-	public List<StaffVo> selectAll_staff() throws Exception {
-		return sqlSession.selectList("staff.selectAll_staff");
+	public List<StaffVo> selectAll_staff(Search search) throws Exception {
+		return sqlSession.selectList("staff.selectAll_staff", search);	
 	}
-
+	
+	@Override
+	public List<StaffVo> selectAll_staffNo(Search search) throws Exception {
+		return sqlSession.selectList("staff.selectAll_staffNo");
+	}
+	
+	@Override
+	public List<StaffVo> selectAll_staffTeam(Search search) throws Exception {
+		return sqlSession.selectList("staff.selectAll_staffTeam");
+	}
+	
 	@Override
 	public StaffVo selectOne_staff(int key) throws Exception {
 		return sqlSession.selectOne("staff.selectOne_staff",key);
@@ -43,5 +55,11 @@ public class StaffDaoImpl implements StaffDao {
 	public StaffVo loginCheck(StaffVo bean) throws Exception {
 		return sqlSession.selectOne("staff.stafflogin", bean);
 	}
+
+	@Override
+	public int getStaffListCnt(Search search) throws Exception {
+		return sqlSession.selectOne("staff.getStaffListCnt", search);
+	}
+
 
 }

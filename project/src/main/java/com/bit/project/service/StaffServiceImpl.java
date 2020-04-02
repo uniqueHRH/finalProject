@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+import com.bit.project.common.Search;
 import com.bit.project.model.StaffDao;
 import com.bit.project.model.entity.StaffVo;
 
@@ -16,14 +17,20 @@ public class StaffServiceImpl implements StaffService {
 	StaffDao staffDao;
 	
 	@Override
-	public void selectAll_staff(Model model) {
-		try {
-			List<StaffVo> list=staffDao.selectAll_staff();
-			model.addAttribute("list",list);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	public List<StaffVo> selectAll_staff(Search search) throws Exception {
+		return staffDao.selectAll_staff(search);
 	}
+	
+	@Override
+	public List<StaffVo> selectAll_staffNo(Search search) throws Exception {
+		return staffDao.selectAll_staffNo(search);
+	}
+	
+	@Override
+	public List<StaffVo> selectAll_staffTeam(Search search) throws Exception {
+		return staffDao.selectAll_staffTeam(search);
+	}
+	
 
 	@Override
 	public void selectOne_staff(int key, Model model) {
@@ -65,6 +72,12 @@ public class StaffServiceImpl implements StaffService {
 	public StaffVo loginCheck(StaffVo bean) throws Exception {
 		return staffDao.loginCheck(bean);
 	}
+
+	@Override
+	public int getStaffListCnt(Search search) throws Exception {
+		return staffDao.getStaffListCnt(search);
+	}
+
 
 
 }

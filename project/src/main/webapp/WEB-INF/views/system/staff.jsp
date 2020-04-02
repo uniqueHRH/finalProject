@@ -1,195 +1,216 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page pageEncoding="utf-8" %>
+<%@ page pageEncoding="utf-8" import="com.bit.project.model.entity.*, java.util.List"%>
 <link href="https://fonts.googleapis.com/css?family=Jua&display=swap&subset=korean" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Jua|Noto+Sans+KR&display=swap" rel="stylesheet">
 <c:url value="/" var="root"></c:url>
 <html>
 <head>
 <meta charset="utf-8">
-<title>Home</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width"/>
+
 <link rel="stylesheet" type="text/css" href="${root }css/bootstrap.css" />
 <link rel="stylesheet" type="text/css" href="${root }css/travel.css" />
+<link rel="stylesheet" type="text/css" href="${root }css/staff.css" />
 <style type="text/css">
-   .container {
-   		width: 100%;
-      	display: inline-block;
-      	font-family: 'Jua';
-      	text-align: center;
-   }
-   #page-header{
-   		font-family: 'Jua';
-      	text-align: center;
-   }
-   #receivebtn,#sendbtn{
-   		font-family: 'Jua';
-   		display: inline-block;
-   		position: relative;
-   		left: 230px;
-   		margin-bottom: 10px;
-   }
-   #registerbtn{
-   font-family: 'Jua';
-   		display: inline-block;
-   		position: relative;
-   		left: 870px;
-   		margin-bottom: 10px;
-   }
-   #table {
-      width:700px;      
-      margin:0 auto;
-      text-align:center;
-      font-family: 'Jua';
-   }
-   #table>thead th{
-   		text-align: center;
-        font-size: 15px;
-   }
-   #table>thead th:nth-child(2) {
-      width:200px;
-      text-align: center;
-   }
-  #pageNum, #search {
-      width:320px;      
-      margin:0 auto;
-      text-align:center;
-   }
-  .dropdown {
-      font-family: 'Jua';
-      font-size: 18px;
-   }
-   
 </style>
 </head>
 <body>
 <jsp:include page="/WEB-INF/menubar.jsp"/>
 
 <!-- contents start -->
-<div class="container">
-  <div class="row">
-   <div class="col-md-12">
       <div class="page-header" id="page-header" align="center">
      <h1>직원관리</h1>
    </div>
-<button type="button" id="registerbtn" class="btn btn-default">등록</button>
-  
-
+   
+	
+   
+<table class="table table-hover" id="table">
+<!-- 정렬 드롭다운 -->
+	<div class="topMenu" id="theme">
+		<select id="dropdownMenu1">
+		    <option value="정렬">정 &nbsp;렬</option>
+		    <option value="사번">사번</option>
+		    <option value="부서">부서</option>
+		</select>
+		<a class="btn btn-default" href="#" role="button" id="sel">조회</a>
+		<input type="text" value="<c:out value="${listCnt}"></c:out>개의 게시물이 조회되었습니다" id="listCnt" disabled/>
+		<div id="fff"></div>
+	   <a class="btn btn-default" href="${root }board/reviewIns" role="button" id="wri">등록</a>
+	   <input type="hidden" id="loginCk" value="${sessionScope.staffcheck.staff_no}"/>
+	</div>
 
 <!-- 리스트 출력 -->
-<table class="table table-hover" id="table">
    <thead>
       <tr class="active">
-      	 <th>no</th>
+         <th>사 번</th>
          <th>이 름</th>
          <th>연락처</th>
          <th>이메일</th>
          <th>소 속</th>
+         <th>입사일</th>
+         <th>비밀번호</th>
       </tr>
    </thead>
    <tbody>
-      <tr>
-      	 <td>1</td>
-         <td>채우식</td>
-         <td>01088163279</td>
-         <td>c920216@naver.com</td>
-         <td>회장</td>
-      </tr>
-      <tr>
-      	 <td>1</td>
-         <td>정지문</td>
-         <td>01088163279</td>
-         <td>c920216@naver.com</td>
-         <td>사원</td>
-      </tr>
-      <tr>
-      	 <td>1</td>
-         <td>채우식</td>
-         <td>01088163279</td>
-         <td>c920216@naver.com</td>
-         <td>회장</td>
-      </tr>
-      <tr>
-      	 <td>1</td>
-         <td>채우식</td>
-         <td>01088163279</td>
-         <td>c920216@naver.com</td>
-         <td>회장</td>
-      </tr>
+		<c:forEach items="${list }" var="bean">
+		<tr>
+			<td>${bean.staff_no }</td>
+			<td><a href="reviewDe/${bean.staff_no }">[${bean.staff_name }]</a></td>
+			<td><a href="reviewDe/${bean.staff_no }">${bean.staff_phone }</a></td>
+			<td><a href="reviewDe/${bean.staff_no }">${bean.staff_email }</a></td>
+			<td><a href="reviewDe/${bean.staff_no }">${bean.staff_team}</a></td>
+			<td><a href="reviewDe/${bean.staff_no }">${bean.staff_joindate }</a></td>
+			<td><a href="reviewDe/${bean.staff_no }">${bean.staff_pw }</a></td>
+		</tr>
+		</c:forEach>
    </tbody>
 </table>
 
 <nav id="pageNum">
 <!-- 페이지넘버링 -->
-  <ul class="pagination">
-    <li class="disabled"><a href="#" aria-label="Previous">
-        <span aria-hidden="true">&laquo;</span>
-      </a>
-    </li>
-    <li><a href="#">1</a></li>
-    <li><a href="#">2</a></li>
-    <li><a href="#">3</a></li>
-    <li><a href="#">4</a></li>
-    <li><a href="#">5</a></li>
-    <li>
-      <a href="#" aria-label="Next">
-        <span aria-hidden="true">&raquo;</span>
-      </a>
-    </li>
-  </ul>
+	<div id="paginationBox">
+		<ul class="pagination">
+			<c:if test="${pagination.prev}">
+				<li class="page-item"><a class="page-link" href="#" onClick="prev('${pagination.page}', '${pagination.range}', '${pagination.rangeSize}')">Prev</a></li>
+			</c:if>
+			<c:forEach begin="${pagination.startPage}" end="${pagination.endPage}" var="idx">
+				<li class="page-item <c:out value="${pagination.page==idx?'active' : ''}"/>"><a class="page-link" href="#" onClick="pagination('${idx}', '${pagination.range}', '${pagination.rangeSize}', '${search.searchType}', '${search.keyword }' )">${idx}</a></li>
+			</c:forEach>
+			<c:if test="${pagination.next}">
+				<li class="page-item"><a class="page-link" href="#" onClick="next('${pagination.range}', '${pagination.range}', '${pagination.rangeSize}')" >Next</a></li>
+			</c:if>
+		</ul>
+	</div>
+
 <!-- 검색 -->
-   <div class="dropdown" id="search" style="display:block;">
-      <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true"><img src="https://cdn.pixabay.com/photo/2016/03/31/19/14/magnifying-glass-1294834_960_720.png" style="width:20px;"><span class="caret"></span></button>
-        	<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-             <li role="presentation"><a role="menuitem" tabindex="-1" href="#">이름</a></li>
-             <li role="presentation"><a role="menuitem" tabindex="-1" href="#">연락처</a></li>
-             <li role="presentation"><a role="menuitem" tabindex="-1" href="#">부서</a></li>
-         </ul>
-         
-      <input type="text" class="form-control" id="client_id" name="client_id" style="width:200px; display:inline-block;">
-      <a class="btn btn-default" href="#" role="button">검색</a>
-   </div>
-</nav>      
-      </div>
-   </div>
-</div>
-                                    <!-- contents end -->
-     
+   <div class="topMenu" id="search">
+		<select id="searchType">
+		    <option value="staff_name">이 름</option>
+		    <option value="staff_no">사 번</option>
+		    <option value="staff_team">부 서</option>
+		</select>
+      <input type="text" class="form-control" id="keyword" name="keyword" style="width:200px; display:inline-block;">
+		<a class="btn btn-default" href="#" role="button" id="searchGo">G O</a>
+	</div>
+	
+</nav>
+
+<!-- 리모컨 -->
+	<div class="btn-group-vertical fixed-top" id="remote" role="group" aria-label="...">
+		<div id="kakao-talk-channel-chat-button"></div>
+		<button type="button" class="btn btn-default" id="top">TOP ▲</button>
+	</div>
+
 <jsp:include page="/WEB-INF/footer.jsp"/>
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="${root }js/bootstrap.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-		$('#tour_sub').hide();
-		$('#comm_sub').hide();
-		$('#serv_sub').hide();
-		$('#system_sub').hide();
+		/* 정렬 */
+		$('#sel').on('click',function() {
+			var up=$('#dropdownMenu1').val();
+			if(up=='정렬') {
+				$.ajax({
+					url:'../system/staff',
+					type:'GET',
+					success:function(data) {
+						location.href="../system/staff";
+					},
+					error:function() {
+					}
+				});   // ajax
+			}   // if
+			if(up=='사번') {
+				$.ajax({
+					url:'../system/staffNo',
+					type:'GET',
+					success:function(data) {
+						location.href="../system/staffNo";
+					},
+					error:function() {
+					}
+				});   // ajax
+				return false;
+			}   // if
+			if(up=='부서') {
+				$.ajax({
+					url:'../system/staffTeam',
+					type:'GET',
+					success:function() {
+						location.href="../system/staffTeam";
+					},
+					error:function() {
+					}
+				});   // ajax
+			}   // if
+		});
 		
-		$('#mainFont1').hide();
-		$('#mainFont2').hide();
-		$('#mainFont3').hide();
-		$('#mainFont4').hide();
-	
-		$('#tour').mouseenter(function() {
-			$('#tour_sub').show();
-		}).mouseleave(function() {
-			$('#tour_sub').hide();
+		// 리모컨 top
+		$('#top').on('click',function() {
+			$('html,body').scrollTop(0);
 		});
-		$('#comm').mouseenter(function() {
-			$('#comm_sub').show();
-		}).mouseleave(function() {
-			$('#comm_sub').hide();
+		
+		//<![CDATA[
+	    // 사용할 앱의 JavaScript 키를 설정해 주세요.
+	    Kakao.init('acc658a670e9ed5918d11647040b5bc5');
+	    // 카카오톡 채널 1:1채팅 버튼을 생성합니다.
+	    Kakao.Channel.createChatButton({
+	      container: '#kakao-talk-channel-chat-button',
+	      channelPublicId: '_wxfwxfxb' // 카카오톡 채널 홈 URL에 명시된 id로 설정합니다.
+	    });
+	  //]]>
+		
+		$('#hide').hide();
+		// 로그인 후 글쓰기 이용 가능
+		var loginBool=$('#loginCk').val();
+		if(!loginBool) {
+			$('#wri').hide();
+		}
+//////////////////////////////////////////////////////////////////////////////////////////		
+		// 검색
+		$('#searchGo').on('click',function() {
+			var url='${root }system/staff';
+			url=url+'?searchType='+$('#searchType').val();
+			url=url+'&keyword='+$('#keyword').val();
+			
+			location.href=url;
+			console.log(url);
 		});
-		$('#serv').mouseenter(function() {
-			$('#serv_sub').show();
-		}).mouseleave(function() {
-			$('#serv_sub').hide();
-		});
-		$('#system').mouseenter(function() {
-			$('#system_sub').show();
-		}).mouseleave(function() {
-			$('#system_sub').hide();
-		});
-      
+		
    });
+//////////////////////////////////////////////////////////////////////////////////////////		
+		// 페이징
+		//이전 버튼 이벤트
+		function prev(page, range, rangeSize) {
+			var page=((range-2)*rangeSize)+1;
+			var range=range-1;
+			var url="${root }board/review";
+			url=url+"?page="+page;
+			url=url+"&range="+range;
+			location.href=url;
+		}
+		//페이지 번호 클릭
+		function pagination(page, range, rangeSize, searchType, keyword) {
+			var url="${root }board/review";
+			url=url+"?page="+page;
+			url=url+"&range="+range;
+			url=url+"&searchType="+$('#searchType').val();
+			url=url+"&keyword="+keyword;
+			location.href = url;	
+		}
+		//다음 버튼 이벤트
+		function next(page, range, rangeSize) {
+			var page=parseInt((range*rangeSize))+1;
+			var range=parseInt(range)+1;
+			var url="${root }board/review";
+			url=url+"?page="+page;
+			url=url+"&range="+range;
+			location.href=url;
+		}
+		
+		
 </script>
 </body>
 </html>
