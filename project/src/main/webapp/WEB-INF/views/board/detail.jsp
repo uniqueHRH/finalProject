@@ -223,7 +223,6 @@
 		
 		// 이미지가 없을 때 출력되지 않도록
 		var img=$('#hiddenI').val();
-		console.log(img);
 		
 		if(img=='') {
 			$('#board_thumb').remove();
@@ -291,7 +290,7 @@
       
       // 삭제버튼
 		$('#dele').on('click',function() {
-			var con=confirm('삭제하시겠습니까?');
+/* 			var con=confirm('삭제하시겠습니까?');
 			var replyCnt=$('#reply').length;
 			
 			if(con) {
@@ -311,7 +310,11 @@
 		                  }
 		            });
 				}
-			}
+			} */
+			
+			alert('삭제하시겠습니까?',{
+				buttons:['확인','취소'],
+			});
 		});
       
 	// 쪽지보내기

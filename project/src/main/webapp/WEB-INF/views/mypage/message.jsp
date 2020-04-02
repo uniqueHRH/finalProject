@@ -125,8 +125,8 @@
 //////////////////////////////////////////////////////////////////////////////////////////		
 		// 검색
 		$('#searchGo').on('click',function() {
-			var url='${root }main/message';
-			url=url+'?searchType='+$('#searchType').val();
+			var url='${root }main/message/?id=${sessionScope.check.client_nick1}';
+			url=url+'&searchType='+$('#searchType').val();
 			url=url+'&keyword='+$('#keyword').val();
 			
 			location.href=url;
