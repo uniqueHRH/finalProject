@@ -121,7 +121,7 @@
 	</p>
 </form>
 
-      
+<jsp:include page="/WEB-INF/socket.jsp"/>
 <jsp:include page="/WEB-INF/footer.jsp"/>
 <!-- contents end -->
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>

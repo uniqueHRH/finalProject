@@ -57,13 +57,11 @@
       
 
 <!-- contents end -->
-     
+<jsp:include page="/WEB-INF/socket.jsp"/>
 <jsp:include page="/WEB-INF/footer.jsp"/>
-</body>
 
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="${root }js/bootstrap.js"></script>
-
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#dele').hide();
@@ -93,5 +91,5 @@
 	});
 	
 </script>
-
+</body>
 </html>

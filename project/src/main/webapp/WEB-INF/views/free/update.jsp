@@ -74,7 +74,7 @@
 
 
 <!-- contents end -->
-     
+<jsp:include page="/WEB-INF/socket.jsp"/>
 <jsp:include page="/WEB-INF/footer.jsp"/>
 </body>
 <script type="text/javascript">

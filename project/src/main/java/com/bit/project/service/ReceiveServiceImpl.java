@@ -18,14 +18,8 @@ public class ReceiveServiceImpl implements ReceiveService {
 	ReceiveDao receiveDao;
 	
 	@Override
-	public void selectAll_receive(String key, Model model) {
-		try {
-			List<ReceiveVo> list=receiveDao.selectAll_receive(key);
-			model.addAttribute("list", list);
-			System.out.println("service1 : "+key);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	public List<ReceiveVo> selectAll_receive(Search search) throws Exception {
+		return receiveDao.selectAll_receive(search);
 	}
 
 	@Override
@@ -37,6 +31,15 @@ public class ReceiveServiceImpl implements ReceiveService {
 		}
 	}
 
+	@Override
+	public void selectOne_receiveLimitOne(String key, Model model) {
+		try {
+			receiveDao.selectOne_receiveLimitOne(key);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	@Override
 	public void deleteOne_receive(int key) {
 		try {

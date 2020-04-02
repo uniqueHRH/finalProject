@@ -48,10 +48,6 @@
 			window.close();
 		});
 		
-		
-		console.log(new Date().format("yyyy년 MM월 dd일 a/p hh시 mm분 ss초"));
-		
-		
 		$('#cancel').on('click', function() {
 			window.close();
 		});

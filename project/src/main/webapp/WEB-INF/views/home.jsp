@@ -184,7 +184,7 @@
 				        <input type="hidden" id="session" value="${sessionScope.check.client_nick1}"/>
 					        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">${sessionScope.check.client_nick1} 님<span class="caret"></span></a>
 					        	<ul class="dropdown-menu" role="menu">
-					        		<li><a href="${root }main/message" id="msg">쪽지함</a></li>
+					        		<li><a href="${root }main/message/?id=${sessionScope.check.client_nick1}" id="msg">쪽지함</a></li>
 					        		<li><a href="#">최근본상품</a></li>
 					        		<li><a href="${root }main/wish">찜한상품</a></li>
 					        		<li><a href="#">결제상품</a></li>
@@ -247,6 +247,14 @@
 		<input type="text" class="form-control" id="keyword" name="keyword" placeholder="도시명 검색 (DB 확인후 기능 예정)">
 		<a class="btn btn-default" href="#" role="button" id="searchGo">G O</a>
 	</div>
+	
+	
+	
+	<input id="input"/><button id="button">전송</button>
+	
+	
+	
+	
 </div>   <!-- 점보트론 -->
 
 	<!-- 추천상품img -->
@@ -275,25 +283,24 @@
 	
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="${root }js/bootstrap.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.js"></script>
 <script type="text/javascript">
-	$(document).ready(function() {
-		// session 정보
-		$('#msg').on('click',function() {
-			var id=$('#session').val();
-			console.log(id);
-			
-			$.ajax({
-				url:'../project/main/message',
-				type:'GET',
-				data:{key:id},
-				success:function() {
-				},
-				error:function() {
-					alert('실패');
-				}
-			});
+
+	var sock=new SockJS("${root}echo");
+	
+	sock.onmessage=function(msg){
+		console.log(msg.data);
+		window.open('../project/board/review','쪽지보내기','width=470, height=340, left=500, top=50');
+	};
+	$(function(){
+		$('#button').click(function(){
+			sock.send($('#input').val());
+			$('#input').val('');
 		});
 		
+	});
+
+	$(document).ready(function() {
 		// 검색
 		$('#searchGo').on('click',function() {
 			var url='${root }board/review';

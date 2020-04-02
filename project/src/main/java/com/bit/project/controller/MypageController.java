@@ -1,11 +1,9 @@
 package com.bit.project.controller;
 
-import java.nio.channels.SeekableByteChannel;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.ibatis.executor.ReuseExecutor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,10 +28,31 @@ public class MypageController {
 	ClientService clientService;
 //	쪽지함
 	@RequestMapping(value="/main/message", method=RequestMethod.GET)
-	public String receiveMsg(String key, Model model) throws Exception {
-		receiveService.selectAll_receive(key, model);
-		System.out.println("controller1 : "+key);
-		System.out.println("controller2 : "+model);
+	public String receiveMsg(String id, Model model,
+			@RequestParam(required = false, defaultValue = "1") int page,
+ 			@RequestParam(required=false, defaultValue="1") int range,
+ 			@RequestParam(required=false, defaultValue="receive_content") String searchType,
+ 			@RequestParam(required=false) String keyword,
+ 			@ModelAttribute("search") Search search
+ 			) throws Exception {
+		
+		model.addAttribute("search", search);
+ 		search.setSearchType(searchType);
+ 		search.setKeyword(keyword);
+ 		search.setClient_nick2(id);
+ 		
+ 		// 전체 게시글 갯수
+ 		int listCnt=0;
+		try {
+			listCnt=receiveService.getReceiveListCnt(search);
+			search.pageInfo(page, range, listCnt);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		model.addAttribute("pagination", search);
+		model.addAttribute("list",receiveService.selectAll_receive(search));
+		model.addAttribute("listCnt",listCnt);
 		return "mypage/message";
 	}
 	
@@ -41,11 +60,15 @@ public class MypageController {
 	@RequestMapping(value="/main/messageDe/{idx}", method=RequestMethod.GET)
 	public String receiveMsg(@PathVariable("idx") int key, Model model) {
 		receiveService.selectOne_receive(key, model);
-		System.out.println("controller1 : "+key);
-		System.out.println("controller2 : "+model);
 		return "mypage/receiveMsg";
 	}
 	
+	// 실시간 받은 쪽지
+	@RequestMapping(value="/main/partnerMessage", method=RequestMethod.GET)
+	public String partnerMsg(String key, Model model) throws Exception {
+		receiveService.selectOne_receiveLimitOne(key, model);
+		return "mypage/receiveMsg";
+	}
 //	내가 쓴 글
   	@RequestMapping(value="/main/myBoard", method=RequestMethod.GET)
   	public String myBoard() {
