@@ -107,6 +107,11 @@ public class StaffController {
  		return "/system/staff";
  	}
  	
+ 	@RequestMapping(value = "/system/staffIns", method = RequestMethod.GET)
+ 	public String staffIns() {
+ 		return "/system/enroll";
+ 	}
+ 	
 // 	@RequestMapping(value="/system/staffDe/{idx}",method=RequestMethod.GET)
 // 	public String detailstaff(@PathVariable("idx") int key, Model model) {
 // 		staffService.selectOne_review(key, model);

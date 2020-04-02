@@ -36,7 +36,7 @@
 		<a class="btn btn-default" href="#" role="button" id="sel">조회</a>
 		<input type="text" value="<c:out value="${listCnt}"></c:out>개의 게시물이 조회되었습니다" id="listCnt" disabled/>
 		<div id="fff"></div>
-	   <a class="btn btn-default" href="${root }board/reviewIns" role="button" id="wri">등록</a>
+	   <a class="btn btn-default" href="${root }system/staffIns" role="button" id="wri">등록</a>
 	   <input type="hidden" id="loginCk" value="${sessionScope.staffcheck.staff_no}"/>
 	</div>
 
@@ -47,7 +47,7 @@
          <th>이 름</th>
          <th>연락처</th>
          <th>이메일</th>
-         <th>소 속</th>
+         <th>부 서</th>
          <th>입사일</th>
          <th>비밀번호</th>
       </tr>
