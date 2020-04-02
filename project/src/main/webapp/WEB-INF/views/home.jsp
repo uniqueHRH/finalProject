@@ -248,13 +248,6 @@
 		<a class="btn btn-default" href="#" role="button" id="searchGo">G O</a>
 	</div>
 	
-	
-	
-	<input id="input"/><button id="button">전송</button>
-	
-	
-	
-	
 </div>   <!-- 점보트론 -->
 
 	<!-- 추천상품img -->
@@ -280,25 +273,12 @@
 	</div>
 </div>
 <!-- footer end -->
-	
+<jsp:include page="/WEB-INF/socket.jsp"/>
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="${root }js/bootstrap.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.js"></script>
 <script type="text/javascript">
 
-	var sock=new SockJS("${root}echo");
-	
-	sock.onmessage=function(msg){
-		console.log(msg.data);
-		window.open('../project/board/review','쪽지보내기','width=470, height=340, left=500, top=50');
-	};
-	$(function(){
-		$('#button').click(function(){
-			sock.send($('#input').val());
-			$('#input').val('');
-		});
-		
-	});
 
 	$(document).ready(function() {
 		// 검색

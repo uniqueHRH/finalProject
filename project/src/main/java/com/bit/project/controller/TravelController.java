@@ -148,10 +148,16 @@ public class TravelController {
 		tourservice.selectAll_europe(model);
 		return "tour/maintour";
 	}
-	//유럽로 이동	
+	//남태평양으로 이동	
 	@RequestMapping(value = "/tour/pacific", method = RequestMethod.GET)
 	public String pacific(Model model) {
 		tourservice.selectAll_pacific(model);
+		return "tour/maintour";
+	}
+	//아프리카으로 이동	
+	@RequestMapping(value = "/tour/africa", method = RequestMethod.GET)
+	public String africa(Model model) {
+		tourservice.selectAll_africa(model);
 		return "tour/maintour";
 		}
 		

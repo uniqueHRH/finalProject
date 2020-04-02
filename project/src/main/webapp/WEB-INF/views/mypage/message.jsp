@@ -46,9 +46,9 @@
 		<input type="hidden" id="no" value="${bean.receive_no }">
 		<tr>
 			<td>${bean.receive_no }</td>
-			<td><a href="#" onclick="window.open('messageDe/'+${bean.receive_no }, '쪽지보기', 'width=470, height=340, left=500, top=50');">${bean.receive_content }</a></td>
-			<td><a href="#" onclick="window.open('messageDe/'+${bean.receive_no }, '쪽지보기', 'width=470, height=340, left=500, top=50');">${bean.client_nick1 }</a></td>
-			<td><a href="#" onclick="window.open('messageDe/'+${bean.receive_no }, '쪽지보기', 'width=470, height=340, left=500, top=50');">${bean.receive_date}</a></td>
+			<td><a href="#" onclick="window.open('../messageDe/'+${bean.receive_no }, '쪽지보기', 'width=470, height=340, left=500, top=50');">${bean.receive_content }</a></td>
+			<td><a href="#" onclick="window.open('../messageDe/'+${bean.receive_no }, '쪽지보기', 'width=470, height=340, left=500, top=50');">${bean.client_nick1 }</a></td>
+			<td><a href="#" onclick="window.open('../messageDe/'+${bean.receive_no }, '쪽지보기', 'width=470, height=340, left=500, top=50');">${bean.receive_date}</a></td>
 		</tr>
 		</c:forEach>
    </tbody>
@@ -93,7 +93,7 @@
       </div>
    </div>
 </div>
-
+<jsp:include page="/WEB-INF/socket.jsp"/>
 <jsp:include page="/WEB-INF/footer.jsp"/>
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
@@ -141,14 +141,14 @@
 			var page=((range-2)*rangeSize)+1;
 			var range=range-1;
 			var url='${root }main/message/?id=${sessionScope.check.client_nick1}';
-			url=url+"?page="+page;
+			url=url+"&page="+page;
 			url=url+"&range="+range;
 			location.href=url;
 		}
 		//페이지 번호 클릭
 		function pagination(page, range, rangeSize, searchType, keyword) {
 			var url='${root }main/message/?id=${sessionScope.check.client_nick1}';
-			url=url+"?page="+page;
+			url=url+"&page="+page;
 			url=url+"&range="+range;
 			url=url+"&searchType="+$('#searchType').val();
 			url=url+"&keyword="+keyword;
@@ -159,7 +159,7 @@
 			var page=parseInt((range*rangeSize))+1;
 			var range=parseInt(range)+1;
 			var url='${root }main/message/?id=${sessionScope.check.client_nick1}';
-			url=url+"?page="+page;
+			url=url+"&page="+page;
 			url=url+"&range="+range;
 			location.href=url;
 		}

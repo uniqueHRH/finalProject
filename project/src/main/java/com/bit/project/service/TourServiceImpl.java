@@ -73,9 +73,8 @@ public class TourServiceImpl implements TourService{
 
 	@Override
 	public void selectAll_europe(Model model) {
-		List<TourVo> list;
 		try {
-			list = tourDao.selectAll_europe();
+			List<TourVo> list = tourDao.selectAll_europe();
 			model.addAttribute("list",list);
 		} catch (Exception e) {
 			
@@ -85,14 +84,24 @@ public class TourServiceImpl implements TourService{
 
 	@Override
 	public void selectAll_pacific(Model model) {
-		List<TourVo> list;
 		try {
-			list = tourDao.selectAll_pacific();
+			List<TourVo> list = tourDao.selectAll_pacific();
 			model.addAttribute("list",list);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
+	}
+
+	@Override
+	public void selectAll_africa(Model model) {
+		try {
+			List<TourVo> list = tourDao.selectAll_africa();
+			model.addAttribute("list",list);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }
