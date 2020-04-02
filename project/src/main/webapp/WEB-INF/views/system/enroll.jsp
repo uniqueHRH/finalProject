@@ -18,21 +18,22 @@
          margin: 0 auto;
          text-align: center;
     }
-    .table table-hover{
-       width:570px;
-         margin: 0 auto;
-         text-align: center;
+    #staff_name1{
+    	margin-top: 50px;
     }
-    .list-group{
-       width: 90%;
+    #staff_team{
+    	 width:400px;
+    	 height: 35px;
     }
-    #adminbtn{
-       width: 90%;
+    #adminbtn,#cancelbtn{
+       width: 190px;
+       position: relative;
+       left: 20px;
+       display: inline;
+       margin-top: 20px;
     }
-    #client_sex{
-       width: 400px;
-       margin: 0px auto;
-       text-align: center;
+    form{
+    	padding:0 0 200 0;
     }
 </style>
 </head>
@@ -48,7 +49,7 @@
 
 <form action="../system/staffIns" name="adm" class="form-horizontal" method="post">
   
-  <div class="form-group">
+  <div class="form-group" id="staff_name1">
     <label for="staff_name" class="col-sm-2 control-label">이 름</label>
     <div class="col-sm-10">
       <input type="text" class="form-control" id="staff_name" name="staff_name" style="width:400px">
@@ -69,7 +70,7 @@
   <div class="form-group">
     <label for="staff_team" class="col-sm-2 control-label">부 서</label>
     <div class="col-sm-10">
-     <select id="staff_team" name="staff_team">
+     <select class="form-control" id="staff_team" name="staff_team">
 		    <option value="경영">경영</option>
 		    <option value="인사">인사</option>
 		    <option value="CS">CS</option>
@@ -79,8 +80,8 @@
     </div>
   </div>
        
-<button type="submit" id="adminbtn" class="btn btn-default btn-lg btn-block">등록 완료</button>
-<button type="button" id="adminbtn" class="btn btn-default btn-lg btn-block" onclick="location.href='../system/staff'">취 소</button>
+<button type="button" id="cancelbtn" class="btn btn-default btn-lg" onclick="location.href='../system/staff'">취 소</button>
+<button type="submit" id="adminbtn"  class="btn btn-default btn-lg">등록 완료</button>
  </form>
 </div>
 <jsp:include page="/WEB-INF/footer.jsp"/>
