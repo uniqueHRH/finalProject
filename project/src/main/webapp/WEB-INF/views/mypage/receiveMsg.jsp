@@ -10,7 +10,7 @@
 <link rel="stylesheet" type="text/css" href="${root }css/bootstrap.css" />
 <link rel="stylesheet" type="text/css" href="${root }css/travel.css" />
 <link rel="stylesheet" type="text/css" href="${root }css/message.css" />
-   <title>Testing websockets</title>
+   <title>쪽지가 도착했습니다</title>
    <style type="text/css">
    	
 </style>
@@ -36,7 +36,7 @@
 			</div>
 		</div>
 	</form>
-
+<jsp:include page="/WEB-INF/socket.jsp"/>
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="${root }js/bootstrap.js"></script>
 <script type="text/javascript">
