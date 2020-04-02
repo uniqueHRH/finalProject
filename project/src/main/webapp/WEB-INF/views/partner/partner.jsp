@@ -93,7 +93,7 @@
 		<button type="button" class="btn btn-default" id="top">TOP ▲</button>
 	</div>
 
-
+<jsp:include page="/WEB-INF/socket.jsp"/>
 <jsp:include page="/WEB-INF/footer.jsp"/>
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
@@ -125,7 +125,7 @@
 //////////////////////////////////////////////////////////////////////////////////////////		
 		// 검색
 		$('#searchGo').on('click',function() {
-			var url='${root }board/review';
+			var url='${root }board/partner';
 			url=url+'?searchType='+$('#searchType').val();
 			url=url+'&keyword='+$('#keyword').val();
 			

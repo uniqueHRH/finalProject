@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>DETAIL</title>
+<title>쪽지보내기</title>
 <link rel="stylesheet" type="text/css" href="${root }css/bootstrap.css" />
 <link rel="stylesheet" type="text/css" href="${root }css/travel.css" />
 <link rel="stylesheet" type="text/css" href="${root }css/message.css" />
@@ -30,40 +30,16 @@
 			<div class="form-group" align="left">
 			</div>
 			<div class="form-group" id="btn">
-		         <button type="button" class="btn btn-default" id="sendMsg" onclick="send()">보 내 기</button> &nbsp; 
+		         <button type="button" class="btn btn-default" id="sendMsg">보 내 기</button> &nbsp; 
 		         <button type="button" class="btn btn-default" id="cancel">취 &nbsp; &nbsp; 소</button>
 			</div>
 		</div>
 	</form>
+<jsp:include page="/WEB-INF/socket.jsp"/>
 <jsp:include page="/WEB-INF/footer.jsp"/>
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="${root }js/bootstrap.js"></script>
 <script type="text/javascript">
-
-	var content = document.getElementById('send_content');
-	var webSocket = new WebSocket('ws://localhost:8080/project/broadcasting');
-	var sendMsg = document.getElementById('send_content');
-	
-	webSocket.onerror = function(event) {
-		onError(event)
-	};
-
-	webSocket.onopen = function(event) {
-		onOpen(event)
-	};
-
-	function onOpen(event) {
-	}
-
-	function onError(event) {
-		alert(event.data);
-	}
-
-	function send() {
-		webSocket.send(sendMsg.value);
-	}
-
-
 	$(document).ready(function() {
 		var id='${param.msg}';
 		$('#client_nick2').val(id);
@@ -72,12 +48,16 @@
 			var sender=$('#client_nick1').val();
 			var receivcer=$('#client_nick2').val();
 			var content=$('#send_content').val();
-		
+			
 			$.ajax({
 				url:'../partner',
 				type:'POST',
 				data:{client_nick1:sender, client_nick2:receivcer, send_content:content},
 				success:function() {
+					sock.send($('#client_nick1').val());   // 보내는 사람
+					sock.send($('#client_nick2').val());   // 받는 사람
+					sock.send($('#send_content').val());   // 내용
+					
 					alert('메세지가 전송되었습니다');
 					window.close();
 				},

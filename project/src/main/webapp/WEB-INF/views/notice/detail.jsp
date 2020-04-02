@@ -58,11 +58,6 @@
       <button type="button" class="btn btn-default" id="subm">수정하기</button>
       <button type="button" class="btn btn-default" id="dele">삭제하기</button>
       <button type="button" class="btn btn-default" id="goList">목록으로</button>
-      <p></p>
-      <div>
-         <button type="button" class="btn btn-default btn-lg btn-block" id="replyShow">댓글보기</button>
-      </div>
-      <p></p>
    </div>
 
 <!-- 댓글 출력 -->
@@ -95,7 +90,7 @@
 </form>
 
 <!-- contents end -->
-     
+<jsp:include page="/WEB-INF/socket.jsp"/>
 <jsp:include page="/WEB-INF/footer.jsp"/>
 </body>
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
@@ -150,14 +145,6 @@
 	// 목록버튼
 	$('#goList').on('click',function() {
 		location.href="../notice";
-	});
-      
-      // 댓글보기 버튼
-	$('#table').hide()
-	
-	$('#replyShow').on('click',function() {
-		$('#table').toggle(function() {
-		});
 	});
       
       // 입력 버튼

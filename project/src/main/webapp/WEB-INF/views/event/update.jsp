@@ -71,13 +71,9 @@
 </form>
       
 
-
-
-
 <!-- contents end -->
-     
+<jsp:include page="/WEB-INF/socket.jsp"/>
 <jsp:include page="/WEB-INF/footer.jsp"/>
-</body>
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#hamb').hide();
@@ -124,5 +120,6 @@
 			}
 		});      
    });
+</body>
 </script>
 </html>

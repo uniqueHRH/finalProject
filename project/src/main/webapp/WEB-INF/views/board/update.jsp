@@ -160,7 +160,8 @@
 		<button type="button" class="btn btn-default" id="goList">작성취소</button>
 	</div>
 </form>
-      
+
+<jsp:include page="/WEB-INF/socket.jsp"/>
 <jsp:include page="/WEB-INF/footer.jsp"/>
 </body>
 <script type="text/javascript">
