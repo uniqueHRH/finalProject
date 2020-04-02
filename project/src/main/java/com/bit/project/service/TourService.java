@@ -12,6 +12,8 @@ public interface TourService {
 	void selectAll_america(Model model);
 	void selectAll_europe(Model model);
 	void selectAll_pacific(Model model);
+	void selectAll_africa(Model model);
+	
 	
 	void selectOne_tour(Model model,int tour_no);
 	void insertOne_tour(PaidVo bean);
