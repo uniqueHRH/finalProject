@@ -187,7 +187,7 @@
 					        		<li><a href="${root }main/message/?id=${sessionScope.check.client_nick1}" id="msg">쪽지함</a></li>
 					        		<li><a href="#">최근본상품</a></li>
 					        		<li><a href="${root }main/wish">찜한상품</a></li>
-					        		<li><a href="#">결제상품</a></li>
+					        		<li><a href="#">예약상품</a></li>
 					        		<li><a href="#">내가쓴글</a></li>
 					        		<li><a href="${root }main/myinfo">내정보관리</a></li>
 					        		<li><a href="${root }main/logout">로그아웃</a></li>
@@ -228,10 +228,11 @@
 					        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">관리자센터</a>
 								<ul class="dropdown-menu" role="menu">
 						            <li><a href="${root }system/staff">직원 관리</a></li>
-						       		<li><a href="${root }system/guide">가이드관리</a></li>
-						       		<li><a href="${root }system/client">회원관리</a></li>
-						       		<li><a href="${root }system/paid">결제관리</a></li>
-						       		<li><a href="${root }system/report">신고관리</a></li>
+						       		<li><a href="${root }system/guide">가이드 관리</a></li>
+						       		<li><a href="${root }system/client">회원 관리</a></li>
+						       		<li><a href="${root }system/paid">결제 관리</a></li>
+						       		<li><a href="#">투어 관리</a></li>
+						       		<li><a href="${root }system/report">신고 관리</a></li>
 								</ul>
 					        </li>
 				        </c:if>

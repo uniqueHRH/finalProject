@@ -160,7 +160,7 @@
 	        <li id="systemM">包府磊季磐</li>
         	<div id="systemS">
 	            <a href="${root }system/staff">流盔 包府</a>
-	       		<a href="${root }system/guide">啊捞靛包府</a>
+	       		<a href="${root }system/guide">啊捞靛 包府</a>
 	       		<a href="${root }system/client">雀盔 包府</a>
 	       		<a href="${root }system/paid">搬力 包府</a>
 	       		<a href="#">捧绢 包府</a>
