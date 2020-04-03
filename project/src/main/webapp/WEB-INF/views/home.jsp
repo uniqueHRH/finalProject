@@ -52,6 +52,8 @@
 	#menubar li>ul>li>a {
 		font-size:15px;
 		color:black;
+		padding-top:7;
+		padding-bottom:7;
 	}
 	#login {
 		font-size:16px;
@@ -62,8 +64,11 @@
 		padding:20;
 	}
 	#login li>ul>li>a {
+		font-size:15px;
 		color:black;
 		text-align:center;
+		padding-top:7;
+		padding-bottom:7;
 	}
 	body {
 		padding-top:100px;
@@ -184,7 +189,7 @@
 				        <input type="hidden" id="session" value="${sessionScope.check.client_nick1}"/>
 					        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">${sessionScope.check.client_nick1} 님<span class="caret"></span></a>
 					        	<ul class="dropdown-menu" role="menu">
-					        		<li><a href="${root }main/message/?id=${sessionScope.check.client_nick1}" id="msg">쪽지함</a></li>
+					        		<li><a href="${root }main/message/?id=${sessionScope.check.client_nick1}" id="msg">쪽지함&nbsp;&nbsp;<span class="badge">14</span></a></li>
 					        		<li><a href="#">최근본상품</a></li>
 					        		<li><a href="${root }main/wish">찜한상품</a></li>
 					        		<li><a href="#">예약상품</a></li>

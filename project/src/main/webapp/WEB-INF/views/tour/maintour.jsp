@@ -65,7 +65,9 @@
   </div>
  </div>
 </div>
-<jsp:include page="/WEB-INF/footer.jsp"/>
+	<div id="footer">
+		<jsp:include page="/WEB-INF/footer.jsp"/>
+	</div>
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="${root }js/bootstrap.js"></script>
 <script type="text/javascript">

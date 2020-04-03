@@ -64,11 +64,17 @@
 	#tourS, #boardS, #serviceS, #systemS {
 		background-color:#0F0F0F;
 	}
+	#menubar>div>a {
+		padding-top:10;
+		padding-bottom:10;
+	}
 	#menubar>div>a:hover {
 		background-color:#e8e8e8;
 		font-weight:bold;
 		font-size:20px;
 		color:black;
+		padding-top:15;
+		padding-bottom:15;
 	}
 	#login {
 		padding:0 30 0 0;
@@ -78,8 +84,11 @@
 		padding:20;
 	}
 	#login li>ul>li>a {
+		font-size:15px;
 		color:black;
 		text-align:center;
+		padding-top:7;
+		padding-bottom:7;
 	}
 	body {
 		padding-top:100px;
@@ -114,7 +123,7 @@
 				        <c:if test="${sessionScope.check ne null }">
 					        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">${sessionScope.check.client_nick1} 님<span class="caret"></span></a>
 					        	<ul class="dropdown-menu" role="menu">
-					        		<li><a href="${root }main/message/?id=${sessionScope.check.client_nick1}" id="msg">쪽지함</a></li>
+					        		<li><a href="${root }main/message/?id=${sessionScope.check.client_nick1}" id="msg">쪽지함&nbsp;&nbsp;<span class="badge">14</span></a></li>
 					        		<li><a href="#">최근본상품</a></li>
 					        		<li><a href="${root }main/wish">찜한상품</a></li>
 					        		<li><a href="#">예약상품</a></li>
@@ -145,14 +154,14 @@
 	       	</div>
 	        <li id="boardM">커뮤니티</li>
         	<div id="boardS">
-	            <a href="${root }board/review">여행 후기</a>
+	            <a href="${root }board/review">여행 &nbsp;후기</a>
 	            <a href="${root }board/partner">동행구하기</a>
 	       		<a href="${root }board/free">자유게시판</a>
 	       	</div>
 	       	<li id="eventM"><a href="${root }board/event">이 벤 트</a></li>
 	        <li id="serviceM">고객센터</li>
         	<div id="serviceS">
-	            <a href="${root }board/notice">공 &nbsp; &nbsp; &nbsp; &nbsp;지</a>
+	            <a href="${root }board/notice">공 &nbsp; &nbsp; &nbsp; &nbsp; 지</a>
 			    <a href="${root }board/faq">자주묻는질문</a>
 	       	</div>
 	        

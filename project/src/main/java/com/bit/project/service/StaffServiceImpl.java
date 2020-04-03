@@ -78,14 +78,6 @@ public class StaffServiceImpl implements StaffService {
 		return staffDao.getStaffListCnt(search);
 	}
 
-	@Override
-	public void changePw(StaffVo bean) throws Exception {
-		try {
-			staffDao.changePw(bean);
-		}catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
 
 
 }

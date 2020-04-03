@@ -26,7 +26,7 @@
 		
 		if(sock) {
 			console.log(sock);
-			window.open('../main/partnerMessage?id=sock','쪽지가 도착하였습니다','width=470, height=340, left=500, top=50');
+			window.open('../main/partnerMessage?id='+sock,'쪽지가 도착하였습니다','width=470, height=340, left=500, top=50');
 		}
 	}
 	

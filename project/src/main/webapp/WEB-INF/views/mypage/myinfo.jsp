@@ -13,7 +13,6 @@
    
     #table1{
     	font-family: 'Jua';
-    	padding: 0 0 130 0;
     }
     
     #infocomm{
@@ -34,7 +33,7 @@
    #changeinfobtn{
    		width: 150px;
    		position:relative;
-   		left: 1180px;
+   		left: 1050px;
    		margin-bottom: 20px;
    		
    }

@@ -18,5 +18,4 @@ public interface StaffService {
 	void deleteOne_staff(int key);
 	public StaffVo loginCheck(StaffVo bean) throws Exception;
 	public int getStaffListCnt(Search search) throws Exception;
-	void changePw(StaffVo bean) throws Exception;
 }

@@ -13,26 +13,19 @@
    #table {
       	font-family:"Jua";
     }
-    .control-label{
-    	width: 100px;
-    }
     .form-horizontal {
-    	padding-top: 50px;
     	text-align: center;
-        width:570px;
-      	margin: 0 auto;
+       width:750px;
+      margin: 0 auto;
     }
     #idd,#pww {
        display:inline block;  
     }
+   
     #resetbtn,#changepwbtn{
-    	position: relative;
+    	text-align: center;
     	margin-top: 10px;
-    	width: 180px;
-    	left: 50px;
-    }
-    form{
-    	padding: 0 0 220 0;
+    	width: 30%;
     }
 </style>
 </head>
@@ -67,8 +60,8 @@
        </div>
      </div>
      <div>
-     	<button type="button" id="resetbtn" class="btn btn-default" onclick="location.href='../myinfo'">취소</button>
-     	<button type="button" id="changepwbtn" class="btn btn-default">변경완료</button>
+     	<button type="button" id="changepwbtn" class="btn btn-default btn-lg">변경완료</button>
+     	<button type="button" id="resetbtn" class="btn btn-default btn-lg" onclick="location.href='../myinfo'">취소</button>
      </div>
      </form>
      

@@ -61,10 +61,5 @@ public class StaffDaoImpl implements StaffDao {
 		return sqlSession.selectOne("staff.getStaffListCnt", search);
 	}
 
-	@Override
-	public int changePw(StaffVo bean) throws Exception {
-		return sqlSession.update("staff.changePw", bean);
-	}
-
 
 }
