@@ -27,6 +27,8 @@ public class TravelController {
 	StaffService staffService;
 	@Autowired
 	MapService mapservice;
+	@Autowired
+	PaidService paidservice;
 	
 	
 // 로그인
@@ -181,6 +183,12 @@ public class TravelController {
 		tourservice.insertOne_tour(bean);
 		return "home";
 	}
+	//투어예약관리
+	@RequestMapping(value = "/system/paid", method = RequestMethod.GET)
+	public String paid(Model model) {
+		paidservice.selectAll_paid(model);
+		return "system/paid";
+		}
 	
 	@RequestMapping(value = "/tour/theme", method = RequestMethod.GET)
 	public String theme() {

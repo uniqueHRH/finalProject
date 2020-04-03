@@ -17,6 +17,7 @@
 		padding-top:180;
 		padding-bottom: 0px;
 		float: right;
+		height: 100px; 
 	}
 	#footer1{
 		padding-top: 20px;
