@@ -24,8 +24,10 @@
 			<if test="searchType=='client_nick1' and keyword != null and keyword != '' ">
 				AND client_nick1 like CONCAT('%', #{keyword}, '%')
 			</if>
+			<if test="client_nick2!=null and client_nick2!=''">
+				AND client_nick2=#{client_nick2}
+			</if>
 		</trim>
-		where client_nick2=#{client_nick2}
 		order by receive_no desc
 		LIMIT #{startList}, #{listSize}
 	</select>
@@ -52,7 +54,9 @@
 			<if test="searchType=='client_nick1' and keyword != null and keyword != '' ">
 				AND client_nick1 like CONCAT('%', #{keyword}, '%')
 			</if>
+			<if test="client_nick2!=null and client_nick2!=''">
+				AND client_nick2=#{client_nick2}
+			</if>
 		</trim>
-		where client_nick2=#{client_nick2}
 	</select>
 </mapper>
