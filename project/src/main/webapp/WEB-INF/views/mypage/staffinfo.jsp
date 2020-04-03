@@ -33,6 +33,13 @@
    		font-size: 15px;
    }
    		
+   	 #changeinfobtn{
+   		width: 150px;
+   		position:relative;
+   		left: 1050px;
+   		margin-bottom: 20px;
+   		
+   }
 </style>
 </head>
 <body>
@@ -45,8 +52,8 @@
  	 <div class="page-header" align="center">
     	 <h1>내 정보관리(직원용)</h1>
   	 </div>
+    	<a href="${root }main/mypage/lock2"><button type="button" id="changeinfobtn" class="btn btn-default">비밀번호 변경</button></a>
   	 
-	<p id="infocomm" align="center">내정보를 최신정보로 관리해주세요</p>
 	
 	<div id="table">
 		<table class="table table-hover">

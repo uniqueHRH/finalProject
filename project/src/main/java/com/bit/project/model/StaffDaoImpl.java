@@ -5,11 +5,9 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.ui.Model;
 
 import com.bit.project.common.Search;
 import com.bit.project.model.entity.BoardVo;
-import com.bit.project.model.entity.PaidVo;
 import com.bit.project.model.entity.StaffVo;
 
 @Repository
@@ -63,6 +61,10 @@ public class StaffDaoImpl implements StaffDao {
 		return sqlSession.selectOne("staff.getStaffListCnt", search);
 	}
 
+	@Override
+	public int changePw(StaffVo bean) throws Exception {
+		return sqlSession.update("staff.changePw", bean);
+	}
 
 
 }

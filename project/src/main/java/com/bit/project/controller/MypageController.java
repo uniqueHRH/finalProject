@@ -62,12 +62,6 @@ public class MypageController {
 		receiveService.selectOne_receive(key, model);
 		return "mypage/receiveMsg";
 	}
-	// 쪽지 삭제
-	@RequestMapping(value="/main/messageDele", method=RequestMethod.POST)
-	public String receiveMsgDel(int key) {
-		receiveService.deleteOne_receive(key);
-		return "mypage/message";
-	}
 	
 	// 실시간 받은 쪽지
 	@RequestMapping(value="/main/partnerMessage", method=RequestMethod.GET)
@@ -119,7 +113,6 @@ public class MypageController {
   		update.setClient_nick1(bean.getClient_nick1());
   		update.setClient_nick2(bean.getClient_nick1());
   		update.setClient_phone(bean.getClient_phone());
-  		System.out.println(session.getAttribute("check"));
   		ModelAndView mav=new ModelAndView();
   		mav.setViewName("redirect:/main/myinfo");
   		return mav;

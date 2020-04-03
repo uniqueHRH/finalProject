@@ -1,5 +1,9 @@
 package com.bit.project.controller;
 
+import javax.mail.Session;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,6 +31,33 @@ public class StaffController {
 		return "/mypage/staffinfo";
 	}
 	
+	@RequestMapping(value="/main/mypage/lock2",method=RequestMethod.GET)
+	public String Changeinfo() {
+		return "/mypage/lock";
+	}
+	
+	@RequestMapping(value="/main/mypage/lock2",method=RequestMethod.POST)
+	public ModelAndView Lock(StaffVo bean) throws Exception {
+		StaffVo pwcheck = staffService.loginCheck(bean);
+		ModelAndView mav=new ModelAndView();
+		if(pwcheck != null) {
+			mav.setViewName("/mypage/changestaffpw");
+		}else {
+			mav.addObject("msg", "fail");
+			mav.setViewName("mypage/lock");
+		}
+		return mav;
+	}
+	
+	@RequestMapping(value="/main/mypage/changestaffpw",method=RequestMethod.POST)
+	public ModelAndView Changepw(StaffVo bean, HttpServletRequest req) throws Exception {
+		staffService.changePw(bean);
+		HttpSession session=req.getSession();
+		ModelAndView mav=new ModelAndView();
+		mav.setViewName("jsonView");
+		session.invalidate();
+		return mav;
+	}
 	
 	@RequestMapping(value = "/system/staff", method = RequestMethod.GET)
  	public String staff(Model model, @RequestParam(required = false, defaultValue = "1") int page,
@@ -118,7 +149,7 @@ public class StaffController {
  		return "redirect:/system/staff";
  	}
  	
-
+ 	
 // 	@RequestMapping(value="/system/staffDe/{idx}",method=RequestMethod.GET)
 // 	public String detailstaff(@PathVariable("idx") int key, Model model) {
 // 		staffService.selectOne_review(key, model);

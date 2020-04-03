@@ -76,5 +76,7 @@
 		select * from staff where staff_no=#{staff_no} and staff_pw=#{staff_pw}
 	</select>
 	
-	
+	<update id="changePw">
+		update staff set staff_pw=#{staff_pw} where staff_no=#{staff_no}
+	</update>
 </mapper>
