@@ -2,15 +2,6 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
-<!--
-	board_id < 투어 : 1 / 후기 : 2 / 동행 : 3 / 게시판 : 4 / 이벤트 : 5 >
-	board_theme < 힐링 : 1 / 스탭 : 2 / 액티비티 : 3 / 먹거리 : 4 / 영화 : 5 / 스포츠 : 6 >
-	board_wish < 안찜 : 0 / 찜 : 1 >
-	staff_team < 경영 : 1 / 인사 : 2 / CS : 3 / 디자인 : 4 / 마케팅 : 5 >
-	paid_state < 미결제 : 0 / 결제 : 1 >
-	paid_confirm < 미확정 : 0 / 확정 : 1 >
- -->
  
  
 <mapper namespace="paid">
@@ -18,15 +9,34 @@
 		select * from paid order by paid_no desc
 	</select>
 	
-	<select id="selectOne_paid" resultType="PaidBean" parameterType="int">
-		select * from paid where paid_no=#{board_no} and paid_confirm=1 order by ${paid_date} desc
+	<!--  paid join tour -->
+	<resultMap type="PaidBean" id="PaidMap">
+		<result property="paid_no" column="paid_no"/>
+		<result property="tour_no" column="tour_no"/>
+		<result property="client_name" column="cleint_name"/>
+		<result property="paid_name" column="paid_name"/>
+		<result property="paid_phone" column="paid_phone"/>
+		<result property="paid_birth" column="paid_birth"/>
+		<result property="paid_count" column="paid_count"/>
+		<result property="paid_kakaoid" column="paid_kakaoid"/>
+		<result property="tour_date" column="tour_date"/>
+		<result property="book_date" column="book_date"/>
+		<result property="paid_total" column="paid_total"/>
+		<result property="paid_date" column="paid_date"/>
+		<result property="paid_state" column="paid_state"/>
+		<result property="paid_confirm" column="paid_confirm"/>
+		
+		
+		<association property="TourVo" resultMap="TourVo"/>
+	</resultMap>
+	
+	<resultMap type="TourBean" id="TourVo">
+		<result property="tour_no" column="tour_no"/>
+		<result property="city" column="city"/>
+		<result property="name" column="name"/>
+	</resultMap>
+	
+	<select id="selectOne_paid" parameterType="PaidBean" resultMap="PaidMap" >
+		select paid.paid_no,paid.tour_no,paid.client_name,paid.paid_name,paid.paid_phone,paid.paid_birth,paid.paid_count,paid.paid_kakaoid,paid.tour_date,paid.book_date,paid.paid_total,paid.paid_date,paid.paid_state,paid.paid_confirm,tour.city,tour.name from paid inner join tour on paid.tour_no=tour.tour_no where paid_no=#{value}
 	</select>
-	
-	<insert id="insertOne_paid" parameterType="PaidBean">
-		insert into paid (board_sub, paid_name, paid_phone, paid_sex, paid_birth, paid_count, paid_kakaoid, paid_date, paid_state, paid_confirm, board_no) values (#{board_sub}, #{paid_name}, #{paid_phone}, #{paid_sex}, #{paid_birth}, #{paid_count}, #{paid_kakaoid}, now(), #{paid_state}, #{paid_confirm}, #{board_no})
-	</insert>
-	
-	<delete id="deleteOne_paid" parameterType="int">
-		delete from paid where paid_no=#{paid_no}
-	</delete>
 </mapper>

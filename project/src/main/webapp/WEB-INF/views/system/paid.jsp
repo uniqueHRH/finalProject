@@ -11,10 +11,87 @@
 
 <link rel="stylesheet" type="text/css" href="${root }css/bootstrap.css" />
 <link rel="stylesheet" type="text/css" href="${root }css/travel.css" />
-<link rel="stylesheet" type="text/css" href="${root }css/review.css" />
 <style type="text/css">
-	#table{
-		text-align: center;
+	h1, input {
+		font-family: 'Jua';
+	}
+	#table {
+		width:950px;
+		margin:0 auto;
+		padding:0px;
+		text-align:center;
+		font-family: 'Jua';
+		font-size:18px;
+	}
+	select, button, a {
+		font-family: 'Jua';
+	}
+/* 나라정렬 버튼 */
+	#theme {
+		width:950px;
+		margin:0 auto;
+		padding:0px;
+	}
+/* 정렬버튼 */
+	#dropdownMenu1:hover {
+		background-color:#e8e8e8;
+	}
+
+/* 나라정렬 조회버튼 */
+	#sel {
+		display:inline-block;
+		border-radius:5px;
+		font-size:14px;
+		text-align:center;
+		height:30px;
+		vertical-align:middle;
+	}
+	#table th {
+		text-align:center;
+	}
+	#table>tbody td,
+	#table>tbody td>a {
+		font-size:15px;
+	}
+	#table>thead th:nth-child(1) {
+		width:65px;
+	}
+	#table>thead th:nth-child(2) {
+		width:85px;
+	}
+	#table>thead th:nth-child(3) {
+		width:140px;
+	}
+	#table>thead th:nth-child(4) {
+		width:65px;
+	}
+	#table>thead th:nth-child(5) {
+		width:80px;
+	}
+	#table>thead th:nth-child(6) {
+		width:70px;
+	}
+	#table>thead th:nth-child(7) {
+		width:90px;
+	}
+	#table>tbody td>a {
+		text-decoration:none;
+	}
+	#table>tbody td>a:hover {
+		color:black;
+	}
+	#pageNum, #search {
+		width:350px;      
+		margin:0 auto;
+		text-align:center;
+	}
+	tbody td>a {
+		color:black;
+		text-decoration:none;
+   }
+	.dropdown {
+		font-family: 'Jua';
+		font-size: 18px;
 	}
 
 </style>
@@ -44,12 +121,12 @@
    <thead>
       <tr class="active">
          <th>#</th>
-         <th style="width: 100px;">상품번호</th>
+         <th>상품번호</th>
          <th>예약자</th>
-         <th style="width: 50px;">총원</th>
+         <th>총원</th>
          <th>총금액</th>
          <th>예약일</th>
-         <th style="width: 80px;">결제상태</th>
+         <th>결제상태</th>
          <th>결제일</th>
       </tr>
    </thead>
@@ -57,13 +134,13 @@
 		<c:forEach items="${list }" var="bean">
 		<tr>
 			<td>${bean.paid_no }</td>
-			<td><a href="paidDe/${bean.paid_no }">${bean.tour_no }</a></td>
-			<td><a href="paidDe/${bean.paid_no }">${bean.client_name }</a></td>
-			<td><a href="paidDe/${bean.paid_no }">${bean.paid_count }</a></td>
-			<td><a href="paidDe/${bean.paid_no }">${bean.paid_total }</a></td>
-			<td><a href="paidDe/${bean.paid_no }">${bean.book_date }</a></td>
-			<td><a href="paidDe/${bean.paid_no }">${bean.paid_state }</a></td>
-			<td><a href="paidDe/${bean.paid_no }">${bean.paid_date }</a></td>
+			<td><a href="${root }system/paid/${bean.paid_no }">${bean.tour_no }</a></td>
+			<td><a href="${root }system/paid/${bean.paid_no }">${bean.client_name }</a></td>
+			<td><a href="${root }system/paid/${bean.paid_no }">${bean.paid_count }</a></td>
+			<td><a href="${root }system/paid/${bean.paid_no }">${bean.paid_total }</a></td>
+			<td><a href="${root }system/paid/${bean.paid_no }">${bean.book_date }</a></td>
+			<td><a href="${root }system/paid/${bean.paid_no }">${bean.paid_state }</a></td>
+			<td><a href="${root }system/paid/${bean.paid_no }">${bean.paid_date }</a></td>
 		</tr>
 		</c:forEach>
    </tbody>

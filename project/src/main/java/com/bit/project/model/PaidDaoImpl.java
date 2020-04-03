@@ -20,24 +20,8 @@ public class PaidDaoImpl implements PaidDao {
 	}
 
 	@Override
-	public PaidVo selectOne_paid(int key) throws Exception {
-		return sqlSession.selectOne("paid.selectOne_paid",key);
+	public PaidVo selectOne_paid(int paid_no) throws Exception {
+		return sqlSession.selectOne("paid.selectOne_paid",paid_no);
 	}
-
-	@Override
-	public void insertOne_paid(PaidVo bean) throws Exception {
-		sqlSession.insert("paid.insertOne_paid",bean);
-	}
-
-	@Override
-	public int updateOne_paid(PaidVo bean) throws Exception {
-		return sqlSession.update("paid.updateOne_paid",bean);
-	}
-
-	@Override
-	public int deleteOne_paid(int key) throws Exception {
-		return sqlSession.delete("paid.deleteOne_paid",key);
-	}
-
 
 }

@@ -189,6 +189,13 @@ public class TravelController {
 		paidservice.selectAll_paid(model);
 		return "system/paid";
 		}
+	//paid 디테일베이지
+	@RequestMapping(value = "/system/paid/{idx}", method = RequestMethod.GET)
+	public String detailpaid(Model model, @PathVariable ("idx") int paid_no) {
+		paidservice.selectOne_paid(model, paid_no);
+		return "system/detailpaid";
+	}
+	
 	
 	@RequestMapping(value = "/tour/theme", method = RequestMethod.GET)
 	public String theme() {

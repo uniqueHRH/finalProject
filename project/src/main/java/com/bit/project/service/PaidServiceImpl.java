@@ -26,40 +26,12 @@ public class PaidServiceImpl implements PaidService {
 	}
 
 	@Override
-	public void selectOne_paid(int key, Model model) {
+	public void selectOne_paid(Model model, int paid_no) {
 		try {
-			model.addAttribute("bean",paidDao.selectOne_paid(key));
+			model.addAttribute("bean",paidDao.selectOne_paid(paid_no));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-
-	@Override
-	public void insertOne_paid(PaidVo bean) {
-		try {
-			paidDao.insertOne_paid(bean);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	@Override
-	public void updateOne_paid(PaidVo bean) {
-		try {
-			paidDao.updateOne_paid(bean);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	@Override
-	public void deleteOne_paid(int key) {
-		try {
-			paidDao.deleteOne_paid(key);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
 
 }
