@@ -223,7 +223,11 @@
 		
 		// 이미지가 없을 때 출력되지 않도록
 		var img=$('#hiddenI').val();
+		var text='none.png';
 		
+		if(img.indexOf(text)!=-1) {
+			$('#board_thumb').remove();
+		}
 		if(img=='') {
 			$('#board_thumb').remove();
 		}
@@ -313,30 +317,23 @@
 			}
 		});
       
-	// 쪽지보내기
-	var log=$('#log').val();   // 세션정보
-	var nick=$('#client_nick1').val()   // 글쓴이
-	
-	if(log)
-	$('#client_nick1').on('click',function() {});
-	
-            
-	// 목록버튼
-	$('#goList').on('click',function() {
-		location.href="../review";
-	});
-      
-      // 입력 버튼
+		// 목록버튼
+		$('#goList').on('click',function() {
+			location.href="../review";
+		});
+	      
+		// 입력 버튼
 		var log=$('#log').val();
 		var staffLog=$('#staffLog').val();
+		
 		if(log) {
-			$('#reply_content').attr('disabled',false);
-			return false;
+  			$('#reply_content').attr('disabled',false);
 		} else if(staffLog) {
-			$('#reply_content').attr('disabled',false);
-		} else {
+  			$('#reply_content').attr('disabled',false);
+  		} else {
 			$('#reply_content').val('로그인 후 이용이 가능합니다').attr('disabled',true);
-		}
+			return false;
+  		}
 			
 		$('#insert').on('click',function() {
 			var text=$('#reply_content').val();
@@ -363,7 +360,7 @@
 			}
       	});
       
-      // 댓글 수정버튼
+		// 댓글 수정버튼
 		$('button[name^=edit]').on('click',function() {
      		var name=$(this).attr('name');
      		var num=name.replace('edit_','');   // 버튼의 값

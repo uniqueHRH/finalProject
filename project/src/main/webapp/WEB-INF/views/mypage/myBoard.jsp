@@ -11,23 +11,26 @@
 
 <link rel="stylesheet" type="text/css" href="${root }css/bootstrap.css" />
 <link rel="stylesheet" type="text/css" href="${root }css/travel.css" />
-<link rel="stylesheet" type="text/css" href="${root }css/review.css" />
+<link rel="stylesheet" type="text/css" href="${root }css/board.css" />
 <style type="text/css">
 	#table>thead th:nth-child(1) {
 		width:40px;
 		background-color:red;
 	}
 	#table>thead th:nth-child(2) {
-		width:315px;
+		width:90px;
 		background-color:yellow;
 	}
 	#table>thead th:nth-child(3) {
-		width:90px;
+		width:315px;
 		background-color:blue;
 	}
 	#table>thead th:nth-child(4) {
 		width:70px;
 		background-color:green;
+	}
+	#table>thead th:nth-child(5) {
+		width:70px;
 	}
 	#table>tbody td:nth-child(4) {
 		text-align:left;
@@ -86,9 +89,10 @@
    <thead>
       <tr class="active">
          <th>#</th>
-         <th>제목</th>
-         <th>닉네임</th>
-         <th>날짜</th>
+         <th>게시판</th>
+         <th>제 목</th>
+         <th>날 짜</th>
+         <th>조회수</th>
       </tr>
    </thead>
    <tbody>
@@ -98,6 +102,7 @@
 			<td>${i }</td>
 			<td><a href="detail/${bean.board_no }">[${bean.board_land }]</a></td>
 			<td><a href="detail/${bean.board_no }">[${bean.board_theme }]</a></td>
+			<td><a href="detail/${bean.board_no }">${bean.board_sub }</a></td>
 			<td><a href="detail/${bean.board_no }">${bean.board_sub }</a></td>
 		</tr>
 		</c:forEach>
@@ -121,10 +126,8 @@
 
 <!-- 검색 -->
    <div class="topMenu" id="search">
-		<select id="dropdownMenu2">
-		    <option value="정렬">검 &nbsp;색</option>
-		    <option value="나라별">나라별</option>
-		    <option value="테마별">테마별</option>
+		<select id="searchType">
+		    <option value="정렬">제 &nbsp; 목</option>
 		</select>
       <input type="text" class="form-control" id="client_id" name="wri" style="width:200px; display:inline-block;">
 		<a class="btn btn-default" href="#" role="button" id="searchGo">G O</a>

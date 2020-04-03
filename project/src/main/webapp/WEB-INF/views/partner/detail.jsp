@@ -71,6 +71,7 @@
             <tr id="tr1">
                <th id="th">${beans.client_nick1 }</th>
                <th id="th">${beans.reply_date }</th>
+               <th><input type="hidden" id="repId" name="repId_${beans.reply_no }" value="${beans.client_nick1 }"><th>
 			</tr>
 			<tr id="tr2">
 				<td colspan="2"><input type="text" id="reply" name="reply_${beans.reply_no }" value="${beans.reply_content }" disabled></td>
@@ -101,13 +102,25 @@
 <script type="text/javascript" src="${root }js/bootstrap.js"></script>
 <script type="text/javascript">
    $(document).ready(function() {
-		$('#subm').hide();
+	   $('#subm').hide();
 		$('#dele').hide();
 		
 		$('button[name^=cancel_').hide();
 		$('button[name^=update_').hide();
 		$('button[name^=edit_').hide();
 		$('button[name^=dele2_').hide();
+		
+		// 이미지가 없을 때 출력되지 않도록
+		var img=$('#hiddenI').val();
+		var text='none.png';
+		
+		if(img.indexOf(text)!=-1) {
+			$('#board_thumb').remove();
+		}
+		if(img=='') {
+			$('#board_thumb').remove();
+		}
+		
 		// 쪽지보내기 기능
 		var log=$('#log').val();
 		var nick=$('#client_nick1').val();
@@ -122,14 +135,6 @@
 		}
 		
 ///////////////////////////////////////////////////////////////////////////
-
-		// 이미지가 없을 때 출력되지 않도록
-		var img=$('#hiddenI').val();
-		
-		if(!img) {
-			$('#board_thumb').remove();
-		}
-		
 		// 작성자+관리자만 수정/삭제 가능
 		var mas=$('#client_nick1').val();
 		var log=$('#log').val();
@@ -195,14 +200,18 @@
 	$('#goList').on('click',function() {
 		location.href="../partner";
 	});
-      // 입력 버튼
+	
+		// 입력 버튼
 		var log=$('#log').val();
+		var staffLog=$('#staffLog').val();
 		
-		if(!log) {
+		if(log) {
+				$('#reply_content').attr('disabled',false);
+		} else if(staffLog) {
+			$('#reply_content').attr('disabled',false);
+		} else {
 			$('#reply_content').val('로그인 후 이용이 가능합니다').attr('disabled',true);
 			return false;
-		} else {
-			$('#reply_content').attr('disabled',false);
 		}
 			
 		$('#insert').on('click',function() {
@@ -230,13 +239,11 @@
 			}
       	});
       
-      // 댓글 수정버튼
-		$('button[name^=cancel_').hide();
-		$('button[name^=update_').hide();
+		// 댓글 수정버튼
 		$('button[name^=edit]').on('click',function() {
      		var name=$(this).attr('name');
      		var num=name.replace('edit_','');   // 버튼의 값
-     		
+
      		$('button[name=edit_'+num+']').on('click',function() {
 				$('input[name=reply_'+num+']').attr('disabled',false);
 				$('button[name=edit_'+num+']').hide();

@@ -77,7 +77,7 @@
 <!-- 검색 -->
    <div class="topMenu" id="search">
 		<select id="searchType">
-		    <option value="board_sub">제 &nbsp; 목</option>
+		    <option value="free_sub">제 &nbsp; 목</option>
 		    <option value="client_nick1">닉네임</option>
 		</select>
       <input type="text" class="form-control" id="keyword" name="keyword" style="width:200px; display:inline-block;">

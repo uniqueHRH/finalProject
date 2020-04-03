@@ -60,33 +60,6 @@
       <button type="button" class="btn btn-default" id="goList">목록으로</button>
    </div>
 
-<!-- 댓글 출력 -->
-   <div id="table">
-      <table>
-         <tbody id="tbody">
-         <c:forEach items="${list }" var="beans">
-            <tr id="tr1">
-               <th id="th">${beans.client_nick1 }</th>
-               <th id="th">${beans.reply_date }</th>
-			</tr>
-			<tr id="tr2">
-				<td colspan="2"><input type="text" id="reply" name="reply_${beans.reply_no }" value="${beans.reply_content }" disabled></td>
-				<td>
-					<button type="button" id="edit" name="edit_${beans.reply_no }" class="btn btn-default"><img src="https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/edit.png?raw=true" width="15px" height="20px"/></button>
-					<button type="button" id="update" name="update_${beans.reply_no }" class="btn btn-default"><img src="https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/insert.png?raw=true" width="15px" height="20px"/></button>
-					<button type="button" id="cancel" name="cancel_${beans.reply_no }" class="btn btn-default"><img src="https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/delete.png?raw=true" width="15px" height="15px"/></button>
-					<button type="button" id="dele2" name="dele2_${beans.reply_no }" class="btn btn-default"><img src="https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/delete.png?raw=true" width="15px" height="15px"/></button>
-				</td>
-            </tr>
-         <input type="hidden" id="reply_no" name="reply_no" value="${beans.reply_no}">
-         </c:forEach>
-         </tbody>
-      </table>
-      <p></p>
-      <input type="text" class="form-control" id="reply_content" name="reply_content">
-      <button type="button" id="insert" class="btn btn-default"><img src="https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/insert.png?raw=true" width="30px" height="27px" style="vertical-align:30px;"/></button>
-   </div>
-      
 </form>
 
 <!-- contents end -->
@@ -100,14 +73,17 @@
    $(document).ready(function() {
 		// 이미지가 없을 때 출력되지 않도록
 		var img=$('#hiddenI').val();
+		var text='none.png';
 		
-		if(!img) {
+		if(img.indexOf(text)!=-1) {
+			$('#board_thumb').remove();
+		}
+		if(img=='') {
 			$('#board_thumb').remove();
 		}
 		
 		// 작성자만 수정/삭제 가능
 		var log=$('#log').val();
-		console.log(log);
 		if(log=='') {
 			$('#subm').hide();
 			$('#dele').hide();
@@ -142,112 +118,6 @@
 			}
 		});
             
-	// 목록버튼
-	$('#goList').on('click',function() {
-		location.href="../notice";
-	});
-      
-      // 입력 버튼
-		var log=$('#log').val();
-		
-		if(!log) {
-			$('#reply_content').val('로그인 후 이용이 가능합니다').attr('disabled',true);
-			return false;
-		} else {
-			$('#reply_content').attr('disabled',false);
-		}
-			
-		$('#insert').on('click',function() {
-			var text=$('#reply_content').val();
-			var no=$('#notice_no').val();
-			var reply=$('#reply_content').val();
-			
-			if(!text) {
-				alert('내용을 입력해주세요');
-				return false;
-				event.preventDefault();
-			} else {
-				$.ajax({
-		            url:'../noticeRepIn',
-		            type:'POST',
-   		            cache:false,
-		            data:{notice_no:$('#board_no').val(), client_nick1:log, reply_content:reply},
-		            success:function() {
-		            	reload();
-		            },
-		            error:function() {
-		               alert('다시 시도해주세요');
-		            }
-	         	});
-			}
-      	});
-      
-      // 댓글 수정버튼
-		$('button[name^=cancel_').hide();
-		$('button[name^=update_').hide();
-		$('button[name^=edit]').on('click',function() {
-     		var name=$(this).attr('name');
-     		var num=name.replace('edit_','');   // 버튼의 값
-     		
-     		$('button[name=edit_'+num+']').on('click',function() {
-				$('input[name=reply_'+num+']').attr('disabled',false);
-				$('button[name=edit_'+num+']').hide();
-				$('button[name=update_'+num+']').show();
-				$('button[name^=cancel_'+num+']').show();
-				$('button[name=cancel_'+num+']').on('click',function() {
-					var con=confirm('수정을 취소하시겠습니까?');
-					if(con) {
-						reload();
-					}
-				});
-				
-				$('button[name=update_'+num+']').on('click',function() {
-					var text=$('input[name=reply_'+num+']').val();
-					var con=confirm('수정하시겠습니까?');
-					
-					if(con) {
-						$.ajax({
-				            url:'../noticeRepup',
-				            type:'POST',
-				            data:{reply_no:num, reply_content:text},
-				            success:function() {
-				            	reload();
-								alert('성공');
-							},
-							error:function() {
-								alert('다시 시도해주세요');
-							}
-						});
-					} 
-				});
-     		});
-		});
-      
-      // 삭제버튼
-     	$('button[name^=dele2]').on('click',function() {
-     		var name=$(this).attr('name');
-     		var num=name.replace('dele2_','');   // 버튼의 값
-     		
-     		$('button[name=dele2_'+num+']').on('click',function() {
-     			var con=confirm('삭제하시겠습니까?');
-     			
-     			if(con) {
-     				 $.ajax({
-     		            url:'../noticeRepDel',
-     		            type:'POST',
-     		            cache:false,
-     		            data:{key:num},
-     		            success:function(obj) {
-     		            	alert('삭제완료!');
-     		            },
-     		            error:function() {
-     		               alert('다시 시도해주세요');
-     		            }
-     		         });
-     			}
-     		});
-     	});
-      
       function reload() {
     	  location.reload();
       }
