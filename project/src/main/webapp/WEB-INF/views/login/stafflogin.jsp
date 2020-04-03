@@ -14,25 +14,24 @@
    		font-family: "Jua";
    }
     form {
-      	width:600px;
+      	width:550px;
       	margin: 0 auto;
       	text-align: center;
+      	padding:0 0 220 0;
     }
     #loginbar{
-    	width: 600px;
+    	width: 800px;
     	margin: 0px auto;
-    	padding-bottom: 30px;
+    	padding-bottom: 50px;
+    	padding-top: 20px;
     }
-    #loginbtn{
+   #loginbtn{
        margin: 0px auto;
        text-align:center;
-       width: 90%;
+       width: 330px;
     }
     #idd,#pww {
        display:inline block;
-    }
-	form{
-    	padding:0 0 215 0;
     }
  
 </style>

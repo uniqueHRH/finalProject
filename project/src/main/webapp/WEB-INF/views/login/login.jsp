@@ -22,38 +22,32 @@
       	font-family:"Jua";
     }
  
-     form {
-      	width:600px;
+    form{
+      	width:550px;
       	margin: 0 auto;
       	text-align: center;
+      	padding:0 0 155 0;
     }
     #loginbar{
-    	width: 600px;
+    	width: 800px;
     	margin: 0px auto;
-    	padding-bottom: 30px;
+    	padding-bottom: 50px;
+    	padding-top: 20px;
     }
     #findid,#findpw{
        margin-top: 20px;
-       width:45%;
+       width:200px;
     }
     #loginbtn{
        margin: 0px auto;
        text-align:center;
-       width: 90%;
+       width: 330px;      
     }
     #idd,#pww {
        display:inline-block;
+      
     }
-    #facebookbtn,#naverbtn {
-       margin: 0px auto;
-       text-align:center;
-       width:60%;
-    }
-    #logBn {
-    }
-    form{
-    	padding:0 0 150 0;
-    }
+ 
 </style>
 
 </head>
