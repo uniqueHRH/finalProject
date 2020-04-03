@@ -13,7 +13,6 @@
 <body>
 <input type="hidden" id="sock" value="${sessionScope.check.client_nick1}">
 <jsp:useBean id="bean" class="com.bit.project.model.entity.ReceiveVo"/>
-<%=bean.getClient_nick2() %>
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.js"></script>
 <script type="text/javascript">
