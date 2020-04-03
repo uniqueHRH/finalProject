@@ -62,6 +62,12 @@ public class MypageController {
 		receiveService.selectOne_receive(key, model);
 		return "mypage/receiveMsg";
 	}
+	// 쪽지 삭제
+	@RequestMapping(value="/main/messageDele", method=RequestMethod.POST)
+	public String receiveMsgDel(int key) {
+		receiveService.deleteOne_receive(key);
+		return "mypage/message";
+	}
 	
 	// 실시간 받은 쪽지
 	@RequestMapping(value="/main/partnerMessage", method=RequestMethod.GET)

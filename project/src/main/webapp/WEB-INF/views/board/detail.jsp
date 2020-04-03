@@ -290,7 +290,7 @@
       
       // 삭제버튼
 		$('#dele').on('click',function() {
-/* 			var con=confirm('삭제하시겠습니까?');
+			var con=confirm('삭제하시겠습니까?');
 			var replyCnt=$('#reply').length;
 			
 			if(con) {
@@ -310,11 +310,7 @@
 		                  }
 		            });
 				}
-			} */
-			
-			alert('삭제하시겠습니까?',{
-				buttons:['확인','취소'],
-			});
+			}
 		});
       
 	// 쪽지보내기

@@ -11,9 +11,74 @@
 
 <link rel="stylesheet" type="text/css" href="${root }css/bootstrap.css" />
 <link rel="stylesheet" type="text/css" href="${root }css/travel.css" />
-<link rel="stylesheet" type="text/css" href="${root }css/board.css" />
 <style type="text/css">
-
+	h1, input {
+		font-family: 'Jua';
+	}
+	select, button, a {
+		font-family: 'Jua';
+	}
+	#theme {
+		width:900px;
+		margin:0 auto;
+	}
+	#table {
+		width:900px;
+		margin:0 auto;
+		padding:0px;
+		text-align:center;
+		font-size:18px;
+		font-family: 'Jua';
+	}
+	#table>tbody td,
+	#table>tbody td>a {
+		font-size:15px;
+	}
+	#table th {
+		text-align:center;
+	}
+	#table>tbody td {
+		font-size:15px;
+	}
+	#table>thead th:nth-child() {
+		width:50px;
+	}
+	#table>thead th:nth-child(2) {
+		width:70px;
+	}
+	#table>thead th:nth-child(3) {
+		width:550px;
+		text-align:left;
+	}
+	#table>thead th:nth-child(4) {
+		width:100px;
+	}
+	#table>thead th:nth-child(5) {
+		width:120px;
+	}
+	#table>tbody td:nth-child(3) {
+		text-align:left;
+	}
+	#table>tbody td>a {
+		text-decoration:none;
+	}
+	#table>tbody td>a:hover {
+		color:black;
+	}
+	
+	#pageNum, #search {
+		width:350px;      
+		margin:0 auto;
+		text-align:center;
+	}
+	tbody td>a {
+		color:black;
+		text-decoration:none;
+   }
+	.dropdown {
+		font-family: 'Jua';
+		font-size: 18px;
+	}
 </style>
 </head>
 <body>
@@ -29,12 +94,13 @@
    
 <table class="table table-hover" id="table">
 	<div class="topMenu" id="theme">
-		<input type="text" value="<c:out value="${listCnt}"></c:out>개의 게시물이 조회되었습니다" id="listCnt" disabled/>
+		<input type="text" value="<c:out value="${listCnt}"></c:out>개의 게시물이 조회되었습니다" id="listCnt" disabled/><br/>
+		<a class="btn btn-default" href="#" role="button" id="feed">답 장</a> &nbsp; <a class="btn btn-default" href="#" role="button" id="dele">삭 제</a>
 	</div>
-
 <!-- 리스트 출력 -->
    <thead>
       <tr class="active">
+         <th><input type="checkbox" id="chk"></th>
          <th>#</th>
          <th>내 용</th>
          <th>보낸이</th>
@@ -45,6 +111,7 @@
 		<c:forEach items="${list }" var="bean">
 		<input type="hidden" id="no" value="${bean.receive_no }">
 		<tr>
+			<td><input type="checkbox" name="chk_${bean.receive_no }"></td>
 			<td>${bean.receive_no }</td>
 			<td><a href="#" onclick="window.open('../messageDe/'+${bean.receive_no }, '쪽지보기', 'width=470, height=340, left=500, top=50');">${bean.receive_content }</a></td>
 			<td><a href="#" onclick="window.open('../messageDe/'+${bean.receive_no }, '쪽지보기', 'width=470, height=340, left=500, top=50');">${bean.client_nick1 }</a></td>
@@ -114,14 +181,48 @@
 	      channelPublicId: '_wxfwxfxb' // 카카오톡 채널 홈 URL에 명시된 id로 설정합니다.
 	    });
 	  //]]>
-		
-		$('#hide').hide();
-		// 로그인 후 글쓰기 이용 가능
-		var loginBool=$('#loginCk').val();
 
-		if(!loginBool) {
-			$('#wri').hide();
-		}
+		// 삭제 체크박스
+		$('#chk').on('click',function() {
+			if($('#chk').prop('checked')) {
+				$('input[type=checkbox]').prop('checked',true);
+			} else {
+				$('input[type=checkbox]').prop('checked',false);
+			}
+		});
+		
+		// 답장버튼 클릭
+		$('#feed').on('click',function() {
+			var feed=$('input[type=checkbox]:checked').attr('name');
+			feed=feed.split('_');
+			feed=feed[1];
+			
+			window.open('../messageDe/'+feed, '쪽지보기', 'width=470, height=340, left=500, top=50');
+		});
+		
+		// 삭제버튼 클릭
+		$('#dele').on('click',function() {
+			var feed=$('input[type=checkbox]:checked').attr('name');
+			feed=feed.split('_');
+			feed=feed[1];
+			console.log(feed);
+			
+			var con=confirm('선택된 쪽지를 삭제하시겠습니까?');
+			if(con) {
+				$.ajax({
+					url:'../messageDele',
+					type:'POST',
+					data:{key:feed},
+					success:function() {
+						alert('삭제되었습니다');
+						reload();
+					},
+					error:function() {
+						console.log('다시 시도해 주세요');
+					}
+				});
+			}
+		});
 //////////////////////////////////////////////////////////////////////////////////////////		
 		// 검색
 		$('#searchGo').on('click',function() {
@@ -133,6 +234,9 @@
 			console.log(url);
 		});
 		
+		function reload() {
+			location.reload();
+		}
    });
 //////////////////////////////////////////////////////////////////////////////////////////		
 		// 페이징
