@@ -26,6 +26,10 @@
 	<select id="selectAll_africa" resultType="TourBean">
 		select * from tour where land='아프리카' order by country
 	</select>
+	<!-- 메인이자 힐링테마 -->
+	<select id="selectAll_theme" resultType="TourBean">
+		select * from tour where theme='힐링' order by country
+	</select>
 	
 	<!--  detail join guide -->
 	<resultMap type="TourBean" id="TourMap">

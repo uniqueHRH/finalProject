@@ -1,12 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" pageEncoding="utf-8" %>
+<%@ page pageEncoding="utf-8" %>
 <link href="https://fonts.googleapis.com/css?family=Jua&display=swap&subset=korean" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Jua|Noto+Sans+KR&display=swap" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="slick/slick.css"/>
-<link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>
-<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-
-
 <c:url value="/" var="root"></c:url>
 <html>
 <head>
@@ -14,203 +9,76 @@
 <title>Home</title>
 <link rel="stylesheet" type="text/css" href="${root }css/bootstrap.css" />
 <link rel="stylesheet" type="text/css" href="${root }css/travel.css" />
-
 <style type="text/css">
 	.container{
 		font-family: 'Jua';
 		text-align: center;
-		width: 100%;
+		width: 1200px;
+		margin-left: 330px;
 	}
-	#themetab{
-		width: 70%;
-		margin: 0px auto;
+	.thumbnail{
+		width: 330px;
 	}
-	
-	
+	#mainimg{
+		width: 300px;
+		padding-top: 15px;
+		padding-left: 10px;
+		padding-right: 10px;		
+	}	
+	.caption div{
+		width:100%;
+		height:30px;		
+	}
+	#themename{
+		font-size: 22px;
+		padding-bottom: 25px;
+	}
+
 </style>
 
 </head>
 <body>
-											<!-- menubar start -->
-	<nav class="navbar navbar-primary">
-	  <div class="container-fluid">
-	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-	      <ul class="nav navbar-nav">
-	        <li class="dropdown">
-	           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><img src="https://github.com/uniqueHRH/travel/blob/master/travel/src/main/webapp/imgs/menubar.png?raw=true" width=40px, height=40px/></a>
-	          <ul class="dropdown-menu" role="menu">
-	            <li id="tour"><a href="#">투어</a>
-	            	<ul id="tour_sub">
-	            		<li><a href="${root }tour/eastasia">중국/일본</a></li>
-	            		<li><a href="${root }tour/southeastasia">동남아시아</a></li>
-	            		<li><a href="${root }tour/america">아 메 리 카</a></li>
-	            		<li><a href="${root }tour/europe">유 &nbsp; &nbsp; &nbsp; &nbsp;럽</a></li>
-	            		<li><a href="${root }tour/pacific">남 태 평 양</a></li>
-	            		<li><a href="${root }tour/africa">아 프 리 카</a></li>
-	            		<li><a href="${root }tour/theme">테 마 여 행</a></li>
-	            	</ul>
-	            </li>
-	            <li class="divider"></li>
-	            <li id="comm"><a href="#">커뮤니티</a>
-		            <ul id="comm_sub">
-	            		<li><a href="${root }board/review">여행후기</a></li>
-	            		<li><a href="${root }board/partner">동행구하기</a></li>
-	            		<li><a href="${root }board/free">자유게시판</a></li>
-	            	</ul>
-            	</li>
-	            <li class="divider"></li>
-	            <li><a id="event"href="${root }board/event">이벤트</a></li>
-	            <li class="divider"></li>
-	            <li id="serv"><a href="#">고객센터</a>
-	            	<ul id="serv_sub">
-	            		<li><a href="${root }board/notice">공 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;지</a></li>
-	            		<li><a href="${root }board/qna">자주묻는질문</a></li>
-	            	</ul>
-	            </li>
-	            <li class="divider"></li>
-	            <li id="system"><a href="#">시스템관리</a>
-	            	<ul id="system_sub">
-	            		<li><a href="${root }system/staff">직원 관리</a></li>
-	            		<li><a href="${root }system/guide">가이드관리</a></li>
-	            		<li><a href="${root }system/client">회원관리</a></li>
-	            		<li><a href="${root }system/paid">결제관리</a></li>
-	            		<li><a href="${root }system/report">신고관리</a></li>
-	            	</ul>
-	            </li>
-	          </ul>
-	        </li>
-	      </ul>
-		<div align="center" style="disply:inline-block;">
-			<a href="${root }"><img src="https://github.com/uniqueHRH/travel/blob/master/travel/src/main/webapp/imgs/logoA.png?raw=true" width=130px></a>
-	      <ul class="nav navbar-nav navbar-right">
-	        <!-- 로그인시 숨김 -->
-	        <c:if test="${sessionScope.check eq null && sessionScope.staffcheck eq null }">
-	        <li><a id="side" href="${root }main/login" >로그인</a></li>
-	        <li><a id="side" href="${root }main/admin" >회원가입</a></li>
-	        </c:if>
-	        <!-- 직원로그인시 -->
-	        <c:if test="${sessionScope.staffcheck ne null }">
-	        <li class="dropdown">
-	          <a id="side" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">나의페이지<span class="caret"></span></a>
-	          <ul class="dropdown-menu" id="dropdown_sub" role="menu">
-	            <li><a href="${root }main/staffinfo">내정보관리</a></li>
-	            <li><a href="${root }main/logout">로그아웃</a></li>
-	          </ul>
-	        </li>
-	        </c:if>
-	        <!-- 회원로그인시 -->
-	        <c:if test="${sessionScope.check ne null }">
-	        <li class="dropdown">
-	          <a id="side" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">${sessionScope.check.client_nick1}님<span class="caret"></span></a>
-	          <ul class="dropdown-menu" id="dropdown_sub" role="menu">
-	            <li><a href="${root }main/message">쪽지함</a></li>
-	            <li class="divider"></li>
-	            <li><a href="#">최근본상품</a></li>
-	            <li><a href="${root }main/wish">찜한상품</a></li>
-	            <li><a href="#">결제상품</a></li>
-	            <li class="divider"></li>
-	            <li><a href="#">내가쓴글</a></li>
-	            <li class="divider"></li>
-	            <li><a href="${root }main/myinfo">내정보관리</a></li>
-	            <li><a href="${root }main/logout">로그아웃</a></li>
-	          </ul>
-	        </li>
-	        </c:if>
-	      </ul>
-		</div>
-	    </div><!-- /.navbar-collapse -->
-	  </div><!-- /.container-fluid -->
-	</nav>
+<jsp:include page="/WEB-INF/menubar.jsp"/>
 <div class="container">     
  <div class="row">
-	<div class="col-md-12">
+	<div class="col-md-12">	
 		<div class="page-header" align="center">
-	  <h1>테마여행</h1>
+	  <h1>특별한 여행을 하고 싶다면? 테마가 있는 여행은 어떠세요?</h1>
  </div>
-	<!-- contents start -->
-	<div>
-
-
-  <!-- Nav tabs -->
-  <div id="themetab">
-	  <ul class="nav nav-tabs" role="tablist">
-	    <li role="presentation" class="active"><a href="#healing" aria-controls="healing" role="tab" data-toggle="tab" style="width: 150px;">#힐링</a></li>
-	    <li role="presentation"><a href="#snap" aria-controls="snap" role="tab" data-toggle="tab" style="width: 150px;">#스냅</a></li>
-	    <li role="presentation"><a href="#activity" aria-controls="activity" role="tab" data-toggle="tab" style="width: 150px;">#엑티비티</a></li>
-	    <li role="presentation"><a href="#food" aria-controls="food" role="tab" data-toggle="tab" style="width: 150px;">#식도락</a></li>
-	    <li role="presentation"><a href="#movie" aria-controls="movie" role="tab" data-toggle="tab" style="width: 150px;">#영화</a></li>
-	    <li role="presentation"><a href="#sports" aria-controls="sports" role="tab" data-toggle="tab" style="width: 150px;">#스포츠</a></li>
-	  </ul>
-  </div>
-  <!-- Tab panes -->
-	  <div class="tab-content">
-	    <div role="tabpanel" class="tab-pane active" id="healing">1번</div>
-	    <div role="tabpanel" class="tab-pane" id="snap">2번</div>
-	    <div role="tabpanel" class="tab-pane" id="activity">3번</div>
-	    <div role="tabpanel" class="tab-pane" id="food">4번</div>
-	    <div role="tabpanel" class="tab-pane" id="movie">5번</div>
-	    <div role="tabpanel" class="tab-pane" id="sports">6번</div>
-	  </div>
+	</div>
+<div id="themename">	
+<span id="healing">#힐링</span> &nbsp;&nbsp;&nbsp;&nbsp;<span id="snap">#스냅</span> &nbsp;&nbsp;&nbsp;&nbsp;<span id="activity">#엑티비티</span> &nbsp;&nbsp;&nbsp;&nbsp;<span id="food">#식도락</span>&nbsp;&nbsp;&nbsp;&nbsp;<span id="movie">#영화</span>&nbsp;&nbsp;&nbsp;&nbsp;<span id="sports">#스포츠</span>
 </div>
-		
-	<!-- contents end -->
-  </div>
- </div>
-</div>
- <div class="row">
-	<div class="col-md-12">
-    <div class="footer">
-    	
+<div class="row">
+	
+<c:forEach items="${list }" var="bean">
+  <a href="${root }tour/detail/${bean.tour_no}"><div class="col-sm-6 col-md-4">
+    <div class="thumbnail">
+      <img src="${bean.mainimg }" alt="" id="mainimg">
+      <div class="caption">
+        <h3>${bean.name }</h3>
+        <div style="font-size: 20px;">
+        	${bean.city }(${bean.country })
+        </div>
+        <div id="cost" style="color: red; font-size: 20px;">
+       		${bean.cost }원
+        </div>
+      </div>
     </div>
-   </div>
- </div> 
-
-</body>
+  </div> 
+  </a> 
+</c:forEach>
+ 
+  </div>
+ </div>
+</div>
+	<div id="footer">
+		<jsp:include page="/WEB-INF/footer.jsp"/>
+	</div>
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="${root }js/bootstrap.js"></script>
-<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-<script type="text/javascript" src="slick/slick.min.js"></script>
-<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-
 <script type="text/javascript">
-	$(document).ready(function() {
-		$('#tour_sub').hide();
-		$('#comm_sub').hide();
-		$('#serv_sub').hide();
-		$('#system_sub').hide();
-		
-		$('#mainFont1').hide();
-		$('#mainFont2').hide();
-		$('#mainFont3').hide();
-		$('#mainFont4').hide();
-	
-		$('#tour').mouseenter(function() {
-			$('#tour_sub').show();
-		}).mouseleave(function() {
-			$('#tour_sub').hide();
-		});
-		$('#comm').mouseenter(function() {
-			$('#comm_sub').show();
-		}).mouseleave(function() {
-			$('#comm_sub').hide();
-		});
-		$('#serv').mouseenter(function() {
-			$('#serv_sub').show();
-		}).mouseleave(function() {
-			$('#serv_sub').hide();
-		});
-		$('#system').mouseenter(function() {
-			$('#system_sub').show();
-		}).mouseleave(function() {
-			$('#system_sub').hide();
-		});
-		$('#snap a').click(function() {
-			 $(this).tab('show');
-			});
-		
-	});
-	
-	
+
 </script>
+</body>
 </html>

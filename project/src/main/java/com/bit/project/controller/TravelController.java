@@ -198,7 +198,8 @@ public class TravelController {
 	
 	
 	@RequestMapping(value = "/tour/theme", method = RequestMethod.GET)
-	public String theme() {
+	public String theme(Model model) {
+		tourservice.selectAll_themetour(model);
 		return "tour/themetour";
 	}
 }
