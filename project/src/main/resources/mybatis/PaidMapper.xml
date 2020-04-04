@@ -13,7 +13,7 @@
 	<resultMap type="PaidBean" id="PaidMap">
 		<result property="paid_no" column="paid_no"/>
 		<result property="tour_no" column="tour_no"/>
-		<result property="client_name" column="cleint_name"/>
+		<result property="client_name" column="client_name"/>
 		<result property="paid_name" column="paid_name"/>
 		<result property="paid_phone" column="paid_phone"/>
 		<result property="paid_birth" column="paid_birth"/>
