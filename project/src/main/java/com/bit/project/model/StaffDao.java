@@ -2,12 +2,9 @@ package com.bit.project.model;
 
 import java.util.List;
 
-import org.springframework.ui.Model;
-
 import com.bit.project.common.Search;
 import com.bit.project.model.entity.BoardVo;
 import com.bit.project.model.entity.ClientVo;
-import com.bit.project.model.entity.PaidVo;
 import com.bit.project.model.entity.StaffVo;
 
 public interface StaffDao {
@@ -16,7 +13,6 @@ public interface StaffDao {
 	List<StaffVo> selectAll_staff(Search search) throws Exception;
 	List<StaffVo> selectAll_staffNo(Search search) throws Exception;
 	List<StaffVo> selectAll_staffTeam(Search search) throws Exception;
-	
 	StaffVo selectOne_staff(int key) throws Exception;
 	void insertOne_staff(StaffVo bean) throws Exception;
 	int updateOne_staff(StaffVo bean) throws Exception;

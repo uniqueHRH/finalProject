@@ -7,8 +7,8 @@ public class Search extends Pagination{
 	
 	private String searchType;
 	private String keyword;
-	private String client_nick2;
 	private String client_nick1;
+	private String client_nick2;
 	private String client_name;
 	
 	
@@ -28,17 +28,17 @@ public class Search extends Pagination{
 	public void setKeyword(String keyword) {
 		this.keyword = keyword;
 	}
-	public String getClient_nick2() {
-		return client_nick2;
-	}
-	public void setClient_nick2(String client_nick2) {
-		this.client_nick2 = client_nick2;
-	}
 	public String getClient_nick1() {
 		return client_nick1;
 	}
 	public void setClient_nick1(String client_nick1) {
 		this.client_nick1 = client_nick1;
+	}
+	public String getClient_nick2() {
+		return client_nick2;
+	}
+	public void setClient_nick2(String client_nick2) {
+		this.client_nick2 = client_nick2;
 	}
 	public String getClient_name() {
 		return client_name;
@@ -53,8 +53,8 @@ public class Search extends Pagination{
 
 	@Override
 	public String toString() {
-		return "Search [searchType=" + searchType + ", keyword=" + keyword + ", client_nick2=" + client_nick2
-				+ ", client_nick1=" + client_nick1 + ", client_name=" + client_name + "]";
+		return "Search [searchType=" + searchType + ", keyword=" + keyword + ", client_nick1=" + client_nick1
+				+ ", client_nick2=" + client_nick2 + ", client_name=" + client_name + "]";
 	}
 
 
@@ -62,8 +62,8 @@ public class Search extends Pagination{
 		super();
 		this.searchType = searchType;
 		this.keyword = keyword;
-		this.client_nick2 = client_nick2;
 		this.client_nick1 = client_nick1;
+		this.client_nick2 = client_nick2;
 		this.client_name = client_name;
 	}
 

@@ -43,7 +43,7 @@
 		border:0;
 		outline:0;
 		width:73;
-		background-color:white;
+		background-color:rgba(1,1,1,0);
 		padding:0 0 0 13;
 		margin:0;
 	}

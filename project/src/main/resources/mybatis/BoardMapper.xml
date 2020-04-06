@@ -159,7 +159,7 @@
 		LIMIT #{startList}, #{listSize}
 	</select>
 	
-	<select id="myBoardTotal" parameterType="BoardBean" resultMap="myBoard_board">
+	<select id="myBoardTotal" resultType="int" resultMap="myBoard_board">
 		select count(*) from (
 			select board_id, board_no, board_sub, board_date, board_count from board where client_nick1=#{client_nick1}
 			union
@@ -168,4 +168,9 @@
 			select board_id, board_no, free_sub, free_date, free_count from free where client_nick1=#{client_nick1}
 		) as board_table
 	</select>
+	
+<!-- 
+	resultMap : 참조
+	resultType : 반환타입
+ -->
 </mapper>

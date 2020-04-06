@@ -20,7 +20,6 @@
     	width:50%;
     	margin:0px auto;
     	text-align: center;
-    	padding-top: 50px;
     }
    #table tr{
    		text-align: center;
@@ -29,24 +28,12 @@
    		text-align: center;
    		font-size: 15px;
    }
-   
-   form{
-   		padding: 0 0 150 0;
-   }		
-   #resetbtn,#changebtn,#submitbtn{
-   		display: inline;
-   		margin-top: 30px;
+   #resetbtn,#submitbtn,#changebtn{
+   		
    		width: 200px;
    }
-   #resetbtn,#submitbtn{
-   		position: relative;
-   		left: 710px;
-   }
-   #changebtn{
-   		position: relative;
-   		left: 450px;
-   }
-   }
+   		
+   
    
 </style>
 </head>
@@ -86,10 +73,10 @@
 	   </table>
 	 </div>
 	<input type="hidden" id="client_id" name="client_id" value="${sessionScope.check.client_id }"/>
-<div id="buttons">
+<div align="center">	 
+  <button type="submit" class="btn btn-default" id="submitbtn">변경 완료</button>
   <a href="${root }main/mypage/changepw"><button type="button" class="btn btn-default" id="changebtn">비밀번호변경</button></a>
   <button type="button" class="btn btn-default" id="resetbtn" onclick="location.href='../myinfo'">취 소</button>
-  <button type="submit" class="btn btn-default" id="submitbtn">변경 완료</button>
 </div>
 </form>   
 </div>

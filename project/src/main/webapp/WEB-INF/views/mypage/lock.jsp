@@ -14,23 +14,18 @@
       	font-family:"Jua";
     }
     .form-horizontal {
-    	padding-top: 50px;
     	text-align: center;
-        width:590px;
-      	margin: 0 auto;
+       width:750px;
+      margin: 0 auto;
     }
-    #client_pw{
-    	margin-left: 10px;
+    #idd{
+       position: relative;
+       right: 150px;
     }
+   
     #resetbtn,#changepwbtn{
-    	position: relative;
-    	left: 70px;
-    	width: 150px;
-    	margin-top: 20px;
+    	width: 30%;
     }
-     form{
-     	padding: 0 0 310 0;
-     }
 </style>
 </head>
 <body>
@@ -50,8 +45,8 @@
        	<%out.println("<script>alert('비밀번호를 확인해주세요');</script>");%>
        </c:if>
      <div align="center">
-     	<button type="button" id="resetbtn" class="btn btn-default btn-lg" onclick="location.href='../myinfo'">취소</button>
      	<button type="submit" id="changepwbtn" class="btn btn-default btn-lg">확인</button>
+     	<button type="button" id="resetbtn" class="btn btn-default btn-lg" onclick="location.href='../myinfo'">취소</button>
      </div>
      </form>
 </div>   
