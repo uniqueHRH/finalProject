@@ -25,5 +25,6 @@ public interface BoardService {
 	void select_land(int key, Model model);
 //	°Ô½Ã¹° ÃÑ °¹¼ö
 	public int getBoardListCnt(Search search) throws Exception;
+	void myBoardList(String id, Model model);
 }
 

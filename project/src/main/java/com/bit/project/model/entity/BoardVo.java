@@ -5,6 +5,7 @@ import java.sql.Date;
 public class BoardVo {     
 
 	private int board_no;
+	private int board_id;
 	private String board_sub;
 	private int board_count;
 	private String board_content;
@@ -16,6 +17,9 @@ public class BoardVo {
 	private String board_img;
 	private String board_thumb;
 
+	private PartnerVo PartnerVo;
+	private FreeVo FreeVo;
+	
 
 	public BoardVo() {
 	}
@@ -28,6 +32,16 @@ public class BoardVo {
 
 	public void setBoard_no(int board_no) {
 		this.board_no = board_no;
+	}
+
+
+	public int getBoard_id() {
+		return board_id;
+	}
+
+
+	public void setBoard_id(int board_id) {
+		this.board_id = board_id;
 	}
 
 
@@ -110,6 +124,7 @@ public class BoardVo {
 		this.board_theme = board_theme;
 	}
 
+
 	public String getBoard_img() {
 		return board_img;
 	}
@@ -130,20 +145,43 @@ public class BoardVo {
 	}
 
 
+	public PartnerVo getPartnerVo() {
+		return PartnerVo;
+	}
+
+
+	public void setPartnerVo(PartnerVo partnerVo) {
+		PartnerVo = partnerVo;
+	}
+
+
+	public FreeVo getFreeVo() {
+		return FreeVo;
+	}
+
+
+	public void setFreeVo(FreeVo freeVo) {
+		FreeVo = freeVo;
+	}
+
+
 	@Override
 	public String toString() {
-		return "BoardVo [board_no=" + board_no + ", board_sub=" + board_sub
+		return "BoardVo [board_no=" + board_no + ", board_id=" + board_id + ", board_sub=" + board_sub
 				+ ", board_count=" + board_count + ", board_content=" + board_content + ", client_nick1=" + client_nick1
 				+ ", board_date=" + board_date + ", board_land=" + board_land + ", board_city=" + board_city
-				+ ", board_theme=" + board_theme + ", board_img=" + board_img + ", board_thumb=" + board_thumb + "]";
+				+ ", board_theme=" + board_theme + ", board_img=" + board_img + ", board_thumb=" + board_thumb
+				+ ", PartnerVo=" + PartnerVo + ", FreeVo=" + FreeVo + "]";
 	}
 
 
 	public BoardVo(int board_no, int board_id, String board_sub, int board_count, String board_content,
 			String client_nick1, Date board_date, String board_land, String board_city, String board_theme,
-			int board_wish, int board_cost, String board_img, String board_thumb) {
+			String board_img, String board_thumb, com.bit.project.model.entity.PartnerVo partnerVo,
+			com.bit.project.model.entity.FreeVo freeVo) {
 		super();
 		this.board_no = board_no;
+		this.board_id = board_id;
 		this.board_sub = board_sub;
 		this.board_count = board_count;
 		this.board_content = board_content;
@@ -154,7 +192,9 @@ public class BoardVo {
 		this.board_theme = board_theme;
 		this.board_img = board_img;
 		this.board_thumb = board_thumb;
+		PartnerVo = partnerVo;
+		FreeVo = freeVo;
 	}
 
-	
+
 }

@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.bit.project.common.Search;
 import com.bit.project.model.entity.ClientVo;
+import com.bit.project.service.BoardService;
 import com.bit.project.service.ClientService;
 import com.bit.project.service.ReceiveService;
 
@@ -26,6 +27,10 @@ public class MypageController {
 	ReceiveService receiveService;
 	@Autowired
 	ClientService clientService;
+	@Autowired
+	BoardService boardService;
+	
+	
 //	쪽지함
 	@RequestMapping(value="/main/message", method=RequestMethod.GET)
 	public String receiveMsg(String id, Model model,
@@ -77,7 +82,8 @@ public class MypageController {
 	}
 //	내가 쓴 글
   	@RequestMapping(value="/main/myBoard", method=RequestMethod.GET)
-  	public String myBoard() {
+  	public String myBoard(String id, Model model) {
+  		boardService.myBoardList(id, model);
   		return "mypage/myBoard";
   	}
   	

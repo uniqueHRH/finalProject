@@ -14,25 +14,28 @@
 <link rel="stylesheet" type="text/css" href="${root }css/board.css" />
 <style type="text/css">
 	#table>thead th:nth-child(1) {
-		width:40px;
+		width:80;
 		background-color:red;
 	}
 	#table>thead th:nth-child(2) {
-		width:90px;
+		width:120;
 		background-color:yellow;
 	}
 	#table>thead th:nth-child(3) {
-		width:315px;
+		width:550;
 		background-color:blue;
 	}
 	#table>thead th:nth-child(4) {
-		width:70px;
+		width:120;
 		background-color:green;
 	}
 	#table>thead th:nth-child(5) {
-		width:70px;
+		width:80;
 	}
-	#table>tbody td:nth-child(4) {
+	#table>tbody td:nth-child(2) {
+		text-align:center; 
+	}
+	#table>tbody td:nth-child(3) {
 		text-align:left;
 	}
 	#table>tbody td>a {
@@ -40,6 +43,13 @@
 	}
 	#table>tbody td>a:hover {
 		color:black;
+	}
+	input {
+		border:0;
+		outline:0;
+		width:73;
+		background-color:white;
+		text-align:center;
 	}
 /* 리모컨 */ 
 	#remote {
@@ -97,13 +107,12 @@
    </thead>
    <tbody>
 		<c:forEach items="${list }" var="bean">
-		<c:set var="i" value="${i+1 }"/>
 		<tr>
-			<td>${i }</td>
-			<td><a href="detail/${bean.board_no }">[${bean.board_land }]</a></td>
-			<td><a href="detail/${bean.board_no }">[${bean.board_theme }]</a></td>
-			<td><a href="detail/${bean.board_no }">${bean.board_sub }</a></td>
-			<td><a href="detail/${bean.board_no }">${bean.board_sub }</a></td>
+			<td><a href="#">${bean.board_no }</a></td>
+			<td><a href="#"><input type="text" name="boardId_${bean.board_id }" value="${bean.board_id }" disabled></a></td>
+			<td><a href="#">${bean.board_sub }</a></td>
+			<td><a href="#">${bean.board_date }</a></td>
+			<td><a href="#">${bean.board_count }</a></td>
 		</tr>
 		</c:forEach>
    </tbody>
@@ -156,31 +165,6 @@
 <script type="text/javascript" src="${root }js/bootstrap.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-		$('#hamb').hide();
-		$('#hide').hide();
-		
-		$('#tour_sub').hide();
-		$('#comm_sub').hide();
-		$('#serv_sub').hide();
-		$('#system_sub').hide();
-		
-		$('#maintext1').hide();
-		$('#maintext2').hide();
-		$('#maintext3').hide();
-		$('#maintext4').hide();
-		
-		$('#hambBtn').mouseenter(function() {
-			$('#hamb').show();
-			$(this).hide();
-		});
-		$('#hamb').mouseenter(function() {
-			$(this).show();
-			$('#hambBtn').hide();
-		}).mouseleave(function() {
-			$('#hamb').hide();
-			$('#hambBtn').show();
-		});
-		
 		/* 정렬 */
 		$('#sel').on('click',function() {
 			var up=$('#dropdownMenu1').val();
@@ -219,6 +203,11 @@
 				});   // ajax
 			}   // if
 		});
+		
+		// 게시판명 출력
+		$('input[name=boardId_2]').val('후기게시판');
+		$('input[name=boardId_3]').val('동행게시판');
+		$('input[name=boardId_4]').val('자유게시판');
 		
 		// 리모컨 top
 		$('#top').on('click',function() {

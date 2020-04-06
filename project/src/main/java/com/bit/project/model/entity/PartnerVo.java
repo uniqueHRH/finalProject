@@ -5,6 +5,7 @@ import java.sql.Date;
 public class PartnerVo {
 
 	private int board_no;
+	private int board_id;
 	private String partner_sub;
 	private int partner_count;
 	private String partner_content;
@@ -25,6 +26,16 @@ public class PartnerVo {
 
 	public void setBoard_no(int board_no) {
 		this.board_no = board_no;
+	}
+
+
+	public int getBoard_id() {
+		return board_id;
+	}
+
+
+	public void setBoard_id(int board_id) {
+		this.board_id = board_id;
 	}
 
 
@@ -100,16 +111,18 @@ public class PartnerVo {
 
 	@Override
 	public String toString() {
-		return "PartnerVo [board_no=" + board_no + ", partner_sub=" + partner_sub + ", partner_count=" + partner_count
-				+ ", partner_content=" + partner_content + ", client_nick1=" + client_nick1 + ", partner_date="
-				+ partner_date + ", partner_img=" + partner_img + ", partner_thumb=" + partner_thumb + "]";
+		return "PartnerVo [board_no=" + board_no + ", board_id=" + board_id + ", partner_sub=" + partner_sub
+				+ ", partner_count=" + partner_count + ", partner_content=" + partner_content + ", client_nick1="
+				+ client_nick1 + ", partner_date=" + partner_date + ", partner_img=" + partner_img + ", partner_thumb="
+				+ partner_thumb + "]";
 	}
 
 
-	public PartnerVo(int board_no, String partner_sub, int partner_count, String partner_content, String client_nick1,
-			Date partner_date, String partner_img, String partner_thumb) {
+	public PartnerVo(int board_no, int board_id, String partner_sub, int partner_count, String partner_content,
+			String client_nick1, Date partner_date, String partner_img, String partner_thumb) {
 		super();
 		this.board_no = board_no;
+		this.board_id = board_id;
 		this.partner_sub = partner_sub;
 		this.partner_count = partner_count;
 		this.partner_content = partner_content;

@@ -5,6 +5,7 @@ import java.sql.Date;
 public class FreeVo {
 
 	private int board_no;
+	private int board_id;
 	private String free_sub;
 	private int free_count;
 	private String free_content;
@@ -25,6 +26,16 @@ public class FreeVo {
 
 	public void setBoard_no(int board_no) {
 		this.board_no = board_no;
+	}
+
+
+	public int getBoard_id() {
+		return board_id;
+	}
+
+
+	public void setBoard_id(int board_id) {
+		this.board_id = board_id;
 	}
 
 
@@ -100,16 +111,17 @@ public class FreeVo {
 
 	@Override
 	public String toString() {
-		return "FreeVo [board_no=" + board_no + ", free_sub=" + free_sub + ", free_count=" + free_count
-				+ ", free_content=" + free_content + ", client_nick1=" + client_nick1 + ", free_date=" + free_date
-				+ ", free_img=" + free_img + ", free_thumb=" + free_thumb + "]";
+		return "FreeVo [board_no=" + board_no + ", board_id=" + board_id + ", free_sub=" + free_sub + ", free_count="
+				+ free_count + ", free_content=" + free_content + ", client_nick1=" + client_nick1 + ", free_date="
+				+ free_date + ", free_img=" + free_img + ", free_thumb=" + free_thumb + "]";
 	}
 
 
-	public FreeVo(int board_no, String free_sub, int free_count, String free_content, String client_nick1,
+	public FreeVo(int board_no, int board_id, String free_sub, int free_count, String free_content, String client_nick1,
 			Date free_date, String free_img, String free_thumb) {
 		super();
 		this.board_no = board_no;
+		this.board_id = board_id;
 		this.free_sub = free_sub;
 		this.free_count = free_count;
 		this.free_content = free_content;
@@ -118,7 +130,7 @@ public class FreeVo {
 		this.free_img = free_img;
 		this.free_thumb = free_thumb;
 	}
-	
-	
+
+
 	
 }

@@ -1,15 +1,10 @@
 package com.bit.project.controller;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
-import java.io.PrintWriter;
-import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -121,7 +116,7 @@ public class BoardController {
 		}
 
 		model.addAttribute("pagination", search);
-		model.addAttribute("list",boardService.selectAll_review(search));
+		model.addAttribute("list",boardService.selectAll_reviewCity(search));
 		model.addAttribute("listCnt",listCnt);
  		return "board/review";
  	}
@@ -149,7 +144,7 @@ public class BoardController {
 		}
 
 		model.addAttribute("pagination", search);
-		model.addAttribute("list",boardService.selectAll_review(search));
+		model.addAttribute("list",boardService.selectAll_reviewTheme(search));
 		model.addAttribute("listCnt",listCnt);
  		return "board/review";
  	}

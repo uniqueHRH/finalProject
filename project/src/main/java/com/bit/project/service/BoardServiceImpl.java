@@ -91,5 +91,16 @@ public class BoardServiceImpl implements BoardService {
 		return boardDao.getBoardListCnt(search);
 	}
 
+
+	@Override
+	public void myBoardList(String id, Model model) {
+		try {
+			List<BoardVo> list=boardDao.myBoardList(id);
+			model.addAttribute("list", list);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 	
 }
