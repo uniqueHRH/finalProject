@@ -22,12 +22,12 @@ public class BoardDaoImpl implements BoardDao {
 
 	@Override
 	public List<BoardVo> selectAll_reviewCity(Search search) throws Exception {
-		return sqlSession.selectList("board.selectAll_reviewCity");
+		return sqlSession.selectList("board.selectAll_reviewCity", search);
 	}
 
 	@Override
 	public List<BoardVo> selectAll_reviewTheme(Search search) throws Exception {
-		return sqlSession.selectList("board.selectAll_reviewTheme");
+		return sqlSession.selectList("board.selectAll_reviewTheme", search);
 	}
 
 	@Override

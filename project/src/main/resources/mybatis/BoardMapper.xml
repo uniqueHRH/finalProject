@@ -34,11 +34,37 @@
 	</select>
 <!-- 후기 도시별 정렬 -->
 	<select id="selectAll_reviewCity" resultType="BoardBean">
-		select * from board ORDER BY board_land, board_no DESC
+		select * from board
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="searchType=='board_sub' and keyword != null and keyword != '' ">
+				AND board_sub like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType=='board_land' and keyword != null and keyword != '' ">
+				AND board_land like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType=='board_theme' and keyword != null and keyword != '' ">
+				AND board_theme like CONCAT('%', #{keyword}, '%')
+			</if>	
+		</trim>
+		ORDER BY board_land DESC
+		LIMIT #{startList}, #{listSize}
 	</select>
 <!-- 후기 테마별 정렬 -->
 	<select id="selectAll_reviewTheme" resultType="BoardBean">
-		select * from board ORDER BY board_theme, board_no DESC
+		select * from board
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="searchType=='board_sub' and keyword != null and keyword != '' ">
+				AND board_sub like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType=='board_land' and keyword != null and keyword != '' ">
+				AND board_land like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType=='board_theme' and keyword != null and keyword != '' ">
+				AND board_theme like CONCAT('%', #{keyword}, '%')
+			</if>	
+		</trim>
+		ORDER BY board_theme DESC
+		LIMIT #{startList}, #{listSize}
 	</select>
 	
 
