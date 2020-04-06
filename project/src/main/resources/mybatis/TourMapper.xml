@@ -31,6 +31,10 @@
 		select * from tour where theme='힐링' order by country
 	</select>
 	
+	<select id="selectAll_themesnap" resultType="TourBean">
+		select * from tour where theme='스냅' order by country
+	</select>
+	
 	<!--  detail join guide -->
 	<resultMap type="TourBean" id="TourMap">
 		<result property="tour_no" column="tour_no"/>

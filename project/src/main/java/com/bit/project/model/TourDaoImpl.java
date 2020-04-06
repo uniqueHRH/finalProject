@@ -62,4 +62,9 @@ public class TourDaoImpl implements TourDao {
 		return  sqlSession.selectList("tour.selectAll_theme");
 	}
 
+	@Override
+	public List<TourVo> selectAll_themesnap() throws Exception {
+		return sqlSession.selectList("tour.selectAll_themesnap");
+	}
+
 }

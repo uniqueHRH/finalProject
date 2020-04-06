@@ -21,6 +21,7 @@
 	}
 	#mainimg{
 		width: 300px;
+		height: 250px;
 		padding-top: 15px;
 		padding-left: 10px;
 		padding-right: 10px;		
@@ -47,7 +48,7 @@
  </div>
 	</div>
 <div id="themename">	
-<span id="healing">#힐링</span> &nbsp;&nbsp;&nbsp;&nbsp;<span id="snap">#스냅</span> &nbsp;&nbsp;&nbsp;&nbsp;<span id="activity">#엑티비티</span> &nbsp;&nbsp;&nbsp;&nbsp;<span id="food">#식도락</span>&nbsp;&nbsp;&nbsp;&nbsp;<span id="movie">#영화</span>&nbsp;&nbsp;&nbsp;&nbsp;<span id="sports">#스포츠</span>
+<a href="#" id="healing"><span>#힐링</span></a> &nbsp;&nbsp;&nbsp;&nbsp;<a href="#" id="snap"><span>#스냅</span></a> &nbsp;&nbsp;&nbsp;&nbsp;<a href="#" id="activity"><span>#엑티비티</span></a> &nbsp;&nbsp;&nbsp;&nbsp;<a href="#" id="food"><span>#식도락</span></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" id="movie"><span>#영화</span></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" id="sports"><span>#스포츠</span></a>
 </div>
 <div class="row">
 	
@@ -79,6 +80,33 @@
 <script type="text/javascript" src="${root }js/bootstrap.js"></script>
 <script type="text/javascript">
 
+$(document).ready(function() {
+
+	$('#healing').click(function(){
+		$.ajax({
+			url:'../tour/theme',
+			type:'GET',
+			success:function(data) {
+				location.href="../tour/theme";
+				alert('성공');
+			},
+			error:function() {
+			}
+		});  
+	}); 
+	$('#snap').click(function(){
+		$.ajax({
+			url:'../tour/themesnap',
+			type:'GET',
+			success:function(data) {
+				location.href="../tour/themesnap";
+				alert('성공');
+			},
+			error:function() {
+			}
+		});   // ajax
+	}); 	
+});
 </script>
 </body>
 </html>

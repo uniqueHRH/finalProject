@@ -116,4 +116,17 @@ public class TourServiceImpl implements TourService{
 		}
 	}
 
+	@Override
+	public void selectAll_themesnap(Model model) {
+		List<TourVo> list;
+		try {
+			list = tourDao.selectAll_themesnap();
+			model.addAttribute("list",list);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
 }

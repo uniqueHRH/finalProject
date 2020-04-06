@@ -21,9 +21,10 @@
 	}
 	#mainimg{
 		width: 300px;
+		height: 250px;
 		padding-top: 15px;
 		padding-left: 10px;
-		padding-right: 10px;		
+		padding-right: 10px;
 	}	
 	.caption div{
 		width:100%;

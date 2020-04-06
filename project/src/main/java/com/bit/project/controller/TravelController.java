@@ -202,4 +202,11 @@ public class TravelController {
 		tourservice.selectAll_themetour(model);
 		return "tour/themetour";
 	}
+
+	@RequestMapping(value = "/tour/themesnap", method = RequestMethod.GET)
+	public String themesnap(Model model) {
+		tourservice.selectAll_themesnap(model);
+		return "tour/themetour";
+	}
+
 }
