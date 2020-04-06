@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page pageEncoding="utf-8" %>
 <link href="https://fonts.googleapis.com/css?family=Jua&display=swap&subset=korean" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Jua|Noto+Sans+KR&display=swap" rel="stylesheet">
@@ -134,7 +135,7 @@
 				</tr>
 				<tr>
 					<td class="active" style="text-align: center;">1인 상품가</td>
-					<td>${bean.cost } 원</td>	
+					<td><fmt:formatNumber value="${bean.cost}" pattern="#,###"/>원</td>	
 				<tr>	
 			</table>
 			 <button type="button" id="checkcostbtn" class="btn btn-default">총 금액확인</button>

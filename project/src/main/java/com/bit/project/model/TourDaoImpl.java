@@ -67,4 +67,24 @@ public class TourDaoImpl implements TourDao {
 		return sqlSession.selectList("tour.selectAll_themesnap");
 	}
 
+	@Override
+	public List<TourVo> selectAll_themeactivity() throws Exception {
+		return sqlSession.selectList("tour.selectAll_themeactivity");
+	}
+
+	@Override
+	public List<TourVo> selectAll_themefood() throws Exception {
+		return sqlSession.selectList("tour.selectAll_themefood");
+	}
+
+	@Override
+	public List<TourVo> selectAll_thememovie() throws Exception {
+		return sqlSession.selectList("tour.selectAll_thememovie");
+	}
+
+	@Override
+	public List<TourVo> selectAll_themesports() throws Exception {
+		return sqlSession.selectList("tour.selectAll_themesports");
+	}
+
 }

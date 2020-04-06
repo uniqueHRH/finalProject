@@ -15,6 +15,10 @@ public interface TourDao {
 	List<TourVo> selectAll_africa() throws Exception;
 	List<TourVo> selectAll_themetour() throws Exception;
 	List<TourVo> selectAll_themesnap() throws Exception;
+	List<TourVo> selectAll_themeactivity() throws Exception;
+	List<TourVo> selectAll_themefood() throws Exception;
+	List<TourVo> selectAll_thememovie() throws Exception;
+	List<TourVo> selectAll_themesports() throws Exception;
 	
 	TourVo selectOne_tour(int tour_no) throws Exception;
 	void insertOne(PaidVo bean) throws Exception;

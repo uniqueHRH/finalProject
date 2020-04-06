@@ -196,17 +196,37 @@ public class TravelController {
 		return "system/detailpaid";
 	}
 	
-	
+	//테마 메인,힐링페이지
 	@RequestMapping(value = "/tour/theme", method = RequestMethod.GET)
 	public String theme(Model model) {
 		tourservice.selectAll_themetour(model);
 		return "tour/themetour";
 	}
-
+	//스냅페이지
 	@RequestMapping(value = "/tour/themesnap", method = RequestMethod.GET)
 	public String themesnap(Model model) {
 		tourservice.selectAll_themesnap(model);
 		return "tour/themetour";
 	}
-
+	@RequestMapping(value = "/tour/themeactivity", method = RequestMethod.GET)
+	public String themeactivity(Model model) {
+		tourservice.selectAll_themeactivity(model);
+		return "tour/themetour";
+	}
+	@RequestMapping(value = "/tour/themefood", method = RequestMethod.GET)
+	public String themefood(Model model) {
+		tourservice.selectAll_themefood(model);
+		return "tour/themetour";
+	}
+	@RequestMapping(value = "/tour/thememovie", method = RequestMethod.GET)
+	public String thememovie(Model model) {
+		tourservice.selectAll_thememovie(model);
+		return "tour/themetour";
+	}
+	@RequestMapping(value = "/tour/themesports", method = RequestMethod.GET)
+	public String themesports(Model model) {
+		tourservice.selectAll_themesports(model);
+		return "tour/themetour";
+	}
+	
 }

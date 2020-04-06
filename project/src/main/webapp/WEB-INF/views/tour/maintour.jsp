@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page pageEncoding="utf-8" %>
 <link href="https://fonts.googleapis.com/css?family=Jua&display=swap&subset=korean" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Jua|Noto+Sans+KR&display=swap" rel="stylesheet">
@@ -55,7 +56,7 @@
         	${bean.city }(${bean.country })
         </div>
         <div id="cost" style="color: red; font-size: 20px;">
-       		${bean.cost }원
+        <fmt:formatNumber value="${bean.cost}" pattern="#,###"/>원
         </div>
       </div>
     </div>

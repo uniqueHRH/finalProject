@@ -26,14 +26,26 @@
 	<select id="selectAll_africa" resultType="TourBean">
 		select * from tour where land='아프리카' order by country
 	</select>
-	<!-- 메인이자 힐링테마 -->
+	<!-- 테마 -->
 	<select id="selectAll_theme" resultType="TourBean">
 		select * from tour where theme='힐링' order by country
 	</select>
-	
 	<select id="selectAll_themesnap" resultType="TourBean">
 		select * from tour where theme='스냅' order by country
 	</select>
+	<select id="selectAll_themeactivity" resultType="TourBean">
+		select * from tour where theme='엑티비티' order by country
+	</select>
+	<select id="selectAll_themefood" resultType="TourBean">
+		select * from tour where theme='식도락' order by country
+	</select>
+	<select id="selectAll_thememovie" resultType="TourBean">
+		select * from tour where theme='영화' order by country
+	</select>
+	<select id="selectAll_themesports" resultType="TourBean">
+		select * from tour where theme='스포츠' order by country
+	</select>
+	
 	
 	<!--  detail join guide -->
 	<resultMap type="TourBean" id="TourMap">

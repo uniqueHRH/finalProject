@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page pageEncoding="utf-8" %>
 <link href="https://fonts.googleapis.com/css?family=Jua&display=swap&subset=korean" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Jua|Noto+Sans+KR&display=swap" rel="stylesheet">
@@ -31,10 +32,16 @@
 		height:30px;		
 	}
 	#themename{
-		font-size: 22px;
-		padding-bottom: 25px;
+		font-size: 24px;
+		padding-bottom: 50px;
 	}
-
+	#healing,#snap,#activity,#food,#movie,#sports{
+		text-decoration: none;
+		color: black;	
+	}
+	#themename>a:hover{
+		color: orange;
+	}
 </style>
 
 </head>
@@ -62,7 +69,7 @@
         	${bean.city }(${bean.country })
         </div>
         <div id="cost" style="color: red; font-size: 20px;">
-       		${bean.cost }원
+       		 <fmt:formatNumber value="${bean.cost}" pattern="#,###"/>원
         </div>
       </div>
     </div>
@@ -88,7 +95,6 @@ $(document).ready(function() {
 			type:'GET',
 			success:function(data) {
 				location.href="../tour/theme";
-				alert('성공');
 			},
 			error:function() {
 			}
@@ -100,12 +106,56 @@ $(document).ready(function() {
 			type:'GET',
 			success:function(data) {
 				location.href="../tour/themesnap";
-				alert('성공');
 			},
 			error:function() {
 			}
-		});   // ajax
-	}); 	
+		});   
+	}); 
+	$('#activity').click(function(){
+		$.ajax({
+			url:'../tour/themeactivity',
+			type:'GET',
+			success:function(data) {
+				location.href="../tour/themeactivity";
+			},
+			error:function() {
+			}
+		});   
+	});
+	$('#food').click(function(){
+		$.ajax({
+			url:'../tour/themefood',
+			type:'GET',
+			success:function(data) {
+				location.href="../tour/themefood";
+			},
+			error:function() {
+			}
+		});   
+	});
+	$('#movie').click(function(){
+		$.ajax({
+			url:'../tour/thememovie',
+			type:'GET',
+			success:function(data) {
+				location.href="../tour/thememovie";
+			},
+			error:function() {
+			}
+		});   
+	});
+	$('#sports').click(function(){
+		$.ajax({
+			url:'../tour/themesports',
+			type:'GET',
+			success:function(data) {
+				location.href="../tour/themesports";
+			},
+			error:function() {
+			}
+		});   
+	});
+	
 });
 </script>
 </body>

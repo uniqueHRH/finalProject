@@ -129,4 +129,45 @@ public class TourServiceImpl implements TourService{
 		
 	}
 
+	@Override
+	public void selectAll_themeactivity(Model model) {
+		List<TourVo> list;
+		try {
+			list = tourDao.selectAll_themeactivity();
+			model.addAttribute("list",list);		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	@Override
+	public void selectAll_themefood(Model model) {
+		List<TourVo> list;
+		try {
+			list = tourDao.selectAll_themefood();
+			model.addAttribute("list",list);		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	@Override
+	public void selectAll_thememovie(Model model) {
+		List<TourVo> list;
+		try {
+			list = tourDao.selectAll_thememovie();
+			model.addAttribute("list",list);		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	@Override
+	public void selectAll_themesports(Model model) {
+		List<TourVo> list;
+		try {
+			list = tourDao.selectAll_themesports();
+			model.addAttribute("list",list);		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 }
