@@ -96,7 +96,7 @@
 <!-- 내가 쓴 글 -->
 	<resultMap type="PartnerBean" id="myBoard_partner">
 		<result property="board_id" column="board_id"/>
-		<result property="board_no" column="board_id"/>
+		<result property="board_no" column="board_no"/>
 		<result property="partner_sub" column="partner_sub"/>
 		<result property="partner_date" column="partner_date"/>
 		<result property="partner_count" column="partner_count"/>
@@ -104,7 +104,7 @@
 	
 	<resultMap type="FreeBean" id="myBoard_free">
 		<result property="board_id" column="board_id"/>
-		<result property="board_no" column="board_id"/>
+		<result property="board_no" column="board_no"/>
 		<result property="free_sub" column="free_sub"/>
 		<result property="free_date" column="free_date"/>
 		<result property="free_count" column="free_count"/>
@@ -112,7 +112,7 @@
 	
 	<resultMap type="BoardBean" id="myBoard_board">
 		<result property="board_id" column="board_id"/>
-		<result property="board_no" column="board_id"/>
+		<result property="board_no" column="board_no"/>
 		<result property="board_sub" column="board_sub"/>
 		<result property="board_date" column="board_date"/>
 		<result property="board_count" column="board_count"/>

@@ -14,29 +14,24 @@
 <link rel="stylesheet" type="text/css" href="${root }css/board.css" />
 <style type="text/css">
 	#table>thead th:nth-child(1) {
-		width:80;
+		width:100;
 		background-color:red;
 	}
 	#table>thead th:nth-child(2) {
-		width:120;
+		width:560;
 		background-color:yellow;
 	}
 	#table>thead th:nth-child(3) {
-		width:550;
+		width:135;
 		background-color:blue;
 	}
 	#table>thead th:nth-child(4) {
-		width:120;
+		width:100;
 		background-color:green;
 	}
-	#table>thead th:nth-child(5) {
-		width:80;
-	}
-	#table>tbody td:nth-child(2) {
-		text-align:center; 
-	}
+	#table>tbody td:nth-child(2),
 	#table>tbody td:nth-child(3) {
-		text-align:left;
+		text-align:left; 
 	}
 	#table>tbody td>a {
 		text-decoration:none;
@@ -44,12 +39,13 @@
 	#table>tbody td>a:hover {
 		color:black;
 	}
-	input {
+	#board_id {
 		border:0;
 		outline:0;
 		width:73;
 		background-color:white;
-		text-align:center;
+		padding:0 0 0 13;
+		margin:0;
 	}
 /* 리모컨 */ 
 	#remote {
@@ -98,8 +94,7 @@
 <!-- 리스트 출력 -->
    <thead>
       <tr class="active">
-         <th>#</th>
-         <th>게시판</th>
+         <th colspan="2">게시판</th>
          <th>제 목</th>
          <th>날 짜</th>
          <th>조회수</th>
@@ -108,8 +103,8 @@
    <tbody>
 		<c:forEach items="${list }" var="bean">
 		<tr>
+			<td><a href="#"><input type="text" id="board_id" name="boardId_${bean.board_id }" value="${bean.board_id }" disabled></a></td>
 			<td><a href="#">${bean.board_no }</a></td>
-			<td><a href="#"><input type="text" name="boardId_${bean.board_id }" value="${bean.board_id }" disabled></a></td>
 			<td><a href="#">${bean.board_sub }</a></td>
 			<td><a href="#">${bean.board_date }</a></td>
 			<td><a href="#">${bean.board_count }</a></td>
