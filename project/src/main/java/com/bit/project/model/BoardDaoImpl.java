@@ -68,11 +68,16 @@ public class BoardDaoImpl implements BoardDao {
 
 //	내가 쓴 글
 	@Override
-	public List<BoardVo> myBoardList(String id) throws Exception {
-		return sqlSession.selectList("board.myBoardList", id);
+	public List<BoardVo> myBoardList(Search search) throws Exception {
+		return sqlSession.selectList("board.myBoardList", search);
 	}
 
-	
+	@Override
+	public int myBoardTotal(Search search) throws Exception {
+		System.out.println("dao"+search);
+		return sqlSession.selectOne("board.myBoardTotal", search);
+	}
+
 
 
 }

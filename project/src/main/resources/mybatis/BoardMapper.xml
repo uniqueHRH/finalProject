@@ -153,8 +153,19 @@
 			union
 			select board_id, board_no, partner_sub, partner_date, partner_count from partner where client_nick1=#{client_nick1}
 			union
-			select board_id, board_no, free_sub, free_date, free_count from free where client_nick1=#{client_nick1} order by board_no
-		) as ttt
+			select board_id, board_no, free_sub, free_date, free_count from free where client_nick1=#{client_nick1}
+		) as board_table
 		order by board_date desc
+		LIMIT #{startList}, #{listSize}
+	</select>
+	
+	<select id="myBoardTotal" parameterType="BoardBean" resultMap="myBoard_board">
+		select count(*) from (
+			select board_id, board_no, board_sub, board_date, board_count from board where client_nick1=#{client_nick1}
+			union
+			select board_id, board_no, partner_sub, partner_date, partner_count from partner where client_nick1=#{client_nick1}
+			union
+			select board_id, board_no, free_sub, free_date, free_count from free where client_nick1=#{client_nick1}
+		) as board_table
 	</select>
 </mapper>

@@ -93,13 +93,15 @@ public class BoardServiceImpl implements BoardService {
 
 
 	@Override
-	public void myBoardList(String id, Model model) {
-		try {
-			List<BoardVo> list=boardDao.myBoardList(id);
-			model.addAttribute("list", list);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	public List<BoardVo> myBoardList(Search search) throws Exception {
+		return boardDao.myBoardList(search);
+	}
+
+
+	@Override
+	public int myBoardTotal(Search search) throws Exception {
+		System.out.println("service"+search);
+		return boardDao.myBoardTotal(search);
 	}
 
 	

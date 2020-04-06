@@ -82,8 +82,29 @@ public class MypageController {
 	}
 //	내가 쓴 글
   	@RequestMapping(value="/main/myBoard", method=RequestMethod.GET)
-  	public String myBoard(String id, Model model) {
-  		boardService.myBoardList(id, model);
+  	public String myBoard(String id, Model model,
+			@RequestParam(required = false, defaultValue = "1") int page,
+ 			@RequestParam(required=false, defaultValue="1") int range,
+ 			@ModelAttribute("search") Search search
+ 			) throws Exception {
+  		
+  		model.addAttribute("search", search);
+ 		search.setClient_nick1(id);
+ 		
+ 		// 전체 게시글 갯수
+ 		int listCnt=0;
+		try {
+			listCnt=boardService.myBoardTotal(search);
+			search.pageInfo(page, range, listCnt);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+ 		
+		model.addAttribute("pagination", search);
+		model.addAttribute("list",boardService.myBoardList(search));
+		model.addAttribute("listCnt",listCnt);
+		
+		System.out.println("controller"+search);
   		return "mypage/myBoard";
   	}
   	

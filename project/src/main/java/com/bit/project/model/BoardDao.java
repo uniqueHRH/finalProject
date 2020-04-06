@@ -40,6 +40,8 @@ public interface BoardDao {
 	int updateCnt(int key) throws Exception;
 //	°Ô½Ã¹° ÃÑ °¹¼ö
 	public int getBoardListCnt(Search search) throws Exception;
+	
 //	³»°¡ ¾´ ±Û
-	List<BoardVo> myBoardList(String id) throws Exception;
+	List<BoardVo> myBoardList(Search search) throws Exception;
+	public int myBoardTotal(Search search) throws Exception;
 }

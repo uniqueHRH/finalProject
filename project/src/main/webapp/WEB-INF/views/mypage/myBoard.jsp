@@ -87,6 +87,7 @@
 		    <option value="테마별">테마별</option>
 		</select>
 		<a class="btn btn-default" href="#" role="button" id="sel">조회</a>
+		<input type="text" value="<c:out value="${listCnt}"></c:out>개의 게시물이 조회되었습니다" id="listCnt" disabled/>
 		<div id="fff"></div>
 	   <input type="hidden" id="loginCk" value="${sessionScope.check.client_nick1}"/>
 	</div>
