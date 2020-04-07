@@ -30,14 +30,13 @@
 	<div class="topMenu" id="theme">
 		<select id="dropdownMenu1">
 		    <option value="정렬">정 &nbsp;렬</option>
-		    <option value="사번">사번</option>
-		    <option value="부서">부서</option>
+		    <option value="사번">사 &nbsp;번</option>
+		    <option value="부서">부 &nbsp;서</option>
 		</select>
 		<a class="btn btn-default" href="#" role="button" id="sel">조회</a>
 		<input type="text" value="<c:out value="${listCnt}"></c:out>개의 게시물이 조회되었습니다" id="listCnt" disabled/>
 		<div id="fff"></div>
 	   <a class="btn btn-default" href="${root }system/staffIns" role="button" id="wri">등록</a>
-	   <input type="hidden" id="loginCk" value="${sessionScope.staffcheck.staff_no}"/>
 	</div>
 
 <!-- 리스트 출력 -->
@@ -160,12 +159,6 @@
 	    });
 	  //]]>
 		
-		$('#hide').hide();
-		// 로그인 후 글쓰기 이용 가능
-		var loginBool=$('#loginCk').val();
-		if(!loginBool) {
-			$('#wri').hide();
-		}
 //////////////////////////////////////////////////////////////////////////////////////////		
 		// 검색
 		$('#searchGo').on('click',function() {
@@ -184,14 +177,14 @@
 		function prev(page, range, rangeSize) {
 			var page=((range-2)*rangeSize)+1;
 			var range=range-1;
-			var url="${root }board/review";
+			var url="${root }system/staff";
 			url=url+"?page="+page;
 			url=url+"&range="+range;
 			location.href=url;
 		}
 		//페이지 번호 클릭
 		function pagination(page, range, rangeSize, searchType, keyword) {
-			var url="${root }board/review";
+			var url="${root }system/staff";
 			url=url+"?page="+page;
 			url=url+"&range="+range;
 			url=url+"&searchType="+$('#searchType').val();
@@ -202,7 +195,7 @@
 		function next(page, range, rangeSize) {
 			var page=parseInt((range*rangeSize))+1;
 			var range=parseInt(range)+1;
-			var url="${root }board/review";
+			var url="${root }system/staff";
 			url=url+"?page="+page;
 			url=url+"&range="+range;
 			location.href=url;

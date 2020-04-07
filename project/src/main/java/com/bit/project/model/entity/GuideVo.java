@@ -4,7 +4,7 @@ public class GuideVo {
 
 	private int guide_no;
 	private String guide_name;
-	private String phone;
+	private String guide_phone;
 	private String guide_city;
 	private String guide_email;
 	
@@ -26,11 +26,11 @@ public class GuideVo {
 	public void setGuide_name(String guide_name) {
 		this.guide_name = guide_name;
 	}
-	public String getPhone() {
-		return phone;
+	public String getGuide_phone() {
+		return guide_phone;
 	}
-	public void setPhone(String phone) {
-		this.phone = phone;
+	public void setGuide_Phone(String guide_phone) {
+		this.guide_phone = guide_phone;
 	}
 	public String getGuide_city() {
 		return guide_city;
@@ -49,17 +49,17 @@ public class GuideVo {
 
 	@Override
 	public String toString() {
-		return "guideVo [guide_no=" + guide_no + ", guide_name=" + guide_name + ", phone=" + phone + ", guide_city="
+		return "guideVo [guide_no=" + guide_no + ", guide_name=" + guide_name + ", guide_phone=" + guide_phone + ", guide_city="
 				+ guide_city + ", guide_email=" + guide_email + "]";
 	}
 
 
 
-	public GuideVo(int guide_no, String guide_name, String phone, String guide_city, String guide_email) {
+	public GuideVo(int guide_no, String guide_name, String guide_phone, String guide_city, String guide_email) {
 		super();
 		this.guide_no = guide_no;
 		this.guide_name = guide_name;
-		this.phone = phone;
+		this.guide_phone = guide_phone;
 		this.guide_city = guide_city;
 		this.guide_email = guide_email;
 	}

@@ -14,9 +14,45 @@
  
  
 <mapper namespace="guide">
+
 	<select id="selectAll_guide" resultType="GuideBean">
-		select * from guide order by guide_no desc
+		select *  from guide
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="searchType=='guide_name' and keyword != null and keyword != '' ">
+				AND guide_name like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType=='guide_city' and keyword != null and keyword != '' ">
+				AND guide_city like CONCAT('%', #{keyword}, '%')
+			</if>	
+		</trim>
+		ORDER BY guide_no DESC
+		LIMIT #{startList}, #{listSize}
 	</select>
+<!-- 가이드 번호별 정렬 -->
+	<select id="selectAll_guideNo" resultType="GuideBean">
+		select * from guide ORDER BY guide_no
+	</select>
+<!-- 가이드 이름별 정렬 -->
+	<select id="selectAll_guideName" resultType="GuideBean">
+		select * from guide ORDER BY guide_name
+	</select>
+<!-- 가이드 지역별 정렬 -->	
+	<select id="selectAll_guideCity" resultType="GuideBean">
+		select * from guide ORDER BY guide_city
+	</select>
+	
+<!-- 총게시글 갯수 -->
+	<select id="getGuideListCnt" resultType="int">
+		select count(*) from guide
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="searchType=='guide_name' and keyword != null and keyword != '' ">
+				AND guide_name like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType=='guide_city' and keyword != null and keyword != '' ">
+				AND guide_city like CONCAT('%', #{keyword}, '%')
+			</if>
+		</trim>
+	</select>	
 	
 	<select id="selectOne_guide" resultType="GuideBean" parameterType="int">
 		select * from guide where guide_no=#{guide_no}

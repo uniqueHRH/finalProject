@@ -1,9 +1,7 @@
 package com.bit.project.controller;
 
-import java.io.File;
-import java.io.IOException;
 
-import javax.mail.Session;
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -15,14 +13,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.bit.project.common.Pagination;
 import com.bit.project.common.Search;
-import com.bit.project.file.UploadFileUtils;
-import com.bit.project.model.entity.BoardVo;
-import com.bit.project.model.entity.ClientVo;
+import com.bit.project.model.entity.GuideVo;
 import com.bit.project.model.entity.StaffVo;
+import com.bit.project.service.GuideService;
 import com.bit.project.service.StaffService;
 
 @Controller
@@ -30,7 +27,10 @@ public class StaffController {
 	
 	@Autowired
 	StaffService staffService;
-	
+	@Autowired
+	GuideService guideService;
+	@Resource
+	Search search;
 	//직원 내정보
 	@RequestMapping(value="/main/staffinfo",method=RequestMethod.GET)
 	public String Staffinfo() {
@@ -97,7 +97,7 @@ public class StaffController {
  	
 	//사번별 정렬
  	@RequestMapping(value="/system/staffNo", method=RequestMethod.GET)
- 	public String reviewLocal(Model model, @RequestParam(required = false, defaultValue = "1") int page,
+ 	public String staffNo(Model model, @RequestParam(required = false, defaultValue = "1") int page,
  			@RequestParam(required=false, defaultValue="1") int range,
  			@RequestParam(required=false, defaultValue="staff_name") String searchType,
  			@RequestParam(required=false) String keyword,
@@ -125,7 +125,7 @@ public class StaffController {
  	
  	//부서별 정렬
  	@RequestMapping(value="/system/staffTeam", method=RequestMethod.GET)
- 	public String reviewTheme(Model model, @RequestParam(required = false, defaultValue = "1") int page,
+ 	public String staffTeam(Model model, @RequestParam(required = false, defaultValue = "1") int page,
  			@RequestParam(required=false, defaultValue="1") int range,
  			@RequestParam(required=false, defaultValue="staff_name") String searchType,
  			@RequestParam(required=false) String keyword,
@@ -153,7 +153,7 @@ public class StaffController {
  	//직원등록 페이지
  	@RequestMapping(value = "/system/staffIns", method = RequestMethod.GET)
  	public String staffIns() {
- 		return "/system/enroll";
+ 		return "/system/staffenroll";
  	}
  	//직원등록
  	@RequestMapping(value="/system/staffIns",method=RequestMethod.POST)
@@ -164,18 +164,18 @@ public class StaffController {
  	
  	//직원 정보
  	@RequestMapping(value="/system/staffDe/{idx}",method=RequestMethod.GET)
- 	public String detailReview(@PathVariable("idx") int key, Model model) {
+ 	public String staffDetail(@PathVariable("idx") int key, Model model) {
  		staffService.selectOne_staff(key, model);
  		return "/system/staffdetail";
  	}
  	
- 	//직원 정보 수정
+ 	//직원 정보 수정페이지
  	@RequestMapping(value="/system/staffEdit/{idx}",method=RequestMethod.GET)
 	public String staffEdit(@PathVariable("idx") int key, Model model) {
  		staffService.selectOne_staff(key, model);
 		return "/system/staffedit";
 	}
- 	
+ 	//직원정보 수정
  	@RequestMapping(value="/system/staffEdit/{idx}", method=RequestMethod.POST)
 	public String staffEdit(@PathVariable("idx") int key, StaffVo bean){
  		 
@@ -183,10 +183,135 @@ public class StaffController {
  		System.out.println(bean);
  		return "redirect:../staffDe/"+bean.getStaff_no();
  	}
- 	
+ 	//직원 삭제
  	@RequestMapping(value="/system/staffDel", method=RequestMethod.POST)
 	public String staffDel(int key) {
  		staffService.deleteOne_staff(key);
 		return "redirect:/system/staff";
 	}
+ 	
+ 	
+ 	
+ 	//가이드 목록
+ 	@RequestMapping(value = "/system/guide", method = RequestMethod.GET)
+ 	public String guide(Model model, @RequestParam(required = false, defaultValue = "1") int page,
+ 			@RequestParam(required=false, defaultValue="1") int range,
+ 			@RequestParam(required=false, defaultValue="guide_name") String searchType,
+ 			@RequestParam(required=false) String keyword,
+ 			@ModelAttribute("search") Search search
+ 			) throws Exception {
+
+ 		model.addAttribute("search", search);
+ 		search.setSearchType(searchType);
+ 		search.setKeyword(keyword);
+ 		
+ 		int listCnt=0;
+		try {
+			listCnt = guideService.getGuideListCnt(search);
+			search.pageInfo(page, range, listCnt);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		model.addAttribute("pagination", search);
+		model.addAttribute("list",guideService.selectAll_guide(search));
+		model.addAttribute("listCnt",listCnt);
+ 		return "/system/guide";
+ 	}
+ 	
+	//가이드 번호별 정렬
+ 	@RequestMapping(value="/system/guideNo", method=RequestMethod.GET)
+ 	public String guideNo(Model model, @RequestParam(required = false, defaultValue = "1") int page,
+ 			@RequestParam(required=false, defaultValue="1") int range,
+ 			@RequestParam(required=false, defaultValue="guide_name") String searchType,
+ 			@RequestParam(required=false) String keyword,
+ 			@ModelAttribute("search") Search search
+ 			) throws Exception {
+
+ 		
+ 		model.addAttribute("search", search);
+ 		search.setSearchType(searchType);
+ 		search.setKeyword(keyword);
+ 		
+ 		int listCnt=0;
+		try {
+			listCnt = guideService.getGuideListCnt(search);
+			search.pageInfo(page, range, listCnt);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		model.addAttribute("pagination", search);
+		model.addAttribute("list",guideService.selectAll_guideNo(search));
+		model.addAttribute("listCnt",listCnt);
+ 		return "/system/guide";
+ 	}
+ 	
+ 	//가이드 이름별 정렬
+ 	@RequestMapping(value="/system/guideName", method=RequestMethod.GET)
+ 	public String guideName(Model model, @RequestParam(required = false, defaultValue = "1") int page,
+ 			@RequestParam(required=false, defaultValue="1") int range,
+ 			@RequestParam(required=false, defaultValue="guide_name") String searchType,
+ 			@RequestParam(required=false) String keyword,
+ 			@ModelAttribute("search") Search search
+ 			) throws Exception {
+
+ 		model.addAttribute("search", search);
+ 		search.setSearchType(searchType);
+ 		search.setKeyword(keyword);
+ 		
+ 		int listCnt=0;
+		try {
+			listCnt = guideService.getGuideListCnt(search);
+			search.pageInfo(page, range, listCnt);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		model.addAttribute("pagination", search);
+		model.addAttribute("list",guideService.selectAll_guideName(search));
+		model.addAttribute("listCnt",listCnt);
+ 		return "/system/guide";
+ 	}
+ 	//가이드 지역별 정렬
+ 	@RequestMapping(value="/system/guideCity", method=RequestMethod.GET)
+ 	public String guideCity(Model model, @RequestParam(required = false, defaultValue = "1") int page,
+ 			@RequestParam(required=false, defaultValue="1") int range,
+ 			@RequestParam(required=false, defaultValue="guide_name") String searchType,
+ 			@RequestParam(required=false) String keyword,
+ 			@ModelAttribute("search") Search search
+ 			) throws Exception {
+ 		
+ 		model.addAttribute("search", search);
+ 		search.setSearchType(searchType);
+ 		search.setKeyword(keyword);
+ 		
+ 		int listCnt=0;
+ 		try {
+ 			listCnt = guideService.getGuideListCnt(search);
+ 			search.pageInfo(page, range, listCnt);
+ 		} catch (Exception e) {
+ 			e.printStackTrace();
+ 		}
+ 		
+ 		model.addAttribute("pagination", search);
+ 		model.addAttribute("list",guideService.selectAll_guideCity(search));
+ 		model.addAttribute("listCnt",listCnt);
+ 		return "/system/guide";
+ 	}
+ 	
+ 	//가이드 등록 페이지
+ 	 	@RequestMapping(value = "/system/guideIns", method = RequestMethod.GET)
+ 	 	public String guideIns() {
+ 	 		return "/system/guideenroll";
+ 	 	}
+ 	
+ 	//가이드 등록
+ 	 	@RequestMapping(value="/system/guideIns",method=RequestMethod.POST)
+ 	    public String guideIns(GuideVo bean) {
+ 	 		guideService.insertOne_guide(bean);
+ 	 		System.out.println(bean);
+ 	 		return "redirect:/system/guide";
+ 	 	}
+ 	 	
 }

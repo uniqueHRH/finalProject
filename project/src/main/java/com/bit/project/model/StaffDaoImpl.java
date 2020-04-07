@@ -25,12 +25,12 @@ public class StaffDaoImpl implements StaffDao {
 	
 	@Override
 	public List<StaffVo> selectAll_staffNo(Search search) throws Exception {
-		return sqlSession.selectList("staff.selectAll_staffNo");
+		return sqlSession.selectList("staff.selectAll_staffNo", search);
 	}
 	
 	@Override
 	public List<StaffVo> selectAll_staffTeam(Search search) throws Exception {
-		return sqlSession.selectList("staff.selectAll_staffTeam");
+		return sqlSession.selectList("staff.selectAll_staffTeam", search);
 	}
 	
 	@Override

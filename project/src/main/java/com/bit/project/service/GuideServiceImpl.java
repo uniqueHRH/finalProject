@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+import com.bit.project.common.Search;
 import com.bit.project.model.GuideDao;
 import com.bit.project.model.entity.GuideVo;
 
@@ -16,15 +17,25 @@ public class GuideServiceImpl implements GuideService {
 	GuideDao guideDao;
 	
 	@Override
-	public void selectAll_guide(Model model) {
-		try {
-			List<GuideVo> list=guideDao.selectAll_guide();
-			model.addAttribute("list",list);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	public List<GuideVo> selectAll_guide(Search search) throws Exception {
+		return guideDao.selectAll_guide(search);
 	}
-
+	
+	@Override
+	public List<GuideVo> selectAll_guideNo(Search search) throws Exception {
+		return guideDao.selectAll_guideNo(search);
+	}
+	
+	@Override
+	public List<GuideVo> selectAll_guideName(Search search) throws Exception {
+		return guideDao.selectAll_guideName(search);
+	}
+	
+	@Override
+	public List<GuideVo> selectAll_guideCity(Search search) throws Exception {
+		return guideDao.selectAll_guideCity(search);
+	}
+	
 	@Override
 	public void selectOne_guide(int key, Model model) {
 		try {
@@ -38,6 +49,7 @@ public class GuideServiceImpl implements GuideService {
 	public void insertOne_guide(GuideVo bean) {
 		try {
 			guideDao.insertOne_guide(bean);
+			System.out.println("service : "+bean);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -60,6 +72,12 @@ public class GuideServiceImpl implements GuideService {
 			e.printStackTrace();
 		}
 	}
+
+	@Override
+	public int getGuideListCnt(Search search) throws Exception {
+		return guideDao.getGuideListCnt(search);
+	}
+
 
 
 }

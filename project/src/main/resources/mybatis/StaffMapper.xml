@@ -32,11 +32,37 @@
 	</select>
 <!-- 직원 사번별 정렬 -->
 	<select id="selectAll_staffNo" resultType="StaffBean">
-		select * from staff ORDER BY staff_no
+		select * from staff
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="searchType=='staff_name' and keyword != null and keyword != '' ">
+				AND staff_name like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType=='staff_no' and keyword != null and keyword != '' ">
+				AND staff_no like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType=='staff_team' and keyword != null and keyword != '' ">
+				AND staff_team like CONCAT('%', #{keyword}, '%')
+			</if>	
+		</trim>
+		ORDER BY staff_no
+		LIMIT #{startList}, #{listSize}
 	</select>
 <!-- 직원 부서별 정렬 -->
 	<select id="selectAll_staffTeam" resultType="StaffBean">
-		select * from staff ORDER BY staff_team
+		select * from staff
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="searchType=='staff_name' and keyword != null and keyword != '' ">
+				AND staff_name like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType=='staff_no' and keyword != null and keyword != '' ">
+				AND staff_no like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType=='staff_team' and keyword != null and keyword != '' ">
+				AND staff_team like CONCAT('%', #{keyword}, '%')
+			</if>	
+		</trim>
+		ORDER BY staff_team
+		LIMIT #{startList}, #{listSize}
 	</select>
 	
 <!-- 총게시글 갯수 -->
