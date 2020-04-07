@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.bit.project.common.Search;
 import com.bit.project.model.entity.*;
 import com.bit.project.service.*;
 
@@ -228,5 +230,34 @@ public class TravelController {
 		tourservice.selectAll_themesports(model);
 		return "tour/themetour";
 	}
-	
+
+	//마이페이지 내가 예약한 상품
+	@RequestMapping(value="/main/mybooking", method=RequestMethod.GET)
+	public String receiveMsg(String id, Model model,
+				@RequestParam(required = false, defaultValue = "1") int page,
+	 			@RequestParam(required=false, defaultValue="1") int range,
+	 			@RequestParam(required=false, defaultValue="paid_name") String searchType,
+	 			@RequestParam(required=false) String keyword,
+	 			@ModelAttribute("search") Search search
+	 			) throws Exception {
+			
+			model.addAttribute("search", search);
+	 		search.setSearchType(searchType);
+	 		search.setKeyword(keyword);
+	 		search.setClient_nick2(id);
+	 		
+	 		// 전체 게시글 갯수
+	 		int listCnt=0;
+			try {
+				listCnt=paidservice.getPaidListCnt(search);
+				search.pageInfo(page, range, listCnt);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			model.addAttribute("pagination", search);
+			model.addAttribute("list",paidservice.selectAll_paid(search));
+			model.addAttribute("listCnt",listCnt);
+			return "mypage/mybooking";
+	}
 }

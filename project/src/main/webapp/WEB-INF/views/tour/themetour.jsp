@@ -20,6 +20,9 @@
 	.thumbnail{
 		width: 330px;
 	}
+	.page-header{
+		margin-bottom: 35px;
+	}
 	#mainimg{
 		width: 300px;
 		height: 250px;

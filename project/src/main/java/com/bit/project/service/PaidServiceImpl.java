@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+import com.bit.project.common.Search;
 import com.bit.project.model.PaidDao;
 import com.bit.project.model.entity.PaidVo;
+import com.bit.project.model.entity.ReceiveVo;
 
 @Service
 public class PaidServiceImpl implements PaidService {
@@ -32,6 +34,16 @@ public class PaidServiceImpl implements PaidService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public List<ReceiveVo> selectAll_paid(Search search) throws Exception {
+		return paidDao.selectAll_paid(search);
+	}
+
+	@Override
+	public int getPaidListCnt(Search search) throws Exception {
+		return paidDao.getPaidListCnt(search);
 	}
 
 }

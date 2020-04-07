@@ -45,7 +45,7 @@
 	<select id="selectAll_themesports" resultType="TourBean">
 		select * from tour where theme='스포츠' order by country
 	</select>
-	
+	<!-- 테마끝 -->
 	
 	<!--  detail join guide -->
 	<resultMap type="TourBean" id="TourMap">

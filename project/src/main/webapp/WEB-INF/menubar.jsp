@@ -117,7 +117,7 @@
 					        		<li><a href="${root }main/message/?id=${sessionScope.check.client_nick1}" id="msg">쪽지함</a></li>
 					        		<li><a href="#">최근본상품</a></li>
 					        		<li><a href="${root }main/wish">찜한상품</a></li>
-					        		<li><a href="${root }main/booking/?id=${sessionScope.check.client_name}">예약상품</a></li>
+					        		<li><a href="${root }main/mybooking/?id=${sessionScope.check.client_name}">예약상품</a></li>
 					        		<li><a href="${root }main/myBoard/?id=${sessionScope.check.client_nick1}">내가쓴글</a></li>
 					        		<li><a href="${root }main/myinfo">내정보관리</a></li>
 					        		<li><a href="${root }main/logout">로그아웃</a></li>
