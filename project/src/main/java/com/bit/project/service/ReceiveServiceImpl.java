@@ -26,6 +26,7 @@ public class ReceiveServiceImpl implements ReceiveService {
 	public void selectOne_receive(int key, Model model) {
 		try {
 			model.addAttribute("bean",receiveDao.selectOne_receive(key));
+			receiveDao.updateOne_receive(key);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -53,6 +54,6 @@ public class ReceiveServiceImpl implements ReceiveService {
 	public int getReceiveListCnt(Search search) throws Exception {
 		return receiveDao.getReceiveListCnt(search);
 	}
-	
+
 
 }

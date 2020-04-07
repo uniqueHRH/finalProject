@@ -47,6 +47,9 @@
 		padding:0 0 0 13;
 		margin:0;
 	}
+	td {
+		cursor:pointer;
+	}
 /* 리모컨 */ 
 	#remote {
 		position:fixed;
@@ -97,12 +100,13 @@
    </thead>
    <tbody>
 		<c:forEach items="${list }" var="bean">
+		<c:set var="i" value="${i+1 }"/>
 		<tr>
-			<td><a href="#"><input type="text" class="board_id" name="boardId_${bean.board_id }" value="${bean.board_id }" disabled></a></td>
-			<td><a href="#">${bean.board_no }</a></td>
-			<td><a href="#">${bean.board_sub }</a></td>
-			<td><a href="#">${bean.board_date }</a></td>
-			<td><a href="#">${bean.board_count }</a></td>
+			<td name="num_${i }" class="num_${i }"><input type="text" class="board_id" name="boardId_${bean.board_id }" value="${bean.board_id }" disabled></td>
+			<td name="num_${i }">${bean.board_no }<input type="hidden" class="num_${i }" value="${bean.board_no }"></td>
+			<td name="num_${i }">${bean.board_sub }</td>
+			<td name="num_${i }">${bean.board_date }</td>
+			<td name="num_${i }">${bean.board_count }</td>
 		</tr>
 		</c:forEach>
    </tbody>
@@ -157,50 +161,28 @@
 <script type="text/javascript" src="${root }js/bootstrap.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-		/* 정렬 */
-		$('#sel').on('click',function() {
-			var up=$('#dropdownMenu1').val();
-			if(up=='정렬') {
-				$.ajax({
-					url:'../board/review',
-					type:'GET',
-					success:function(data) {
-						location.href="../board/review";
-					},
-					error:function() {
-					}
-				});   // ajax
-			}   // if
-			if(up=='나라별') {
-				$.ajax({
-					url:'../board/reviewLocal',
-					type:'GET',
-					success:function(data) {
-						location.href="../board/reviewLocal";
-					},
-					error:function() {
-					}
-				});   // ajax
-				return false;
-			}   // if
-			if(up=='테마별') {
-				$.ajax({
-					url:'../board/reviewTheme',
-					type:'GET',
-					success:function() {
-						location.href="../board/reviewTheme";
-					},
-					error:function() {
-					}
-				});   // ajax
-			}   // if
-		});
-		
 		// 게시판명 출력
 		$('input[name=boardId_2]').val('후기게시판');
 		$('input[name=boardId_3]').val('동행게시판');
 		$('input[name=boardId_4]').val('자유게시판');
 		
+		$('td[name^=num_').on('click',function() {
+			var num=$(this).attr('name');
+			num=num.split('_');
+			num=num[1];
+			
+			var child=$('td[name=num_'+num+']').children().val();
+			var idx=$('input[class=num_'+num+']').val();
+
+			if(child=='후기게시판') {
+				location.href='../../board/reviewDe/'+idx;
+			} else if(child=='동행게시판') {
+				location.href='../../board/partnerDe/'+idx;
+			} else if(child=='자유게시판') {
+				location.href='../../board/freeDe/'+idx;
+			}
+		});
+//////////////////////////////////////////////////////////////////////////////////////////		
 		// 리모컨 top
 		$('#top').on('click',function() {
 			$('html,body').scrollTop(0);
@@ -215,14 +197,6 @@
 	      channelPublicId: '_wxfwxfxb' // 카카오톡 채널 홈 URL에 명시된 id로 설정합니다.
 	    });
 	  //]]>
-		
-		$('#hide').hide();
-		// 로그인 후 글쓰기 이용 가능
-		var loginBool=$('#loginCk').val();
-
-		if(!loginBool) {
-			$('#wri').hide();
-		}
 //////////////////////////////////////////////////////////////////////////////////////////		
 		// 검색
 		$('#searchGo').on('click',function() {

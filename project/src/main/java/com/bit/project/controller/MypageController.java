@@ -61,7 +61,7 @@ public class MypageController {
 		return "mypage/message";
 	}
 	
-	// 쪽지 상세보기
+	// 쪽지 상세보기 + 쪽지 확인시 읽음처리
 	@RequestMapping(value="/main/messageDe/{idx}", method=RequestMethod.GET)
 	public String receiveMsg(@PathVariable("idx") int key, Model model) {
 		receiveService.selectOne_receive(key, model);
