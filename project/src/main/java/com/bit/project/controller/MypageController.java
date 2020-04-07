@@ -78,6 +78,7 @@ public class MypageController {
 	@RequestMapping(value="/main/partnerMessage", method=RequestMethod.GET)
 	public String partnerMsg(String key, Model model) throws Exception {
 		receiveService.selectOne_receiveLimitOne(key, model);
+		System.out.println("controller"+key);
 		return "mypage/receiveMsg";
 	}
 //	내가 쓴 글

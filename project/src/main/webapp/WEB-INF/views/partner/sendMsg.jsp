@@ -15,7 +15,6 @@
 </style>
 </head>
 <body>
-
 	<form class="form-inline">
 		<div id="formTb">
 			<div>
@@ -53,9 +52,9 @@
 				type:'POST',
 				data:{client_nick1:sender, client_nick2:receivcer, send_content:content},
 				success:function() {
-					sock.send($('#client_nick1').val());   // 보내는 사람
-					sock.send($('#client_nick2').val());   // 받는 사람
-					sock.send($('#send_content').val());   // 내용
+					sock.send(sender);   // 보내는 사람
+					sock.send(receivcer);   // 받는 사람
+					sock.send(content);   // 내용
 					
 					alert('메세지가 전송되었습니다');
 					window.close();

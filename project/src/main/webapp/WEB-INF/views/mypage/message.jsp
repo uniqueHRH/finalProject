@@ -114,9 +114,9 @@
 		<input type="hidden" id="no" value="${bean.receive_no }">
 		<tr>
 			<input type="hidden" class="type_${bean.receive_no }" value="${bean.receive_status }">
-			<td name="line_${bean.receive_no }"><input type="checkbox" name="chk_${bean.receive_no }"></td>
-			<td name="line_${bean.receive_no }">${bean.receive_no }</td>
-			<td name="line_${bean.receive_no }"><a href="#" onclick="msg()">${bean.receive_content }</a></td>
+			<td name="line_${bean.receive_no }"><a href="#" onclick="window.open('../messageDe/'+${bean.receive_no }, '쪽지보기', 'width=470, height=340, left=500, top=50');"><input type="checkbox" name="chk_${bean.receive_no }"></a></td>
+			<td name="line_${bean.receive_no }"><a href="#" onclick="window.open('../messageDe/'+${bean.receive_no }, '쪽지보기', 'width=470, height=340, left=500, top=50');">${bean.receive_no }</a></td>
+			<td name="line_${bean.receive_no }"><a href="#" onclick="window.open('../messageDe/'+${bean.receive_no }, '쪽지보기', 'width=470, height=340, left=500, top=50');">${bean.receive_content }</a></td>
 			<td name="line_${bean.receive_no }"><a href="#" onclick="window.open('../messageDe/'+${bean.receive_no }, '쪽지보기', 'width=470, height=340, left=500, top=50');">${bean.client_nick1 }</a></td>
 			<td name="line_${bean.receive_no }"><a href="#" onclick="window.open('../messageDe/'+${bean.receive_no }, '쪽지보기', 'width=470, height=340, left=500, top=50');">${bean.receive_date}</a></td>
 		</tr>
@@ -253,16 +253,6 @@
 			location.reload();
 		}
    });
-//////////////////////////////////////////////////////////////////////////////////////////		
-		function msg() {
-			$('input[class^=type_').each(function() {
-				var num=$(this).attr('class');
-				num=num.split('_');
-				num=num[1];
-			
-				window.open('../messageDe/'+num, '쪽지보기', 'width=470, height=340, left=500, top=50');
-			});
-		}
 //////////////////////////////////////////////////////////////////////////////////////////		
 		// 페이징
 		//이전 버튼 이벤트

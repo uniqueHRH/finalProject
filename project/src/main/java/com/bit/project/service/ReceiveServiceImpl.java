@@ -35,7 +35,8 @@ public class ReceiveServiceImpl implements ReceiveService {
 	@Override
 	public void selectOne_receiveLimitOne(String key, Model model) {
 		try {
-			receiveDao.selectOne_receiveLimitOne(key);
+			model.addAttribute("bean", receiveDao.selectOne_receiveLimitOne(key));
+			System.out.println(key);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -56,7 +57,7 @@ public class ReceiveServiceImpl implements ReceiveService {
 	}
 
 	@Override
-	public int select_receiveUnCnt(String msg) throws Exception {
+	public CharSequence select_receiveUnCnt(String msg) throws Exception {
 		return receiveDao.select_receiveUnCnt(msg);
 	}
 

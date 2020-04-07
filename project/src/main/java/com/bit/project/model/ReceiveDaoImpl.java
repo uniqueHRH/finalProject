@@ -46,7 +46,7 @@ public class ReceiveDaoImpl implements ReceiveDao {
 	}
 
 	@Override
-	public int select_receiveUnCnt(String msg) throws Exception {
+	public CharSequence select_receiveUnCnt(String msg) throws Exception {
 		return sqlSession.selectOne("receive.select_receiveUnCnt", msg);
 	}
 

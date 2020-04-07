@@ -38,7 +38,7 @@
 	</select>
 
 <!-- 실시간 받은 쪽지 -->
-	<select id="selectOne_receiveLimitOne" resultType="ReceiveBean" parameterType="int">
+	<select id="selectOne_receiveLimitOne" resultType="ReceiveBean" parameterType="String">
 		select * from receive where client_nick2=#{client_nick2} order by receive_no desc limit 1
 	</select>
 <!-- 읽지 않은 쪽지 -->

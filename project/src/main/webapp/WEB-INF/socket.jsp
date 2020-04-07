@@ -18,18 +18,28 @@
 <script type="text/javascript">
 
 	//소켓
-	var sock=$('#sock').val();
+	var id=$('#sock').val();
 	var sock=new SockJS("${root}echo");
 	sock.onmessage=function(msg) {
 		console.log(msg.data);
 		alert('도착');
 		
-		if(sock) {
-			console.log(sock);
-			window.open('../main/partnerMessage?id='+sock,'쪽지가 도착하였습니다','width=470, height=340, left=500, top=50');
+		if(id) {
+			console.log(id);
+			window.open('../main/partnerMessage?key='+id,'쪽지가 도착하였습니다','width=470, height=340, left=500, top=50');
 		}
 	}
 	
 </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
