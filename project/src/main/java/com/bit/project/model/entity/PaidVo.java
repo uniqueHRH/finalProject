@@ -16,8 +16,8 @@ public class PaidVo {
 	private Date book_date;
 	private int paid_total;
 	private Date paid_date;
-	private int paid_state;
-	private int paid_confirm;
+	private String paid_state;
+	private String paid_confirm;
 	
 	private TourVo TourVo;
 	
@@ -121,19 +121,19 @@ public class PaidVo {
 		this.paid_date = paid_date;
 	}
 
-	public int getPaid_state() {
+	public String getPaid_state() {
 		return paid_state;
 	}
 
-	public void setPaid_state(int paid_state) {
+	public void setPaid_state(String paid_state) {
 		this.paid_state = paid_state;
 	}
 
-	public int getPaid_confirm() {
+	public String getPaid_confirm() {
 		return paid_confirm;
 	}
 
-	public void setPaid_confirm(int paid_confirm) {
+	public void setPaid_confirm(String paid_confirm) {
 		this.paid_confirm = paid_confirm;
 	}
 
@@ -145,9 +145,18 @@ public class PaidVo {
 		TourVo = tourVo;
 	}
 
+	@Override
+	public String toString() {
+		return "PaidVo [paid_no=" + paid_no + ", tour_no=" + tour_no + ", client_name=" + client_name + ", paid_name="
+				+ paid_name + ", paid_phone=" + paid_phone + ", paid_birth=" + paid_birth + ", paid_count=" + paid_count
+				+ ", paid_kakaoid=" + paid_kakaoid + ", tour_date=" + tour_date + ", book_date=" + book_date
+				+ ", paid_total=" + paid_total + ", paid_date=" + paid_date + ", paid_state=" + paid_state
+				+ ", paid_confirm=" + paid_confirm + ", TourVo=" + TourVo + "]";
+	}
+
 	public PaidVo(int paid_no, int tour_no, String client_name, String paid_name, int paid_phone, int paid_birth,
 			int paid_count, String paid_kakaoid, String tour_date, Date book_date, int paid_total, Date paid_date,
-			int paid_state, int paid_confirm, com.bit.project.model.entity.TourVo tourVo) {
+			String paid_state, String paid_confirm, com.bit.project.model.entity.TourVo tourVo) {
 		super();
 		this.paid_no = paid_no;
 		this.tour_no = tour_no;
@@ -166,14 +175,5 @@ public class PaidVo {
 		TourVo = tourVo;
 	}
 
-	@Override
-	public String toString() {
-		return "PaidVo [paid_no=" + paid_no + ", tour_no=" + tour_no + ", client_name=" + client_name + ", paid_name="
-				+ paid_name + ", paid_phone=" + paid_phone + ", paid_birth=" + paid_birth + ", paid_count=" + paid_count
-				+ ", paid_kakaoid=" + paid_kakaoid + ", tour_date=" + tour_date + ", book_date=" + book_date
-				+ ", paid_total=" + paid_total + ", paid_date=" + paid_date + ", paid_state=" + paid_state
-				+ ", paid_confirm=" + paid_confirm + ", TourVo=" + TourVo + "]";
-	}
-	
 	
 }

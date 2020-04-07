@@ -46,4 +46,14 @@ public class PaidServiceImpl implements PaidService {
 		return paidDao.getPaidListCnt(search);
 	}
 
+	@Override
+	public void paid_confirm(PaidVo bean) {
+		try {
+			paidDao.paid_confirm(bean);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+
 }

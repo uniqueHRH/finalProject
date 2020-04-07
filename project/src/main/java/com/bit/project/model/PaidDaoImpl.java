@@ -36,4 +36,9 @@ public class PaidDaoImpl implements PaidDao {
 		return sqlSession.selectOne("paid.getPaidListCnt", search);
 	}
 
+	@Override
+	public int paid_confirm(PaidVo bean) throws Exception {
+		return sqlSession.update("paid.paid_confirm", bean);
+	}
+
 }

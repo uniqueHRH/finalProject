@@ -181,7 +181,7 @@ public class TravelController {
 	}
 	//예약하기(INSERT)
 	@RequestMapping(value = "/tour/{idx}/booking", method = RequestMethod.POST)
-	public String bookingeastasia(@ModelAttribute PaidVo bean) {
+	public String bookingtour(@ModelAttribute PaidVo bean) {
 		tourservice.insertOne_tour(bean);
 		return "home";
 	}
@@ -191,13 +191,6 @@ public class TravelController {
 		paidservice.selectAll_paid(model);
 		return "system/paid";
 		}
-	//paid 디테일베이지
-	@RequestMapping(value = "/system/paid/{idx}", method = RequestMethod.GET)
-	public String detailpaid(Model model, @PathVariable ("idx") int paid_no) {
-		paidservice.selectOne_paid(model, paid_no);
-		return "system/detailpaid";
-	}
-	
 	//테마 메인,힐링페이지
 	@RequestMapping(value = "/tour/theme", method = RequestMethod.GET)
 	public String theme(Model model) {
@@ -259,5 +252,16 @@ public class TravelController {
 			model.addAttribute("list",paidservice.selectAll_paid(search));
 			model.addAttribute("listCnt",listCnt);
 			return "mypage/mybooking";
+	}
+	//paid 디테일베이지
+		@RequestMapping(value = "/mypage/paid/{idx}", method = RequestMethod.GET)
+		public String detailpaid(Model model, @PathVariable ("idx") int paid_no) {
+			paidservice.selectOne_paid(model, paid_no);
+			return "mypage/detailmybooking";
+		}
+	@RequestMapping(value="/mypage/paidconfirm",method = RequestMethod.POST)
+	public String paid_confirm(@ModelAttribute PaidVo bean) {
+		paidservice.paid_confirm(bean);
+		return "home";
 	}
 }

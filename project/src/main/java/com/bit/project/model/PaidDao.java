@@ -10,8 +10,8 @@ public interface PaidDao {
 	
 	List<PaidVo> selectAll_paid() throws Exception;
 	PaidVo selectOne_paid(int paid_no) throws Exception;
+	int paid_confirm(PaidVo bean) throws Exception;
 	
 	List<ReceiveVo> selectAll_paid(Search search) throws Exception;
-	
 	public int getPaidListCnt(Search search) throws Exception;
 }

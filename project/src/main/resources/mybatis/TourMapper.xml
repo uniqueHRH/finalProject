@@ -76,7 +76,7 @@
 	
 	<!-- paidDB 에 넣는 쿼리문 -->
 	<insert id="insertOne_tour" parameterType="PaidBean">
-		insert into paid (tour_no,client_name,paid_name,paid_phone,paid_birth,paid_count,paid_kakaoid,tour_date,book_date,paid_total) values (#{tour_no},#{client_name},#{paid_name},#{paid_phone},#{paid_birth},#{paid_count},#{paid_kakaoid},#{tour_date},now(),#{paid_total})
+		insert into paid (tour_no,client_name,paid_name,paid_phone,paid_birth,paid_count,paid_kakaoid,tour_date,book_date,paid_total,paid_state,paid_confirm) values (#{tour_no},#{client_name},#{paid_name},#{paid_phone},#{paid_birth},#{paid_count},#{paid_kakaoid},#{tour_date},now(),#{paid_total},'미결제','미확정')
 	</insert>
 	
 </mapper>

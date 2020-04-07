@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page pageEncoding="utf-8" import="com.bit.project.model.entity.*, java.util.List"%>
 <link href="https://fonts.googleapis.com/css?family=Jua&display=swap&subset=korean" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Jua|Noto+Sans+KR&display=swap" rel="stylesheet">
@@ -54,16 +55,16 @@
 		font-size:15px;
 	}
 	#table>thead th:nth-child(1) {
-		width:65px;
+		width:55px;
 	}
 	#table>thead th:nth-child(2) {
-		width:85px;
+		width:90px;
 	}
 	#table>thead th:nth-child(3) {
-		width:140px;
+		width:70px;
 	}
 	#table>thead th:nth-child(4) {
-		width:65px;
+		width:55px;
 	}
 	#table>thead th:nth-child(5) {
 		width:80px;
@@ -72,6 +73,9 @@
 		width:70px;
 	}
 	#table>thead th:nth-child(7) {
+		width:70px;
+	}
+	#table>thead th:nth-child(8) {
 		width:90px;
 	}
 	#table>tbody td>a {
@@ -121,30 +125,36 @@
    <thead>
       <tr class="active">
          <th>#</th>
-         <th>상품번호</th>
          <th>상품명</th>
+         <th>출발일</th>
          <th>총원</th>
          <th>총금액</th>
          <th>예약일</th>
-         <th>결제상태</th> 
+         <th>결제일</th>
+         <th>결제상태</th>
+         <th>확정여부</th>
       </tr>
    </thead>
    <tbody>
 		<c:forEach items="${list }" var="bean">
+		<c:set var="i" value="${i+1 }"/>
 		<tr>
-			<td>${bean.paid_no }</td>
-			<td><a href="${root }system/paid/${bean.paid_no }">${bean.tour_no }</a></td>
-			<td><a href="${root }system/paid/${bean.paid_no }">${bean.tourVo.name }</a></td>
-			<td><a href="${root }system/paid/${bean.paid_no }">${bean.paid_count }</a></td>
-			<td><a href="${root }system/paid/${bean.paid_no }">${bean.paid_total }</a></td>
-			<td><a href="${root }system/paid/${bean.paid_no }">${bean.book_date }</a></td>
-			<td><a href="${root }system/paid/${bean.paid_no }">${bean.paid_state }</a></td>
+			<td>${i }</td>
+			<td><a href="${root }mypage/paid/${bean.paid_no }">${bean.tourVo.name }</a></td>
+			<td><a href="${root }mypage/paid/${bean.paid_no }">${bean.tour_date }</a></td>
+			<td><a href="${root }mypage/paid/${bean.paid_no }">${bean.paid_count }</a></td>
+			<td><a href="${root }mypage/paid/${bean.paid_no }"> <fmt:formatNumber value="${bean.paid_total}" pattern="#,###"/>원</a></td>
+			<td><a href="${root }mypage/paid/${bean.paid_no }">${bean.book_date }</a></td>
+			<td><a href="${root }mypage/paid/${bean.paid_no }">${bean.paid_date }</a></td>
+			<td><a href="${root }mypage/paid/${bean.paid_no }">${bean.paid_state }</a></td>
+			<td><a href="${root }mypage/paid/${bean.paid_no }">${bean.paid_confirm }</a></td>
 			
 		</tr>
 		</c:forEach>
    </tbody>
 </table>
 
+<button id="paybtn" onclick="requestPay()">결제하기</button>
 <nav id="pageNum">
 <!-- 페이지넘버링 -->
 	<div id="paginationBox">
@@ -186,6 +196,7 @@
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="${root }js/bootstrap.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.js"></script>
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		/* 정렬 */
@@ -289,7 +300,6 @@
 			url=url+"&range="+range;
 			location.href=url;
 		}
-		
 		
 </script>
 </body>
