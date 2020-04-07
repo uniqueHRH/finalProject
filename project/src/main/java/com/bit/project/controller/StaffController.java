@@ -309,8 +309,8 @@ public class StaffController {
  	//가이드 등록
  	 	@RequestMapping(value="/system/guideIns",method=RequestMethod.POST)
  	    public String guideIns(GuideVo bean) {
+ 	 		System.out.println("controller: "+bean);
  	 		guideService.insertOne_guide(bean);
- 	 		System.out.println(bean);
  	 		return "redirect:/system/guide";
  	 	}
  	 	
