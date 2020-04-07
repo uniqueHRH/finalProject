@@ -9,8 +9,10 @@ public class ReceiveVo {
 	private String client_nick2;
 	private String receive_content;
 	private Date receive_date;
+	private int receive_status;
 	
-	
+
+
 	public ReceiveVo() {
 	}
 
@@ -45,26 +47,35 @@ public class ReceiveVo {
 	public void setReceive_date(Date receive_date) {
 		this.receive_date = receive_date;
 	}
-
+	public int getReceive_status() {
+		return receive_status;
+	}
+	public void setReceive_status(int receive_status) {
+		this.receive_status = receive_status;
+	}
+	
 
 	
 	@Override
 	public String toString() {
-		return "receiveVo [receive_no=" + receive_no + ", client_nick1=" + client_nick1 + ", client_nick2="
-				+ client_nick2 + ", receive_content=" + receive_content + ", receive_date=" + receive_date + "]";
+		return "ReceiveVo [receive_no=" + receive_no + ", client_nick1=" + client_nick1 + ", client_nick2="
+				+ client_nick2 + ", receive_content=" + receive_content + ", receive_date=" + receive_date
+				+ ", receive_status=" + receive_status + "]";
 	}
 
 	
 
 	public ReceiveVo(int receive_no, String client_nick1, String client_nick2, String receive_content,
-			Date receive_date) {
+			Date receive_date, int receive_status) {
 		super();
 		this.receive_no = receive_no;
 		this.client_nick1 = client_nick1;
 		this.client_nick2 = client_nick2;
 		this.receive_content = receive_content;
 		this.receive_date = receive_date;
+		this.receive_status = receive_status;
 	}
+	
 	
 	
 }

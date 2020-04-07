@@ -31,6 +31,11 @@ public class ReceiveDaoImpl implements ReceiveDao {
 	}
 
 	@Override
+	public int updateOne_receive(int key) throws Exception {
+		return sqlSession.update("receive.updateOne_receive", key);
+	}
+	
+	@Override
 	public int deleteOne_receive(int value) throws Exception {
 		return sqlSession.delete("receive.deleteOne_receive",value);
 	}
@@ -39,6 +44,6 @@ public class ReceiveDaoImpl implements ReceiveDao {
 	public int getReceiveListCnt(Search search) throws Exception {
 		return sqlSession.selectOne("receive.getReceiveListCnt", search);
 	}
-	
+
 	
 }

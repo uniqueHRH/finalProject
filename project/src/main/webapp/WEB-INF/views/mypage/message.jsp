@@ -48,7 +48,6 @@
 	}
 	#table>thead th:nth-child(3) {
 		width:550px;
-		text-align:left;
 	}
 	#table>thead th:nth-child(4) {
 		width:100px;
@@ -56,7 +55,7 @@
 	#table>thead th:nth-child(5) {
 		width:120px;
 	}
-	#table>tbody td:nth-child(3) {
+	#table>tbody td:nth-child(4) {
 		text-align:left;
 	}
 	#table>tbody td>a {
@@ -111,11 +110,12 @@
 		<c:forEach items="${list }" var="bean">
 		<input type="hidden" id="no" value="${bean.receive_no }">
 		<tr>
-			<td><input type="checkbox" name="chk_${bean.receive_no }"></td>
-			<td>${bean.receive_no }</td>
-			<td><a href="#" onclick="window.open('../messageDe/'+${bean.receive_no }, '쪽지보기', 'width=470, height=340, left=500, top=50');">${bean.receive_content }</a></td>
-			<td><a href="#" onclick="window.open('../messageDe/'+${bean.receive_no }, '쪽지보기', 'width=470, height=340, left=500, top=50');">${bean.client_nick1 }</a></td>
-			<td><a href="#" onclick="window.open('../messageDe/'+${bean.receive_no }, '쪽지보기', 'width=470, height=340, left=500, top=50');">${bean.receive_date}</a></td>
+			<input type="hidden" class="type_${bean.receive_no }" value="${bean.receive_status }">
+			<td name="line_${bean.receive_no }"><input type="checkbox" name="chk_${bean.receive_no }"></td>
+			<td name="line_${bean.receive_no }">${bean.receive_no }</td>
+			<td name="line_${bean.receive_no }"><a href="#" onclick="msg()">${bean.receive_content }</a></td>
+			<td name="line_${bean.receive_no }"><a href="#" onclick="window.open('../messageDe/'+${bean.receive_no }, '쪽지보기', 'width=470, height=340, left=500, top=50');">${bean.client_nick1 }</a></td>
+			<td name="line_${bean.receive_no }"><a href="#" onclick="window.open('../messageDe/'+${bean.receive_no }, '쪽지보기', 'width=470, height=340, left=500, top=50');">${bean.receive_date}</a></td>
 		</tr>
 		</c:forEach>
    </tbody>
@@ -167,6 +167,20 @@
 <script type="text/javascript" src="${root }js/bootstrap.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
+		// 읽음 & 안읽음
+		$('input[class^=type_').each(function() {
+			var num=$(this).attr('class');
+			num=num.split('_');
+			num=num[1];
+			
+			var status=$('input[class=type_'+num+']').val();
+			if(status==0) {
+				$('td[name^=line_'+num+']').css('font-weight','bold');
+			} else if (status==1) {
+				$('td[name^=line_'+num+']').css('font-weight','none');
+			}
+		});
+		
 		// 리모컨 top
 		$('#top').on('click',function() {
 			$('html,body').scrollTop(0);
@@ -205,7 +219,6 @@
 			var feed=$('input[type=checkbox]:checked').attr('name');
 			feed=feed.split('_');
 			feed=feed[1];
-			console.log(feed);
 			
 			var con=confirm('선택된 쪽지를 삭제하시겠습니까?');
 			if(con) {
@@ -218,7 +231,7 @@
 						reload();
 					},
 					error:function() {
-						console.log('다시 시도해 주세요');
+						alert('다시 시도해 주세요');
 					}
 				});
 			}
@@ -231,13 +244,22 @@
 			url=url+'&keyword='+$('#keyword').val();
 			
 			location.href=url;
-			console.log(url);
 		});
 		
 		function reload() {
 			location.reload();
 		}
    });
+//////////////////////////////////////////////////////////////////////////////////////////		
+		function msg() {
+			$('input[class^=type_').each(function() {
+				var num=$(this).attr('class');
+				num=num.split('_');
+				num=num[1];
+			
+				window.open('../messageDe/'+num, '쪽지보기', 'width=470, height=340, left=500, top=50');
+			});
+		}
 //////////////////////////////////////////////////////////////////////////////////////////		
 		// 페이징
 		//이전 버튼 이벤트
