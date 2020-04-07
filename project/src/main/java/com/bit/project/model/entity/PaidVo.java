@@ -8,7 +8,7 @@ public class PaidVo {
 	private int tour_no;
 	private String client_name;
 	private String paid_name;
-	private int paid_phone;
+	private String paid_phone;
 	private int paid_birth;
 	private int paid_count;
 	private String paid_kakaoid;
@@ -57,11 +57,11 @@ public class PaidVo {
 		this.paid_name = paid_name;
 	}
 
-	public int getPaid_phone() {
+	public String getPaid_phone() {
 		return paid_phone;
 	}
 
-	public void setPaid_phone(int paid_phone) {
+	public void setPaid_phone(String paid_phone) {
 		this.paid_phone = paid_phone;
 	}
 
@@ -154,7 +154,7 @@ public class PaidVo {
 				+ ", paid_confirm=" + paid_confirm + ", TourVo=" + TourVo + "]";
 	}
 
-	public PaidVo(int paid_no, int tour_no, String client_name, String paid_name, int paid_phone, int paid_birth,
+	public PaidVo(int paid_no, int tour_no, String client_name, String paid_name, String paid_phone, int paid_birth,
 			int paid_count, String paid_kakaoid, String tour_date, Date book_date, int paid_total, Date paid_date,
 			String paid_state, String paid_confirm, com.bit.project.model.entity.TourVo tourVo) {
 		super();
@@ -174,6 +174,8 @@ public class PaidVo {
 		this.paid_confirm = paid_confirm;
 		TourVo = tourVo;
 	}
+
+	
 
 	
 }
