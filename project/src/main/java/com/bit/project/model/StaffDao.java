@@ -19,5 +19,6 @@ public interface StaffDao {
 	int deleteOne_staff(int key) throws Exception;
 	public StaffVo loginCheck(StaffVo bean) throws Exception;
 	public int getStaffListCnt(Search search) throws Exception;
+	int changePw(StaffVo bean) throws Exception;
 	
 }

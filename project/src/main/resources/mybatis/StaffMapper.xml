@@ -65,7 +65,7 @@
 	</insert>
 	
 	<update id="updateOne_staff" parameterType="StaffBean">
-		update staff set staff_phone=#{staff_phone}, staff_email=#{staff_email}, staff_team=#{staff_team} where staff_no=#{staff_no}
+		update staff set staff_name=#{staff_name}, staff_phone=#{staff_phone}, staff_email=#{staff_email}, staff_team=#{staff_team} where staff_no=#{staff_no}
 	</update>
 	
 	<delete id="deleteOne_staff" parameterType="int">
@@ -76,5 +76,8 @@
 		select * from staff where staff_no=#{staff_no} and staff_pw=#{staff_pw}
 	</select>
 	
+	<update id="changePw" parameterType="ClientBean">
+		update staff set staff_pw=#{staff_pw} where staff_no=#{staff_no}
+	</update>
 	
 </mapper>

@@ -80,8 +80,8 @@
     </div>
   </div>
        
-<button type="button" id="cancelbtn" class="btn btn-default btn-lg" onclick="location.href='../system/staff'">취 소</button>
 <button type="submit" id="adminbtn"  class="btn btn-default btn-lg">등록 완료</button>
+<button type="button" id="cancelbtn" class="btn btn-default btn-lg" onclick="location.href='../system/staff'">취 소</button>
  </form>
 </div>
 <jsp:include page="/WEB-INF/footer.jsp"/>

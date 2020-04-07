@@ -13,37 +13,29 @@
 	#table1 {
 		font-family: 'Jua';
 	}
-
 	p {
 		margin:0 auto;
 		font-size:18px;
 	}
-
     #infocomm{
     	font-size: 20px;
     }
-
     #table {
     	width:50%;
     	margin:0px auto;
     	text-align: center;
     }
-
    #table tr{
    		text-align: center;
    }
-
    #table tr td{
    		text-align: center;
    		font-size: 15px;
    }
-   #changeinfobtn{
-   		width: 120px;
-   		position:relative;
-   		left: 1200px;
-   		margin-bottom: 20px;
-   }
    		
+   #changeinfobtn{
+   		width: 150px;
+   }
 </style>
 </head>
 <body>
@@ -54,29 +46,40 @@
  
  <div id="table1">
  	 <div class="page-header" align="center">
-    	 <h1>내 정보관리(직원용)</h1>
+    	 <h1>직원 정보</h1>
   	 </div>
-  	 <a href="${root }main/mypage/lock2"><button type="button" id="changeinfobtn" class="btn btn-default">비밀번호 변경</button></a>
-	
+ <form name="adm" class="form-horizontal" method="post"> 	 
 	<div id="table">
 		<table class="table table-hover">
 		<tr>
 			<td width="30%">사번/이름</td>
 			<td width="40%">사번<br/></br>이름</td>
-			<td width="50%">${sessionScope.staffcheck.staff_no }<br/></br>${sessionScope.staffcheck.staff_name }</td>
+			<td width="50%">${bean.staff_no }<br/></br><input type="text" id="staff_name" name="staff_name" value="${bean.staff_name }"/></td>
+			<input type="hidden" id="staff_no" name="staff_no" value="${bean.staff_no }"/>
 		</tr>
 		<tr>
 			<td>연락처/이메일</td>
-			<td>연락처<br/><br/>이메일</td>
-			<td>${sessionScope.staffcheck.staff_phone }<br/><br/>${sessionScope.staffcheck.staff_email }</td>
+			<td>연락처<br><br>이메일</td>
+			<td><input type="text" id="staff_phone" name="staff_phone" value="${bean.staff_phone }"/><br><br><input type="text" id="staff_email" name="staff_email" value="${bean.staff_email }"/></td>
 		</tr>
 		<tr>
-			<td>입사일</td>
-			<td>입사일</td>
-			<td>${sessionScope.staffcheck.staff_joindate }</td>
+			<td>부서/입사일</td>
+			<td>부서<br><br><br>입사일</td>
+			<td>
+			<select class="form-control" id="staff_team" name="staff_team" >
+		    <option value="경영" <c:if test="${bean.staff_team eq '경영'}">selected</c:if>>경영</option>
+		    <option value="인사" <c:if test="${bean.staff_team eq '인사'}">selected</c:if>>인사</option>
+		    <option value="CS" <c:if test="${bean.staff_team eq 'CS'}">selected</c:if>>CS</option>
+		    <option value="디자인" <c:if test="${bean.staff_team eq '디자인'}">selected</c:if>>디자인</option>
+		    <option value="마케팅" <c:if test="${bean.staff_team eq '마케팅'}">selected</c:if>>마케팅</option>
+			</select>
+			<br>${bean.staff_joindate }</td>
 		</tr>
 	   </table>
-	 </div>  
+	 <button type="submit" id="changeinfobtn" class="btn btn-default">수정완료</button>
+	 <a href="../staffDe/${bean.staff_no}"><button type="button" id="changeinfobtn" class="btn btn-default">취 소</button></a>
+	</div>  
+</form>
 </div>
       
                          <!-- contents end -->
@@ -85,33 +88,6 @@
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="${root }js/bootstrap.js"></script>
 <script type="text/javascript">
-   $(document).ready(function() {
-		$('#hamb').hide();
-		$('#hide').hide();
-		
-		$('#tour_sub').hide();
-		$('#comm_sub').hide();
-		$('#serv_sub').hide();
-		$('#system_sub').hide();
-		
-		$('#maintext1').hide();
-		$('#maintext2').hide();
-		$('#maintext3').hide();
-		$('#maintext4').hide();
-		
-		$('#hambBtn').mouseenter(function() {
-			$('#hamb').show();
-			$(this).hide();
-		});
-		$('#hamb').mouseenter(function() {
-			$(this).show();
-			$('#hambBtn').hide();
-		}).mouseleave(function() {
-			$('#hamb').hide();
-			$('#hambBtn').show();
-		});
-      
-   });
 </script>
 </body>
 </html>

@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 
 import com.bit.project.common.Search;
 import com.bit.project.model.StaffDao;
+import com.bit.project.model.entity.PaidVo;
 import com.bit.project.model.entity.StaffVo;
 
 @Service
@@ -78,6 +79,14 @@ public class StaffServiceImpl implements StaffService {
 		return staffDao.getStaffListCnt(search);
 	}
 
+	@Override
+	public void changePw(StaffVo bean) throws Exception {
+		try {
+			staffDao.changePw(bean);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 
 }

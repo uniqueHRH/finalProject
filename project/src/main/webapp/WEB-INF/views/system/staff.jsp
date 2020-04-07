@@ -43,25 +43,23 @@
 <!-- 리스트 출력 -->
    <thead>
       <tr class="active">
-         <th>사 번</th>
-         <th>이 름</th>
-         <th>연락처</th>
-         <th>이메일</th>
-         <th>부 서</th>
-         <th>입사일</th>
-         <th>비밀번호</th>
+         <th style="width: 100px">사 번</th>
+         <th style="width: 100px">이 름</th>
+         <th style="width: 200px">연락처</th>
+         <th style="width: 250px">이메일</th>
+         <th style="width: 100px">부 서</th>
+         <th style="width: 200px">입사일</th>
       </tr>
    </thead>
    <tbody>
 		<c:forEach items="${list }" var="bean">
 		<tr>
-			<td>${bean.staff_no }</td>
-			<td><a href="reviewDe/${bean.staff_no }">[${bean.staff_name }]</a></td>
-			<td><a href="reviewDe/${bean.staff_no }">${bean.staff_phone }</a></td>
-			<td><a href="reviewDe/${bean.staff_no }">${bean.staff_email }</a></td>
-			<td><a href="reviewDe/${bean.staff_no }">${bean.staff_team}</a></td>
-			<td><a href="reviewDe/${bean.staff_no }">${bean.staff_joindate }</a></td>
-			<td><a href="reviewDe/${bean.staff_no }">${bean.staff_pw }</a></td>
+			<td><a href="../system/staffDe/${bean.staff_no }">${bean.staff_no }</a></td>
+			<td><a href="../system/staffDe/${bean.staff_no }">${bean.staff_name }</a></td>
+			<td><a href="../system/staffDe/${bean.staff_no }">${bean.staff_phone }</a></td>
+			<td><a href="../system/staffDe/${bean.staff_no }">${bean.staff_email }</a></td>
+			<td><a href="../system/staffDe/${bean.staff_no }">${bean.staff_team}</a></td>
+			<td><a href="../system/staffDe/${bean.staff_no }">${bean.staff_joindate }</a></td>
 		</tr>
 		</c:forEach>
    </tbody>

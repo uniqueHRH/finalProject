@@ -57,27 +57,7 @@
 		width:60px;
 		width:50px;
 */
-	#table>thead th:nth-child(1) {
-		width:65px;
-	}
-	#table>thead th:nth-child(2) {
-		width:65px;
-	}
-	#table>thead th:nth-child(3) {
-		width:140px;
-	}
-	#table>thead th:nth-child(4) {
-		width:200px;
-	}
-	#table>thead th:nth-child(5) {
-		width:80px;
-	}
-	#table>thead th:nth-child(7) {
-		width:140px;
-	}
-	#table>thead th:nth-child(6) {
-		width:70px;
-	}
+	
 	#table>tbody td:nth-child(4) {
 		text-align:center;
 	}

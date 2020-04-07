@@ -13,37 +13,29 @@
 	#table1 {
 		font-family: 'Jua';
 	}
-
 	p {
 		margin:0 auto;
 		font-size:18px;
 	}
-
     #infocomm{
     	font-size: 20px;
     }
-
     #table {
     	width:50%;
     	margin:0px auto;
     	text-align: center;
     }
-
    #table tr{
    		text-align: center;
    }
-
    #table tr td{
    		text-align: center;
    		font-size: 15px;
    }
-   #changeinfobtn{
-   		width: 120px;
-   		position:relative;
-   		left: 1200px;
-   		margin-bottom: 20px;
-   }
    		
+   #changeinfobtn{
+   		width: 150px;
+   }
 </style>
 </head>
 <body>
@@ -54,29 +46,31 @@
  
  <div id="table1">
  	 <div class="page-header" align="center">
-    	 <h1>내 정보관리(직원용)</h1>
+    	 <h1>직원 정보</h1>
   	 </div>
-  	 <a href="${root }main/mypage/lock2"><button type="button" id="changeinfobtn" class="btn btn-default">비밀번호 변경</button></a>
-	
 	<div id="table">
 		<table class="table table-hover">
 		<tr>
 			<td width="30%">사번/이름</td>
 			<td width="40%">사번<br/></br>이름</td>
-			<td width="50%">${sessionScope.staffcheck.staff_no }<br/></br>${sessionScope.staffcheck.staff_name }</td>
+			<td width="50%">${bean.staff_no }<br/></br>${bean.staff_name }</td>
 		</tr>
 		<tr>
 			<td>연락처/이메일</td>
 			<td>연락처<br/><br/>이메일</td>
-			<td>${sessionScope.staffcheck.staff_phone }<br/><br/>${sessionScope.staffcheck.staff_email }</td>
+			<td>${bean.staff_phone }<br/><br/>${bean.staff_email }</td>
 		</tr>
 		<tr>
-			<td>입사일</td>
-			<td>입사일</td>
-			<td>${sessionScope.staffcheck.staff_joindate }</td>
+			<td>부서/입사일</td>
+			<td>부서<br><br>입사일</td>
+			<td>${bean.staff_team }<br><br>${bean.staff_joindate }</td>
 		</tr>
 	   </table>
-	 </div>  
+	 <input type="hidden" id="staffno" value="${bean.staff_no }">
+	 <a href="../staffEdit/${bean.staff_no }"><button type="button" id="editbtn" class="btn btn-default">수 정</button></a>
+	 <button type="button" id="delbtn" class="btn btn-default">삭 제</button>
+	 <a href="../staff"><button type="button" id="listbtn" class="btn btn-default">목 록</button></a>
+	</div>
 </div>
       
                          <!-- contents end -->
@@ -111,6 +105,26 @@
 			$('#hambBtn').show();
 		});
       
+		$("#delbtn").on('click',function(){
+			
+			if(confirm('삭제하시겠습니까?')==false){
+				return false;
+			}else{
+				$.ajax({
+                	url:'../staffDel',
+               	 	type:'POST',
+               	 	data:{key:$('#staffno').val()},
+                	success:function() {
+                    	alert('삭제되었습니다');
+                    	location.href="../staff";
+                },
+                	error:function() {
+                   	 	alert('삭제에 실패했습니다');
+               		}
+          		});
+			}
+		});
+		
    });
 </script>
 </body>
