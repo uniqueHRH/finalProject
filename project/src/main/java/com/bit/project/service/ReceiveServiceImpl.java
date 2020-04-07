@@ -55,5 +55,10 @@ public class ReceiveServiceImpl implements ReceiveService {
 		return receiveDao.getReceiveListCnt(search);
 	}
 
+	@Override
+	public int select_receiveUnCnt(String msg) throws Exception {
+		return receiveDao.select_receiveUnCnt(msg);
+	}
+
 
 }

@@ -45,5 +45,10 @@ public class ReceiveDaoImpl implements ReceiveDao {
 		return sqlSession.selectOne("receive.getReceiveListCnt", search);
 	}
 
+	@Override
+	public int select_receiveUnCnt(String msg) throws Exception {
+		return sqlSession.selectOne("receive.select_receiveUnCnt", msg);
+	}
+
 	
 }

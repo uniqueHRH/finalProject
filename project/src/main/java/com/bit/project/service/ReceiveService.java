@@ -18,4 +18,6 @@ public interface ReceiveService {
 	void deleteOne_receive(int key);
 //	게시물 총 갯수
 	public int getReceiveListCnt(Search search) throws Exception;
+//	읽지 않은 쪽지 갯수
+	public int select_receiveUnCnt(String msg) throws Exception;
 }

@@ -73,7 +73,10 @@
 	tbody td>a {
 		color:black;
 		text-decoration:none;
-   }
+	}
+	a:visited {
+		color:black;
+	}
 	.dropdown {
 		font-family: 'Jua';
 		font-size: 18px;
