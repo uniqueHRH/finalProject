@@ -314,4 +314,31 @@ public class StaffController {
  	 		return "redirect:/system/guide";
  	 	}
  	 	
+ 	 //가이드 정보
+ 	 	@RequestMapping(value="/system/guideDe/{idx}",method=RequestMethod.GET)
+ 	 	public String guideDetail(@PathVariable("idx") int key, Model model) {
+ 	 		guideService.selectOne_guide(key, model);
+ 	 		return "/system/guidedetail";
+ 	 	}
+ 	 //가이드 정보 수정페이지
+ 	 	@RequestMapping(value="/system/guideEdit/{idx}",method=RequestMethod.GET)
+ 		public String guideEdit(@PathVariable("idx") int key, Model model) {
+ 	 		guideService.selectOne_guide(key, model);
+ 			return "/system/guideedit";
+ 		}
+ 	 //가이드정보 수정
+ 	 	@RequestMapping(value="/system/guideEdit/{idx}", method=RequestMethod.POST)
+ 		public String guideEdit(@PathVariable("idx") int key, GuideVo bean){
+ 	 		 
+ 	 		guideService.updateOne_guide(bean);
+ 	 		System.out.println(bean);
+ 	 		return "redirect:../guideDe/"+bean.getGuide_no();
+ 	 	}
+ 	 //가이드 삭제
+ 	 	@RequestMapping(value="/system/guideDel", method=RequestMethod.POST)
+ 		public String guideDel(int key) {
+ 	 		guideService.deleteOne_guide(key);
+ 			return "redirect:/system/guide";
+ 		}
+ 	 	
 }
