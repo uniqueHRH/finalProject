@@ -85,10 +85,14 @@ public class MypageController {
   	public String myBoard(String id, Model model,
 			@RequestParam(required = false, defaultValue = "1") int page,
  			@RequestParam(required=false, defaultValue="1") int range,
+ 			@RequestParam(required=false, defaultValue="receive_content") String searchType,
+ 			@RequestParam(required=false) String keyword,
  			@ModelAttribute("search") Search search
  			) throws Exception {
   		
   		model.addAttribute("search", search);
+  		search.setSearchType(searchType);
+ 		search.setKeyword(keyword);
  		search.setClient_nick1(id);
  		
  		// 전체 게시글 갯수
@@ -103,8 +107,6 @@ public class MypageController {
 		model.addAttribute("pagination", search);
 		model.addAttribute("list",boardService.myBoardList(search));
 		model.addAttribute("listCnt",listCnt);
-		
-		System.out.println("controller"+search);
   		return "mypage/myBoard";
   	}
   	

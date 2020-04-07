@@ -155,11 +155,16 @@
 			union
 			select board_id, board_no, free_sub, free_date, free_count from free where client_nick1=#{client_nick1}
 		) as board_table
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="searchType=='board_sub' and keyword != null and keyword != '' ">
+				AND board_sub like CONCAT('%', #{keyword}, '%')
+			</if>
+		</trim>
 		order by board_date desc
 		LIMIT #{startList}, #{listSize}
 	</select>
 	
-	<select id="myBoardTotal" resultType="int" resultMap="myBoard_board">
+	<select id="myBoardTotal" resultType="int" parameterType="BoardBean">
 		select count(*) from (
 			select board_id, board_no, board_sub, board_date, board_count from board where client_nick1=#{client_nick1}
 			union
@@ -167,10 +172,10 @@
 			union
 			select board_id, board_no, free_sub, free_date, free_count from free where client_nick1=#{client_nick1}
 		) as board_table
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="searchType=='board_sub' and keyword != null and keyword != '' ">
+				AND board_sub like CONCAT('%', #{keyword}, '%')
+			</if>
+		</trim>
 	</select>
-	
-<!-- 
-	resultMap : 참조
-	resultType : 반환타입
- -->
 </mapper>

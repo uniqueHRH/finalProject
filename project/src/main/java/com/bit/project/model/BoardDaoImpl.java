@@ -74,7 +74,6 @@ public class BoardDaoImpl implements BoardDao {
 
 	@Override
 	public int myBoardTotal(Search search) throws Exception {
-		System.out.println("dao"+search);
 		return sqlSession.selectOne("board.myBoardTotal", search);
 	}
 

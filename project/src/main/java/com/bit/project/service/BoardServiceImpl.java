@@ -100,7 +100,6 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public int myBoardTotal(Search search) throws Exception {
-		System.out.println("service"+search);
 		return boardDao.myBoardTotal(search);
 	}
 

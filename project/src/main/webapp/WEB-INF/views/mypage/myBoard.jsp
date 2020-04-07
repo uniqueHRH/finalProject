@@ -39,7 +39,7 @@
 	#table>tbody td>a:hover {
 		color:black;
 	}
-	#board_id {
+	.board_id {
 		border:0;
 		outline:0;
 		width:73;
@@ -81,12 +81,6 @@
 <table class="table table-hover" id="table">
 <!-- 정렬 드롭다운 -->
 	<div class="topMenu" id="theme">
-		<select id="dropdownMenu1">
-		    <option value="정렬">정 &nbsp;렬</option>
-		    <option value="나라별">나라별</option>
-		    <option value="테마별">테마별</option>
-		</select>
-		<a class="btn btn-default" href="#" role="button" id="sel">조회</a>
 		<input type="text" value="<c:out value="${listCnt}"></c:out>개의 게시물이 조회되었습니다" id="listCnt" disabled/>
 		<div id="fff"></div>
 	   <input type="hidden" id="loginCk" value="${sessionScope.check.client_nick1}"/>
@@ -104,7 +98,7 @@
    <tbody>
 		<c:forEach items="${list }" var="bean">
 		<tr>
-			<td><a href="#"><input type="text" id="board_id" name="boardId_${bean.board_id }" value="${bean.board_id }" disabled></a></td>
+			<td><a href="#"><input type="text" class="board_id" name="boardId_${bean.board_id }" value="${bean.board_id }" disabled></a></td>
 			<td><a href="#">${bean.board_no }</a></td>
 			<td><a href="#">${bean.board_sub }</a></td>
 			<td><a href="#">${bean.board_date }</a></td>
@@ -116,25 +110,27 @@
 
 <nav id="pageNum">
 <!-- 페이지넘버링 -->
-	<ul class="btn-group pagination">
-		<c:if test="${pg.prev }">
-			<li><a href='<c:url value="/board/boardList?page=${pg.startPage-1 }"/>'><i class="fa fa-chevron-left"></i></a></li>
-		</c:if>
-		<c:forEach begin="${pg.startPage }" end="${pg.endPage }" var="pageNum">
-			<li><a href='<c:url value="/board/review?page=${pageNum }"/>'><i class="fa">${pageNum }</i></a></li>
-		</c:forEach>
-		<c:if test="${pg.next && pg.endPage >0 }">
-			<li><a href='<c:url value="/board/boardList?page=${pg.endPage+1 }"/>'><i class="fa fa-chevron-right"></i></a></li>
-	    </c:if>
-	</ul>
+	<div id="paginationBox">
+		<ul class="pagination">
+			<c:if test="${pagination.prev}">
+				<li class="page-item"><a class="page-link" href="#" onClick="prev('${pagination.page}', '${pagination.range}', '${pagination.rangeSize}')">Prev</a></li>
+			</c:if>
+			<c:forEach begin="${pagination.startPage}" end="${pagination.endPage}" var="idx">
+				<li class="page-item <c:out value="${pagination.page==idx?'active' : ''}"/>"><a class="page-link" href="#" onClick="pagination('${idx}', '${pagination.range}', '${pagination.rangeSize}')">${idx}</a></li>
+			</c:forEach>
+			<c:if test="${pagination.next}">
+				<li class="page-item"><a class="page-link" href="#" onClick="next('${pagination.range}', '${pagination.range}', '${pagination.rangeSize}')" >Next</a></li>
+			</c:if>
+		</ul>
+	</div>
 
 
 <!-- 검색 -->
    <div class="topMenu" id="search">
 		<select id="searchType">
-		    <option value="정렬">제 &nbsp; 목</option>
+		    <option value="board_sub">제 &nbsp; 목</option>
 		</select>
-      <input type="text" class="form-control" id="client_id" name="wri" style="width:200px; display:inline-block;">
+      <input type="text" class="form-control" id="keyword" name="wri" style="width:200px; display:inline-block;">
 		<a class="btn btn-default" href="#" role="button" id="searchGo">G O</a>
 		<div id="fff"></div>
 	</div>
@@ -228,22 +224,47 @@
 			$('#wri').hide();
 		}
 //////////////////////////////////////////////////////////////////////////////////////////		
-		
-		// 검색기능
-		$('#search').on('click',function() {
-			var search=$('#dropdownMenu2').val();
+		// 검색
+		$('#searchGo').on('click',function() {
+			var url='${root }main/myBoard/?id=${sessionScope.check.client_nick1}';
+			url=url+'&searchType='+$('#searchType').val();
+			url=url+'&keyword='+$('#keyword').val();
 			
-			console.log(search);
-			/* if(up==나라별) {
-				alert('나라별');
-			}
-			if(up==테마별) {
-				alert('테마별');
-			} */
+			location.href=url;
 		});
 		
-		
+		function reload() {
+			location.reload();
+		}
    });
+//////////////////////////////////////////////////////////////////////////////////////////
+		// 페이징
+		//이전 버튼 이벤트
+		function prev(page, range, rangeSize) {
+			var page=((range-2)*rangeSize)+1;
+			var range=range-1;
+			var url='${root }main/myBoard/?id=${sessionScope.check.client_nick1}';
+			url=url+"&page="+page;
+			url=url+"&range="+range;
+			location.href=url;
+		}
+		//페이지 번호 클릭
+		function pagination(page, range, rangeSize) {
+			var url='${root }main/myBoard/?id=${sessionScope.check.client_nick1}';
+			url=url+"&page="+page;
+			url=url+"&range="+range;
+			location.href = url;	
+		}
+		//다음 버튼 이벤트
+		function next(page, range, rangeSize) {
+			var page=parseInt((range*rangeSize))+1;
+			var range=parseInt(range)+1;
+			var url='${root }main/myBoard/?id=${sessionScope.check.client_nick1}';
+			url=url+"&page="+page;
+			url=url+"&range="+range;
+			location.href=url;
+		}
+		
 </script>
 </body>
 </html>
