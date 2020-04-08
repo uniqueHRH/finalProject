@@ -44,36 +44,15 @@
 		
 		$('#sendMsg').on('click',function() {
 			var data=$('#client_nick2').val();
-			window.open('../../partner/?msg='+data,'쪽지보내기','width=470, height=340, left=500, top=50');
+			window.open('../partner/?msg='+data,'쪽지보내기','width=470, height=340, left=500, top=50');
 			window.close();
 		});
 		
 		$('#cancel').on('click', function() {
+			window.opener.location.reload();
 			window.close();
 		});
 	});
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

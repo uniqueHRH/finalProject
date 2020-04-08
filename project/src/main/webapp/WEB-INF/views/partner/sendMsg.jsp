@@ -47,6 +47,10 @@
 			var receiver=$('#client_nick2').val();
 			var content=$('#send_content').val();
 			
+			if(content=='') {
+				alert('내용을 입력해주세요');
+				return false();
+			}
 			$.ajax({
 				url:'../partner',
 				type:'POST',
@@ -54,9 +58,8 @@
 				success:function() {
 					sock.send(sender+"/"+receiver+"/"+content);
 					
-					alert('메세지가 전송되었습니다');
-//					window.opener.location.reload();
 					window.close();
+					alert('메세지가 전송되었습니다');
 				},
 				error:function() {
 					alert('다시 시도해주세요');
@@ -65,7 +68,6 @@
 		});
 		
 		$('#cancel').on('click', function() {
-			window.opener.location.reload();
 			window.close();
 		});
 	});
