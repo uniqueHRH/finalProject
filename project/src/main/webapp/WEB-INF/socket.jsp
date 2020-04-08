@@ -19,17 +19,32 @@
 
 	//소켓
 	var id=$('#sock').val();
-	var sock=new SockJS("${root}echo");
+	var sock=new WebSocket("ws://localhost:8080/project/echo");
+	
 	sock.onmessage=function(msg) {
-		console.log(msg.data);
-		alert('도착');
+		var message=msg.data;
+		message=message.split('/');
+		var sendId=message[0];
+		var receiveId=message[1];
+		var text=message[2];
 		
-		if(id) {
-			console.log(id);
-			window.open('../main/partnerMessage?key='+id,'쪽지가 도착하였습니다','width=470, height=340, left=500, top=50');
+		console.log('send : '+sendId);
+		console.log('receive : '+receiveId);
+		console.log('text : '+text);
+		
+		if(id==receiveId) {
+			window.open('../../main/partnerMessage?key='+id,'쪽지가 도착하였습니다','width=470, height=340, left=500, top=50');
+		} else {
 		}
 	}
+
+	sock.onclose=function(message) {
+		sock.close();
+	}
 	
+	sock.onerror=function(message) {
+		sock.close();
+	}
 </script>
 </body>
 </html>

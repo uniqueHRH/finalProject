@@ -1,51 +1,69 @@
 package com.bit.project.common;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+import javax.websocket.OnClose;
+import javax.websocket.OnError;
+import javax.websocket.OnMessage;
+import javax.websocket.OnOpen;
+import javax.websocket.Session;
+import javax.websocket.server.ServerEndpoint;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
-import org.springframework.web.socket.CloseStatus;
-import org.springframework.web.socket.TextMessage;
-import org.springframework.web.socket.WebSocketSession;
-import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 import com.bit.project.model.ReceiveDao;
 
-@Repository
-public class EchoHandler extends TextWebSocketHandler {
+@ServerEndpoint("/echo")
+public class EchoHandler {
 	
 	@Autowired
 	SqlSession sqlSession;
 	@Autowired
 	ReceiveDao receiveDao;
 	
-	Map<String, WebSocketSession> map=new HashMap<String, WebSocketSession>();
-	Map<String, String> users=new HashMap<String, String>();
-	
-	
-	@Override   // 접속
-	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-		System.out.println(session.getId()+"님이 연결되었습니다");
-		map.put(session.getId(), session);
-		users.put(session.getId(), "id");
-	}
+	private static List<Session> users=Collections.synchronizedList(new ArrayList<>());
 
-	@Override   // 발송
-	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
-		System.out.println(session.getId()+" : "+message.getPayload());
-		session.sendMessage(message);
-/*
-		sqlSession.getMapper(ReceiveDao.class);   // getMapper : Dao 인터페이스에 정의된 각 함수를 호출
-		session.sendMessage(new TextMessage(receiveDao.select_receiveUnCnt(message.getPayload())));
-*/
+	@OnOpen
+	public void handleOpen(Session userSession) {
+		users.add(userSession);
+		System.out.println("session 이 연결되었다");
 	}
 	
-	@Override   // 종료
-	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
-		System.out.println(session.getId()+"님의 연결이 종료되었습니다");
-		map.remove(session.getId());
-		users.remove(session.getId());
+	@OnMessage
+	public void handleMessage(String message, Session userSession) throws IOException {
+		System.out.println(message);
+		String[] str=message.split("/");
+		
+		// 클로저
+		final String sendId=str[0];
+		final String receiveId=str[1];
+		final String text=str[2];
+		
+		users.forEach(session -> {
+			if(session==userSession) {
+				return;
+			}
+			try {
+				session.getBasicRemote().sendText(sendId+"/"+receiveId+"/"+text);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		});   // 쪽지 전달
 	}
+	
+	@OnClose
+	public void handleClose(Session userSession) {
+		users.remove(userSession);
+		System.out.println("session 종료");
+	}
+	
+	@OnError
+	public void handleError(Session userSession, Throwable throwable) {
+		users.remove(userSession);
+	}
+	
 }

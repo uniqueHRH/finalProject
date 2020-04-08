@@ -44,19 +44,18 @@
 		
 		$('#sendMsg').on('click',function() {
 			var sender=$('#client_nick1').val();
-			var receivcer=$('#client_nick2').val();
+			var receiver=$('#client_nick2').val();
 			var content=$('#send_content').val();
 			
 			$.ajax({
 				url:'../partner',
 				type:'POST',
-				data:{client_nick1:sender, client_nick2:receivcer, send_content:content},
+				data:{client_nick1:sender, client_nick2:receiver, send_content:content},
 				success:function() {
-					sock.send(sender);   // 보내는 사람
-					sock.send(receivcer);   // 받는 사람
-					sock.send(content);   // 내용
+					sock.send(sender+"/"+receiver+"/"+content);
 					
 					alert('메세지가 전송되었습니다');
+//					window.opener.location.reload();
 					window.close();
 				},
 				error:function() {
@@ -66,6 +65,7 @@
 		});
 		
 		$('#cancel').on('click', function() {
+			window.opener.location.reload();
 			window.close();
 		});
 	});
