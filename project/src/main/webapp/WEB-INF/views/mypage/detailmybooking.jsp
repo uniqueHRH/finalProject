@@ -28,7 +28,7 @@
 		font-family: 'Jua';
 	}
 	#table1{
-		margin-bottom: 50px; 
+		margin-bottom: 80px; 
 	}
 	#paybtn{
 		position: relative;
@@ -91,7 +91,7 @@
   	 	</tr>
   	 </table>
  <p style="display: none;">${bean.paid_no }</p>
- <button id ="paybtn" class="btn btn-default btn-lg">결제하기</button> 	 
+ <button id ="paybtn" class="btn btn-primary btn-lg">결제하기</button> 	 
   	 
 <!-- contents end --> 
  
@@ -116,7 +116,7 @@ $("#paybtn").click(function () {
 	    pay_method : 'card',
 	    merchant_uid : 'merchant_' + new Date().getTime(),
 	    name : '주문명:${bean.tourVo.name }',
-	    amount : 100,
+	    amount : ${bean.paid_total},
 	    buyer_name : '${bean.client_name }',
 	    buyer_tel : '${bean.paid_phone }',
 	    
@@ -136,7 +136,6 @@ $("#paybtn").click(function () {
 	          }
 	      }).done(function (data) {
 	        // 가맹점 서버 결제 API 성공시 로직
-	    	  alert('됨');
 	      })
 	    } else {
 	        var msg = '결제에 실패하였습니다.';

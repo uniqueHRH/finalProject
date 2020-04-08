@@ -237,7 +237,7 @@ public class TravelController {
 			model.addAttribute("search", search);
 	 		search.setSearchType(searchType);
 	 		search.setKeyword(keyword);
-	 		search.setClient_nick2(id);
+	 		search.setClient_name(id);
 	 		
 	 		// 전체 게시글 갯수
 	 		int listCnt=0;

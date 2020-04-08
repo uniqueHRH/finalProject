@@ -105,26 +105,15 @@
 
 <!-- contents start -->
       <div class="page-header" id="page-header" align="center">
-     <h1>결제상황</h1>
+     <h1>나의예약</h1>
    </div>
    
-	
-   
 <table class="table table-hover" id="table">
-<!-- 정렬 드롭다운 -->
-	<div class="topMenu" id="theme">
-		<select id="dropdownMenu1">
-		    <option value="정렬">정 &nbsp;렬</option>
-		    <option value="나라별">나라별</option>
-		    <option value="테마별">테마별</option>
-		</select>
-		<a class="btn btn-default" href="#" role="button" id="sel">조회</a>
-		<input type="text" value="<c:out value="${listCnt}"></c:out>개의 게시물이 조회되었습니다" id="listCnt" disabled/>
-</div>
+
 <!-- 리스트 출력 -->
    <thead>
       <tr class="active">
-         <th>#</th>
+         <th>NO</th>
          <th>상품명</th>
          <th>출발일</th>
          <th>총원</th>
@@ -154,7 +143,6 @@
    </tbody>
 </table>
 
-<button id="paybtn" onclick="requestPay()">결제하기</button>
 <nav id="pageNum">
 <!-- 페이지넘버링 -->
 	<div id="paginationBox">
@@ -169,17 +157,6 @@
 				<li class="page-item"><a class="page-link" href="#" onClick="next('${pagination.range}', '${pagination.range}', '${pagination.rangeSize}')" >Next</a></li>
 			</c:if>
 		</ul>
-	</div>
-
-<!-- 검색 -->
-   <div class="topMenu" id="search">
-		<select id="searchType">
-		    <option value="board_sub">제 &nbsp; 목</option>
-		    <option value="board_land">나라별</option>
-		    <option value="board_theme">테마별</option>
-		</select>
-      <input type="text" class="form-control" id="keyword" name="keyword" style="width:200px; display:inline-block;">
-		<a class="btn btn-default" href="#" role="button" id="searchGo">G O</a>
 	</div>
 	
 </nav>
@@ -198,93 +175,20 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.js"></script>
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script type="text/javascript">
-	$(document).ready(function() {
-		/* 정렬 */
-		$('#sel').on('click',function() {
-			var up=$('#dropdownMenu1').val();
-			if(up=='정렬') {
-				$.ajax({
-					url:'../board/review',
-					type:'GET',
-					success:function(data) {
-						location.href="../board/review";
-					},
-					error:function() {
-					}
-				});   // ajax
-			}   // if
-			if(up=='나라별') {
-				$.ajax({
-					url:'../board/reviewLocal',
-					type:'GET',
-					success:function(data) {
-						location.href="../board/reviewLocal";
-					},
-					error:function() {
-					}
-				});   // ajax
-				return false;
-			}   // if
-			if(up=='테마별') {
-				$.ajax({
-					url:'../board/reviewTheme',
-					type:'GET',
-					success:function() {
-						location.href="../board/reviewTheme";
-					},
-					error:function() {
-					}
-				});   // ajax
-			}   // if
-		});
 		
-		// 리모컨 top
-		$('#top').on('click',function() {
-			$('html,body').scrollTop(0);
-		});
-		
-		//<![CDATA[
-	    // 사용할 앱의 JavaScript 키를 설정해 주세요.
-	    Kakao.init('acc658a670e9ed5918d11647040b5bc5');
-	    // 카카오톡 채널 1:1채팅 버튼을 생성합니다.
-	    Kakao.Channel.createChatButton({
-	      container: '#kakao-talk-channel-chat-button',
-	      channelPublicId: '_wxfwxfxb' // 카카오톡 채널 홈 URL에 명시된 id로 설정합니다.
-	    });
-	  //]]>
-		
-		$('#hide').hide();
-		// 로그인 후 글쓰기 이용 가능
-		var loginBool=$('#loginCk').val();
-		if(!loginBool) {
-			$('#wri').hide();
-		}
-//////////////////////////////////////////////////////////////////////////////////////////		
-		// 검색
-		$('#searchGo').on('click',function() {
-			var url='${root }board/review';
-			url=url+'?searchType='+$('#searchType').val();
-			url=url+'&keyword='+$('#keyword').val();
-			
-			location.href=url;
-			console.log(url);
-		});
-		
-   });
-//////////////////////////////////////////////////////////////////////////////////////////		
 		// 페이징
 		//이전 버튼 이벤트
 		function prev(page, range, rangeSize) {
 			var page=((range-2)*rangeSize)+1;
 			var range=range-1;
-			var url="${root }board/review";
+			var url="${root }main/mybooking";
 			url=url+"?page="+page;
 			url=url+"&range="+range;
 			location.href=url;
 		}
 		//페이지 번호 클릭
 		function pagination(page, range, rangeSize, searchType, keyword) {
-			var url="${root }board/review";
+			var url="${root }main/mybooking";
 			url=url+"?page="+page;
 			url=url+"&range="+range;
 			url=url+"&searchType="+$('#searchType').val();
@@ -295,7 +199,7 @@
 		function next(page, range, rangeSize) {
 			var page=parseInt((range*rangeSize))+1;
 			var range=parseInt(range)+1;
-			var url="${root }board/review";
+			var url="${root }main/mybooking";
 			url=url+"?page="+page;
 			url=url+"&range="+range;
 			location.href=url;
