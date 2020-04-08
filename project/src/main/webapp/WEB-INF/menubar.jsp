@@ -172,7 +172,7 @@
 </div>
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
 <script type="text/javascript">
-	$(document).ready(function() {
+/* 	$(document).ready(function() {
 		$('#tourS').hide();
 		$('#boardS').hide();
 		$('#serviceS').hide();
@@ -191,7 +191,7 @@
 			$('#systemS').toggle();
 		});
 		
-	});
+	}); */
 </script>
 </body>
 </html>
