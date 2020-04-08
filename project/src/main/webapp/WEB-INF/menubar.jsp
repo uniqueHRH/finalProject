@@ -37,7 +37,7 @@
 	}
 /* 메뉴 */
 	#tourM, #boardM, #serviceM, #eventM, #systemM {
-		font-size:23px;
+		font-size:25px;
 		text-align:center;
 		color:white;
 		padding:15 70;
@@ -57,7 +57,7 @@
 /* 하위 메뉴 */
 	#menubar>div>a {
 		padding:20 80;
-		font-size:18px;
+		font-size:20px;
 		color:white;
 		text-decoration:none;
 	}
