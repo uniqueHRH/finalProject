@@ -78,6 +78,7 @@
 <button type="button" id="cancelbtn" class="btn btn-default btn-lg" onclick="location.href='../system/guide'">취 소</button>
 </form>
 </div>
+<jsp:include page="/WEB-INF/socket.jsp"/>
 <jsp:include page="/WEB-INF/footer.jsp"/>
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="${root }js/bootstrap.js"></script>

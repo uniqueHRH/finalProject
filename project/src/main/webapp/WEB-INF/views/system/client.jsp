@@ -94,7 +94,7 @@
 		<div id="kakao-talk-channel-chat-button"></div>
 		<button type="button" class="btn btn-default" id="top">TOP ▲</button>
 	</div>
-
+<jsp:include page="/WEB-INF/socket.jsp"/>
 <jsp:include page="/WEB-INF/footer.jsp"/>
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
