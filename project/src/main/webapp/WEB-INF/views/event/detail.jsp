@@ -162,22 +162,18 @@
 			var replyCnt=$('#reply').length;
 			
 			if(con) {
-				if(replyCnt>0) {
-					alert('댓글이 작성된 게시물은 삭제가 불가능합니다');
-				} else {
-					$.ajax({
-		                  url:'../eventDel',
-		                  type:'POST',
-		                  data:{key:$('input[type=hidden]').val()},
-		                  success:function() {
-		                      alert('삭제되었습니다');
-		                      location.href="../event";
-		                  },
-		                  error:function() {
-		                     alert('삭제에 실패했습니다');
-		                  }
-		            });
-				}
+				$.ajax({
+	                  url:'../eventDel',
+	                  type:'POST',
+	                  data:{key:$('input[type=hidden]').val()},
+	                  success:function() {
+	                      alert('삭제되었습니다');
+	                      location.href="../event";
+	                  },
+	                  error:function() {
+	                     alert('삭제에 실패했습니다');
+	                  }
+	            });
 			}
 		});
             
