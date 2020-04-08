@@ -76,13 +76,23 @@
 	#login li>a {
 		color:white;
 		padding:20;
+		font-size: 18px;
 	}
 	#login li>ul>li>a {
 		color:black;
 		text-align:center;
+		font-size: 18px;
+		margin-bottom: -25px;
 	}
 	body {
 		padding-top:100px;
+	}
+	#aa,#bb,#cc,#dd,#ee,#ff,#hh,#ii,#kk,#mm,#nn,#oo,#pp,#qq,#rr{
+		margin-bottom: -35px;
+		display: block;
+	}
+	#gg,#jj,#ll{
+		display: block;
 	}
 </style>
 </head>
@@ -106,7 +116,7 @@
 					        	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">${sessionScope.staffcheck.staff_name} 님<span class="caret"></span></a>
 					        	<ul class="dropdown-menu" role="menu">
 					        		<li><a href="${root }main/staffinfo">내정보관리</a></li>
-				            		<li><a href="${root }main/logout">로그아웃</a></li>
+				            		<li><a href="${root }main/logout" style="margin-bottom: 0px;">로그아웃</a></li>
 					        	</ul>
 					        </c:if>
 						</li>
@@ -120,7 +130,7 @@
 					        		<li><a href="${root }main/mybooking/?id=${sessionScope.check.client_name}">예약상품</a></li>
 					        		<li><a href="${root }main/myBoard/?id=${sessionScope.check.client_nick1}">내가쓴글</a></li>
 					        		<li><a href="${root }main/myinfo">내정보관리</a></li>
-					        		<li><a href="${root }main/logout">로그아웃</a></li>
+					        		<li><a href="${root }main/logout" style="margin-bottom: 0px;">로그아웃</a></li>
 					        	</ul>
 							</li>
 						</c:if>
@@ -135,36 +145,36 @@
 		<div id="menubar">
 	        <li id="tourM">투&nbsp; &nbsp; &nbsp;어</li>
         	<div id="tourS">
-			    <a href="${root }tour/eastasia">중국 /일본</a>
-			    <a href="${root }tour/southeastasia">동남아시아</a>
-		    	<a href="${root }tour/america">아 메 리 카</a>
-	    		<a href="${root }tour/europe">유 &nbsp; &nbsp; &nbsp; &nbsp;럽</a>
-	       		<a href="${root }tour/pacific">남 태 평 양</a>
-	       		<a href="${root }tour/africa">아 프 리 카</a>
-	       		<a href="${root }tour/theme">테 마 여 행</a>
+			    <a href="${root }tour/eastasia" id="aa">중국 /일본</a>
+			    <a href="${root }tour/southeastasia" id="bb">동남아시아</a>
+		    	<a href="${root }tour/america" id="cc">아 메 리 카</a>
+	    		<a href="${root }tour/europe" id="dd">유 &nbsp; &nbsp; &nbsp; &nbsp;럽</a>
+	       		<a href="${root }tour/pacific" id="ee">남 태 평 양</a>
+	       		<a href="${root }tour/africa" id="ff">아 프 리 카</a>
+	       		<a href="${root }tour/theme" id="gg">테 마 여 행</a>
 	       	</div>
 	        <li id="boardM">커뮤니티</li>
         	<div id="boardS">
-	            <a href="${root }board/review">여행 후기</a>
-	            <a href="${root }board/partner">동행구하기</a>
-	       		<a href="${root }board/free">자유게시판</a>
+	            <a href="${root }board/review" id="hh">여행 후기</a>
+	            <a href="${root }board/partner" id="ii">동행구하기</a>
+	       		<a href="${root }board/free" id="jj">자유게시판</a>
 	       	</div>
 	       	<li id="eventM"><a href="${root }board/event">이 벤 트</a></li>
 	        <li id="serviceM">고객센터</li>
         	<div id="serviceS">
-	            <a href="${root }board/notice">공 &nbsp; &nbsp; &nbsp; &nbsp;지</a>
-			    <a href="${root }board/faq">자주묻는질문</a>
+	            <a href="${root }board/notice" id="kk">공 &nbsp; &nbsp; &nbsp; &nbsp;지</a>
+			    <a href="${root }board/faq" id="ll">자주묻는질문</a>
 	       	</div>
 	        
 	        <c:if test="${sessionScope.staffcheck ne null }">
 	        <li id="systemM">관리자센터</li>
         	<div id="systemS">
-	            <a href="${root }system/staff">직원 관리</a>
-	       		<a href="${root }system/guide">가이드 관리</a>
-	       		<a href="${root }system/client">회원 관리</a>
-	       		<a href="${root }system/paid">결제 관리</a>
-	       		<a href="#">투어 관리</a>
-	       		<a href="${root }system/report">신고 관리</a>
+	            <a href="${root }system/staff" id="mm">직원 관리</a>
+	       		<a href="${root }system/guide" id="nn">가이드 관리</a>
+	       		<a href="${root }system/client" id="oo">회원 관리</a>
+	       		<a href="${root }system/paid" id="pp">결제 관리</a>
+	       		<a href="#" id="qq">투어 관리</a>
+	       		<a href="${root }system/report" id="rr">신고 관리</a>
 	       	</div>
 	        </c:if>
 		</div>
@@ -172,7 +182,7 @@
 </div>
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
 <script type="text/javascript">
-/* 	$(document).ready(function() {
+ 	$(document).ready(function() {
 		$('#tourS').hide();
 		$('#boardS').hide();
 		$('#serviceS').hide();
@@ -191,7 +201,7 @@
 			$('#systemS').toggle();
 		});
 		
-	}); */
+	}); 
 </script>
 </body>
 </html>

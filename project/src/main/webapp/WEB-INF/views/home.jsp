@@ -33,28 +33,32 @@
 		height:100px;
 		line-height:30px;
 	}
+	#bs-example-navbar-collapse-1{
+		width: 100%;
+	}
 	#menubar {
 		margin:0 auto;
 		text-align:center;
-		padding:35 220 0 450;
+		padding:35 150 0 450;
 	}
 	#menubar>li {
-		padding:0 20px 0 0;
+		padding:0 15px 0 0;
 		text-align:center;
 	}
 	#menubar>li>a {
-		font-size:20px;
+		font-size:25px;
 		font-weight:bold;
 		color:white;
 		padding:20 50;
 		text-align:center;
 	}
 	#menubar li>ul>li>a {
-		font-size:15px;
+		font-size:20px;
 		color:black;
+		text-align: center;
 	}
 	#login {
-		font-size:16px;
+		font-size:18px;
 		padding:0 30 0 0;
 	}
 	#login li>a {
@@ -64,6 +68,8 @@
 	#login li>ul>li>a {
 		color:black;
 		text-align:center;
+		font-size: 18px;
+		margin-bottom: -25px;
 	}
 	body {
 		padding-top:100px;
@@ -172,10 +178,10 @@
 						<!-- 직원로그인시 -->
 				        <li class="dropdown">
 					        <c:if test="${sessionScope.check eq null and sessionScope.staffcheck ne null }">
-					        	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">${sessionScope.staffcheck.staff_name} 님<span class="caret"></span></a>
+					        	<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">${sessionScope.staffcheck.staff_name} 님<span class="caret"></span></a>
 					        	<ul class="dropdown-menu" role="menu">
 					        		<li><a href="${root }main/staffinfo">내정보관리</a></li>
-				            		<li><a href="${root }main/logout">로그아웃</a></li>
+				            		<li><a href="${root }main/logout" style="margin-bottom: 0px;">로그아웃</a></li>
 					        	</ul>
 					        </c:if>
 						</li>
@@ -190,7 +196,7 @@
 					        		<li><a href="${root }main/mybooking/?id=${sessionScope.check.client_name}">예약상품</a></li>
 					        		<li><a href="${root }main/myBoard/?id=${sessionScope.check.client_nick1}">내가쓴글</a></li>
 					        		<li><a href="${root }main/myinfo">내정보관리</a></li>
-					        		<li><a href="${root }main/logout">로그아웃</a></li>
+					        		<li><a href="${root }main/logout" style="margin-bottom: 0px;">로그아웃</a></li>
 					        	</ul>
 							</li>
 						</c:if>
