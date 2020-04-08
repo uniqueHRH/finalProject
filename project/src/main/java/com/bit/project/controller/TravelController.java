@@ -186,11 +186,6 @@ public class TravelController {
 		return "home";
 	}
 	//투어예약관리
-	@RequestMapping(value = "/system/paid", method = RequestMethod.GET)
-	public String paid(Model model) {
-		paidservice.selectAll_paid(model);
-		return "system/paid";
-		}
 	//테마 메인,힐링페이지
 	@RequestMapping(value = "/tour/theme", method = RequestMethod.GET)
 	public String theme(Model model) {
@@ -226,17 +221,13 @@ public class TravelController {
 
 	//마이페이지 내가 예약한 상품
 	@RequestMapping(value="/main/mybooking", method=RequestMethod.GET)
-	public String receiveMsg(String id, Model model,
+	public String mybooking(String id, Model model,
 				@RequestParam(required = false, defaultValue = "1") int page,
 	 			@RequestParam(required=false, defaultValue="1") int range,
-	 			@RequestParam(required=false, defaultValue="paid_name") String searchType,
-	 			@RequestParam(required=false) String keyword,
 	 			@ModelAttribute("search") Search search
 	 			) throws Exception {
 			
 			model.addAttribute("search", search);
-	 		search.setSearchType(searchType);
-	 		search.setKeyword(keyword);
 	 		search.setClient_name(id);
 	 		
 	 		// 전체 게시글 갯수
@@ -253,15 +244,44 @@ public class TravelController {
 			model.addAttribute("listCnt",listCnt);
 			return "mypage/mybooking";
 	}
-	//paid 디테일베이지
-		@RequestMapping(value = "/mypage/paid/{idx}", method = RequestMethod.GET)
-		public String detailpaid(Model model, @PathVariable ("idx") int paid_no) {
-			paidservice.selectOne_paid(model, paid_no);
-			return "mypage/detailmybooking";
-		}
+	//마이페이지 내가 예약한 상품 디테일
+	@RequestMapping(value = "/mypage/paid/{idx}", method = RequestMethod.GET)
+	public String detailpaid(Model model, @PathVariable ("idx") int paid_no) {
+		paidservice.selectOne_paid(model, paid_no);
+		return "mypage/detailmybooking";
+	}
+	//결제 후 결제완료 insert
 	@RequestMapping(value="/mypage/paidconfirm",method = RequestMethod.POST)
 	public String paid_confirm(@ModelAttribute PaidVo bean) {
 		paidservice.paid_confirm(bean);
 		return "home";
 	}
+	//시스템에서 총 예약과 결제상품 관리페이지
+	@RequestMapping(value = "/system/paid", method = RequestMethod.GET)
+	public String paid(String id, Model model,
+			@RequestParam(required = false, defaultValue = "1") int page,
+ 			@RequestParam(required=false, defaultValue="1") int range,
+ 			@RequestParam(required=false, defaultValue="paid_name") String searchType,
+ 			@RequestParam(required=false) String keyword,
+ 			@ModelAttribute("search") Search search
+ 			) throws Exception {
+		
+		model.addAttribute("search", search);
+ 		search.setSearchType(searchType);
+ 		search.setKeyword(keyword);
+ 		
+ 		// 전체 게시글 갯수
+ 		int listCnt=0;
+		try {
+			listCnt=paidservice.getPaidListCnt(search);
+			search.pageInfo(page, range, listCnt);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		model.addAttribute("pagination", search);
+		model.addAttribute("list",paidservice.selectAll_paid(search));
+		model.addAttribute("listCnt",listCnt);
+		return "system/paid";
+}
 }

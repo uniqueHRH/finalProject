@@ -12,6 +12,7 @@
 <style type="text/css">
    #table{
    		font-family: "Jua";
+   		padding-left: 200px;
    }
     form {
       	width:550px;
@@ -23,6 +24,9 @@
     	width: 800px;
     	margin: 0px auto;
     	padding-bottom: 50px;
+    	padding-top: 30px;
+    }
+    #insertid{
     	padding-top: 20px;
     }
    #loginbtn{

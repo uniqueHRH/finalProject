@@ -249,6 +249,7 @@
 		</div>	
 	</div>
 </div>
+<jsp:include page="/WEB-INF/socket.jsp"/>
 <!-- contents end -->
 <div id="footer">
  	<jsp:include page="/WEB-INF/footer.jsp"/>
