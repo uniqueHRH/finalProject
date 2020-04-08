@@ -29,10 +29,10 @@
 <!-- 정렬 드롭다운 -->
 	<div class="topMenu" id="theme">
 		<select id="dropdownMenu1">
-		    <option value="정렬">정 &nbsp;렬</option>
-		    <option value="번호">번호</option>
-		    <option value="이름">이름</option>
-		    <option value="지역">지역</option>
+		    <option value="정렬">정 렬</option>
+		    <option value="NO">N O</option>
+		    <option value="이름">이 름</option>
+		    <option value="지역">지 역</option>
 		</select>
 		<a class="btn btn-default" href="#" role="button" id="sel">조회</a>
 		<input type="text" value="<c:out value="${listCnt}"></c:out>개의 게시물이 조회되었습니다" id="listCnt" disabled/>
@@ -43,7 +43,7 @@
 <!-- 리스트 출력 -->
    <thead>
       <tr class="active">
-         <th style="width: 100px">번 &nbsp;호</th>
+         <th style="width: 100px">NO</th>
          <th style="width: 100px">이 &nbsp;름</th>
          <th style="width: 250px">연락처</th>
          <th style="width: 250px">지 &nbsp;역</th>
@@ -117,7 +117,7 @@
 					}
 				});   // ajax
 			}   // if
-			if(up=='번호') {
+			if(up=='NO') {
 				$.ajax({
 					url:'../system/guideNo',
 					type:'GET',

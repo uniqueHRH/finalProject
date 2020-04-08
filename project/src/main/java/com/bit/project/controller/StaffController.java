@@ -15,10 +15,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.bit.project.common.Pagination;
 import com.bit.project.common.Search;
+import com.bit.project.model.entity.ClientVo;
 import com.bit.project.model.entity.GuideVo;
 import com.bit.project.model.entity.StaffVo;
+import com.bit.project.service.ClientService;
 import com.bit.project.service.GuideService;
 import com.bit.project.service.StaffService;
 
@@ -29,6 +30,8 @@ public class StaffController {
 	StaffService staffService;
 	@Autowired
 	GuideService guideService;
+	@Autowired
+	ClientService clientService;
 	@Resource
 	Search search;
 	//직원 내정보
@@ -341,4 +344,113 @@ public class StaffController {
  			return "redirect:/system/guide";
  		}
  	 	
+ 	 	
+ 	 //회원 목록
+ 	 	@RequestMapping(value = "/system/client", method = RequestMethod.GET)
+ 	 	public String client(Model model, @RequestParam(required = false, defaultValue = "1") int page,
+ 	 			@RequestParam(required=false, defaultValue="1") int range,
+ 	 			@RequestParam(required=false, defaultValue="client_name") String searchType,
+ 	 			@RequestParam(required=false) String keyword,
+ 	 			@ModelAttribute("search") Search search
+ 	 			) throws Exception {
+
+ 	 		model.addAttribute("search", search);
+ 	 		search.setSearchType(searchType);
+ 	 		search.setKeyword(keyword);
+ 	 		
+ 	 		int listCnt=0;
+ 			try {
+ 				listCnt = clientService.getClientListCnt(search);
+ 				search.pageInfo(page, range, listCnt);
+ 			} catch (Exception e) {
+ 				e.printStackTrace();
+ 			}
+
+ 			model.addAttribute("pagination", search);
+ 			model.addAttribute("list",clientService.selectAll_client(search));
+ 			model.addAttribute("listCnt",listCnt);
+ 	 		return "/system/client";
+ 	 	}
+ 	 	
+ 		//회원 이름별 정렬
+ 	 	@RequestMapping(value="/system/clientName", method=RequestMethod.GET)
+ 	 	public String clientNo(Model model, @RequestParam(required = false, defaultValue = "1") int page,
+ 	 			@RequestParam(required=false, defaultValue="1") int range,
+ 	 			@RequestParam(required=false, defaultValue="client_name") String searchType,
+ 	 			@RequestParam(required=false) String keyword,
+ 	 			@ModelAttribute("search") Search search
+ 	 			) throws Exception {
+
+ 	 		
+ 	 		model.addAttribute("search", search);
+ 	 		search.setSearchType(searchType);
+ 	 		search.setKeyword(keyword);
+ 	 		
+ 	 		int listCnt=0;
+ 			try {
+ 				listCnt = clientService.getClientListCnt(search);
+ 				search.pageInfo(page, range, listCnt);
+ 			} catch (Exception e) {
+ 				e.printStackTrace();
+ 			}
+
+ 			model.addAttribute("pagination", search);
+ 			model.addAttribute("list",clientService.selectAll_clientName(search));
+ 			model.addAttribute("listCnt",listCnt);
+ 	 		return "/system/client";
+ 	 	}
+ 	 	
+ 	 	//회원 등급별 정렬
+ 	 	@RequestMapping(value="/system/clientLevel", method=RequestMethod.GET)
+ 	 	public String clientLevel(Model model, @RequestParam(required = false, defaultValue = "1") int page,
+ 	 			@RequestParam(required=false, defaultValue="1") int range,
+ 	 			@RequestParam(required=false, defaultValue="client_name") String searchType,
+ 	 			@RequestParam(required=false) String keyword,
+ 	 			@ModelAttribute("search") Search search
+ 	 			) throws Exception {
+
+ 	 		model.addAttribute("search", search);
+ 	 		search.setSearchType(searchType);
+ 	 		search.setKeyword(keyword);
+ 	 		
+ 	 		int listCnt=0;
+ 			try {
+ 				listCnt = clientService.getClientListCnt(search);
+ 				search.pageInfo(page, range, listCnt);
+ 			} catch (Exception e) {
+ 				e.printStackTrace();
+ 			}
+
+ 			model.addAttribute("pagination", search);
+ 			model.addAttribute("list",clientService.selectAll_clientLevel(search));
+ 			model.addAttribute("listCnt",listCnt);
+ 	 		return "/system/client";
+ 	 	}
+ 	 	
+ 	 //회원 정보
+ 	 	@RequestMapping(value="/system/clientDe/{idx}",method=RequestMethod.GET)
+ 	 	public String clientDetail(@PathVariable("idx") int key, Model model) {
+ 	 		clientService.selectOne_client(key, model);
+ 	 		return "/system/clientdetail";
+ 	 	}
+ 	 	
+ 	 //회원 정보 수정페이지
+ 	 	@RequestMapping(value="/system/clientEdit/{idx}",method=RequestMethod.GET)
+ 		public String clientEdit(@PathVariable("idx") int key, Model model) {
+ 	 		clientService.selectOne_client(key, model);
+ 			return "/system/clientedit";
+ 		}
+ 	 //회원정보 수정
+ 	 	@RequestMapping(value="/system/clientEdit/{idx}", method=RequestMethod.POST)
+ 		public String clientEdit(@PathVariable("idx") int key, ClientVo bean){
+ 	 		 
+ 	 		clientService.updateOne_client(bean);
+ 	 		return "redirect:../clientDe/"+bean.getClient_no();
+ 	 	}
+ 	 //회원 삭제
+ 	 	@RequestMapping(value="/system/clientDel", method=RequestMethod.POST)
+ 		public String clientDel(int key) {
+ 	 		clientService.deleteOne_client(key);
+ 			return "redirect:/system/client";
+ 		}
 }

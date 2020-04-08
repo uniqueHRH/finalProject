@@ -20,7 +20,7 @@
 
 <!-- contents start -->
       <div class="page-header" id="page-header" align="center">
-     <h1>직원관리</h1>
+     <h1>직원 관리</h1>
    </div>
    
 	
@@ -29,9 +29,9 @@
 <!-- 정렬 드롭다운 -->
 	<div class="topMenu" id="theme">
 		<select id="dropdownMenu1">
-		    <option value="정렬">정 &nbsp;렬</option>
-		    <option value="사번">사 &nbsp;번</option>
-		    <option value="부서">부 &nbsp;서</option>
+		    <option value="정렬">정 렬</option>
+		    <option value="NO">N O</option>
+		    <option value="부서">부 서</option>
 		</select>
 		<a class="btn btn-default" href="#" role="button" id="sel">조회</a>
 		<input type="text" value="<c:out value="${listCnt}"></c:out>개의 게시물이 조회되었습니다" id="listCnt" disabled/>
@@ -42,7 +42,7 @@
 <!-- 리스트 출력 -->
    <thead>
       <tr class="active">
-         <th style="width: 100px">사 번</th>
+         <th style="width: 100px">NO</th>
          <th style="width: 100px">이 름</th>
          <th style="width: 200px">연락처</th>
          <th style="width: 250px">이메일</th>
@@ -84,7 +84,7 @@
    <div class="topMenu" id="search">
 		<select id="searchType">
 		    <option value="staff_name">이 름</option>
-		    <option value="staff_no">사 번</option>
+		    <option value="staff_no">N O</option>
 		    <option value="staff_team">부 서</option>
 		</select>
       <input type="text" class="form-control" id="keyword" name="keyword" style="width:200px; display:inline-block;">
@@ -119,7 +119,7 @@
 					}
 				});   // ajax
 			}   // if
-			if(up=='사번') {
+			if(up=='NO') {
 				$.ajax({
 					url:'../system/staffNo',
 					type:'GET',

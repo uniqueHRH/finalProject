@@ -1,13 +1,19 @@
 package com.bit.project.service;
 
+import java.util.List;
+
 import org.springframework.ui.Model;
 
+import com.bit.project.common.Search;
 import com.bit.project.model.entity.ClientVo;
 
 public interface ClientService {
 
-	void selectAll_client(Model model);
-	void selectOne_client(Model model,int client_no);
+	List<ClientVo> selectAll_client(Search search) throws Exception;
+	List<ClientVo> selectAll_clientName(Search search) throws Exception;
+	List<ClientVo> selectAll_clientLevel(Search search) throws Exception;
+	
+	void selectOne_client(int key,Model model);
 	void insertOne_client(ClientVo bean);
 	void updateOne_client(ClientVo bean);
 	void deleteOne_client(int key);
@@ -19,4 +25,5 @@ public interface ClientService {
 	public ClientVo idDupli(ClientVo bean) throws Exception;
 	void changeInfo(ClientVo bean) throws Exception;
 	void changePw(ClientVo bean) throws Exception;
+	public int getClientListCnt(Search search) throws Exception;
 }

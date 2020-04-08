@@ -53,23 +53,33 @@
 		<tr>
 			<td width="30%">NO/이름</td>
 			<td width="40%">NO<br/></br>이름</td>
-			<td width="50%">${bean.staff_no }<br/></br>${bean.staff_name }</td>
+			<td width="50%">${bean.client_no }<br/></br>${bean.client_name }</td>
+		</tr>
+		<tr>
+			<td>ID/닉네임</td>
+			<td>ID<br/><br/>닉네임</td>
+			<td>${bean.client_id }<br/><br/>${bean.client_nick1 }</td>
 		</tr>
 		<tr>
 			<td>연락처/이메일</td>
-			<td>연락처<br/><br/>이메일</td>
-			<td>${bean.staff_phone }<br/><br/>${bean.staff_email }</td>
+			<td>연락처<br><br>이메일</td>
+			<td>${bean.client_phone }<br><br>${bean.client_email }</td>
 		</tr>
 		<tr>
-			<td>부서/입사일</td>
-			<td>부서<br><br>입사일</td>
-			<td>${bean.staff_team }<br><br>${bean.staff_joindate }</td>
+			<td>등급/포인트</td>
+			<td>등급<br><br>포인트</td>
+			<td>${bean.client_level }<br><br>${bean.client_point }</td>
+		</tr>
+		<tr>
+			<td>생년월일/가입일</td>
+			<td>생년월일<br><br>가입일</td>
+			<td>${bean.client_birth }<br><br>${bean.client_joindate }</td>
 		</tr>
 	   </table>
-	 <input type="hidden" id="staffno" value="${bean.staff_no }">
-	 <a href="../staffEdit/${bean.staff_no }"><button type="button" id="editbtn" class="btn btn-default">수 정</button></a>
+	 <input type="hidden" id="clientno" value="${bean.client_no }">
+	 <a href="../clientEdit/${bean.client_no }"><button type="button" id="editbtn" class="btn btn-default">수 정</button></a>
 	 <button type="button" id="delbtn" class="btn btn-default">삭 제</button>
-	 <a href="../staff"><button type="button" id="listbtn" class="btn btn-default">목 록</button></a>
+	 <a href="../client"><button type="button" id="listbtn" class="btn btn-default">목 록</button></a>
 	</div>
 </div>
       
@@ -111,12 +121,12 @@
 				return false;
 			}else{
 				$.ajax({
-                	url:'../staffDel',
+                	url:'../clientDel',
                	 	type:'POST',
-               	 	data:{key:$('#staffno').val()},
+               	 	data:{key:$('#clientno').val()},
                 	success:function() {
                     	alert('삭제되었습니다');
-                    	location.href="../staff";
+                    	location.href="../client";
                 },
                 	error:function() {
                    	 	alert('삭제에 실패했습니다');

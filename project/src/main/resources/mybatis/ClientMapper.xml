@@ -17,8 +17,59 @@
 <mapper namespace="client">
 
 	<select id="selectAll_client" resultType="ClientBean">
-		select * from client order by client_no desc
+		select * from client
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="searchType=='client_name' and keyword != null and keyword != '' ">
+				AND client_name like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType=='client_id' and keyword != null and keyword != '' ">
+				AND client_id like CONCAT('%', #{keyword}, '%')
+			</if>
+		</trim>
+		ORDER BY client_no DESC
+		LIMIT #{startList}, #{listSize}
 	</select>
+<!-- 회원 이름별 정렬 -->
+	<select id="selectAll_clientName" resultType="ClientBean">
+		select * from client
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="searchType=='client_name' and keyword != null and keyword != '' ">
+				AND staff_name like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType=='client_id' and keyword != null and keyword != '' ">
+				AND client_id like CONCAT('%', #{keyword}, '%')
+			</if>	
+		</trim>
+		ORDER BY client_name
+		LIMIT #{startList}, #{listSize}
+	</select>
+<!-- 회원 등급별 정렬 -->
+	<select id="selectAll_clientLevel" resultType="ClientBean">
+		select * from client
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="searchType=='client_name' and keyword != null and keyword != '' ">
+				AND client_name like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType=='client_id' and keyword != null and keyword != '' ">
+				AND client_id like CONCAT('%', #{keyword}, '%')
+			</if>	
+		</trim>
+		ORDER BY client_level
+		LIMIT #{startList}, #{listSize}
+	</select>
+	
+<!-- 총게시글 갯수 -->
+	<select id="getClientListCnt" resultType="int">
+		select count(*) from client
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="searchType=='client_name' and keyword != null and keyword != '' ">
+				AND client_name like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType=='client_id' and keyword != null and keyword != '' ">
+				AND client_id like CONCAT('%', #{keyword}, '%')
+			</if>	
+		</trim>
+	</select>	
 	
 	<select id="selectOne_client" resultType="ClientBean" parameterType="int">
 		select * from client where client_no=#{value}
