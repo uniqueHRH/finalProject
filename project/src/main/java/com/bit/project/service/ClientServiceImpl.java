@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+import com.bit.project.common.Search;
 import com.bit.project.model.ClientDao;
 import com.bit.project.model.entity.ClientVo;
 
@@ -15,20 +16,27 @@ public class ClientServiceImpl implements ClientService {
 	@Autowired
 	ClientDao clientDao;
 	
-	@Override
-	public void selectAll_client(Model model) {
-		try {
-			List<ClientVo> list=clientDao.selectAll_client();
-			model.addAttribute("list",list);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
 
 	@Override
-	public void selectOne_client(Model model, int client_no) {
+	public List<ClientVo> selectAll_client(Search search) throws Exception {
+		return clientDao.selectAll_client(search);
+	}
+	
+	@Override
+	public List<ClientVo> selectAll_clientName(Search search) throws Exception {
+		return clientDao.selectAll_clientName(search);
+	}
+	
+	@Override
+	public List<ClientVo> selectAll_clientLevel(Search search) throws Exception {
+		return clientDao.selectAll_clientLevel(search);
+	}
+	
+	
+	@Override
+	public void selectOne_client(int key,Model model) {
 		try {
-			model.addAttribute("bean",clientDao.selectOne_client(client_no));
+			model.addAttribute("bean",clientDao.selectOne_client(key));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -113,7 +121,11 @@ public class ClientServiceImpl implements ClientService {
 		}
 	}
 
-	
+	@Override
+	public int getClientListCnt(Search search) throws Exception {
+		return clientDao.getClientListCnt(search);
+	}
+
 
 	
 

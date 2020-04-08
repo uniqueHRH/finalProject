@@ -17,8 +17,6 @@ public class HomeController {
 	public String home(HttpSession session) {
 		logger.info("home");
 		
-		System.out.println("session Á¢¼Ó : "+session.getId());
-		System.out.println( org.springframework.core.SpringVersion.getVersion() ); 
 		return "home";
 	}
 	

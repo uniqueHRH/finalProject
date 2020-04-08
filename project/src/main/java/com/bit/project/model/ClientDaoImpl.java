@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.bit.project.common.Search;
 import com.bit.project.model.entity.ClientVo;
 
 @Repository
@@ -15,10 +16,20 @@ public class ClientDaoImpl implements ClientDao {
 	SqlSession sqlSession;
 	
 	@Override
-	public List<ClientVo> selectAll_client() throws Exception {
-		return sqlSession.selectList("client.selectAll_client");
+	public List<ClientVo> selectAll_client(Search search) throws Exception {
+		return sqlSession.selectList("client.selectAll_client", search);
 	}
 
+	@Override
+	public List<ClientVo> selectAll_clientName(Search search) throws Exception {
+		return sqlSession.selectList("client.selectAll_clientName", search);
+	}
+	
+	@Override
+	public List<ClientVo> selectAll_clientLevel(Search search) throws Exception {
+		return sqlSession.selectList("client.selectAll_clientLevel", search);
+	}
+	
 	@Override
 	public ClientVo selectOne_client(int key) throws Exception {
 		return sqlSession.selectOne("client.selectOne_client",key);
@@ -78,6 +89,12 @@ public class ClientDaoImpl implements ClientDao {
 	public int changePw(ClientVo bean) throws Exception {
 		return sqlSession.update("client.changePw", bean);
 	}
+
+	@Override
+	public int getClientListCnt(Search search) throws Exception {
+		return sqlSession.selectOne("client.getClientListCnt", search);
+	}
+
 
 	
 

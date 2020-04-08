@@ -51,8 +51,8 @@
 	<div id="table">
 		<table class="table table-hover">
 		<tr>
-			<td width="30%">번호/이름</td>
-			<td width="40%">번호<br/></br>이름</td>
+			<td width="30%">NO/이름</td>
+			<td width="40%">NO<br/></br>이름</td>
 			<td width="50%">${bean.guide_no }<br/></br>${bean.guide_name }</td>
 		</tr>
 		<tr>
