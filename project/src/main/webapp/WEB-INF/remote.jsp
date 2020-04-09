@@ -11,8 +11,8 @@
 /* 리모컨 */ 
 	#remote {
 		position:fixed;
-		left:1400px;
-		top:245px;
+		left:1580px;
+		top:700px;
 		width:150px;
 	}
 	#kakao-talk-channel-chat-button {
@@ -39,7 +39,6 @@
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
-	
 	//리모컨 top
 	$('#top').on('click',function() {
 		$('html,body').scrollTop(0);
