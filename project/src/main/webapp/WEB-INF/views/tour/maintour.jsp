@@ -67,6 +67,7 @@
   </div>
  </div>
 </div>
+<jsp:include page="/WEB-INF/remote.jsp"/>
 <jsp:include page="/WEB-INF/socket.jsp"/>
 	<div id="footer">
 		<jsp:include page="/WEB-INF/footer.jsp"/>
