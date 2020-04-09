@@ -14,7 +14,7 @@
 		font-size: 15px;
 		color: silver;
 		margin-bottom: 0px;
-		padding-top:180;
+		padding-top:350px;
 		padding-bottom: 0px;
 		float: right;
 		height: 100px; 
