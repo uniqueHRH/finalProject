@@ -33,7 +33,7 @@
 <!-- ¸®¸ðÄÁ -->
 	<div class="btn-group-vertical fixed-top" id="remote" role="group" aria-label="...">
 		<div id="kakao-talk-channel-chat-button" class="kakaoChat"></div>
-		<button type="button" class="btn btn-default" id="top">TOP ¡ã</button>
+		<button type="button" class="btn btn-default" id="top">T O P ¡ã</button>
 	</div>
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>

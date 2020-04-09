@@ -174,6 +174,7 @@
          <td class="active" style="text-align: center;">상품가</td>
          <td> <fmt:formatNumber value="${bean.cost}" pattern="#,###"/>원</td>
          <td><input type="hidden" id="check" value="${sessionScope.check}"></td>
+         <td><input type="hidden" id="nick" value="${sessionScope.check.client_nick1}"></td>
       </tr>
       </table>
       
@@ -203,8 +204,9 @@
 <!-- 리모컨 -->
 	<div class="btn-group-vertical fixed-top" id="remote" role="group" aria-label="...">
 		<div id="kakao-talk-channel-chat-button" class="kakaoChat"></div>
-		<button type="button" class="btn btn-default" id="wish">찜하기<input type="text" id="star" value=" ★" disabled></button>
+		<button type="button" class="btn btn-default" id="wish">찜하기<input type="text" id="star" value=" ☆" disabled></button>
 		<button type="button" class="btn btn-default" id="top">TOP ▲</button>
+		<input type="text" value="${bean.wishChk }">
 	</div>
 <jsp:include page="/WEB-INF/socket.jsp"/>
 <jsp:include page="/WEB-INF/footer.jsp"/>
@@ -228,18 +230,23 @@
 
 	$('#wish').mouseenter(function() {
 		$('#star').css('background-color','#e8e8e8');
+	}).mouseleave(function() {
+		$('#star').css('background-color','white');
 	});
 	
 	$('#wish').on('click', function() {
+		var nick=$('#nick').val();
+		var board_no=${bean.tour_no};
+		$('#star').css('background-color','#e8e8e8');
 		$.ajax({
-			url:'',
-			type:'',
-			data:'',
+			url:'../../main/wishOn',
+			type:'POST',
+			data:{tour_no:board_no,client_nick1:nick},
 			success:function() {
-				
+				$('#star').val(' ★');
 			},
 			error:function() {
-				
+				alert('다시 시도해주세요');
 			}
 		});
 	});

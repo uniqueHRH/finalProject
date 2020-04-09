@@ -16,9 +16,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.bit.project.common.Search;
 import com.bit.project.model.entity.ClientVo;
+import com.bit.project.model.entity.WishVo;
 import com.bit.project.service.BoardService;
 import com.bit.project.service.ClientService;
 import com.bit.project.service.ReceiveService;
+import com.bit.project.service.WishService;
 
 @Controller
 public class MypageController {
@@ -29,6 +31,8 @@ public class MypageController {
 	ClientService clientService;
 	@Autowired
 	BoardService boardService;
+	@Autowired
+	WishService wishService; 
 	
 	
 //	¬ ¡ˆ«‘
@@ -109,9 +113,22 @@ public class MypageController {
   		return "mypage/myBoard";
   	}
   	
-  	// ¬Ú ∆‰¿Ã¡ˆ
+//	¬Ú ∆‰¿Ã¡ˆ
   	@RequestMapping(value="/main/wish", method=RequestMethod.GET)
-  	public String wish() {
+  	public String wish(WishVo bean, Model model) {
+  		wishService.select_wish(bean, model);
+  		return "mypage/wish";
+  	}
+  	// ¬Ú«œ±‚
+  	@RequestMapping(value="/main/wishOn", method=RequestMethod.POST)
+  	public String wishOn(WishVo bean) {
+  		wishService.insert_wish(bean);
+  		return "mypage/wish";
+  	}
+  	// ¬Ú√Îº“
+  	@RequestMapping(value="/main/wishOff", method=RequestMethod.POST)
+  	public String wishOff(int key) {
+  		wishService.delete_wish(key);
   		return "mypage/wish";
   	}
   	
