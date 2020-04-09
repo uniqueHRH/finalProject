@@ -109,7 +109,11 @@ public class MypageController {
   		return "mypage/myBoard";
   	}
   	
-  	
+  	// 찜 페이지
+  	@RequestMapping(value="/main/wish", method=RequestMethod.GET)
+  	public String wish() {
+  		return "mypage/wish";
+  	}
   	
   	//내정보관리
   	@RequestMapping(value="/main/myinfo", method=RequestMethod.GET)

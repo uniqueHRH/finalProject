@@ -200,7 +200,7 @@
 				        <input type="hidden" id="session" value="${sessionScope.check.client_nick1}"/>
 					        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">${sessionScope.check.client_nick1} 님<span class="caret"></span></a>
 					        	<ul class="dropdown-menu" role="menu">
-					        		<li><a href="${root }main/message/?id=${sessionScope.check.client_nick1}" id="msg">쪽지함<input type="text" id="count" value="${note }" disabled></a></li>
+					        		<li><a href="${root }main/message/?id=${sessionScope.check.client_nick1}" id="msg">쪽지함<input type="text" id="count" value=" ${note }" disabled></a></li>
 					        		<li><a href="#">최근본상품</a></li>
 					        		<li><a href="${root }main/wish">찜한상품</a></li>
 					        		<li><a href="${root }main/mybooking/?id=${sessionScope.check.client_name}">예약상품</a></li>
@@ -298,28 +298,29 @@
 
 	$(document).ready(function() {
 		var id=$('#session').val();
-		console.log(${note})
+		console.log(id);
 		if(id) {
-			$.ajax({
-				url:'/project',
+			 $.ajax({
+				url:'../project/cnt',
 				type:'GET',
 				data:{client_nick2:id},
-				success:function() {
-					console.log('성공');
+				success:function(data) {
+					console.log(data);
 				},
 				error:function() {
 					console.log('실패ㅋㅋ');
 				}
-			});
+			}); 
 		}
-		
+		console.log("note",${note});
+
 		// 새로온 쪽지 표시
 		var count=$('#count').val();
 		if(status==0) {
 			$('#count').attr('type','hidden');
 		}
 		// 검색
-		$('#searchGo').on('click',function() {
+		/*$('#searchGo').on('click',function() {
 			var url='${root }board/review';
 			url=url+'?searchType='+$('#searchType').val();
 			url=url+'&keyword='+$('#keyword').val();
@@ -327,7 +328,7 @@
 			location.href=url;
 			console.log(url);
 		});
-		
+		*/
 		
 	});
 </script>
