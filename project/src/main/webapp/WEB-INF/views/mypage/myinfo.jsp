@@ -81,7 +81,8 @@
     </div>
   
       
-                         <!-- contents end -->
+<!-- contents end -->
+<jsp:include page="/WEB-INF/remote.jsp"/>
 <jsp:include page="/WEB-INF/socket.jsp"/>
 <jsp:include page="/WEB-INF/footer.jsp"/>
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>

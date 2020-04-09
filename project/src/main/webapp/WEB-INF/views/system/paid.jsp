@@ -181,6 +181,7 @@
 		<button type="button" class="btn btn-default" id="top">TOP ▲</button>
 	</div>
 
+<jsp:include page="/WEB-INF/remote.jsp"/>
 <jsp:include page="/WEB-INF/socket.jsp"/>
 <jsp:include page="/WEB-INF/socket.jsp"/>
 <jsp:include page="/WEB-INF/footer.jsp"/>

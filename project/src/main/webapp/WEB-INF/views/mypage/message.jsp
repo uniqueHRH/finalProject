@@ -172,6 +172,7 @@
       </div>
    </div>
 </div>
+<jsp:include page="/WEB-INF/remote.jsp"/>
 <jsp:include page="/WEB-INF/socket.jsp"/>
 <jsp:include page="/WEB-INF/footer.jsp"/>
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>

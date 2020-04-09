@@ -19,5 +19,5 @@ public interface ReceiveService {
 //	게시물 총 갯수
 	public int getReceiveListCnt(Search search) throws Exception;
 //	읽지 않은 쪽지 갯수
-	public int select_receiveUnCnt(String client_nick2) throws Exception;
+	public int select_receiveUnCnt(String client_nick2, Model model) throws Exception;
 }

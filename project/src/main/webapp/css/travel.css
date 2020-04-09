@@ -1,4 +1,3 @@
-
 /* 나라정렬버튼 + 검색조회버튼 */
 	#dropdownMenu1, #searchType {
 		border-radius:5px;
@@ -10,16 +9,6 @@
 		padding:0px 0px 0px 13px;
 		display:inline-block;
 		font-family:'Jua';
-	}
-/* 리모컨 */ 
-	#remote {
-		position:fixed;
-		left:1380px;
-		top:245px;
-		width:120px;
-	}
-	#kakaoChat, #top {
-		height:40px;
 	}
 /* 페이징 */
 	#listCnt {

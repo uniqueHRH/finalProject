@@ -92,6 +92,7 @@
 </form>
 
 <!-- contents end -->
+<jsp:include page="/WEB-INF/remote.jsp"/>
 <jsp:include page="/WEB-INF/socket.jsp"/>
 <jsp:include page="/WEB-INF/footer.jsp"/>
 </body>
@@ -158,7 +159,6 @@
       // 삭제버튼
 		$('#dele').on('click',function() {
 			var con=confirm('삭제하시겠습니까?');
-			var replyCnt=$('#reply').length;
 			
 			if(con) {
 				$.ajax({

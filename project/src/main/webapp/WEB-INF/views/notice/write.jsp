@@ -53,6 +53,7 @@
 </form>
 
 <!-- contents end -->
+<jsp:include page="/WEB-INF/remote.jsp"/>
 <jsp:include page="/WEB-INF/socket.jsp"/>
 <jsp:include page="/WEB-INF/footer.jsp"/>
 </body>

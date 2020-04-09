@@ -56,8 +56,11 @@ public class ReceiveServiceImpl implements ReceiveService {
 	}
 
 	@Override
-	public int select_receiveUnCnt(String client_nick2) throws Exception {
-		return receiveDao.select_receiveUnCnt(client_nick2);
+	public int select_receiveUnCnt(String client_nick2, Model model) throws Exception {
+		int note=receiveDao.select_receiveUnCnt(client_nick2);
+		model.addAttribute("note",note);
+		System.out.println(note);
+		return note;
 	}
 
 

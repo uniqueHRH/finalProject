@@ -94,7 +94,7 @@
  <button id ="paybtn" class="btn btn-primary btn-lg">결제하기</button> 	 
   	 
 <!-- contents end --> 
- 
+<jsp:include page="/WEB-INF/remote.jsp"/>
 <jsp:include page="/WEB-INF/socket.jsp"/>
 <jsp:include page="/WEB-INF/socket.jsp"/>
 <jsp:include page="/WEB-INF/footer.jsp"/>

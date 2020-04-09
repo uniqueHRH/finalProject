@@ -118,7 +118,7 @@
 	  <button type="button" class="btn btn-default" id="btn2">취 &nbsp; &nbsp;소</button>
 	</p>
 </form>
-
+<jsp:include page="/WEB-INF/remote.jsp"/>
 <jsp:include page="/WEB-INF/socket.jsp"/>
 <jsp:include page="/WEB-INF/footer.jsp"/>
 <!-- contents end -->

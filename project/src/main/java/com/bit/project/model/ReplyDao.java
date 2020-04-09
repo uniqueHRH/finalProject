@@ -18,5 +18,4 @@ public interface ReplyDao {
 	
 	int updateOne_reply(ReplyVo bean) throws Exception;
 	int deleteOne_reply(int key) throws Exception;
-	
 }
