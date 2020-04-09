@@ -258,7 +258,7 @@ public class TravelController {
 	}
 	//시스템에서 총 예약과 결제상품 관리페이지
 	@RequestMapping(value = "/system/paid", method = RequestMethod.GET)
-	public String paid(String id, Model model,
+	public String allpaid(String id, Model model,
 			@RequestParam(required = false, defaultValue = "1") int page,
  			@RequestParam(required=false, defaultValue="1") int range,
  			@RequestParam(required=false, defaultValue="paid_name") String searchType,
@@ -280,8 +280,8 @@ public class TravelController {
 		}
 		
 		model.addAttribute("pagination", search);
-		model.addAttribute("list",paidservice.selectAll_paid(search));
+		model.addAttribute("list",paidservice.selectAll_allpaid(search));
 		model.addAttribute("listCnt",listCnt);
-		return "system/paid";
+		return "system/allpaid";
 }
 }

@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page pageEncoding="utf-8" import="com.bit.project.model.entity.*, java.util.List"%>
 <link href="https://fonts.googleapis.com/css?family=Jua&display=swap&subset=korean" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Jua|Noto+Sans+KR&display=swap" rel="stylesheet">
@@ -54,24 +55,36 @@
 		font-size:15px;
 	}
 	#table>thead th:nth-child(1) {
-		width:65px;
+		width:55px;
 	}
 	#table>thead th:nth-child(2) {
-		width:85px;
+		width:90px;
 	}
 	#table>thead th:nth-child(3) {
-		width:140px;
+		width:70px;
 	}
 	#table>thead th:nth-child(4) {
-		width:65px;
+		width:70px;
 	}
 	#table>thead th:nth-child(5) {
 		width:80px;
 	}
 	#table>thead th:nth-child(6) {
-		width:70px;
+		width:50px;
 	}
 	#table>thead th:nth-child(7) {
+		width:70px;
+	}
+	#table>thead th:nth-child(8) {
+		width:80px;
+	}
+	#table>thead th:nth-child(9) {
+		width:80px;
+	}
+	#table>thead th:nth-child(10) {
+		width:90px;
+	}
+	#table>thead th:nth-child(11) {
 		width:90px;
 	}
 	#table>tbody td>a {
@@ -101,46 +114,41 @@
 
 <!-- contents start -->
       <div class="page-header" id="page-header" align="center">
-     <h1>결제상황</h1>
+     <h1>나의예약</h1>
    </div>
    
-	
-   
 <table class="table table-hover" id="table">
-<!-- 정렬 드롭다운 -->
-	<div class="topMenu" id="theme">
-		<select id="dropdownMenu1">
-		    <option value="정렬">정 &nbsp;렬</option>
-		    <option value="나라별">나라별</option>
-		    <option value="테마별">테마별</option>
-		</select>
-		<a class="btn btn-default" href="#" role="button" id="sel">조회</a>
-		<input type="text" value="<c:out value="${listCnt}"></c:out>개의 게시물이 조회되었습니다" id="listCnt" disabled/>
-</div>
+
 <!-- 리스트 출력 -->
    <thead>
       <tr class="active">
-         <th>#</th>
+         <th>NO</th>
          <th>상품번호</th>
          <th>예약자</th>
+         <th>여행자</th>
+         <th>출발일</th>
          <th>총원</th>
          <th>총금액</th>
          <th>예약일</th>
          <th>결제상태</th>
-         <th>결제일</th>
+         <th>확정여부</th>
       </tr>
    </thead>
    <tbody>
 		<c:forEach items="${list }" var="bean">
+		<c:set var="i" value="${i+1 }"/>
 		<tr>
-			<td>${bean.paid_no }</td>
-			<td><a href="${root }system/paid/${bean.paid_no }">${bean.tour_no }</a></td>
-			<td><a href="${root }system/paid/${bean.paid_no }">${bean.client_name }</a></td>
-			<td><a href="${root }system/paid/${bean.paid_no }">${bean.paid_count }</a></td>
-			<td><a href="${root }system/paid/${bean.paid_no }">${bean.paid_total }</a></td>
-			<td><a href="${root }system/paid/${bean.paid_no }">${bean.book_date }</a></td>
-			<td><a href="${root }system/paid/${bean.paid_no }">${bean.paid_state }</a></td>
-			<td><a href="${root }system/paid/${bean.paid_no }">${bean.paid_date }</a></td>
+			<td>${i }</td>
+			<td><a href="${root }mypage/paid/${bean.paid_no }">${bean.tour_no }</a></td>
+			<td><a href="${root }mypage/paid/${bean.paid_no }">${bean.client_name }</a></td>
+			<td><a href="${root }mypage/paid/${bean.paid_no }">${bean.paid_name }</a></td>
+			<td><a href="${root }mypage/paid/${bean.paid_no }">${bean.tour_date }</a></td>
+			<td><a href="${root }mypage/paid/${bean.paid_no }">${bean.paid_count }</a></td>
+			<td><a href="${root }mypage/paid/${bean.paid_no }"> <fmt:formatNumber value="${bean.paid_total}" pattern="#,###"/>원</a></td>
+			<td><a href="${root }mypage/paid/${bean.paid_no }">${bean.book_date }</a></td>
+			<td><a href="${root }mypage/paid/${bean.paid_no }">${bean.paid_state }</a></td>
+			<td><a href="${root }mypage/paid/${bean.paid_no }">${bean.paid_confirm }</a></td>
+			
 		</tr>
 		</c:forEach>
    </tbody>
@@ -165,9 +173,8 @@
 <!-- 검색 -->
    <div class="topMenu" id="search">
 		<select id="searchType">
-		    <option value="board_sub">제 &nbsp; 목</option>
-		    <option value="board_land">나라별</option>
-		    <option value="board_theme">테마별</option>
+		    <option value="client_name">예약자</option>
+		    <option value="paid_name">여행자</option>
 		</select>
       <input type="text" class="form-control" id="keyword" name="keyword" style="width:200px; display:inline-block;">
 		<a class="btn btn-default" href="#" role="button" id="searchGo">G O</a>
@@ -175,60 +182,14 @@
 	
 </nav>
 
-<!-- 리모컨 -->
-	<div class="btn-group-vertical fixed-top" id="remote" role="group" aria-label="...">
-		<div id="kakao-talk-channel-chat-button"></div>
-		<button type="button" class="btn btn-default" id="top">TOP ▲</button>
-	</div>
-
 <jsp:include page="/WEB-INF/remote.jsp"/>
-<jsp:include page="/WEB-INF/socket.jsp"/>
 <jsp:include page="/WEB-INF/socket.jsp"/>
 <jsp:include page="/WEB-INF/footer.jsp"/>
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="${root }js/bootstrap.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-		/* 정렬 */
-		$('#sel').on('click',function() {
-			var up=$('#dropdownMenu1').val();
-			if(up=='정렬') {
-				$.ajax({
-					url:'../board/review',
-					type:'GET',
-					success:function(data) {
-						location.href="../board/review";
-					},
-					error:function() {
-					}
-				});   // ajax
-			}   // if
-			if(up=='나라별') {
-				$.ajax({
-					url:'../board/reviewLocal',
-					type:'GET',
-					success:function(data) {
-						location.href="../board/reviewLocal";
-					},
-					error:function() {
-					}
-				});   // ajax
-				return false;
-			}   // if
-			if(up=='테마별') {
-				$.ajax({
-					url:'../board/reviewTheme',
-					type:'GET',
-					success:function() {
-						location.href="../board/reviewTheme";
-					},
-					error:function() {
-					}
-				});   // ajax
-			}   // if
-		});
 		
 		// 리모컨 top
 		$('#top').on('click',function() {
@@ -244,24 +205,19 @@
 	      channelPublicId: '_wxfwxfxb' // 카카오톡 채널 홈 URL에 명시된 id로 설정합니다.
 	    });
 	  //]]>
-		
-		$('#hide').hide();
-		// 로그인 후 글쓰기 이용 가능
-		var loginBool=$('#loginCk').val();
-		if(!loginBool) {
-			$('#wri').hide();
-		}
-//////////////////////////////////////////////////////////////////////////////////////////		
+	
 		// 검색
 		$('#searchGo').on('click',function() {
-			var url='${root }board/review';
-			url=url+'?searchType='+$('#searchType').val();
+			var url='${root }system/allpaid';
+			url=url+'&searchType='+$('#searchType').val();
 			url=url+'&keyword='+$('#keyword').val();
 			
 			location.href=url;
-			console.log(url);
 		});
 		
+		function reload() {
+			location.reload();
+		}
    });
 //////////////////////////////////////////////////////////////////////////////////////////		
 		// 페이징
@@ -269,15 +225,15 @@
 		function prev(page, range, rangeSize) {
 			var page=((range-2)*rangeSize)+1;
 			var range=range-1;
-			var url="${root }board/review";
-			url=url+"?page="+page;
+			var url='${root }system/allpaid';
+			url=url+"&page="+page;
 			url=url+"&range="+range;
 			location.href=url;
 		}
 		//페이지 번호 클릭
 		function pagination(page, range, rangeSize, searchType, keyword) {
-			var url="${root }board/review";
-			url=url+"?page="+page;
+			var url='${root }system/allpaid';
+			url=url+"&page="+page;
 			url=url+"&range="+range;
 			url=url+"&searchType="+$('#searchType').val();
 			url=url+"&keyword="+keyword;
@@ -287,12 +243,11 @@
 		function next(page, range, rangeSize) {
 			var page=parseInt((range*rangeSize))+1;
 			var range=parseInt(range)+1;
-			var url="${root }board/review";
-			url=url+"?page="+page;
+			var url='${root }system/allpaid';
+			url=url+"&page="+page;
 			url=url+"&range="+range;
 			location.href=url;
 		}
-		
 		
 </script>
 </body>

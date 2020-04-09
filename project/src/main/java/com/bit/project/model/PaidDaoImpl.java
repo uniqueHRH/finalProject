@@ -17,18 +17,13 @@ public class PaidDaoImpl implements PaidDao {
 	SqlSession sqlSession;
 	
 	@Override
-	public List<PaidVo> selectAll_paid() throws Exception {
-		return sqlSession.selectList("paid.selectAll_paid");
-	}
-
-	@Override
 	public PaidVo selectOne_paid(int paid_no) throws Exception {
 		return sqlSession.selectOne("paid.selectOne_paid",paid_no);
 	}
 
 	@Override
 	public List<ReceiveVo> selectAll_paid(Search search) throws Exception {
-		return sqlSession.selectList("paid.selectAll_paid1",search);
+		return sqlSession.selectList("paid.selectAll_paid",search);
 	}
 
 	@Override
@@ -39,6 +34,11 @@ public class PaidDaoImpl implements PaidDao {
 	@Override
 	public int paid_confirm(PaidVo bean) throws Exception {
 		return sqlSession.update("paid.paid_confirm", bean);
+	}
+
+	@Override
+	public List<ReceiveVo> selectAll_allpaid(Search search) throws Exception {
+		return sqlSession.selectList("paid.selectAll_allpaid",search);
 	}
 
 }

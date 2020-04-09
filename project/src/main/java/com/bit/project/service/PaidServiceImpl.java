@@ -17,15 +17,6 @@ public class PaidServiceImpl implements PaidService {
 	@Autowired
 	PaidDao paidDao;
 	
-	@Override
-	public void selectAll_paid(Model model) {
-		try {
-			List<PaidVo> list=paidDao.selectAll_paid();
-			model.addAttribute("list",list);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
 
 	@Override
 	public void selectOne_paid(Model model, int paid_no) {
@@ -54,6 +45,11 @@ public class PaidServiceImpl implements PaidService {
 			e.printStackTrace();
 		}
 		
+	}
+
+	@Override
+	public List<ReceiveVo> selectAll_allpaid(Search search) throws Exception {
+		return paidDao.selectAll_allpaid(search);
 	}
 
 }
