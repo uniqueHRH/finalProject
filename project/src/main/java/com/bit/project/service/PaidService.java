@@ -16,5 +16,5 @@ public interface PaidService {
 	
 	List<ReceiveVo> selectAll_paid(Search search) throws Exception;
 	List<ReceiveVo> selectAll_allpaid(Search search) throws Exception;
-	public int getPaidListCnt(Search search) throws Exception;
+	public int getallPaidListCnt(Search search) throws Exception;
 }

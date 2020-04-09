@@ -57,10 +57,10 @@
 		select * from paid
 		<trim prefix="WHERE" prefixOverrides="AND|OR">
 			<if test="searchType=='client_name' and keyword != null and keyword != '' ">
-				AND guide_name like CONCAT('%', #{keyword}, '%')
+				AND client_name like CONCAT('%', #{keyword}, '%')
 			</if>
 			<if test="searchType=='paid_name' and keyword != null and keyword != '' ">
-				AND guide_city like CONCAT('%', #{keyword}, '%')
+				AND paid_name like CONCAT('%', #{keyword}, '%')
 			</if>	
 		</trim>
 		 order by paid_no desc
@@ -68,7 +68,7 @@
 	</select>
 	
 <!-- 총게시글 갯수 -->
-	<select id="getAllpaidListCnt" resultType="int">
+	<select id="getallPaidListCnt" resultType="int">
 		select count(*) from paid
 		<trim prefix="WHERE" prefixOverrides="AND|OR">
 			<if test="searchType=='client_name' and keyword != null and keyword != '' ">

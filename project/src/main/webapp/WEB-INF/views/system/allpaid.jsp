@@ -17,7 +17,7 @@
 		font-family: 'Jua';
 	}
 	#table {
-		width:950px;
+		width:1050px;
 		margin:0 auto;
 		padding:0px;
 		text-align:center;
@@ -55,37 +55,37 @@
 		font-size:15px;
 	}
 	#table>thead th:nth-child(1) {
-		width:55px;
+		width:50px;
 	}
 	#table>thead th:nth-child(2) {
-		width:90px;
+		width:80px;
 	}
 	#table>thead th:nth-child(3) {
-		width:70px;
+		width:80px;
 	}
 	#table>thead th:nth-child(4) {
-		width:70px;
+		width:80px;
 	}
 	#table>thead th:nth-child(5) {
-		width:80px;
+		width:60px;
 	}
 	#table>thead th:nth-child(6) {
 		width:50px;
 	}
 	#table>thead th:nth-child(7) {
-		width:70px;
+		width:60px;
 	}
 	#table>thead th:nth-child(8) {
-		width:80px;
+		width:60px;
 	}
 	#table>thead th:nth-child(9) {
 		width:80px;
 	}
 	#table>thead th:nth-child(10) {
-		width:90px;
+		width:80px;
 	}
 	#table>thead th:nth-child(11) {
-		width:90px;
+		width:80px;
 	}
 	#table>tbody td>a {
 		text-decoration:none;
@@ -114,7 +114,7 @@
 
 <!-- contents start -->
       <div class="page-header" id="page-header" align="center">
-     <h1>나의예약</h1>
+     <h1>예약 및 결제관리</h1>
    </div>
    
 <table class="table table-hover" id="table">
@@ -139,15 +139,15 @@
 		<c:set var="i" value="${i+1 }"/>
 		<tr>
 			<td>${i }</td>
-			<td><a href="${root }mypage/paid/${bean.paid_no }">${bean.tour_no }</a></td>
-			<td><a href="${root }mypage/paid/${bean.paid_no }">${bean.client_name }</a></td>
-			<td><a href="${root }mypage/paid/${bean.paid_no }">${bean.paid_name }</a></td>
-			<td><a href="${root }mypage/paid/${bean.paid_no }">${bean.tour_date }</a></td>
-			<td><a href="${root }mypage/paid/${bean.paid_no }">${bean.paid_count }</a></td>
-			<td><a href="${root }mypage/paid/${bean.paid_no }"> <fmt:formatNumber value="${bean.paid_total}" pattern="#,###"/>원</a></td>
-			<td><a href="${root }mypage/paid/${bean.paid_no }">${bean.book_date }</a></td>
-			<td><a href="${root }mypage/paid/${bean.paid_no }">${bean.paid_state }</a></td>
-			<td><a href="${root }mypage/paid/${bean.paid_no }">${bean.paid_confirm }</a></td>
+			<td><a href="${root }system/paid/${bean.paid_no }">${bean.tour_no }</a></td>
+			<td><a href="${root }system/paid/${bean.paid_no }">${bean.client_name }</a></td>
+			<td><a href="${root }system/paid/${bean.paid_no }">${bean.paid_name }</a></td>
+			<td><a href="${root }system/paid/${bean.paid_no }">${bean.tour_date }</a></td>
+			<td><a href="${root }system/paid/${bean.paid_no }">${bean.paid_count }명</a></td>
+			<td><a href="${root }system/paid/${bean.paid_no }"> <fmt:formatNumber value="${bean.paid_total}" pattern="#,###"/>원</a></td>
+			<td><a href="${root }system/paid/${bean.paid_no }">${bean.book_date }</a></td>
+			<td><a href="${root }system/paid/${bean.paid_no }">${bean.paid_state }</a></td>
+			<td><a href="${root }system/paid/${bean.paid_no }">${bean.paid_confirm }</a></td>
 			
 		</tr>
 		</c:forEach>
@@ -190,6 +190,16 @@
 <script type="text/javascript" src="${root }js/bootstrap.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
+	
+		// 검색
+		$('#searchGo').on('click',function() {
+			alert('반응');
+			var url='${root }system/paid';
+			url=url+'?searchType='+$('#searchType').val();
+			url=url+'&keyword='+$('#keyword').val();
+			
+			location.href=url;
+		});
 		
 		// 리모컨 top
 		$('#top').on('click',function() {
@@ -205,19 +215,6 @@
 	      channelPublicId: '_wxfwxfxb' // 카카오톡 채널 홈 URL에 명시된 id로 설정합니다.
 	    });
 	  //]]>
-	
-		// 검색
-		$('#searchGo').on('click',function() {
-			var url='${root }system/allpaid';
-			url=url+'&searchType='+$('#searchType').val();
-			url=url+'&keyword='+$('#keyword').val();
-			
-			location.href=url;
-		});
-		
-		function reload() {
-			location.reload();
-		}
    });
 //////////////////////////////////////////////////////////////////////////////////////////		
 		// 페이징
@@ -225,14 +222,14 @@
 		function prev(page, range, rangeSize) {
 			var page=((range-2)*rangeSize)+1;
 			var range=range-1;
-			var url='${root }system/allpaid';
+			var url='${root }system/paid';
 			url=url+"&page="+page;
 			url=url+"&range="+range;
 			location.href=url;
 		}
 		//페이지 번호 클릭
 		function pagination(page, range, rangeSize, searchType, keyword) {
-			var url='${root }system/allpaid';
+			var url='${root }system/paid';
 			url=url+"&page="+page;
 			url=url+"&range="+range;
 			url=url+"&searchType="+$('#searchType').val();
@@ -243,7 +240,7 @@
 		function next(page, range, rangeSize) {
 			var page=parseInt((range*rangeSize))+1;
 			var range=parseInt(range)+1;
-			var url='${root }system/allpaid';
+			var url='${root }system/paid';
 			url=url+"&page="+page;
 			url=url+"&range="+range;
 			location.href=url;

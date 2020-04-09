@@ -131,7 +131,7 @@
 			<td>${i }</td>
 			<td><a href="${root }mypage/paid/${bean.paid_no }">${bean.tourVo.name }</a></td>
 			<td><a href="${root }mypage/paid/${bean.paid_no }">${bean.tour_date }</a></td>
-			<td><a href="${root }mypage/paid/${bean.paid_no }">${bean.paid_count }</a></td>
+			<td><a href="${root }mypage/paid/${bean.paid_no }">${bean.paid_count }명</a></td>
 			<td><a href="${root }mypage/paid/${bean.paid_no }"> <fmt:formatNumber value="${bean.paid_total}" pattern="#,###"/>원</a></td>
 			<td><a href="${root }mypage/paid/${bean.paid_no }">${bean.book_date }</a></td>
 			<td><a href="${root }mypage/paid/${bean.paid_no }">${bean.paid_date }</a></td>

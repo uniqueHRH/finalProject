@@ -31,12 +31,6 @@ public class PaidServiceImpl implements PaidService {
 	public List<ReceiveVo> selectAll_paid(Search search) throws Exception {
 		return paidDao.selectAll_paid(search);
 	}
-
-	@Override
-	public int getPaidListCnt(Search search) throws Exception {
-		return paidDao.getPaidListCnt(search);
-	}
-
 	@Override
 	public void paid_confirm(PaidVo bean) {
 		try {
@@ -46,6 +40,12 @@ public class PaidServiceImpl implements PaidService {
 		}
 		
 	}
+
+	@Override
+	public int getallPaidListCnt(Search search) throws Exception {
+		return paidDao.getallPaidListCnt(search);
+	}
+
 
 	@Override
 	public List<ReceiveVo> selectAll_allpaid(Search search) throws Exception {

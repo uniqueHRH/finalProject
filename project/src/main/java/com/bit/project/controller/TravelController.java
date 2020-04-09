@@ -233,7 +233,7 @@ public class TravelController {
 	 		// 전체 게시글 갯수
 	 		int listCnt=0;
 			try {
-				listCnt=paidservice.getPaidListCnt(search);
+				listCnt=paidservice.getallPaidListCnt(search);
 				search.pageInfo(page, range, listCnt);
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -273,7 +273,7 @@ public class TravelController {
  		// 전체 게시글 갯수
  		int listCnt=0;
 		try {
-			listCnt=paidservice.getPaidListCnt(search);
+			listCnt=paidservice.getallPaidListCnt(search);
 			search.pageInfo(page, range, listCnt);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -283,5 +283,11 @@ public class TravelController {
 		model.addAttribute("list",paidservice.selectAll_allpaid(search));
 		model.addAttribute("listCnt",listCnt);
 		return "system/allpaid";
-}
+	}
+	////시스템에서 총 예약과 결제상품 관리페이지 디테일
+	@RequestMapping(value = "/system/paid/{idx}", method = RequestMethod.GET)
+	public String detailallpaid(Model model, @PathVariable ("idx") int paid_no) {
+		paidservice.selectOne_paid(model, paid_no);
+		return "system/detailallpaid";
+	}
 }
