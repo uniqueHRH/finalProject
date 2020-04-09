@@ -66,7 +66,7 @@
        </div>
      </div>
      <div class="form-group">
-       <label for="staff_pw" class="col-sm-2 control-label" pw="pww">비밀번호</label>
+       <label for="staff_pw" class="col-sm-2 control-label" id="pww">비밀번호</label>
        <div class="col-sm-10">
          <input type="password" class="form-control" id="staff_pw" name="staff_pw" placeholder="비밀번호를 입력하세요" style="width:350px">
        </div>

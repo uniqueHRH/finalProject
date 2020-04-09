@@ -42,8 +42,6 @@
 		<label for="board_img">이미지</label> &nbsp; &nbsp; <a class="btn btn-default" role="button" id="dele">삭제</a>
 		<input type="file" id="board_img" name="file" />
 		<div class="board_img"><img src=""/></div>
-		
-		<%=request.getRealPath("/") %>
 	</div>
 
 <!-- 버튼 -->

@@ -3,8 +3,6 @@ package com.bit.project.model;
 import java.util.List;
 
 import com.bit.project.common.Search;
-import com.bit.project.model.entity.BoardVo;
-import com.bit.project.model.entity.ClientVo;
 import com.bit.project.model.entity.StaffVo;
 
 public interface StaffDao {

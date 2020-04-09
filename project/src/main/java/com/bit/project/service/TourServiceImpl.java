@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
-import com.bit.project.model.ClientDao;
 import com.bit.project.model.TourDao;
 import com.bit.project.model.entity.PaidVo;
 import com.bit.project.model.entity.TourVo;

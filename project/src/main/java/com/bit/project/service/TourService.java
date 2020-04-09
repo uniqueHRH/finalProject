@@ -3,7 +3,6 @@ package com.bit.project.service;
 import org.springframework.ui.Model;
 
 import com.bit.project.model.entity.PaidVo;
-import com.bit.project.model.entity.TourVo;
 
 public interface TourService {
 	
