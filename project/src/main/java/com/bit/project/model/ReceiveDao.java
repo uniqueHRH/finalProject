@@ -16,5 +16,5 @@ public interface ReceiveDao {
 //	게시물 총 갯수
 	public int getReceiveListCnt(Search search) throws Exception;
 //	읽지않은 쪽지 갯수
-	public int select_receiveUnCnt(String msg) throws Exception;
+	public int select_receiveUnCnt(String client_nick2) throws Exception;
 }

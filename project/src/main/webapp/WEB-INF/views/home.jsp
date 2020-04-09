@@ -72,10 +72,14 @@
 		margin-bottom: -25px;
 	}
 	#count {
-		width:10px;
+		font-size:11px;
+		color:white;
+		text-align:center;
+		background-color:#FF0E0E;
 		border:0;
-		outline:0;
-		background-color:rgba(1,1,1,0);
+		width:19;
+		border-radius:50%;
+		padding:1 0 0 0;
 	}
 	body {
 		padding-top:100px;
@@ -196,7 +200,7 @@
 				        <input type="hidden" id="session" value="${sessionScope.check.client_nick1}"/>
 					        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">${sessionScope.check.client_nick1} 님<span class="caret"></span></a>
 					        	<ul class="dropdown-menu" role="menu">
-					        		<li><a href="${root }main/message/?id=${sessionScope.check.client_nick1}" id="msg">쪽지함 &nbsp;<span class="badge"><input type="text" value="<c:out value="${note}"/>" id="count" disabled/></span></a></li>
+					        		<li><a href="${root }main/message/?id=${sessionScope.check.client_nick1}" id="msg">쪽지함<input type="text" id="count" value="${note }" disabled></a></li>
 					        		<li><a href="#">최근본상품</a></li>
 					        		<li><a href="${root }main/wish">찜한상품</a></li>
 					        		<li><a href="${root }main/mybooking/?id=${sessionScope.check.client_name}">예약상품</a></li>
@@ -294,7 +298,7 @@
 
 	$(document).ready(function() {
 		var id=$('#session').val();
-		console.log(id);
+		console.log(${note})
 		if(id) {
 			$.ajax({
 				url:'/project',
@@ -309,6 +313,11 @@
 			});
 		}
 		
+		// 새로온 쪽지 표시
+		var count=$('#count').val();
+		if(status==0) {
+			$('#count').attr('type','hidden');
+		}
 		// 검색
 		$('#searchGo').on('click',function() {
 			var url='${root }board/review';

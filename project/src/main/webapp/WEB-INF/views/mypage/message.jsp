@@ -65,10 +65,14 @@
 		color:black;
 	}
 	#status {
+		font-size:11px;
+		color:white;
+		text-align:center;
+		background-color:#FF0E0E;
 		border:0;
-		outline:0;
-		background-color:rgba(1,1,1,0);
-		width:10;
+		width:19;
+		border-radius:50%;
+		padding:1 0 0 0;
 	}
 	#pageNum, #search {
 		width:350px;      
@@ -121,7 +125,7 @@
 			<input type="hidden" class="type_${bean.receive_no }" value="${bean.receive_status }">
 			<td name="line_${bean.receive_no }"><a href="#" onclick="window.open('../messageDe/'+${bean.receive_no }, '쪽지보기', 'width=470, height=340, left=500, top=50');"><input type="checkbox" name="chk_${bean.receive_no }"></a></td>
 			<td name="line_${bean.receive_no }"><a href="#" onclick="window.open('../messageDe/'+${bean.receive_no }, '쪽지보기', 'width=470, height=340, left=500, top=50');">${bean.receive_no }</a></td>
-			<td name="line_${bean.receive_no }"><a href="#" onclick="window.open('../messageDe/'+${bean.receive_no }, '쪽지보기', 'width=470, height=340, left=500, top=50');">${bean.receive_content } &nbsp; <span class="badge"><input type="text" id="status" value="${bean.receive_status }"disabled></span></a></td>
+			<td name="line_${bean.receive_no }"><a href="#" onclick="window.open('../messageDe/'+${bean.receive_no }, '쪽지보기', 'width=470, height=340, left=500, top=50');">${bean.receive_content } &nbsp; <input type="text" id="status" name="status_${bean.receive_no }" value="${bean.receive_status }"disabled></a></td>
 			<td name="line_${bean.receive_no }"><a href="#" onclick="window.open('../messageDe/'+${bean.receive_no }, '쪽지보기', 'width=470, height=340, left=500, top=50');">${bean.client_nick1 }</a></td>
 			<td name="line_${bean.receive_no }"><a href="#" onclick="window.open('../messageDe/'+${bean.receive_no }, '쪽지보기', 'width=470, height=340, left=500, top=50');">${bean.receive_date}</a></td>
 		</tr>
@@ -186,6 +190,20 @@
 				$('td[name^=line_'+num+']').css('font-weight','bold');
 			} else if (status==1) {
 				$('td[name^=line_'+num+']').css('font-weight','none');
+			}
+		});
+		
+		// 새로온 쪽지 표시
+		$('input[class^=type_').each(function() {
+			var num=$(this).attr('class');
+			num=num.split('_');
+			num=num[1];
+			
+			var status=$('input[name=status_'+num+']').val();
+			if(status==0) {
+				$('input[name=status_'+num+']').val('N');
+			} else {
+				$('input[name=status_'+num+']').attr('type','hidden');
 			}
 		});
 		
