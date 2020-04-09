@@ -78,10 +78,10 @@
 
 
 <!-- contents start -->
-	<div id="table">
-<div class="page-header" id="page-header" align="center">
-	<h1>F A Q</h1>
-</div>
+<div id="table">
+	<div class="page-header" id="page-header" align="center">
+		<h1>F A Q</h1>
+	</div>
 
 	<div class="topMenu" id="theme" align="left">
 		<input type="hidden" id="loginCk" value="${sessionScope.staffcheck.staff_name}"/>

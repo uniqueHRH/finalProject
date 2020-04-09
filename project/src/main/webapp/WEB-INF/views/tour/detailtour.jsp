@@ -86,7 +86,35 @@
    		position: relative;
    		bottom: -400px;
    }
-   
+   /* 리모컨 */ 
+	#remote {
+		position:fixed;
+		left:1580px;
+		top:700px;
+		width:150px;
+	}
+	#kakao-talk-channel-chat-button {
+		width:150px;
+	}
+	.kakaoChat {
+		text-align:center;
+		padding:0;
+		margin:0;
+	}
+	#top, #wish {
+		height:40px;
+	}
+	button {
+		font-family:"Jua";
+	}
+	#star {
+		font-size:18px;
+		color:red;
+		border:0;
+		outline:0;
+		width:20;
+		background-color:white;
+	}
 </style>
 
 </head>
@@ -172,12 +200,15 @@
     </div>
   </div>
 </div>
-<jsp:include page="/WEB-INF/remote.jsp"/>
+<!-- 리모컨 -->
+	<div class="btn-group-vertical fixed-top" id="remote" role="group" aria-label="...">
+		<div id="kakao-talk-channel-chat-button" class="kakaoChat"></div>
+		<button type="button" class="btn btn-default" id="wish">찜하기<input type="text" id="star" value=" ★" disabled></button>
+		<button type="button" class="btn btn-default" id="top">TOP ▲</button>
+	</div>
 <jsp:include page="/WEB-INF/socket.jsp"/>
-<div id="footer">
 <jsp:include page="/WEB-INF/footer.jsp"/>
-</div>
-
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="${root }js/bootstrap.js"></script>
  <script type="text/javascript">
@@ -188,7 +219,38 @@
                $("#bookform").attr("href", "../../main/login");
             }           
          });
+      
+      
+//	리모컨 top
+  	$('#top').on('click',function() {
+  		$('html,body').scrollTop(0);
+  	});
+
+	$('#wish').mouseenter(function() {
+		$('#star').css('background-color','#e8e8e8');
+	});
+	
+	$('#wish').on('click', function() {
+		$.ajax({
+			url:'',
+			type:'',
+			data:'',
+			success:function() {
+				
+			},
+			error:function() {
+				
+			}
+		});
+	});
+	
+  	Kakao.init('acc658a670e9ed5918d11647040b5bc5');
+  	Kakao.Channel.createChatButton({
+  	  container: '#kakao-talk-channel-chat-button',
+  	  channelPublicId: '_wxfwxfxb' // 카카오톡 채널 홈 URL에 명시된 id로 설정합니다.
+  	});
    });
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
  
    //구글맵관련 
    function initMap() {

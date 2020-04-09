@@ -16,10 +16,8 @@ public class HomeController {
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(String client_nick2, Model model) throws Exception {
-		System.out.println("call controller...");
 		if(client_nick2!=null) {
 			receiveService.select_receiveUnCnt(client_nick2, model);
-			System.out.println("controller="+model);
 		}
 		return "home";
 	}

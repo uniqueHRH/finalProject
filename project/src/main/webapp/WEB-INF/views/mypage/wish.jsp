@@ -12,94 +12,30 @@
 <title>Home</title>
 <link rel="stylesheet" type="text/css" href="${root }css/bootstrap.css" />
 <link rel="stylesheet" type="text/css" href="${root }css/travel.css" />
-
+<link rel="stylesheet" type="text/css" href="${root }css/board.css" />
 <style type="text/css">
-	h1 {
-		font-family: 'Jua';
-	}
-	#table {
-      width:700px;      
-      margin:0 auto;
-      font-family: 'Jua';
-      font-size:18px;
-   }
-	#img1,#img2,#img3,#img4,#img5{
-		width: 30px;
-		height:30px;
-	}
-	.slick-dots{ 
-	 		text-align: center; 
-	 }
-	.slick-dots li{ 
-	  display: inline-block; margin: 0 5px; 
-	}
-	.slick-prev.slick-arrow{
-		left: 0; 
-	} 
-	.slick-next.slick-arrow{ 
-		right: 0; 
-	}
-	.slick-arrow{ 
-		z-index: 2; /* prev버튼은 위치 이동시 이미지 뒤로 숨겨짐 */ 
-		position:absolute; /* 원하는 위치에 지정 */ 
-		top: 50%; 
-		width: 80px; 
-		height: 20px; 
-		transform: translateY(-25px);
-	}
-
 
 </style>
-
 </head>
 <body>
 <jsp:include page="/WEB-INF/menubar.jsp"/>
 
-<div class="container">     
- <div class="row">
-	<div class="col-md-12">
-		<div class="page-header" align="center">
-	  <h1>찜한상품(안됨대기)</h1>
- </div>
-	<!-- Carousel start -->
-	
-<div id="table" style="width: 80%; height: 300px;">
-<div class="your-class">
-  <div id="img1" style="width: 500px;"> <!-- tourstart -->
-  		<a href="#"><div class="col-sm-6 col-md-3">
-    <div class="thumbnail">
-      <img src="${root }imgs/danang.jpg" alt="...">
-      <div class="caption">
-        <h3>중국(북경)</h3>
-        <p>간단한 설명을 넣으면 됩니다.</p>
-        <p>100,000원</p>
-      </div>
-    </div>
-  </div>
-  </a>
-   </div> <!-- tour1 end -->
- 
-  
-  <div id="img2">
-  	<img src="${root }imgs/danang.jpg" alt="...">
-   </div>
-  
-  <div id="img3">
-  	<img src="${root }imgs/danang.jpg" alt="...">
-   </div>
-    
-    <div id="img4">
-    	<img src="${root }imgs/danang.jpg" alt="...">
-    </div>
-    <div id="img5">
-    	<img src="${root }imgs/danang.jpg" alt="...">
-    </div>
-</div>	
-</div>	
-	<!-- Carousel end -->
+<div id="table">
+	<div class="page-header" id="page-header" align="center">
+		<h1>찜한 상품</h1>
+	</div>
 
-  </div>
- </div>
+	<table>
+		<thead>
+			<tr>
+				<th>
+					<div></div>
+				</th>
+				<th>찜2</th>
+				<th>찜3</th>
+			</tr>
+		</thead>
+	</table>
 </div>
 <jsp:include page="/WEB-INF/remote.jsp"/>
 <jsp:include page="/WEB-INF/socket.jsp"/>
