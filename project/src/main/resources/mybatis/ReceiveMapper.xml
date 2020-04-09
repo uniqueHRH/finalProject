@@ -42,8 +42,8 @@
 		select * from receive where client_nick2=#{client_nick2} order by receive_no desc limit 1
 	</select>
 <!-- 읽지 않은 쪽지 -->
-	<select id="select_receiveUnCnt" resultType="int">
-		select count(*) from receive where receive_status=0
+	<select id="select_receiveUnCnt" resultType="int" parameterType="String">
+		select count(*) from receive where receive_status=0 and client_nick2=#{client_nick2}
 	</select>
 	
 <!-- 쪽지 읽음 처리 -->

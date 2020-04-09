@@ -73,13 +73,11 @@ public class MypageController {
 		receiveService.deleteOne_receive(key);
 		return "mypage/message";
 	}
-	
 	// 실시간 받은 쪽지
 	@RequestMapping(value="/main/partnerMessage", method=RequestMethod.GET)
 	public String partnerMsg(String key, Model model) throws Exception {
 		receiveService.selectOne_receiveLimitOne(key, model);
-		System.out.println("controller"+key);
-		return "mypage/receiveMsg";
+		return "mypage/sockMsg";
 	}
 //	내가 쓴 글
   	@RequestMapping(value="/main/myBoard", method=RequestMethod.GET)
