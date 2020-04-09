@@ -64,7 +64,12 @@
 	#table>tbody td>a:hover {
 		color:black;
 	}
-	
+	#status {
+		border:0;
+		outline:0;
+		background-color:rgba(1,1,1,0);
+		width:10;
+	}
 	#pageNum, #search {
 		width:350px;      
 		margin:0 auto;
@@ -116,7 +121,7 @@
 			<input type="hidden" class="type_${bean.receive_no }" value="${bean.receive_status }">
 			<td name="line_${bean.receive_no }"><a href="#" onclick="window.open('../messageDe/'+${bean.receive_no }, '쪽지보기', 'width=470, height=340, left=500, top=50');"><input type="checkbox" name="chk_${bean.receive_no }"></a></td>
 			<td name="line_${bean.receive_no }"><a href="#" onclick="window.open('../messageDe/'+${bean.receive_no }, '쪽지보기', 'width=470, height=340, left=500, top=50');">${bean.receive_no }</a></td>
-			<td name="line_${bean.receive_no }"><a href="#" onclick="window.open('../messageDe/'+${bean.receive_no }, '쪽지보기', 'width=470, height=340, left=500, top=50');">${bean.receive_content }</a></td>
+			<td name="line_${bean.receive_no }"><a href="#" onclick="window.open('../messageDe/'+${bean.receive_no }, '쪽지보기', 'width=470, height=340, left=500, top=50');">${bean.receive_content } &nbsp; <span class="badge"><input type="text" id="status" value="${bean.receive_status }"disabled></span></a></td>
 			<td name="line_${bean.receive_no }"><a href="#" onclick="window.open('../messageDe/'+${bean.receive_no }, '쪽지보기', 'width=470, height=340, left=500, top=50');">${bean.client_nick1 }</a></td>
 			<td name="line_${bean.receive_no }"><a href="#" onclick="window.open('../messageDe/'+${bean.receive_no }, '쪽지보기', 'width=470, height=340, left=500, top=50');">${bean.receive_date}</a></td>
 		</tr>

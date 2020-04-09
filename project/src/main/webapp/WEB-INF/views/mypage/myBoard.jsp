@@ -15,19 +15,15 @@
 <style type="text/css">
 	#table>thead th:nth-child(1) {
 		width:100;
-		background-color:red;
 	}
 	#table>thead th:nth-child(2) {
 		width:560;
-		background-color:yellow;
 	}
 	#table>thead th:nth-child(3) {
 		width:135;
-		background-color:blue;
 	}
 	#table>thead th:nth-child(4) {
 		width:100;
-		background-color:green;
 	}
 	#table>tbody td:nth-child(2),
 	#table>tbody td:nth-child(3) {

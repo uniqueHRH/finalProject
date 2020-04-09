@@ -1,7 +1,5 @@
 package com.bit.project;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,17 +15,12 @@ public class HomeController {
 	ReceiveService receiveService;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(HttpSession session) {
+	public String home(String client_nick2, Model model) throws Exception {
+		System.out.println("controller"+client_nick2);
+		int note=0;
+			note=receiveService.select_receiveUnCnt(client_nick2);
+		model.addAttribute("note", note);
 		return "home";
 	}
 	
-	// 읽지않은 쪽지
-	@RequestMapping(value = "/", method = RequestMethod.POST)
-	public String home(String id, Model model) throws Exception {
-		System.out.println(id);
-		int note=0;
-		note=receiveService.select_receiveUnCnt(id);
-		model.addAttribute("note",note);
-		return "home";
-	}
 }

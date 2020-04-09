@@ -46,14 +46,14 @@
 		text-align:center;
 	}
 	#menubar>li>a {
-		font-size:25px;
+		font-size:23px;
 		font-weight:bold;
 		color:white;
 		padding:20 50;
 		text-align:center;
 	}
 	#menubar li>ul>li>a {
-		font-size:20px;
+		font-size:18px;
 		color:black;
 		text-align: center;
 	}
@@ -229,7 +229,7 @@
 					       		<li><a href="${root }board/free">자유게시판</a></li>
 							</ul>
 				        </li>
-				        <li class="dropdown"><a href="${root }board/event">이벤트</li></a>
+				        <li class="dropdown"><a href="${root }board/event">이벤트</a></li>
 				        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">고객센터</a>
 							<ul class="dropdown-menu" role="menu">
 					            <li><a href="${root }board/notice">공 &nbsp; &nbsp; &nbsp; &nbsp;지</a></li>
@@ -298,8 +298,8 @@
 		if(id) {
 			$.ajax({
 				url:'/project',
-				type:'POST',
-				data:{key:id},
+				type:'GET',
+				data:{client_nick2:id},
 				success:function() {
 					console.log('성공');
 				},
