@@ -206,7 +206,6 @@
 		<div id="kakao-talk-channel-chat-button" class="kakaoChat"></div>
 		<button type="button" class="btn btn-default" id="wish">찜하기<input type="text" id="star" value=" ☆" disabled></button>
 		<button type="button" class="btn btn-default" id="top">TOP ▲</button>
-		<input type="text" value="${bean.wishChk }">
 	</div>
 <jsp:include page="/WEB-INF/socket.jsp"/>
 <jsp:include page="/WEB-INF/footer.jsp"/>
