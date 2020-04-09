@@ -15,15 +15,13 @@ public class HomeController {
 	ReceiveService receiveService;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home() {
+	public String home(String client_nick2, Model model) throws Exception {
+		System.out.println("call controller...");
+		if(client_nick2!=null) {
+			receiveService.select_receiveUnCnt(client_nick2, model);
+			System.out.println("controller="+model);
+		}
 		return "home";
 	}
 	
-	@RequestMapping(value = "/cnt", method = RequestMethod.GET)
-	public String countMsg(String client_nick2, Model model) throws Exception {
-		System.out.println("call controller...");
-		receiveService.select_receiveUnCnt(client_nick2, model);
-		System.out.println("controller="+model);
-		return "home";
-	}
 }
