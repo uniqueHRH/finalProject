@@ -21,6 +21,7 @@
   		<typeAlias alias="EventBean" type="com.bit.project.model.entity.EventVo"/>
   		<typeAlias alias="MapBean" type="com.bit.project.model.entity.MapVo"/>
   		<typeAlias alias="PaidBean" type="com.bit.project.model.entity.PaidVo"/>
+  		<typeAlias alias="WishBean" type="com.bit.project.model.entity.WishVo"/>
   	</typeAliases>
   	
   	<mappers>
@@ -40,5 +41,6 @@
   		<mapper resource="mybatis/EventMapper.xml"/>
   		<mapper resource="mybatis/MapMapper.xml"/>
   		<mapper resource="mybatis/PaidMapper.xml"/>
+  		<mapper resource="mybatis/WishMapper.xml"/>
   	</mappers>
   </configuration>
