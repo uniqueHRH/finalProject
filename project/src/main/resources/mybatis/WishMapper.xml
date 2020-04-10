@@ -16,11 +16,11 @@
 <mapper namespace="wish">
 
 	<select id="select_list" resultType="WishBean">
-		select * from wish
+		select * from wish where client_nick1=#{client_nick1}
 	</select>
 	
 	<select id="select_wish" resultType="WishBean" parameterType="WishBean">
-		select * from wish where tour_no=#tour_no} and client_nick1=#{client_nick1}
+		select * from wish where tour_no=#{tour_no} and client_nick1=#{client_nick1}
 	</select>
 	
 	<insert id="insert_wish" parameterType="WishBean">

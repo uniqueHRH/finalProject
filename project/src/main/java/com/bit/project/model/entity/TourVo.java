@@ -18,7 +18,7 @@ public class TourVo {
 	private String secondimg;
 	private String thirdimg;
 	
-	private GuideVo GuideVo;// °¡ÀÌµå Á¶ÀÎÀ§ÇØ 
+	private GuideVo GuideVo;// Â°Â¡Ã€ÃŒÂµÃ¥ ÃÂ¶Ã€ÃÃ€Â§Ã‡Ã˜ 
 	
 	
 	public TourVo() {
