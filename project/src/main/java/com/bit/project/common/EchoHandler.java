@@ -35,7 +35,6 @@ public class EchoHandler {
 	
 	@OnMessage
 	public void handleMessage(String message, Session userSession) throws IOException {
-		System.out.println(message);
 		String[] str=message.split("/");
 		
 		// Å¬·ÎÀú
@@ -44,9 +43,6 @@ public class EchoHandler {
 		final String text=str[2];
 		
 		users.forEach(session -> {
-			if(session==userSession) {
-				return;
-			}
 			try {
 				session.getBasicRemote().sendText(sendId+"/"+receiveId+"/"+text);
 			} catch (IOException e) {

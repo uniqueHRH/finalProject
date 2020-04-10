@@ -83,6 +83,12 @@ public class MypageController {
 		receiveService.selectOne_receiveLimitOne(key, model);
 		return "mypage/sockMsg";
 	}
+	// 선택쪽지 읽음 처리
+	@RequestMapping(value="/main/allMsg", method=RequestMethod.GET)
+	public String read(int key) throws Exception {
+		receiveService.updateOne_receive(key);
+		return "mypage/sockMsg";
+	}
 //	내가 쓴 글
   	@RequestMapping(value="/main/myBoard", method=RequestMethod.GET)
   	public String myBoard(String id, Model model,

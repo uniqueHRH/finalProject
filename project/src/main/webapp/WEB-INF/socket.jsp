@@ -28,10 +28,6 @@
 		var receiveId=message[1];
 		var text=message[2];
 		
-		console.log('send : '+sendId);
-		console.log('receive : '+receiveId);
-		console.log('text : '+text);
-		
 		if(id==receiveId) {
 			window.open('/project/main/partnerMessage?key='+id,'쪽지가 도착하였습니다','width=470, height=340, left=500, top=50');
 		} else {

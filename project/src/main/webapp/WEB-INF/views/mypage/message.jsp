@@ -1,8 +1,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page pageEncoding="utf-8" import="com.bit.project.model.entity.*, java.util.List"%>
 <link href="https://fonts.googleapis.com/css?family=Jua&display=swap&subset=korean" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Jua|Noto+Sans+KR&display=swap" rel="stylesheet">
-<c:url value="/" var="root"></c:url>
+<c:url value="/" var="root"/>
 <html>
 <head>
 <meta charset="utf-8">
@@ -106,7 +107,7 @@
 <table class="table table-hover" id="table">
 	<div class="topMenu" id="theme">
 		<input type="text" value="<c:out value="${listCnt}"></c:out>개의 게시물이 조회되었습니다" id="listCnt" disabled/><br/>
-		<a class="btn btn-default" href="#" role="button" id="feed">답 장</a> &nbsp; <a class="btn btn-default" href="#" role="button" id="dele">삭 제</a>
+		<a class="btn btn-default" href="#" role="button" id="feed">답 장</a> &nbsp; <a class="btn btn-default" href="#" role="button" id="dele">삭 제</a> &nbsp; <a class="btn btn-default" href="#" role="button" id="read">읽음 처</a>
 	</div>
 <!-- 리스트 출력 -->
    <thead>
@@ -121,13 +122,14 @@
    <tbody>
 		<c:forEach items="${list }" var="bean">
 		<input type="hidden" id="no" value="${bean.receive_no }">
+		<fmt:formatDate value="${bean.receive_date}" pattern="yyyy-MM-dd HH:mm" var="date"/>
 		<tr>
 			<input type="hidden" class="type_${bean.receive_no }" value="${bean.receive_status }">
-			<td name="line_${bean.receive_no }"><a href="#" onclick="window.open('../messageDe/'+${bean.receive_no }, '쪽지보기', 'width=470, height=340, left=500, top=50');"><input type="checkbox" name="chk_${bean.receive_no }"></a></td>
+			<td name="line_${bean.receive_no }"><input type="checkbox" name="chk_${bean.receive_no }"></td>
 			<td name="line_${bean.receive_no }"><a href="#" onclick="window.open('../messageDe/'+${bean.receive_no }, '쪽지보기', 'width=470, height=340, left=500, top=50');">${bean.receive_no }</a></td>
 			<td name="line_${bean.receive_no }"><a href="#" onclick="window.open('../messageDe/'+${bean.receive_no }, '쪽지보기', 'width=470, height=340, left=500, top=50');">${bean.receive_content } &nbsp; <input type="text" id="status" name="status_${bean.receive_no }" value="${bean.receive_status }"disabled></a></td>
 			<td name="line_${bean.receive_no }"><a href="#" onclick="window.open('../messageDe/'+${bean.receive_no }, '쪽지보기', 'width=470, height=340, left=500, top=50');">${bean.client_nick1 }</a></td>
-			<td name="line_${bean.receive_no }"><a href="#" onclick="window.open('../messageDe/'+${bean.receive_no }, '쪽지보기', 'width=470, height=340, left=500, top=50');">${bean.receive_date}</a></td>
+			<td name="line_${bean.receive_no }"><a href="#" onclick="window.open('../messageDe/'+${bean.receive_no }, '쪽지보기', 'width=470, height=340, left=500, top=50');"><c:out value="${date }"/></a></td>
 		</tr>
 		</c:forEach>
    </tbody>
@@ -160,14 +162,6 @@
 	</div>
 	
 </nav>
-
-<!-- 리모컨 -->
-	<div class="btn-group-vertical fixed-top" id="remote" role="group" aria-label="...">
-		<div id="kakao-talk-channel-chat-button"></div>
-		<button type="button" class="btn btn-default" id="top">TOP ▲</button>
-	</div>
-
-
 
       </div>
    </div>
@@ -208,22 +202,7 @@
 			}
 		});
 		
-		// 리모컨 top
-		$('#top').on('click',function() {
-			$('html,body').scrollTop(0);
-		});
-		
-		//<![CDATA[
-	    // 사용할 앱의 JavaScript 키를 설정해 주세요.
-	    Kakao.init('acc658a670e9ed5918d11647040b5bc5');
-	    // 카카오톡 채널 1:1채팅 버튼을 생성합니다.
-	    Kakao.Channel.createChatButton({
-	      container: '#kakao-talk-channel-chat-button',
-	      channelPublicId: '_wxfwxfxb' // 카카오톡 채널 홈 URL에 명시된 id로 설정합니다.
-	    });
-	  //]]>
-
-		// 삭제 체크박스
+		// 체크박스 선택
 		$('#chk').on('click',function() {
 			if($('#chk').prop('checked')) {
 				$('input[type=checkbox]').prop('checked',true);
@@ -242,6 +221,71 @@
 		});
 		
 		// 삭제버튼 클릭
+		$('#dele').on('click',function() {
+			var num=Array();
+			var con=confirm('선택된 쪽지를 삭제하시겠습니까?');
+			$('input[name^=chk_]:checked').each(function() {
+				num=$(this).attr('name');
+				num=num.split('_')[1];
+				console.log(num);
+				
+				if(con) {
+					$.ajax({
+						url:'../messageDele',
+						type:'POST',
+						data:{key:num},
+						success:function() {
+						},
+						error:function() {
+							alert('다시 시도해 주세요');
+						}
+					});
+				}
+			});
+			alert('삭제되었습니다');
+			reload();
+		});
+		// 모두 읽기
+		$('#read').on('click',function() {
+			var num=Array();
+			var con=confirm('선택된 쪽지를 모두\n읽음처리 하시겠습니까?');
+			$('input[name^=chk_]:checked').each(function() {
+				num=$(this).attr('name');
+				num=num.split('_')[1];
+				console.log(num);
+				
+				if(con) {
+					$.ajax({
+						url:'../allMsg',
+						type:'Get',
+						data:{key:num},
+						success:function() {
+						},
+						error:function() {
+							alert('다시 시도해 주세요');
+						}
+					});
+				}
+			});
+			alert('읽음처리 되었습니다');
+			reload();
+		});
+			/* $('input[name^=chk_').each(function() {
+				var feed=Array();
+				var num=$(this).attr('name');
+				num=num.split('_')[1];
+				//console.log('each...'+num)
+
+				if($('input[name=chk_'+num+']:checked')==true) {
+					console.log(num);
+				}
+				/* if($('input[name=chk_'+num+']:checked')==true) {
+					console.log(this);
+				}
+			});
+		}); */
+			
+/*
 		$('#dele').on('click',function() {
 			var feed=$('input[type=checkbox]:checked').attr('name');
 			feed=feed.split('_');
@@ -263,6 +307,7 @@
 				});
 			}
 		});
+*/
 //////////////////////////////////////////////////////////////////////////////////////////		
 		// 검색
 		$('#searchGo').on('click',function() {
