@@ -4,6 +4,7 @@ package com.bit.project.service;
 import java.util.List;
 
 import org.springframework.ui.Model;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.bit.project.common.Search;
 import com.bit.project.model.entity.ReceiveVo;
@@ -19,5 +20,5 @@ public interface ReceiveService {
 //	게시물 총 갯수
 	public int getReceiveListCnt(Search search) throws Exception;
 //	읽지 않은 쪽지 갯수
-	public int select_receiveUnCnt(String client_nick2, Model model) throws Exception;
+	public int select_receiveUnCnt(String client_nick2) throws Exception;
 }

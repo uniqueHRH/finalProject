@@ -29,9 +29,9 @@
 <!-- 정렬 드롭다운 -->
 	<div class="topMenu" id="theme">
 		<select id="dropdownMenu1">
-		    <option value="정렬">정 렬</option>
-		    <option value="NO">N O</option>
-		    <option value="부서">부 서</option>
+		    <option value="정렬" id="1">정 렬</option>
+		    <option value="NO" id="2">N O</option>
+		    <option value="부서" id="3">부 서</option>
 		</select>
 		<a class="btn btn-default" href="#" role="button" id="sel">조회</a>
 		<input type="text" value="<c:out value="${listCnt}"></c:out>개의 게시물이 조회되었습니다" id="listCnt" disabled/>
@@ -98,6 +98,7 @@
 		<div id="kakao-talk-channel-chat-button"></div>
 		<button type="button" class="btn btn-default" id="top">TOP ▲</button>
 	</div>
+<jsp:include page="/WEB-INF/remote.jsp"/>
 <jsp:include page="/WEB-INF/socket.jsp"/>
 <jsp:include page="/WEB-INF/footer.jsp"/>
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
@@ -109,6 +110,7 @@
 		$('#sel').on('click',function() {
 			var up=$('#dropdownMenu1').val();
 			if(up=='정렬') {
+				$("#1").prop("selected",true);
 				$.ajax({
 					url:'../system/staff',
 					type:'GET',
@@ -120,6 +122,7 @@
 				});   // ajax
 			}   // if
 			if(up=='NO') {
+				$("#2").prop("selected",true);
 				$.ajax({
 					url:'../system/staffNo',
 					type:'GET',
@@ -132,6 +135,7 @@
 				return false;
 			}   // if
 			if(up=='부서') {
+				$("#3").prop("selected",true);
 				$.ajax({
 					url:'../system/staffTeam',
 					type:'GET',
@@ -177,19 +181,49 @@
 		function prev(page, range, rangeSize) {
 			var page=((range-2)*rangeSize)+1;
 			var range=range-1;
-			var url="${root }system/staff";
-			url=url+"?page="+page;
-			url=url+"&range="+range;
-			location.href=url;
+			var up=$('#dropdownMenu1').val();
+			if(up=='정렬'){
+				var url="${root }system/staff";
+				url=url+"?page="+page;
+				url=url+"&range="+range;
+				location.href=url;
+			}else if(up=='NO'){
+				var url="${root }system/staffNO";
+				url=url+"?page="+page;
+				url=url+"&range="+range;
+				location.href=url;
+			}else if(up=='부서'){
+				var url="${root }system/staffTeam";
+				url=url+"?page="+page;
+				url=url+"&range="+range;
+				location.href=url;
+			}
 		}
 		//페이지 번호 클릭
 		function pagination(page, range, rangeSize, searchType, keyword) {
+			var up=$('#dropdownMenu1').val();
+			if(up=='정렬'){
 			var url="${root }system/staff";
 			url=url+"?page="+page;
 			url=url+"&range="+range;
 			url=url+"&searchType="+$('#searchType').val();
 			url=url+"&keyword="+keyword;
-			location.href = url;	
+			location.href = url;
+			}else if(up=='NO'){
+				var url="${root }system/staffNO";
+				url=url+"?page="+page;
+				url=url+"&range="+range;
+				url=url+"&searchType="+$('#searchType').val();
+				url=url+"&keyword="+keyword;
+				location.href = url;
+			}else if(up=='부서'){
+				var url="${root }system/staffTeam";
+				url=url+"?page="+page;
+				url=url+"&range="+range;
+				url=url+"&searchType="+$('#searchType').val();
+				url=url+"&keyword="+keyword;
+				location.href = url;
+			}
 		}
 		//다음 버튼 이벤트
 		function next(page, range, rangeSize) {
