@@ -3,10 +3,6 @@
 <%@ page pageEncoding="utf-8" %>
 <link href="https://fonts.googleapis.com/css?family=Jua&display=swap&subset=korean" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Jua|Noto+Sans+KR&display=swap" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="slick/slick.css"/>
-<link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>
-<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-
 
 <c:url value="/" var="root"></c:url>
 <html>
@@ -79,7 +75,7 @@
    #map1{
    		width: 600px;
         height: 500px;
-        position: relative fixed;
+        position: relative;
         left: 400px;
    }
    #footer{
@@ -173,8 +169,6 @@
          <td>${bean.vehicle }</td>
          <td class="active" style="text-align: center;">상품가</td>
          <td> <fmt:formatNumber value="${bean.cost}" pattern="#,###"/>원</td>
-         <td><input type="hidden" id="check" value="${sessionScope.check}"></td>
-         <td><input type="hidden" id="nick" value="${sessionScope.check.client_nick1}"></td>
       </tr>
       </table>
       
@@ -234,20 +228,24 @@
 	});
 	
 	$('#wish').on('click', function() {
-		var nick=$('#nick').val();
-		var board_no=${bean.tour_no};
 		$('#star').css('background-color','#e8e8e8');
-		$.ajax({
-			url:'../../main/wishOn',
-			type:'POST',
-			data:{tour_no:board_no,client_nick1:nick},
-			success:function() {
-				$('#star').val(' ★');
-			},
-			error:function() {
-				alert('다시 시도해주세요');
-			}
-		});
+		var client_name="${sessionScope.check.client_name}";
+		var check = $('#check').val();
+        if(!check){
+           $('#wish').attr("href", "../../main/login");
+        }           	
+			$.ajax({
+				url:'../../tour/wishon',
+				type:'POST',
+				data:{tour_no:${bean.tour_no},client_name:client_name},
+				success:function() {
+					$('#star').val(' ★');
+				},
+				error:function() {
+					alert('다시 시도해주세요');
+				}
+			});
+        	
 	});
 	
   	Kakao.init('acc658a670e9ed5918d11647040b5bc5');

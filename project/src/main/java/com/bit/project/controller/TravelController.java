@@ -31,6 +31,8 @@ public class TravelController {
 	MapService mapservice;
 	@Autowired
 	PaidService paidservice;
+	@Autowired
+	WishService wishservice;
 	
 	
 // 로그인
@@ -164,6 +166,12 @@ public class TravelController {
 		tourservice.selectAll_africa(model);
 		return "tour/maintour";
 		}
+	//찜하기
+	@RequestMapping(value="/tour/wishon",method = RequestMethod.POST)
+	public String wishon(@ModelAttribute WishVo bean) {
+		wishservice.insert_wish(bean);
+		return "home";
+	}
 		
 	
 	//디테일PAGE
@@ -284,12 +292,13 @@ public class TravelController {
 		model.addAttribute("listCnt",listCnt);
 		return "system/allpaid";
 	}
-	////시스템에서 총 예약과 결제상품 관리페이지 디테일
+	//시스템에서 총 예약과 결제상품 관리페이지 디테일
 	@RequestMapping(value = "/system/paid/{idx}", method = RequestMethod.GET)
 	public String detailallpaid(Model model, @PathVariable ("idx") int paid_no) {
 		paidservice.selectOne_paid(model, paid_no);
 		return "system/detailallpaid";
 	}
+	//시스템에서 총 예약과 결제상품 관리페이지 디테일에서 확정
 	@RequestMapping(value = "/system/paid/confirm", method = RequestMethod.POST)
 	public String confirmallpaid(@ModelAttribute PaidVo bean) {
 		paidservice.allpaid_confirm(bean);
