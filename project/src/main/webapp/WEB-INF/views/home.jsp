@@ -297,7 +297,25 @@
 <script type="text/javascript">
 
 	$(document).ready(function() {
-
+		var id=$('#session').val();
+		console.log(id);
+		
+		if(id){
+			$.ajax({
+				url: "/project/count",
+				type:"GET",
+				data:{client_nick2:id},
+				success:function(data){
+					alert(data);
+					console.log(${note});
+				},
+				error:function(){
+				 	alert('안됨');
+				}	
+			});
+		}	
+		
+		
 
 		// 새로온 쪽지 표시
 		var count=$('#count').val();

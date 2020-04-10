@@ -30,7 +30,7 @@
 	#table1{
 		margin-bottom: 80px; 
 	}
-	#paybtn{
+	#confirmbtn{
 		position: relative;
 		width: 230px;
 		left: 1150px;
@@ -91,7 +91,7 @@
   	 	</tr>
   	 </table>
  <p style="display: none;">${bean.paid_no }</p>
- <button id ="paybtn" class="btn btn-primary btn-lg">확정하기</button> 	 
+ <button id ="confirmbtn" class="btn btn-primary btn-lg">확정하기</button> 	 
   	 
 <!-- contents end --> 
 <jsp:include page="/WEB-INF/remote.jsp"/>
@@ -105,8 +105,18 @@
 <script type="text/javascript">	
 //////////////////////////////////////////////////////////////////////////////////////////
 
-$("#paybtn").click(function () {
-
+$("#confirmbtn").click(function () {
+	$.ajax({
+		url:'../paid/confirm',
+		type:'POST',
+		data:{ paid_no:${bean.paid_no}}
+		success:function(data) {
+			alert('통신ㅇ');
+		},
+		error:function() {
+			alert('통신x');
+		}
+	});
 
 });
 </script>
