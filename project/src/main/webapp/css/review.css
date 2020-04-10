@@ -1,13 +1,13 @@
 	h1, input {
 		font-family: 'Jua';
 	}
-	#table {
+	#containerTable {
 		width:950px;
 		margin:0 auto;
 		padding:0px;
 		text-align:center;
 		font-family: 'Jua';
-		font-size:18px;
+		font-size:15px;
 	}
 	select, button, a {
 		font-family: 'Jua';

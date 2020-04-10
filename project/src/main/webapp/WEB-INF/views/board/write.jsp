@@ -14,17 +14,24 @@
 		font-family: 'Jua';
 	}
 	form {
-      width:700px;      
+      width:800px;      
       margin:0 auto;
       font-family: 'Jua';
       font-size:18px;
+	}
+	#select {
+		padding:0 0 0 40px;
+	}
+	#sub {
+      	width:800px;
+      	text-align:center;      
 	}
 	label {
       font-size:15px;
       font-weight:normal;
 	}
-	textarea {
-		resize:none;
+	#textarea {
+		padding:0 0 0 50px;
 	}
 /* 나라 선택 */	
 	#land {
@@ -58,7 +65,7 @@
       
 <!-- 나라 선택 -->
 <form class="form-inline" method="POST" enctype="multipart/form-data">
-<div>
+<div id="select">
 	<select id="land" name="board_land" style="cursor:pointer">
 		<option>나라 선택</option>
 		<option>중국/일본</option>
@@ -71,14 +78,14 @@
 </div>
 
 <!-- 입력 -->
-	<div class="form-group">
+	<div class="form-group" id="sub">
 		<p></p>
-		<label for="exampleInputName2">&nbsp; 제 목</label>
-		<input type="text" class="form-control" id="board_sub" name="board_sub" style="width:613px;">
+		<label for="exampleInputName2">제 &nbsp; 목</label>
+		<input type="text" class="form-control" id="board_sub" name="board_sub" style="width:670px;">
 		<input type="hidden" id="client_nick1" name="client_nick1" value="${sessionScope.check.client_nick1}">
 	</div>
-	<div><p></p>
-		&nbsp; <textarea class="form-control" id="board_content" name="board_content" style="width:650px; height:300px;"></textarea>
+	<div id="textarea">
+		&nbsp; <textarea class="form-control" id="board_content" name="board_content"></textarea>
 	</div>
 	
 <!-- 테마 선택 -->	
@@ -86,19 +93,19 @@
 	<p></p>
 		<input type="checkbox" name="theme" class="custom-control-input" value="힐링">
 		<label class="custom-control-label" for="jb-checkbox">힐링</label>
-		&nbsp; 
+		&nbsp; &nbsp; 
 		<input type="checkbox" name="theme" class="custom-control-input" value="스냅">
 		<label class="custom-control-label" for="jb-checkbox">스냅</label>
-		&nbsp; 
+		&nbsp; &nbsp; 
 		<input type="checkbox" name="theme" class="custom-control-input" value="액티비티">
 		<label class="custom-control-label" for="jb-checkbox">액티비티</label>
-		&nbsp; 
+		&nbsp; &nbsp; 
 		<input type="checkbox" name="theme" class="custom-control-input" value="식도락">
 		<label class="custom-control-label" for="jb-checkbox">식도락</label>
-		&nbsp;
+		&nbsp;&nbsp; 
 		<input type="checkbox" name="theme" class="custom-control-input" value="영화">
 		<label class="custom-control-label" for="jb-checkbox">영화</label>
-		&nbsp; 
+		&nbsp; &nbsp; 
 		<input type="checkbox" name="theme" class="custom-control-input" value="스포츠">
 		<label class="custom-control-label" for="jb-checkbox">스포츠</label>
 		
@@ -133,7 +140,7 @@
 		
 		
 		
-		CKEDITOR.replace('board_content');
+		CKEDITOR.replace('board_content',{width:'700px'});
 		
 		
 		

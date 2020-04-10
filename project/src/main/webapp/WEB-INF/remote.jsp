@@ -12,7 +12,7 @@
 	#remote {
 		position:fixed;
 		left:1580px;
-		top:750px;
+		top:730px;
 		width:150px;
 	}
 	#kakao-talk-channel-chat-button {

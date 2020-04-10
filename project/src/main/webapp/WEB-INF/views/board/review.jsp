@@ -25,7 +25,7 @@
    
 	
    
-<table class="table table-hover" id="table">
+<table class="table table-hover" id="containerTable">
 <!-- 정렬 드롭다운 -->
 	<div class="topMenu" id="theme">
 		<select id="dropdownMenu1">
