@@ -5,7 +5,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bit.project.service.ReceiveService;
@@ -25,7 +24,6 @@ public class HomeController {
 	public ModelAndView count(String client_nick2) throws Exception {
 			
 			int data = receiveService.select_receiveUnCnt(client_nick2);
-			System.out.println(data);
 			ModelAndView mav = new ModelAndView();
 			mav.addObject("Data", data);
 			mav.setViewName("jsonView");

@@ -298,7 +298,6 @@
 
 	$(document).ready(function() {
 		var id=$('#session').val();
-		console.log(id);
 		
 		if(id){
 			$.ajax({
@@ -328,7 +327,7 @@
 			$('#count').attr('type','hidden');
 		}
 		// 검색
-		/*$('#searchGo').on('click',function() {
+		$('#searchGo').on('click',function() {
 			var url='${root }board/review';
 			url=url+'?searchType='+$('#searchType').val();
 			url=url+'&keyword='+$('#keyword').val();
@@ -336,7 +335,6 @@
 			location.href=url;
 			console.log(url);
 		});
-		*/
 		
 	});
 </script>

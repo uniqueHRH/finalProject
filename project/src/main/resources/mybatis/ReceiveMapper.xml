@@ -47,10 +47,13 @@
 	</select>
 	
 <!-- 쪽지 읽음 처리 -->
+	<update id="updateAll_receive" parameterType="int">
+		update receive set receive_status=0 where receive_no between #{value} and #{value};
+	</update>
+	
 	<update id="updateOne_receive" parameterType="int">
 		update receive set receive_status=1 where receive_no=#{receive_no}
 	</update>
-	
 <!-- 쪽지 삭제 -->
 	<delete id="deleteOne_receive" parameterType="int">
 		delete from receive where receive_no=#{receive_no}
