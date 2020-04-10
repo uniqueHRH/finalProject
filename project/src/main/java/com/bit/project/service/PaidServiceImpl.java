@@ -52,4 +52,14 @@ public class PaidServiceImpl implements PaidService {
 		return paidDao.selectAll_allpaid(search);
 	}
 
+	@Override
+	public void allpaid_confirm(PaidVo bean) {
+		try {
+			paidDao.allpaid_confirm(bean);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+
 }

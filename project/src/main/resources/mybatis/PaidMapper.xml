@@ -78,5 +78,9 @@
 				AND paid_name like CONCAT('%', #{keyword}, '%')
 			</if>
 		</trim>
-	</select>	
+	</select>
+	
+	<update id="allpaid_confirm" parameterType="PaidBean">
+		update paid set paid_confirm='확정' where paid_no=#{paid_no}
+	</update>
 </mapper>

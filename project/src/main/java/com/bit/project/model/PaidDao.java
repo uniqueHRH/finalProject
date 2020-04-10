@@ -9,9 +9,11 @@ import com.bit.project.model.entity.ReceiveVo;
 public interface PaidDao {
 	
 	PaidVo selectOne_paid(int paid_no) throws Exception;
-	int paid_confirm(PaidVo bean) throws Exception;
 	
 	List<ReceiveVo> selectAll_paid(Search search) throws Exception;
+	int paid_confirm(PaidVo bean) throws Exception;
+	
 	List<ReceiveVo> selectAll_allpaid(Search search) throws Exception;
+	int allpaid_confirm(PaidVo bean) throws Exception;
 	public int getallPaidListCnt(Search search) throws Exception;
 }

@@ -11,10 +11,11 @@ import com.bit.project.model.entity.ReceiveVo;
 public interface PaidService {
 
 	void selectOne_paid(Model model,int paid_no);
-	void paid_confirm(PaidVo bean);
-	
 	
 	List<ReceiveVo> selectAll_paid(Search search) throws Exception;
+	void paid_confirm(PaidVo bean);
+	
 	List<ReceiveVo> selectAll_allpaid(Search search) throws Exception;
+	void allpaid_confirm(PaidVo bean);
 	public int getallPaidListCnt(Search search) throws Exception;
 }

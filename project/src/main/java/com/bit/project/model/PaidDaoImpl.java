@@ -41,4 +41,9 @@ public class PaidDaoImpl implements PaidDao {
 		return sqlSession.selectList("paid.selectAll_allpaid",search);
 	}
 
+	@Override
+	public int allpaid_confirm(PaidVo bean) throws Exception {
+		return sqlSession.update("paid.allpaid_confirm", bean);
+	}
+
 }

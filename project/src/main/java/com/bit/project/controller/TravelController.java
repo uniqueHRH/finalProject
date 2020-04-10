@@ -290,4 +290,9 @@ public class TravelController {
 		paidservice.selectOne_paid(model, paid_no);
 		return "system/detailallpaid";
 	}
+	@RequestMapping(value = "/system/paid/confirm", method = RequestMethod.POST)
+	public String confirmallpaid(@ModelAttribute PaidVo bean) {
+		paidservice.allpaid_confirm(bean);
+		return "system/detailallpaid";
+	}
 }

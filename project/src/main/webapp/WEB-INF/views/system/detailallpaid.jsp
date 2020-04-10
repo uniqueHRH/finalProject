@@ -109,12 +109,12 @@ $("#confirmbtn").click(function () {
 	$.ajax({
 		url:'../paid/confirm',
 		type:'POST',
-		data:{ paid_no:${bean.paid_no}}
-		success:function(data) {
-			alert('통신ㅇ');
+		data:{ paid_no:${bean.paid_no}},
+		success:function() {
+			location.href="../paid";
 		},
 		error:function() {
-			alert('통신x');
+			
 		}
 	});
 
