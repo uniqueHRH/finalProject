@@ -107,7 +107,7 @@
 <table class="table table-hover" id="table">
 	<div class="topMenu" id="theme">
 		<input type="text" value="<c:out value="${listCnt}"></c:out>개의 게시물이 조회되었습니다" id="listCnt" disabled/><br/>
-		<a class="btn btn-default" href="#" role="button" id="feed">답 장</a> &nbsp; <a class="btn btn-default" href="#" role="button" id="dele">삭 제</a> &nbsp; <a class="btn btn-default" href="#" role="button" id="read">모두 읽기</a>
+		<a class="btn btn-default" href="#" role="button" id="feed">답 장</a> &nbsp; <a class="btn btn-default" href="#" role="button" id="dele">삭 제</a> &nbsp; <a class="btn btn-default" href="#" role="button" id="read">읽음 처리</a>
 	</div>
 <!-- 리스트 출력 -->
    <thead>
@@ -248,7 +248,7 @@
 		// 모두 읽기
 		$('#read').on('click',function() {
 			var num=Array();
-			var con=confirm('선택된 쪽지를 삭제하시겠습니까?');
+			var con=confirm('선택된 쪽지를 모두\n읽음처리 하시겠습니까?');
 			$('input[name^=chk_]:checked').each(function() {
 				num=$(this).attr('name');
 				num=num.split('_')[1];
@@ -256,8 +256,8 @@
 				
 				if(con) {
 					$.ajax({
-						url:'../messageDele',
-						type:'POST',
+						url:'../allMsg',
+						type:'Get',
 						data:{key:num},
 						success:function() {
 						},
@@ -267,7 +267,7 @@
 					});
 				}
 			});
-			alert('삭제되었습니다');
+			alert('읽음처리 되었습니다');
 			reload();
 		});
 			/* $('input[name^=chk_').each(function() {

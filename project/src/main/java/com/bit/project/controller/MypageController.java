@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.bit.project.common.Search;
 import com.bit.project.model.entity.ClientVo;
+import com.bit.project.model.entity.ReceiveVo;
 import com.bit.project.model.entity.WishVo;
 import com.bit.project.service.BoardService;
 import com.bit.project.service.ClientService;
@@ -81,6 +82,12 @@ public class MypageController {
 	@RequestMapping(value="/main/partnerMessage", method=RequestMethod.GET)
 	public String partnerMsg(String key, Model model) throws Exception {
 		receiveService.selectOne_receiveLimitOne(key, model);
+		return "mypage/sockMsg";
+	}
+	// 선택쪽지 읽음 처리
+	@RequestMapping(value="/main/allMsg", method=RequestMethod.GET)
+	public String read(int key) throws Exception {
+		receiveService.updateOne_receive(key);
 		return "mypage/sockMsg";
 	}
 //	내가 쓴 글
