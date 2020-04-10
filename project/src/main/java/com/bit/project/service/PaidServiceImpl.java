@@ -62,4 +62,19 @@ public class PaidServiceImpl implements PaidService {
 		
 	}
 
+	@Override
+	public List<ReceiveVo> selectAll_paidState(Search search) throws Exception {
+		return paidDao.selectAll_paidState(search);
+	}
+
+	@Override
+	public List<ReceiveVo> selectAll_paidConfirm(Search search) throws Exception {
+		return paidDao.selectAll_paidConfirm(search);
+	}
+
+	@Override
+	public List<ReceiveVo> selectAll_paidDate(Search search) throws Exception {
+		return paidDao.selectAll_paidDate(search);
+	}
+
 }

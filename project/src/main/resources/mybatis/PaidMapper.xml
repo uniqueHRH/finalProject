@@ -16,7 +16,39 @@
 		order by paid_no desc
 		LIMIT #{startList}, #{listSize}
 	</select>
-	
+<!-- 결제상태 정렬 -->
+	<select id="selectAll_paidState" resultType="PaidBean" parameterType="PaidBean" resultMap="PaidMap">
+		select paid.paid_no,paid.tour_no,paid.client_name,paid.paid_name,paid.paid_phone,paid.paid_birth,paid.paid_count,paid.paid_kakaoid,paid.tour_date,paid.book_date,paid.paid_total,paid.paid_date,paid.paid_state,paid.paid_confirm,tour.city,tour.name from paid inner join tour on paid.tour_no=tour.tour_no
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="client_name!=null and client_name!=''">
+				AND client_name=#{client_name}
+			</if>
+		</trim>
+		order by paid_state desc
+		LIMIT #{startList}, #{listSize}
+	</select>
+<!-- 확정여부 정렬 -->
+	<select id="selectAll_paidConfirm" resultType="PaidBean" parameterType="PaidBean" resultMap="PaidMap">
+		select paid.paid_no,paid.tour_no,paid.client_name,paid.paid_name,paid.paid_phone,paid.paid_birth,paid.paid_count,paid.paid_kakaoid,paid.tour_date,paid.book_date,paid.paid_total,paid.paid_date,paid.paid_state,paid.paid_confirm,tour.city,tour.name from paid inner join tour on paid.tour_no=tour.tour_no
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="client_name!=null and client_name!=''">
+				AND client_name=#{client_name}
+			</if>
+		</trim>
+		order by paid_confirm desc
+		LIMIT #{startList}, #{listSize}
+	</select>
+<!-- 출발일 정렬 -->
+	<select id="selectAll_paidDate" resultType="PaidBean" parameterType="PaidBean" resultMap="PaidMap">
+		select paid.paid_no,paid.tour_no,paid.client_name,paid.paid_name,paid.paid_phone,paid.paid_birth,paid.paid_count,paid.paid_kakaoid,paid.tour_date,paid.book_date,paid.paid_total,paid.paid_date,paid.paid_state,paid.paid_confirm,tour.city,tour.name from paid inner join tour on paid.tour_no=tour.tour_no
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="client_name!=null and client_name!=''">
+				AND client_name=#{client_name}
+			</if>
+		</trim>
+		order by tour_date desc
+		LIMIT #{startList}, #{listSize}
+	</select>
 	<!--  paid join tour -->
 	<resultMap type="PaidBean" id="PaidMap">
 		<result property="paid_no" column="paid_no"/>

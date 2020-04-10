@@ -29,7 +29,7 @@
 	}
 /* 나라정렬 버튼 */
 	#theme {
-		width:950px;
+		width:1050px;
 		margin:0 auto;
 		padding:0px;
 	}
@@ -118,7 +118,16 @@
    </div>
    
 <table class="table table-hover" id="table">
-
+<div class="topMenu" id="theme">
+		<select id="dropdownMenu1">
+		    <option value="정렬">정 &nbsp;렬</option>
+		    <option value="결제상태">결제상태</option>
+		    <option value="확정여부">확정여부</option>
+		    <option value="출발일">출발일</option>
+		</select>
+		<a class="btn btn-default" href="#" role="button" id="sel">조회</a>
+		<input type="text" value="<c:out value="${listCnt}"></c:out>개의 결제건이 조회되었습니다" id="listCnt" disabled/>
+	</div>
 <!-- 리스트 출력 -->
    <thead>
       <tr class="active">
@@ -190,7 +199,58 @@
 <script type="text/javascript" src="${root }js/bootstrap.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-	
+		/* 정렬 */
+		$('#sel').on('click',function() {
+			var up=$('#dropdownMenu1').val();
+			if(up=='정렬') {
+				$.ajax({
+					url:'../system/paid',
+					type:'GET',
+					success:function(data) {
+						location.href="../system/paid";
+					},
+					error:function() {
+					}
+				});   // ajax
+			}   // if
+			if(up=='결제상태') {
+				$.ajax({
+					url:'../system/paidState',
+					type:'GET',
+					success:function(data) {
+						location.href="../system/paidState";
+					},
+					error:function() {
+					}
+				});   // ajax
+				return false;
+			}   // if
+			if(up=='확정여부') {
+				$.ajax({
+					url:'../system/paidConfirm',
+					type:'GET',
+					success:function() {
+						location.href="../system/paidConfirm";
+					},
+					error:function() {
+					}
+				});   // ajax
+			}   // if
+			if(up=='출발일') {
+				$.ajax({
+					url:'../system/paidDate',
+					type:'GET',
+					success:function() {
+						location.href="../system/paidDate";
+					},
+					error:function() {
+					}
+				});   // ajax
+			}   // if
+		});
+		
+		
+		
 		// 검색
 		$('#searchGo').on('click',function() {
 			var url='${root }system/paid';

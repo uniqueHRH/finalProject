@@ -304,6 +304,87 @@ public class TravelController {
 		model.addAttribute("listCnt",listCnt);
 		return "system/allpaid";
 	}
+	@RequestMapping(value = "/system/paidState", method = RequestMethod.GET)
+	public String allpaidState(String id, Model model,
+			@RequestParam(required = false, defaultValue = "1") int page,
+			@RequestParam(required=false, defaultValue="1") int range,
+			@RequestParam(required=false, defaultValue="paid_name") String searchType,
+			@RequestParam(required=false) String keyword,
+			@ModelAttribute("search") Search search
+			) throws Exception {
+		
+		model.addAttribute("search", search);
+		search.setSearchType(searchType);
+		search.setKeyword(keyword);
+		
+		// 전체 게시글 갯수
+		int listCnt=0;
+		try {
+			listCnt=paidservice.getallPaidListCnt(search);
+			search.pageInfo(page, range, listCnt);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		model.addAttribute("pagination", search);
+		model.addAttribute("list",paidservice.selectAll_allpaid(search));
+		model.addAttribute("listCnt",listCnt);
+		return "system/allpaid";
+	}
+	@RequestMapping(value = "/system/paidConfirm", method = RequestMethod.GET)
+	public String allpaidConfirm(String id, Model model,
+			@RequestParam(required = false, defaultValue = "1") int page,
+			@RequestParam(required=false, defaultValue="1") int range,
+			@RequestParam(required=false, defaultValue="paid_name") String searchType,
+			@RequestParam(required=false) String keyword,
+			@ModelAttribute("search") Search search
+			) throws Exception {
+		
+		model.addAttribute("search", search);
+		search.setSearchType(searchType);
+		search.setKeyword(keyword);
+		
+		// 전체 게시글 갯수
+		int listCnt=0;
+		try {
+			listCnt=paidservice.getallPaidListCnt(search);
+			search.pageInfo(page, range, listCnt);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		model.addAttribute("pagination", search);
+		model.addAttribute("list",paidservice.selectAll_allpaid(search));
+		model.addAttribute("listCnt",listCnt);
+		return "system/allpaid";
+	}
+	@RequestMapping(value = "/system/paidDate", method = RequestMethod.GET)
+	public String allpaidDate(String id, Model model,
+			@RequestParam(required = false, defaultValue = "1") int page,
+			@RequestParam(required=false, defaultValue="1") int range,
+			@RequestParam(required=false, defaultValue="paid_name") String searchType,
+			@RequestParam(required=false) String keyword,
+			@ModelAttribute("search") Search search
+			) throws Exception {
+		
+		model.addAttribute("search", search);
+		search.setSearchType(searchType);
+		search.setKeyword(keyword);
+		
+		// 전체 게시글 갯수
+		int listCnt=0;
+		try {
+			listCnt=paidservice.getallPaidListCnt(search);
+			search.pageInfo(page, range, listCnt);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		model.addAttribute("pagination", search);
+		model.addAttribute("list",paidservice.selectAll_allpaid(search));
+		model.addAttribute("listCnt",listCnt);
+		return "system/allpaid";
+	}
 	//시스템에서 총 예약과 결제상품 관리페이지 디테일
 	@RequestMapping(value = "/system/paid/{idx}", method = RequestMethod.GET)
 	public String detailallpaid(Model model, @PathVariable ("idx") int paid_no) {
