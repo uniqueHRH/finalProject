@@ -104,7 +104,7 @@
    }
    #footer{
    		position: relative;
-   		bottom: -1000px;
+   		bottom: -530px;
    }
 
 </style>
@@ -249,12 +249,12 @@
 		</div>	
 	</div>
 </div>
-<jsp:include page="/WEB-INF/remote.jsp"/>
 <jsp:include page="/WEB-INF/socket.jsp"/>
-<!-- contents end -->
 <div id="footer">
  	<jsp:include page="/WEB-INF/footer.jsp"/>
 </div>
+<jsp:include page="/WEB-INF/remote.jsp"/>
+<!-- contents end -->
 <script type="text/javascript">
    $(document).ready(function() {
 		$('#confirmbtn').click(function(){
