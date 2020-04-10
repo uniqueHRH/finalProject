@@ -116,7 +116,7 @@ $("#paybtn").click(function () {
 	    pay_method : 'card',
 	    merchant_uid : 'merchant_' + new Date().getTime(),
 	    name : '주문명:${bean.tourVo.name }',
-	    amount : ${bean.paid_total},
+	    amount : 100,
 	    buyer_name : '${bean.client_name }',
 	    buyer_tel : '${bean.paid_phone }',
 	    
@@ -135,7 +135,7 @@ $("#paybtn").click(function () {
 	        	  paid_no:${bean.paid_no}
 	          }
 	      }).done(function (data) {
-	        // 가맹점 서버 결제 API 성공시 로직
+	    	  location.href="/project/main/mybooking/?id=${sessionScope.check.client_name}";
 	      })
 	    } else {
 	        var msg = '결제에 실패하였습니다.';
