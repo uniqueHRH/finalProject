@@ -107,7 +107,7 @@
 <table class="table table-hover" id="table">
 	<div class="topMenu" id="theme">
 		<input type="text" value="<c:out value="${listCnt}"></c:out>개의 게시물이 조회되었습니다" id="listCnt" disabled/><br/>
-		<a class="btn btn-default" href="#" role="button" id="feed">답 장</a> &nbsp; <a class="btn btn-default" href="#" role="button" id="dele">삭 제</a> &nbsp; <a class="btn btn-default" href="#" role="button" id="read">읽음 처리</a>
+		<a class="btn btn-default" href="#" role="button" id="feed">답 장</a> &nbsp; <a class="btn btn-default" href="#" role="button" id="dele">삭 제</a> &nbsp; <a class="btn btn-default" href="#" role="button" id="read">읽음 처</a>
 	</div>
 <!-- 리스트 출력 -->
    <thead>

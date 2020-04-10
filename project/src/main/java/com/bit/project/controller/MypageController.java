@@ -16,7 +16,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.bit.project.common.Search;
 import com.bit.project.model.entity.ClientVo;
-import com.bit.project.model.entity.ReceiveVo;
 import com.bit.project.model.entity.WishVo;
 import com.bit.project.service.BoardService;
 import com.bit.project.service.ClientService;

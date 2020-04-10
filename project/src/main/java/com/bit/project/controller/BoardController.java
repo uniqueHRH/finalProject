@@ -657,6 +657,7 @@ public class BoardController {
   		noticeService.deleteOne_notice(key);
   		return "redirect:notice";
   	}
+  	// faq
   	@RequestMapping(value="/board/faqDel", method=RequestMethod.POST)
   	public String fqaDel(int key) {
   		faqService.deleteOne_faq(key);
