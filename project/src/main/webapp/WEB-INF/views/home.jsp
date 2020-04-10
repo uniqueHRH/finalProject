@@ -202,7 +202,7 @@
 					        	<ul class="dropdown-menu" role="menu">
 					        		<li><a href="${root }main/message/?id=${sessionScope.check.client_nick1}" id="msg">쪽지함<input type="hidden" id="count" value=""></a></li>
 					        		<li><a href="#">최근본상품</a></li>
-					        		<li><a href="${root }main/wish">찜한상품</a></li>
+					        		<li><a href="${root }main/mywish/?id=${sessionScope.check.client_name}">찜한상품</a></li>
 					        		<li><a href="${root }main/mybooking/?id=${sessionScope.check.client_name}">예약상품</a></li>
 					        		<li><a href="${root }main/myBoard/?id=${sessionScope.check.client_nick1}">내가쓴글</a></li>
 					        		<li><a href="${root }main/myinfo">내정보관리</a></li>
