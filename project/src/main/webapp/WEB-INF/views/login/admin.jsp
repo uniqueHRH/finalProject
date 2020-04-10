@@ -11,7 +11,7 @@
 <link rel="stylesheet" type="text/css" href="${root }css/travel.css" />
 <style type="text/css">
     #table{
-   		font-family: "Jua";
+         font-family: "Jua";
    }
     .form-horizontal {
          width:570px;

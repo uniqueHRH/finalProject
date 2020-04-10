@@ -200,7 +200,7 @@
 				        <input type="hidden" id="session" value="${sessionScope.check.client_nick1}"/>
 					        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">${sessionScope.check.client_nick1} 님<span class="caret"></span></a>
 					        	<ul class="dropdown-menu" role="menu">
-					        		<li><a href="${root }main/message/?id=${sessionScope.check.client_nick1}" id="msg">쪽지함<input type="text" id="count" value=" ${note }" disabled></a></li>
+					        		<li><a href="${root }main/message/?id=${sessionScope.check.client_nick1}" id="msg">쪽지함<input type="hidden" id="count" value=""></a></li>
 					        		<li><a href="#">최근본상품</a></li>
 					        		<li><a href="${root }main/wish">찜한상품</a></li>
 					        		<li><a href="${root }main/mybooking/?id=${sessionScope.check.client_name}">예약상품</a></li>
@@ -303,11 +303,16 @@
 		if(id){
 			$.ajax({
 				url: "/project/count",
-				type:"GET",
+				type:"POST",
 				data:{client_nick2:id},
 				success:function(data){
-					alert(data);
-					console.log(${note});
+					if(data.Data == 0){
+						$("#count").prop("type","hidden");
+					}else{
+						$("#count").prop("type","text");
+						$("#count").attr('value',data.Data);
+					}
+					
 				},
 				error:function(){
 				 	alert('안됨');

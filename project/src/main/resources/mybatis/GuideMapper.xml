@@ -40,6 +40,7 @@
 			</if>	
 		</trim>
 		 ORDER BY guide_no
+		 LIMIT #{startList}, #{listSize}
 	</select>
 <!-- 가이드 이름별 정렬 -->
 	<select id="selectAll_guideName" resultType="GuideBean">
@@ -53,6 +54,7 @@
 			</if>	
 		</trim>
 		 ORDER BY guide_name
+		 LIMIT #{startList}, #{listSize}
 	</select>
 <!-- 가이드 지역별 정렬 -->	
 	<select id="selectAll_guideCity" resultType="GuideBean">
@@ -66,6 +68,7 @@
 			</if>	
 		</trim>
 		 ORDER BY guide_city
+		 LIMIT #{startList}, #{listSize}
 	</select>
 	
 <!-- 총게시글 갯수 -->

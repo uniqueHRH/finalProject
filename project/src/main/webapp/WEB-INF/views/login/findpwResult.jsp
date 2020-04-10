@@ -40,8 +40,8 @@
    </div>
    
    <form action="../main/PwUpdate" class="form-horizontal" method="post">
-     <div class="form-group" id="insertid">
-       <label class="col-sm-2 control-label" id="idd">임시 비밀번호 입니다. 로그인 후 비밀번호를 변경하세요.</label>
+     <div class="form-group" id="insertid" align="center">
+       <p>임시 비밀번호 입니다. 로그인 후 비밀번호를 변경하세요.</p>
        <div class="col-sm-10">임시 비밀번호 : ${Password}</div>
        <input type="hidden" id="client_pw" name="client_pw" value="${Password}" style="display: none;">
        <input type="hidden" id="client_id" name="client_id" value="${id}" style="display: none;">
