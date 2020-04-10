@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page pageEncoding="utf-8" %>
 <link href="https://fonts.googleapis.com/css?family=Jua&display=swap&subset=korean" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Jua|Noto+Sans+KR&display=swap" rel="stylesheet">
@@ -14,51 +15,69 @@
 <link rel="stylesheet" type="text/css" href="${root }css/travel.css" />
 <link rel="stylesheet" type="text/css" href="${root }css/board.css" />
 <style type="text/css">
+.container{
+		font-family: 'Jua';
+		text-align: center;
+		width: 1200px;
+		margin-left: 330px;
+	}
+	.thumbnail{
+		width: 330px;
+	}
+	#mainimg{
+		width: 300px;
+		height: 250px;
+		padding-top: 15px;
+		padding-left: 10px;
+		padding-right: 10px;
+	}	
+	.caption div{
+		width:100%;
+		height:30px;		
+	}
 
 </style>
 </head>
 <body>
 <jsp:include page="/WEB-INF/menubar.jsp"/>
-
-<div id="table">
-	<div class="page-header" id="page-header" align="center">
-		<h1>찜한 상품</h1>
+<div class="container">     
+ <div class="row">
+	<div class="col-md-12">	
+		<div class="page-header" align="center">
+	  <h1>찜한 상품</h1>
+ </div>
 	</div>
+</div>
 
-	<table>
-		<thead>
-			<tr>
-				<th>
-					<div></div>
-				</th>
-				<th>찜2</th>
-				<th>찜3</th>
-			</tr>
-		</thead>
-	</table>
+<div class="row">
+	
+	<c:forEach items="${list }" var="bean">
+	  <a href="${root }tour/detail/${bean.tourVo.tour_no}"><div class="col-sm-6 col-md-4">
+	    <div class="thumbnail">
+	      <img src="${bean.tourVo.mainimg }" alt="" id="mainimg">
+	      <div class="caption">
+	        <h3>${bean.tourVo.name }</h3>
+	        <div style="font-size: 20px;">
+	        	${bean.tourVo.city }(${bean.tourVo.country })
+	        </div>
+	        <div id="cost" style="color: red; font-size: 20px;">
+	        <fmt:formatNumber value="${bean.tourVo.cost}" pattern="#,###"/>원
+	        </div>
+	      </div>
+	    </div>
+	  </div> 
+	  </a> 
+	</c:forEach>
+	
+</div>
 </div>
 <jsp:include page="/WEB-INF/remote.jsp"/>
 <jsp:include page="/WEB-INF/socket.jsp"/>
 <jsp:include page="/WEB-INF/footer.jsp"/>
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="${root }js/bootstrap.js"></script>
-<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-<script type="text/javascript" src="slick/slick.min.js"></script>
-<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <script type="text/javascript">
-	$(document).ready(function() {
-		$('.your-class').slick({
-				  dots:false,
-				  arrows:true,
-				  pauseOnHover:true,
-				  slidesToShow: 3,
-				  slidesToScroll: 1,
-				  autoplay: true,
-				  autoplaySpeed: 2000,
-				});
-		
-	});
+
 </script>
 </body>
 </html>

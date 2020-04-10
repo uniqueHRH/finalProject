@@ -47,7 +47,7 @@
 <div class="row">
 	
 <c:forEach items="${list }" var="bean">
-  <a href="${root }tour/detail/${bean.tour_no}?${sessionScope.check.client_nick1}"><div class="col-sm-6 col-md-4">
+  <a href="${root }tour/detail/${bean.tour_no}"><div class="col-sm-6 col-md-4">
     <div class="thumbnail">
       <img src="${bean.mainimg }" alt="" id="mainimg">
       <div class="caption">

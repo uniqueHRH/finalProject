@@ -169,6 +169,7 @@
          <td>${bean.vehicle }</td>
          <td class="active" style="text-align: center;">상품가</td>
          <td> <fmt:formatNumber value="${bean.cost}" pattern="#,###"/>원</td>
+         <td><input type="hidden" id="check" value="${sessionScope.check}"></td>
       </tr>
       </table>
       
@@ -230,10 +231,7 @@
 	$('#wish').on('click', function() {
 		$('#star').css('background-color','#e8e8e8');
 		var client_name="${sessionScope.check.client_name}";
-		var check = $('#check').val();
-        if(!check){
-           $('#wish').attr("href", "../../main/login");
-        }           	
+		var check = $('#check').val();       	
 			$.ajax({
 				url:'../../tour/wishon',
 				type:'POST',

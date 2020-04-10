@@ -172,6 +172,18 @@ public class TravelController {
 		wishservice.insert_wish(bean);
 		return "home";
 	}
+	//내가 찜한 상품
+	@RequestMapping(value="/main/mywish", method=RequestMethod.GET)
+	public String mywish(String id, Model model,
+	 			@ModelAttribute("search") Search search
+	 			) throws Exception {
+			
+			model.addAttribute("search", search);
+	 		search.setClient_name(id);
+	 		model.addAttribute("list",wishservice.selectAll_wish(search));
+			
+			return "mypage/wish";
+	}
 		
 	
 	//디테일PAGE
