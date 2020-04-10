@@ -193,28 +193,12 @@
 	
 		// 검색
 		$('#searchGo').on('click',function() {
-			alert('반응');
 			var url='${root }system/paid';
 			url=url+'?searchType='+$('#searchType').val();
 			url=url+'&keyword='+$('#keyword').val();
 			
 			location.href=url;
 		});
-		
-		// 리모컨 top
-		$('#top').on('click',function() {
-			$('html,body').scrollTop(0);
-		});
-		
-		//<![CDATA[
-	    // 사용할 앱의 JavaScript 키를 설정해 주세요.
-	    Kakao.init('acc658a670e9ed5918d11647040b5bc5');
-	    // 카카오톡 채널 1:1채팅 버튼을 생성합니다.
-	    Kakao.Channel.createChatButton({
-	      container: '#kakao-talk-channel-chat-button',
-	      channelPublicId: '_wxfwxfxb' // 카카오톡 채널 홈 URL에 명시된 id로 설정합니다.
-	    });
-	  //]]>
    });
 //////////////////////////////////////////////////////////////////////////////////////////		
 		// 페이징

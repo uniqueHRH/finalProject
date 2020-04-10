@@ -124,10 +124,22 @@
 <!-- contents end -->
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="${root }js/bootstrap.js"></script>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#dele').hide();
+		
+		
+		
+		
+		
+		CKEDITOR.replace('board_content');
+		
+		
+		
+		
+		
+		
 		// 파일업로드
 		$('#board_img').change(function(){
 			if(this.files && this.files[0]) {

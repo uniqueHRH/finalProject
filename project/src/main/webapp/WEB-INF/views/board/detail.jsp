@@ -231,6 +231,7 @@
 		if(img=='') {
 			$('#board_thumb').remove();
 		}
+		
       // 테마 출력
 		var themeVal=$('#board_theme').val();
 		var themeLength=themeVal.length;
@@ -255,7 +256,7 @@
 				$('#board_theme3').val('#'+themeThi);
 			}
 		};
-      
+		
 		// 작성자+관리자만 수정/삭제 가능
 		var mas=$('#client_nick1').val();
 		var log=$('#log').val();
@@ -425,9 +426,6 @@
     	  location.reload();
       }
       
-      function time() {
-    	  setTimeout('time()',2000);
-      }
    });
    
 </script>

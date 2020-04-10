@@ -84,12 +84,6 @@
 	
 </nav>
 
-<!-- 리모컨 -->
-	<div class="btn-group-vertical fixed-top" id="remote" role="group" aria-label="...">
-		<div id="kakao-talk-channel-chat-button"></div>
-		<button type="button" class="btn btn-default" id="top">TOP ▲</button>
-	</div>
-
 
 <!-- contents end -->
 <jsp:include page="/WEB-INF/remote.jsp"/>

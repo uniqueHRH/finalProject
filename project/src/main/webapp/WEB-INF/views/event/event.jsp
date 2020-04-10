@@ -84,13 +84,6 @@
 	
 </nav>
 
-<!-- 리모컨 -->
-	<div class="btn-group-vertical fixed-top" id="remote" role="group" aria-label="...">
-		<div id="kakao-talk-channel-chat-button"></div>
-		<button type="button" class="btn btn-default" id="top">TOP ▲</button>
-	</div>
-
-
 
 <!-- contents end -->
 <jsp:include page="/WEB-INF/remote.jsp"/>
@@ -101,31 +94,6 @@
 <script type="text/javascript" src="${root }js/bootstrap.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-		$('#hamb').hide();
-		$('#hide').hide();
-		
-		$('#tour_sub').hide();
-		$('#comm_sub').hide();
-		$('#serv_sub').hide();
-		$('#system_sub').hide();
-		
-		$('#maintext1').hide();
-		$('#maintext2').hide();
-		$('#maintext3').hide();
-		$('#maintext4').hide();
-		
-		$('#hambBtn').mouseenter(function() {
-			$('#hamb').show();
-			$(this).hide();
-		});
-		$('#hamb').mouseenter(function() {
-			$(this).show();
-			$('#hambBtn').hide();
-		}).mouseleave(function() {
-			$('#hamb').hide();
-			$('#hambBtn').show();
-		});
-		
 		/* 정렬 */
 		$('#sel').on('click',function() {
 			var up=$('#dropdownMenu1').val();
