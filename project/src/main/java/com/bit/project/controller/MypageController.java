@@ -119,12 +119,6 @@ public class MypageController {
   		return "mypage/myBoard";
   	}
   	
-//	Âò ÆäÀÌÁö
-  	@RequestMapping(value="/main/wish", method=RequestMethod.GET)
-  	public String wish(WishVo bean, Model model) {
-  		wishService.select_wish(bean, model);
-  		return "mypage/wish";
-  	}
   	// ÂòÇÏ±â
   	@RequestMapping(value="/main/wishOn", method=RequestMethod.POST)
   	public String wishOn(WishVo bean) {

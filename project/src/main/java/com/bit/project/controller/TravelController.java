@@ -172,6 +172,16 @@ public class TravelController {
 		wishservice.insert_wish(bean);
 		return "home";
 	}
+	//찜한상품페이지마다 전달
+		@RequestMapping(value = "/tour/keepwish", method = RequestMethod.POST)
+		public ModelAndView keepwish(WishVo bean) throws Exception{
+			WishVo wishchk = wishservice.keep_wish(bean);
+			ModelAndView mav = new ModelAndView();
+			mav.addObject("Wishchk",wishchk);
+			mav.setViewName("jsonView");		
+			System.out.println("controller="+wishchk);
+			return mav;
+		}
 	//내가 찜한 상품
 	@RequestMapping(value="/main/mywish", method=RequestMethod.GET)
 	public String mywish(String id, Model model,
@@ -238,7 +248,7 @@ public class TravelController {
 		tourservice.selectAll_themesports(model);
 		return "tour/themetour";
 	}
-
+	
 	//마이페이지 내가 예약한 상품
 	@RequestMapping(value="/main/mybooking", method=RequestMethod.GET)
 	public String mybooking(String id, Model model,

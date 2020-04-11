@@ -5,7 +5,7 @@
  
 <mapper namespace="wish">
 
-<select id="selectAll_wish" resultType="WishBean" parameterType="WishBean" resultMap="WishMap">
+	<select id="selectAll_wish" resultType="WishBean" parameterType="WishBean" resultMap="WishMap">
 		select tour.tour_no,tour.mainimg,tour.name,tour.city,tour.country,tour.cost from wish inner join tour on wish.tour_no=tour.tour_no
 		<trim prefix="WHERE" prefixOverrides="AND|OR">
 			<if test="client_name!=null and client_name!=''">
@@ -14,6 +14,11 @@
 		</trim>
 		order by wish_no desc
 	</select>
+	
+	<select id="keep_wish" resultType="WishBean" parameterType="WishBean">
+		select wishchk from wish where client_name=#{client_name} and tour_no=#{tour_no} 	
+	</select>
+	
 	
 		<!--  wish join tour -->
 	<resultMap type="WishBean" id="WishMap">

@@ -209,6 +209,23 @@
 <script type="text/javascript" src="${root }js/bootstrap.js"></script>
  <script type="text/javascript">
    $(document).ready(function() {
+	   var id=$('#session').val();
+	   if(id){
+	   var client_name="${sessionScope.check.client_name}";
+		   $.ajax({
+				url: '../../tour/keepwish',
+				type:'POST',
+				data:{client_name:client_name,tour_no:${bean.tour_no}},
+				success:function(data){
+					alert(Wishchk.wishchk);
+									
+				},
+				error:function(){
+				 	alert('안되용');
+				}	
+			});
+	  }
+	   
       $('#bookbtn').click(function(){
             var check = $('#check').val();
             if(!check){

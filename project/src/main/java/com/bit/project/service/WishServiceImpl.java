@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 
 import com.bit.project.common.Search;
 import com.bit.project.model.WishDao;
+import com.bit.project.model.entity.ClientVo;
 import com.bit.project.model.entity.WishVo;
 
 @Service
@@ -16,15 +17,6 @@ public class WishServiceImpl implements WishService {
 	@Autowired
 	WishDao wishDao;
 	
-	
-	@Override
-	public void select_wish(WishVo bean, Model model) {
-		try {
-			model.addAttribute("bean", wishDao.select_wish(bean));
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
 
 	@Override
 	public void insert_wish(WishVo bean) {
@@ -47,6 +39,11 @@ public class WishServiceImpl implements WishService {
 	@Override
 	public List<WishVo> selectAll_wish(Search search) throws Exception {
 		return wishDao.selectAll_wish(search);
+	}
+
+	@Override
+	public WishVo keep_wish(WishVo bean) throws Exception {
+		return wishDao.keep_wish(bean);
 	}
 
 }
