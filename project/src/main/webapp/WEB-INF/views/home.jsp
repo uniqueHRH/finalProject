@@ -247,7 +247,7 @@
 						       		<li><a href="${root }system/guide">가이드 관리</a></li>
 						       		<li><a href="${root }system/client">회원 관리</a></li>
 						       		<li><a href="${root }system/paid">결제 관리</a></li>
-						       		<li><a href="#">투어 관리</a></li>
+						       		<li><a href="${root }system/tour">투어 관리</a></li>
 						       		<li><a href="${root }system/report">신고 관리</a></li>
 								</ul>
 					        </li>
