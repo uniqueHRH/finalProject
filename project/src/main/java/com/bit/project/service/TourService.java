@@ -1,11 +1,15 @@
 package com.bit.project.service;
 
+import java.util.List;
+
 import org.springframework.ui.Model;
 
+import com.bit.project.common.Search;
 import com.bit.project.model.entity.PaidVo;
+import com.bit.project.model.entity.TourVo;
 
 public interface TourService {
-	
+	//회원용
 	void selectAll_eastasia(Model model);
 	void selectAll_southeastasia(Model model);
 	void selectAll_america(Model model);
@@ -21,5 +25,8 @@ public interface TourService {
 	
 	void selectOne_tour(Model model,int tour_no);
 	void insertOne_tour(PaidVo bean);
-	
+	////////////////////////
+	//관리자용(system)
+	List<TourVo> selectAll_tour(Search search) throws Exception;
+	public int getallTourListCnt(Search search) throws Exception;
 }

@@ -407,4 +407,38 @@ public class TravelController {
 		paidservice.allpaid_confirm(bean);
 		return "system/detailallpaid";
 	}
+	//직원용 여행상품관리페이지
+		@RequestMapping(value = "/system/tour", method = RequestMethod.GET)
+		public String tour(String id, Model model,
+				@RequestParam(required = false, defaultValue = "1") int page,
+	 			@RequestParam(required=false, defaultValue="1") int range,
+	 			@RequestParam(required=false, defaultValue="land") String searchType,
+	 			@RequestParam(required=false) String keyword,
+	 			@ModelAttribute("search") Search search
+	 			) throws Exception {
+			
+			model.addAttribute("search", search);
+	 		search.setSearchType(searchType);
+	 		search.setKeyword(keyword);
+	 		
+	 		// 전체 게시글 갯수
+	 		int listCnt=0;
+			try {
+				listCnt=tourservice.getallTourListCnt(search);
+				search.pageInfo(page, range, listCnt);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			model.addAttribute("pagination", search);
+			model.addAttribute("list",tourservice.selectAll_tour(search));
+			model.addAttribute("listCnt",listCnt);
+			return "system/alltour";
+		}
+		//직원용 여행상품 디테일페이지
+		@RequestMapping(value = "/system/tour/{idx}", method = RequestMethod.GET)
+		public String detailtour(Model model, @PathVariable ("idx") int tour_no) {
+			tourservice.selectOne_tour(model, tour_no);
+			return "system/detailalltour";
+		}
 }

@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.bit.project.common.Search;
 import com.bit.project.model.entity.PaidVo;
 import com.bit.project.model.entity.TourVo;
 
@@ -85,6 +86,16 @@ public class TourDaoImpl implements TourDao {
 	@Override
 	public List<TourVo> selectAll_themesports() throws Exception {
 		return sqlSession.selectList("tour.selectAll_themesports");
+	}
+
+	@Override
+	public List<TourVo> selectAll_tour(Search search) throws Exception {
+		return sqlSession.selectList("tour.selectAll_tour",search);
+	}
+
+	@Override
+	public int getallTourListCnt(Search search) throws Exception {
+		return sqlSession.selectOne("tour.getallTourListCnt", search);
 	}
 
 }

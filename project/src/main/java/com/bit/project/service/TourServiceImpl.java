@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+import com.bit.project.common.Search;
 import com.bit.project.model.TourDao;
 import com.bit.project.model.entity.PaidVo;
 import com.bit.project.model.entity.TourVo;
@@ -167,6 +168,16 @@ public class TourServiceImpl implements TourService{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public List<TourVo> selectAll_tour(Search search) throws Exception {
+		return tourDao.selectAll_tour(search);
+	}
+
+	@Override
+	public int getallTourListCnt(Search search) throws Exception {
+		return tourDao.getallTourListCnt(search);
 	}
 
 }

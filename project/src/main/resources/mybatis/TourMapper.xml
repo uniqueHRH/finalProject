@@ -4,6 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="tour">
+	<!-- 회원용 -->
 	<select id="selectAll_eastasia" resultType="TourBean">
 		select * from tour where land='동아시아' order by country
 	</select>
@@ -50,6 +51,7 @@
 	<!--  detail join guide -->
 	<resultMap type="TourBean" id="TourMap">
 		<result property="tour_no" column="tour_no"/>
+		<result property="land" column="land"/>
 		<result property="country" column="country"/>
 		<result property="city" column="city"/>
 		<result property="name" column="name"/>
@@ -71,7 +73,7 @@
 	</resultMap>
 	
 	<select id="selectOne_tour" parameterType="TourBean" resultMap="TourMap" >
-		select tour.tour_no,tour.name,tour.city,tour.cost,tour.vehicle,tour.comments,tour.course,tour.latlng,tour.firstimg,tour.secondimg,tour.thirdimg,guide.guide_name from tour inner join guide on tour.city=guide.guide_city where tour_no=#{value}
+		select tour.tour_no,tour.land,tour.country,tour.name,tour.city,tour.cost,tour.vehicle,tour.comments,tour.course,tour.latlng,tour.firstimg,tour.secondimg,tour.thirdimg,guide.guide_name from tour inner join guide on tour.city=guide.guide_city where tour_no=#{value}
 	</select>
 	
 	<!-- paidDB 에 넣는 쿼리문 -->
@@ -79,5 +81,32 @@
 		insert into paid (tour_no,client_name,paid_name,paid_phone,paid_birth,paid_count,paid_kakaoid,tour_date,book_date,paid_total,paid_state,paid_confirm) values (#{tour_no},#{client_name},#{paid_name},#{paid_phone},#{paid_birth},#{paid_count},#{paid_kakaoid},#{tour_date},now(),#{paid_total},'미결제','미확정')
 	</insert>
 	
+	<!-- 관리자용(system) -->
+	
+		<select id="selectAll_tour" resultType="TourBean">
+		select * from tour
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="searchType=='country' and keyword != null and keyword != '' ">
+				AND country like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType=='city' and keyword != null and keyword != '' ">
+				AND city like CONCAT('%', #{keyword}, '%')
+			</if>	
+		</trim>
+		 order by tour_no
+		LIMIT #{startList}, #{listSize}
+	</select>
+	
+	<select id="getallTourListCnt" resultType="int">
+		select count(*) from tour
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="searchType=='country' and keyword != null and keyword != '' ">
+				AND country like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType=='city' and keyword != null and keyword != '' ">
+				AND city like CONCAT('%', #{keyword}, '%')
+			</if>
+		</trim>
+	</select>
 </mapper>
 

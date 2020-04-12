@@ -31,6 +31,7 @@ public class PaidServiceImpl implements PaidService {
 	public List<ReceiveVo> selectAll_paid(Search search) throws Exception {
 		return paidDao.selectAll_paid(search);
 	}
+	
 	@Override
 	public void paid_confirm(PaidVo bean) {
 		try {
