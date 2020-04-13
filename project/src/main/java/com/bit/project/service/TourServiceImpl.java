@@ -188,6 +188,11 @@ public class TourServiceImpl implements TourService{
 		return tourDao.getallTourListCnt(search);
 	}
 
+	@Override
+	public List<TourVo> homeSearch(Search search) throws Exception {
+		return tourDao.homeSearch(search);
+	}
+
 
 
 }

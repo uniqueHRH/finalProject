@@ -108,4 +108,9 @@ public class TourDaoImpl implements TourDao {
 		return sqlSession.selectList("tour.selectAll_tour_arraycountry",search);
 	}
 
+	@Override
+	public List<TourVo> homeSearch(Search search) throws Exception {
+		return sqlSession.selectList("tour.homeSearch", search);
+	}
+
 }

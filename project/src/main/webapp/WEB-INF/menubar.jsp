@@ -14,7 +14,6 @@
 		left:700;
 		width:350px;
 	}
-	
 	/* 메뉴바 */
 	#top1 {
 		height:110px;
@@ -34,6 +33,16 @@
 		height:1000px;
 		text-align:center;
 		list-style:none;
+	}
+	#count {
+		font-size:11px;
+		color:white;
+		text-align:center;
+		background-color:#FF0E0E;
+		border:0;
+		width:19;
+		border-radius:50%;
+		padding:1 0 0 0;
 	}
 /* 메뉴 */
 	#tourM, #boardM, #serviceM, #eventM, #systemM {

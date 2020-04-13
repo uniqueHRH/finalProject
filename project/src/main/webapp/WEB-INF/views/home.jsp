@@ -87,42 +87,31 @@
 /* 추천상품 */
 	#mainP{
 		text-align: center;
-		font-family: 'Jua';
 		font-size: 48px;
 	}
-	#mainI {
+	#mainI, #mainI2 {
 		width:1800px;
 		text-align:center;
+		font-family: 'Jua';
 		margin:0 auto;
 	}
 	#main1,#main2,#main3,#main4 {
 		display: inline-block;
-		width:330px;
-		height:330px;
-		background-repeat:no-repeat;
-		border-radius:100%;
- 		background-size:330px;
- 		margin:40px;
+		padding:20 20;
+		border:1px solid #e8e8e8;
+		margin:0 10px;
+ 	}
+ 	img {
+ 		width:330px;
+ 		border-radius:2%;
  	}
 	#main1>a, #main2>a, #main3>a, #main4>a {
-		color:white;
-		font-family: 'Jua';
-		font-size:50px;
+		color:black;
+		font-size:15px;
 		text-decoration: none;
-		line-height:340px;
-		padding:60px;
 	}
-	#main1 {	
-		background-image:url(https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/mainbarcelona.jpg?raw=true);		
-	}
-	#main2 {
-		background-image:url(https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/maindanang.jpg?raw=true);		
-	}
-	#main3 {
-		background-image:url(https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/mainnewyork.jpg?raw=true);		
-	}
-	#main4 {
-		background-image:url(https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/mainsydney.jpg?raw=true);
+	#main1 p, #main2 p, #main3 p, #main4 p{
+		text-align:right;
 	}
 	
 /* 검색 */
@@ -133,6 +122,9 @@
 		text-align:center;
 		align:center;
 		padding:500 0 0 0;
+	}
+	#searchType {
+		height:50px;
 	}
 	#keyword {
 		width:500px;
@@ -261,7 +253,12 @@
 </div>
 
 	<div id="MainSea">
-		<input type="text" class="form-control" id="keyword" name="keyword" placeholder="도시명 검색 (DB 확인후 기능 예정)">
+		<select id="searchType">
+		    <option value="country">나 &nbsp; 라</option>
+		    <option value="city">도 &nbsp; 시</option>
+		    <option value="theme">테 &nbsp; 마</option>
+		</select>
+		<input type="text" class="form-control" id="keyword" name="keyword" placeholder="나라 도시 테마 검색">
 		<a class="btn btn-default" href="#" role="button" id="searchGo">G O</a>
 	</div>
 	
@@ -269,13 +266,54 @@
 
 	<!-- 추천상품img -->
 	<div id="mainI">
-		<p id="mainP">추천상품</p>
-		<div id="main1"><a href="#">바르셀로나</a></div>
-		<div id="main2"><a href="#">다 &nbsp; &nbsp; &nbsp;낭</a></div>
-		<div id="main3"><a href="#">뉴&nbsp; &nbsp; &nbsp;욕</a></div>
-		<div id="main4"><a href="#">시 드 니</a></div>
+		<p id="mainP">가이드 추천</p>
+		<div id="main1">
+			<a href="#">
+				<img src="https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/mainbarcelona.jpg?raw=true"/><br/>
+				<h3>바르셀로나</h3><p>바로가기 ▶</p>
+			</a>
+		</div>
+		<div id="main2">
+			<a href="#"><img src="https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/maindanang.jpg?raw=true"><br/>
+			<h3>다 &nbsp; &nbsp; &nbsp;낭</h3><p>바로가기 ▶</p>
+		</a>
+		</div>
+		<div id="main3">
+			<a href="#"><img src="https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/mainnewyork.jpg?raw=true"><br/>
+			<h3>뉴&nbsp; &nbsp; &nbsp;욕</h3><p>바로가기 ▶</p>
+		</a>
+		</div>
+		<div id="main4">
+			<a href="#"><img src="https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/mainsydney.jpg?raw=true"><br/>
+			<h3>시 드 니</h3><p>바로가기 ▶</p>
+		</a>
+		</div>
 	</div>
 	
+		<div id="mainI2">
+		<p id="mainP">최근본 상품</p>
+		<div id="main1">
+			<a href="#">
+				<img src="https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/mainbarcelona.jpg?raw=true"/><br/>
+				<h3>바르셀로나</h3><p>바로가기 ▶</p>
+			</a>
+		</div>
+		<div id="main2">
+			<a href="#"><img src="https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/maindanang.jpg?raw=true"><br/>
+			<h3>다 &nbsp; &nbsp; &nbsp;낭</h3><p>바로가기 ▶</p>
+		</a>
+		</div>
+		<div id="main3">
+			<a href="#"><img src="https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/mainnewyork.jpg?raw=true"><br/>
+			<h3>뉴&nbsp; &nbsp; &nbsp;욕</h3><p>바로가기 ▶</p>
+		</a>
+		</div>
+		<div id="main4">
+			<a href="#"><img src="https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/mainsydney.jpg?raw=true"><br/>
+			<h3>시 드 니</h3><p>바로가기 ▶</p>
+		</a>
+		</div>
+	</div>
 <!-- footer -->
 <div id="footer">
 <hr style="border: solid 1px silver;">
@@ -319,21 +357,13 @@
 			});
 		}	
 		
-		
-
-		// 새로온 쪽지 표시
-		var count=$('#count').val();
-		if(status==0) {
-			$('#count').attr('type','hidden');
-		}
 		// 검색
 		$('#searchGo').on('click',function() {
-			var url='${root }board/review';
+			var url='${root }tour';
 			url=url+'?searchType='+$('#searchType').val();
 			url=url+'&keyword='+$('#keyword').val();
 			
 			location.href=url;
-			console.log(url);
 		});
 		
 	});

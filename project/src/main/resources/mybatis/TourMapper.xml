@@ -48,6 +48,22 @@
 	</select>
 	<!-- 테마끝 -->
 	
+<!-- home 검색 -->
+	<select id="homeSearch" resultType="TourBean">
+		select * from tour
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="searchType=='country' and keyword != null and keyword != '' ">
+				AND country like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType=='city' and keyword != null and keyword != '' ">
+				AND city like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType=='theme' and keyword != null and keyword != '' ">
+				AND theme like CONCAT('%', #{keyword}, '%')
+			</if>	
+		</trim>
+		order by tour_no desc
+	</select>
 	<!--  detail join guide -->
 	<resultMap type="TourBean" id="TourMap">
 		<result property="tour_no" column="tour_no"/>

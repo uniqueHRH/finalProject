@@ -31,4 +31,7 @@ public interface TourService {
 	List<TourVo> selectAll_tour_arrayland(Search search) throws Exception;
 	List<TourVo> selectAll_tour_arraycountry(Search search) throws Exception;
 	public int getallTourListCnt(Search search) throws Exception;
+	
+	// È¨ °Ë»ö
+	List<TourVo> homeSearch(Search search) throws Exception;
 }
