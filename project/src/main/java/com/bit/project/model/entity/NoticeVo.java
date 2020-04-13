@@ -1,12 +1,12 @@
 package com.bit.project.model.entity;
 
-import java.sql.Timestamp;
+import java.sql.Date;
 
 public class NoticeVo {
 
 	private int notice_no;
 	private int notice_count;
-	private Timestamp notice_date;
+	private Date notice_date;
 	private String notice_sub;
 	private String notice_content;
 	private String notice_img;
@@ -27,10 +27,10 @@ public class NoticeVo {
 	public void setNotice_count(int notice_count) {
 		this.notice_count = notice_count;
 	}
-	public Timestamp getNotice_date() {
+	public Date getNotice_date() {
 		return notice_date;
 	}
-	public void setNotice_date(Timestamp notice_date) {
+	public void setNotice_date(Date notice_date) {
 		this.notice_date = notice_date;
 	}
 	public String getNotice_sub() {
@@ -69,7 +69,7 @@ public class NoticeVo {
 	
 	
 	
-	public NoticeVo(int notice_no, int notice_count, Timestamp notice_date, String notice_sub, String notice_content,
+	public NoticeVo(int notice_no, int notice_count, Date notice_date, String notice_sub, String notice_content,
 			String notice_img, String notice_thumb) {
 		super();
 		this.notice_no = notice_no;

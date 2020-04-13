@@ -10,11 +10,17 @@
 <link rel="stylesheet" type="text/css" href="${root }css/bootstrap.css" />
 <link rel="stylesheet" type="text/css" href="${root }css/travel.css" />
 <style type="text/css">
+	#allContain {
+		width:950px;
+		margin:0 auto;
+		padding-left:180px;
+		font-family: 'Jua';
+	}
 	h1 {
 		font-family: 'Jua';
 	}
 	form {
-      width:800px;      
+      width:950px;      
       margin:0 auto;
       font-family: 'Jua';
       font-size:18px;
@@ -31,7 +37,12 @@
       font-weight:normal;
 	}
 	#textarea {
-		padding:0 0 0 50px;
+		padding-left:50px;
+	}
+	#board_content {
+		width:750px;
+		height:300px;
+		resize:none;
 	}
 /* 나라 선택 */	
 	#land {
@@ -50,81 +61,91 @@
 		text-align:center;
 		font-weight:normal;
 	}
-
+	#theme {
+		width:800px;
+		text-align:center;
+	}
 	.board_img img {
 		margin:20px 0;
+	}
+	#btn {
+		width:800px;
+		width:800px;
+		text-align:center;
 	}
 </style>
 </head>
 <body>
 <jsp:include page="/WEB-INF/menubar.jsp"/>
 <!-- contents start -->
-      <div class="page-header" id="page-header" align="center">
-     <h1>INSERT</h1>
-   </div>
-      
-<!-- 나라 선택 -->
-<form class="form-inline" method="POST" enctype="multipart/form-data">
-<div id="select">
-	<select id="land" name="board_land" style="cursor:pointer">
-		<option>나라 선택</option>
-		<option>중국/일본</option>
-		<option>동남아시아</option>
-		<option>아메리카</option>
-		<option>유&nbsp; &nbsp; &nbsp;럽</option>
-		<option>남태평양</option>
-		<option>아프리카</option>
-	</select>
-</div>
-
-<!-- 입력 -->
-	<div class="form-group" id="sub">
-		<p></p>
-		<label for="exampleInputName2">제 &nbsp; 목</label>
-		<input type="text" class="form-control" id="board_sub" name="board_sub" style="width:670px;">
-		<input type="hidden" id="client_nick1" name="client_nick1" value="${sessionScope.check.client_nick1}">
+<div id="allContain">
+	<div class="page-header" id="page-header" align="center">
+		<h1>INSERT</h1>
 	</div>
-	<div id="textarea">
-		&nbsp; <textarea class="form-control" id="board_content" name="board_content"></textarea>
+      
+	<!-- 나라 선택 -->
+	<form class="form-inline" method="POST" enctype="multipart/form-data">
+	<div id="select">
+		<select id="land" name="board_land" style="cursor:pointer">
+			<option>나라 선택</option>
+			<option>중국/일본</option>
+			<option>동남아시아</option>
+			<option>아메리카</option>
+			<option>유&nbsp; &nbsp; &nbsp;럽</option>
+			<option>남태평양</option>
+			<option>아프리카</option>
+		</select>
 	</div>
 	
-<!-- 테마 선택 -->	
-	<div class="custom-control custom-checkbox" align="center" id="theme">
-	<p></p>
-		<input type="checkbox" name="theme" class="custom-control-input" value="힐링">
-		<label class="custom-control-label" for="jb-checkbox">힐링</label>
-		&nbsp; &nbsp; 
-		<input type="checkbox" name="theme" class="custom-control-input" value="스냅">
-		<label class="custom-control-label" for="jb-checkbox">스냅</label>
-		&nbsp; &nbsp; 
-		<input type="checkbox" name="theme" class="custom-control-input" value="액티비티">
-		<label class="custom-control-label" for="jb-checkbox">액티비티</label>
-		&nbsp; &nbsp; 
-		<input type="checkbox" name="theme" class="custom-control-input" value="식도락">
-		<label class="custom-control-label" for="jb-checkbox">식도락</label>
-		&nbsp;&nbsp; 
-		<input type="checkbox" name="theme" class="custom-control-input" value="영화">
-		<label class="custom-control-label" for="jb-checkbox">영화</label>
-		&nbsp; &nbsp; 
-		<input type="checkbox" name="theme" class="custom-control-input" value="스포츠">
-		<label class="custom-control-label" for="jb-checkbox">스포츠</label>
+	<!-- 입력 -->
+		<div class="form-group" id="sub">
+			<p></p>
+			<label for="exampleInputName2">제 &nbsp; 목</label>
+			<input type="text" class="form-control" id="board_sub" name="board_sub" style="width:670px;">
+			<input type="hidden" id="client_nick1" name="client_nick1" value="${sessionScope.check.client_nick1}">
+		</div>
+		<div id="textarea">
+			&nbsp; <textarea class="form-control" id="board_content" name="board_content"></textarea>
+		</div>
 		
-		<input type="hidden" id="board_theme" name="board_theme">
-	</div>
-<!-- file upload -->
-	<div class="upload">
-		<label for="board_img">이미지</label> &nbsp; &nbsp; <a class="btn btn-default" role="button" id="dele">삭제</a>
-		<input type="file" id="board_img" name="file" />
-		<div class="board_img"><img src="" id="img"/></div>
-	</div>
+	<!-- 테마 선택 -->	
+		<div id="theme">
+		<p></p>
+			<input type="checkbox" name="theme" class="custom-control-input" value="힐링">
+			<label class="custom-control-label" for="jb-checkbox">힐링</label>
+			&nbsp; &nbsp; 
+			<input type="checkbox" name="theme" class="custom-control-input" value="스냅">
+			<label class="custom-control-label" for="jb-checkbox">스냅</label>
+			&nbsp; &nbsp; 
+			<input type="checkbox" name="theme" class="custom-control-input" value="액티비티">
+			<label class="custom-control-label" for="jb-checkbox">액티비티</label>
+			&nbsp; &nbsp; 
+			<input type="checkbox" name="theme" class="custom-control-input" value="식도락">
+			<label class="custom-control-label" for="jb-checkbox">식도락</label>
+			&nbsp;&nbsp; 
+			<input type="checkbox" name="theme" class="custom-control-input" value="영화">
+			<label class="custom-control-label" for="jb-checkbox">영화</label>
+			&nbsp; &nbsp; 
+			<input type="checkbox" name="theme" class="custom-control-input" value="스포츠">
+			<label class="custom-control-label" for="jb-checkbox">스포츠</label>
+			
+			<input type="hidden" id="board_theme" name="board_theme">
+		</div>
+	<!-- file upload -->
+		<div class="upload">
+			<label for="board_img">이미지</label> &nbsp; &nbsp; <a class="btn btn-default" role="button" id="dele">삭제</a>
+			<input type="file" id="board_img" name="file" />
+			<div class="board_img"><img src="" id="img"/></div>
+		</div>
+	
+	<!-- 버튼 -->
+		<div id="btn">
+		  <button type="submit" class="btn btn-default" id="subm">작성완료</button> &nbsp;
+		  <button type="button" class="btn btn-default" id="btn2">취 &nbsp; &nbsp;소</button>
+		</div>
+	</form>
+</div>
 
-<!-- 버튼 -->
-	<p></p>
-	<p align="center">
-	  <button type="submit" class="btn btn-default" id="subm">작성완료</button>
-	  <button type="button" class="btn btn-default" id="btn2">취 &nbsp; &nbsp;소</button>
-	</p>
-</form>
 <jsp:include page="/WEB-INF/remote.jsp"/>
 <jsp:include page="/WEB-INF/socket.jsp"/>
 <jsp:include page="/WEB-INF/footer.jsp"/>

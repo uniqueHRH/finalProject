@@ -93,7 +93,13 @@
 			</if>
 			<if test="searchType=='paid_name' and keyword != null and keyword != '' ">
 				AND paid_name like CONCAT('%', #{keyword}, '%')
-			</if>	
+			</if>
+			<if test="searchType=='paid_state' and keyword != null and keyword != '' ">
+				AND paid_state like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType=='paid_confirm' and keyword != null and keyword != '' ">
+				AND paid_confirm like CONCAT('%', #{keyword}, '%')
+			</if>
 		</trim>
 		 order by paid_no desc
 		LIMIT #{startList}, #{listSize}
@@ -108,6 +114,12 @@
 			</if>
 			<if test="searchType=='paid_name' and keyword != null and keyword != '' ">
 				AND paid_name like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType=='paid_state' and keyword != null and keyword != '' ">
+				AND paid_state like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType=='paid_confirm' and keyword != null and keyword != '' ">
+				AND paid_confirm like CONCAT('%', #{keyword}, '%')
 			</if>
 		</trim>
 	</select>

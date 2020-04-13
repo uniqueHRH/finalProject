@@ -1,6 +1,6 @@
 package com.bit.project.model.entity;
 
-import java.sql.Timestamp;
+import java.sql.Date;
 
 public class EventVo {
 
@@ -9,7 +9,7 @@ public class EventVo {
 	private int event_count;
 	private String event_content;
 	private String client_nick1;
-	private Timestamp event_date;
+	private Date event_date;
 	private String event_img;
 	private String event_thumb;
 	
@@ -68,12 +68,12 @@ public class EventVo {
 	}
 
 
-	public Timestamp getEvent_date() {
+	public Date getEvent_date() {
 		return event_date;
 	}
 
 
-	public void setEvent_date(Timestamp event_date) {
+	public void setEvent_date(Date event_date) {
 		this.event_date = event_date;
 	}
 
@@ -107,7 +107,7 @@ public class EventVo {
 
 
 	public EventVo(int board_no, String event_sub, int event_count, String event_content, String client_nick1,
-			Timestamp event_date, String event_img, String event_thumb) {
+			Date event_date, String event_img, String event_thumb) {
 		super();
 		this.board_no = board_no;
 		this.event_sub = event_sub;

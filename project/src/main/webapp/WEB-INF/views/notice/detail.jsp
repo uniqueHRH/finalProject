@@ -19,49 +19,50 @@
 
 
 <!-- contents start -->
-      <div class="page-header" id="page-header" align="center">
-     <h1>DETAIL</h1>
-   </div>
+<div id="allContain">
+	<div class="page-header" id="page-header" align="center">
+		<h1>DETAIL</h1>
+	</div>
       
-<!-- 제목 -->
-<form class="form-inline" method="POST">
-   <div>
-		<input type="text" class="form-control" id="board_sub" name="board_sub" value="${bean.notice_sub }" style="cursor:default" disabled>
-		<input type="hidden" id="board_no" name="board_no" value="${bean.notice_no }">
-		<input type="hidden" id="log" name="log" value="${sessionScope.staffcheck.staff_name}">
-   </div>
-   <p></p>
-   <div>
-      <div class="form-group" align="left">
-         <label for="exampleInputName2">닉네임</label>
-         <input type="text" class="form-control" id="client_nick1" name="client_nick1" value="관리자" style="cursor:default" disabled>
-      </div>
-      &nbsp; &nbsp;
-      <div class="form-group">
-         <label for="exampleInputEmail2">조회수</label>
-         <input type="text" class="form-control" id="board_count" value="${bean.notice_count }" style="cursor:default" disabled>
-      </div>
-      &nbsp; &nbsp;
-      <div class="form-group" align="left">
-      	<label for="exampleInputEmail2">작성일</label>
-		<input type="text" class="form-control" id="board_date" value="${bean.notice_date }" style="cursor:default" disabled>
-      </div>
-   </div>
-   <p></p>
-   <div contenteditable="false" id="contentM">
-		<img src="${root }resources/${bean.notice_thumb }" id="board_thumb"/>
-		<input type="hidden" id="hiddenI" value="${bean.notice_thumb }"/>
-		<input type="text" id="contentC" value="${bean.notice_content }" disabled/>
-   </div>
-   <p></p>
-   <div id="btn">
-      <button type="button" class="btn btn-default" id="subm">수정하기</button>
-      <button type="button" class="btn btn-default" id="dele">삭제하기</button>
-      <button type="button" class="btn btn-default" id="goList">목록으로</button>
-   </div>
-
-</form>
-
+	<!-- 제목 -->
+	<form class="form-inline" method="POST">
+	   <div>
+			<input type="text" class="form-control" id="board_sub" name="board_sub" value="${bean.notice_sub }" style="cursor:default" disabled>
+			<input type="hidden" id="board_no" name="board_no" value="${bean.notice_no }">
+			<input type="hidden" id="log" name="log" value="${sessionScope.staffcheck.staff_name}">
+	   </div>
+	   <p></p>
+	   <div>
+	      <div class="form-group" align="left">
+	         <label for="exampleInputName2">닉네임</label>
+	         <input type="text" class="form-control" id="client_nick1" name="client_nick1" value="관리자" style="cursor:default" disabled>
+	      </div>
+	      &nbsp; &nbsp;
+	      <div class="form-group">
+	         <label for="exampleInputEmail2">조회수</label>
+	         <input type="text" class="form-control" id="board_count" value="${bean.notice_count }" style="cursor:default" disabled>
+	      </div>
+	      &nbsp; &nbsp;
+	      <div class="form-group" align="left">
+	      	<label for="exampleInputEmail2">작성일</label>
+			<input type="text" class="form-control" id="board_date" value="${bean.notice_date }" style="cursor:default" disabled>
+	      </div>
+	   </div>
+	   <p></p>
+	   <div contenteditable="false" id="contentM">
+			<img src="${root }resources/${bean.notice_thumb }" id="board_thumb"/>
+			<input type="hidden" id="hiddenI" value="${bean.notice_thumb }"/>
+			<input type="text" id="contentC" value="${bean.notice_content }" disabled/>
+	   </div>
+	   <p></p>
+	   <div id="btn">
+	      <button type="button" class="btn btn-default" id="subm">수정하기</button>
+	      <button type="button" class="btn btn-default" id="dele">삭제하기</button>
+	      <button type="button" class="btn btn-default" id="goList">목록으로</button>
+	   </div>
+	
+	</form>
+</div>
 <!-- contents end -->
 <jsp:include page="/WEB-INF/remote.jsp"/>
 <jsp:include page="/WEB-INF/socket.jsp"/>
