@@ -12,14 +12,14 @@ public interface PaidService {
 
 //	회원용
 	void selectOne_paid(Model model,int paid_no);
-	List<ReceiveVo> selectAll_paid(Search search) throws Exception;
+	List<PaidVo> selectAll_paid(Search search) throws Exception;
 	void paid_confirm(PaidVo bean);
 	
 //	관리자용
-	List<ReceiveVo> selectAll_allpaid(Search search) throws Exception;
-	List<ReceiveVo> selectAll_paidState(Search search) throws Exception;
-	List<ReceiveVo> selectAll_paidConfirm(Search search) throws Exception;
-	List<ReceiveVo> selectAll_paidDate(Search search) throws Exception;
+	List<PaidVo> selectAll_allpaid(Search search) throws Exception;
+	List<PaidVo> selectAll_paidState(Search search) throws Exception;
+	List<PaidVo> selectAll_paidConfirm(Search search) throws Exception;
+	List<PaidVo> selectAll_paidDate(Search search) throws Exception;
 	void allpaid_confirm(PaidVo bean);
 	public int getallPaidListCnt(Search search) throws Exception;
 }

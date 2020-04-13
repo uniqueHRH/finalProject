@@ -174,10 +174,20 @@ public class TourServiceImpl implements TourService{
 	public List<TourVo> selectAll_tour(Search search) throws Exception {
 		return tourDao.selectAll_tour(search);
 	}
+	@Override
+	public List<TourVo> selectAll_tour_arrayland(Search search) throws Exception {
+		return tourDao.selectAll_tour_arrayland(search);
+	}
+	@Override
+	public List<TourVo> selectAll_tour_arraycountry(Search search) throws Exception {
+		return tourDao.selectAll_tour_arraycountry(search);
+	}
 
 	@Override
 	public int getallTourListCnt(Search search) throws Exception {
 		return tourDao.getallTourListCnt(search);
 	}
+
+
 
 }

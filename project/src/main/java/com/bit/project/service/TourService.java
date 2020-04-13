@@ -28,5 +28,7 @@ public interface TourService {
 	////////////////////////
 	//관리자용(system)
 	List<TourVo> selectAll_tour(Search search) throws Exception;
+	List<TourVo> selectAll_tour_arrayland(Search search) throws Exception;
+	List<TourVo> selectAll_tour_arraycountry(Search search) throws Exception;
 	public int getallTourListCnt(Search search) throws Exception;
 }

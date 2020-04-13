@@ -314,6 +314,7 @@ public class TravelController {
 		model.addAttribute("listCnt",listCnt);
 		return "system/allpaid";
 	}
+	//결제상태별로 정렬
 	@RequestMapping(value = "/system/paidState", method = RequestMethod.GET)
 	public String allpaidState(String id, Model model,
 			@RequestParam(required = false, defaultValue = "1") int page,
@@ -337,10 +338,11 @@ public class TravelController {
 		}
 		
 		model.addAttribute("pagination", search);
-		model.addAttribute("list",paidservice.selectAll_allpaid(search));
+		model.addAttribute("list",paidservice.selectAll_paidState(search));
 		model.addAttribute("listCnt",listCnt);
 		return "system/allpaid";
 	}
+	//확정상태별로 정렬
 	@RequestMapping(value = "/system/paidConfirm", method = RequestMethod.GET)
 	public String allpaidConfirm(String id, Model model,
 			@RequestParam(required = false, defaultValue = "1") int page,
@@ -364,10 +366,11 @@ public class TravelController {
 		}
 		
 		model.addAttribute("pagination", search);
-		model.addAttribute("list",paidservice.selectAll_allpaid(search));
+		model.addAttribute("list",paidservice.selectAll_paidConfirm(search));
 		model.addAttribute("listCnt",listCnt);
 		return "system/allpaid";
 	}
+	//출발일 기준으로 정렬
 	@RequestMapping(value = "/system/paidDate", method = RequestMethod.GET)
 	public String allpaidDate(String id, Model model,
 			@RequestParam(required = false, defaultValue = "1") int page,
@@ -391,7 +394,7 @@ public class TravelController {
 		}
 		
 		model.addAttribute("pagination", search);
-		model.addAttribute("list",paidservice.selectAll_allpaid(search));
+		model.addAttribute("list",paidservice.selectAll_paidDate(search));
 		model.addAttribute("listCnt",listCnt);
 		return "system/allpaid";
 	}
@@ -435,6 +438,62 @@ public class TravelController {
 			model.addAttribute("listCnt",listCnt);
 			return "system/alltour";
 		}
+		//직원용 여행상품관리페이지(지역별로 정렬)
+			@RequestMapping(value = "/system/arrayland", method = RequestMethod.GET)
+			public String tour_arrayland(String id, Model model,
+					@RequestParam(required = false, defaultValue = "1") int page,
+			 		@RequestParam(required=false, defaultValue="1") int range,
+			 		@RequestParam(required=false, defaultValue="land") String searchType,
+			 		@RequestParam(required=false) String keyword,
+			 		@ModelAttribute("search") Search search
+			 		) throws Exception {
+					
+				model.addAttribute("search", search);
+			 	search.setSearchType(searchType);
+			 	search.setKeyword(keyword);
+			 		
+			 	// 전체 게시글 갯수
+			 	int listCnt=0;
+				try {
+					listCnt=tourservice.getallTourListCnt(search);
+					search.pageInfo(page, range, listCnt);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+					
+				model.addAttribute("pagination", search);
+				model.addAttribute("list",tourservice.selectAll_tour_arrayland(search));
+				model.addAttribute("listCnt",listCnt);
+				return "system/alltour";
+			}
+			//직원용 여행상품관리페이지(지역별로 정렬)
+			@RequestMapping(value = "/system/arraycountry", method = RequestMethod.GET)
+			public String tour_arraycountry(String id, Model model,
+					@RequestParam(required = false, defaultValue = "1") int page,
+			 		@RequestParam(required=false, defaultValue="1") int range,
+			 		@RequestParam(required=false, defaultValue="land") String searchType,
+			 		@RequestParam(required=false) String keyword,
+			 		@ModelAttribute("search") Search search
+			 		) throws Exception {
+					
+				model.addAttribute("search", search);
+			 	search.setSearchType(searchType);
+			 	search.setKeyword(keyword);
+			 		
+			 	// 전체 게시글 갯수
+			 	int listCnt=0;
+				try {
+					listCnt=tourservice.getallTourListCnt(search);
+					search.pageInfo(page, range, listCnt);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+					
+				model.addAttribute("pagination", search);
+				model.addAttribute("list",tourservice.selectAll_tour_arraycountry(search));
+				model.addAttribute("listCnt",listCnt);
+				return "system/alltour";
+			}
 		//직원용 여행상품 디테일페이지
 		@RequestMapping(value = "/system/tour/{idx}", method = RequestMethod.GET)
 		public String detailtour(Model model, @PathVariable ("idx") int tour_no) {

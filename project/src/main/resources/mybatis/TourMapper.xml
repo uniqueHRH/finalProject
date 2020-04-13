@@ -97,6 +97,34 @@
 		LIMIT #{startList}, #{listSize}
 	</select>
 	
+	<select id="selectAll_tour_arrayland" resultType="TourBean">
+		select * from tour
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="searchType=='country' and keyword != null and keyword != '' ">
+				AND country like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType=='city' and keyword != null and keyword != '' ">
+				AND city like CONCAT('%', #{keyword}, '%')
+			</if>	
+		</trim>
+		 order by land
+		LIMIT #{startList}, #{listSize}
+	</select>
+	
+	<select id="selectAll_tour_arraycountry" resultType="TourBean">
+		select * from tour
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="searchType=='country' and keyword != null and keyword != '' ">
+				AND country like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType=='city' and keyword != null and keyword != '' ">
+				AND city like CONCAT('%', #{keyword}, '%')
+			</if>	
+		</trim>
+		 order by country
+		LIMIT #{startList}, #{listSize}
+	</select>
+	
 	<select id="getallTourListCnt" resultType="int">
 		select count(*) from tour
 		<trim prefix="WHERE" prefixOverrides="AND|OR">

@@ -17,7 +17,7 @@
 		font-family: 'Jua';
 	}
 	#table {
-		width:1000px;
+		width:1050px;
 		margin:0 auto;
 		padding:0px;
 		text-align:center;
@@ -55,7 +55,7 @@
 		font-size:15px;
 	}
 	#table>thead th:nth-child(1) {
-		width:50px;
+		width:60px;
 	}
 	#table>thead th:nth-child(2) {
 		width:60px;
@@ -180,10 +180,10 @@
 			
 			if(up=='지역') {
 				$.ajax({
-					url:'../system/paidConfirm',
+					url:'../system/arrayland',
 					type:'GET',
 					success:function() {
-						location.href="../system/paidConfirm";
+						location.href="../system/arrayland";
 					},
 					error:function() {
 					}
@@ -191,10 +191,10 @@
 			}   // if
 			if(up=='국가') {
 				$.ajax({
-					url:'../system/paidDate',
+					url:'../system/arraycountry',
 					type:'GET',
 					success:function() {
-						location.href="../system/paidDate";
+						location.href="../system/arraycountry";
 					},
 					error:function() {
 					}

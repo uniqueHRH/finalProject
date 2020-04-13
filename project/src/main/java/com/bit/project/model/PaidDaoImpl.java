@@ -22,7 +22,7 @@ public class PaidDaoImpl implements PaidDao {
 	}
 
 	@Override
-	public List<ReceiveVo> selectAll_paid(Search search) throws Exception {
+	public List<PaidVo> selectAll_paid(Search search) throws Exception {
 		return sqlSession.selectList("paid.selectAll_paid",search);
 	}
 
@@ -37,7 +37,7 @@ public class PaidDaoImpl implements PaidDao {
 	}
 
 	@Override
-	public List<ReceiveVo> selectAll_allpaid(Search search) throws Exception {
+	public List<PaidVo> selectAll_allpaid(Search search) throws Exception {
 		return sqlSession.selectList("paid.selectAll_allpaid",search);
 	}
 
@@ -47,17 +47,17 @@ public class PaidDaoImpl implements PaidDao {
 	}
 
 	@Override
-	public List<ReceiveVo> selectAll_paidState(Search search) throws Exception {
+	public List<PaidVo> selectAll_paidState(Search search) throws Exception {
 		return sqlSession.selectList("paid.selectAll_paidState",search);
 	}
 
 	@Override
-	public List<ReceiveVo> selectAll_paidConfirm(Search search) throws Exception {
+	public List<PaidVo> selectAll_paidConfirm(Search search) throws Exception {
 		return sqlSession.selectList("paid.selectAll_paidConfirm",search);
 	}
 
 	@Override
-	public List<ReceiveVo> selectAll_paidDate(Search search) throws Exception {
+	public List<PaidVo> selectAll_paidDate(Search search) throws Exception {
 		return sqlSession.selectList("paid.selectAll_paidDate",search);
 	}
 
