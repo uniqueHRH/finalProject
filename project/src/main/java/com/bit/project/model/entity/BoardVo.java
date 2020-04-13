@@ -1,6 +1,6 @@
 package com.bit.project.model.entity;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 public class BoardVo {     
 
@@ -10,7 +10,7 @@ public class BoardVo {
 	private int board_count;
 	private String board_content;
 	private String client_nick1;
-	private Date board_date;
+	private Timestamp board_date;
 	private String board_land;
 	private String board_city;
 	private String board_theme;
@@ -85,12 +85,12 @@ public class BoardVo {
 	}
 
 
-	public Date getBoard_date() {
+	public Timestamp getBoard_date() {
 		return board_date;
 	}
 
 
-	public void setBoard_date(Date board_date) {
+	public void setBoard_date(Timestamp board_date) {
 		this.board_date = board_date;
 	}
 
@@ -176,7 +176,7 @@ public class BoardVo {
 
 
 	public BoardVo(int board_no, int board_id, String board_sub, int board_count, String board_content,
-			String client_nick1, Date board_date, String board_land, String board_city, String board_theme,
+			String client_nick1, Timestamp board_date, String board_land, String board_city, String board_theme,
 			String board_img, String board_thumb, com.bit.project.model.entity.PartnerVo partnerVo,
 			com.bit.project.model.entity.FreeVo freeVo) {
 		super();

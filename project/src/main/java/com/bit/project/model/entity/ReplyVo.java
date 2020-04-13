@@ -1,6 +1,6 @@
 package com.bit.project.model.entity;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 public class ReplyVo {
 
@@ -8,7 +8,7 @@ public class ReplyVo {
 	private int board_no;
 	private String client_nick1;
 	private String reply_content;
-	private  Date reply_date;
+	private  Timestamp reply_date;
 	
 	
 	public ReplyVo() {
@@ -55,12 +55,12 @@ public class ReplyVo {
 	}
 
 
-	public Date getReply_date() {
+	public Timestamp getReply_date() {
 		return reply_date;
 	}
 
 
-	public void setReply_date(Date reply_date) {
+	public void setReply_date(Timestamp reply_date) {
 		this.reply_date = reply_date;
 	}
 
@@ -72,7 +72,7 @@ public class ReplyVo {
 	}
 
 
-	public ReplyVo(int reply_no, int board_no, String client_nick1, String reply_content, Date reply_date) {
+	public ReplyVo(int reply_no, int board_no, String client_nick1, String reply_content, Timestamp reply_date) {
 		super();
 		this.reply_no = reply_no;
 		this.board_no = board_no;

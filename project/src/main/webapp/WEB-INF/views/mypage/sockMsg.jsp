@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page pageEncoding="utf-8" contentType="text/html;charset=utf-8"%>
 <link href="https://fonts.googleapis.com/css?family=Jua&display=swap&subset=korean" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Jua|Noto+Sans+KR&display=swap" rel="stylesheet">
@@ -17,11 +18,12 @@
 </head>
 <body>
 	<form class="form-inline">
+	<fmt:formatDate value="${bean.receive_date}" pattern="yyyy-MM-dd HH:mm" var="date"/>
 		<div id="formTb">
 			<div>
 				<input type="text" id="receiver" value=" 보낸사람 : " disabled>
 				<input type="text" id="client_nick2" name="client_nick1" value="${bean.client_nick1 }" disabled>
-				<input type="text" id="receive_date" name="receive_date" value="${bean.receive_date }" disabled>
+				<input type="text" id="receive_date" name="receive_date" value="<c:out value="${date }"/>" disabled>
 				<input type="hidden" id="client_nick1" name="client_nick2" value="${sessionScope.check.client_nick1}" >
 			</div>
 			<div>

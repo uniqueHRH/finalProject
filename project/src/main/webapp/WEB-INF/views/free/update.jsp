@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page pageEncoding="utf-8" %>
 <link href="https://fonts.googleapis.com/css?family=Jua&display=swap&subset=korean" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Jua|Noto+Sans+KR&display=swap" rel="stylesheet">
@@ -37,9 +38,10 @@
 		<input type="text" class="form-control" id="client_nick1" name="client_nick1" value="${bean.client_nick1 }" style="cursor:default" disabled>
 	</div>
 	<div class="form-group">
+	<fmt:formatDate value="${bean.free_date}" pattern="yyyy-MM-dd HH:mm" var="date"/>
 	&nbsp; &nbsp;
 		<label for="exampleInputEmail2">작성일</label>
-		<input type="email" class="form-control" id="board_date" name="free_date" value="${bean.free_date }" style="cursor:default" disabled>
+		<input type="email" class="form-control" id="board_date" name="free_date" value="${date }" style="cursor:default" disabled>
 	</div>
 	<div class="form-group">
 	&nbsp; &nbsp;
