@@ -13,11 +13,10 @@
 <link rel="stylesheet" type="text/css" href="${root }css/travel.css" />
 <style type="text/css">
 	.jumbotron {
-		/* background-image:url(https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/background1.jpg?raw=true); */
-		background-image:url("${root}temp/b5.jpg");
+		background-image:url(https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/background.jpg?raw=true);
 		background-size: cover;
 		width: 100%;
-	}
+	} 
 	#logo {
 		position:fixed;
 		top:25;

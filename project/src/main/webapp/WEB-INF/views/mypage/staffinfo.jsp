@@ -10,39 +10,35 @@
 <link rel="stylesheet" type="text/css" href="${root }css/bootstrap.css" />
 <link rel="stylesheet" type="text/css" href="${root }css/travel.css" />
 <style type="text/css">
-	#table1 {
+	#allContain {
+		width:1000px;
+		margin:0 auto;
+		padding-left:170px;
 		font-family: 'Jua';
 	}
-
-	p {
-		margin:0 auto;
-		font-size:18px;
-	}
-
     #infocomm{
     	font-size: 20px;
     }
-
-    #table {
-    	width:50%;
+	#table {
+    	width:800px;
     	margin:0px auto;
     	text-align: center;
     }
-
-   #table tr{
-   		text-align: center;
-   }
-
-   #table tr td{
-   		text-align: center;
-   		font-size: 15px;
-   }
-   #changeinfobtn{
-   		width: 120px;
-   		position:relative;
-   		left: 1200px;
-   		margin-bottom: 20px;
-   }
+	#table tr{
+		text-align: center;
+	}
+	#table tr td{
+		text-align: center;
+		font-size: 15px;
+	}
+	#changebtn {
+		text-align:right;
+	}
+	#changeinfobtn{
+		width: 150px;
+		left: 1180px;
+		margin-bottom: 20px;
+	}
    		
 </style>
 </head>
@@ -52,11 +48,13 @@
 <!-- menubar end -->
                      <!-- contents start -->
  
- <div id="table1">
+ <div id="allContain">
  	 <div class="page-header" align="center">
     	 <h1>내 정보관리(직원용)</h1>
   	 </div>
-  	 <a href="${root }main/mypage/lock2"><button type="button" id="changeinfobtn" class="btn btn-default">비밀번호 변경</button></a>
+  	 <div id="changebtn">
+		<a href="${root }main/mypage/lock2"><button type="button" id="changeinfobtn" class="btn btn-default">비밀번호 변경</button></a>
+	</div>
 	
 	<div id="table">
 		<table class="table table-hover">

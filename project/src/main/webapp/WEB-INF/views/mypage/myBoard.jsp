@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page pageEncoding="utf-8" import="com.bit.project.model.entity.*, java.util.List"%>
 <link href="https://fonts.googleapis.com/css?family=Jua&display=swap&subset=korean" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Jua|Noto+Sans+KR&display=swap" rel="stylesheet">
@@ -13,6 +14,12 @@
 <link rel="stylesheet" type="text/css" href="${root }css/travel.css" />
 <link rel="stylesheet" type="text/css" href="${root }css/board.css" />
 <style type="text/css">
+	#allContain {
+		width:1000px;
+		margin:0 auto;
+		padding-left:150px;
+		font-family: 'Jua';
+	}
 	#table>thead th:nth-child(1) {
 		width:100;
 	}
@@ -68,77 +75,73 @@
    <!-- menubar start -->
 <jsp:include page="/WEB-INF/menubar.jsp"/>
 <!-- contents start -->
-<div class="container">
-  <div class="row">
-   <div class="col-md-12">
-      <div class="page-header" id="page-header" align="center">
-     <h1>MyBoard</h1>
-   </div>
+<div id="allContain">
+	<div class="page-header" id="page-header" align="center">
+		<h1>MyBoard</h1>
+	</div>
    
 	
    
-<table class="table table-hover" id="table">
-<!-- 정렬 드롭다운 -->
-	<div class="topMenu" id="theme">
-		<input type="text" value="<c:out value="${listCnt}"></c:out>개의 게시물이 조회되었습니다" id="listCnt" disabled/>
-		<div id="fff"></div>
-	   <input type="hidden" id="loginCk" value="${sessionScope.check.client_nick1}"/>
-	</div>
-
-<!-- 리스트 출력 -->
-   <thead>
-      <tr class="active">
-         <th colspan="2">게시판</th>
-         <th>제 목</th>
-         <th>날 짜</th>
-         <th>조회수</th>
-      </tr>
-   </thead>
-   <tbody>
-		<c:forEach items="${list }" var="bean">
-		<c:set var="i" value="${i+1 }"/>
-		<tr>
-			<td name="num_${i }" class="num_${i }"><input type="text" class="board_id" name="boardId_${bean.board_id }" value="${bean.board_id }" disabled></td>
-			<td name="num_${i }">${bean.board_no }<input type="hidden" class="num_${i }" value="${bean.board_no }"></td>
-			<td name="num_${i }">${bean.board_sub }</td>
-			<td name="num_${i }">${bean.board_date }</td>
-			<td name="num_${i }">${bean.board_count }</td>
-		</tr>
-		</c:forEach>
-   </tbody>
-</table>
-
-<nav id="pageNum">
-<!-- 페이지넘버링 -->
-	<div id="paginationBox">
-		<ul class="pagination">
-			<c:if test="${pagination.prev}">
-				<li class="page-item"><a class="page-link" href="#" onClick="prev('${pagination.page}', '${pagination.range}', '${pagination.rangeSize}')">Prev</a></li>
-			</c:if>
-			<c:forEach begin="${pagination.startPage}" end="${pagination.endPage}" var="idx">
-				<li class="page-item <c:out value="${pagination.page==idx?'active' : ''}"/>"><a class="page-link" href="#" onClick="pagination('${idx}', '${pagination.range}', '${pagination.rangeSize}')">${idx}</a></li>
+	<table class="table table-hover" id="table">
+	<!-- 정렬 드롭다운 -->
+		<div class="topMenu" id="theme">
+			<input type="text" value="<c:out value="${listCnt}"></c:out>개의 게시물이 조회되었습니다" id="listCnt" disabled/>
+			<div id="fff"></div>
+		   <input type="hidden" id="loginCk" value="${sessionScope.check.client_nick1}"/>
+		</div>
+	
+	<!-- 리스트 출력 -->
+	   <thead>
+	      <tr class="active">
+	         <th colspan="2">게시판</th>
+	         <th>제 목</th>
+	         <th>날 짜</th>
+	         <th>조회수</th>
+	      </tr>
+	   </thead>
+	   <tbody>
+			<c:forEach items="${list }" var="bean">
+			<c:set var="i" value="${i+1 }"/>
+			<fmt:formatDate value="${bean.board_date}" pattern="yyyy-MM-dd" var="date"/>
+			<tr>
+				<td name="num_${i }" class="num_${i }"><input type="text" class="board_id" name="boardId_${bean.board_id }" value="${bean.board_id }" disabled></td>
+				<td name="num_${i }">${bean.board_no }<input type="hidden" class="num_${i }" value="${bean.board_no }"></td>
+				<td name="num_${i }">${bean.board_sub }</td>
+				<td name="num_${i }">${date }</td>
+				<td name="num_${i }">${bean.board_count }</td>
+			</tr>
 			</c:forEach>
-			<c:if test="${pagination.next}">
-				<li class="page-item"><a class="page-link" href="#" onClick="next('${pagination.range}', '${pagination.range}', '${pagination.rangeSize}')" >Next</a></li>
-			</c:if>
-		</ul>
-	</div>
-
-
-<!-- 검색 -->
-   <div class="topMenu" id="search">
-		<select id="searchType">
-		    <option value="board_sub">제 &nbsp; 목</option>
-		</select>
-      <input type="text" class="form-control" id="keyword" name="wri" style="width:200px; display:inline-block;">
-		<a class="btn btn-default" href="#" role="button" id="searchGo">G O</a>
-		<div id="fff"></div>
-	</div>
+	   </tbody>
+	</table>
 	
-</nav>
-
-      </div>
-   </div>
+	<nav id="pageNum">
+	<!-- 페이지넘버링 -->
+		<div id="paginationBox">
+			<ul class="pagination">
+				<c:if test="${pagination.prev}">
+					<li class="page-item"><a class="page-link" href="#" onClick="prev('${pagination.page}', '${pagination.range}', '${pagination.rangeSize}')">Prev</a></li>
+				</c:if>
+				<c:forEach begin="${pagination.startPage}" end="${pagination.endPage}" var="idx">
+					<li class="page-item <c:out value="${pagination.page==idx?'active' : ''}"/>"><a class="page-link" href="#" onClick="pagination('${idx}', '${pagination.range}', '${pagination.rangeSize}')">${idx}</a></li>
+				</c:forEach>
+				<c:if test="${pagination.next}">
+					<li class="page-item"><a class="page-link" href="#" onClick="next('${pagination.range}', '${pagination.range}', '${pagination.rangeSize}')" >Next</a></li>
+				</c:if>
+			</ul>
+		</div>
+	
+	
+	<!-- 검색 -->
+	   <div class="topMenu" id="search">
+			<select id="searchType">
+			    <option value="board_sub">제 &nbsp; 목</option>
+			</select>
+	      <input type="text" class="form-control" id="keyword" name="wri" style="width:200px; display:inline-block;">
+			<a class="btn btn-default" href="#" role="button" id="searchGo">G O</a>
+			<div id="fff"></div>
+		</div>
+		
+	</nav>
 </div>
 
 <!-- contents end -->
