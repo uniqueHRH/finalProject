@@ -30,12 +30,6 @@
 	#table1{
 		margin-bottom: 80px; 
 	}
-	#edittourbtn{
-		position: relative;
-		width: 230px;
-		left: 1150px;
-		margin-top: 50px;
-	}
 
 </style>
 </head>
@@ -44,7 +38,7 @@
 
 <!-- contents start -->
       <div class="page-header" id="page-header" align="center">
-     <h1>상품 상세 정보</h1>
+     <h1>상품 상세 정보 수정</h1>
   	 </div>
   	 
   	 		<h3 style="text-align: center; font-family: 'Jua'; margin-top: 30px;">지역기본정보</h3>
@@ -64,25 +58,36 @@
   	 </tr>
   	 </table>
   	 <h3 style="text-align: center; font-family: 'Jua';">상품내용</h3>
+  	 
   	 <table class="table table-hover" id="table2">	
   	 	<tr>
   	 		<td class="active" style="width: 200px;">테마</td>
-  	 		<td style="width: 200px;">${bean.theme }</td>
+  	 		<td style="width: 200px;"><select class="form-control" name="theme">
+  	 									<option></option>
+  	 									<option>힐링</option>
+  	 									<option>스냅</option>
+  	 									<option>엑티비티</option>
+  	 									<option>식도락</option>
+  	 									<option>영화</option>
+  	 									<option>스포츠</option>
+  	 								</select></td>
   	 		<td class="active" style="width: 200px;">상품이름</td>
-  	 		<td style="width: 400px;">${bean.name }</td>
+  	 		<td style="width: 400px;"><input type="text" class="form-control" name="name" value="${bean.name }"></td>
   	 	</tr>
   	 	<tr>
   	 		<td class="active">차량정보</td>
-  	 		<td>${bean.vehicle }</td>
+  	 		<td><select class="form-control" name="vehicle">
+  	 			<option>포함</option>
+  	 			<option>미포함</option>
+  	 			</select></td>
   	 		<td class="active">비용</td>
-  	 		<td><fmt:formatNumber value="${bean.cost}" pattern="#,###"/>원</td>
+  	 		<td><input type="text" class="form-control" name="cost" value="${bean.cost }"></td>
   	 	</tr>
   	 	<tr>
   	 		<td class="active" style="width: 200px;">상품소개</td>
-  	 		<td colspan="3" style="text-align: left;">${bean.comments }</td>
+  	 		<td colspan="3" style="text-align: left;"><input type="text" class="form-control" name="comments" value="${bean.comments }"></td>
   	 	</tr>
   	 </table>
-  	 <a href="../../system/tour/${bean.tour_no }/edit"><button type="button" id="edittourbtn" class="btn btn-default btn-lg">정보수정</button></a>
 
   	 	 	
 <!-- contents end --> 

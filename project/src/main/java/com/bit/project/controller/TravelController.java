@@ -500,4 +500,9 @@ public class TravelController {
 			tourservice.selectOne_tour(model, tour_no);
 			return "system/detailalltour";
 		}
+		@RequestMapping(value = "/system/tour/{idx}/edit", method = RequestMethod.GET)
+		public String edittour(Model model, @PathVariable ("idx") int tour_no) {
+			tourservice.selectOne_tour(model, tour_no);
+			return "system/edittour";
+		}
 }
