@@ -107,6 +107,7 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		/* 정렬 */
+		
 		$('#sel').on('click',function() {
 			var up=$('#dropdownMenu1').val();
 			if(up=='정렬') {
@@ -147,6 +148,18 @@
 				});   // ajax
 			}   // if
 		});
+//////////////////////////////////////////////////////////////////////////////////////////		
+		// 검색
+		
+		$('#searchGo').on('click',function() {
+			var url='${root }system/staff';
+			url=url+'?searchType='+$('#searchType').val();
+			url=url+'&keyword='+$('#keyword').val();
+			
+			location.href=url;
+			console.log(url);
+		});
+		
 		
 		// 리모컨 top
 		$('#top').on('click',function() {
@@ -163,16 +176,6 @@
 	    });
 	  //]]>
 		
-//////////////////////////////////////////////////////////////////////////////////////////		
-		// 검색
-		$('#searchGo').on('click',function() {
-			var url='${root }system/staff';
-			url=url+'?searchType='+$('#searchType').val();
-			url=url+'&keyword='+$('#keyword').val();
-			
-			location.href=url;
-			console.log(url);
-		});
 		
    });
 //////////////////////////////////////////////////////////////////////////////////////////		

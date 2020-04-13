@@ -16,6 +16,8 @@ public class Pagination {
 	private int endPage;   // 각 페이지 범위 끝 번호
 	private boolean prev;
 	private boolean next;
+	private int NO;
+	private String Team;
 	
 
 
