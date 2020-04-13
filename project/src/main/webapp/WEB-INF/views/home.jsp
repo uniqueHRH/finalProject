@@ -16,7 +16,7 @@
 		background-image:url(https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/background.jpg?raw=true);
 		background-size: cover;
 		width: 100%;
-	}
+	} 
 	#logo {
 		position:fixed;
 		top:25;
