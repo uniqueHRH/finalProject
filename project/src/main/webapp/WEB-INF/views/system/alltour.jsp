@@ -104,7 +104,7 @@
    
 <table class="table table-hover" id="table">
 <div class="topMenu" id="theme">
-		<select id="dropdownMenu1">
+		<select id="dropdownMenu1" >
 		    <option value="정렬">정 &nbsp;렬</option>
 		    <option value="지역">지역</option>
 		    <option value="국가">국가</option>
@@ -187,7 +187,7 @@
 					},
 					error:function() {
 					}
-				});   // ajax
+				});   // ajax			
 			}   // if
 			if(up=='국가') {
 				$.ajax({
