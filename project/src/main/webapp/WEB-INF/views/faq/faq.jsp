@@ -13,6 +13,12 @@
 <link rel="stylesheet" type="text/css" href="${root }css/travel.css" />
 <link rel="stylesheet" type="text/css" href="${root }css/board.css" />
 <style type="text/css">
+	#allContain {
+		width:1000px;
+		margin:0 auto;
+		padding-left:150px;
+		font-family: 'Jua';
+	}
 	#theme {
 		width:900;
 		margin:0;
@@ -44,6 +50,7 @@
 		display:inline-block;
 	}
 	#list {
+		width:900;
 		padding:30 0 0 0;
 	}
 	input {
@@ -56,6 +63,7 @@
 		width:850px;
 	}
 	.question {
+		width:900px;
 		padding:20 0 20 20;
 		background-color:#e8e8e8;
 		font-size:18px;
@@ -64,6 +72,7 @@
 		border-bottom:1px solid gray;
 	}
 	.answer {
+		width:900px;
 		padding:25 0 25 35;
 		font-size:17px;
 		background-color:white;
@@ -78,7 +87,7 @@
 
 
 <!-- contents start -->
-<div id="table">
+<div id="allContain">
 	<div class="page-header" id="page-header" align="center">
 		<h1>F A Q</h1>
 	</div>
@@ -92,14 +101,14 @@
 			<a class="btn btn-default" role="button" id="res">취소</a>
 		</div>
 	</div>
-<!-- 리스트 출력 -->
+	<!-- 리스트 출력 -->
 	<div id="list">
 		<c:forEach items="${list }" var="bean">
 			<div id="tab">
-				<input type="text" id="qus_${bean.faq_no }" class="question"value="${bean.faq_question }" readonly>
+				<input type="text" id="qus_${bean.faq_no }" class="question" value="${bean.faq_question }" readonly>
 			</div>
 			<div id="tabs">
-				<input type="text" id="ans_${bean.faq_no }" class="answer" value="${bean.faq_answer }">
+				<input type="text" id="ans_${bean.faq_no }" class="answer" value="${bean.faq_answer }" readonly>
 				<div id="tab_s" align="right">
 					<a class="btn btn-default" role="button" id="upd_${bean.faq_no }">수정</a>
 					<a class="btn btn-default" role="button" id="ins_${bean.faq_no }">완료</a>
@@ -111,19 +120,19 @@
 			</div>
 		</c:forEach>
 	</div>
-
-<nav id="pageNum">
-<!-- 검색 -->
-   <div class="topMenu" id="search">
-		<select id="searchType">
-		    <option value="faq_question">질 &nbsp; 문</option>
-		</select>
-      <input type="text" class="form-control" id="keyword" name="keyword" style="width:200px; display:inline-block;">
-		<a class="btn btn-default" href="#" role="button" id="searchGo">G O</a>
-	</div>
 	
-</nav>
-
+	<nav id="pageNum">
+	<!-- 검색 -->
+	   <div class="topMenu" id="search">
+			<select id="searchType">
+			    <option value="faq_question">질 &nbsp; 문</option>
+			</select>
+	      <input type="text" class="form-control" id="keyword" name="keyword" style="width:200px; display:inline-block;">
+			<a class="btn btn-default" href="#" role="button" id="searchGo">G O</a>
+		</div>
+		
+	</nav>
+</div>
 
 <!-- contents end -->
 <jsp:include page="/WEB-INF/remote.jsp"/>
@@ -134,20 +143,6 @@
 <script type="text/javascript" src="${root }js/bootstrap.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-		// 리모컨 top
-		$('#top').on('click',function() {
-			$('html,body').scrollTop(0);
-		});
-		
-		//<![CDATA[
-	    // 사용할 앱의 JavaScript 키를 설정해 주세요.
-	    Kakao.init('acc658a670e9ed5918d11647040b5bc5');
-	    // 카카오톡 채널 1:1채팅 버튼을 생성합니다.
-	    Kakao.Channel.createChatButton({
-	      container: '#kakao-talk-channel-chat-button',
-	      channelPublicId: '_wxfwxfxb' // 카카오톡 채널 홈 URL에 명시된 id로 설정합니다.
-	    });
-	  //]]>
 
 	    var id=$('#loginCk').val();
 	    if(id=='') {
@@ -272,6 +267,20 @@
 		function reload() {
 	    	  location.reload();
 	      }
+		// 리모컨 top
+		$('#top').on('click',function() {
+			$('html,body').scrollTop(0);
+		});
+		
+		//<![CDATA[
+	    // 사용할 앱의 JavaScript 키를 설정해 주세요.
+	    Kakao.init('acc658a670e9ed5918d11647040b5bc5');
+	    // 카카오톡 채널 1:1채팅 버튼을 생성합니다.
+	    Kakao.Channel.createChatButton({
+	      container: '#kakao-talk-channel-chat-button',
+	      channelPublicId: '_wxfwxfxb' // 카카오톡 채널 홈 URL에 명시된 id로 설정합니다.
+	    });
+	  //]]>
    });
 		
 		

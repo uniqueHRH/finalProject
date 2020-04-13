@@ -21,69 +21,70 @@
 
 
 <!-- contents start -->
-      <div class="page-header" id="page-header" align="center">
-     <h1>EVENT</h1>
-   </div>
+<div id="allContain">
+	<div class="page-header" id="page-header" align="center">
+		<h1>EVENT</h1>
+	</div>
    
-<table class="table table-hover" id="table">
-	<div class="topMenu" id="theme">
-		<input type="text" value="<c:out value="${listCnt}"></c:out>개의 게시물이 조회되었습니다" id="listCnt" disabled/>
-		<div id="fff"></div>
-	   <a class="btn btn-default" href="${root }board/eventIns" role="button" id="wri">글쓰기</a>
-	   <input type="hidden" id="loginCk" value="${sessionScope.check.client_nick1}"/>
-	</div>
-
-<!-- 리스트 출력 -->
-   <thead>
-      <tr class="active">
-         <th>#</th>
-         <th>제 목</th>
-         <th>글쓴이</th>
-         <th>날 짜</th>
-         <th>조회수</th>
-      </tr>
-   </thead>
-   <tbody>
-		<c:forEach items="${list }" var="bean">
-		<tr>
-			<td>${bean.board_no }</td>
-			<td><a href="eventDe/${bean.board_no }">${bean.event_sub }</a></td>
-			<td><a href="eventDe/${bean.board_no }">${bean.client_nick1 }</a></td>
-			<td><a href="eventDe/${bean.board_no }">${bean.event_date}</a></td>
-			<td><a href="eventDe/${bean.board_no }">${bean.event_count }</a></td>
-		</tr>
-		</c:forEach>
-   </tbody>
-</table>
-
-<nav id="pageNum">
-<!-- 페이지넘버링 -->
-	<div id="paginationBox">
-		<ul class="pagination">
-			<c:if test="${pagination.prev}">
-				<li class="page-item"><a class="page-link" href="#" onClick="prev('${pagination.page}', '${pagination.range}', '${pagination.rangeSize}')">Prev</a></li>
-			</c:if>
-			<c:forEach begin="${pagination.startPage}" end="${pagination.endPage}" var="idx">
-				<li class="page-item <c:out value="${pagination.page==idx?'active' : ''}"/>"><a class="page-link" href="#" onClick="pagination('${idx}', '${pagination.range}', '${pagination.rangeSize}', '${search.searchType}', '${search.keyword }' )">${idx}</a></li>
-			</c:forEach>
-			<c:if test="${pagination.next}">
-				<li class="page-item"><a class="page-link" href="#" onClick="next('${pagination.range}', '${pagination.range}', '${pagination.rangeSize}')" >Next</a></li>
-			</c:if>
-		</ul>
-	</div>
-
-<!-- 검색 -->
-   <div class="topMenu" id="search">
-		<select id="searchType">
-		    <option value="board_sub">제 &nbsp; 목</option>
-		    <option value="client_nick1">닉네임</option>
-		</select>
-      <input type="text" class="form-control" id="keyword" name="keyword" style="width:200px; display:inline-block;">
-		<a class="btn btn-default" href="#" role="button" id="searchGo">G O</a>
-	</div>
+	<table class="table table-hover" id="table">
+		<div class="topMenu" id="theme">
+			<input type="text" value="<c:out value="${listCnt}"></c:out>개의 게시물이 조회되었습니다" id="listCnt" disabled/>
+			<div id="fff"></div>
+		   <a class="btn btn-default" href="${root }board/eventIns" role="button" id="wri">글쓰기</a>
+		   <input type="hidden" id="loginCk" value="${sessionScope.staffcheck.staff_name}"/>
+		</div>
 	
-</nav>
+	<!-- 리스트 출력 -->
+	   <thead>
+	      <tr class="active">
+	         <th>#</th>
+	         <th>제 목</th>
+	         <th>글쓴이</th>
+	         <th>날 짜</th>
+	         <th>조회수</th>
+	      </tr>
+	   </thead>
+	   <tbody>
+			<c:forEach items="${list }" var="bean">
+			<tr>
+				<td>${bean.board_no }</td>
+				<td><a href="eventDe/${bean.board_no }">${bean.event_sub }</a></td>
+				<td><a href="eventDe/${bean.board_no }">${bean.client_nick1 }</a></td>
+				<td><a href="eventDe/${bean.board_no }">${bean.event_date}</a></td>
+				<td><a href="eventDe/${bean.board_no }">${bean.event_count }</a></td>
+			</tr>
+			</c:forEach>
+	   </tbody>
+	</table>
 
+	<nav id="pageNum">
+	<!-- 페이지넘버링 -->
+		<div id="paginationBox">
+			<ul class="pagination">
+				<c:if test="${pagination.prev}">
+					<li class="page-item"><a class="page-link" href="#" onClick="prev('${pagination.page}', '${pagination.range}', '${pagination.rangeSize}')">Prev</a></li>
+				</c:if>
+				<c:forEach begin="${pagination.startPage}" end="${pagination.endPage}" var="idx">
+					<li class="page-item <c:out value="${pagination.page==idx?'active' : ''}"/>"><a class="page-link" href="#" onClick="pagination('${idx}', '${pagination.range}', '${pagination.rangeSize}', '${search.searchType}', '${search.keyword }' )">${idx}</a></li>
+				</c:forEach>
+				<c:if test="${pagination.next}">
+					<li class="page-item"><a class="page-link" href="#" onClick="next('${pagination.range}', '${pagination.range}', '${pagination.rangeSize}')" >Next</a></li>
+				</c:if>
+			</ul>
+		</div>
+	
+	<!-- 검색 -->
+	   <div class="topMenu" id="search">
+			<select id="searchType">
+			    <option value="board_sub">제 &nbsp; 목</option>
+			    <option value="client_nick1">닉네임</option>
+			</select>
+	      <input type="text" class="form-control" id="keyword" name="keyword" style="width:200px; display:inline-block;">
+			<a class="btn btn-default" href="#" role="button" id="searchGo">G O</a>
+		</div>
+		
+	</nav>
+</div>
 
 <!-- contents end -->
 <jsp:include page="/WEB-INF/remote.jsp"/>
@@ -133,6 +134,23 @@
 			}   // if
 		});
 		
+		// 로그인 후 글쓰기 이용 가능
+		var login=$('#loginCk').val();
+		console.log(login);
+		if(login=='') {
+			$('#wri').hide();
+		}
+//////////////////////////////////////////////////////////////////////////////////////////		
+		// 검색
+		$('#searchGo').on('click',function() {
+			var url='${root }board/event';
+			url=url+'?searchType='+$('#searchType').val();
+			url=url+'&keyword='+$('#keyword').val();
+			
+			location.href=url;
+			console.log(url);
+		});
+		
 		// 리모컨 top
 		$('#top').on('click',function() {
 			$('html,body').scrollTop(0);
@@ -147,25 +165,6 @@
 	      channelPublicId: '_wxfwxfxb' // 카카오톡 채널 홈 URL에 명시된 id로 설정합니다.
 	    });
 	  //]]>
-		
-		$('#hide').hide();
-		// 로그인 후 글쓰기 이용 가능
-		var loginBool=$('#loginCk').val();
-
-		if(!loginBool) {
-			$('#wri').hide();
-		}
-//////////////////////////////////////////////////////////////////////////////////////////		
-		// 검색
-		$('#searchGo').on('click',function() {
-			var url='${root }board/event';
-			url=url+'?searchType='+$('#searchType').val();
-			url=url+'&keyword='+$('#keyword').val();
-			
-			location.href=url;
-			console.log(url);
-		});
-		
    });
 //////////////////////////////////////////////////////////////////////////////////////////		
 		// 페이징

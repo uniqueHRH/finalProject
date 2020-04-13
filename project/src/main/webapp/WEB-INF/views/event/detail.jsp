@@ -19,78 +19,79 @@
 
 
 <!-- contents start -->
-      <div class="page-header" id="page-header" align="center">
-     <h1>DETAIL</h1>
-   </div>
+<div id="allContain">
+	<div class="page-header" id="page-header" align="center">
+		<h1>DETAIL</h1>
+	</div>
       
 <!-- 제목 -->
-<form class="form-inline" method="POST">
-   <div>
-      <input type="text" class="form-control" id="board_sub" name="board_sub" value="${bean.event_sub }" style="cursor:default" disabled>
-      <input type="hidden" id="board_no" name="board_no" value="${bean.board_no }">
-   </div>
-   <p></p>
-   <div>
-      <div class="form-group" align="left">
-         <label for="exampleInputName2">닉네임</label>
-         <input type="text" class="form-control" id="client_nick1" name="client_nick1" value="${bean.client_nick1 }" style="cursor:default" disabled>
-      </div>
-      &nbsp; &nbsp;
-      <div class="form-group">
-         <label for="exampleInputEmail2">조회수</label>
-         <input type="text" class="form-control" id="board_count" value="${bean.event_count }" style="cursor:default" disabled>
-         <input type="hidden" id="log" name="log" value="${sessionScope.check.client_nick1}">
-         <input type="hidden" id="staffLog" name="staffLog" value="${sessionScope.staffcheck.staff_name}">
-      </div>
-      &nbsp; &nbsp;
-      <div class="form-group" align="left">
-      	<label for="exampleInputEmail2">작성일</label>
-		<input type="text" class="form-control" id="board_date" value="${bean.event_date }" style="cursor:default" disabled>
-      </div>
-   </div>
-   <p></p>
-   <div contenteditable="false" id="contentM">
-		<img src="${root }resources/${bean.event_thumb }" id="board_thumb"/>
-		<input type="hidden" id="hiddenI" value="${bean.event_thumb }"/>
-		<input type="text" id="contentC" value="${bean.event_content }" disabled/>
-   </div>
-   <p></p>
-   <div id="btn">
-      <button type="button" class="btn btn-default" id="subm">수정하기</button>
-      <button type="button" class="btn btn-default" id="dele">삭제하기</button>
-      <button type="button" class="btn btn-default" id="goList">목록으로</button>
-   </div>
-
-<!-- 댓글 출력 -->
-   <div id="table">
-      <table>
-         <tbody id="tbody">
-         <c:forEach items="${list }" var="beans">
-            <tr id="tr1">
-               <th id="th">${beans.client_nick1 }</th>
-               <th id="th">${beans.reply_date }</th>
-               <th><input type="hidden" id="repId" name="repId_${beans.reply_no }" value="${beans.client_nick1 }"><th>
-			</tr>
-			<tr id="tr2">
-				<td colspan="2"><input type="text" id="reply" name="reply_${beans.reply_no }" value="${beans.reply_content }" disabled></td>
-				<td>
-					<button type="button" id="edit" name="edit_${beans.reply_no }" class="btn btn-default"><img src="https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/edit.png?raw=true" width="15px" height="20px"/></button>
-					<button type="button" id="update" name="update_${beans.reply_no }" class="btn btn-default"><img src="https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/insert.png?raw=true" width="15px" height="20px"/></button>
-					<button type="button" id="cancel" name="cancel_${beans.reply_no }" class="btn btn-default"><img src="https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/delete.png?raw=true" width="15px" height="15px"/></button>
-					<button type="button" id="dele2" name="dele2_${beans.reply_no }" class="btn btn-default"><img src="https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/delete.png?raw=true" width="15px" height="15px"/></button>
-				</td>
-            </tr>
-         <input type="hidden" id="reply_no" name="reply_no" value="${beans.reply_no}">
-         </c:forEach>
-         </tbody>
-      </table>
-      <p></p>
-      <input type="text" class="form-control" id="reply_content" name="reply_content">
-      <button type="button" id="insert" class="btn btn-default"><img src="https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/insert.png?raw=true" width="30px" height="27px" style="vertical-align:30px;"/></button>
-   </div>
-      
-</form>
-
+	<form class="form-inline" method="POST">
+	   <div>
+	      <input type="text" class="form-control" id="board_sub" name="board_sub" value="${bean.event_sub }" style="cursor:default" disabled>
+	      <input type="hidden" id="board_no" name="board_no" value="${bean.board_no }">
+	   </div>
+	   <p></p>
+	   <div>
+	      <div class="form-group" align="left">
+	         <label for="exampleInputName2">닉네임</label>
+	         <input type="text" class="form-control" id="client_nick1" name="client_nick1" value="${bean.client_nick1 }" style="cursor:default" disabled>
+	      </div>
+	      &nbsp; &nbsp;
+	      <div class="form-group">
+	         <label for="exampleInputEmail2">조회수</label>
+	         <input type="text" class="form-control" id="board_count" value="${bean.event_count }" style="cursor:default" disabled>
+	         <input type="hidden" id="log" name="log" value="${sessionScope.check.client_nick1}">
+	         <input type="hidden" id="staffLog" name="staffLog" value="${sessionScope.staffcheck.staff_name}">
+	      </div>
+	      &nbsp; &nbsp;
+	      <div class="form-group" align="left">
+	      	<label for="exampleInputEmail2">작성일</label>
+			<input type="text" class="form-control" id="board_date" value="${bean.event_date }" style="cursor:default" disabled>
+	      </div>
+	   </div>
+	   <p></p>
+	   <div contenteditable="false" id="contentM">
+			<img src="${root }resources/${bean.event_thumb }" id="board_thumb"/>
+			<input type="hidden" id="hiddenI" value="${bean.event_thumb }"/>
+			<input type="text" id="contentC" value="${bean.event_content }" disabled/>
+	   </div>
+	   <p></p>
+	   <div id="btn">
+	      <button type="button" class="btn btn-default" id="subm">수정하기</button>
+	      <button type="button" class="btn btn-default" id="dele">삭제하기</button>
+	      <button type="button" class="btn btn-default" id="goList">목록으로</button>
+	   </div>
+	
+	<!-- 댓글 출력 -->
+	   <div id="table">
+	      <table>
+	         <tbody id="tbody">
+	         <c:forEach items="${list }" var="beans">
+	            <tr id="tr1">
+	               <th id="th">${beans.client_nick1 }</th>
+	               <th id="th">${beans.reply_date }</th>
+	               <th><input type="hidden" id="repId" name="repId_${beans.reply_no }" value="${beans.client_nick1 }"><th>
+				</tr>
+				<tr id="tr2">
+					<td colspan="2"><input type="text" id="reply" name="reply_${beans.reply_no }" value="${beans.reply_content }" disabled></td>
+					<td>
+						<button type="button" id="edit" name="edit_${beans.reply_no }" class="btn btn-default"><img src="https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/edit.png?raw=true" width="15px" height="20px"/></button>
+						<button type="button" id="update" name="update_${beans.reply_no }" class="btn btn-default"><img src="https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/insert.png?raw=true" width="15px" height="20px"/></button>
+						<button type="button" id="cancel" name="cancel_${beans.reply_no }" class="btn btn-default"><img src="https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/delete.png?raw=true" width="15px" height="15px"/></button>
+						<button type="button" id="dele2" name="dele2_${beans.reply_no }" class="btn btn-default"><img src="https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/delete.png?raw=true" width="15px" height="15px"/></button>
+					</td>
+	            </tr>
+	         <input type="hidden" id="reply_no" name="reply_no" value="${beans.reply_no}">
+	         </c:forEach>
+	         </tbody>
+	      </table>
+	      <p></p>
+	      <input type="text" class="form-control" id="reply_content" name="reply_content">
+	      <button type="button" id="insert" class="btn btn-default"><img src="https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/insert.png?raw=true" width="30px" height="27px" style="vertical-align:30px;"/></button>
+	   </div>
+	      
+	</form>
+</div>
 
 <!-- contents end -->
 <jsp:include page="/WEB-INF/remote.jsp"/>

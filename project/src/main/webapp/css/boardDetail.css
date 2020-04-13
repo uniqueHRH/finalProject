@@ -1,40 +1,28 @@
-	h1 {
-		font-family: 'Jua';
-	}
-	form {
-		width:700px;      
+	#allContain {
+		width:1000px;
 		margin:0 auto;
+		padding-left:130px;
 		font-family: 'Jua';
 	}
-	#hambI {
-		border:1px solid #474747;
-		padding:0;
-		border-radius:10px;
-	}
 	form {
-		width:750px;
+		width:950px;
 		margin:0 auto;
 		align:center;
 		text-align:center;
 		padding:0px;
 	}
-	#board_theme1, #board_theme2, #board_theme3, #board_land, #board_sub, #client_nick1, #board_date, #board_count, #board_content, #replyBoard {
-		background-color:white;
-	}
 	label {
-		width:35px;
+		width:40px;
 	}
 	#board_sub {
-		width:700px;
+		width:800px;
 		align:left;
 		text-align:left;
+		background-color:white;
 	}
 	#client_nick1, #board_count, #board_date {
-		width:161px;
-	}
-	#board_content {
-		width:700px;
-		height:300px;
+		width:171px;
+		background-color:white;
 	}
 	#btn {
 		text-align:center;
@@ -42,7 +30,7 @@
 	}
 	/* ´ñ±Û */
 	#table {
-		width:700px;
+		width:800px;
 		margin:0 auto;
 		border-color:gray;
 		padding:10px;
@@ -51,18 +39,18 @@
 		background-color:#e8e8e8;
 	}
 	#replyBoard {
-		width:700px;
+		width:800px;
 		height:100px;
 	}
 	#reply {
-		width:600px;
+		width:700px;
 		height:30px;
 		font-family:'Jua';
 		border:0;
 		outline:0;
 	}
 	#reply_content {
-		width:600px;
+		width:700px;
 	}
 	#edit, #update, #cancel, #dele2, #insert {
 		text-align:center;
@@ -91,12 +79,14 @@
 	}
 /* content */
 	#contentM {
-		margin:20px 20px;
+		margin:20px 75px;
 		border:2px solid #e8e8e8;
 		border-radius:10px;
+		width:800px;
+		padding:28;
 	}
 	#contentC {
-		width:670px;
+		width:740px;
 		margin:20px 5px;
 		background-color:white;
 		border:0;

@@ -19,36 +19,37 @@
 
 
 <!-- contents start -->
-      <div class="page-header" id="page-header" align="center">
-     <h1>INSERT</h1>
-   </div>
+<div id="allContain">
+	<div class="page-header" id="page-header" align="center">
+		<h1>INSERT</h1>
+	</div>
       
-<!-- 나라 선택 -->
-<form class="form-inline" method="POST" enctype="multipart/form-data">
-<!-- 입력 -->
-	<div class="form-group">
+	<!-- 나라 선택 -->
+	<form class="form-inline" method="POST" enctype="multipart/form-data">
+	<!-- 입력 -->
+		<div class="form-group">
+			<p></p>
+			<label for="exampleInputName2">&nbsp; 제 목</label>
+			<input type="text" class="form-control" id="board_sub" name="notice_sub">
+		</div>
+		<div><p></p>
+			&nbsp; <textarea class="form-control" id="board_content" name="notice_content"></textarea>
+		</div>
 		<p></p>
-		<label for="exampleInputName2">&nbsp; 제 목</label>
-		<input type="text" class="form-control" id="board_sub" name="notice_sub" style="width:613px;">
-	</div>
-	<div><p></p>
-		&nbsp; <textarea class="form-control" id="board_content" name="notice_content" style="width:650px; height:300px;"></textarea>
-	</div>
-	<p></p>
-<!-- file upload -->
-	<div class="upload">
-		<label for="board_img">이미지</label>
-		<input type="file" id="board_img" name="file" />
-		<div class="board_img"><img src=""/></div>
-	</div>
-
-<!-- 버튼 -->
-	<p></p>
-	<p align="center">
-	  <button type="submit" class="btn btn-default" id="subm">작성완료</button>
-	  <button type="button" class="btn btn-default" id="btn2">취 &nbsp; &nbsp;소</button>
-	</p>
-</form>
+	<!-- file upload -->
+		<div class="upload">
+			<label for="board_img">이미지</label>
+			<input type="file" id="board_img" name="file" />
+			<div class="board_img"><img src=""/></div>
+		</div>
+	
+	<!-- 버튼 -->
+		<div id="btn">
+		  <button type="submit" class="btn btn-default" id="subm">작성완료</button> &nbsp;
+		  <button type="button" class="btn btn-default" id="btn2">취 &nbsp; &nbsp;소</button>
+		</div>
+	</form>
+</div>
 
 <!-- contents end -->
 <jsp:include page="/WEB-INF/remote.jsp"/>

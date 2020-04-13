@@ -11,18 +11,21 @@
 <link rel="stylesheet" type="text/css" href="${root }css/bootstrap.css" />
 <link rel="stylesheet" type="text/css" href="${root }css/travel.css" />
 <style type="text/css">
-	h1 {
+	#allContain {
+		width:950px;
+		margin:0 auto;
+		padding-left:200px;
 		font-family: 'Jua';
 	}
 	form {
-   		width:800px;
-	   	margin:0 auto;
-	   	align:center;
-		font-family: 'Jua';
-	   	text-align:center;
-	   	padding:0px;
+      width:750px;      
+      margin:0 auto;
+      font-family: 'Jua';
+      font-size:15px;
 	}
-	textarea {
+	#board_content {
+		width:750px;
+		height:300px;
 		resize:none;
 	}
 /* 나라 드롭창 div */
@@ -41,29 +44,19 @@
 		background-color:white;
 	}
 	label {
-		width:35px;
+		width:40px;
 	}
 	#board_sub {
-		width:700px;
+		width:750px;
 		align:left;
 		text-align:left;
 	}
 	#client_nick1, #board_date, #board_count {
 		width:161px;
 	}
-	#board_content {
-		width:700px;
-		height:300px;
-	}
-	textarea {
-		background-color:pink;
-		color:black;
-	}
 /* 테마 선택 */
-	label {
-		width:50px;
-	}	
 	#btn {
+		width:750px;
 		text-align:center;
 	}
 /* 이미지 수정 */
@@ -77,91 +70,93 @@
 
 
 <!-- contents start -->
-      <div class="page-header" id="page-header" align="center">
-     <h1>UPDATE</h1>
-   </div>
-      
-<!-- 제목 -->
-<form class="form-inline" method="POST" enctype="multipart/form-data">
-	<div id="pl">
-		<select id="board_land" name="board_land" style="cursor:pointer">
-			<option value="${bean.board_land }">${bean.board_land }</option>
-			<option value="중국/일본">중국/일본</option>
-			<option value="동남아시아">동남아시아</option>
-			<option value="아메리카">아메리카</option>
-			<option value="유&nbsp; &nbsp; &nbsp;럽">유&nbsp; &nbsp; &nbsp;럽</option>
-			<option value="남태평양">남태평양</option>
-			<option value="아프리카">아프리카</option>
-		</select>
+<div id="allContain">
+	<div class="page-header" id="page-header" align="center">
+		<h1>UPDATE</h1>
 	</div>
-	<p></p>
-	<div>
-		<input type="text" class="form-control" id="board_sub" name="board_sub" value="${bean.board_sub }">
-		<input type="hidden" id="board_no" name="board_no" value="${bean.board_no }">
-	</div>
-	<p></p>
-	<div class="form-group">
-		<label for="exampleInputName2">닉네임</label>
-		<input type="text" class="form-control" id="client_nick1" value="${bean.client_nick1 }" style="cursor:default" disabled>
-	</div>
-	<div class="form-group">
-	&nbsp; &nbsp;
-	<fmt:formatDate value="${bean.board_date}" pattern="yyyy-MM-dd HH:mm" var="date"/>
-		<label for="exampleInputEmail2">작성일</label>
-		<input type="email" class="form-control" id="board_date" value="${date }" style="cursor:default" disabled>
-	</div>
-	<div class="form-group">
-	&nbsp; &nbsp;
-		<label for="exampleInputEmail2">조회수</label>
-		<input type="email" class="form-control" id="board_count" value="${bean.board_count }" style="cursor:default" disabled>
-	</div>
-	<p></p>
-	<div>
-		<textarea class="form-control" id="board_content" name="board_content">${bean.board_content }</textarea>
-	</div>
-	<p></p>
-	<!-- 테마 선택 -->	
-	<div class="custom-control custom-checkbox" align="center" id="the">
-	<p></p>
-		<input type="checkbox" name="theme" class="custom-control-input" value="힐링">
-		<label class="custom-control-label" for="jb-checkbox">힐링</label>
-		&nbsp; 
-		<input type="checkbox" name="theme" class="custom-control-input" value="스냅">
-		<label class="custom-control-label" for="jb-checkbox">스냅</label>
-		&nbsp; 
-		<input type="checkbox" name="theme" class="custom-control-input" value="액티비티">
-		<label class="custom-control-label" for="jb-checkbox">액티비티</label>
-		&nbsp; 
-		<input type="checkbox" name="theme" class="custom-control-input" value="식도락">
-		<label class="custom-control-label" for="jb-checkbox">식도락</label>
-		&nbsp; 
-		<input type="checkbox" name="theme" class="custom-control-input" value="영화">
-		<label class="custom-control-label" for="jb-checkbox">영화</label>
-		&nbsp; 
-		<input type="checkbox" name="theme" class="custom-control-input" value="스포츠">
-		<label class="custom-control-label" for="jb-checkbox">스포츠</label>
-		
-		<input type="hidden" id="board_theme" name="board_theme" value="${bean.board_theme }">
-	</div>
-<!-- 이미지 수정 -->
-	<div class="upload">
-		<label for="board_img">이미지</label><a class="btn btn-default" role="button" id="dele">삭제</a>
-		<input type="file" id="board_img" name="file" />
-		<div class="board_img">
-			<img src="${root }resources/${bean.board_thumb }" id="uploadI"/>
-			<input type="hidden" name="board_img" value="${bean.board_thumb }"/>
-			<input type="hidden" name="board_thumb" value="${bean.board_img }"/>
+	      
+	<!-- 제목 -->
+	<form class="form-inline" method="POST" enctype="multipart/form-data">
+		<div id="pl">
+			<select id="board_land" name="board_land" style="cursor:pointer">
+				<option value="${bean.board_land }">${bean.board_land }</option>
+				<option value="중국/일본">중국/일본</option>
+				<option value="동남아시아">동남아시아</option>
+				<option value="아메리카">아메리카</option>
+				<option value="유&nbsp; &nbsp; &nbsp;럽">유&nbsp; &nbsp; &nbsp;럽</option>
+				<option value="남태평양">남태평양</option>
+				<option value="아프리카">아프리카</option>
+			</select>
 		</div>
+		<p></p>
+		<div>
+			<input type="text" class="form-control" id="board_sub" name="board_sub" value="${bean.board_sub }">
+			<input type="hidden" id="board_no" name="board_no" value="${bean.board_no }">
+		</div>
+		<p></p>
+		<div class="form-group">
+			<label for="exampleInputName2">닉네임</label>
+			<input type="text" class="form-control" id="client_nick1" value="${bean.client_nick1 }" style="cursor:default" disabled>
+		</div>
+		<div class="form-group">
+		&nbsp; &nbsp;
+		<fmt:formatDate value="${bean.board_date}" pattern="yyyy-MM-dd HH:mm" var="date"/>
+			<label for="exampleInputEmail2">작성일</label>
+			<input type="email" class="form-control" id="board_date" value="${date }" style="cursor:default" disabled>
+		</div>
+		<div class="form-group">
+		&nbsp; &nbsp;
+			<label for="exampleInputEmail2">조회수</label>
+			<input type="email" class="form-control" id="board_count" value="${bean.board_count }" style="cursor:default" disabled>
+		</div>
+		<p></p>
+		<div>
+			<textarea class="form-control" id="board_content" name="board_content">${bean.board_content }</textarea>
+		</div>
+		<p></p>
+		<!-- 테마 선택 -->	
+		<div class="custom-control custom-checkbox" align="center" id="the">
+		<p></p>
+			<input type="checkbox" name="theme" class="custom-control-input" value="힐링">
+			<label class="custom-control-label" for="jb-checkbox">힐링</label>
+			&nbsp; 
+			<input type="checkbox" name="theme" class="custom-control-input" value="스냅">
+			<label class="custom-control-label" for="jb-checkbox">스냅</label>
+			&nbsp; 
+			<input type="checkbox" name="theme" class="custom-control-input" value="액티비티">
+			<label class="custom-control-label" for="jb-checkbox">액티비티</label>
+			&nbsp; 
+			<input type="checkbox" name="theme" class="custom-control-input" value="식도락">
+			<label class="custom-control-label" for="jb-checkbox">식도락</label>
+			&nbsp; 
+			<input type="checkbox" name="theme" class="custom-control-input" value="영화">
+			<label class="custom-control-label" for="jb-checkbox">영화</label>
+			&nbsp; 
+			<input type="checkbox" name="theme" class="custom-control-input" value="스포츠">
+			<label class="custom-control-label" for="jb-checkbox">스포츠</label>
+			
+			<input type="hidden" id="board_theme" name="board_theme" value="${bean.board_theme }">
+		</div>
+	<!-- 이미지 수정 -->
+		<div class="upload">
+			<label for="board_img">이미지</label><a class="btn btn-default" role="button" id="dele">삭제</a>
+			<input type="file" id="board_img" name="file" />
+			<div class="board_img">
+				<img src="${root }resources/${bean.board_thumb }" id="uploadI"/>
+				<input type="hidden" name="board_img" value="${bean.board_thumb }"/>
+				<input type="hidden" name="board_thumb" value="${bean.board_img }"/>
+			</div>
+			
+		</div>
+		<p></p>	
 		
-	</div>
-	<p></p>	
-	
-	<div id="btn">
-		<button type="submit" class="btn btn-default" id="subm">수정완료</button>
-		<button type="reset" class="btn btn-default" id="dele">초기화</button>
-		<button type="button" class="btn btn-default" id="goList">작성취소</button>
-	</div>
-</form>
+		<div id="btn">
+			<button type="submit" class="btn btn-default" id="subm">수정완료</button> &nbsp;
+			<button type="reset" class="btn btn-default" id="dele">초기화</button> &nbsp;
+			<button type="button" class="btn btn-default" id="goList">작성취소</button>
+		</div>
+	</form>
+</div>
 <jsp:include page="/WEB-INF/remote.jsp"/>
 <jsp:include page="/WEB-INF/socket.jsp"/>
 <jsp:include page="/WEB-INF/footer.jsp"/>

@@ -13,7 +13,8 @@
 <link rel="stylesheet" type="text/css" href="${root }css/travel.css" />
 <style type="text/css">
 	.jumbotron {
-		background-image:url(https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/background1.jpg?raw=true);
+		/* background-image:url(https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/background1.jpg?raw=true); */
+		background-image:url("${root}temp/b5.jpg");
 		background-size: cover;
 		width: 100%;
 	}
@@ -328,7 +329,7 @@
 	</div>
 	
 	<div id="mainI3">
-		<p id="mainP">최근본 상품</p><p id="star"> &nbsp;♬</p>
+		<p id="mainP">최근 본 상품</p><p id="star"> &nbsp;♬</p>
 		<div id="main1">
 			<a href="#">
 				<img src="https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/mainbarcelona.jpg?raw=true"/><br/>

@@ -106,6 +106,9 @@
 		font-family: 'Jua';
 		font-size: 18px;
 	}
+	#searchType {
+		width:87px;
+	}
 
 </style>
 </head>
@@ -184,6 +187,8 @@
 		<select id="searchType">
 		    <option value="client_name">예약자</option>
 		    <option value="paid_name">여행자</option>
+		    <option value="paid_state">결제상태</option>
+		    <option value="paid_confirm">확정여부</option>
 		</select>
       <input type="text" class="form-control" id="keyword" name="keyword" style="width:200px; display:inline-block;">
 		<a class="btn btn-default" href="#" role="button" id="searchGo">G O</a>

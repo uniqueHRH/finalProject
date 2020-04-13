@@ -11,13 +11,28 @@
 <link rel="stylesheet" type="text/css" href="${root }css/bootstrap.css" />
 <link rel="stylesheet" type="text/css" href="${root }css/travel.css" />
 <style type="text/css">
-    #table{
-   		font-family: "Jua";
-   }
-    .form-horizontal {
-       width:450px;
-      margin: 0 auto;
-    }
+#allContain {
+		width:1000px;
+		margin:0 auto;
+		padding-left:170px;
+		font-family: 'Jua';
+	}
+	form {
+		width:450px;      
+		margin:0 auto;
+		font-family: 'Jua';
+		font-size:18px;
+		align:center;
+		text-align:center;
+		padding:130 0 0 0;
+	}
+	label, #id  {
+		display:inline-block;
+		padding:0 15;
+	}
+	#btn {
+		padding:20 0 0 0;
+	}
     #resetbtn,#confirmbtn{
     	text-align: center;
     	margin-top: 10px;
@@ -34,22 +49,22 @@
 <body>
  <jsp:include page="/WEB-INF/menubar.jsp"/>          
                      <!-- contents start -->
-<div id="table">
-      <div class="page-header" align="center">
-     <h1>임시비밀번호 발급 안내</h1>
-   </div>
+<div id="allContain">
+	<div class="page-header" align="center">
+		<h1>임시비밀번호 발급 안내</h1>
+	</div>
    
-   <form action="../main/PwUpdate" class="form-horizontal" method="post">
-     <div class="form-group" id="insertid" align="center">
-       <p>임시 비밀번호 입니다. 로그인 후 비밀번호를 변경하세요.</p>
-       <div class="col-sm-10">임시 비밀번호 : ${Password}</div>
-       <input type="hidden" id="client_pw" name="client_pw" value="${Password}" style="display: none;">
-       <input type="hidden" id="client_id" name="client_id" value="${id}" style="display: none;">
-     </div>
-     <p>
-  		<button type="submit" id="resetbtn" class="btn btn-default btn-lg">로그인</button>
-  		<button type="button" id="confirmbtn" class="btn btn-default btn-lg" onclick="location.href='${root }main/login/findpw'">취 소</button>
-	</p>
+	<form action="../main/PwUpdate" class="form-horizontal" method="post">
+		<div class="form-group" id="insertid" align="center">
+			<p>임시 비밀번호 입니다. 로그인 후 비밀번호를 변경하세요.</p>
+			<div>임시 비밀번호 : ${Password}</div>
+			<input type="hidden" id="client_pw" name="client_pw" value="${Password}" style="display: none;">
+       		<input type="hidden" id="client_id" name="client_id" value="${id}" style="display: none;">
+     	</div>
+     	<div id="btn">
+	  		<button type="submit" id="resetbtn" class="btn btn-default btn-lg">로그인</button>
+	  		<button type="button" id="confirmbtn" class="btn btn-default btn-lg" onclick="location.href='${root }main/login/findpw'">취 소</button>
+	  	</div>
   </form>
 </div>
 

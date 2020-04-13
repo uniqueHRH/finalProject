@@ -20,81 +20,84 @@
 <jsp:include page="/WEB-INF/menubar.jsp"/>
 
 <!-- contents start -->
-      <div class="page-header" id="page-header" align="center">
-     <h1>REVIEW</h1>
-   </div>
+<div id="allContain">
+	<div class="page-header" id="page-header" align="center">
+		<h1>REVIEW</h1>
+	</div>
    
 	
-   
-<table class="table table-hover" id="containerTable">
-<!-- 정렬 드롭다운 -->
-	<div class="topMenu" id="theme">
-		<select id="dropdownMenu1">
-		    <option value="정렬">정 &nbsp;렬</option>
-		    <option value="나라별">나라별</option>
-		    <option value="테마별">테마별</option>
-		</select>
-		<a class="btn btn-default" href="#" role="button" id="sel">조회</a>
-		<input type="text" value="<c:out value="${listCnt}"></c:out>개의 게시물이 조회되었습니다" id="listCnt" disabled/>
-	</div>
-
-<!-- 리스트 출력 -->
-   <thead>
-      <tr class="active">
-         <th>#</th>
-         <th>나라</th>
-         <th>테마</th>
-         <th>제 목</th>
-         <th>글쓴이</th>
-         <th>날 짜</th>
-         <th>조회수</th>
-      </tr>
-   </thead>
-   <tbody class="active_con">
-		<c:forEach items="${list }" var="bean">
-		<fmt:formatDate value="${bean.board_date}" pattern="yyyy-MM-dd" var="date"/>
-		<tr>
-			<td>${bean.board_no }</td>
-			<td><a href="reviewDe/${bean.board_no }">[${bean.board_land }]</a></td>
-			<td><a href="reviewDe/${bean.board_no }">[${bean.board_theme }]</a></td>
-			<td><a href="reviewDe/${bean.board_no }">${bean.board_sub }</a></td>
-			<td><a href="reviewDe/${bean.board_no }">${bean.client_nick1 }</a></td>
-			<td><a href="reviewDe/${bean.board_no }">${date }</a></td>
-			<td><a href="reviewDe/${bean.board_no }">${bean.board_count }</a></td>
-		</tr>
-		</c:forEach>
-   </tbody>
-</table>
-
-<nav id="pageNum">
-<!-- 페이지넘버링 -->
-	<div id="paginationBox">
-		<ul class="pagination">
-			<c:if test="${pagination.prev}">
-				<li class="page-item"><a class="page-link" href="#" onClick="prev('${pagination.page}', '${pagination.range}', '${pagination.rangeSize}')">Prev</a></li>
-			</c:if>
-			<c:forEach begin="${pagination.startPage}" end="${pagination.endPage}" var="idx">
-				<li class="page-item <c:out value="${pagination.page==idx?'active' : ''}"/>"><a class="page-link" href="#" onClick="pagination('${idx}', '${pagination.range}', '${pagination.rangeSize}', '${search.searchType}', '${search.keyword }' )">${idx}</a></li>
+	<table class="table table-hover" id="containerTable">
+	<!-- 정렬 드롭다운 -->
+		<div class="topMenu" id="theme">
+			<select id="dropdownMenu1">
+			    <option value="정렬">정 &nbsp;렬</option>
+			    <option value="나라별">나라별</option>
+			    <option value="테마별">테마별</option>
+			</select>
+			<a class="btn btn-default" href="#" role="button" id="sel">조회</a>
+			<input type="text" value="<c:out value="${listCnt}"></c:out>개의 게시물이 조회되었습니다" id="listCnt" disabled/>
+			<div id="fff"></div>
+			<a class="btn btn-default" href="${root }board/reviewIns" role="button" id="wri">글쓰기</a>
+			<input type="hidden" id="loginCk" value="${sessionScope.check.client_nick1}"/>
+		</div>
+	
+	<!-- 리스트 출력 -->
+	   <thead>
+	      <tr class="active">
+	         <th>#</th>
+	         <th>나라</th>
+	         <th>테마</th>
+	         <th>제 목</th>
+	         <th>글쓴이</th>
+	         <th>날 짜</th>
+	         <th>조회수</th>
+	      </tr>
+	   </thead>
+	   <tbody class="active_con">
+			<c:forEach items="${list }" var="bean">
+			<fmt:formatDate value="${bean.board_date}" pattern="yyyy-MM-dd" var="date"/>
+			<tr>
+				<td>${bean.board_no }</td>
+				<td><a href="reviewDe/${bean.board_no }">[${bean.board_land }]</a></td>
+				<td><a href="reviewDe/${bean.board_no }">[${bean.board_theme }]</a></td>
+				<td><a href="reviewDe/${bean.board_no }">${bean.board_sub }</a></td>
+				<td><a href="reviewDe/${bean.board_no }">${bean.client_nick1 }</a></td>
+				<td><a href="reviewDe/${bean.board_no }">${date }</a></td>
+				<td><a href="reviewDe/${bean.board_no }">${bean.board_count }</a></td>
+			</tr>
 			</c:forEach>
-			<c:if test="${pagination.next}">
-				<li class="page-item"><a class="page-link" href="#" onClick="next('${pagination.range}', '${pagination.range}', '${pagination.rangeSize}')" >Next</a></li>
-			</c:if>
-		</ul>
-	</div>
-
-<!-- 검색 -->
-   <div class="topMenu" id="search">
-		<select id="searchType">
-		    <option value="board_sub">제 &nbsp; 목</option>
-		    <option value="board_land">나라별</option>
-		    <option value="board_theme">테마별</option>
-		</select>
-      <input type="text" class="form-control" id="keyword" name="keyword" style="width:200px; display:inline-block;">
-		<a class="btn btn-default" href="#" role="button" id="searchGo">G O</a>
-	</div>
+	   </tbody>
+	</table>
 	
-</nav>
-
+	<nav id="pageNum">
+	<!-- 페이지넘버링 -->
+		<div id="paginationBox">
+			<ul class="pagination">
+				<c:if test="${pagination.prev}">
+					<li class="page-item"><a class="page-link" href="#" onClick="prev('${pagination.page}', '${pagination.range}', '${pagination.rangeSize}')">Prev</a></li>
+				</c:if>
+				<c:forEach begin="${pagination.startPage}" end="${pagination.endPage}" var="idx">
+					<li class="page-item <c:out value="${pagination.page==idx?'active' : ''}"/>"><a class="page-link" href="#" onClick="pagination('${idx}', '${pagination.range}', '${pagination.rangeSize}', '${search.searchType}', '${search.keyword }' )">${idx}</a></li>
+				</c:forEach>
+				<c:if test="${pagination.next}">
+					<li class="page-item"><a class="page-link" href="#" onClick="next('${pagination.range}', '${pagination.range}', '${pagination.rangeSize}')" >Next</a></li>
+				</c:if>
+			</ul>
+		</div>
+	
+	<!-- 검색 -->
+	   <div class="topMenu" id="search">
+			<select id="searchType">
+			    <option value="board_sub">제 &nbsp; 목</option>
+			    <option value="board_land">나라별</option>
+			    <option value="board_theme">테마별</option>
+			</select>
+	      <input type="text" class="form-control" id="keyword" name="keyword" style="width:200px; display:inline-block;">
+			<a class="btn btn-default" href="#" role="button" id="searchGo">G O</a>
+		</div>
+		
+	</nav>
+</div>
 
 
 <jsp:include page="/WEB-INF/remote.jsp"/>

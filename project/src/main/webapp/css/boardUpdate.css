@@ -1,44 +1,40 @@
-	h1 {
+	#allContain {
+		width:950px;
+		margin:0 auto;
+		padding-left:200px;
 		font-family: 'Jua';
 	}
 	form {
-   		width:800px;
-	   	margin:0 auto;
-	   	align:center;
-		font-family: 'Jua';
-	   	text-align:center;
-	   	padding:0px;
+      width:750px;      
+      margin:0 auto;
+      font-family: 'Jua';
+      font-size:15px;
 	}
-	textarea {
+	#board_content {
+		width:750px;
+		height:300px;
 		resize:none;
 	}
 	#board_sub, #client_nick1, #board_date, #board_count, #board_content {
 		background-color:white;
 	}
 	label {
-		width:35px;
+		width:40px;
 	}
 	#board_sub {
-		width:700px;
+		width:750px;
 		align:left;
 		text-align:left;
 	}
 	#client_nick1, #board_date, #board_count {
 		width:161px;
 	}
-	#board_content {
-		width:700px;
-		height:300px;
-	}
-	textarea {
-		background-color:pink;
-		color:black;
-	}
 /* 테마 선택 */
 	label {
-		width:50px;
+		width:40px;
 	}	
 	#btn {
+		width:750px;
 		text-align:center;
 	}
 /* 이미지 수정 */

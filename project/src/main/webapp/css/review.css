@@ -1,5 +1,7 @@
-	h1, input {
-		font-family: 'Jua';
+	#allContain {
+		width:1000px;
+		margin:0 auto;
+		padding-left:130px
 	}
 	#containerTable {
 		width:950px;
@@ -7,6 +9,9 @@
 		padding:0px;
 		font-family: 'Jua';
 		font-size:15px;
+	}
+	h1, input {
+		font-family: 'Jua';
 	}
 	select, button, a {
 		font-family: 'Jua';

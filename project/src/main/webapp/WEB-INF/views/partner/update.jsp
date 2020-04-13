@@ -22,57 +22,58 @@
 
 
 <!-- contents start -->
-      <div class="page-header" id="page-header" align="center">
-     <h1>UPDATE</h1>
-   </div>
+<div id="allContain">
+	<div class="page-header" id="page-header" align="center">
+		<h1>UPDATE</h1>
+	</div>
       
-<!-- 제목 -->
-<form class="form-inline" method="POST" enctype="multipart/form-data">
-	<div>
-		<input type="text" class="form-control" id="board_sub" name="partner_sub" value="${bean.partner_sub }">
-		<input type="hidden" id="board_no" name="board_no" value="${bean.board_no }">
-	</div>
-	<p></p>
-	<div class="form-group">
-		<label for="exampleInputName2">닉네임</label>
-		<input type="text" class="form-control" id="client_nick1" name="client_nick1" value="${bean.client_nick1 }" style="cursor:default" disabled>
-	</div>
-	<div class="form-group">
-	&nbsp; &nbsp;
-	<fmt:formatDate value="${bean.partner_date}" pattern="yyyy-MM-dd HH:mm" var="date"/>
-		<label for="exampleInputEmail2">작성일</label>
-		<input type="email" class="form-control" id="board_date" name="partner_date" value="${date }" style="cursor:default" disabled>
-	</div>
-	<div class="form-group">
-	&nbsp; &nbsp;
-		<label for="exampleInputEmail2">조회수</label>
-		<input type="email" class="form-control" id="board_count" name="partner_count" value="${bean.partner_count }" style="cursor:default" disabled>
-	</div>
-	<p></p>
-	<div>
-		<textarea class="form-control" id="board_content" name="partner_content">${bean.partner_content }</textarea>
-	</div>
-	<p></p>
-<!-- 이미지 수정 -->
-	<div class="upload">
-		<label for="board_img">이미지</label>
-		<input type="file" id="board_img" name="file" />
-		<div class="board_img">
-			<img src="${root }resources/${bean.partner_thumb }" id="uploadI"/>
-			<input type="hidden" name="partner_thumb" value="${bean.partner_thumb }"/>
-			<input type="hidden" name="partner_img" value="${bean.partner_img }"/>
+	<!-- 제목 -->
+	<form class="form-inline" method="POST" enctype="multipart/form-data">
+		<div>
+			<input type="text" class="form-control" id="board_sub" name="partner_sub" value="${bean.partner_sub }">
+			<input type="hidden" id="board_no" name="board_no" value="${bean.board_no }">
 		</div>
+		<p></p>
+		<div class="form-group">
+			<label for="exampleInputName2">닉네임</label>
+			<input type="text" class="form-control" id="client_nick1" name="client_nick1" value="${bean.client_nick1 }" style="cursor:default" disabled>
+		</div>
+		<div class="form-group">
+		&nbsp; &nbsp;
+		<fmt:formatDate value="${bean.partner_date}" pattern="yyyy-MM-dd HH:mm" var="date"/>
+			<label for="exampleInputEmail2">작성일</label>
+			<input type="email" class="form-control" id="board_date" name="partner_date" value="${date }" style="cursor:default" disabled>
+		</div>
+		<div class="form-group">
+		&nbsp; &nbsp;
+			<label for="exampleInputEmail2">조회수</label>
+			<input type="email" class="form-control" id="board_count" name="partner_count" value="${bean.partner_count }" style="cursor:default" disabled>
+		</div>
+		<p></p>
+		<div>
+			<textarea class="form-control" id="board_content" name="partner_content">${bean.partner_content }</textarea>
+		</div>
+		<p></p>
+	<!-- 이미지 수정 -->
+		<div class="upload">
+			<label for="board_img">이미지</label>
+			<input type="file" id="board_img" name="file" />
+			<div class="board_img">
+				<img src="${root }resources/${bean.partner_thumb }" id="uploadI"/>
+				<input type="hidden" name="partner_thumb" value="${bean.partner_thumb }"/>
+				<input type="hidden" name="partner_img" value="${bean.partner_img }"/>
+			</div>
+			
+		</div>
+		<p></p>	
 		
-	</div>
-	<p></p>	
-	
-	<div id="btn">
-		<button type="submit" class="btn btn-default" id="subm">수정완료</button>
-		<button type="reset" class="btn btn-default" id="dele">초기화</button>
-		<button type="button" class="btn btn-default" id="goList">작성취소</button>
-	</div>
-</form>
-
+		<div id="btn">
+			<button type="submit" class="btn btn-default" id="subm">수정완료</button> &nbsp;
+			<button type="reset" class="btn btn-default" id="dele">초기화</button> &nbsp;
+			<button type="button" class="btn btn-default" id="goList">작성취소</button>
+		</div>
+	</form>
+</div>
 
 
 <!-- contents end -->
