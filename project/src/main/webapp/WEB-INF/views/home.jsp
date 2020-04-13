@@ -85,17 +85,29 @@
 		padding-top:100px;
 	}
 /* 추천상품 */
-	#mainP{
-		text-align: center;
-		font-size: 48px;
-	}
-	#mainI, #mainI2 {
+	#mainI, #mainI2, #mainI3 {
 		width:1800px;
 		text-align:center;
 		font-family: 'Jua';
+		padding:40 0;
+	}
+	#mainP {
+		text-align: left;
+		font-size: 48px;
 		margin:0 auto;
 	}
-	#main1,#main2,#main3,#main4 {
+	p {
+		display:inline-block;
+	}
+	#go {
+		text-align:right;
+		width:330px;
+	}
+	#star {
+		font-size:50px;
+		padding:0 1300 0 0;
+	}
+	#main1, #main2, #main3, #main4 {
 		display: inline-block;
 		padding:20 20;
 		border:1px solid #e8e8e8;
@@ -266,41 +278,66 @@
 
 	<!-- 추천상품img -->
 	<div id="mainI">
-		<p id="mainP">가이드 추천</p>
+		<p id="mainP">가이드 추천</p><p id="star"> &nbsp;♬</p>
 		<div id="main1">
 			<a href="#">
 				<img src="https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/mainbarcelona.jpg?raw=true"/><br/>
-				<h3>바르셀로나</h3><p>바로가기 ▶</p>
+				<h3>바르셀로나</h3><p id="go">바로가기 ▶</p>
 			</a>
 		</div>
 		<div id="main2">
 			<a href="#"><img src="https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/maindanang.jpg?raw=true"><br/>
-			<h3>다 &nbsp; &nbsp; &nbsp;낭</h3><p>바로가기 ▶</p>
+			<h3>다 &nbsp; &nbsp; &nbsp;낭</h3><p id="go">바로가기 ▶</p>
 		</a>
 		</div>
 		<div id="main3">
 			<a href="#"><img src="https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/mainnewyork.jpg?raw=true"><br/>
-			<h3>뉴&nbsp; &nbsp; &nbsp;욕</h3><p>바로가기 ▶</p>
+			<h3>뉴&nbsp; &nbsp; &nbsp;욕</h3><p id="go">바로가기 ▶</p>
 		</a>
 		</div>
 		<div id="main4">
 			<a href="#"><img src="https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/mainsydney.jpg?raw=true"><br/>
-			<h3>시 드 니</h3><p>바로가기 ▶</p>
+			<h3>시 드 니</h3><p id="go">바로가기 ▶</p>
 		</a>
 		</div>
 	</div>
 	
-		<div id="mainI2">
-		<p id="mainP">최근본 상품</p>
+	<div id="mainI2">
+		<p id="mainP">찜한 상품</p><p id="star"> &nbsp;♬</p>
 		<div id="main1">
 			<a href="#">
 				<img src="https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/mainbarcelona.jpg?raw=true"/><br/>
-				<h3>바르셀로나</h3><p>바로가기 ▶</p>
+				<h3>바르셀로나</h3><p id="go">바로가기 ▶</p>
 			</a>
 		</div>
 		<div id="main2">
 			<a href="#"><img src="https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/maindanang.jpg?raw=true"><br/>
-			<h3>다 &nbsp; &nbsp; &nbsp;낭</h3><p>바로가기 ▶</p>
+			<h3>다 &nbsp; &nbsp; &nbsp;낭</h3><p id="go">바로가기 ▶</p>
+		</a>
+		</div>
+		<div id="main3">
+			<a href="#"><img src="https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/mainnewyork.jpg?raw=true"><br/>
+			<h3>뉴&nbsp; &nbsp; &nbsp;욕</h3><p id="go">바로가기 ▶</p>
+		</a>
+		</div>
+		<div id="main4">
+			<a href="#"><img src="https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/mainsydney.jpg?raw=true"><br/>
+			<h3>시 드 니</h3><p id="go">바로가기 ▶</p>
+		</a>
+		</div>
+	</div>
+	
+	<div id="mainI3">
+		<p id="mainP">최근본 상품</p><p id="star"> &nbsp;♬</p>
+		<div id="main1">
+			<a href="#">
+				<img src="https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/mainbarcelona.jpg?raw=true"/><br/>
+				<h3>바르셀로나</h3><p id="go">바로가기 ▶</p>
+			</a>
+		</div>
+		<div id="main2">
+			<a href="#"><img src="https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/maindanang.jpg?raw=true"><br/>
+			<h3>다 &nbsp; &nbsp; &nbsp;낭</h3><p id="go">바로가기 ▶</p>
 		</a>
 		</div>
 		<div id="main3">
@@ -310,7 +347,7 @@
 		</div>
 		<div id="main4">
 			<a href="#"><img src="https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/mainsydney.jpg?raw=true"><br/>
-			<h3>시 드 니</h3><p>바로가기 ▶</p>
+			<h3>시 드 니</h3><p id="go">바로가기 ▶</p>
 		</a>
 		</div>
 	</div>
