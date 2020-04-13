@@ -1,6 +1,6 @@
 package com.bit.project.model.entity;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 public class SendVo {
 
@@ -8,7 +8,7 @@ public class SendVo {
 	private String client_nick1;
 	private String client_nick2;
 	private String send_content;
-	private Date send_date;
+	private Timestamp send_date;
 	
 	
 	
@@ -41,10 +41,10 @@ public class SendVo {
 	public void setSend_content(String send_content) {
 		this.send_content = send_content;
 	}
-	public Date getSend_date() {
+	public Timestamp getSend_date() {
 		return send_date;
 	}
-	public void setSend_date(Date send_date) {
+	public void setSend_date(Timestamp send_date) {
 		this.send_date = send_date;
 	}
 
@@ -58,7 +58,7 @@ public class SendVo {
 
 
 
-	public SendVo(int send_no, String client_nick1, String client_nick2, String send_content, Date send_date) {
+	public SendVo(int send_no, String client_nick1, String client_nick2, String send_content, Timestamp send_date) {
 		super();
 		this.send_no = send_no;
 		this.client_nick1 = client_nick1;

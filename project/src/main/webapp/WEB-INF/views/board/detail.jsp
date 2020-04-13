@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page pageEncoding="utf-8" %>
 <link href="https://fonts.googleapis.com/css?family=Jua&display=swap&subset=korean" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Jua|Noto+Sans+KR&display=swap" rel="stylesheet">
@@ -35,7 +36,7 @@
 		background-color:white;
 	}
 	#board_sub {
-		width:575px;
+		width:550px;
 		align:left;
 		text-align:left;
 	}
@@ -47,7 +48,7 @@
 		border-color:white;
 	}
 	#board_date {
-		width:120px;
+		width:150px;
 	}
 	#client_nick1, #board_count {
 		width:140px;
@@ -141,8 +142,9 @@
 <!-- 제목 -->
 <form class="form-inline" method="POST">
    <div>
+   <fmt:formatDate value="${bean.board_date}" pattern="yyyy-MM-dd HH:mm" var="date"/>
       <input type="text" class="form-control" id="board_sub" name="board_sub" value="[${bean.board_land }] ${bean.board_sub }" style="cursor:default" disabled>
-      <input type="text" class="form-control" id="board_date" value="${bean.board_date }" style="cursor:default" disabled>
+      <input type="text" class="form-control" id="board_date" value="${date }" style="cursor:default" disabled>
       <input type="hidden" id="board_no" name="board_no" value="${bean.board_no }">
    </div>
    <p></p>
@@ -182,9 +184,10 @@
       <table>
          <tbody id="tbody">
          <c:forEach items="${list }" var="beans">
+         <fmt:formatDate value="${beans.reply_date}" pattern="yyyy-MM-dd HH:mm:ss" var="date2"/>
             <tr id="tr1">
 				<th id="th">${beans.client_nick1 }</th>
-				<th id="th">${beans.reply_date }</th>
+				<th id="th">${date2 }</th>
 				<th><input type="hidden" id="repId" name="repId_${beans.reply_no }" value="${beans.client_nick1 }"><th>
 			</tr>
 			<tr id="tr2">

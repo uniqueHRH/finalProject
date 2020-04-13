@@ -122,8 +122,8 @@
    <tbody>
 		<c:forEach items="${list }" var="bean">
 		<input type="hidden" id="no" value="${bean.receive_no }">
-		<fmt:formatDate value="${bean.receive_date}" pattern="yyyy-MM-dd HH:mm" var="date"/>
 		<tr>
+			<fmt:formatDate value="${bean.receive_date}" pattern="yyyy-MM-dd HH:mm" var="date"/>
 			<input type="hidden" class="type_${bean.receive_no }" value="${bean.receive_status }">
 			<td name="line_${bean.receive_no }"><input type="checkbox" name="chk_${bean.receive_no }"></td>
 			<td name="line_${bean.receive_no }"><a href="#" onclick="window.open('../messageDe/'+${bean.receive_no }, '쪽지보기', 'width=470, height=340, left=500, top=50');">${bean.receive_no }</a></td>

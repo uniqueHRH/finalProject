@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page pageEncoding="utf-8" import="com.bit.project.model.entity.*, java.util.List"%>
 <link href="https://fonts.googleapis.com/css?family=Jua&display=swap&subset=korean" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Jua|Noto+Sans+KR&display=swap" rel="stylesheet">
@@ -47,11 +48,12 @@
    </thead>
    <tbody>
 		<c:forEach items="${list }" var="bean">
+		<fmt:formatDate value="${bean.free_date}" pattern="yyyy-MM-dd" var="date"/>
 		<tr>
 			<td>${bean.board_no }</td>
 			<td><a href="freeDe/${bean.board_no }">${bean.free_sub }</a></td>
 			<td><a href="freeDe/${bean.board_no }">${bean.client_nick1 }</a></td>
-			<td><a href="freeDe/${bean.board_no }">${bean.free_date}</a></td>
+			<td><a href="freeDe/${bean.board_no }">${date}</a></td>
 			<td><a href="freeDe/${bean.board_no }">${bean.free_count }</a></td>
 		</tr>
 		</c:forEach>

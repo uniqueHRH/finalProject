@@ -1,6 +1,6 @@
 package com.bit.project.model.entity;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 public class PartnerVo {
 
@@ -10,7 +10,7 @@ public class PartnerVo {
 	private int partner_count;
 	private String partner_content;
 	private String client_nick1;
-	private Date partner_date;
+	private Timestamp partner_date;
 	private String partner_img;
 	private String partner_thumb;
 	
@@ -79,12 +79,12 @@ public class PartnerVo {
 	}
 
 
-	public Date getPartner_date() {
+	public Timestamp getPartner_date() {
 		return partner_date;
 	}
 
 
-	public void setPartner_date(Date partner_date) {
+	public void setPartner_date(Timestamp partner_date) {
 		this.partner_date = partner_date;
 	}
 
@@ -119,7 +119,7 @@ public class PartnerVo {
 
 
 	public PartnerVo(int board_no, int board_id, String partner_sub, int partner_count, String partner_content,
-			String client_nick1, Date partner_date, String partner_img, String partner_thumb) {
+			String client_nick1, Timestamp partner_date, String partner_img, String partner_thumb) {
 		super();
 		this.board_no = board_no;
 		this.board_id = board_id;

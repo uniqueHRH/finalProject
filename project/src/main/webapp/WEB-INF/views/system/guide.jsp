@@ -149,6 +149,18 @@
 			}   // if
 		});
 		
+//////////////////////////////////////////////////////////////////////////////////////////		
+		// 검색
+		$('#searchGo').on('click',function() {
+			var url='${root }system/guide';
+			url=url+'?searchType='+$('#searchType').val();
+			url=url+'&keyword='+$('#keyword').val();
+			
+			location.href=url;
+			console.log(url);
+		});
+		
+//////////////////////////////////////////////////////////////////////////////////////////		
 		// 리모컨 top
 		$('#top').on('click',function() {
 			$('html,body').scrollTop(0);
@@ -163,20 +175,8 @@
 	      channelPublicId: '_wxfwxfxb' // 카카오톡 채널 홈 URL에 명시된 id로 설정합니다.
 	    });
 	  //]]>
-		
-//////////////////////////////////////////////////////////////////////////////////////////		
-		// 검색
-		$('#searchGo').on('click',function() {
-			var url='${root }system/guide';
-			url=url+'?searchType='+$('#searchType').val();
-			url=url+'&keyword='+$('#keyword').val();
-			
-			location.href=url;
-			console.log(url);
-		});
-		
    });
-//////////////////////////////////////////////////////////////////////////////////////////		
+		
 		// 페이징
 		//이전 버튼 이벤트
 		function prev(page, range, rangeSize) {

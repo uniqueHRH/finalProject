@@ -1,6 +1,6 @@
 package com.bit.project.model.entity;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 public class FreeVo {
 
@@ -10,7 +10,7 @@ public class FreeVo {
 	private int free_count;
 	private String free_content;
 	private String client_nick1;
-	private Date free_date;
+	private Timestamp free_date;
 	private String free_img;
 	private String free_thumb;
 	
@@ -79,12 +79,12 @@ public class FreeVo {
 	}
 
 
-	public Date getFree_date() {
+	public Timestamp getFree_date() {
 		return free_date;
 	}
 
 
-	public void setFree_date(Date free_date) {
+	public void setFree_date(Timestamp free_date) {
 		this.free_date = free_date;
 	}
 
@@ -118,7 +118,7 @@ public class FreeVo {
 
 
 	public FreeVo(int board_no, int board_id, String free_sub, int free_count, String free_content, String client_nick1,
-			Date free_date, String free_img, String free_thumb) {
+			Timestamp free_date, String free_img, String free_thumb) {
 		super();
 		this.board_no = board_no;
 		this.board_id = board_id;

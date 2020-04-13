@@ -5,7 +5,6 @@
 		width:950px;
 		margin:0 auto;
 		padding:0px;
-		text-align:center;
 		font-family: 'Jua';
 		font-size:15px;
 	}
@@ -41,43 +40,38 @@
 	#wri {
 		width:79px;
 	}
-	#table th {
+	.active th {
+		text-align:center;
+	}
+	.active_con td {
 		text-align:center;
 	}
 	#table>tbody td,
 	#table>tbody td>a {
 		font-size:15px;
 	}
-/*
-		width:35px;
-		width:90px;
-		width:70px;
-		width:80px;
-		width:60px;
+	.active>th:nth-child(1) {
 		width:50px;
-*/
-	#table>thead th:nth-child(1) {
-		width:65px;
 	}
-	#table>thead th:nth-child(2) {
-		width:65px;
+	.active>th:nth-child(2) {
+		width:100px;
 	}
-	#table>thead th:nth-child(3) {
+	.active>th:nth-child(3) {
 		width:140px;
 	}
-	#table>thead th:nth-child(4) {
+	.active>th:nth-child(4) {
 		width:390px;
 	}
-	#table>thead th:nth-child(5) {
+	.active>th:nth-child(5) {
 		width:80px;
 	}
-	#table>thead th:nth-child(7) {
+	.active>th:nth-child(6) {
+		width:100px;
+	}
+	.active>th:nth-child(7) {
 		width:60px;
 	}
-	#table>thead th:nth-child(6) {
-		width:70px;
-	}
-	#table>tbody td:nth-child(4) {
+	.active_con td:nth-child(4) {
 		text-align:left;
 	}
 	#table>tbody td>a {

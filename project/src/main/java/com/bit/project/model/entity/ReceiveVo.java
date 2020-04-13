@@ -1,6 +1,6 @@
 package com.bit.project.model.entity;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 public class ReceiveVo {
 
@@ -8,7 +8,7 @@ public class ReceiveVo {
 	private String client_nick1;
 	private String client_nick2;
 	private String receive_content;
-	private Date receive_date;
+	private Timestamp receive_date;
 	private int receive_status;
 	
 	private int startNum;
@@ -44,10 +44,10 @@ public class ReceiveVo {
 	public void setReceive_content(String receive_content) {
 		this.receive_content = receive_content;
 	}
-	public Date getReceive_date() {
+	public Timestamp getReceive_date() {
 		return receive_date;
 	}
-	public void setReceive_date(Date receive_date) {
+	public void setReceive_date(Timestamp receive_date) {
 		this.receive_date = receive_date;
 	}
 	public int getReceive_status() {
@@ -79,7 +79,7 @@ public class ReceiveVo {
 
 
 	public ReceiveVo(int receive_no, String client_nick1, String client_nick2, String receive_content,
-			Date receive_date, int receive_status, int startNum, int endNum) {
+			Timestamp receive_date, int receive_status, int startNum, int endNum) {
 		super();
 		this.receive_no = receive_no;
 		this.client_nick1 = client_nick1;

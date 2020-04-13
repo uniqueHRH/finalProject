@@ -26,7 +26,7 @@ form {
 	#receive_date {
 		width:200px;
 		color:gray;
-		padding:0 0 0 110px;
+		padding:0 0 0 70px;
 	}
 	#send_content, #receive_content {
 		width:450px;
