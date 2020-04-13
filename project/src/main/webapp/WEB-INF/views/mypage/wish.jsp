@@ -15,7 +15,13 @@
 <link rel="stylesheet" type="text/css" href="${root }css/travel.css" />
 <link rel="stylesheet" type="text/css" href="${root }css/board.css" />
 <style type="text/css">
-.container{
+	#allContain {
+		width:1000px;
+		margin:0 auto;
+		padding-left:170px;
+		font-family: 'Jua';
+	}
+	.container{
 		font-family: 'Jua';
 		text-align: center;
 		width: 1200px;

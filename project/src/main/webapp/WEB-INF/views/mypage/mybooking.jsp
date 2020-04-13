@@ -13,7 +13,10 @@
 <link rel="stylesheet" type="text/css" href="${root }css/bootstrap.css" />
 <link rel="stylesheet" type="text/css" href="${root }css/travel.css" />
 <style type="text/css">
-	h1, input {
+	#allContain {
+		width:1000px;
+		margin:0 auto;
+		padding-left:140px;
 		font-family: 'Jua';
 	}
 	#table {
@@ -104,62 +107,64 @@
 <jsp:include page="/WEB-INF/menubar.jsp"/>
 
 <!-- contents start -->
-      <div class="page-header" id="page-header" align="center">
-     <h1>나의예약</h1>
-   </div>
-   
-<table class="table table-hover" id="table">
-
-<!-- 리스트 출력 -->
-   <thead>
-      <tr class="active">
-         <th>NO</th>
-         <th>상품명</th>
-         <th>출발일</th>
-         <th>총원</th>
-         <th>총금액</th>
-         <th>예약일</th>
-         <th>결제일</th>
-         <th>결제상태</th>
-         <th>확정여부</th>
-      </tr>
-   </thead>
-   <tbody>
-		<c:forEach items="${list }" var="bean">
-		<c:set var="i" value="${i+1 }"/>
-		<tr>
-			<td>${i }</td>
-			<td><a href="${root }mypage/paid/${bean.paid_no }">${bean.tourVo.name }</a></td>
-			<td><a href="${root }mypage/paid/${bean.paid_no }">${bean.tour_date }</a></td>
-			<td><a href="${root }mypage/paid/${bean.paid_no }">${bean.paid_count }명</a></td>
-			<td><a href="${root }mypage/paid/${bean.paid_no }"> <fmt:formatNumber value="${bean.paid_total}" pattern="#,###"/>원</a></td>
-			<td><a href="${root }mypage/paid/${bean.paid_no }">${bean.book_date }</a></td>
-			<td><a href="${root }mypage/paid/${bean.paid_no }">${bean.paid_date }</a></td>
-			<td><a href="${root }mypage/paid/${bean.paid_no }">${bean.paid_state }</a></td>
-			<td><a href="${root }mypage/paid/${bean.paid_no }">${bean.paid_confirm }</a></td>
-			
-		</tr>
-		</c:forEach>
-   </tbody>
-</table>
-
-<nav id="pageNum">
-<!-- 페이지넘버링 -->
-	<div id="paginationBox">
-		<ul class="pagination">
-			<c:if test="${pagination.prev}">
-				<li class="page-item"><a class="page-link" href="#" onClick="prev('${pagination.page}', '${pagination.range}', '${pagination.rangeSize}')">Prev</a></li>
-			</c:if>
-			<c:forEach begin="${pagination.startPage}" end="${pagination.endPage}" var="idx">
-				<li class="page-item <c:out value="${pagination.page==idx?'active' : ''}"/>"><a class="page-link" href="#" onClick="pagination('${idx}', '${pagination.range}', '${pagination.rangeSize}', '${search.searchType}', '${search.keyword }' )">${idx}</a></li>
-			</c:forEach>
-			<c:if test="${pagination.next}">
-				<li class="page-item"><a class="page-link" href="#" onClick="next('${pagination.range}', '${pagination.range}', '${pagination.rangeSize}')" >Next</a></li>
-			</c:if>
-		</ul>
+<div id="allContain">
+	<div class="page-header" id="page-header" align="center">
+		<h1>나의예약</h1>
 	</div>
+
+	<table class="table table-hover" id="table">
 	
-</nav>
+	<!-- 리스트 출력 -->
+	   <thead>
+	      <tr class="active">
+	         <th>NO</th>
+	         <th>상품명</th>
+	         <th>출발일</th>
+	         <th>총원</th>
+	         <th>총금액</th>
+	         <th>예약일</th>
+	         <th>결제일</th>
+	         <th>결제상태</th>
+	         <th>확정여부</th>
+	      </tr>
+	   </thead>
+	   <tbody>
+			<c:forEach items="${list }" var="bean">
+			<c:set var="i" value="${i+1 }"/>
+			<tr>
+				<td>${i }</td>
+				<td><a href="${root }mypage/paid/${bean.paid_no }">${bean.tourVo.name }</a></td>
+				<td><a href="${root }mypage/paid/${bean.paid_no }">${bean.tour_date }</a></td>
+				<td><a href="${root }mypage/paid/${bean.paid_no }">${bean.paid_count }명</a></td>
+				<td><a href="${root }mypage/paid/${bean.paid_no }"> <fmt:formatNumber value="${bean.paid_total}" pattern="#,###"/>원</a></td>
+				<td><a href="${root }mypage/paid/${bean.paid_no }">${bean.book_date }</a></td>
+				<td><a href="${root }mypage/paid/${bean.paid_no }">${bean.paid_date }</a></td>
+				<td><a href="${root }mypage/paid/${bean.paid_no }">${bean.paid_state }</a></td>
+				<td><a href="${root }mypage/paid/${bean.paid_no }">${bean.paid_confirm }</a></td>
+				
+			</tr>
+			</c:forEach>
+	   </tbody>
+	</table>
+	
+	<nav id="pageNum">
+	<!-- 페이지넘버링 -->
+		<div id="paginationBox">
+			<ul class="pagination">
+				<c:if test="${pagination.prev}">
+					<li class="page-item"><a class="page-link" href="#" onClick="prev('${pagination.page}', '${pagination.range}', '${pagination.rangeSize}')">Prev</a></li>
+				</c:if>
+				<c:forEach begin="${pagination.startPage}" end="${pagination.endPage}" var="idx">
+					<li class="page-item <c:out value="${pagination.page==idx?'active' : ''}"/>"><a class="page-link" href="#" onClick="pagination('${idx}', '${pagination.range}', '${pagination.rangeSize}', '${search.searchType}', '${search.keyword }' )">${idx}</a></li>
+				</c:forEach>
+				<c:if test="${pagination.next}">
+					<li class="page-item"><a class="page-link" href="#" onClick="next('${pagination.range}', '${pagination.range}', '${pagination.rangeSize}')" >Next</a></li>
+				</c:if>
+			</ul>
+		</div>
+		
+	</nav>
+</div>
 
 <jsp:include page="/WEB-INF/remote.jsp"/>
 <jsp:include page="/WEB-INF/socket.jsp"/>

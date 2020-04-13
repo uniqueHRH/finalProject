@@ -13,7 +13,10 @@
 <link rel="stylesheet" type="text/css" href="${root }css/bootstrap.css" />
 <link rel="stylesheet" type="text/css" href="${root }css/travel.css" />
 <style type="text/css">
-	h1, input {
+	#allContain {
+		width:1000px;
+		margin:0 auto;
+		padding-left:170px;
 		font-family: 'Jua';
 	}
 	select, button, a {
@@ -96,76 +99,72 @@
 <body>
 <jsp:include page="/WEB-INF/menubar.jsp"/>
 <!-- contents start -->
-<div class="container">
-  <div class="row">
-   <div class="col-md-12">
-      <div class="page-header" id="page-header" align="center">
-     <h1>MESSAGE</h1>
-   </div>
-   
-   
-<table class="table table-hover" id="table">
-	<div class="topMenu" id="theme">
-		<input type="text" value="<c:out value="${listCnt}"></c:out>개의 게시물이 조회되었습니다" id="listCnt" disabled/><br/>
-		<a class="btn btn-default" href="#" role="button" id="feed">답 장</a> &nbsp; <a class="btn btn-default" href="#" role="button" id="dele">삭 제</a> &nbsp; <a class="btn btn-default" href="#" role="button" id="read">읽음 처</a>
+<div id="allContain">
+	<div class="page-header" id="page-header" align="center">
+		<h1>MESSAGE</h1>
 	</div>
-<!-- 리스트 출력 -->
-   <thead>
-      <tr class="active">
-         <th><input type="checkbox" id="chk"></th>
-         <th>#</th>
-         <th>내 용</th>
-         <th>보낸이</th>
-         <th>날 짜</th>
-      </tr>
-   </thead>
-   <tbody>
-		<c:forEach items="${list }" var="bean">
-		<input type="hidden" id="no" value="${bean.receive_no }">
-		<tr>
+   
+   
+	<table class="table table-hover" id="table">
+		<div class="topMenu" id="theme">
+			<input type="text" value="<c:out value="${listCnt}"></c:out>개의 게시물이 조회되었습니다" id="listCnt" disabled/><br/>
+			<a class="btn btn-default" href="#" role="button" id="feed">답 장</a> &nbsp; <a class="btn btn-default" href="#" role="button" id="dele">삭 제</a> &nbsp; <a class="btn btn-default" href="#" role="button" id="read">읽음 처</a>
+		</div>
+	<!-- 리스트 출력 -->
+	   <thead>
+	      <tr class="active">
+	         <th><input type="checkbox" id="chk"></th>
+	         <th>#</th>
+	         <th>내 용</th>
+	         <th>보낸이</th>
+	         <th>날 짜</th>
+	      </tr>
+	   </thead>
+	   <tbody>
+			<c:forEach items="${list }" var="bean">
+			<input type="hidden" id="no" value="${bean.receive_no }">
 			<fmt:formatDate value="${bean.receive_date}" pattern="yyyy-MM-dd HH:mm" var="date"/>
-			<input type="hidden" class="type_${bean.receive_no }" value="${bean.receive_status }">
-			<td name="line_${bean.receive_no }"><input type="checkbox" name="chk_${bean.receive_no }"></td>
-			<td name="line_${bean.receive_no }"><a href="#" onclick="window.open('../messageDe/'+${bean.receive_no }, '쪽지보기', 'width=470, height=340, left=500, top=50');">${bean.receive_no }</a></td>
-			<td name="line_${bean.receive_no }"><a href="#" onclick="window.open('../messageDe/'+${bean.receive_no }, '쪽지보기', 'width=470, height=340, left=500, top=50');">${bean.receive_content } &nbsp; <input type="text" id="status" name="status_${bean.receive_no }" value="${bean.receive_status }"disabled></a></td>
-			<td name="line_${bean.receive_no }"><a href="#" onclick="window.open('../messageDe/'+${bean.receive_no }, '쪽지보기', 'width=470, height=340, left=500, top=50');">${bean.client_nick1 }</a></td>
-			<td name="line_${bean.receive_no }"><a href="#" onclick="window.open('../messageDe/'+${bean.receive_no }, '쪽지보기', 'width=470, height=340, left=500, top=50');"><c:out value="${date }"/></a></td>
-		</tr>
-		</c:forEach>
-   </tbody>
-</table>
-
-<nav id="pageNum">
-<!-- 페이지넘버링 -->
-	<div id="paginationBox">
-		<ul class="pagination">
-			<c:if test="${pagination.prev}">
-				<li class="page-item"><a class="page-link" href="#" onClick="prev('${pagination.page}', '${pagination.range}', '${pagination.rangeSize}')">Prev</a></li>
-			</c:if>
-			<c:forEach begin="${pagination.startPage}" end="${pagination.endPage}" var="idx">
-				<li class="page-item <c:out value="${pagination.page==idx?'active' : ''}"/>"><a class="page-link" href="#" onClick="pagination('${idx}', '${pagination.range}', '${pagination.rangeSize}', '${search.searchType}', '${search.keyword }' )">${idx}</a></li>
+			<tr>
+				<input type="hidden" class="type_${bean.receive_no }" value="${bean.receive_status }">
+				<td name="line_${bean.receive_no }"><input type="checkbox" name="chk_${bean.receive_no }"></td>
+				<td name="line_${bean.receive_no }"><a href="#" onclick="window.open('../messageDe/'+${bean.receive_no }, '쪽지보기', 'width=470, height=340, left=500, top=50');">${bean.receive_no }</a></td>
+				<td name="line_${bean.receive_no }"><a href="#" onclick="window.open('../messageDe/'+${bean.receive_no }, '쪽지보기', 'width=470, height=340, left=500, top=50');">${bean.receive_content } &nbsp; <input type="text" id="status" name="status_${bean.receive_no }" value="${bean.receive_status }"disabled></a></td>
+				<td name="line_${bean.receive_no }"><a href="#" onclick="window.open('../messageDe/'+${bean.receive_no }, '쪽지보기', 'width=470, height=340, left=500, top=50');">${bean.client_nick1 }</a></td>
+				<td name="line_${bean.receive_no }"><a href="#" onclick="window.open('../messageDe/'+${bean.receive_no }, '쪽지보기', 'width=470, height=340, left=500, top=50');"><c:out value="${date }"/></a></td>
+			</tr>
 			</c:forEach>
-			<c:if test="${pagination.next}">
-				<li class="page-item"><a class="page-link" href="#" onClick="next('${pagination.range}', '${pagination.range}', '${pagination.rangeSize}')" >Next</a></li>
-			</c:if>
-		</ul>
-	</div>
-
-<!-- 검색 -->
-   <div class="topMenu" id="search">
-		<select id="searchType">
-		    <option value="receive_content">내 &nbsp;용</option>
-		    <option value="client_nick1">보낸이</option>
-		</select>
-      <input type="text" class="form-control" id="keyword" name="keyword" style="width:200px; display:inline-block;">
-		<a class="btn btn-default" href="#" role="button" id="searchGo">G O</a>
-	</div>
+	   </tbody>
+	</table>
 	
-</nav>
-
-      </div>
-   </div>
+	<nav id="pageNum">
+	<!-- 페이지넘버링 -->
+		<div id="paginationBox">
+			<ul class="pagination">
+				<c:if test="${pagination.prev}">
+					<li class="page-item"><a class="page-link" href="#" onClick="prev('${pagination.page}', '${pagination.range}', '${pagination.rangeSize}')">Prev</a></li>
+				</c:if>
+				<c:forEach begin="${pagination.startPage}" end="${pagination.endPage}" var="idx">
+					<li class="page-item <c:out value="${pagination.page==idx?'active' : ''}"/>"><a class="page-link" href="#" onClick="pagination('${idx}', '${pagination.range}', '${pagination.rangeSize}', '${search.searchType}', '${search.keyword }' )">${idx}</a></li>
+				</c:forEach>
+				<c:if test="${pagination.next}">
+					<li class="page-item"><a class="page-link" href="#" onClick="next('${pagination.range}', '${pagination.range}', '${pagination.rangeSize}')" >Next</a></li>
+				</c:if>
+			</ul>
+		</div>
+	
+	<!-- 검색 -->
+	   <div class="topMenu" id="search">
+			<select id="searchType">
+			    <option value="receive_content">내 &nbsp;용</option>
+			    <option value="client_nick1">보낸이</option>
+			</select>
+	      <input type="text" class="form-control" id="keyword" name="keyword" style="width:200px; display:inline-block;">
+			<a class="btn btn-default" href="#" role="button" id="searchGo">G O</a>
+		</div>
+		
+	</nav>
 </div>
+
 <jsp:include page="/WEB-INF/remote.jsp"/>
 <jsp:include page="/WEB-INF/socket.jsp"/>
 <jsp:include page="/WEB-INF/footer.jsp"/>
