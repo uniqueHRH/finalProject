@@ -73,6 +73,7 @@
 		<result property="name" column="name"/>
 		<result property="cost" column="cost"/>
 		<result property="vehicle" column="vehicle"/>
+		<result property="theme" column="theme"/>
 		<result property="comments" column="comments"/>
 		<result property="course" column="course"/>
 		<result property="latlng" column="latlng"/>
@@ -90,7 +91,7 @@
 	</resultMap>
 	
 	<select id="selectOne_tour" parameterType="TourBean" resultMap="TourMap" >
-		select tour.tour_no,tour.land,tour.country,tour.name,tour.city,tour.cost,tour.vehicle,tour.comments,tour.course,tour.latlng,tour.mainimg,tour.firstimg,tour.secondimg,tour.thirdimg,guide.guide_name from tour inner join guide on tour.city=guide.guide_city where tour_no=#{value}
+		select tour.tour_no,tour.land,tour.country,tour.name,tour.city,tour.cost,tour.vehicle,tour.theme,tour.comments,tour.course,tour.latlng,tour.mainimg,tour.firstimg,tour.secondimg,tour.thirdimg,guide.guide_name from tour inner join guide on tour.city=guide.guide_city where tour_no=#{value}
 	</select>
 	
 	<!-- paidDB 에 넣는 쿼리문 -->
@@ -153,5 +154,9 @@
 			</if>
 		</trim>
 	</select>
+	
+	<update id="updateOne_tour" parameterType="TourBean">
+		update tour set theme=#{theme},name=#{name},vehicle=#{vehicle},cost=#{cost},comments=#{comments},course=#{course},mainimg=#{mainimg},firstimg=#{firstimg},secondimg=#{secondimg},thirdimg=#{thirdimg} where tour_no=#{tour_no}
+	</update>
 </mapper>
 

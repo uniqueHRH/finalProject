@@ -16,7 +16,7 @@
 	h1, input {
 		font-family: 'Jua';
 	}
-	#table1,#table2 {
+	#table1,#table2,#table3 {
 		width:1000px;
 		margin:0 auto;
 		padding:0px;
@@ -30,7 +30,12 @@
 	#table1{
 		margin-bottom: 80px; 
 	}
-
+	#submitbtn,#backbtn{
+		position: relative;
+		width: 230px;
+		left: 900px;
+		margin-top: 50px;
+	}
 </style>
 </head>
 <body>
@@ -58,18 +63,18 @@
   	 </tr>
   	 </table>
   	 <h3 style="text-align: center; font-family: 'Jua';">상품내용</h3>
-  	 
+  	 <form action="../../tour/editconfirm" method="post">
   	 <table class="table table-hover" id="table2">	
   	 	<tr>
   	 		<td class="active" style="width: 200px;">테마</td>
   	 		<td style="width: 200px;"><select class="form-control" name="theme">
-  	 									<option></option>
-  	 									<option>힐링</option>
-  	 									<option>스냅</option>
-  	 									<option>엑티비티</option>
-  	 									<option>식도락</option>
-  	 									<option>영화</option>
-  	 									<option>스포츠</option>
+  	 									<option value="">없음</option>
+  	 									<option value="힐링">힐링</option>
+  	 									<option value="스냅">스냅</option>
+  	 									<option value="엑티비티">엑티비티</option>
+  	 									<option value="식도락">식도락</option>
+  	 									<option value="영화">영화</option>
+  	 									<option value="스포츠">스포츠</option>
   	 								</select></td>
   	 		<td class="active" style="width: 200px;">상품이름</td>
   	 		<td style="width: 400px;"><input type="text" class="form-control" name="name" value="${bean.name }"></td>
@@ -77,8 +82,8 @@
   	 	<tr>
   	 		<td class="active">차량정보</td>
   	 		<td><select class="form-control" name="vehicle">
-  	 			<option>포함</option>
-  	 			<option>미포함</option>
+  	 			<option value="포함">포함</option>
+  	 			<option value="미포함">미포함</option>
   	 			</select></td>
   	 		<td class="active">비용</td>
   	 		<td><input type="text" class="form-control" name="cost" value="${bean.cost }"></td>
@@ -87,7 +92,31 @@
   	 		<td class="active" style="width: 200px;">상품소개</td>
   	 		<td colspan="3" style="text-align: left;"><input type="text" class="form-control" name="comments" value="${bean.comments }"></td>
   	 	</tr>
+  	 	<tr>
+  	 		<td class="active" style="width: 200px;">코스이미지</td>
+  	 		<td colspan="3" style="text-align: left;"><input type="text" class="form-control" name="course" value="${bean.course }"></td>
+  	 	</tr>
+  	 	<tr>
+  	 		<td class="active" style="width: 200px;">메인이미지</td>
+  	 		<td colspan="3" style="text-align: left;"><input type="text" class="form-control" name="mainimg" value="${bean.mainimg }"></td>
+  	 	</tr>
+  	 	<tr>
+  	 		<td class="active" style="width: 200px;">소개이미지1</td>
+  	 		<td colspan="3" style="text-align: left;"><input type="text" class="form-control" name="firstimg" value="${bean.firstimg }"></td>
+  	 	</tr>
+  	 	<tr>
+  	 		<td class="active" style="width: 200px;">소개이미지2</td>
+  	 		<td colspan="3" style="text-align: left;"><input type="text" class="form-control" name="secondimg" value="${bean.secondimg }"></td>
+  	 	</tr>
+  	 	<tr>
+  	 		<td class="active" style="width: 200px;">소개이미지3</td>
+  	 		<td colspan="3" style="text-align: left;"><input type="text" class="form-control" name="thirdimg" value="${bean.thirdimg }"></td>
+  	 		<td><input type="hidden" name="tour_no" value="${bean.tour_no }"></td>
+  	 	</tr>
   	 </table>
+  	 <button type="submit" id="submitbtn" class="btn btn-default btn-lg">수정</button>
+  	 <button type="button" id="backbtn" class="btn btn-default btn-lg" onclick="history.back();">취소</button>
+	</form>
 
   	 	 	
 <!-- contents end --> 

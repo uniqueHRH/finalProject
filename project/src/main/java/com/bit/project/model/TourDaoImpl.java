@@ -113,4 +113,10 @@ public class TourDaoImpl implements TourDao {
 		return sqlSession.selectList("tour.homeSearch", search);
 	}
 
+	@Override
+	public int updateOne_tour(TourVo bean) throws Exception {
+		return sqlSession.update("tour.updateOne_tour",bean);
+		
+	}
+
 }

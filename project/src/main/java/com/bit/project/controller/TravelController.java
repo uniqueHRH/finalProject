@@ -494,15 +494,21 @@ public class TravelController {
 				model.addAttribute("listCnt",listCnt);
 				return "system/alltour";
 			}
-		//직원용 여행상품 디테일페이지
+		//시스템 투어 디테일페이지
 		@RequestMapping(value = "/system/tour/{idx}", method = RequestMethod.GET)
 		public String detailtour(Model model, @PathVariable ("idx") int tour_no) {
 			tourservice.selectOne_tour(model, tour_no);
 			return "system/detailalltour";
 		}
+		//시스템 투어 수정 페이지
 		@RequestMapping(value = "/system/tour/{idx}/edit", method = RequestMethod.GET)
 		public String edittour(Model model, @PathVariable ("idx") int tour_no) {
 			tourservice.selectOne_tour(model, tour_no);
 			return "system/edittour";
 		}
+		@RequestMapping(value = "/system/tour/editconfirm", method = RequestMethod.POST)
+		public String editconfirm(@ModelAttribute TourVo bean) {
+			tourservice.updateOne_tour(bean);
+			return "redirect:../tour/"+bean.getTour_no();
+		}	
 }

@@ -193,6 +193,16 @@ public class TourServiceImpl implements TourService{
 		return tourDao.homeSearch(search);
 	}
 
+	@Override
+	public void updateOne_tour(TourVo bean) {
+		try {
+			tourDao.updateOne_tour(bean);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+
 
 
 }
