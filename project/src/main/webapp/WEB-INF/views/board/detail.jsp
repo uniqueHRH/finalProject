@@ -17,23 +17,11 @@
 		padding-left:170px;
 		font-family: 'Jua';
 	}
-	h1 {
-		font-family: 'Jua';
-	}
 	form {
 		width:950px;      
 		margin:0 auto;
 		font-family: 'Jua';
 		font-size:18px;
-	}
-	#hambI {
-		border:1px solid #474747;
-		padding:0;
-		border-radius:10px;
-	}
-	form {
-		width:950px;
-		margin:0 auto;
 		align:center;
 		text-align:center;
 		padding:0px;

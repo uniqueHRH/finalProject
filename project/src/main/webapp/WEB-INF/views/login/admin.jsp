@@ -10,24 +10,32 @@
 <link rel="stylesheet" type="text/css" href="${root }css/bootstrap.css" />
 <link rel="stylesheet" type="text/css" href="${root }css/travel.css" />
 <style type="text/css">
-    #table{
-         font-family: "Jua";
-   }
-    .form-horizontal {
-         width:570px;
-         margin: 0 auto;
-         text-align: center;
+	#allContain {
+		width:1000px;
+		margin:0 auto;
+		padding-left:200px;
+		font-family: 'Jua';
+	}
+	form {
+		width:585px;
+		margin: 0 auto;
+		text-align: center;
+    }
+    #client_nick1, #client_id, #nickdupli, #iddupli {
+    	display:inline-block;
     }
     .table table-hover{
-       width:570px;
-         margin: 0 auto;
-         text-align: center;
+		width:570px;
+		margin: 0 auto;
+		text-align: center;
     }
     .list-group{
-       width: 90%;
+    	width:550px;
+    	margin:0 auto;
     }
     #adminbtn{
-       width: 90%;
+    	width:550px;
+    	margin:0 auto;
     }
     #client_sex{
        width: 400px;
@@ -40,107 +48,104 @@
 <jsp:include page="/WEB-INF/menubar.jsp"/>
 
 <!-- contents start -->
-<div id="table">
-    <div class="page-header" id="page-header" align="center">
-     <h1>회원가입</h1>
-   </div>
+<div id="allContain">
+	<div class="page-header" id="page-header" align="center">
+		<h1>회원가입</h1>
+	</div>
    
 
-<form action="../main/admin" name="adm" class="form-horizontal" method="post">
-  <div class="form-group">
-    <label for="client_name" class="col-sm-2 control-label">이름</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" id="client_name" name="client_name" placeholder="이름을 입력하세요" style="width:400px">
-      <div id="name_check"></div>
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="client_nick1" class="col-sm-2 control-label">닉네임</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" id="client_nick1" name="client_nick1" placeholder="2-15자 이내만 가능합니다" style="width:400px" maxlength="15"><button type="button" id="nickdupli">중복 확인</button>
-   <input type="hidden" id="duplicheck1" name="duplicheck1" value="0" style="display: none;">
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="client_id" class="col-sm-2 control-label">아이디</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" id="client_id" name="client_id" placeholder="4-15자이내 영문(대,소),숫자만 가능합니다" style="width:400px" maxlength="15"><button type="button" id="iddupli">중복 확인</button>
-      <input type="hidden" id="duplicheck2" name="duplicheck2" value="0" style="display: none;">
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="client_pw" class="col-sm-2 control-label">비밀번호</label>
-    <div class="col-sm-10">
-      <input type="password" class="form-control" id="client_pw1" placeholder="영문+숫자 조합 8자리이상" style="width:400px">
-      <div id="pw_check1"></div>
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="client_pw" class="col-sm-2 control-label">비밀번호확인</label>
-    <div class="col-sm-10">
-      <input type="password" class="form-control" id="client_pw2" name="client_pw" placeholder="비밀번호를 한번 더 입력해주세요" style="width:400px">
-      <div id="pw_check2"></div>
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="client_sex" class="col-sm-2 control-label">성별</label>
-    <div id="client_sex"><label><input type="radio" name="client_sex" id="man" value="1">&nbsp;남&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-    <label><input type="radio" name="client_sex" id="woman" value="2">&nbsp;여</label></div>
-  </div>
-  <div class="form-group">
-    <label for="client_birth" class="col-sm-2 control-label">이메일</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" id="client_email" name="client_email" placeholder="E-mail을 입력하세요" style="width:400px">
-     <div id="email_check"></div>
-     </div>
-  </div>
-  <div class="form-group">
-    <label for="client_birth" class="col-sm-2 control-label">생년월일</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" id="client_birth" name="client_birth" placeholder="8자리로 입력하세요 ex)19920216" style="width:400px" maxlength="8">
-      <div id="birth_check"></div>
-     </div>
-  </div>
-  <div class="form-group">
-    <label for="client_phone" class="col-sm-2 control-label">연락처</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" id="client_phone" name="client_phone" placeholder="연락처를 입력하세요 ex)01012345678" style="width:400px">
-      <div id="phone_check"></div>
-    </div>
-  </div>
-   <ul class="list-group">
-     <li class="list-group-item disabled">
-     <label><input type="checkbox" id="allclause" value="allclause">&nbsp;전체 약관 동의</label>
-     </li>
-     <li class="list-group-item"><input type="checkbox" id="chk1" name="clause" value="clause1">&nbsp;<span data-toggle="modal" data-target="#myModal1">회원 가입 및 운영약관 동의 (필수)></span></li>
-     <li class="list-group-item"><input type="checkbox" id="chk2" name="clause" value="clause2">&nbsp;<span data-toggle="modal" data-target="#myModal2">개인정보 수집 및 이용 (필수)></span></li>
-     <li class="list-group-item"><input type="checkbox" id="chk3" name="clause" value="clause3">&nbsp;<span data-toggle="modal" data-target="#myModal3">위치정보 이용약관 (필수)> </span></li>
-   </ul>
+	<form action="../main/admin" name="adm" class="form-horizontal" method="post">
+		<div class="form-group">
+			<label for="client_name" class="col-sm-2 control-label">이름</label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" id="client_name" name="client_name" placeholder="이름을 입력하세요" style="width:400px">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="client_nick1" class="col-sm-2 control-label">닉네임</label>
+				<input type="text" class="form-control" id="client_nick1" name="client_nick1" placeholder="2-15자 이내만 가능합니다" style="width:400px" maxlength="15">
+				<button type="button" id="nickdupli" class="btn btn-default">중복 확인</button>
+				<input type="hidden" id="duplicheck1" name="duplicheck1" value="0" style="display: none;">
+		</div>
+		<div class="form-group">
+			<label for="client_id" class="col-sm-2 control-label">아이디</label>
+				<input type="text" class="form-control" id="client_id" name="client_id" placeholder="4-15자이내 영문(대,소),숫자만 가능합니다" style="width:400px" maxlength="15">
+				<button type="button" id="iddupli" class="btn btn-default">중복 확인</button>
+				<input type="hidden" id="duplicheck2" name="duplicheck2" value="0" style="display: none;">
+		</div>
+		<div class="form-group">
+			<label for="client_pw" class="col-sm-2 control-label">비밀번호</label>
+			<div class="col-sm-10">
+				<input type="password" class="form-control" id="client_pw1" placeholder="영문+숫자 조합 8자리이상" style="width:400px">
+				<div id="pw_check1"></div>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="client_pw" class="col-sm-2 control-label">비밀번호확인</label>
+			<div class="col-sm-10">
+				<input type="password" class="form-control" id="client_pw2" name="client_pw" placeholder="비밀번호를 한번 더 입력해주세요" style="width:400px">
+				<div id="pw_check2"></div>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="client_sex" class="col-sm-2 control-label">성별</label>
+			<div id="client_sex"><label><input type="radio" name="client_sex" id="man" value="1">&nbsp;남&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+				<label><input type="radio" name="client_sex" id="woman" value="2">&nbsp;여</label>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="client_birth" class="col-sm-2 control-label">이메일</label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" id="client_email" name="client_email" placeholder="E-mail을 입력하세요" style="width:400px">
+				<div id="email_check"></div>
+			</div>
+		</div>
+		<div class="form-group">
+		<label for="client_birth" class="col-sm-2 control-label">생년월일</label>
+		<div class="col-sm-10">
+			<input type="text" class="form-control" id="client_birth" name="client_birth" placeholder="8자리로 입력하세요 ex)19920216" style="width:400px" maxlength="8">
+			<div id="birth_check"></div>
+		</div>
+		</div>
+		<div class="form-group">
+			<label for="client_phone" class="col-sm-2 control-label">연락처</label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" id="client_phone" name="client_phone" placeholder="연락처를 입력하세요 ex)01012345678" style="width:400px">
+				<div id="phone_check"></div>
+			</div>
+		</div>
+		<ul class="list-group">
+			<li class="list-group-item disabled">
+				<label><input type="checkbox" id="allclause" value="allclause">&nbsp;전체 약관 동의</label>
+			</li>
+			<li class="list-group-item"><input type="checkbox" id="chk1" name="clause" value="clause1">&nbsp;<span data-toggle="modal" data-target="#myModal1">회원 가입 및 운영약관 동의 (필수)></span></li>
+			<li class="list-group-item"><input type="checkbox" id="chk2" name="clause" value="clause2">&nbsp;<span data-toggle="modal" data-target="#myModal2">개인정보 수집 및 이용 (필수)></span></li>
+			<li class="list-group-item"><input type="checkbox" id="chk3" name="clause" value="clause3">&nbsp;<span data-toggle="modal" data-target="#myModal3">위치정보 이용약관 (필수)> </span></li>
+		</ul>
        
          <!-- 약관1 start -->
-<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">회원 가입 및 운영약관 동의 (필수)</h4>
-      </div>
-      <div class="modal-body">
-       <div style="font-size: 20px;">제 1 조 (목적)</div>
-이 약관은 주식회사 여행사용설명서(이하 "당사"이라 합니다)이 운영하는 웹사이트및 어플리케이션(Application)에서 제공하는 서비스(이하 "서비스"라 합니다)를 이용함에 있어 "당사"와 이용자의 권리 및 의무 및 책임사항을 규정함을 목적으로 합니다.</div>
-<div style="font-size: 20px;">제 2 조 (정의)</div>
-<div>1. "당사"란 서비스를 제공하는 (주)여행사용설명서를 말하며, (주)여행사용설명서 중개 및 판매하는 재화 또는 용역(이하 "재화 등"이라 합니다)을 이용자에게 제공하기 위하여 컴퓨터 등 정보통신설비를 이용하여 재화 등을 거래할 수 있도록 설정한 가상의 영업장인 사이버 몰의 의미로도 사용합니다.
-<div>2. "이용자"란 "당사"에 접속하여 이 약관에 따라 "당사"가 제공하는 서비스를 받는 회원을 말합니다.</div>
-<div>3. "회원"이라 함은 "당사"에 개인정보를 제공하여 회원등록을 한 자로서,"당사"의 정보를 지속적으로 제공받으며,"당사"가 제공하는 서비스를 계속적으로 이용할 수 있는 자를 말합니다.</div>
-<div>4. “파트너"라고 함은 당사가 여행자에게 중개한 자로서 여행자에게 각종 여행 서비스를 제공하는 자를 말합니다.</div>
-<div>5. "가이드"라고 함은 파트너 중 마이리얼트립 플랫폼을 통해 직접 여행지에서 여행자에게 투어 서비스를 제공하는 자를 말합니다.</div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">확인</button>
-      </div>
-    </div>
-  </div>
-</div>         
+	<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="myModalLabel">회원 가입 및 운영약관 동의 (필수)</h4>
+				</div>
+				<div class="modal-body">
+					<div style="font-size: 20px;">제 1 조 (목적)</div>
+	이 약관은 주식회사 여행사용설명서(이하 "당사"이라 합니다)이 운영하는 웹사이트및 어플리케이션(Application)에서 제공하는 서비스(이하 "서비스"라 합니다)를 이용함에 있어 "당사"와 이용자의 권리 및 의무 및 책임사항을 규정함을 목적으로 합니다.</div>
+	<div style="font-size: 20px;">제 2 조 (정의)</div>
+	<div>1. "당사"란 서비스를 제공하는 (주)여행사용설명서를 말하며, (주)여행사용설명서 중개 및 판매하는 재화 또는 용역(이하 "재화 등"이라 합니다)을 이용자에게 제공하기 위하여 컴퓨터 등 정보통신설비를 이용하여 재화 등을 거래할 수 있도록 설정한 가상의 영업장인 사이버 몰의 의미로도 사용합니다.</div>
+	<div>2. "이용자"란 "당사"에 접속하여 이 약관에 따라 "당사"가 제공하는 서비스를 받는 회원을 말합니다.</div>
+	<div>3. "회원"이라 함은 "당사"에 개인정보를 제공하여 회원등록을 한 자로서,"당사"의 정보를 지속적으로 제공받으며,"당사"가 제공하는 서비스를 계속적으로 이용할 수 있는 자를 말합니다.</div>
+	<div>4. “파트너"라고 함은 당사가 여행자에게 중개한 자로서 여행자에게 각종 여행 서비스를 제공하는 자를 말합니다.</div>
+	<div>5. "가이드"라고 함은 파트너 중 마이리얼트립 플랫폼을 통해 직접 여행지에서 여행자에게 투어 서비스를 제공하는 자를 말합니다.</div>
+				<div class="modal-footer">
+				  <button type="button" class="btn btn-default" data-dismiss="modal">확인</button>
+				</div>
+			</div>
+		</div>
+	</div>         
          <!--약관1 end-->
    <!-- 약관2 start -->
 <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

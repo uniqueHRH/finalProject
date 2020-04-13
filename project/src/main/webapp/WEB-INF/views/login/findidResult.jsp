@@ -10,13 +10,28 @@
 <link rel="stylesheet" type="text/css" href="${root }css/bootstrap.css" />
 <link rel="stylesheet" type="text/css" href="${root }css/travel.css" />
 <style type="text/css">
-   #table{
-   		font-family: "Jua";
-   }
-    .form-horizontal {
-       width:450px;
-      margin: 0 auto;
-    }
+	#allContain {
+		width:1000px;
+		margin:0 auto;
+		padding-left:170px;
+		font-family: 'Jua';
+	}
+	form {
+		width:450px;      
+		margin:0 auto;
+		font-family: 'Jua';
+		font-size:18px;
+		align:center;
+		text-align:center;
+		padding:130 0 0 0;
+	}
+	label, #id  {
+		display:inline-block;
+		padding:0 15;
+	}
+	#btn {
+		padding:20 0 0 0;
+	}
     #resetbtn,#confirmbtn{
     	text-align: center;
     	margin-top: 10px;
@@ -34,21 +49,21 @@
 <jsp:include page="/WEB-INF/menubar.jsp"/>
                       
                      <!-- contents start -->
-<div id="table">
-      <div class="page-header" align="center">
-     <h1>아이디찾기 결과</h1>
-   </div>
+<div id="allContain">
+	<div class="page-header" align="center">
+		<h1>아이디찾기 결과</h1>
+	</div>
    
-   <form class="form-horizontal" method="post">
-     <div class="form-group" id="insertid">
-       <label class="col-sm-2 control-label" id="idd">아이디</label>
-       <div class="col-sm-10">${ID}</div>
-     </div>
-     <p>
-  		<button type="button" id="confirmbtn" class="btn btn-default btn-lg" onclick="location.href='${root }main/login/findpw'">비밀번호 찾기</button>
-  		<button type="button" id="resetbtn" class="btn btn-default btn-lg" onclick="location.href='${root }main/login'">로그인</button>
-	</p>
-  </form>
+	<form class="form-horizontal" method="post">
+		<div class="form-group" id="insertid">
+			<label id="idd">아이디</label>
+			<div id="id">${ID}</div>
+		</div>
+		<div id="btn">
+	  		<button type="button" id="confirmbtn" class="btn btn-default btn-lg" onclick="location.href='${root }main/login/findpw'">비밀번호 찾기</button>
+	  		<button type="button" id="resetbtn" class="btn btn-default btn-lg" onclick="location.href='${root }main/login'">로그인</button>
+	  	</div>
+	</form>
 </div>
       
                          <!-- contents end --> 
