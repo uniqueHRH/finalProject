@@ -166,10 +166,17 @@ public class TravelController {
 		tourservice.selectAll_africa(model);
 		return "tour/maintour";
 		}
+//////////////////////////////////////////////////////////////////	
 	//찜하기
 	@RequestMapping(value="/tour/wishon",method = RequestMethod.POST)
 	public String wishon(@ModelAttribute WishVo bean) {
 		wishservice.insert_wish(bean);
+		return "home";
+	}
+	//찜하기 취소
+	@RequestMapping(value="/tour/wishoff",method = RequestMethod.POST)
+	public String wishoff(int wish_no) {
+		wishservice.delete_wish(wish_no);
 		return "home";
 	}
 	//찜한상품페이지마다 전달
@@ -179,7 +186,6 @@ public class TravelController {
 			ModelAndView mav = new ModelAndView();
 			mav.addObject("Wishchk",wishchk);
 			mav.setViewName("jsonView");		
-			System.out.println("controller="+wishchk);
 			return mav;
 		}
 	//내가 찜한 상품
