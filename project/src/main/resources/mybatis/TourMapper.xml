@@ -73,7 +73,7 @@
 	</resultMap>
 	
 	<select id="selectOne_tour" parameterType="TourBean" resultMap="TourMap" >
-		select tour.tour_no,tour.land,tour.country,tour.name,tour.city,tour.cost,tour.vehicle,tour.comments,tour.course,tour.latlng,tour.firstimg,tour.secondimg,tour.thirdimg,guide.guide_name from tour inner join guide on tour.city=guide.guide_city where tour_no=#{value}
+		select tour.tour_no,tour.land,tour.country,tour.name,tour.city,tour.cost,tour.vehicle,tour.comments,tour.course,tour.latlng,tour.mainimg,tour.firstimg,tour.secondimg,tour.thirdimg,guide.guide_name from tour inner join guide on tour.city=guide.guide_city where tour_no=#{value}
 	</select>
 	
 	<!-- paidDB 에 넣는 쿼리문 -->
