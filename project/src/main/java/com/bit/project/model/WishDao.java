@@ -10,7 +10,7 @@ public interface WishDao {
 
 	public WishVo keep_wish(WishVo bean) throws Exception;
 	void insert_wish(WishVo bean) throws Exception;
-	int delete_wish(int key) throws Exception;
+	int delete_wish(int wish_no) throws Exception;
 	
 	List<WishVo> selectAll_wish(Search search) throws Exception;
 }

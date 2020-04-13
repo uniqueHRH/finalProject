@@ -14,5 +14,7 @@ public interface WishService {
 	
 	public WishVo keep_wish(WishVo bean) throws Exception;
 	void insert_wish(WishVo bean);
-	void delete_wish(int key);
+	void delete_wish(int wish_no);
+	
+	
 }

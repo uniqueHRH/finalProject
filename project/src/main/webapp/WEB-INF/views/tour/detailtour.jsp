@@ -186,7 +186,7 @@
 </div>
 <!-- model end -->
    <a id="bookform" href="${root }tour/${bean.tour_no}/booking"><button type="button" id="bookbtn" class="btn btn-default btn-lg">예약하기</button></a>
-   
+   <input type="hidden" id="wish_no" value="">
       
       <div id="course"> <여행일정> </div>
       <div id="courseimg">
@@ -217,15 +217,16 @@
 				type:'POST',
 				data:{client_name:client_name,tour_no:${bean.tour_no}},
 				success:function(data){
-					alert(Wishchk.wishchk);
+					if(data.Wishchk.wishchk ==1){
+						$('#star').val(' ★');
+						 $('#wish_no').val(data.Wishchk.wish_no);
+					}
 									
 				},
 				error:function(){
-				 	alert('안되용');
 				}	
 			});
 	  }
-	   
       $('#bookbtn').click(function(){
             var check = $('#check').val();
             if(!check){
@@ -246,21 +247,34 @@
 	});
 	
 	$('#wish').on('click', function() {
+		var check = $('#check').val();
 		$('#star').css('background-color','#e8e8e8');
 		var client_name="${sessionScope.check.client_name}";
-		var check = $('#check').val();       	
-			$.ajax({
-				url:'../../tour/wishon',
-				type:'POST',
-				data:{tour_no:${bean.tour_no},client_name:client_name},
-				success:function() {
-					$('#star').val(' ★');
-				},
-				error:function() {
-					alert('다시 시도해주세요');
-				}
-			});
-        	
+		
+			if($('#star').val()==" ☆" && ${sessionScope.check ne null }){
+					$.ajax({
+					url:'../../tour/wishon',
+					type:'POST',
+					data:{tour_no:${bean.tour_no},client_name:client_name},
+					success:function() {
+						$('#star').val(' ★');
+					},
+					error:function() {
+					}
+				});
+			}else if($('#star').val()==' ★' && ${sessionScope.check ne null }){
+				var wish_no=$('#wish_no').val();
+				$.ajax({
+					url:'../../tour/wishoff',
+					type:'POST',
+					data:{wish_no:wish_no},
+					success:function() {
+						$('#star').val(' ☆');
+					},
+					error:function() {
+					}
+				});		
+			}	
 	});
 	
   	Kakao.init('acc658a670e9ed5918d11647040b5bc5');

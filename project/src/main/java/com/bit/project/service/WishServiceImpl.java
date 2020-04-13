@@ -28,9 +28,9 @@ public class WishServiceImpl implements WishService {
 	}
 
 	@Override
-	public void delete_wish(int key) {
+	public void delete_wish(int wish_no) {
 		try {
-			wishDao.delete_wish(key);
+			wishDao.delete_wish(wish_no);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

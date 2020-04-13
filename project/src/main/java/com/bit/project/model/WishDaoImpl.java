@@ -24,8 +24,8 @@ public class WishDaoImpl implements WishDao {
 	}
 
 	@Override
-	public int delete_wish(int key) throws Exception {
-		return sqlSession.delete("wish.delete_wish", key);
+	public int delete_wish(int wish_no) throws Exception {
+		return sqlSession.delete("wish.delete_wish", wish_no);
 	}
 
 	@Override
