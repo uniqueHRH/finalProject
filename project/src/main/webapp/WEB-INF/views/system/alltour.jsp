@@ -13,16 +13,20 @@
 <link rel="stylesheet" type="text/css" href="${root }css/bootstrap.css" />
 <link rel="stylesheet" type="text/css" href="${root }css/travel.css" />
 <style type="text/css">
-	h1, input {
+	#allContain {
+		width:1000px;
+		margin:0 auto;
+		padding-left:150px;
 		font-family: 'Jua';
 	}
 	#table {
-		width:1050px;
+		width:950px;      
 		margin:0 auto;
-		padding:0px;
-		text-align:center;
 		font-family: 'Jua';
 		font-size:18px;
+		align:center;
+		text-align:center;
+		padding:0px;
 	}
 	select, button, a {
 		font-family: 'Jua';
@@ -98,73 +102,76 @@
 <jsp:include page="/WEB-INF/menubar.jsp"/>
 
 <!-- contents start -->
-      <div class="page-header" id="page-header" align="center">
-     <h1>여행상품 관리</h1>
-   </div>
+<div id="allContain">
+	<div class="page-header" id="page-header" align="center">
+		<h1>여행상품 관리</h1>
+		</div>
    
-<table class="table table-hover" id="table">
-<div class="topMenu" id="theme">
-		<select id="dropdownMenu1" >
-		    <option value="정렬">정 &nbsp;렬</option>
-		    <option value="지역">지역</option>
-		    <option value="국가">국가</option>
-		</select>
-		<a class="btn btn-default" href="#" role="button" id="sel">조회</a>
-		<input type="text" value="<c:out value="${listCnt}"></c:out>개의 결제건이 조회되었습니다" id="listCnt" disabled/>
-	</div>
-<!-- 리스트 출력 -->
-   <thead>
-      <tr class="active">
-         <th>NO</th>
-         <th>지역</th>
-         <th>국가</th>
-         <th>도시</th>
-         <th>상품이름</th>
-         <th>가격</th>
-         
-      </tr>
-   </thead>
-   <tbody>
-		<c:forEach items="${list }" var="bean">
-		<tr>
-			<td><a href="${root }system/tour/${bean.tour_no }">${bean.tour_no }</a></td>
-			<td><a href="${root }system/tour/${bean.tour_no }">${bean.land }</a></td>
-			<td><a href="${root }system/tour/${bean.tour_no }">${bean.country }</a></td>
-			<td><a href="${root }system/tour/${bean.tour_no }">${bean.city }</a></td>
-			<td><a href="${root }system/tour/${bean.tour_no }">${bean.name }</a></td>
-			<td><a href="${root }system/tour/${bean.tour_no }"> <fmt:formatNumber value="${bean.cost}" pattern="#,###"/>원</a></td>			
-		</tr>
-		</c:forEach>
-   </tbody>
-</table>
-
-<nav id="pageNum">
-<!-- 페이지넘버링 -->
-	<div id="paginationBox">
-		<ul class="pagination">
-			<c:if test="${pagination.prev}">
-				<li class="page-item"><a class="page-link" href="#" onClick="prev('${pagination.page}', '${pagination.range}', '${pagination.rangeSize}')">Prev</a></li>
-			</c:if>
-			<c:forEach begin="${pagination.startPage}" end="${pagination.endPage}" var="idx">
-				<li class="page-item <c:out value="${pagination.page==idx?'active' : ''}"/>"><a class="page-link" href="#" onClick="pagination('${idx}', '${pagination.range}', '${pagination.rangeSize}', '${search.searchType}', '${search.keyword }' )">${idx}</a></li>
+	<table class="table table-hover" id="table">
+	<div class="topMenu" id="theme">
+			<select id="dropdownMenu1">
+			    <option value="정렬">정 &nbsp;렬</option>
+			    <option value="지역">지역</option>
+			    <option value="국가">국가</option>
+			</select>
+			<a class="btn btn-default" href="#" role="button" id="sel">조회</a>
+			<input type="text" value="<c:out value="${listCnt}"></c:out>개의 결제건이 조회되었습니다" id="listCnt" disabled/>
+		</div>
+	<!-- 리스트 출력 -->
+	   <thead>
+	      <tr class="active">
+	         <th>NO</th>
+	         <th>지역</th>
+	         <th>국가</th>
+	         <th>도시</th>
+	         <th>상품이름</th>
+	         <th>가격</th>
+	         
+	      </tr>
+	   </thead>
+	   <tbody>
+			<c:forEach items="${list }" var="bean">
+			<tr>
+				<td><a href="${root }system/tour/${bean.tour_no }">${bean.tour_no }</a></td>
+				<td><a href="${root }system/tour/${bean.tour_no }">${bean.land }</a></td>
+				<td><a href="${root }system/tour/${bean.tour_no }">${bean.country }</a></td>
+				<td><a href="${root }system/tour/${bean.tour_no }">${bean.city }</a></td>
+				<td><a href="${root }system/tour/${bean.tour_no }">${bean.name }</a></td>
+				<td><a href="${root }system/tour/${bean.tour_no }"> <fmt:formatNumber value="${bean.cost}" pattern="#,###"/>원</a></td>			
+			</tr>
 			</c:forEach>
-			<c:if test="${pagination.next}">
-				<li class="page-item"><a class="page-link" href="#" onClick="next('${pagination.range}', '${pagination.range}', '${pagination.rangeSize}')" >Next</a></li>
-			</c:if>
-		</ul>
-	</div>
-
-<!-- 검색 -->
-   <div class="topMenu" id="search">
-		<select id="searchType">
-		    <option value="country">국가</option>
-		    <option value="city">도시</option>
-		</select>
-      <input type="text" class="form-control" id="keyword" name="keyword" style="width:200px; display:inline-block;">
-		<a class="btn btn-default" href="#" role="button" id="searchGo">G O</a>
-	</div>
+	   </tbody>
+	</table>
 	
-</nav>
+	<nav id="pageNum">
+	<!-- 페이지넘버링 -->
+		<div id="paginationBox">
+			<ul class="pagination">
+				<c:if test="${pagination.prev}">
+					<li class="page-item"><a class="page-link" href="#" onClick="prev('${pagination.page}', '${pagination.range}', '${pagination.rangeSize}')">Prev</a></li>
+				</c:if>
+				<c:forEach begin="${pagination.startPage}" end="${pagination.endPage}" var="idx">
+					<li class="page-item <c:out value="${pagination.page==idx?'active' : ''}"/>"><a class="page-link" href="#" onClick="pagination('${idx}', '${pagination.range}', '${pagination.rangeSize}', '${search.searchType}', '${search.keyword }' )">${idx}</a></li>
+				</c:forEach>
+				<c:if test="${pagination.next}">
+					<li class="page-item"><a class="page-link" href="#" onClick="next('${pagination.range}', '${pagination.range}', '${pagination.rangeSize}')" >Next</a></li>
+				</c:if>
+			</ul>
+		</div>
+	
+	<!-- 검색 -->
+	   <div class="topMenu" id="search">
+			<select id="searchType">
+			    <option value="country">국가</option>
+			    <option value="city">도시</option>
+			</select>
+	      <input type="text" class="form-control" id="keyword" name="keyword" style="width:200px; display:inline-block;">
+			<a class="btn btn-default" href="#" role="button" id="searchGo">G O</a>
+		</div>
+		
+	</nav>
+</div>
+
 
 <jsp:include page="/WEB-INF/remote.jsp"/>
 <jsp:include page="/WEB-INF/socket.jsp"/>
@@ -187,7 +194,7 @@
 					},
 					error:function() {
 					}
-				});   // ajax			
+				});   // ajax
 			}   // if
 			if(up=='국가') {
 				$.ajax({

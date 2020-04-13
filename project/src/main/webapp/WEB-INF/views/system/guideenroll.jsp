@@ -10,30 +10,34 @@
 <link rel="stylesheet" type="text/css" href="${root }css/bootstrap.css" />
 <link rel="stylesheet" type="text/css" href="${root }css/travel.css" />
 <style type="text/css">
-    #table{
-   		font-family: "Jua";
-   }
-    .form-horizontal {
-         width:570px;
-         margin: 0 auto;
-         text-align: center;
-    }
-    #staff_name1{
-    	margin-top: 50px;
-    }
-    #staff_team{
-    	 width:400px;
-    	 height: 35px;
-    }
+    #allContain {
+		width:1000px;
+		margin:0 auto;
+		padding-left:170px;
+		font-family: 'Jua';
+	}
+	form {
+		width:500px;      
+		margin:0 auto;
+		font-family: 'Jua';
+		font-size:18px;
+		align:center;
+		text-align:center;
+		padding:70 0 0 0;
+	}
+	#formSub {
+		padding:0 0 0 50;
+	}
+	#guide_name, #guide_phone, #guide_city, #guide_email {
+		width:300px;
+	}
+	#btn {
+		text-align:center;
+		padding:10 0 0 0;
+	}
     #adminbtn,#cancelbtn{
-       width: 190px;
-       position: relative;
-       left: 20px;
+       width: 170px;
        display: inline;
-       margin-top: 20px;
-    }
-    form{
-    	padding:0 0 200 0;
     }
 </style>
 </head>
@@ -41,43 +45,37 @@
 <jsp:include page="/WEB-INF/menubar.jsp"/>
 
 <!-- contents start -->
-<div id="table">
-    <div class="page-header" id="page-header" align="center">
-     <h1>가이드 등록</h1>
-   </div>
-   
+<div id="allContain">
+	<div class="page-header" id="page-header" align="center">
+		<h1>가이드 등록</h1>
+	</div>
 
-<form action="../system/guideIns" class="form-horizontal" method="post">
-  
-  <div class="form-group">
-    <label for="guide_name" class="col-sm-2 control-label">이 름</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" id="guide_name" name="guide_name" style="width:400px">
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="guide_phone" class="col-sm-2 control-label">연락처</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" id="guide_phone" name="guide_phone" style="width:400px">
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="guide_city" class="col-sm-2 control-label">지 역</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" id="guide_city" name="guide_city" style="width:400px">
-    </div>
-  </div>
-  <div class="form-group">
-     <label for="guide_email" class="col-sm-2 control-label">이메일</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" id="guide_email" name="guide_email" style="width:400px">
-    </div>
-  </div>
-       
-<button type="submit" id="adminbtn" class="btn btn-default btn-lg">등록 완료</button>
-<button type="button" id="cancelbtn" class="btn btn-default btn-lg" onclick="location.href='../system/guide'">취 소</button>
-</form>
+	<form action="../system/guideIns" class="form-horizontal" method="post">
+		<div id="formSub">
+			<div class="form-group">
+				<label for="guide_name" class="col-sm-2 control-label">이 름</label>
+				<input type="text" class="form-control" id="guide_name" name="guide_name">
+			</div>
+			<div class="form-group">
+				<label for="guide_phone" class="col-sm-2 control-label">연락처</label>
+				<input type="text" class="form-control" id="guide_phone" name="guide_phone">
+			</div>
+			<div class="form-group">
+				<label for="guide_city" class="col-sm-2 control-label">지 역</label>
+				<input type="text" class="form-control" id="guide_city" name="guide_city">
+			</div>
+			<div class="form-group">
+				<label for="guide_email" class="col-sm-2 control-label">이메일</label>
+				<input type="text" class="form-control" id="guide_email" name="guide_email">
+			</div>
+		</div>
+		<div id="btn">
+			<button type="submit" id="adminbtn" class="btn btn-default btn-lg">등록 완료</button>
+			<button type="button" id="cancelbtn" class="btn btn-default btn-lg" onclick="location.href='../system/guide'">취 소</button>
+		</div>
+	</form>
 </div>
+
 <jsp:include page="/WEB-INF/remote.jsp"/>
 <jsp:include page="/WEB-INF/socket.jsp"/>
 <jsp:include page="/WEB-INF/footer.jsp"/>

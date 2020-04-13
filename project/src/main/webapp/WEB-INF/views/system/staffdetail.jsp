@@ -10,68 +10,68 @@
 <link rel="stylesheet" type="text/css" href="${root }css/bootstrap.css" />
 <link rel="stylesheet" type="text/css" href="${root }css/travel.css" />
 <style type="text/css">
-	#table1 {
+	#allContain {
+		width:1000px;
+		margin:0 auto;
+		padding-left:170px;
 		font-family: 'Jua';
 	}
-	p {
+	#table {
+		width:900px;      
 		margin:0 auto;
-		font-size:18px;
+		font-family: 'Jua';
+		font-size:17px;
+		align:center;
+		text-align:center;
+		padding:50 0 0 0;
 	}
     #infocomm{
     	font-size: 20px;
     }
-    #table {
-    	width:50%;
-    	margin:0px auto;
-    	text-align: center;
-    }
-   #table tr{
-   		text-align: center;
-   }
-   #table tr td{
-   		text-align: center;
-   		font-size: 15px;
-   }
-   		
-   #changeinfobtn{
-   		width: 150px;
-   }
+	#table tr{
+			text-align: center;
+	}
+	#table td{
+			font-size: 15px;
+	}
+	#editbtn, #delbtn, #listbtn {
+		width:150px;
+		height:35px;
+		padding:0 0 0 10;
+	}
 </style>
 </head>
 <body>
 <jsp:include page="/WEB-INF/menubar.jsp"/>
 
-<!-- menubar end -->
-                     <!-- contents start -->
- 
- <div id="table1">
- 	 <div class="page-header" align="center">
-    	 <h1>직원 정보</h1>
-  	 </div>
-	<div id="table">
-		<table class="table table-hover">
-		<tr>
-			<td width="30%">NO/이름</td>
-			<td width="40%">NO<br/></br>이름</td>
-			<td width="50%">${bean.staff_no }<br/></br>${bean.staff_name }</td>
-		</tr>
-		<tr>
-			<td>연락처/이메일</td>
-			<td>연락처<br/><br/>이메일</td>
-			<td>${bean.staff_phone }<br/><br/>${bean.staff_email }</td>
-		</tr>
-		<tr>
-			<td>부서/입사일</td>
-			<td>부서<br><br>입사일</td>
-			<td>${bean.staff_team }<br><br>${bean.staff_joindate }</td>
-		</tr>
-	   </table>
-	 <input type="hidden" id="staffno" value="${bean.staff_no }">
-	 <a href="../staffEdit/${bean.staff_no }"><button type="button" id="editbtn" class="btn btn-default">수 정</button></a>
-	 <button type="button" id="delbtn" class="btn btn-default">삭 제</button>
-	 <a href="../staff"><button type="button" id="listbtn" class="btn btn-default">목 록</button></a>
+	<div id="allContain">
+		<div class="page-header" align="center">
+			<h1>직원 정보</h1>
+		</div>
+		<div id="table">
+			<table class="table table-hover">
+				<tr>
+					<td width="30%">NO/이름</td>
+					<td width="40%">NO<br/></br>이름</td>
+					<td width="50%">${bean.staff_no }<br/></br>${bean.staff_name }</td>
+				</tr>
+				<tr>
+					<td>연락처/이메일</td>
+					<td>연락처<br/><br/>이메일</td>
+					<td>${bean.staff_phone }<br/><br/>${bean.staff_email }</td>
+				</tr>
+				<tr>
+					<td>부서/입사일</td>
+					<td>부서<br><br>입사일</td>
+					<td>${bean.staff_team }<br><br>${bean.staff_joindate }</td>
+				</tr>
+			</table>
+			<input type="hidden" id="staffno" value="${bean.staff_no }">
+			<a href="../staffEdit/${bean.staff_no }"><button type="button" id="editbtn" class="btn btn-default">수 &nbsp; &nbsp; 정</button></a>
+			<button type="button" id="delbtn" class="btn btn-default">삭 &nbsp; &nbsp; 제</button>
+			<a href="../staff"><button type="button" id="listbtn" class="btn btn-default">목 &nbsp; &nbsp; 록</button></a>
+		</div>
 	</div>
-</div>
       
 <!-- contents end -->
 <jsp:include page="/WEB-INF/remote.jsp"/>

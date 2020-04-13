@@ -13,7 +13,10 @@
 <link rel="stylesheet" type="text/css" href="${root }css/bootstrap.css" />
 <link rel="stylesheet" type="text/css" href="${root }css/travel.css" />
 <style type="text/css">
-	h1, input {
+	#allContain {
+		width:1000px;
+		margin:0 auto;
+		padding-left:170px;
 		font-family: 'Jua';
 	}
 	#table1,#table2 {
@@ -24,17 +27,13 @@
 		font-family: 'Jua';
 		font-size:18px;
 	}
-	select, button, a {
-		font-family: 'Jua';
-	}
-	#table1{
-		margin-bottom: 80px; 
+	#btn {
+		width:1000px;
+		text-align:right;
+		padding:30 0 0 0;
 	}
 	#confirmbtn{
-		position: relative;
 		width: 230px;
-		left: 1150px;
-		margin-top: 50px;
 	}
 
 </style>
@@ -43,37 +42,37 @@
 <jsp:include page="/WEB-INF/menubar.jsp"/>
 
 <!-- contents start -->
-      <div class="page-header" id="page-header" align="center">
-     <h1>예약 및 결제내역</h1>
-  	 </div>
+<div id="allContain">
+	<div class="page-header" id="page-header" align="center">
+		<h1>예약 및 결제내역</h1>
+	</div>
   	 
-  	 		<h3 style="text-align: center; font-family: 'Jua'; margin-top: 30px;">예약내역</h3>
+	<h3 style="text-align: center; font-family: 'Jua'; margin-top: 30px;">예약내역</h3>
   	 <table class="table table-hover" id="table1">
-  	
-  	 <tr>
-  	 	<td class="active" style="width: 200px;">상품번호</td>
-  	 	<td style="width: 200px;">${bean.tour_no }</td>
-  	 	<td class="active" style="width: 200px;">투어명</td>
-  	 	<td style="width: 400px;">${bean.tourVo.name }</td>
-  	 </tr>
-  	 <tr>
-  	 	<td class="active">예약자</td>
-  	 	<td>${bean.client_name }</td>
-  	 	<td class="active">여행자</td>
-  	 	<td>${bean.paid_name }</td>
-  	 </tr>
-  	 <tr>
-  	 	<td class="active">연락처</td>
-  	 	<td>${bean.paid_phone }</td>
-  	 	<td class="active">카카오톡 아이디</td>
-  	 	<td>${bean.paid_kakaoid }</td>
-  	 </tr>
-  	 <tr>
-  	 	<td class="active">여행인원</td>
-  	 	<td style="color: red">${bean.paid_count }명</td>
-  	 	<td class="active">여행일</td>
-  	 	<td style="color: red">${bean.tour_date }</td>	
-  	 </tr>
+	  	 <tr>
+	  	 	<td class="active" style="width: 200px;">상품번호</td>
+	  	 	<td style="width: 200px;">${bean.tour_no }</td>
+	  	 	<td class="active" style="width: 200px;">투어명</td>
+	  	 	<td style="width: 400px;">${bean.tourVo.name }</td>
+	  	 </tr>
+	  	 <tr>
+	  	 	<td class="active">예약자</td>
+	  	 	<td>${bean.client_name }</td>
+	  	 	<td class="active">여행자</td>
+	  	 	<td>${bean.paid_name }</td>
+	  	 </tr>
+	  	 <tr>
+	  	 	<td class="active">연락처</td>
+	  	 	<td>${bean.paid_phone }</td>
+	  	 	<td class="active">카카오톡 아이디</td>
+	  	 	<td>${bean.paid_kakaoid }</td>
+	  	 </tr>
+	  	 <tr>
+	  	 	<td class="active">여행인원</td>
+	  	 	<td style="color: red">${bean.paid_count }명</td>
+	  	 	<td class="active">여행일</td>
+	  	 	<td style="color: red">${bean.tour_date }</td>	
+	  	 </tr>
   	 </table>
   	 <h3 style="text-align: center; font-family: 'Jua';">결제내역</h3>
   	 <table class="table table-hover" id="table2">	
@@ -90,9 +89,11 @@
   	 		<td>${bean.paid_confirm }</td>
   	 	</tr>
   	 </table>
- <p style="display: none;">${bean.paid_no }</p>
- <button id ="confirmbtn" class="btn btn-primary btn-lg">확정하기</button> 	 
-  	 
+	<p style="display: none;">${bean.paid_no }</p>
+	<div id="btn">
+		<button id ="confirmbtn" class="btn btn-default btn-lg">확정하기</button> 	 
+	</div>
+</div> 
 <!-- contents end --> 
 <jsp:include page="/WEB-INF/remote.jsp"/>
 <jsp:include page="/WEB-INF/socket.jsp"/>

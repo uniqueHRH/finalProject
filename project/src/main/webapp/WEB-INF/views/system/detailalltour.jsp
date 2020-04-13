@@ -13,7 +13,10 @@
 <link rel="stylesheet" type="text/css" href="${root }css/bootstrap.css" />
 <link rel="stylesheet" type="text/css" href="${root }css/travel.css" />
 <style type="text/css">
-	h1, input {
+	#allContain {
+		width:1000px;
+		margin:0 auto;
+		padding-left:170px;
 		font-family: 'Jua';
 	}
 	#table1,#table2 {
@@ -24,17 +27,13 @@
 		font-family: 'Jua';
 		font-size:18px;
 	}
-	button, a {
-		font-family: 'Jua';
-	}
-	#table1{
-		margin-bottom: 80px; 
+	#btn {
+		width:1000px;
+		padding:30 0 0 0;
+		text-align:right;
 	}
 	#edittourbtn{
-		position: relative;
 		width: 230px;
-		left: 1150px;
-		margin-top: 50px;
 	}
 
 </style>
@@ -43,25 +42,25 @@
 <jsp:include page="/WEB-INF/menubar.jsp"/>
 
 <!-- contents start -->
-      <div class="page-header" id="page-header" align="center">
-     <h1>상품 상세 정보</h1>
-  	 </div>
+<div id="allContain">
+	<div class="page-header" id="page-header" align="center">
+		<h1>상품 상세 정보</h1>
+	</div>
   	 
-  	 		<h3 style="text-align: center; font-family: 'Jua'; margin-top: 30px;">지역기본정보</h3>
+	<h3 style="text-align: center; font-family: 'Jua'; margin-top: 30px;">지역기본정보</h3>
   	 <table class="table table-hover" id="table1">
-  	
-  	 <tr>
-  	 	<td class="active" style="width: 200px;">상품번호</td>
-  	 	<td style="width: 200px;">${bean.tour_no }</td>
-  	 	<td class="active" style="width: 200px;">지역</td>
-  	 	<td style="width: 400px;">${bean.land }/${bean.country }</td>
-  	 </tr>
-  	 <tr>
-  	 	<td class="active">도시</td>
-  	 	<td>${bean.city }</td>
-  	 	<td class="active">도시좌표</td>
-  	 	<td>${bean.latlng }</td>
-  	 </tr>
+	  	 <tr>
+	  	 	<td class="active" style="width: 200px;">상품번호</td>
+	  	 	<td style="width: 200px;">${bean.tour_no }</td>
+	  	 	<td class="active" style="width: 200px;">지역</td>
+	  	 	<td style="width: 400px;">${bean.land }/${bean.country }</td>
+	  	 </tr>
+	  	 <tr>
+	  	 	<td class="active">도시</td>
+	  	 	<td>${bean.city }</td>
+	  	 	<td class="active">도시좌표</td>
+	  	 	<td>${bean.latlng }</td>
+	  	 </tr>
   	 </table>
   	 <h3 style="text-align: center; font-family: 'Jua';">상품내용</h3>
   	 <table class="table table-hover" id="table2">	
@@ -82,8 +81,10 @@
   	 		<td colspan="3" style="text-align: left;">${bean.comments }</td>
   	 	</tr>
   	 </table>
-  	 <a href="../../system/tour/${bean.tour_no }/edit"><button type="button" id="edittourbtn" class="btn btn-default btn-lg">정보수정</button></a>
-
+  	 <div id="btn">
+  	 	<a href="../../system/tour/${bean.tour_no }/edit"><button type="button" id="edittourbtn" class="btn btn-default btn-lg">정보수정</button></a>
+  	 </div>
+</div>
   	 	 	
 <!-- contents end --> 
 <jsp:include page="/WEB-INF/remote.jsp"/>

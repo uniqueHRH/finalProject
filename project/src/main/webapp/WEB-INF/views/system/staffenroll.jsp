@@ -10,21 +10,29 @@
 <link rel="stylesheet" type="text/css" href="${root }css/bootstrap.css" />
 <link rel="stylesheet" type="text/css" href="${root }css/travel.css" />
 <style type="text/css">
-    #table{
-   		font-family: "Jua";
-   }
-    .form-horizontal {
-         width:570px;
-         margin: 0 auto;
-         text-align: center;
-    }
-    #staff_name1{
-    	margin-top: 50px;
-    }
-    #staff_team{
-    	 width:400px;
-    	 height: 35px;
-    }
+	#allContain {
+		width:1000px;
+		margin:0 auto;
+		padding-left:170px;
+		font-family: 'Jua';
+	}
+	form {
+		width:950px;      
+		margin:0 auto;
+		font-family: 'Jua';
+		font-size:18px;
+		align:center;
+		text-align:center;
+		padding:70 0 0 0;
+	}
+	label {
+		display:inline-block;
+		width:100px;
+	}
+	#staff_name, #staff_phone, #staff_email, #staff_team {
+		display:inline-block;
+		width:300px;
+	}
     #adminbtn,#cancelbtn{
        width: 190px;
        position: relative;
@@ -32,53 +40,42 @@
        display: inline;
        margin-top: 20px;
     }
-    form{
-    	padding:0 0 200 0;
-    }
 </style>
 </head>
 <body>
 <jsp:include page="/WEB-INF/menubar.jsp"/>
 
 <!-- contents start -->
-<div id="table">
-    <div class="page-header" id="page-header" align="center">
-     <h1>직원 등록</h1>
-   </div>
+<div id="allContain">
+	<div class="page-header" id="page-header" align="center">
+		<h1>직원 등록</h1>
+	</div>
    
 
-<form action="../system/staffIns" name="adm" class="form-horizontal" method="post">
-  
-  <div class="form-group" id="staff_name1">
-    <label for="staff_name" class="col-sm-2 control-label">이 름</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" id="staff_name" name="staff_name" style="width:400px">
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="staff_phone" class="col-sm-2 control-label">연락처</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" id="staff_phone" name="staff_phone" style="width:400px">
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="staff_email" class="col-sm-2 control-label">이메일</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" id="staff_email" name="staff_email" style="width:400px">
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="staff_team" class="col-sm-2 control-label">부 서</label>
-    <div class="col-sm-10">
-     <select class="form-control" id="staff_team" name="staff_team">
-		    <option value="경영">경영</option>
-		    <option value="인사">인사</option>
-		    <option value="CS">CS</option>
-		    <option value="디자인">디자인</option>
-		    <option value="마케팅">마케팅</option>
-		</select>
-    </div>
-  </div>
+	<form action="../system/staffIns" name="adm" class="form-horizontal" method="post">
+	  
+	  <div class="form-group" id="staff_name1">
+	    <label for="staff_name">이 름</label>
+	      <input type="text" class="form-control" id="staff_name" name="staff_name">
+	  </div>
+	  <div class="form-group">
+	    <label for="staff_phone">연락처</label>
+	      <input type="text" class="form-control" id="staff_phone" name="staff_phone">
+	  </div>
+	  <div class="form-group">
+	    <label for="staff_email">이메일</label>
+	      <input type="text" class="form-control" id="staff_email" name="staff_email">
+	  </div>
+	  <div class="form-group">
+	    <label for="staff_team">부 서</label>
+	     <select class="form-control" id="staff_team" name="staff_team">
+			    <option value="경영">경영</option>
+			    <option value="인사">인사</option>
+			    <option value="CS">CS</option>
+			    <option value="디자인">디자인</option>
+			    <option value="마케팅">마케팅</option>
+			</select>
+</div>
        
 <button type="submit" id="adminbtn"  class="btn btn-default btn-lg">등록 완료</button>
 <button type="button" id="cancelbtn" class="btn btn-default btn-lg" onclick="location.href='../system/staff'">취 소</button>

@@ -10,32 +10,35 @@
 <link rel="stylesheet" type="text/css" href="${root }css/bootstrap.css" />
 <link rel="stylesheet" type="text/css" href="${root }css/travel.css" />
 <style type="text/css">
-	#table1 {
+	#allContain {
+		width:1000px;
+		margin:0 auto;
+		padding-left:170px;
 		font-family: 'Jua';
 	}
-	p {
+	#table {
+		width:900px;      
 		margin:0 auto;
-		font-size:18px;
+		font-size:17px;
+		align:center;
+		text-align:center;
+		padding:50 0 0 0;
 	}
     #infocomm{
     	font-size: 20px;
     }
-    #table {
-    	width:50%;
-    	margin:0px auto;
-    	text-align: center;
-    }
-   #table tr{
-   		text-align: center;
-   }
-   #table tr td{
-   		text-align: center;
-   		font-size: 15px;
-   }
-   		
-   #changeinfobtn{
-   		width: 150px;
-   }
+	#table tr{
+		text-align: center;
+	}
+	#table tr td{
+		text-align: center;
+		font-size: 15px;
+	}
+	#editbtn, #delbtn, #listbtn {
+		width:150px;
+		height:35px;
+		padding:0 0 0 10;
+	}
 </style>
 </head>
 <body>
@@ -44,7 +47,7 @@
 <!-- menubar end -->
                      <!-- contents start -->
  
- <div id="table1">
+ <div id="allContain">
  	 <div class="page-header" align="center">
     	 <h1>직원 정보</h1>
   	 </div>
@@ -67,9 +70,9 @@
 		</tr>
 	   </table>
 	 <input type="hidden" id="guideno" value="${bean.guide_no }">
-	 <a href="../guideEdit/${bean.guide_no }"><button type="button" id="editbtn" class="btn btn-default">수 정</button></a>
-	 <button type="button" id="delbtn" class="btn btn-default">삭 제</button>
-	 <a href="../guide"><button type="button" id="listbtn" class="btn btn-default">목 록</button></a>
+	 <a href="../guideEdit/${bean.guide_no }"><button type="button" id="editbtn" class="btn btn-default">수  &nbsp; &nbsp;정</button></a>
+	 <button type="button" id="delbtn" class="btn btn-default">삭 &nbsp;  &nbsp;제</button>
+	 <a href="../guide"><button type="button" id="listbtn" class="btn btn-default">목  &nbsp; &nbsp;록</button></a>
 	</div>
 </div>
       
