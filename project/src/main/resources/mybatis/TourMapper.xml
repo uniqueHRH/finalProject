@@ -60,6 +60,7 @@
 		<result property="comments" column="comments"/>
 		<result property="course" column="course"/>
 		<result property="latlng" column="latlng"/>
+		<result property="mainimg" column="mainimg"/>
 		<result property="firstimg" column="firstimg"/>
 		<result property="secondimg" column="secondimg"/>
 		<result property="thirdimg" column="thirdimg"/>
