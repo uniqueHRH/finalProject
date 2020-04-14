@@ -35,6 +35,9 @@
 		text-align:center;
 		padding:10 0 0 0;
 	}
+    #board_img, #dele {
+    	display:inline-block;
+    }
     #adminbtn,#cancelbtn{
        width: 170px;
        display: inline;
@@ -50,7 +53,12 @@
 		<h1>가이드 등록</h1>
 	</div>
 
-	<form action="../system/guideIns" class="form-horizontal" method="post">
+	<form action="../system/guideIns" class="form-horizontal" method="post" enctype="multipart/form-data">
+		<div class="upload">
+			<div class="board_img"><img src="" id="img"/></div>
+			<input type="file" id="board_img" name="file" />
+			<a class="btn btn-default" role="button" id="dele">삭제</a>
+		</div>
 		<div id="formSub">
 			<div class="form-group">
 				<label for="guide_name" class="col-sm-2 control-label">이 름</label>
@@ -82,6 +90,29 @@
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="${root }js/bootstrap.js"></script>
 <script type="text/javascript">
+   $(document).ready(function() {
+		// 파일업로드
+		$('#dele').hide();
+		$('#board_img').change(function(){
+			if(this.files && this.files[0]) {
+				var reader = new FileReader;
+				reader.onload = function(data) {
+					$('.board_img img').attr('src', data.target.result).width(200);
+					$('.board_img img').attr('src', data.target.result).height(200);
+				}
+				reader.readAsDataURL(this.files[0]);
+				$('#dele').toggle();
+			}
+		});
+		
+		$('#dele').on('click', function() {
+			$('#board_img').val('');
+			$('#img').attr('src','');
+
+		});
+		
+   });
+      
 </script>
 </body>
 </html>

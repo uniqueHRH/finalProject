@@ -89,11 +89,11 @@
 	</select>
 	
 	<insert id="insertOne_guide" parameterType="GuideBean">
-		insert into guide (guide_name, guide_phone, guide_city, guide_email) values (#{guide_name}, #{guide_phone}, #{guide_city}, #{guide_email})
+		insert into guide (guide_name, guide_phone, guide_city, guide_email, guide_img, guide_thumb) values (#{guide_name}, #{guide_phone}, #{guide_city}, #{guide_email}, #{guide_img}, #{guide_thumb})
 	</insert>
 	
 	<update id="updateOne_guide" parameterType="GuideBean">
-		update guide set guide_name=#{guide_name}, guide_phone=#{guide_phone}, guide_city=#{guide_city}, guide_email=#{guide_email} where guide_no=#{guide_no}
+		update guide set guide_name=#{guide_name}, guide_phone=#{guide_phone}, guide_city=#{guide_city}, guide_email=#{guide_email}, guide_img=#{guide_img}, guide_thumb=#{guide_thumb} where guide_no=#{guide_no}
 	</update>
 	
 	<delete id="deleteOne_guide" parameterType="GuideBean">

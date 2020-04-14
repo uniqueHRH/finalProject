@@ -209,8 +209,8 @@ public class StaffController {
  		// 새로운 파일이 등록되었는지 확인
  		if(file.getOriginalFilename()!= null && file.getOriginalFilename()!="") {
  			// 기존 파일 삭제
- 			new File(uploadPath + req.getParameter("board_img")).delete();
- 			new File(uploadPath + req.getParameter("board_thumb")).delete();
+ 			new File(uploadPath + req.getParameter("staff_img")).delete();
+ 			new File(uploadPath + req.getParameter("staff_thumb")).delete();
  		  
  			// 새로 첨부한 파일 등록
  			String imgUploadPath = uploadPath + File.separator + "imgUpload";
@@ -222,8 +222,8 @@ public class StaffController {
  		  
  		} else {
  			// 기존 이미지 그대로 사용
- 			bean.setStaff_img(req.getParameter("board_img"));
- 			bean.setStaff_thumb(req.getParameter("board_thumb"));
+ 			bean.setStaff_img(req.getParameter("staff_img"));
+ 			bean.setStaff_thumb(req.getParameter("staff_thumb"));
  		 }
  		
  		staffService.updateOne_staff(bean);
@@ -354,7 +354,20 @@ public class StaffController {
  	
  	//가이드 등록
  	 	@RequestMapping(value="/system/guideIns",method=RequestMethod.POST)
- 	    public String guideIns(GuideVo bean) {
+ 	    public String guideIns(@ModelAttribute GuideVo bean, MultipartFile file) throws Exception {
+ 	  		
+ 	  		String imgUploadPath = uploadPath + File.separator + "imgUpload";
+ 	  		String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
+ 	  		String fileName = null;
+
+ 	  		if(file.getOriginalFilename() != null && file.getOriginalFilename() != "") {
+ 	  			fileName=UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath); 
+ 	  		} else {
+ 	  			fileName = uploadPath + File.separator + "images" + File.separator + "none.png";
+ 	  		}
+
+ 	  		bean.setGuide_img(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
+ 	  		bean.setGuide_thumb(File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
  	 		guideService.insertOne_guide(bean);
  	 		return "redirect:/system/guide";
  	 	}
@@ -373,7 +386,27 @@ public class StaffController {
  		}
  	 //가이드정보 수정
  	 	@RequestMapping(value="/system/guideEdit/{idx}", method=RequestMethod.POST)
- 		public String guideEdit(@PathVariable("idx") int key, GuideVo bean){
+ 		public String guideEdit(@ModelAttribute GuideVo bean, MultipartFile file, HttpServletRequest req) throws IOException, Exception {
+ 	 		
+ 	 		// 새로운 파일이 등록되었는지 확인
+ 	 		if(file.getOriginalFilename()!= null && file.getOriginalFilename()!="") {
+ 	 			// 기존 파일 삭제
+ 	 			new File(uploadPath + req.getParameter("guide_img")).delete();
+ 	 			new File(uploadPath + req.getParameter("guide_thumb")).delete();
+ 	 		  
+ 	 			// 새로 첨부한 파일 등록
+ 	 			String imgUploadPath = uploadPath + File.separator + "imgUpload";
+ 	 			String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
+ 	 			String fileName = UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath);
+ 	 		  
+ 	 			bean.setGuide_img(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
+ 	 			bean.setGuide_thumb(File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
+ 	 		  
+ 	 		} else {
+ 	 			// 기존 이미지 그대로 사용
+ 	 			bean.setGuide_img(req.getParameter("guide_img"));
+ 	 			bean.setGuide_thumb(req.getParameter("guide_thumb"));
+ 	 		 }
  	 		 
  	 		guideService.updateOne_guide(bean);
  	 		return "redirect:../guideDe/"+bean.getGuide_no();

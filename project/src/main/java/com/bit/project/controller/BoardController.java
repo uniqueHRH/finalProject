@@ -520,8 +520,8 @@ public class BoardController {
  		// 새로운 파일이 등록되었는지 확인
  		if(file.getOriginalFilename()!= null && file.getOriginalFilename()!="") {
  			// 기존 파일 삭제
- 			new File(uploadPath + req.getParameter("board_img")).delete();
- 			new File(uploadPath + req.getParameter("board_thumb")).delete();
+ 			new File(uploadPath + req.getParameter("partner_img")).delete();
+ 			new File(uploadPath + req.getParameter("partner_thumb")).delete();
  		  
  			// 새로 첨부한 파일 등록
  			String imgUploadPath = uploadPath + File.separator + "imgUpload";
@@ -533,8 +533,8 @@ public class BoardController {
  		  
  		} else {
  			// 기존 이미지 그대로 사용
- 			bean.setPartner_img(req.getParameter("board_img"));
- 			bean.setPartner_thumb(req.getParameter("board_thumb"));
+ 			bean.setPartner_img(req.getParameter("partner_img"));
+ 			bean.setPartner_thumb(req.getParameter("partner_thumb"));
  		 }
  		 
  		partnerService.updateOne_partner(bean);
@@ -547,8 +547,8 @@ public class BoardController {
  		// 새로운 파일이 등록되었는지 확인
  		if(file.getOriginalFilename()!= null && file.getOriginalFilename()!="") {
  			// 기존 파일 삭제
- 			new File(uploadPath + req.getParameter("board_img")).delete();
- 			new File(uploadPath + req.getParameter("board_thumb")).delete();
+ 			new File(uploadPath + req.getParameter("free_img")).delete();
+ 			new File(uploadPath + req.getParameter("free_thumb")).delete();
  		  
  			// 새로 첨부한 파일 등록
  			String imgUploadPath = uploadPath + File.separator + "imgUpload";
@@ -560,8 +560,8 @@ public class BoardController {
  		  
  		} else {
  			// 기존 이미지 그대로 사용
- 			bean.setFree_img(req.getParameter("board_img"));
- 			bean.setFree_thumb(req.getParameter("board_thumb"));
+ 			bean.setFree_img(req.getParameter("free_img"));
+ 			bean.setFree_thumb(req.getParameter("free_thumb"));
  		 }
  		 
  		freeService.updateOne_free(bean);
@@ -574,8 +574,8 @@ public class BoardController {
  		// 새로운 파일이 등록되었는지 확인
  		if(file.getOriginalFilename()!= null && file.getOriginalFilename()!="") {
  			// 기존 파일 삭제
- 			new File(uploadPath + req.getParameter("board_img")).delete();
- 			new File(uploadPath + req.getParameter("board_thumb")).delete();
+ 			new File(uploadPath + req.getParameter("event_img")).delete();
+ 			new File(uploadPath + req.getParameter("event_thumb")).delete();
  		  
  			// 새로 첨부한 파일 등록
  			String imgUploadPath = uploadPath + File.separator + "imgUpload";
@@ -587,8 +587,8 @@ public class BoardController {
  		  
  		} else {
  			// 기존 이미지 그대로 사용
- 			bean.setEvent_img(req.getParameter("board_img"));
- 			bean.setEvent_thumb(req.getParameter("board_thumb"));
+ 			bean.setEvent_img(req.getParameter("event_img"));
+ 			bean.setEvent_thumb(req.getParameter("event_thumb"));
  		 }
  		 
  		eventService.updateOne_event(bean);
