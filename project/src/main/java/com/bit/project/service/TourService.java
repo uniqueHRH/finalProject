@@ -35,4 +35,8 @@ public interface TourService {
 	
 	// 홈 검색
 	List<TourVo> homeSearch(Search search) throws Exception;
+	//홈추천
+	void selectAll_recomm1(Model model);
+	void selectAll_recomm2(Model model);
+	void selectAll_recomm3(Model model);
 }

@@ -158,5 +158,15 @@
 	<update id="updateOne_tour" parameterType="TourBean">
 		update tour set theme=#{theme},name=#{name},vehicle=#{vehicle},cost=#{cost},comments=#{comments},course=#{course},mainimg=#{mainimg},firstimg=#{firstimg},secondimg=#{secondimg},thirdimg=#{thirdimg} where tour_no=#{tour_no}
 	</update>
+		
+	<select id="selectAll_recomm1" resultType="TourBean">
+		SELECT * FROM travel.tour where tour_no=15 or tour_no=26 or tour_no=31 or tour_no=38
+	</select>
+	<select id="selectAll_recomm2" resultType="TourBean">
+		SELECT * FROM travel.tour where tour_no=7 or tour_no=23 or tour_no=37 or tour_no=43
+	</select>
+	<select id="selectAll_recomm3" resultType="TourBean">
+		SELECT * FROM travel.tour where tour_no=12 or tour_no=14 or tour_no=32 or tour_no=33
+	</select>
 </mapper>
 

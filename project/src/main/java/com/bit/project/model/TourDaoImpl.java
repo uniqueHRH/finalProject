@@ -119,4 +119,18 @@ public class TourDaoImpl implements TourDao {
 		
 	}
 
+	@Override
+	public List<TourVo> selectAll_recomm1() throws Exception {
+		return sqlSession.selectList("tour.selectAll_recomm1");
+	}
+
+	@Override
+	public List<TourVo> selectAll_recomm2() throws Exception {
+		return sqlSession.selectList("tour.selectAll_recomm2");
+	}
+
+	@Override
+	public List<TourVo> selectAll_recomm3() throws Exception {
+		return sqlSession.selectList("tour.selectAll_recomm3");
+	}
 }

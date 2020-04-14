@@ -203,6 +203,38 @@ public class TourServiceImpl implements TourService{
 		
 	}
 
-
+	@Override
+	public void selectAll_recomm1(Model model) {
+		List<TourVo> list;
+		try {
+			list = tourDao.selectAll_recomm1();
+			model.addAttribute("list1",list);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	@Override
+	public void selectAll_recomm2(Model model) {
+		List<TourVo> list;
+		try {
+			list = tourDao.selectAll_recomm2();
+			model.addAttribute("list2",list);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	@Override
+	public void selectAll_recomm3(Model model) {
+		List<TourVo> list;
+		try {
+			list = tourDao.selectAll_recomm3();
+			model.addAttribute("list3",list);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
 
 }

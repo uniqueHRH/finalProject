@@ -33,4 +33,8 @@ public interface TourDao {
 	
 	//홈 검색
 	List<TourVo> homeSearch(Search search) throws Exception;
+	//홈추천
+	List<TourVo> selectAll_recomm1() throws Exception;
+	List<TourVo> selectAll_recomm2() throws Exception;
+	List<TourVo> selectAll_recomm3() throws Exception;
 }

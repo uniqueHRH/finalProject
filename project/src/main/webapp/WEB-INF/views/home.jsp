@@ -95,6 +95,7 @@
 		text-align: left;
 		font-size: 48px;
 		margin:0 auto;
+		padding-left: 120px;
 	}
 	p {
 		display:inline-block;
@@ -102,12 +103,13 @@
 	#go {
 		text-align:right;
 		width:330px;
+		padding-top: 10px;
 	}
 	#star {
 		font-size:50px;
 		padding:0 1300 0 0;
 	}
-	#main1, #main2, #main3, #main4 {
+	#main1 {
 		display: inline-block;
 		padding:20 20;
 		border:1px solid #e8e8e8;
@@ -147,6 +149,10 @@
 	#searchGo {
 		width:60px;
 		height:50px;
+	}
+	#recommimg1,#recommimg2,#recommimg3{
+		width: 330px;
+		height: 230px;
 	}
 /* footer*/
 	#footer{
@@ -278,79 +284,37 @@
 
 	<!-- 추천상품img -->
 	<div id="mainI">
-		<p id="mainP">가이드 추천</p><p id="star"> &nbsp;♬</p>
-		<div id="main1">
-			<a href="#">
-				<img src="https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/mainbarcelona.jpg?raw=true"/><br/>
-				<h3>바르셀로나</h3><p id="go">바로가기 ▶</p>
-			</a>
-		</div>
-		<div id="main2">
-			<a href="#"><img src="https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/maindanang.jpg?raw=true"><br/>
-			<h3>다 &nbsp; &nbsp; &nbsp;낭</h3><p id="go">바로가기 ▶</p>
-		</a>
-		</div>
-		<div id="main3">
-			<a href="#"><img src="https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/mainnewyork.jpg?raw=true"><br/>
-			<h3>뉴&nbsp; &nbsp; &nbsp;욕</h3><p id="go">바로가기 ▶</p>
-		</a>
-		</div>
-		<div id="main4">
-			<a href="#"><img src="https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/mainsydney.jpg?raw=true"><br/>
-			<h3>시 드 니</h3><p id="go">바로가기 ▶</p>
-		</a>
-		</div>
-	</div>
-	
+		<p id="mainP">MD 추천 여행지</p><p id="star"> &nbsp;♬</p>
+			<c:forEach items="${list1 }" var="bean1">
+			<div id="main1">
+					<img src="${bean1.mainimg }" id="recommimg1"/><br/>
+						<h3 style="margin-bottom: -10px;">${bean1.name }</h3><br/>
+					<div style="font-size: 22px;">${bean1.city }(${bean1.country })</div><a href="${root }tour/detail/${bean1.tour_no}"><div id="go">바로가기 ▶</div></a>
+			</div>	
+		</c:forEach>	
+	</div>	
 	<div id="mainI2">
-		<p id="mainP">찜한 상품</p><p id="star"> &nbsp;♬</p>
-		<div id="main1">
-			<a href="#">
-				<img src="https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/mainbarcelona.jpg?raw=true"/><br/>
-				<h3>바르셀로나</h3><p id="go">바로가기 ▶</p>
-			</a>
-		</div>
-		<div id="main2">
-			<a href="#"><img src="https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/maindanang.jpg?raw=true"><br/>
-			<h3>다 &nbsp; &nbsp; &nbsp;낭</h3><p id="go">바로가기 ▶</p>
-		</a>
-		</div>
-		<div id="main3">
-			<a href="#"><img src="https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/mainnewyork.jpg?raw=true"><br/>
-			<h3>뉴&nbsp; &nbsp; &nbsp;욕</h3><p id="go">바로가기 ▶</p>
-		</a>
-		</div>
-		<div id="main4">
-			<a href="#"><img src="https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/mainsydney.jpg?raw=true"><br/>
-			<h3>시 드 니</h3><p id="go">바로가기 ▶</p>
-		</a>
-		</div>
-	</div>
-	
+		<p id="mainP">MD 추천 여행지</p><p id="star"> &nbsp;♬</p>
+			<c:forEach items="${list2 }" var="bean2">
+			<div id="main1">
+					<img src="${bean2.mainimg }" id="recommimg2"/><br/>
+						<h3 style="margin-bottom: -10px;">${bean2.name }</h3><br/>
+					<div style="font-size: 22px;">${bean2.city }(${bean2.country })</div><a href="${root }tour/detail/${bean2.tour_no}"><div id="go">바로가기 ▶</div></a>
+			</div>	
+		</c:forEach>	
+	</div>	
 	<div id="mainI3">
-		<p id="mainP">최근 본 상품</p><p id="star"> &nbsp;♬</p>
+		<p id="mainP">2020 핫 여행지</p><p id="star"> &nbsp;♬</p>
 		<div id="main1">
-			<a href="#">
-				<img src="https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/mainbarcelona.jpg?raw=true"/><br/>
-				<h3>바르셀로나</h3><p id="go">바로가기 ▶</p>
-			</a>
-		</div>
-		<div id="main2">
-			<a href="#"><img src="https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/maindanang.jpg?raw=true"><br/>
-			<h3>다 &nbsp; &nbsp; &nbsp;낭</h3><p id="go">바로가기 ▶</p>
-		</a>
-		</div>
-		<div id="main3">
-			<a href="#"><img src="https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/mainnewyork.jpg?raw=true"><br/>
-			<h3>뉴&nbsp; &nbsp; &nbsp;욕</h3><p>바로가기 ▶</p>
-		</a>
-		</div>
-		<div id="main4">
-			<a href="#"><img src="https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/mainsydney.jpg?raw=true"><br/>
-			<h3>시 드 니</h3><p id="go">바로가기 ▶</p>
-		</a>
-		</div>
+			<c:forEach items="${list3 }" var="bean3">
+			<div id="main1">
+					<img src="${bean3.mainimg }" id="recommimg3"/><br/>
+						<h3 style="margin-bottom: -10px;">${bean3.name }</h3><br/>
+					<div style="font-size: 22px;">${bean3.city }(${bean3.country })</div><a href="${root }tour/detail/${bean3.tour_no}"><div id="go">바로가기 ▶</div></a>
+			</div>	
+		</c:forEach>	
 	</div>
+</div>		
 <!-- footer -->
 <div id="footer">
 <hr style="border: solid 1px silver;">
