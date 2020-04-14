@@ -175,59 +175,31 @@
    });
 //////////////////////////////////////////////////////////////////////////////////////////		
 		// 페이징
+		var uri='${url}';
+      uri=uri.split('system/')[1];
 		//이전 버튼 이벤트
 		function prev(page, range, rangeSize) {
 			var page=((range-2)*rangeSize)+1;
 			var range=range-1;
-			var up=$('#dropdownMenu1').val();
-			if(up=='정렬'){
-				var url="${root }system/staff";
+				var url='${root }system/'+uri;
 				url=url+"?page="+page;
 				url=url+"&range="+range;
 				location.href=url;
-			}else if(up=='NO'){
-				var url="${root }system/staffNO";
-				url=url+"?page="+page;
-				url=url+"&range="+range;
-				location.href=url;
-			}else if(up=='부서'){
-				var url="${root }system/staffTeam";
-				url=url+"?page="+page;
-				url=url+"&range="+range;
-				location.href=url;
-			}
 		}
 		//페이지 번호 클릭
 		function pagination(page, range, rangeSize, searchType, keyword) {
-			var up=$('#dropdownMenu1').val();
-			if(up=='정렬'){
-			var url="${root }system/staff";
+			var url='${root }system/'+uri;
 			url=url+"?page="+page;
 			url=url+"&range="+range;
 			url=url+"&searchType="+$('#searchType').val();
 			url=url+"&keyword="+keyword;
 			location.href = url;
-			}else if(up=='NO'){
-				var url="${root }system/staffNO";
-				url=url+"?page="+page;
-				url=url+"&range="+range;
-				url=url+"&searchType="+$('#searchType').val();
-				url=url+"&keyword="+keyword;
-				location.href = url;
-			}else if(up=='부서'){
-				var url="${root }system/staffTeam";
-				url=url+"?page="+page;
-				url=url+"&range="+range;
-				url=url+"&searchType="+$('#searchType').val();
-				url=url+"&keyword="+keyword;
-				location.href = url;
-			}
 		}
 		//다음 버튼 이벤트
 		function next(page, range, rangeSize) {
 			var page=parseInt((range*rangeSize))+1;
 			var range=parseInt(range)+1;
-			var url="${root }system/staff";
+			var url='${root }system/'+uri;
 			url=url+"?page="+page;
 			url=url+"&range="+range;
 			location.href=url;

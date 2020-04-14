@@ -87,9 +87,12 @@ public class StaffController {
  			@RequestParam(required=false, defaultValue="1") int range,
  			@RequestParam(required=false, defaultValue="staff_name") String searchType,
  			@RequestParam(required=false) String keyword,
- 			@ModelAttribute("search") Search search
- 			) throws Exception {
+ 			@ModelAttribute("search") Search search,
+ 			HttpServletRequest req
+ 	          ) throws Exception {
 
+ 	       String value=req.getServletPath();
+ 	       model.addAttribute("url", value);
  		model.addAttribute("search", search);
  		search.setSearchType(searchType);
  		search.setKeyword(keyword);
@@ -114,10 +117,12 @@ public class StaffController {
  			@RequestParam(required=false, defaultValue="1") int range,
  			@RequestParam(required=false, defaultValue="staff_name") String searchType,
  			@RequestParam(required=false) String keyword,
- 			@ModelAttribute("search") Search search
- 			) throws Exception {
+ 			@ModelAttribute("search") Search search,
+ 			HttpServletRequest req
+ 	          ) throws Exception {
 
- 		
+ 	       String value=req.getServletPath();
+ 	       model.addAttribute("url", value);
  		model.addAttribute("search", search);
  		search.setSearchType(searchType);
  		search.setKeyword(keyword);
@@ -142,9 +147,12 @@ public class StaffController {
  			@RequestParam(required=false, defaultValue="1") int range,
  			@RequestParam(required=false, defaultValue="staff_name") String searchType,
  			@RequestParam(required=false) String keyword,
- 			@ModelAttribute("search") Search search
- 			) throws Exception {
+ 			@ModelAttribute("search") Search search,
+ 			HttpServletRequest req
+ 	          ) throws Exception {
 
+ 	       String value=req.getServletPath();
+ 	       model.addAttribute("url", value);
  		model.addAttribute("search", search);
  		search.setSearchType(searchType);
  		search.setKeyword(keyword);
@@ -244,9 +252,12 @@ public class StaffController {
  			@RequestParam(required=false, defaultValue="1") int range,
  			@RequestParam(required=false, defaultValue="guide_name") String searchType,
  			@RequestParam(required=false) String keyword,
- 			@ModelAttribute("search") Search search
- 			) throws Exception {
+ 			@ModelAttribute("search") Search search,
+ 			HttpServletRequest req
+ 	          ) throws Exception {
 
+ 	       String value=req.getServletPath();
+ 	       model.addAttribute("url", value);
  		model.addAttribute("search", search);
  		search.setSearchType(searchType);
  		search.setKeyword(keyword);
@@ -271,10 +282,12 @@ public class StaffController {
  			@RequestParam(required=false, defaultValue="1") int range,
  			@RequestParam(required=false, defaultValue="guide_name") String searchType,
  			@RequestParam(required=false) String keyword,
- 			@ModelAttribute("search") Search search
- 			) throws Exception {
+ 			@ModelAttribute("search") Search search,
+ 			HttpServletRequest req
+ 	          ) throws Exception {
 
- 		
+ 	       String value=req.getServletPath();
+ 	       model.addAttribute("url", value);
  		model.addAttribute("search", search);
  		search.setSearchType(searchType);
  		search.setKeyword(keyword);
@@ -299,9 +312,12 @@ public class StaffController {
  			@RequestParam(required=false, defaultValue="1") int range,
  			@RequestParam(required=false, defaultValue="guide_name") String searchType,
  			@RequestParam(required=false) String keyword,
- 			@ModelAttribute("search") Search search
- 			) throws Exception {
+ 			@ModelAttribute("search") Search search,
+ 			HttpServletRequest req
+ 	          ) throws Exception {
 
+ 	       String value=req.getServletPath();
+ 	       model.addAttribute("url", value);
  		model.addAttribute("search", search);
  		search.setSearchType(searchType);
  		search.setKeyword(keyword);
@@ -325,9 +341,12 @@ public class StaffController {
  			@RequestParam(required=false, defaultValue="1") int range,
  			@RequestParam(required=false, defaultValue="guide_name") String searchType,
  			@RequestParam(required=false) String keyword,
- 			@ModelAttribute("search") Search search
- 			) throws Exception {
- 		
+ 			@ModelAttribute("search") Search search,
+ 			HttpServletRequest req
+ 	          ) throws Exception {
+
+ 	       String value=req.getServletPath();
+ 	       model.addAttribute("url", value);
  		model.addAttribute("search", search);
  		search.setSearchType(searchType);
  		search.setKeyword(keyword);
@@ -425,9 +444,12 @@ public class StaffController {
  	 			@RequestParam(required=false, defaultValue="1") int range,
  	 			@RequestParam(required=false, defaultValue="client_name") String searchType,
  	 			@RequestParam(required=false) String keyword,
- 	 			@ModelAttribute("search") Search search
- 	 			) throws Exception {
+ 	 			@ModelAttribute("search") Search search,
+ 	 			HttpServletRequest req
+ 	           ) throws Exception {
 
+ 	        String value=req.getServletPath();
+ 	        model.addAttribute("url", value);
  	 		model.addAttribute("search", search);
  	 		search.setSearchType(searchType);
  	 		search.setKeyword(keyword);
@@ -452,10 +474,12 @@ public class StaffController {
  	 			@RequestParam(required=false, defaultValue="1") int range,
  	 			@RequestParam(required=false, defaultValue="client_name") String searchType,
  	 			@RequestParam(required=false) String keyword,
- 	 			@ModelAttribute("search") Search search
- 	 			) throws Exception {
+ 	 			@ModelAttribute("search") Search search,
+ 	 			HttpServletRequest req
+ 	           ) throws Exception {
 
- 	 		
+ 	        String value=req.getServletPath();
+ 	        model.addAttribute("url", value);
  	 		model.addAttribute("search", search);
  	 		search.setSearchType(searchType);
  	 		search.setKeyword(keyword);
@@ -480,9 +504,12 @@ public class StaffController {
  	 			@RequestParam(required=false, defaultValue="1") int range,
  	 			@RequestParam(required=false, defaultValue="client_name") String searchType,
  	 			@RequestParam(required=false) String keyword,
- 	 			@ModelAttribute("search") Search search
- 	 			) throws Exception {
+ 	 			@ModelAttribute("search") Search search,
+ 	 			HttpServletRequest req
+ 	           ) throws Exception {
 
+ 	        String value=req.getServletPath();
+ 	        model.addAttribute("url", value);
  	 		model.addAttribute("search", search);
  	 		search.setSearchType(searchType);
  	 		search.setKeyword(keyword);
