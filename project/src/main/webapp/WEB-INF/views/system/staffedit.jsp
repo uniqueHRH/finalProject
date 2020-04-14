@@ -25,10 +25,19 @@
 		text-align:center;
 		padding:50 0 0 0;
 	}
-	#img {
+	.upload {
+		text-align:left;
+	}
+	#uploadI {
     	padding:0;
-    	border-radius:100%;
+    	width:200px;
+		height:200px;
+		border:1px solid #e8e8e8;
+		border-radius:2%;
     	border:1px solid gray;
+    }
+	#board_img, #dele {
+    	display:inline-block;
     }
     #infocomm{
     	font-size: 20px;
@@ -56,45 +65,45 @@
 		<h1>직원 정보</h1>
 	</div>
 	<form name="adm" class="form-horizontal" method="post" enctype="multipart/form-data"> 	 
-		<div id="table">
-			<div class="upload">
-				<label for="board_img">이미지</label><a class="btn btn-default" role="button" id="dele">삭제</a>
-				<input type="file" id="board_img" name="file" />
-				<div class="board_img">
-					<img src="${root }resources/${bean.staff_thumb }" id="uploadI"/>
-					<input type="hidden" name="staff_img" value="${bean.staff_thumb }"/>
-					<input type="hidden" name="staff_thumb" value="${bean.staff_img }"/>
-				</div>
+		<div class="upload">
+			<div class="board_img">
+				<img src="${root }resources/${bean.staff_thumb }" id="uploadI"/>
+				<input type="hidden" name="staff_img" value="${bean.staff_thumb }"/>
+				<input type="hidden" name="staff_thumb" value="${bean.staff_img }"/>
 			</div>
+			<input type="file" id="board_img" name="file" />
+			<a class="btn btn-default" role="button" id="dele">삭제</a>
+		</div>
 		
+		<div id="table">
 			<table class="table table-hover">
-			<tr>
-				<td width="30%">사번/이름</td>
-				<td width="40%">사번<br/></br>이름</td>
-				<td width="50%">${bean.staff_no }<br/></br><input type="text" id="staff_name" name="staff_name" value="${bean.staff_name }"/></td>
+				<tr>
+					<td width="30%">사번/이름</td>
+					<td width="40%">사번<br/></br>이름</td>
+					<td width="50%">${bean.staff_no }<br/></br><input type="text" id="staff_name" name="staff_name" value="${bean.staff_name }"/></td>
 				<input type="hidden" id="staff_no" name="staff_no" value="${bean.staff_no }"/>
-			</tr>
-			<tr>
-				<td>연락처/이메일</td>
-				<td>연락처<br><br>이메일</td>
-				<td><input type="text" id="staff_phone" name="staff_phone" value="${bean.staff_phone }"/><br><br><input type="text" id="staff_email" name="staff_email" value="${bean.staff_email }"/></td>
-			</tr>
-			<tr>
-				<td>부서/입사일</td>
-				<td>부서<br><br><br>입사일</td>
-				<td>
-				<select class="form-control" id="staff_team" name="staff_team" >
-			    <option value="경영" <c:if test="${bean.staff_team eq '경영'}">selected</c:if>>경영</option>
-			    <option value="인사" <c:if test="${bean.staff_team eq '인사'}">selected</c:if>>인사</option>
-			    <option value="CS" <c:if test="${bean.staff_team eq 'CS'}">selected</c:if>>CS</option>
-			    <option value="디자인" <c:if test="${bean.staff_team eq '디자인'}">selected</c:if>>디자인</option>
-			    <option value="마케팅" <c:if test="${bean.staff_team eq '마케팅'}">selected</c:if>>마케팅</option>
+				</tr>
+				<tr>
+					<td>연락처/이메일</td>
+					<td>연락처<br><br>이메일</td>
+					<td><input type="text" id="staff_phone" name="staff_phone" value="${bean.staff_phone }"/><br><br><input type="text" id="staff_email" name="staff_email" value="${bean.staff_email }"/></td>
+				</tr>
+				<tr>
+					<td>부서/입사일</td>
+					<td>부서<br><br><br>입사일</td>
+					<td>
+					<select class="form-control" id="staff_team" name="staff_team" >
+					    <option value="경영" <c:if test="${bean.staff_team eq '경영'}">selected</c:if>>경영</option>
+						<option value="인사" <c:if test="${bean.staff_team eq '인사'}">selected</c:if>>인사</option>
+						<option value="CS" <c:if test="${bean.staff_team eq 'CS'}">selected</c:if>>CS</option>
+						<option value="디자인" <c:if test="${bean.staff_team eq '디자인'}">selected</c:if>>디자인</option>
+						<option value="마케팅" <c:if test="${bean.staff_team eq '마케팅'}">selected</c:if>>마케팅</option>
 				</select>
 				<br>${bean.staff_joindate }</td>
-			</tr>
-		   </table>
-		 <button type="submit" id="changeinfobtn" class="btn btn-default">수정완료</button>
-		 <a href="../staffDe/${bean.staff_no}"><button type="button" id="changeinfobtn" class="btn btn-default">취 소</button></a>
+				</tr>
+			</table>
+		<button type="submit" id="changeinfobtn" class="btn btn-default">수정완료</button>
+		<a href="../staffDe/${bean.staff_no}"><button type="button" id="changeinfobtn" class="btn btn-default">취 소</button></a>
 		</div>  
 	</form>
 </div>
@@ -108,7 +117,10 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		// 이미지 수정
-		$('#dele').hide();
+		var img='${bean.staff_thumb }';
+		if(img=='') {
+			$('#dele').hide();
+		}
 		$('#board_img').change(function(){
 			if(this.files && this.files[0]) {
 				var reader = new FileReader;

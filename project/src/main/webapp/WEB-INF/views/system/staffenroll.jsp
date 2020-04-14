@@ -41,7 +41,7 @@
     }
     #img {
     	padding:0;
-    	border-radius:100%;
+    	border-radius:2%;
     	border:1px solid gray;
     }
     #contentM {
