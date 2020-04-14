@@ -25,6 +25,20 @@
 		text-align:center;
 		padding:50 0 0 0;
 	}
+	.upload {
+		text-align:left;
+	}
+	#uploadI {
+    	padding:0;
+    	width:200px;
+		height:200px;
+		border:1px solid #e8e8e8;
+		border-radius:2%;
+    	border:1px solid gray;
+    }
+	#board_img, #dele {
+    	display:inline-block;
+    }
     #infocomm{
     	font-size: 20px;
     }
@@ -43,14 +57,21 @@
 <body>
 <jsp:include page="/WEB-INF/menubar.jsp"/>
 
-<!-- menubar end -->
-                     <!-- contents start -->
- 
- <div id="allContain">
- 	 <div class="page-header" align="center">
-    	 <h1>직원 정보</h1>
-  	 </div>
- <form class="form-horizontal" method="post">
+<div id="allContain">
+	<div class="page-header" align="center">
+		<h1>직원 정보</h1>
+	</div>
+	<form class="form-horizontal" method="post" enctype="multipart/form-data">
+		<div class="upload">
+			<div class="board_img">
+				<img src="${root }resources/${bean.guide_thumb }" id="uploadI"/>
+				<input type="hidden" name="guide_img" value="${bean.guide_thumb }"/>
+				<input type="hidden" name="guide_thumb" value="${bean.guide_img }"/>
+			</div>
+			<input type="file" id="board_img" name="file" />
+			<a class="btn btn-default" role="button" id="dele">삭제</a>
+		</div>
+		
 	<div id="table">
 		<table class="table table-hover">
 		<tr>
@@ -83,6 +104,29 @@
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="${root }js/bootstrap.js"></script>
 <script type="text/javascript">
+$(document).ready(function() {
+	// 이미지 수정
+	var img='${bean.guide_thumb }';
+	if(img=='') {
+		$('#dele').hide();
+	}
+	$('#board_img').change(function(){
+		if(this.files && this.files[0]) {
+			var reader = new FileReader;
+			reader.onload = function(data) {
+				$('.board_img img').attr('src', data.target.result).width(200);
+				$('.board_img img').attr('src', data.target.result).height(200);        
+			}
+			reader.readAsDataURL(this.files[0]);
+		}
+	});
+	
+	$('#dele').on('click', function() {
+		$('#board_img').val('');
+		$('#img').attr('src','');
+
+	});
+});
 </script>
 </body>
 </html>

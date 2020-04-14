@@ -20,13 +20,23 @@
 	form {
       width:750px;      
       margin:0 auto;
-      font-family: 'Jua';
       font-size:15px;
 	}
 	#board_content {
 		width:750px;
 		height:300px;
 		resize:none;
+	}
+	.custom-control-label {
+      font-size:15px;
+      font-weight:normal;
+      padding:0 0 10 0;
+      width:50px;
+	}
+	#the {
+		width:750px;
+		text-align:center;
+		padding:15 0;
 	}
 /* 나라 드롭창 div */
 	#pl {
@@ -60,6 +70,16 @@
 		text-align:center;
 	}
 /* 이미지 수정 */
+	.upload {
+		padding:20 0 10 0;
+	}
+	#board_img {
+		display:inline-block;
+		width:245px;
+	}
+	#deleImg {
+		display:inline-block;
+	}
 	
 </style>
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
@@ -116,22 +136,21 @@
 		<p></p>
 		<!-- 테마 선택 -->	
 		<div class="custom-control custom-checkbox" align="center" id="the">
-		<p></p>
 			<input type="checkbox" name="theme" class="custom-control-input" value="힐링">
 			<label class="custom-control-label" for="jb-checkbox">힐링</label>
 			&nbsp; 
 			<input type="checkbox" name="theme" class="custom-control-input" value="스냅">
 			<label class="custom-control-label" for="jb-checkbox">스냅</label>
-			&nbsp; 
+			&nbsp;
 			<input type="checkbox" name="theme" class="custom-control-input" value="액티비티">
 			<label class="custom-control-label" for="jb-checkbox">액티비티</label>
-			&nbsp; 
+			&nbsp;
 			<input type="checkbox" name="theme" class="custom-control-input" value="식도락">
 			<label class="custom-control-label" for="jb-checkbox">식도락</label>
-			&nbsp; 
+			&nbsp;
 			<input type="checkbox" name="theme" class="custom-control-input" value="영화">
 			<label class="custom-control-label" for="jb-checkbox">영화</label>
-			&nbsp; 
+			&nbsp;
 			<input type="checkbox" name="theme" class="custom-control-input" value="스포츠">
 			<label class="custom-control-label" for="jb-checkbox">스포츠</label>
 			
@@ -139,8 +158,8 @@
 		</div>
 	<!-- 이미지 수정 -->
 		<div class="upload">
-			<label for="board_img">이미지</label><a class="btn btn-default" role="button" id="dele">삭제</a>
 			<input type="file" id="board_img" name="file" />
+			<a class="btn btn-default" role="button" id="deleImg">삭제</a>
 			<div class="board_img">
 				<img src="${root }resources/${bean.board_thumb }" id="uploadI"/>
 				<input type="hidden" name="board_img" value="${bean.board_thumb }"/>
@@ -216,7 +235,11 @@
 				reader.readAsDataURL(this.files[0]);
 			}
 		});
-		
+		$('#deleImg').on('click', function() {
+			$('#board_img').val('');
+			$('#uploadI').attr('src','');
+
+		});
 		// 취소버튼
 		$('#goList').on('click',function() {
 			var con=confirm('작성내용이 사라집니다\n그래도 돌아가시겠습니까?');

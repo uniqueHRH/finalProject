@@ -54,8 +54,8 @@
 		<p></p>
 	<!-- 이미지 수정 -->
 		<div class="upload">
-			<label for="board_img">이미지</label>
 			<input type="file" id="board_img" name="file" />
+			<a class="btn btn-default" role="button" id="deleImg">삭제</a>
 			<div class="board_img">
 				<img src="${root }resources/${bean.notice_thumb }" id="uploadI"/>
 				<input type="hidden" name="notice_thumb" value="${bean.notice_thumb }"/>
@@ -90,6 +90,11 @@
 				}
 				reader.readAsDataURL(this.files[0]);
 			}
+		});
+		$('#deleImg').on('click', function() {
+			$('#board_img').val('');
+			$('#uploadI').attr('src','');
+
 		});
 		
 		// 목록버튼

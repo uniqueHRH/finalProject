@@ -63,7 +63,6 @@
 <script type="text/javascript" src="${root }js/bootstrap.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-		$('#dele').hide();
 		// 파일업로드
 		$('#board_img').change(function(){
 			if(this.files && this.files[0]) {

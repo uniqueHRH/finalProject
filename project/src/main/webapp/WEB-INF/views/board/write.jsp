@@ -16,13 +16,9 @@
 		padding-left:180px;
 		font-family: 'Jua';
 	}
-	h1 {
-		font-family: 'Jua';
-	}
 	form {
       width:950px;      
       margin:0 auto;
-      font-family: 'Jua';
       font-size:18px;
 	}
 	#select {
@@ -35,6 +31,8 @@
 	label {
       font-size:15px;
       font-weight:normal;
+      padding:0 0 10 0;
+      width:50px;
 	}
 	#textarea {
 		padding-left:50px;
@@ -64,14 +62,21 @@
 	#theme {
 		width:800px;
 		text-align:center;
+		padding:15 0;
 	}
 	.board_img img {
 		margin:20px 0;
 	}
 	#btn {
 		width:800px;
-		width:800px;
 		text-align:center;
+	}
+	#board_img {
+		display:inline-block;
+		width:245px;
+	}
+	#deleImg {
+		display:inline-block;
 	}
 </style>
 </head>
@@ -110,22 +115,21 @@
 		
 	<!-- 테마 선택 -->	
 		<div id="theme">
-		<p></p>
 			<input type="checkbox" name="theme" class="custom-control-input" value="힐링">
 			<label class="custom-control-label" for="jb-checkbox">힐링</label>
-			&nbsp; &nbsp; 
+			&nbsp; 
 			<input type="checkbox" name="theme" class="custom-control-input" value="스냅">
 			<label class="custom-control-label" for="jb-checkbox">스냅</label>
-			&nbsp; &nbsp; 
+			&nbsp;
 			<input type="checkbox" name="theme" class="custom-control-input" value="액티비티">
 			<label class="custom-control-label" for="jb-checkbox">액티비티</label>
-			&nbsp; &nbsp; 
+			&nbsp;
 			<input type="checkbox" name="theme" class="custom-control-input" value="식도락">
 			<label class="custom-control-label" for="jb-checkbox">식도락</label>
-			&nbsp;&nbsp; 
+			&nbsp;
 			<input type="checkbox" name="theme" class="custom-control-input" value="영화">
 			<label class="custom-control-label" for="jb-checkbox">영화</label>
-			&nbsp; &nbsp; 
+			&nbsp;
 			<input type="checkbox" name="theme" class="custom-control-input" value="스포츠">
 			<label class="custom-control-label" for="jb-checkbox">스포츠</label>
 			
@@ -133,8 +137,8 @@
 		</div>
 	<!-- file upload -->
 		<div class="upload">
-			<label for="board_img">이미지</label> &nbsp; &nbsp; <a class="btn btn-default" role="button" id="dele">삭제</a>
 			<input type="file" id="board_img" name="file" />
+			<a class="btn btn-default" role="button" id="dele">삭제</a>
 			<div class="board_img"><img src="" id="img"/></div>
 		</div>
 	
@@ -155,7 +159,6 @@
 <script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-		$('#dele').hide();
 		
 		CKEDITOR.replace('board_content',{width:'700px'});
 		
@@ -167,7 +170,6 @@
 					$('.board_img img').attr('src', data.target.result).width(200);        
 				}
 				reader.readAsDataURL(this.files[0]);
-				$('#dele').toggle();
 			}
 		});
 		// 이미지 삭제
@@ -221,8 +223,6 @@
 			$('#board_theme').val(pick);
 			
 		});
-		
-		// 이미지 삭제
 		
 		// 뒤로 버튼
 		$('#btn2').on('click',function() {

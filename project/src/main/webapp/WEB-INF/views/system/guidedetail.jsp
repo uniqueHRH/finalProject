@@ -16,13 +16,20 @@
 		padding-left:170px;
 		font-family: 'Jua';
 	}
+	#guide_thumb {
+		width:200px;
+		height:200px;
+		border:1px solid #e8e8e8;
+		border-radius:2%;
+	}
 	#table {
 		width:900px;      
 		margin:0 auto;
+		font-family: 'Jua';
 		font-size:17px;
 		align:center;
 		text-align:center;
-		padding:50 0 0 0;
+		padding:40 0 0 0;
 	}
     #infocomm{
     	font-size: 20px;
@@ -51,6 +58,7 @@
  	 <div class="page-header" align="center">
     	 <h1>직원 정보</h1>
   	 </div>
+  	 <img src="${root }resources/${bean.guide_thumb }" id="guide_thumb"/>
 	<div id="table">
 		<table class="table table-hover">
 		<tr>
