@@ -71,7 +71,12 @@
 				reader.readAsDataURL(this.files[0]);
 			}
 		});
+		// 이미지 삭제
+		$('#dele').on('click', function() {
+			$('#board_img').val('');
+			$('#img').attr('src','');
 
+		});
 		// 뒤로 버튼
 		$('#btn2').on('click',function() {
 			if(confirm('작성을 취소하시겠습니까?')) {

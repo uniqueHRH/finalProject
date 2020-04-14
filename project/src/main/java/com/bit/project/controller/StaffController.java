@@ -1,6 +1,9 @@
 package com.bit.project.controller;
 
 
+import java.io.File;
+import java.io.IOException;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -13,9 +16,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bit.project.common.Search;
+import com.bit.project.file.UploadFileUtils;
+import com.bit.project.model.entity.BoardVo;
 import com.bit.project.model.entity.ClientVo;
 import com.bit.project.model.entity.GuideVo;
 import com.bit.project.model.entity.StaffVo;
@@ -34,6 +40,11 @@ public class StaffController {
 	ClientService clientService;
 	@Resource
 	Search search;
+	@Resource(name="uploadPath")
+	private String uploadPath;
+	
+	
+	
 	//직원 내정보
 	@RequestMapping(value="/main/staffinfo",method=RequestMethod.GET)
 	public String Staffinfo() {
@@ -160,8 +171,22 @@ public class StaffController {
  	}
  	//직원등록
  	@RequestMapping(value="/system/staffIns",method=RequestMethod.POST)
-    public String staffIns(StaffVo bean) {
- 		staffService.insertOne_staff(bean);
+    public String staffIns(@ModelAttribute StaffVo bean, MultipartFile file) throws Exception {
+  		
+  		String imgUploadPath = uploadPath + File.separator + "imgUpload";
+  		String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
+  		String fileName = null;
+
+  		if(file.getOriginalFilename() != null && file.getOriginalFilename() != "") {
+  			fileName=UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath); 
+  		} else {
+  			fileName = uploadPath + File.separator + "images" + File.separator + "none.png";
+  		}
+
+  		bean.setStaff_img(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
+  		bean.setStaff_thumb(File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
+  		
+  		staffService.insertOne_staff(bean);
  		return "redirect:/system/staff";
  	}
  	
@@ -180,10 +205,29 @@ public class StaffController {
 	}
  	//직원정보 수정
  	@RequestMapping(value="/system/staffEdit/{idx}", method=RequestMethod.POST)
-	public String staffEdit(@PathVariable("idx") int key, StaffVo bean){
- 		 
+	public String staffEdit(@ModelAttribute StaffVo bean, MultipartFile file, HttpServletRequest req) throws IOException, Exception {
+ 		
+ 		// 새로운 파일이 등록되었는지 확인
+ 		if(file.getOriginalFilename()!= null && file.getOriginalFilename()!="") {
+ 			// 기존 파일 삭제
+ 			new File(uploadPath + req.getParameter("board_img")).delete();
+ 			new File(uploadPath + req.getParameter("board_thumb")).delete();
+ 		  
+ 			// 새로 첨부한 파일 등록
+ 			String imgUploadPath = uploadPath + File.separator + "imgUpload";
+ 			String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
+ 			String fileName = UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath);
+ 		  
+ 			bean.setStaff_img(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
+ 			bean.setStaff_thumb(File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
+ 		  
+ 		} else {
+ 			// 기존 이미지 그대로 사용
+ 			bean.setStaff_img(req.getParameter("board_img"));
+ 			bean.setStaff_thumb(req.getParameter("board_thumb"));
+ 		 }
+ 		
  		staffService.updateOne_staff(bean);
- 		System.out.println(bean);
  		return "redirect:../staffDe/"+bean.getStaff_no();
  	}
  	//직원 삭제
@@ -312,7 +356,6 @@ public class StaffController {
  	//가이드 등록
  	 	@RequestMapping(value="/system/guideIns",method=RequestMethod.POST)
  	    public String guideIns(GuideVo bean) {
- 	 		System.out.println("controller: "+bean);
  	 		guideService.insertOne_guide(bean);
  	 		return "redirect:/system/guide";
  	 	}
@@ -334,7 +377,6 @@ public class StaffController {
  		public String guideEdit(@PathVariable("idx") int key, GuideVo bean){
  	 		 
  	 		guideService.updateOne_guide(bean);
- 	 		System.out.println(bean);
  	 		return "redirect:../guideDe/"+bean.getGuide_no();
  	 	}
  	 //가이드 삭제

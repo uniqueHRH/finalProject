@@ -74,9 +74,10 @@
 			}
 		});
 		// 이미지 삭제
-		$('#dele').on('click',function() {
+		$('#dele').on('click', function() {
 			$('#board_img').val('');
-			$('#img').remove();
+			$('#img').attr('src','');
+
 		});
 
 		// 뒤로 버튼

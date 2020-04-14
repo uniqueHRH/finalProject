@@ -146,7 +146,6 @@
 				<input type="hidden" name="board_img" value="${bean.board_thumb }"/>
 				<input type="hidden" name="board_thumb" value="${bean.board_img }"/>
 			</div>
-			
 		</div>
 		<p></p>	
 		

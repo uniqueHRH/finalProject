@@ -25,6 +25,11 @@
 		text-align:center;
 		padding:50 0 0 0;
 	}
+	#img {
+    	padding:0;
+    	border-radius:100%;
+    	border:1px solid gray;
+    }
     #infocomm{
     	font-size: 20px;
     }
@@ -50,8 +55,18 @@
 	<div class="page-header" align="center">
 		<h1>직원 정보</h1>
 	</div>
-	<form name="adm" class="form-horizontal" method="post"> 	 
+	<form name="adm" class="form-horizontal" method="post" enctype="multipart/form-data"> 	 
 		<div id="table">
+			<div class="upload">
+				<label for="board_img">이미지</label><a class="btn btn-default" role="button" id="dele">삭제</a>
+				<input type="file" id="board_img" name="file" />
+				<div class="board_img">
+					<img src="${root }resources/${bean.staff_thumb }" id="uploadI"/>
+					<input type="hidden" name="staff_img" value="${bean.staff_thumb }"/>
+					<input type="hidden" name="staff_thumb" value="${bean.staff_img }"/>
+				</div>
+			</div>
+		
 			<table class="table table-hover">
 			<tr>
 				<td width="30%">사번/이름</td>
@@ -91,6 +106,26 @@
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="${root }js/bootstrap.js"></script>
 <script type="text/javascript">
+	$(document).ready(function() {
+		// 이미지 수정
+		$('#dele').hide();
+		$('#board_img').change(function(){
+			if(this.files && this.files[0]) {
+				var reader = new FileReader;
+				reader.onload = function(data) {
+					$('.board_img img').attr('src', data.target.result).width(200);
+					$('.board_img img').attr('src', data.target.result).height(200);        
+				}
+				reader.readAsDataURL(this.files[0]);
+			}
+		});
+		
+		$('#dele').on('click', function() {
+			$('#board_img').val('');
+			$('#img').attr('src','');
+
+		});
+	});
 </script>
 </body>
 </html>

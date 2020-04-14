@@ -62,8 +62,8 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
-		$('#dele').hide();
 		// 파일업로드
+		$('#dele').hide();
 		$('#board_img').change(function(){
 			if(this.files && this.files[0]) {
 				var reader = new FileReader;
@@ -75,9 +75,10 @@
 			}
 		});
 		// 이미지 삭제
-		$('#dele').on('click',function() {
+		$('#dele').on('click', function() {
 			$('#board_img').val('');
-			$('#img').remove();
+			$('#img').attr('src','');
+
 		});
 		
 		// 뒤로 버튼

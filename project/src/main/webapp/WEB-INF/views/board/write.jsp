@@ -157,16 +157,7 @@
 	$(document).ready(function() {
 		$('#dele').hide();
 		
-		
-		
-		
-		
 		CKEDITOR.replace('board_content',{width:'700px'});
-		
-		
-		
-		
-		
 		
 		// 파일업로드
 		$('#board_img').change(function(){
@@ -180,9 +171,10 @@
 			}
 		});
 		// 이미지 삭제
-		$('#dele').on('click',function() {
+		$('#dele').on('click', function() {
 			$('#board_img').val('');
-			$('#img').remove();
+			$('#img').attr('src','');
+
 		});
 		// 나라선택 (드롭창)
 		$('#fir').on('click',function() {

@@ -87,11 +87,11 @@
 	</select>
 <!-- 직원 pw 는 최조 핸드폰번호와 동일하게 설정 -->
 	<insert id="insertOne_staff" parameterType="StaffBean">
-		insert into staff (staff_name, staff_phone, staff_email, staff_team, staff_joindate, staff_pw) values (#{staff_name}, #{staff_phone}, #{staff_email}, #{staff_team}, now(), #{staff_phone})
+		insert into staff (staff_name, staff_phone, staff_email, staff_team, staff_joindate, staff_pw, staff_img, staff_thumb) values (#{staff_name}, #{staff_phone}, #{staff_email}, #{staff_team}, now(), #{staff_phone}, #{staff_img}, #{staff_thumb})
 	</insert>
 	
 	<update id="updateOne_staff" parameterType="StaffBean">
-		update staff set staff_name=#{staff_name}, staff_phone=#{staff_phone}, staff_email=#{staff_email}, staff_team=#{staff_team} where staff_no=#{staff_no}
+		update staff set staff_name=#{staff_name}, staff_phone=#{staff_phone}, staff_email=#{staff_email}, staff_team=#{staff_team}, staff_img=#{staff_img}, staff_thumb=#{staff_thumb} where staff_no=#{staff_no}
 	</update>
 	
 	<delete id="deleteOne_staff" parameterType="int">
