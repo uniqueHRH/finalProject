@@ -2,6 +2,9 @@ package com.bit.project.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.ui.Model;
 
 import com.bit.project.common.Search;
@@ -23,7 +26,7 @@ public interface TourService {
 	void selectAll_thememovie(Model model);
 	void selectAll_themesports(Model model);
 	
-	void selectOne_tour(Model model,int tour_no);
+	void selectOne_tour(Model model,int tour_no,HttpServletResponse res, HttpServletRequest req);
 	void insertOne_tour(PaidVo bean);
 	////////////////////////
 	//관리자용(system)

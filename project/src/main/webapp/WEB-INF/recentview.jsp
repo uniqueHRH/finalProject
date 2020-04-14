@@ -148,7 +148,10 @@ display:inline-block;
 
 		<div  class="recTit">최근본상품 <span id=recentCnt></span></div>
 
-			<ul><li><a href=""><img src=""></a></li></ul>    <!-- 본 상품이 뿌려질 부분  -->
+			<ul>
+			   <!-- 본 상품이 뿌려질 부분  -->
+			
+			</ul> 
 
 		<div id="paging"><a class="btn_prev" style="cursor:pointer" >이전</a><span  id="currentPage"></span><span id="totalPageCount"></span><a class="btn_next" style="cursor:pointer" >다음</a></div>
 
@@ -167,8 +170,7 @@ display:inline-block;
 $(document).ready(function() {
 	var ck = '${cookie.imgs.value}';
 	var idx = '${cookie.idx.value}';
-	$('#right_zzim img').attr('src', ck);
-	$('#right_zzim a').attr('href', '/project/tour/detail/'+idx);
+		$('#right_zzim ul').append('<li><a href="/project/tour/detail/'+idx+'"><img src="'+ck+'"></a></li>');
 	
 	});
 </script>

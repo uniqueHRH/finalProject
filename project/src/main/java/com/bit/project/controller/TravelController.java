@@ -2,6 +2,7 @@ package com.bit.project.controller;
 
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -203,15 +204,15 @@ public class TravelController {
 		
 	//디테일PAGE
 	@RequestMapping(value = "/tour/detail/{idx}", method = RequestMethod.GET)
-	public String detail(Model model, @PathVariable ("idx") int tour_no) {
-		tourservice.selectOne_tour(model, tour_no);
+	public String detail(Model model, @PathVariable ("idx") int tour_no,HttpServletResponse res, HttpServletRequest req) {
+		tourservice.selectOne_tour(model, tour_no,res,req);
 		mapservice.selectAll_map(model,tour_no);
 		return "tour/detailtour";
 	}
 	//예약페이지로 이동
 	@RequestMapping(value = "/tour/{idx}/booking", method = RequestMethod.GET)
-	public String bookingeastasia(Model model, @PathVariable ("idx") int tour_no) {
-		tourservice.selectOne_tour(model, tour_no);
+	public String bookingeastasia(Model model, @PathVariable ("idx") int tour_no,HttpServletResponse res, HttpServletRequest req) {
+		tourservice.selectOne_tour(model, tour_no,res,req);
 		return "tour/booking";
 	}
 	//예약하기(INSERT)
@@ -528,14 +529,14 @@ public class TravelController {
 			}
 		//시스템 투어 디테일페이지
 		@RequestMapping(value = "/system/tour/{idx}", method = RequestMethod.GET)
-		public String detailtour(Model model, @PathVariable ("idx") int tour_no) {
-			tourservice.selectOne_tour(model, tour_no);
+		public String detailtour(Model model, @PathVariable ("idx") int tour_no,HttpServletResponse res, HttpServletRequest req) {
+			tourservice.selectOne_tour(model, tour_no,res,req);
 			return "system/detailalltour";
 		}
 		//시스템 투어 수정 페이지
 		@RequestMapping(value = "/system/tour/{idx}/edit", method = RequestMethod.GET)
-		public String edittour(Model model, @PathVariable ("idx") int tour_no) {
-			tourservice.selectOne_tour(model, tour_no);
+		public String edittour(Model model, @PathVariable ("idx") int tour_no,HttpServletResponse res, HttpServletRequest req) {
+			tourservice.selectOne_tour(model, tour_no,res,req);
 			return "system/edittour";
 		}
 		@RequestMapping(value = "/system/tour/editconfirm", method = RequestMethod.POST)

@@ -1,6 +1,11 @@
 package com.bit.project.service;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,9 +36,47 @@ public class TourServiceImpl implements TourService{
 	}
 
 	@Override
-	public void selectOne_tour(Model model, int tour_no) {
+	public void selectOne_tour(Model model, int tour_no, HttpServletResponse res, HttpServletRequest req) {
 		try {
 			model.addAttribute("bean",tourDao.selectOne_tour(tour_no));
+			Cookie[] cookies = req.getCookies();
+			List<String> coolist = new ArrayList<>();
+			if(cookies.length>0) {
+				
+				for(int i=0; i<cookies.length; i++) {
+					Cookie cookie = new Cookie("imgs",tourDao.selectOne_tour(tour_no).getMainimg());
+					Cookie idx = new Cookie("idx", Integer.toString(tourDao.selectOne_tour(tour_no).getTour_no()));
+					System.out.println("url : "+cookie.getValue());
+					System.out.println("idx : "+idx.getValue());
+					cookie.setMaxAge(60*60);
+					cookie.setPath("/");
+					res.addCookie(cookie);
+					idx.setMaxAge(60*60);
+					idx.setPath("/");
+					res.addCookie(idx);
+					
+					coolist.add(cookies[i].getValue());
+					System.out.println("coolist : " + coolist.get(i));
+				}
+				
+			}else {
+				for(int i=0; i<cookies.length; i++) {
+					if(!coolist.contains(cookies[i].getValue())) {
+						Cookie cookie = new Cookie("imgs"+i,tourDao.selectOne_tour(tour_no).getMainimg());
+						Cookie idx = new Cookie("idx", Integer.toString(tourDao.selectOne_tour(tour_no).getTour_no()));
+						System.out.println("1 : "+cookie.getValue());
+						System.out.println("2 : "+idx.getValue());
+						cookie.setMaxAge(60);
+						cookie.setPath("/");
+						res.addCookie(cookie);
+						idx.setMaxAge(60);
+						idx.setPath("/");
+						res.addCookie(idx);
+					}else {
+						System.out.println("3rd : "+cookies[i].getValue());
+					}
+				}
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -99,7 +142,6 @@ public class TourServiceImpl implements TourService{
 			List<TourVo> list = tourDao.selectAll_africa();
 			model.addAttribute("list",list);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -111,7 +153,6 @@ public class TourServiceImpl implements TourService{
 			list = tourDao.selectAll_themetour();
 			model.addAttribute("list",list);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -123,7 +164,6 @@ public class TourServiceImpl implements TourService{
 			list = tourDao.selectAll_themesnap();
 			model.addAttribute("list",list);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
