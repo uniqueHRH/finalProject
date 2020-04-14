@@ -46,3 +46,10 @@
 	.board_img img {
 		margin:20px 0;
 	}
+	#board_img {
+		display:inline-block;
+		width:245px;
+	}
+	#deleImg {
+		display:inline-block;
+	}

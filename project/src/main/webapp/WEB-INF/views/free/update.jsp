@@ -56,8 +56,8 @@
 		<p></p>
 	<!-- 이미지 수정 -->
 		<div class="upload">
-			<label for="board_img">이미지</label>
 			<input type="file" id="board_img" name="file" />
+			<a class="btn btn-default" role="button" id="deleImg">삭제</a>
 			<div class="board_img">
 				<img src="${root }resources/${bean.free_thumb }" id="uploadI"/>
 				<input type="hidden" name="free_thumb" value="${bean.free_thumb }"/>
@@ -83,31 +83,6 @@
 </body>
 <script type="text/javascript">
 	$(document).ready(function() {
-		$('#hamb').hide();
-		$('#hide').hide();
-		
-		$('#tour_sub').hide();
-		$('#comm_sub').hide();
-		$('#serv_sub').hide();
-		$('#system_sub').hide();
-		
-		$('#maintext1').hide();
-		$('#maintext2').hide();
-		$('#maintext3').hide();
-		$('#maintext4').hide();
-		
-		$('#hambBtn').mouseenter(function() {
-			$('#hamb').show();
-			$(this).hide();
-		});
-		$('#hamb').mouseenter(function() {
-			$(this).show();
-			$('#hambBtn').hide();
-		}).mouseleave(function() {
-			$('#hamb').hide();
-			$('#hambBtn').show();
-		});
-		
 		// 이미지 수정
 		$('#board_img').change(function(){
 			if(this.files && this.files[0]) {
@@ -118,7 +93,12 @@
 				reader.readAsDataURL(this.files[0]);
 			}
 		});
-		
+		$('#deleImg').on('click', function() {
+			$('#board_img').val('');
+			$('#uploadI').attr('src','');
+
+		});
+				
 		// 목록버튼
 		$('#goList').on('click',function() {
 			var con=confirm('작성내용이 사라집니다\n그래도 돌아가시겠습니까?');

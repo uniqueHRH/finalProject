@@ -63,7 +63,6 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		// 파일업로드
-		$('#dele').hide();
 		$('#board_img').change(function(){
 			if(this.files && this.files[0]) {
 				var reader = new FileReader;
