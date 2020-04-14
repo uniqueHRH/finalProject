@@ -23,8 +23,7 @@ public class TourDaoImpl implements TourDao {
 
 	@Override
 	public TourVo selectOne_tour(int tour_no) throws Exception {
-		
-		return sqlSession.selectOne("tour.selectOne_tour",tour_no);
+			return sqlSession.selectOne("tour.selectOne_tour",tour_no);
 	}
 
 	@Override

@@ -201,7 +201,6 @@ public class TravelController {
 			return "mypage/wish";
 	}
 		
-	
 	//µðÅ×ÀÏPAGE
 	@RequestMapping(value = "/tour/detail/{idx}", method = RequestMethod.GET)
 	public String detail(Model model, @PathVariable ("idx") int tour_no) {
@@ -260,9 +259,12 @@ public class TravelController {
 	public String mybooking(String id, Model model,
 				@RequestParam(required = false, defaultValue = "1") int page,
 	 			@RequestParam(required=false, defaultValue="1") int range,
-	 			@ModelAttribute("search") Search search
-	 			) throws Exception {
-			
+	 			@ModelAttribute("search") Search search,
+	 			HttpServletRequest req
+	          ) throws Exception {
+
+	       String value=req.getServletPath();
+	       model.addAttribute("url", value);
 			model.addAttribute("search", search);
 	 		search.setClient_name(id);
 	 		
@@ -299,9 +301,12 @@ public class TravelController {
  			@RequestParam(required=false, defaultValue="1") int range,
  			@RequestParam(required=false, defaultValue="paid_name") String searchType,
  			@RequestParam(required=false) String keyword,
- 			@ModelAttribute("search") Search search
- 			) throws Exception {
-		
+ 			@ModelAttribute("search") Search search,
+ 			HttpServletRequest req
+	          ) throws Exception {
+
+	       String value=req.getServletPath();
+	       model.addAttribute("url", value);
 		model.addAttribute("search", search);
  		search.setSearchType(searchType);
  		search.setKeyword(keyword);
@@ -327,9 +332,12 @@ public class TravelController {
 			@RequestParam(required=false, defaultValue="1") int range,
 			@RequestParam(required=false, defaultValue="paid_name") String searchType,
 			@RequestParam(required=false) String keyword,
-			@ModelAttribute("search") Search search
-			) throws Exception {
-		
+			@ModelAttribute("search") Search search,
+			HttpServletRequest req
+	          ) throws Exception {
+
+	       String value=req.getServletPath();
+	       model.addAttribute("url", value);
 		model.addAttribute("search", search);
 		search.setSearchType(searchType);
 		search.setKeyword(keyword);
@@ -355,9 +363,12 @@ public class TravelController {
 			@RequestParam(required=false, defaultValue="1") int range,
 			@RequestParam(required=false, defaultValue="paid_name") String searchType,
 			@RequestParam(required=false) String keyword,
-			@ModelAttribute("search") Search search
-			) throws Exception {
-		
+			@ModelAttribute("search") Search search,
+			HttpServletRequest req
+	          ) throws Exception {
+
+	       String value=req.getServletPath();
+	       model.addAttribute("url", value);
 		model.addAttribute("search", search);
 		search.setSearchType(searchType);
 		search.setKeyword(keyword);
@@ -383,9 +394,12 @@ public class TravelController {
 			@RequestParam(required=false, defaultValue="1") int range,
 			@RequestParam(required=false, defaultValue="paid_name") String searchType,
 			@RequestParam(required=false) String keyword,
-			@ModelAttribute("search") Search search
-			) throws Exception {
-		
+			@ModelAttribute("search") Search search,
+			HttpServletRequest req
+	          ) throws Exception {
+
+	       String value=req.getServletPath();
+	       model.addAttribute("url", value);
 		model.addAttribute("search", search);
 		search.setSearchType(searchType);
 		search.setKeyword(keyword);
@@ -423,9 +437,13 @@ public class TravelController {
 	 			@RequestParam(required=false, defaultValue="1") int range,
 	 			@RequestParam(required=false, defaultValue="land") String searchType,
 	 			@RequestParam(required=false) String keyword,
-	 			@ModelAttribute("search") Search search
-	 			) throws Exception {
-			
+	 			@ModelAttribute("search") Search search,
+	 			HttpServletRequest req
+		          ) throws Exception {
+
+		       String value=req.getServletPath();
+		       model.addAttribute("url", value);
+	 			
 			model.addAttribute("search", search);
 	 		search.setSearchType(searchType);
 	 		search.setKeyword(keyword);
@@ -451,8 +469,12 @@ public class TravelController {
 			 		@RequestParam(required=false, defaultValue="1") int range,
 			 		@RequestParam(required=false, defaultValue="land") String searchType,
 			 		@RequestParam(required=false) String keyword,
-			 		@ModelAttribute("search") Search search
-			 		) throws Exception {
+			 		@ModelAttribute("search") Search search,
+			 		HttpServletRequest req
+			          ) throws Exception {
+
+			       String value=req.getServletPath();
+			       model.addAttribute("url", value);
 					
 				model.addAttribute("search", search);
 			 	search.setSearchType(searchType);
@@ -479,8 +501,12 @@ public class TravelController {
 			 		@RequestParam(required=false, defaultValue="1") int range,
 			 		@RequestParam(required=false, defaultValue="land") String searchType,
 			 		@RequestParam(required=false) String keyword,
-			 		@ModelAttribute("search") Search search
-			 		) throws Exception {
+			 		@ModelAttribute("search") Search search,
+			 		HttpServletRequest req
+			          ) throws Exception {
+
+			       String value=req.getServletPath();
+			       model.addAttribute("url", value);
 					
 				model.addAttribute("search", search);
 			 	search.setSearchType(searchType);

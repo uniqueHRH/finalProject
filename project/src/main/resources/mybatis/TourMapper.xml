@@ -163,7 +163,7 @@
 		SELECT * FROM travel.tour where tour_no=15 or tour_no=26 or tour_no=31 or tour_no=38
 	</select>
 	<select id="selectAll_recomm2" resultType="TourBean">
-		SELECT * FROM travel.tour where tour_no=7 or tour_no=23 or tour_no=37 or tour_no=43
+		SELECT * FROM travel.tour where tour_no=7 or tour_no=23 or tour_no=20 or tour_no=37
 	</select>
 	<select id="selectAll_recomm3" resultType="TourBean">
 		SELECT * FROM travel.tour where tour_no=12 or tour_no=14 or tour_no=32 or tour_no=33

@@ -294,7 +294,7 @@
 		</c:forEach>	
 	</div>	
 	<div id="mainI2">
-		<p id="mainP">MD 추천 여행지</p><p id="star"> &nbsp;♬</p>
+		<p id="mainP">봄 여행지 즐기기</p><p id="star"> &nbsp;♬</p>
 			<c:forEach items="${list2 }" var="bean2">
 			<div id="main1">
 					<img src="${bean2.mainimg }" id="recommimg2"/><br/>
