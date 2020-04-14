@@ -71,9 +71,13 @@ public class BoardController {
  			@RequestParam(required=false, defaultValue="1") int range,
  			@RequestParam(required=false, defaultValue="board_sub") String searchType,
  			@RequestParam(required=false) String keyword,
- 			@ModelAttribute("search") Search search
+ 			@ModelAttribute("search") Search search,
+ 			HttpServletRequest req
  			) throws Exception {
 
+ 		String value=req.getServletPath();
+ 		model.addAttribute("url", value);
+ 		
  		model.addAttribute("search", search);
  		search.setSearchType(searchType);
  		search.setKeyword(keyword);
@@ -99,9 +103,13 @@ public class BoardController {
  			@RequestParam(required=false, defaultValue="1") int range,
  			@RequestParam(required=false, defaultValue="board_sub") String searchType,
  			@RequestParam(required=false) String keyword,
- 			@ModelAttribute("search") Search search
+ 			@ModelAttribute("search") Search search,
+ 			HttpServletRequest req
  			) throws Exception {
 
+ 		String value=req.getServletPath();
+ 		model.addAttribute("url", value);
+ 		
  		model.addAttribute("search", search);
  		search.setSearchType(searchType);
  		search.setKeyword(keyword);
@@ -127,9 +135,12 @@ public class BoardController {
  			@RequestParam(required=false, defaultValue="1") int range,
  			@RequestParam(required=false, defaultValue="board_sub") String searchType,
  			@RequestParam(required=false) String keyword,
- 			@ModelAttribute("search") Search search
+ 			@ModelAttribute("search") Search search,
+ 			HttpServletRequest req
  			) throws Exception {
 
+ 		String value=req.getServletPath();
+ 		model.addAttribute("url", value);
  		model.addAttribute("search", search);
  		search.setSearchType(searchType);
  		search.setKeyword(keyword);
@@ -155,9 +166,12 @@ public class BoardController {
  			@RequestParam(required=false, defaultValue="1") int range,
  			@RequestParam(required=false, defaultValue="partner_sub") String searchType,
  			@RequestParam(required=false) String keyword,
- 			@ModelAttribute("search") Search search
+ 			@ModelAttribute("search") Search search,
+ 			HttpServletRequest req
  			) throws Exception {
 
+ 		String value=req.getServletPath();
+ 		model.addAttribute("url", value);
  		model.addAttribute("search", search);
  		search.setSearchType(searchType);
  		search.setKeyword(keyword);
@@ -183,9 +197,12 @@ public class BoardController {
  			@RequestParam(required=false, defaultValue="1") int range,
  			@RequestParam(required=false, defaultValue="free_sub") String searchType,
  			@RequestParam(required=false) String keyword,
- 			@ModelAttribute("search") Search search
+ 			@ModelAttribute("search") Search search,
+ 			HttpServletRequest req
  			) throws Exception {
 
+ 		String value=req.getServletPath();
+ 		model.addAttribute("url", value);
  		model.addAttribute("search", search);
  		search.setSearchType(searchType);
  		search.setKeyword(keyword);
@@ -211,9 +228,12 @@ public class BoardController {
  			@RequestParam(required=false, defaultValue="1") int range,
  			@RequestParam(required=false, defaultValue="event_sub") String searchType,
  			@RequestParam(required=false) String keyword,
- 			@ModelAttribute("search") Search search
+ 			@ModelAttribute("search") Search search,
+ 			HttpServletRequest req
  			) throws Exception {
 
+ 		String value=req.getServletPath();
+ 		model.addAttribute("url", value);
  		model.addAttribute("search", search);
  		search.setSearchType(searchType);
  		search.setKeyword(keyword);
@@ -239,9 +259,12 @@ public class BoardController {
   			@RequestParam(required=false, defaultValue="1") int range,
   			@RequestParam(required=false, defaultValue="notice_sub") String searchType,
   			@RequestParam(required=false) String keyword,
-  			@ModelAttribute("search") Search search
-  			) throws Exception {
+  			@ModelAttribute("search") Search search,
+ 			HttpServletRequest req
+ 			) throws Exception {
 
+ 		String value=req.getServletPath();
+ 		model.addAttribute("url", value);
   		model.addAttribute("search", search);
   		search.setSearchType(searchType);
   		search.setKeyword(keyword);

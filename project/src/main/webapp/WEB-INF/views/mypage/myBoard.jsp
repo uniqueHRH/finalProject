@@ -175,21 +175,6 @@
 			}
 		});
 //////////////////////////////////////////////////////////////////////////////////////////		
-		// 리모컨 top
-		$('#top').on('click',function() {
-			$('html,body').scrollTop(0);
-		});
-		
-		//<![CDATA[
-	    // 사용할 앱의 JavaScript 키를 설정해 주세요.
-	    Kakao.init('acc658a670e9ed5918d11647040b5bc5');
-	    // 카카오톡 채널 1:1채팅 버튼을 생성합니다.
-	    Kakao.Channel.createChatButton({
-	      container: '#kakao-talk-channel-chat-button',
-	      channelPublicId: '_wxfwxfxb' // 카카오톡 채널 홈 URL에 명시된 id로 설정합니다.
-	    });
-	  //]]>
-//////////////////////////////////////////////////////////////////////////////////////////		
 		// 검색
 		$('#searchGo').on('click',function() {
 			var url='${root }main/myBoard/?id=${sessionScope.check.client_nick1}';
@@ -204,19 +189,21 @@
 		}
    });
 //////////////////////////////////////////////////////////////////////////////////////////
+		var uri='${url}';
+		uri=uri.split('main/')[1];
 		// 페이징
 		//이전 버튼 이벤트
 		function prev(page, range, rangeSize) {
 			var page=((range-2)*rangeSize)+1;
 			var range=range-1;
-			var url='${root }main/myBoard/?id=${sessionScope.check.client_nick1}';
+			var url='${root }main/'+uri+'/?id=${sessionScope.check.client_nick1}';
 			url=url+"&page="+page;
 			url=url+"&range="+range;
 			location.href=url;
 		}
 		//페이지 번호 클릭
 		function pagination(page, range, rangeSize) {
-			var url='${root }main/myBoard/?id=${sessionScope.check.client_nick1}';
+			var url='${root }main/'+uri+'/?id=${sessionScope.check.client_nick1}';
 			url=url+"&page="+page;
 			url=url+"&range="+range;
 			location.href = url;	
@@ -225,7 +212,7 @@
 		function next(page, range, rangeSize) {
 			var page=parseInt((range*rangeSize))+1;
 			var range=parseInt(range)+1;
-			var url='${root }main/myBoard/?id=${sessionScope.check.client_nick1}';
+			var url='${root }main/'+uri+'/?id=${sessionScope.check.client_nick1}';
 			url=url+"&page="+page;
 			url=url+"&range="+range;
 			location.href=url;

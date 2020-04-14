@@ -166,36 +166,21 @@
 
    });
 //////////////////////////////////////////////////////////////////////////////////////////		
+		var uri='${url}';
+		uri=uri.split('board/')[1];
 		// 페이징
 		//이전 버튼 이벤트
-		var uri='<%= request.getRequestURI() %>';
-		console.log(uri);
-		
-		uri=uri.split('WEB-INF');
-		uri=uri[0];
-		console.log(uri);
-		
-		var uri_='<%= request.getRequestURI() %>';
-		uri_=uri_.split('views/');
-		uri_=uri_[1];
-		console.log(uri_);
-		
-		var uri_t=uri_.split('.jsp');
-		uri_t=uri_t[0]
-		var url=uri+uri_t;
-		console.log(url);
-		console.log('-----------------------------------');
-
 		function prev(page, range, rangeSize) {
 			var page=((range-2)*rangeSize)+1;
 			var range=range-1;
-			//var url="${root }board/review";
+			var url='${root }board/'+uri;
 			url=url+"?page="+page;
 			url=url+"&range="+range;
 			location.href=url;
-		}http://localhost:8080/project/board/event?page=2&range=1&searchType=board_sub&keyword=
+		}
 		//페이지 번호 클릭
 		function pagination(page, range, rangeSize, searchType, keyword) {
+			var url='${root }board/'+uri;
 			url=url+"?page="+page;
 			url=url+"&range="+range;
 			url=url+"&searchType="+$('#searchType').val();
@@ -207,11 +192,12 @@
 		function next(page, range, rangeSize) {
 			var page=parseInt((range*rangeSize))+1;
 			var range=parseInt(range)+1;
+			var url='${root }board/'+uri;
 			url=url+"?page="+page;
 			url=url+"&range="+range;
 			location.href=url;
 		}
-		
+
 		
 </script>
 </body>

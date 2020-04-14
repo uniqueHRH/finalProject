@@ -42,9 +42,12 @@ public class MypageController {
  			@RequestParam(required=false, defaultValue="1") int range,
  			@RequestParam(required=false, defaultValue="receive_content") String searchType,
  			@RequestParam(required=false) String keyword,
- 			@ModelAttribute("search") Search search
+ 			@ModelAttribute("search") Search search,
+ 			HttpServletRequest req
  			) throws Exception {
-		
+
+ 		String value=req.getServletPath();
+ 		model.addAttribute("url", value);
 		model.addAttribute("search", search);
  		search.setSearchType(searchType);
  		search.setKeyword(keyword);
@@ -96,9 +99,12 @@ public class MypageController {
  			@RequestParam(required=false, defaultValue="1") int range,
  			@RequestParam(required=false, defaultValue="receive_content") String searchType,
  			@RequestParam(required=false) String keyword,
- 			@ModelAttribute("search") Search search
+ 			@ModelAttribute("search") Search search,
+ 			HttpServletRequest req
  			) throws Exception {
-  		
+
+ 		String value=req.getServletPath();
+ 		model.addAttribute("url", value);
   		model.addAttribute("search", search);
   		search.setSearchType(searchType);
  		search.setKeyword(keyword);
