@@ -215,7 +215,7 @@
    $(document).ready(function() {
 		$('#subm').hide();
 		$('#dele').hide();
-		
+
 		$('button[name^=cancel_').hide();
 		$('button[name^=update_').hide();
 		$('button[name^=edit_').hide();
@@ -296,12 +296,13 @@
       // 삭제버튼
 		$('#dele').on('click',function() {
 			var con=confirm('삭제하시겠습니까?');
+			var num=$('#board_no').val()
 			
 			if(con) {
 				$.ajax({
 	                  url:'../reviewDel',
 	                  type:'POST',
-	                  data:{key:$('input[type=hidden]').val()},
+	                  data:{key:num},
 	                  success:function() {
 	                      alert('삭제되었습니다');
 	                      location.href="../review";
