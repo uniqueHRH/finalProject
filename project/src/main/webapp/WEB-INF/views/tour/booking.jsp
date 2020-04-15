@@ -110,6 +110,7 @@
 </style>
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="${root }js/bootstrap.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body>
 <jsp:include page="/WEB-INF/menubar.jsp"/>
@@ -320,7 +321,11 @@
 			var paid_count=$("#paid_count1 option:selected").val();
 			var paid_total=Number(paid_count)*Number(${bean.cost });
 			if(paid_count==""){
-				alert("인원수를 선택해주세요");
+				swal({
+					   title: "인원수를 선택해주세요",
+					   icon: "warning" //"info,success,warning,error" 중 택1
+					})
+				//alert("인원수를 선택해주세요");
 				return false;
 			}
 			//총 금액 함수

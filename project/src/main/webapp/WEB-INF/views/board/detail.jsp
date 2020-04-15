@@ -211,6 +211,7 @@
 <jsp:include page="/WEB-INF/footer.jsp"/>
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="${root }js/bootstrap.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script type="text/javascript">
    $(document).ready(function() {
 		$('#subm').hide();
@@ -295,7 +296,38 @@
       
       // 삭제버튼
 		$('#dele').on('click',function() {
-			var con=confirm('삭제하시겠습니까?');
+	
+			var num=$('#board_no').val();
+			swal({
+				  title: "삭제하시겠습니까?",
+				  icon: "warning", //"info,success,warning,error" 중 택1
+				  buttons: ["아니요", "네"]
+				})
+				.then((네) => {//네 눌었을 때 이벤트 
+				  if (네) {
+						    $.ajax({
+				                  url:'../reviewDel',
+				                  type:'POST',
+				                  data:{key:num},
+				                  success:function() {
+									    swal({
+									      title: "삭제되었습니다.",
+									      icon: "success",
+									      button: "확인"
+									    })
+									    .then((확인) => {
+				                      		location.href="../review";
+									    });	
+				                  },
+				                  error:function() {
+				                  }
+				            });
+					  } else {
+					    swal("삭제에 실패했습니다");
+					  }
+			});
+			
+			/* var con=confirm('삭제하시겠습니까?');
 			var num=$('#board_no').val()
 			
 			if(con) {
@@ -311,7 +343,8 @@
 	                     alert('삭제에 실패했습니다');
 	                  }
 	            });
-			}
+			} */
+	
 		});
       
 		// 목록버튼
