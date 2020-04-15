@@ -300,10 +300,11 @@
 			var num=$('#board_no').val();
 			swal({
 				  title: "삭제하시겠습니까?",
+				  //text: "", (""안에 내용쓰면 title 밑에 작은 글씨로 들어감)
 				  icon: "warning", //"info,success,warning,error" 중 택1
-				  buttons: ["아니요", "네"]
-				})
-				.then((네) => {//네 눌었을 때 이벤트 
+				  buttons: ["아니요", "네"]//버튼 내용 작성가능
+				})//삭제버튼 클릭했을 때 이벤트
+				.then((네) => {//네 클릭했을 때 이벤트
 				  if (네) {
 						    $.ajax({
 				                  url:'../reviewDel',
@@ -315,16 +316,20 @@
 									      icon: "success",
 									      button: "확인"
 									    })
-									    .then((확인) => {
+									    .then((확인) => {//확인 클릭했을 때 이벤트
 				                      		location.href="../review";
 									    });	
 				                  },
 				                  error:function() {
 				                  }
-				            });
+				            });//ajax
 					  } else {
-					    swal("삭제에 실패했습니다");
-					  }
+						    swal({
+						    	title: "삭제에 실패했습니다",
+						    	icon: "error",
+						    	button: "확인"
+						    })
+					  }//if 
 			});
 			
 			/* var con=confirm('삭제하시겠습니까?');
@@ -371,7 +376,11 @@
 			var reply=$('#reply_content').val();
 			
 			if(!text) {
-				alert('내용을 입력해주세요');
+				swal({
+			    	title: "내용을 입력해주세요",
+			    	icon: "warning",
+			    	button: "확인"
+			    })
 				return false;
 				event.preventDefault();
 			} else {
