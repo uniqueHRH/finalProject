@@ -59,7 +59,7 @@
 </body>
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="${root }js/bootstrap.js"></script>
-
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		// 파일업로드
@@ -82,9 +82,19 @@
 		
 		// 뒤로 버튼
 		$('#btn2').on('click',function() {
-			if(confirm('작성을 취소하시겠습니까?')) {
+			
+			swal({
+				  title: "작성을 취소하시겠습니까?",
+				  //text: "", (""안에 내용쓰면 title 밑에 작은 글씨로 들어감)
+				  icon: "warning", //"info,success,warning,error" 중 택1
+				  buttons: ["아니요", "네"]//버튼 내용 작성가능
+				})
+				.then((네) => {//네 클릭했을 때 이벤트
+					location.href="../board/partner";
+			});
+			/* if(confirm('작성을 취소하시겠습니까?')) {
 				location.href="../board/partner";
-			}
+			} */
 		});
 	});
 	

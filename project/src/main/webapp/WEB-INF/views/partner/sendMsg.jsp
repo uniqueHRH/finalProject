@@ -37,6 +37,7 @@
 <jsp:include page="/WEB-INF/socket.jsp"/>
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="${root }js/bootstrap.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		var id='${param.msg}';
@@ -48,7 +49,10 @@
 			var content=$('#send_content').val();
 			
 			if(content=='') {
-				alert('내용을 입력해주세요');
+				swal({
+	  				   title: "내용을 입력해주세요",
+	  				   icon: "warning" //"info,success,warning,error" 중 택1
+	  				  })
 				return false();
 			}
 			$.ajax({
@@ -59,10 +63,16 @@
 					sock.send(sender+"/"+receiver+"/"+content);
 					
 					window.close();
-					alert('메세지가 전송되었습니다');
+					swal({
+		  				   title: "메세지가 전송되었습니다",
+		  				   icon: "success" //"info,success,warning,error" 중 택1
+		  				  })
 				},
 				error:function() {
-					alert('다시 시도해주세요');
+					swal({
+		  				   title: "다시 시도해주세요",
+		  				   icon: "warning" //"info,success,warning,error" 중 택1
+		  				  })
 				}
 			});
 		});

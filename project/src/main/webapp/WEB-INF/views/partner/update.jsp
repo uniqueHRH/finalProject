@@ -16,6 +16,7 @@
 </style>
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="${root }js/bootstrap.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body>
 <jsp:include page="/WEB-INF/menubar.jsp"/>
@@ -99,10 +100,16 @@
 		});
 		// 목록버튼
 		$('#goList').on('click',function() {
-			var con=confirm('작성내용이 사라집니다\n그래도 돌아가시겠습니까?');
-			if(con) {
-				location.href="../partnerDe/${bean.board_no}";
-			}
+			swal({
+				  title: "작성내용이 사라집니다\n그래도 돌아가시겠습니까?",
+				  //text: "", (""안에 내용쓰면 title 밑에 작은 글씨로 들어감)
+				  icon: "warning", //"info,success,warning,error" 중 택1
+				  buttons: ["아니요", "네"]//버튼 내용 작성가능
+				})//
+				.then((네) => {//네 클릭했을 때 이벤트
+					  location.href="../partnerDe/${bean.board_no}";    				  
+			});
+			
 		});      
    });
 </script>
