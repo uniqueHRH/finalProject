@@ -179,22 +179,39 @@
       
       // 삭제버튼
 		$('#dele').on('click',function() {
-			var con=confirm('삭제하시겠습니까?');
-			
-			if(con) {
-				$.ajax({
-	                  url:'../partnerDel',
-	                  type:'POST',
-	                  data:{key:$('input[type=hidden]').val()},
-	                  success:function() {
-	                      alert('삭제되었습니다');
-	                      location.href="../partner";
-	                  },
-	                  error:function() {
-	                     alert('삭제에 실패했습니다');
-	                  }
-	            });
-			}
+			swal({
+				  title: "삭제하시겠습니까?",
+				  //text: "", (""안에 내용쓰면 title 밑에 작은 글씨로 들어감)
+				  icon: "warning", //"info,success,warning,error" 중 택1
+				  buttons: ["아니요", "네"]//버튼 내용 작성가능
+				})//버튼 클릭했을 때 이벤트
+				.then((네) => {//네 클릭했을 때 이벤트
+				  if (네) {
+						    $.ajax({
+						    	  url:'../partnerDel',
+				                  type:'POST',
+				                  data:{key:$('input[type=hidden]').val()},
+				                  success:function() {
+									    swal({
+									      title: "삭제되었습니다.",
+									      icon: "success",
+									      button: "확인"
+									    })
+									    .then((확인) => {//확인 클릭했을 때 이벤트
+									    	 location.href="../partner";
+									    });	
+				                  },
+				                  error:function() {
+				                  }
+				            });//ajax
+					  } else {
+						    swal({
+						    	title: "삭제에 실패했습니다",
+						    	icon: "error",
+						    	button: "확인"
+						    })
+					  }//if 
+			});
 		});
             
 	// 목록버튼
@@ -221,7 +238,10 @@
 			var reply=$('#reply_content').val();
 			
 			if(!text) {
-				alert('내용을 입력해주세요');
+				swal({
+	  				   title: "내용을 입력해주세요",
+	  				   icon: "warning" //"info,success,warning,error" 중 택1
+	  				  })
 				return false;
 				event.preventDefault();
 			} else {
@@ -234,7 +254,10 @@
 		            	reload();
 		            },
 		            error:function() {
-		               alert('다시 시도해주세요');
+		            	swal({
+			  				   title: "다시 시도해주세요",
+			  				   icon: "warning" //"info,success,warning,error" 중 택1
+			  				  })
 		            }
 	         	});
 			}
@@ -251,30 +274,54 @@
 				$('button[name=update_'+num+']').show();
 				$('button[name^=cancel_'+num+']').show();
 				$('button[name=cancel_'+num+']').on('click',function() {
-					var con=confirm('수정을 취소하시겠습니까?');
-					if(con) {
-						reload();
-					}
+					swal({
+						  title: "수정을 취소하시겠습니까?",
+						  //text: "", (""안에 내용쓰면 title 밑에 작은 글씨로 들어감)
+						  icon: "warning", //"info,success,warning,error" 중 택1
+						  buttons: ["아니요", "네"]//버튼 내용 작성가능
+						})//삭제버튼 클릭했을 때 이벤트
+						.then((네) => {//네 클릭했을 때 이벤트
+							reload();
+					});
+					
 				});
 				
 				$('button[name=update_'+num+']').on('click',function() {
 					var text=$('input[name=reply_'+num+']').val();
-					var con=confirm('수정하시겠습니까?');
 					
-					if(con) {
-						$.ajax({
-				            url:'../partnerRepUp',
-				            type:'POST',
-				            data:{reply_no:num, reply_content:text},
-				            success:function() {
-				            	reload();
-								alert('성공');
-							},
-							error:function() {
-								alert('다시 시도해주세요');
-							}
-						});
-					} 
+					swal({
+						  title: "수정하시겠습니까?",
+						  //text: "", (""안에 내용쓰면 title 밑에 작은 글씨로 들어감)
+						  icon: "warning", //"info,success,warning,error" 중 택1
+						  buttons: ["아니요", "네"]//버튼 내용 작성가능
+						})//버튼 클릭했을 때 이벤트
+						.then((네) => {//네 클릭했을 때 이벤트
+						  if (네) {
+								    $.ajax({
+								    	 url:'../partnerRepUp',
+								            type:'POST',
+								            data:{reply_no:num, reply_content:text},
+						                  success:function() {
+											    swal({
+											      title: "수정되었습니다.",
+											      icon: "success",
+											      button: "확인"
+											    })
+											    .then((확인) => {//확인 클릭했을 때 이벤트
+											    	reload();
+											    });	
+						                  },
+						                  error:function() {
+						                  }
+						            });//ajax
+							  } else {
+								    swal({
+								    	title: "다시 시도해주세요",
+								    	icon: "error",
+								    	button: "확인"
+								    })
+							  }//if 
+					});
 				});
      		});
 		});
@@ -285,22 +332,36 @@
      		var num=name.replace('dele2_','');   // 버튼의 값
      		
      		$('button[name=dele2_'+num+']').on('click',function() {
-     			var con=confirm('삭제하시겠습니까?');
+     			swal({
+  				  title: "삭제하시겠습니까?",
+  				  //text: "", (""안에 내용쓰면 title 밑에 작은 글씨로 들어감)
+  				  icon: "warning", //"info,success,warning,error" 중 택1
+  				  buttons: ["아니요", "네"]//버튼 내용 작성가능
+  				})//삭제버튼 클릭했을 때 이벤트
+  				.then((네) => {//네 클릭했을 때 이벤트
+  				  if (네) {
+  						    $.ajax({
+  						    	 url:'../partnerRepDel',
+  		     		            type:'POST',
+  		     		            cache:false,
+  		     		            data:{key:num},
+  		     		         	success:function(obj) {
+  									    swal({
+  									      title: "삭제되었습니다.",
+  									      icon: "success",
+  									    })
+  				                  },
+  				                  error:function() {
+  				                  }
+  				            });//ajax
+  					  } else {
+  						    swal({
+  						    	title: "다시 시도해주세요",
+  						    	icon: "error",
+  						    })
+  					  }//if 
+  				});
      			
-     			if(con) {
-     				 $.ajax({
-     		            url:'../partnerRepDel',
-     		            type:'POST',
-     		            cache:false,
-     		            data:{key:num},
-     		            success:function(obj) {
-     		            	alert('삭제완료!');
-     		            },
-     		            error:function() {
-     		               alert('다시 시도해주세요');
-     		            }
-     		         });
-     			}
      		});
      	});
       
