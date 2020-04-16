@@ -68,7 +68,7 @@
 	#table>tbody td>a:hover {
 		color:black;
 	}
-	#status {
+	.status {
 		font-size:11px;
 		color:white;
 		text-align:center;
@@ -94,6 +94,11 @@
 		font-family: 'Jua';
 		font-size: 18px;
 	}
+	.swal-text {
+		text-align:center;
+		font-size:25px;
+		font-weight:bold;
+	}
 </style>
 </head>
 <body>
@@ -108,7 +113,7 @@
 	<table class="table table-hover" id="table">
 		<div class="topMenu" id="theme">
 			<input type="text" value="<c:out value="${listCnt}"></c:out>개의 게시물이 조회되었습니다" id="listCnt" disabled/><br/>
-			<a class="btn btn-default" href="#" role="button" id="feed">답 장</a> &nbsp; <a class="btn btn-default" href="#" role="button" id="dele">삭 제</a> &nbsp; <a class="btn btn-default" href="#" role="button" id="read">읽음 처</a>
+			<a class="btn btn-default" href="#" role="button" id="feed">답 &nbsp; &nbsp; 장</a> &nbsp;<a class="btn btn-default" href="#" role="button" id="dele">삭 &nbsp; &nbsp; 제</a> &nbsp;<a class="btn btn-default" href="#" role="button" id="read">읽음 처리</a>
 		</div>
 	<!-- 리스트 출력 -->
 	   <thead>
@@ -128,7 +133,7 @@
 				<input type="hidden" class="type_${bean.receive_no }" value="${bean.receive_status }">
 				<td name="line_${bean.receive_no }"><input type="checkbox" name="chk_${bean.receive_no }"></td>
 				<td name="line_${bean.receive_no }"><a href="#" onclick="window.open('../messageDe/'+${bean.receive_no }, '쪽지보기', 'width=470, height=340, left=500, top=50');">${bean.receive_no }</a></td>
-				<td name="line_${bean.receive_no }"><a href="#" onclick="window.open('../messageDe/'+${bean.receive_no }, '쪽지보기', 'width=470, height=340, left=500, top=50');">${bean.receive_content } &nbsp; <input type="text" id="status" name="status_${bean.receive_no }" value="${bean.receive_status }"disabled></a></td>
+				<td name="line_${bean.receive_no }"><a href="#" onclick="window.open('../messageDe/'+${bean.receive_no }, '쪽지보기', 'width=470, height=340, left=500, top=50');">${bean.receive_content } &nbsp; <input type="text" class="status" name="status_${bean.receive_no }" value="${bean.receive_status }"disabled></a></td>
 				<td name="line_${bean.receive_no }"><a href="#" onclick="window.open('../messageDe/'+${bean.receive_no }, '쪽지보기', 'width=470, height=340, left=500, top=50');">${bean.client_nick1 }</a></td>
 				<td name="line_${bean.receive_no }"><a href="#" onclick="window.open('../messageDe/'+${bean.receive_no }, '쪽지보기', 'width=470, height=340, left=500, top=50');"><c:out value="${date }"/></a></td>
 			</tr>
@@ -171,6 +176,7 @@
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="${root }js/bootstrap.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		// 읽음 & 안읽음
@@ -218,56 +224,83 @@
 			
 			window.open('../messageDe/'+feed, '쪽지보기', 'width=470, height=340, left=500, top=50');
 		});
-		
+		/*
 		// 삭제버튼 클릭
 		$('#dele').on('click',function() {
 			var num=Array();
-			var con=confirm('선택된 쪽지를 삭제하시겠습니까?');
+			
 			$('input[name^=chk_]:checked').each(function() {
 				num=$(this).attr('name');
 				num=num.split('_')[1];
-				console.log(num);
 				
-				if(con) {
-					$.ajax({
-						url:'../messageDele',
-						type:'POST',
-						data:{key:num},
-						success:function() {
-						},
-						error:function() {
-							alert('다시 시도해 주세요');
-						}
-					});
-				}
+				swal({
+					title: "선택된 쪽지를 삭제하시겠습니까?",
+					icon: "warning",
+					buttons: ["아니요", "네"]
+				})
+				.then((네) => {
+					if (네) {
+						$.ajax({
+							url:'../messageDele',
+							type:'POST',
+							data:{key:num},
+							success:function() {
+								swal({
+									title:'삭제되었습니다',
+									icon:'success',
+									button:'확인'
+								}).then((확인) => {
+									reload();
+								})
+							},
+							error:function() {
+								alert('다시 시도해 주세요');
+							}
+						});
+					}
+				})
 			});
-			alert('삭제되었습니다');
-			reload();
-		});
+		});*/
 		// 모두 읽기
 		$('#read').on('click',function() {
-			var num=Array();
-			var con=confirm('선택된 쪽지를 모두\n읽음처리 하시겠습니까?');
+			
 			$('input[name^=chk_]:checked').each(function() {
 				num=$(this).attr('name');
 				num=num.split('_')[1];
 				console.log(num);
-				
-				if(con) {
-					$.ajax({
-						url:'../allMsg',
-						type:'Get',
-						data:{key:num},
-						success:function() {
-						},
-						error:function() {
-							alert('다시 시도해 주세요');
-						}
-					});
-				}
-			});
-			alert('읽음처리 되었습니다');
-			reload();
+				swal({
+					text: "선택된 쪽지를 모두\n읽음처리 하시겠습니까?",
+					icon: "warning",
+					buttons: ["아니요", "네"]
+				}).then((네) => {
+					if (네) {
+						$.ajax({
+							url:'../allMsg',
+							type:'Get',
+							data:{key:num},
+							success:function() {
+									console.log(num);
+								swal({
+									title:'읽음처리 되었습니다',
+									icon:'success',
+									button:'확인'
+								}).then((확인) => {
+									reload();
+								})
+							},
+							error:function() {
+								swal({
+									title:'다시 시도해주세요',
+									icon:'warning',
+									button:'확인'
+								}).then((확인) => {
+									reload();
+								})
+							}
+						});
+					}
+				})
+			});   // each
 		});
 			/* $('input[name^=chk_').each(function() {
 				var feed=Array();
@@ -282,9 +315,9 @@
 					console.log(this);
 				}
 			});
-		}); */
+		});
 			
-/*
+
 		$('#dele').on('click',function() {
 			var feed=$('input[type=checkbox]:checked').attr('name');
 			feed=feed.split('_');
@@ -306,7 +339,7 @@
 				});
 			}
 		});
-*/
+		 */
 //////////////////////////////////////////////////////////////////////////////////////////		
 		// 검색
 		$('#searchGo').on('click',function() {

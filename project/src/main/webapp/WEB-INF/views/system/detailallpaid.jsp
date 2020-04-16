@@ -104,7 +104,6 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.js"></script>
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script type="text/javascript">	
-//////////////////////////////////////////////////////////////////////////////////////////
 
 $("#confirmbtn").click(function () {
 	$.ajax({

@@ -49,7 +49,7 @@
 			<tr>
 				<td>${bean.board_no }</td>
 				<td><a href="eventDe/${bean.board_no }">${bean.event_sub }</a></td>
-				<td><a href="eventDe/${bean.board_no }">${bean.client_nick1 }</a></td>
+				<td><a href="eventDe/${bean.board_no }">관리자</a></td>
 				<td><a href="eventDe/${bean.board_no }">${bean.event_date}</a></td>
 				<td><a href="eventDe/${bean.board_no }">${bean.event_count }</a></td>
 			</tr>

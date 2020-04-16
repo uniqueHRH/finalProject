@@ -37,7 +37,7 @@
 	
 	
 	<insert id="insertOne_event" parameterType="EventBean">
-		insert into event (board_id, event_sub, event_count, event_content, client_nick1, event_date, event_img, event_thumb) values (5, #{event_sub}, 0, #{event_content}, #{client_nick1}, now(), #{event_img, jdbcType=VARCHAR}, #{event_thumb, jdbcType=VARCHAR})
+		insert into event (board_id, event_sub, event_count, event_content, event_date, event_img, event_thumb) values (5, #{event_sub}, 0, #{event_content}, now(), #{event_img, jdbcType=VARCHAR}, #{event_thumb, jdbcType=VARCHAR})
 	</insert>
 	
 	

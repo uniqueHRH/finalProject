@@ -57,9 +57,6 @@
 <body>
 <jsp:include page="/WEB-INF/menubar.jsp"/>
 
-<!-- menubar end -->
-                     <!-- contents start -->
- 
 <div id=allContain>
 	<div class="page-header" align="center">
 		<h1>직원 정보</h1>
