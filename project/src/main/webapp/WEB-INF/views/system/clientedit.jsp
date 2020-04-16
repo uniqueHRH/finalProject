@@ -38,6 +38,12 @@
 	#changeinfobtn{
 		width: 150px;
 	}
+	.form-control{
+		width: 200px;
+	}
+	#client_point{
+		margin-top: -30px;
+	}
 </style>
 </head>
 <body>
@@ -72,7 +78,7 @@
 		<tr>
 			<td>등급/포인트</td>
 			<td>등급<br><br>포인트</td>
-			<td><input type="text" id="client_level" name="client_level" value="${bean.client_level }"/><br><br><input type="text" id="client_point" name="client_point" value="${bean.client_point }"/></td>
+			<td><input type="text" class="form-control" id="client_level" name="client_level" value="${bean.client_level }"/><br><br><input type="text" class="form-control" id="client_point" name="client_point" value="${bean.client_point }"/></td>
 		</tr>
 		<tr>
 			<td>생년월일/가입일</td>

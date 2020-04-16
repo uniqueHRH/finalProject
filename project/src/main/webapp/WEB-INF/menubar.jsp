@@ -184,7 +184,6 @@
 	       		<a href="${root }system/client" id="oo">雀盔 包府</a>
 	       		<a href="${root }system/paid" id="pp">搬力 包府</a>
 	       		<a href="${root }system/tour" id="qq">捧绢 包府</a>
-	       		<a href="${root }system/report" id="rr">脚绊 包府</a>
 	       	</div>
 	        </c:if>
 		</div>
