@@ -80,7 +80,11 @@
 	#deleImg {
 		display:inline-block;
 	}
-	
+	.swal-text {
+		text-align:center;
+		font-size:25px;
+		font-weight:bold;
+	}
 </style>
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="${root }js/bootstrap.js"></script>
@@ -204,18 +208,9 @@
 			if(cnt>3) {
 				$(this).attr('checked',false);
 				swal({
-					text:'테마는 최대\n세 개까지 선택이 가능합니다',
+					text:'테마는 최대 세 개까지\n선택이 가능합니다',
 					icon:'error',
 					button:'확인'
-				}).swal-text ({
-					font-size:'16px',
-					background-color:'#FEFAE3',
-					padding:'17px',
-					border:'1px solid #F0E1A1',
-					display:'block',
-					margin:'22px',
-					text-align:'center',
-					color:'#61534e'
 				})
 			}
 		});
@@ -257,7 +252,7 @@
 		// 취소버튼
 		$('#goList').on('click',function() {
 			swal({
-				title: "작성내용이 사라집니다\n그래도 돌아가시겠습니까?",
+				text: "작성내용이 사라집니다\n그래도 돌아가시겠습니까?",
 				icon: "warning",
 				buttons: ["아니요", "네"]
 			}).then((네) => {

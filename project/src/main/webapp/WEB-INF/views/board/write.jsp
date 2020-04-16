@@ -78,6 +78,11 @@
 	#deleImg {
 		display:inline-block;
 	}
+	.swal-text {
+		text-align:center;
+		font-size:25px;
+		font-weight:bold;
+	}
 </style>
 </head>
 <body>
@@ -204,7 +209,11 @@
 			var cnt=$('input[type=checkbox]:checked').length;
 			if(cnt>3) {
 				$(this).attr('checked',false);
-				alert('테마는 최대 세 개까지 선택이 가능합니다');
+				swal({
+					text:'테마는 최대 세 개까지\n선택이 가능합니다',
+					icon:'error',
+					button:'확인'
+				})
 			}
 		});
 		
