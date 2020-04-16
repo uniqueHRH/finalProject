@@ -269,7 +269,10 @@
 			var paid_total=Number(paid_count)*Number(${bean.cost });
 	
 			if(tour_date=="" | paid_name=="" | paid_count=="" | paid_phone=="" | paid_birth==""){
-						alert('예약자정보를 입력해주세요');
+				swal({
+					   title: "예약자정보를 입력해주세요",
+					   icon: "warning"
+						})
 				return false;
 			}else{
 			//hidden input 값 받아오는 함수
@@ -300,15 +303,24 @@
 			var paid_birth=$('#paid_birth1').val();
 		
 			if(tour_date=="" | paid_name=="" | paid_count=="" | paid_phone=="" | paid_birth==""){
-				alert('예약자정보를 입력해주세요');
+				swal({
+					   title: "예약자정보를 입력해주세요",
+					   icon: "warning"
+						})
 				return false;
 			}
 			$('form[name="bookform"]').bind('submit',function(){
 				if($('#allclause').prop('checked') == false){
-			    	alert('필수 약관에 동의 하셔야 합니다.');
+			    	swal({
+						   title: "필수 약관에 동의 하셔야 합니다",
+						   icon: "warning"
+							})
 			    	return false;
 				}else{
-					alert('예약이 완료되었습니다.');
+					swal({
+						   title: "예약이 완료되었습니다",
+						   icon: "success"
+							})
 					return true;
 				}
 			});

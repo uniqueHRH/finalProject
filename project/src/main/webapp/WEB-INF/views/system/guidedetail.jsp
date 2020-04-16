@@ -90,26 +90,44 @@
 <jsp:include page="/WEB-INF/footer.jsp"/>
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="${root }js/bootstrap.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script type="text/javascript">
    $(document).ready(function() {
 		$("#delbtn").on('click',function(){
 			
-			if(confirm('삭제하시겠습니까?')==false){
-				return false;
-			}else{
-				$.ajax({
-                	url:'../guideDel',
-               	 	type:'POST',
-               	 	data:{key:$('#guideno').val()},
-                	success:function() {
-                    	alert('삭제되었습니다');
-                    	location.href="../guide";
-                },
-                	error:function() {
-                   	 	alert('삭제에 실패했습니다');
-               		}
-          		});
-			}
+			swal({
+				  title: "삭제하시겠습니까?",
+				  //text: "", (""안에 내용쓰면 title 밑에 작은 글씨로 들어감)
+				  icon: "warning", //"info,success,warning,error" 중 택1
+				  buttons: ["아니요", "네"]//버튼 내용 작성가능
+				})//삭제버튼 클릭했을 때 이벤트
+				.then((네) => {//네 클릭했을 때 이벤트
+				  if (네) {
+						    $.ajax({
+						    	url:'../guideDel',
+			               	 	type:'POST',
+			               	 	data:{key:$('#guideno').val()},
+				                  success:function() {
+									    swal({
+									      title: "삭제되었습니다.",
+									      icon: "success",
+									      button: "확인"
+									    })
+									    .then((확인) => {//확인 클릭했을 때 이벤트
+									    	location.href="../guide";
+									    });	
+				                  },
+				                  error:function() {
+				                  }
+				            });//ajax
+					  } else {
+						    swal({
+						    	title: "삭제에 실패했습니다",
+						    	icon: "error",
+						    	button: "확인"
+						    })
+					  }//if 
+			});
 		});
 		
    });
