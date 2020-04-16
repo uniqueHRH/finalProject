@@ -57,7 +57,9 @@
 	   <div contenteditable="false" id="contentM">
 			<img src="${root }resources/${bean.partner_thumb }" id="board_thumb"/>
 			<input type="hidden" id="hiddenI" value="${bean.partner_thumb }"/>
-			<input type="text" id="contentC" value="${bean.partner_content }" disabled/>
+		<div>
+			${bean.partner_content }
+		</div>
 	   </div>
 	   <p></p>
 	   <div id="btn">
