@@ -76,6 +76,10 @@
 		padding:25 0 25 35;
 		font-size:17px;
 		background-color:white;
+		white-space:normal;
+		resize:none;
+		outline:none;
+		border:0;
 	}
 	#pageNum {
 		padding:30 0;
@@ -108,7 +112,7 @@
 				<input type="text" id="qus_${bean.faq_no }" class="question" value="${bean.faq_question }" readonly>
 			</div>
 			<div id="tabs">
-				<input type="text" id="ans_${bean.faq_no }" class="answer" value="${bean.faq_answer }" readonly>
+				<textarea id="ans_${bean.faq_no }" class="answer" readonly>${bean.faq_answer }</textarea>
 				<div id="tab_s" align="right">
 					<a class="btn btn-default" role="button" id="upd_${bean.faq_no }">수정</a>
 					<a class="btn btn-default" role="button" id="ins_${bean.faq_no }">완료</a>
@@ -149,6 +153,19 @@
 	    if(id=='') {
 			$('#theme').hide();
 	    }
+	    
+	    $('.answer').each(function() {
+		    var btn=$(this).attr('id');
+			var num=btn.split('_');
+			var num=num[1];
+
+			var content=$('textarea[id=ans_'+num+']').val();
+			console.log(content);
+			content.replace(/\r\n/g,"<br/>");
+			console.log(content);
+			
+			$('textarea[id=ans_'+num+']').val(content)
+	    });
 	   $('#ins').on('click',function() {
 		   var question=$('#queIns').val();
 		   var answer=$('#ansIns').val();
@@ -195,9 +212,10 @@
 	    		}
 	    	})
 	    });
+		
 //////////////////////////////////////////////////////////////////////////////////////		
 		// 리스트 출력
-		$('input[id^=ans_]').hide();
+		//$('textarea[id^=ans_]').hide();
 		$('a[id^=upd_]').hide();
 		$('a[id^=ins_]').hide();
 		$('a[id^=can_]').hide();
@@ -209,7 +227,7 @@
 			
 			var log=$('#loginCk').val();
 			
-			$('input[id^=ans_'+num+']').toggle();
+			$('textarea[id^=ans_'+num+']').toggle();
 			if(log) {
 				$('a[id^=upd_'+num+']').toggle();
 				$('a[id^=del_'+num+']').toggle();
@@ -224,7 +242,7 @@
 			
 			$('input[id=qus_'+num+']').off('click');
 			$('input[id=qus_'+num+']').attr('readonly',false);
-			$('input[id=ans_'+num+']').attr('readonly',false);
+			$('textarea[id=ans_'+num+']').attr('readonly',false);
 			$('a[id=upd_'+num+']').toggle();
 			$('a[id=ins_'+num+']').toggle();
 			$('a[id=can_'+num+']').toggle();
@@ -232,7 +250,7 @@
 			
 			$('a[id=ins_'+num+']').on('click',function() {
 				var question=$('input[id=qus_'+num+']').val();
-				var answer=$('input[id=ans_'+num+']').val();
+				var answer=$('textarea[id=ans_'+num+']').val();
 				$.ajax({
 					url:'../board/faqUp',
 					type:'POST',
@@ -315,7 +333,6 @@
 			
 			location.href=url;
 		});
-		
 		
 		function reload() {
 	    	  location.reload();
