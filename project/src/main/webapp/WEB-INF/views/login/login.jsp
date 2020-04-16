@@ -85,9 +85,10 @@
 						<input type="password" class="form-control" id="client_pw" name="client_pw" placeholder="비밀번호를 입력하세요" style="width:350px">
 					</div>
 				</div>
-				 <c:if test="${msg == 'fail' }">
+				<c:if test="${msg == 'fail' }">
      				<%out.println("<script>alert('아이디와 비밀번호를 확인해주세요');</script>");%>
     			 </c:if>
+    		
 				<button type="submit" id="loginbtn" class="btn btn-default btn-lg btn-block">로그인</button>
 			<div>
 				<a href="${root }main/login/findid"><button type="button" id="findid" class="btn btn-default btn-lg">아이디 찾기</button></a>
@@ -106,6 +107,7 @@
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="${root }js/bootstrap.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script type="text/javascript">
    $(document).ready(function() {
 	   
@@ -113,7 +115,10 @@
 		var id = $("#client_id").val();
 		var pw = $("#client_pw").val();
 		if(!id || !pw){
-			alert('아이디와 비밀번호를 확인해주세요');
+			swal({
+				   title: "아이디와 비밀번호를 확인해주세요",
+				   icon: "error"
+				})
 			return false;
 		}else{
 			return true;

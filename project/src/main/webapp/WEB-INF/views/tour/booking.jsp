@@ -325,7 +325,6 @@
 					   title: "인원수를 선택해주세요",
 					   icon: "warning" //"info,success,warning,error" 중 택1
 					})
-				//alert("인원수를 선택해주세요");
 				return false;
 			}
 			//총 금액 함수

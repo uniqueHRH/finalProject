@@ -9,6 +9,7 @@
 <title>Home</title>
 <link rel="stylesheet" type="text/css" href="${root }css/bootstrap.css" />
 <link rel="stylesheet" type="text/css" href="${root }css/travel.css" />
+
 <style type="text/css">
 	#allContain {
 		width:1000px;
@@ -72,6 +73,7 @@
 </style>
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="${root }js/bootstrap.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body>
 <jsp:include page="/WEB-INF/menubar.jsp"/>
@@ -120,6 +122,7 @@
       
                          <!-- contents end --> 
 <jsp:include page="/WEB-INF/footer.jsp"/>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script type="text/javascript">
    $(document).ready(function() {
       
@@ -131,7 +134,10 @@
          var email = $('#client_email').val();
          
          if(!name || !id || !email){
-            alert('이름,아이디,이메일을 확인해주세요');
+            swal({
+				   title: "이름,아이디,이메일을 확인해주세요",
+				   icon: "warning" //"info,success,warning,error" 중 택1
+				})
             return false;
             event.preventDefault();
          }else{
@@ -148,7 +154,10 @@
                    if(check == null){
                       $('#loading').css('display','none');
                       $('#imgs').css('display','none');
-                      alert('가입하신 이름,아이디,이메일을 입력해주세요');
+                      swal({
+       				   title: "가입하신 이름,아이디,이메일을 입력해주세요",
+       				   icon: "warning" //"info,success,warning,error" 중 택1
+       					})
                    }else{
                   var num = 60 * 3; // 몇분을 설정할지의 대한 변수 선언
                    var myVar;
@@ -163,8 +172,10 @@
                        var sec = num - (60 * min);
                        var $input = $('.input').val(min + '분' + sec + '초');
                          if(num == 0){
-                           clearInterval(myVar);
-                           alert('요청 시간이 만료되었습니다.');
+                           swal({
+               				   title: "요청 시간이 만료되었습니다",
+               				   icon: "warning" //"info,success,warning,error" 중 택1
+               					})
                            // num 이 0초가 되었을대 clearInterval로 타이머 종료
                        }
                        num--;
@@ -172,7 +183,10 @@
                    $('#loading').css('display','none');
                    $('#imgs').css('display','none');
                    $('input[name=dice2]').attr('value',data.Dice2);
-                   alert('인증번호를 발송했습니다.이메일을 확인해주세요');
+                   swal({
+       				   title: "인증번호를 발송했습니다.이메일을 확인해주세요",
+       				   icon: "info" //"info,success,warning,error" 중 택1
+       					})
                    }
                 },
                error:function(){
@@ -191,13 +205,22 @@
          var dice = $('#dice2').val();
          
          if(!name || !id || !email){
-            alert('이름,아이디,이메일을 확인해주세요');
+            swal({
+				   title: "이름,아이디,이메일을 확인해주세요",
+				   icon: "warning" //"info,success,warning,error" 중 택1
+					})
             return false;
          }else if(!code){
-            alert('인증번호를 입력해주세요');
+            swal({
+				   title: "인증번호를 입력해주세요",
+				   icon: "info" //"info,success,warning,error" 중 택1
+					})
             return false;
          }else if(code != dice){
-            alert('인증번호가 일치하지않습니다');
+        	 swal({
+				   title: "인증번호가 일치하지않습니다",
+				   icon: "error" //"info,success,warning,error" 중 택1
+					})
             return false;
          }else{
             return true;

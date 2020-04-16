@@ -20,6 +20,7 @@
 		width:585px;
 		margin: 0 auto;
 		text-align: center;
+		padding-top: 30px;
     }
     #client_nick1, #client_id, #nickdupli, #iddupli {
     	display:inline-block;
@@ -32,6 +33,7 @@
     .list-group{
     	width:550px;
     	margin:0 auto;
+    	padding-bottom: 30px;
     }
     #adminbtn{
     	width:550px;
@@ -198,6 +200,7 @@
 <jsp:include page="/WEB-INF/footer.jsp"/>
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="${root }js/bootstrap.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script type="text/javascript">
    $(document).ready(function() {
       //clause
@@ -224,12 +227,21 @@
                    var check = data.Nickdupli;
                    
                    if(check == null && nickcheck != false){
-                      alert('사용 가능한 닉네임입니다');
+                	   swal({
+    					   title: "사용가능한 닉네임입니다.",
+    					   icon: "info" //"info,success,warning,error" 중 택1
+    				  		})
                       $('input[name=duplicheck1]').attr('value', 1);
                    }else if(nickcheck == false){
-                      alert('형식에 맞게 입력하세요');
+                      swal({
+   					   title: "형식에 맞게 입력하세요",
+   					   icon: "warning" //"info,success,warning,error" 중 택1
+   					 	 })
                    }else{
-                      alert('이미 사용중인 닉네임입니다');
+                      swal({
+      					   title: "이미 사용중인 닉네임입니다",
+      					   icon: "info" //"info,success,warning,error" 중 택1
+      					  })
                    }
                 }
       });
@@ -252,12 +264,21 @@
                    var check = data.Iddupli
                    
                    if(check == null && idcheck != false){
-                       alert('사용 가능한 아이디입니다');
+                	   swal({
+    					   title: "사용가능한 닉네임입니다.",
+    					   icon: "info" //"info,success,warning,error" 중 택1
+    				  		})
                        $('input[name=duplicheck2]').attr('value', 1);
                    }else if(idcheck == false){
-                      alert('형식에 맞게 입력하세요');
+                	   swal({
+       					   title: "형식에 맞게 입력하세요",
+       					   icon: "warning" //"info,success,warning,error" 중 택1
+       					 	 })
                    }else{
-                      alert('이미 사용중인 아이디입니다');
+                	   swal({
+      					   title: "이미 사용중인 닉네임입니다",
+      					   icon: "info" //"info,success,warning,error" 중 택1
+      					  })
                    }
                 }
       });
@@ -419,50 +440,92 @@
          var duplicheck2 = $("#duplicheck2").val();
          
          if(namecheck != true){
-            alert('이름을 확인해주세요');
+            swal({
+				   title: "이름을 확인해주세요",
+				   icon: "info" //"info,success,warning,error" 중 택1
+				  })
             return false;
          }else if(nickcheck != true){
-            alert('닉네임을 확인해주세요');
+            swal({
+				   title: "닉네임을 확인해주세요",
+				   icon: "info" //"info,success,warning,error" 중 택1
+				  })
             return false;
          }else if(duplicheck1 == 0){
-            alert('닉네임 중복 확인을 해주세요');
+            swal({
+				   title: "닉네임 중복 확인을 해주세요",
+				   icon: "info" //"info,success,warning,error" 중 택1
+				  })
             return false;
          }else if(idcheck != true){
-            alert('아이디를 확인해주세요');
+            swal({
+				   title: "아이디를 확인해주세요",
+				   icon: "info" //"info,success,warning,error" 중 택1
+				  })
             return false;
          }else if(duplicheck2 == 0){
-            alert('아이디 중복 확인을 해주세요');
+        	 swal({
+				   title: "아이디 중복 확인을 해주세요",
+				   icon: "info" //"info,success,warning,error" 중 택1
+				  })
             return false;
          }else if(pwcheck != true){
-            alert('비밀번호를 확인해주세요');
+        	 swal({
+				   title: "비밀번호를 확인해주세요",
+				   icon: "info" //"info,success,warning,error" 중 택1
+				  })
             return false;
          }else if(pw1 != pw2){
-            alert('비밀번호가 일치하지 않습니다');
+            swal({
+				   title: "비밀번호가 일치하지 않습니다",
+				   icon: "error" //"info,success,warning,error" 중 택1
+				  })
             return false;
          }else if($('#man').prop('checked') == false && $('#woman').prop('checked') == false){
-            alert('성별을 체크해주세요');
+            swal({
+				   title: "성별을 체크해주세요",
+				   icon: "info" //"info,success,warning,error" 중 택1
+				  })
             return false;
          }else if(emailcheck != true){
-            alert('이메일을 확인해주세요');
+            swal({
+				   title: "이메일을 확인해주세요",
+				   icon: "info" //"info,success,warning,error" 중 택1
+				  })
             return false;
          }else if(client_birth.length <=8){
             if( year>2019 || year<1900){ // 1900년 - 2019년까지만 입력가능
-               alert('생년월일을 확인해주세요');
+            	swal({
+ 				   title: "생년월일을 확인해주세요",
+ 				   icon: "info" //"info,success,warning,error" 중 택1
+ 				  })
                return false;
             }else if(month<1 || month>12){ // 1월 - 12월까지만 입력가능
-               alert('생년월일을 확인해주세요');
+            	swal({
+  				   title: "생년월일을 확인해주세요",
+  				   icon: "info" //"info,success,warning,error" 중 택1
+  				  })
                return false;
             }else if(day<1 || day>31){ // 1일 - 31일까지 입력가능
-               alert('생년월일을 확인해주세요');
+            	swal({
+  				   title: "생년월일을 확인해주세요",
+  				   icon: "info" //"info,success,warning,error" 중 택1
+  				  })
                return false;
             }else if((month==4 || month==6 || month==9 || month==11) && day == 31){ // 30일까지 있는 달에 31일이 들어가지못하게
-               alert('생년월일을 확인해주세요');
+            	swal({
+  				   title: "생년월일을 확인해주세요",
+  				   icon: "info" //"info,success,warning,error" 중 택1
+  				  })
                return false;
             }else if(month==2){
                var isleap = (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0)); //윤년
                             
                if (day>29 || (day==29 && !isleap)) { // 28일까지 입력 가능, 윤년은 29일까지 가능
-                  alert('생년월일을 확인해주세요');
+            	   swal({
+     				   title: "생년월일을 확인해주세요",
+     				   icon: "info" //"info,success,warning,error" 중 택1
+     				  })
                   return false;
                }else{
                   return true;
@@ -472,10 +535,16 @@
             }
             return false;
          }else if(phonecheck != true){
-            alert('연락처를 확인해주세요');
+        	 swal({
+				   title: "연락처를 확인해주세요",
+				   icon: "info" //"info,success,warning,error" 중 택1
+				  })
             return false;
          }else{
-            alert('회원가입이 완료되었습니다');
+        	 swal({
+				   title: "회원가입이 완료되었습니다.",
+				   icon: "success" //"info,success,warning,error" 중 택1
+				  })
             return true;
          }
          

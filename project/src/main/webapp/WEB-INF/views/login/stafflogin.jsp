@@ -89,7 +89,10 @@ $('form[name="sac"]').bind('submit',function(){
 	var id = $("#staff_no").val();
 	var pw = $("#staff_pw").val();
 	if(!id || !pw){
-		alert('사번과 비밀번호를 확인해주세요');
+		swal({
+			   title: "사번과 비밀번호를 확인해주세요",
+			   icon: "warning"
+				})
 		return false;
 	}else{
 		return true;
