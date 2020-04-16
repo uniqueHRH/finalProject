@@ -1,3 +1,4 @@
+  
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page pageEncoding="utf-8" %>
@@ -12,7 +13,6 @@
 <link rel="stylesheet" type="text/css" href="${root }css/travel.css" />
 <link rel="stylesheet" type="text/css" href="${root }css/boardDetail.css" />
 <style type="text/css">
-
 </style>
 </head>
 <body>
@@ -105,6 +105,7 @@
 </body>
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="${root }js/bootstrap.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script type="text/javascript">
    $(document).ready(function() {
 	   $('#subm').hide();
@@ -243,7 +244,6 @@
 		$('button[name^=edit]').on('click',function() {
      		var name=$(this).attr('name');
      		var num=name.replace('edit_','');   // 버튼의 값
-
      		$('button[name=edit_'+num+']').on('click',function() {
 				$('input[name=reply_'+num+']').attr('disabled',false);
 				$('button[name=edit_'+num+']').hide();
