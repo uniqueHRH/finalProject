@@ -12,11 +12,14 @@
 <link rel="stylesheet" type="text/css" href="${root }css/travel.css" />
 <link rel="stylesheet" type="text/css" href="${root }css/boardUpdate.css" />
 <style type="text/css">
-
+	.swal-text {
+		text-align:center;
+		font-size:25px;
+		font-weight:bold;
+	}
 </style>
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="${root }js/bootstrap.js"></script>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body>
 <jsp:include page="/WEB-INF/menubar.jsp"/>
@@ -80,7 +83,7 @@
 <jsp:include page="/WEB-INF/remote.jsp"/>
 <jsp:include page="/WEB-INF/socket.jsp"/>
 <jsp:include page="/WEB-INF/footer.jsp"/>
-</body>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		// 이미지 수정
@@ -101,16 +104,16 @@
 		// 목록버튼
 		$('#goList').on('click',function() {
 			swal({
-				  title: "작성내용이 사라집니다\n그래도 돌아가시겠습니까?",
-				  //text: "", (""안에 내용쓰면 title 밑에 작은 글씨로 들어감)
-				  icon: "warning", //"info,success,warning,error" 중 택1
-				  buttons: ["아니요", "네"]//버튼 내용 작성가능
-				})//
-				.then((네) => {//네 클릭했을 때 이벤트
-					  location.href="../partnerDe/${bean.board_no}";    				  
-			});
-			
+				  text: "작성내용이 사라집니다\n그래도 돌아가시겠습니까?",
+				  icon: "warning",
+				  buttons: ["아니요", "네"]
+			}).then((네) => {
+				if(네) {
+				  location.href="../partnerDe/${bean.board_no}";    				  
+				}
+			})
 		});      
    });
 </script>
+</body>
 </html>

@@ -80,6 +80,27 @@
 			$('#img').attr('src','');
 
 		});
+
+		$('#subm').on('click', function() {
+			var sub=$('#board_sub').val();
+			var content=$('#board_content').val();
+			
+			if(sub=='') {
+				swal({
+					title: "제목을 입력해주세요",
+					icon: "warning",
+					button:"확인"
+				})
+				return false;
+			} else if(content=='') {
+				swal({
+					title: "내용을 입력해주세요",
+					icon: "warning",
+					button:"확인"
+				})
+				return false;
+			}
+		});
 		
 		// 뒤로 버튼
 		$('#btn2').on('click',function() {

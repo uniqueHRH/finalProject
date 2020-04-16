@@ -70,7 +70,7 @@
 </body>
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="${root }js/bootstrap.js"></script>
-
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script type="text/javascript">
    $(document).ready(function() {
 		// 이미지가 없을 때 출력되지 않도록
@@ -97,36 +97,47 @@
       
       // 삭제버튼
 		$('#dele').on('click',function() {
-			var con=confirm('삭제하시겠습니까?');
-			var replyCnt=$('#reply').length;
-			
-			if(con) {
-				if(replyCnt>0) {
-					alert('댓글이 작성된 게시물은 삭제가 불가능합니다');
-				} else {
+			swal({
+				  title: "삭제하시겠습니까?",
+				  icon: "warning",
+				  buttons: ["아니요", "네"]
+			}).then((네) => {
+				if(네) {
 					$.ajax({
 		                  url:'../noticeDel',
 		                  type:'POST',
 		                  data:{key:$('#board_no').val()},
 		                  success:function() {
-		                      alert('삭제되었습니다');
-		                      location.href="../notice";
+		                	  swal({
+		                			title:'삭제되었습니다',
+		                			icon:'error',
+		                			button:'확인'
+		                		}).then((확인) => {
+				                      location.href="../notice";
+		                		})
 		                  },
 		                  error:function() {
-		                     alert('삭제에 실패했습니다');
+		                	  swal({
+		                			title:'삭제에 실패했습니다',
+		                			icon:'success',
+		                			button:'확인'
+		                		}).then((확인) => {
+		                			reload();
+		                		})
 		                  }
 		            });
 				}
-			}
+			})
 		});
-            
+
+      	$('#goList').on('click', function() {
+	      	location.href="../notice";
+      	});
+      	
       function reload() {
     	  location.reload();
       }
       
-      function time() {
-    	  setTimeout('time()',2000);
-      }
    });
    
 </script>

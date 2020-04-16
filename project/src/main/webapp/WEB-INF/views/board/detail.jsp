@@ -299,11 +299,9 @@
 			var num=$('#board_no').val();
 			swal({
 				  title: "삭제하시겠습니까?",
-				  //text: "", (""안에 내용쓰면 title 밑에 작은 글씨로 들어감)
-				  icon: "warning", //"info,success,warning,error" 중 택1
-				  buttons: ["아니요", "네"]//버튼 내용 작성가능
-				})//삭제버튼 클릭했을 때 이벤트
-				.then((네) => {//네 클릭했을 때 이벤트
+				  icon: "warning",
+				  buttons: ["아니요", "네"]
+			}).then((네) => {
 				  if (네) {
 						   $.ajax({
 				                  url:'../reviewDel',
@@ -315,7 +313,7 @@
 									      icon: "success",
 									      button: "확인"
 									    })
-									    .then((확인) => {//확인 클릭했을 때 이벤트
+									    .then((확인) => {
 				                      		location.href="../review";
 									    });	
 				                  },
@@ -397,44 +395,52 @@
 				$('button[name=update_'+num+']').show();
 				$('button[name^=cancel_'+num+']').show();
 				$('button[name=cancel_'+num+']').on('click',function() {
-					var con=confirm('수정을 취소하시겠습니까?');
-					if(con) {
-						reload();
-					}
-				});
-				
-				$('button[name=update_'+num+']').on('click',function() {
-					var text=$('input[name=reply_'+num+']').val();
 					swal({
 						title: "수정하시겠습니까?",
 						icon: "warning",
 						buttons: ["아니요", "네"]
-					})
-					
-					.then((네) => {
+					}).then((네) => {
 						if(네) {
-							$.ajax({
-					            url:'../reviewRepUp',
-					            type:'POST',
-					            data:{reply_no:num, reply_content:text},
-					            success:function() {
-					            	reload();
-								},
-								error:function() {
-									swal({
-										title:'다시 시도해주세요',
-										icon:'errer',
-										button:'확인'
-									}).then((네) => {
-										reload();
-									})
-								}
-							});
+							swal({
+							      title: "수정되었습니다.",
+							      icon: "success",
+							      button: "확인"
+							}).then((확인) => {
+						    	reload();
+						    });	
 						}
-					});
+					})
+				});		
+			});		
+				
+			$('button[name=update_'+num+']').on('click',function() {
+				var text=$('input[name=reply_'+num+']').val();
+				swal({
+					title: "수정하시겠습니까?",
+					icon: "warning",
+					buttons: ["아니요", "네"]
+				}).then((네) => {
+					if(네) {
+						$.ajax({
+				            url:'../reviewRepUp',
+				            type:'POST',
+				            data:{reply_no:num, reply_content:text},
+				            success:function() {
+							},
+							error:function() {
+								swal({
+									title:'다시 시도해주세요',
+									icon:'errer',
+									button:'확인'
+								}).then((네) => {
+									reload();
+								})
+							}
+						});
+					}
 				});
-     		});
-		});
+			});
+   		});
       
       // 삭제버튼
      	$('button[name^=dele2]').on('click',function() {
@@ -444,11 +450,9 @@
      		$('button[name=dele2_'+num+']').on('click',function() {
      			swal({
      				title: "삭제하시겠습니까?",
-     				icon: "warning",   //"info,success,warning,error" 중 택1
-     				buttons: ["아니요", "네"]   //버튼 내용 작성가능
-     			})
-
-     			.then((네) => {
+     				icon: "warning",
+     				buttons: ["아니요", "네"]
+     			}).then((네) => {
 	     			if(네) {
 	     				 $.ajax({
 	     		            url:'../reviewRepDel',
@@ -457,17 +461,17 @@
 	     		            data:{key:num},
 	     		            success:function(obj) {
 	     		            	swal({
-	     		            		title:"삭제완료",
-	     		            		icon:"success",
-	     		            		button:"확인"
-	     		            	}).then((네) => {
-	     		            		reload();
-	     		            	})
+	    		            		title:'삭제되었습니다',
+	    		            		icon:'success',
+	    		            		button:'확인'
+	    		            	}).then((네) => {
+	    		            		reload();
+	    		            	})
 	     		            },
 	     		            error:function() {
 	     		            	swal({
 	     		            		title:'다시 시도해주세요',
-	     		            		icon:'errer',
+	     		            		icon:'warning',
 	     		            		button:'확인'
 	     		            	}).then((네) => {
 	     		            		reload();

@@ -181,36 +181,35 @@
 		$('#dele').on('click',function() {
 			swal({
 				  title: "삭제하시겠습니까?",
-				  //text: "", (""안에 내용쓰면 title 밑에 작은 글씨로 들어감)
-				  icon: "warning", //"info,success,warning,error" 중 택1
-				  buttons: ["아니요", "네"]//버튼 내용 작성가능
-				})//버튼 클릭했을 때 이벤트
-				.then((네) => {//네 클릭했을 때 이벤트
+				  icon: "warning",
+				  buttons: ["아니요", "네"]
+				})
+				.then((네) => {
 				  if (네) {
-						    $.ajax({
-						    	  url:'../partnerDel',
-				                  type:'POST',
-				                  data:{key:$('input[type=hidden]').val()},
-				                  success:function() {
-									    swal({
-									      title: "삭제되었습니다.",
-									      icon: "success",
-									      button: "확인"
-									    })
-									    .then((확인) => {//확인 클릭했을 때 이벤트
-									    	 location.href="../partner";
-									    });	
-				                  },
-				                  error:function() {
-				                  }
-				            });//ajax
-					  } else {
-						    swal({
-						    	title: "삭제에 실패했습니다",
-						    	icon: "error",
-						    	button: "확인"
-						    })
-					  }//if 
+					    $.ajax({
+					    	  url:'../partnerDel',
+			                  type:'POST',
+			                  data:{key:$('#board_no').val()},
+			                  success:function() {
+								    swal({
+								      title: "삭제되었습니다.",
+								      icon: "success",
+								      button: "확인"
+								    })
+								    .then((확인) => {
+								    	 location.href="../partner";
+								    });	
+			                  },
+			                  error:function() {
+			                  }
+			            });//ajax
+				  } else {
+					    swal({
+					    	title: "삭제에 실패했습니다",
+					    	icon: "error",
+					    	button: "확인"
+					    })
+				  }//if 
 			});
 		});
             
@@ -240,7 +239,7 @@
 			if(!text) {
 				swal({
 	  				   title: "내용을 입력해주세요",
-	  				   icon: "warning" //"info,success,warning,error" 중 택1
+	  				   icon: "warning"
 	  				  })
 				return false;
 				event.preventDefault();
@@ -256,8 +255,8 @@
 		            error:function() {
 		            	swal({
 			  				   title: "다시 시도해주세요",
-			  				   icon: "warning" //"info,success,warning,error" 중 택1
-			  				  })
+			  				   icon: "warning"
+						})
 		            }
 	         	});
 			}
@@ -266,7 +265,7 @@
 		// 댓글 수정버튼
 		$('button[name^=edit]').on('click',function() {
      		var name=$(this).attr('name');
-     		var num=name.replace('edit_','');   // 버튼의 값
+     		var num=name.replace('edit_','');
      		$('button[name=edit_'+num+']').on('click',function() {
 				$('input[name=reply_'+num+']').attr('disabled',false);
 				$('button[name=edit_'+num+']').hide();
@@ -276,11 +275,10 @@
 				$('button[name=cancel_'+num+']').on('click',function() {
 					swal({
 						  title: "수정을 취소하시겠습니까?",
-						  //text: "", (""안에 내용쓰면 title 밑에 작은 글씨로 들어감)
-						  icon: "warning", //"info,success,warning,error" 중 택1
-						  buttons: ["아니요", "네"]//버튼 내용 작성가능
-						})//삭제버튼 클릭했을 때 이벤트
-						.then((네) => {//네 클릭했을 때 이벤트
+						  icon: "warning",
+						  buttons: ["아니요", "네"]
+						})
+						.then((네) => {
 							reload();
 					});
 					
@@ -291,11 +289,10 @@
 					
 					swal({
 						  title: "수정하시겠습니까?",
-						  //text: "", (""안에 내용쓰면 title 밑에 작은 글씨로 들어감)
-						  icon: "warning", //"info,success,warning,error" 중 택1
-						  buttons: ["아니요", "네"]//버튼 내용 작성가능
-						})//버튼 클릭했을 때 이벤트
-						.then((네) => {//네 클릭했을 때 이벤트
+						  icon: "warning",
+						  buttons: ["아니요", "네"]
+						})
+						.then((네) => {
 						  if (네) {
 								    $.ajax({
 								    	 url:'../partnerRepUp',
@@ -307,7 +304,7 @@
 											      icon: "success",
 											      button: "확인"
 											    })
-											    .then((확인) => {//확인 클릭했을 때 이벤트
+											    .then((확인) => {
 											    	reload();
 											    });	
 						                  },
@@ -334,11 +331,10 @@
      		$('button[name=dele2_'+num+']').on('click',function() {
      			swal({
   				  title: "삭제하시겠습니까?",
-  				  //text: "", (""안에 내용쓰면 title 밑에 작은 글씨로 들어감)
-  				  icon: "warning", //"info,success,warning,error" 중 택1
-  				  buttons: ["아니요", "네"]//버튼 내용 작성가능
-  				})//삭제버튼 클릭했을 때 이벤트
-  				.then((네) => {//네 클릭했을 때 이벤트
+  				  icon: "warning",
+  				  buttons: ["아니요", "네"]
+  				})
+  				.then((네) => {
   				  if (네) {
   						    $.ajax({
   						    	 url:'../partnerRepDel',
@@ -369,9 +365,6 @@
     	  location.reload();
       }
       
-      function time() {
-    	  setTimeout('time()',2000);
-      }
    });
    
 </script>

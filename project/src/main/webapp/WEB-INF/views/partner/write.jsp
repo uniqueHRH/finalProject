@@ -23,7 +23,6 @@
 		<h1>INSERT</h1>
 	</div>
       
-	<!-- 나라 선택 -->
 	<form class="form-inline" method="POST" enctype="multipart/form-data">
 	<!-- 입력 -->
 		<div class="form-group">
@@ -80,6 +79,27 @@
 
 		});
 		
+		$('#subm').on('click', function() {
+			var sub=$('#board_sub').val();
+			var content=$('#board_content').val();
+			
+			if(sub=='') {
+				swal({
+					title: "제목을 입력해주세요",
+					icon: "warning",
+					button:"확인"
+				})
+				return false;
+			} else if(content=='') {
+				swal({
+					title: "내용을 입력해주세요",
+					icon: "warning",
+					button:"확인"
+				})
+				return false;
+			}
+		});
+		
 		// 뒤로 버튼
 		$('#btn2').on('click',function() {
 			
@@ -92,9 +112,6 @@
 				.then((네) => {//네 클릭했을 때 이벤트
 					location.href="../board/partner";
 			});
-			/* if(confirm('작성을 취소하시겠습니까?')) {
-				location.href="../board/partner";
-			} */
 		});
 	});
 	

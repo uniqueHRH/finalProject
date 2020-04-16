@@ -141,6 +141,7 @@
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="${root }js/bootstrap.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 
@@ -148,37 +149,59 @@
 	    if(id=='') {
 			$('#theme').hide();
 	    }
-	    
 	   $('#ins').on('click',function() {
 		   var question=$('#queIns').val();
 		   var answer=$('#ansIns').val();
 		   
-		   $.ajax({
-			   url:'../board/faqIns',
-			   type:'POST',
-			   data:{faq_question:question, faq_answer:answer},
-			   success:function() {
-				   reload();
-			   },
-			   error:function() {
-				   console.log('다시 시도해주세요');
-				}
-		   });
-	   }); 
-	    $('#res').on('click',function() {
-	    	var con=confirm('작성을 취소하시겠습니까?');
-	    	if(con) {
-	    		reload();
-	    	}
+		   if(question=='') {
+			   swal({
+					title:'질문을 입력해주세요',
+					icon:'warning',
+					button:'확인'
+				})
+		   } else if(answer=='') {
+			   swal({
+					title:'대답을 입력해주세요',
+					icon:'warning',
+					button:'확인'
+				})
+		   } else {
+			   $.ajax({
+				   url:'../board/faqIns',
+				   type:'POST',
+				   data:{faq_question:question, faq_answer:answer},
+				   success:function() {
+					   reload();
+				   },
+				   error:function() {
+					   swal({
+							title:'다시 시도해주세요',
+							icon:'warning',
+							button:'확인'
+						})
+					}
+			   });
+		   }
+	   });
+	   
+		$('#res').on('click',function() {
+	    	swal({
+	    		title: "작성을 취소하시겠습니까?",
+	    		icon: "warning",
+	    		buttons: ["아니요", "네"]
+	    	}).then((네) => {
+	    		if(네) {
+					reload();
+	    		}
+	    	})
 	    });
-//////////////////////////////////////////////////////////////////////////////////////////		
+//////////////////////////////////////////////////////////////////////////////////////		
 		// 리스트 출력
 		$('input[id^=ans_]').hide();
 		$('a[id^=upd_]').hide();
 		$('a[id^=ins_]').hide();
 		$('a[id^=can_]').hide();
 		$('a[id^=del_]').hide();
-		
 		$('input[id^=qus_]').on('click',function() {
 			var btn=$(this).attr('id');
 			var num=btn.split('_');
@@ -215,18 +238,33 @@
 					type:'POST',
 					data:{faq_question:question, faq_answer:answer, faq_no:num},
 					success:function() {
-						reload();
+						swal({
+						      title: "수정되었습니다.",
+						      icon: "success",
+						      button: "확인"
+						}).then((확인) => {
+					    	reload();
+					    });
 					},
 					error:function() {
-						console.log('다시 시도해주세요');
+						swal({
+							title:'다시 시도해주세요',
+							icon:'warning',
+							button:'확인'
+						})
 					}
 				});   // ajax
 			});   // click
 			$('a[id=can_'+num+']').on('click',function() {
-				var con=confirm('작성을 취소하시겠습니까?');
-				if(con) {
-					reload();
-				}
+				swal({
+					title: "작성을 취소하시겠습니까?",
+					icon: "warning",
+					buttons: ["아니요", "네"]
+				}).then((네) => {
+					if(네) {
+				    	reload();
+					}
+				})
 			});
 		});
 		
@@ -235,22 +273,39 @@
 			var btn=$(this).attr('id');
 			var num=btn.split('_');
 			var num=num[1];
-			var con=confirm('삭제하시겠습니까?');
 			
-			if(con) {
-				$.ajax({
-					url:'../board/faqDel',
-					type:'POST',
-					data:{key:num},
-					success:function() {
-						reload();
-					},
-					error:function() {
-						console.log('다시 시도해주세요');
-					}
-				});   // ajax
+			swal({
+				title: "삭제하시겠습니까?",
+				icon: "warning",
+				buttons: ["아니요", "네"]
+			}).then((네) => {
+				if(네) {
+					$.ajax({
+						url:'../board/faqDel',
+						type:'POST',
+						data:{key:num},
+						success:function() {
+							swal({
+    		            		title:'삭제되었습니다',
+    		            		icon:'success',
+    		            		button:'확인'
+    		            	}).then((네) => {
+    		            		reload();
+    		            	})
+						},
+						error:function() {
+							swal({
+								title:'다시 시도해주세요',
+								icon:'warning',
+								button:'확인'
+							}).then((네) => {
+     		            		reload();
+     		            	})
+						}
+					});   // ajax
 				}
-			});
+			})
+		});
 //////////////////////////////////////////////////////////////////////////////////////////		
 		// 검색
 		$('#searchGo').on('click',function() {
@@ -259,28 +314,12 @@
 			url=url+'&keyword='+$('#keyword').val();
 			
 			location.href=url;
-			console.log(url);
 		});
-		
 		
 		
 		function reload() {
 	    	  location.reload();
 	      }
-		// 리모컨 top
-		$('#top').on('click',function() {
-			$('html,body').scrollTop(0);
-		});
-		
-		//<![CDATA[
-	    // 사용할 앱의 JavaScript 키를 설정해 주세요.
-	    Kakao.init('acc658a670e9ed5918d11647040b5bc5');
-	    // 카카오톡 채널 1:1채팅 버튼을 생성합니다.
-	    Kakao.Channel.createChatButton({
-	      container: '#kakao-talk-channel-chat-button',
-	      channelPublicId: '_wxfwxfxb' // 카카오톡 채널 홈 URL에 명시된 id로 설정합니다.
-	    });
-	  //]]>
    });
 		
 		

@@ -58,7 +58,7 @@
 </body>
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="${root }js/bootstrap.js"></script>
-
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		// 파일업로드
@@ -79,11 +79,38 @@
 
 		});
 
+		$('#subm').on('click', function() {
+			var sub=$('#board_sub').val();
+			var content=$('#board_content').val();
+			
+			if(sub=='') {
+				swal({
+					title: "제목을 입력해주세요",
+					icon: "warning",
+					button:"확인"
+				})
+				return false;
+			} else if(content=='') {
+				swal({
+					title: "내용을 입력해주세요",
+					icon: "warning",
+					button:"확인"
+				})
+				return false;
+			}
+		});
+		
 		// 뒤로 버튼
 		$('#btn2').on('click',function() {
-			if(confirm('작성을 취소하시겠습니까?')) {
-				location.href="../board/partner";
-			}
+			swal({
+				title: "작성을 취소하시겠습니까?",
+				icon: "warning",
+				buttons: ["아니요", "네"]
+			}).then((네) => {
+				if (네) {
+					location.href="../board/free";
+				}
+			})
 		});
 	});
 	

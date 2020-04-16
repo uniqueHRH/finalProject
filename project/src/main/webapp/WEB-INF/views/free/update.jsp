@@ -12,7 +12,11 @@
 <link rel="stylesheet" type="text/css" href="${root }css/travel.css" />
 <link rel="stylesheet" type="text/css" href="${root }css/boardUpdate.css" />
 <style type="text/css">
-
+	.swal-text {
+		text-align:center;
+		font-size:25px;
+		font-weight:bold;
+	}
 </style>
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="${root }js/bootstrap.js"></script>
@@ -80,7 +84,7 @@
 <jsp:include page="/WEB-INF/remote.jsp"/>
 <jsp:include page="/WEB-INF/socket.jsp"/>
 <jsp:include page="/WEB-INF/footer.jsp"/>
-</body>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		// 이미지 수정
@@ -101,11 +105,17 @@
 				
 		// 목록버튼
 		$('#goList').on('click',function() {
-			var con=confirm('작성내용이 사라집니다\n그래도 돌아가시겠습니까?');
-			if(con) {
-				location.href="../freeDe/${bean.board_no}";
-			}
+			swal({
+				text: "작성내용이 사라집니다\n그래도 돌아가시겠습니까?",
+				icon: "warning",
+				buttons: ["아니요", "네"]
+			}).then((네) => {
+				if(네) {
+					location.href="../freeDe/${bean.board_no}";
+				}
+			})
 		});      
    });
 </script>
+</body>
 </html>
