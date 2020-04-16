@@ -166,7 +166,9 @@
 	   <div contenteditable="false" id="contentM">
 			<img src="${root }resources/${bean.board_thumb }" id="board_thumb"/>
 			<input type="hidden" id="hiddenI" value="${bean.board_thumb }"/>
-			<input type="text" id="contentC" value="${bean.board_content }" disabled/>
+			<div>
+				${bean.board_content }
+			</div>
 	   </div>
 	   <p></p>
 	   <div id="btn">
@@ -211,6 +213,7 @@
 <jsp:include page="/WEB-INF/footer.jsp"/>
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="${root }js/bootstrap.js"></script>
+<script type="text/javascript" src="${root }ckeditor/ckeditor.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script type="text/javascript">
    $(document).ready(function() {
