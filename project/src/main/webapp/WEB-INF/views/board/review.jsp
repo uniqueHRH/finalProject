@@ -53,10 +53,10 @@
 	         <th>조회수</th>
 	      </tr>
 	   </thead>
-	   <tbody class="active_con">
+	   <tbody>
 			<c:forEach items="${list }" var="bean">
-			<fmt:formatDate value="${bean.board_date}" pattern="yyyy-MM-dd" var="date"/>
-			<tr>
+			<fmt:formatDate value="${bean.board_date}" pattern="yyyy-MM-dd HH:mm" var="date"/>
+			<tr class="active_con">
 				<td>${bean.board_no }</td>
 				<td><a href="reviewDe/${bean.board_no }">[${bean.board_land }]</a></td>
 				<td><a href="reviewDe/${bean.board_no }">[${bean.board_theme }]</a></td>

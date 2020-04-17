@@ -12,15 +12,14 @@
 <link rel="stylesheet" type="text/css" href="${root }css/travel.css" />
 <style type="text/css">
 	#allContain {
-		width:1000px;
+		width:1100px;
 		margin:0 auto;
-		padding-left:170px;
+		padding-left:140px;
 		font-family: 'Jua';
 	}
 	form {
-		width:950px;      
+		width:1100px;      
 		margin:0 auto;
-		font-family: 'Jua';
 		font-size:18px;
 		align:center;
 		text-align:center;
@@ -30,7 +29,7 @@
 		background-color:white;
 	}
 	#board_sub {
-		width:650px;
+		width:700px;
 		align:left;
 		text-align:left;
 	}
@@ -42,10 +41,10 @@
 		border-color:white;
 	}
 	#board_date {
-		width:150px;
+		width:170px;
 	}
 	#client_nick1, #board_count {
-		width:140px;
+		width:160px;
 	}
 	#btn {
 		text-align:center;
@@ -68,7 +67,6 @@
 	#reply {
 		width:700px;
 		height:30px;
-		font-family:'Jua';
 		border:0;
 		outline:0;
 	}
@@ -109,19 +107,15 @@
 	}
 /* content */
 	#contentM {
-		margin:20px 75px;
+		margin:20 0 20 100;
 		border:2px solid #e8e8e8;
 		border-radius:10px;
-		width:800px;
+		width:900px;
 		padding:28;
 	}
-	#contentC {
-		width:670px;
-		margin:20px 5px;
-		background-color:white;
-		border:0;
-		outline:0;
+	#contentS {
 		text-align:left;
+		font-size:15px;
 	}
 	#board_thumb {
 		margin:20px 5px;
@@ -162,15 +156,11 @@
 			<input type="hidden" id="log" name="log" value="${sessionScope.check.client_nick1}">
 			<input type="hidden" id="staffLog" name="staffLog" value="${sessionScope.staffcheck.staff_name}">
 	   </div>
-	   <p></p>
 	   <div contenteditable="false" id="contentM">
 			<img src="${root }resources/${bean.board_thumb }" id="board_thumb"/>
 			<input type="hidden" id="hiddenI" value="${bean.board_thumb }"/>
-			<div>
-				${bean.board_content }
-			</div>
+			<div id="contentS">${bean.board_content }</div>
 	   </div>
-	   <p></p>
 	   <div id="btn">
 	      <button type="button" class="btn btn-default" id="subm">수정하기</button>
 	      <button type="button" class="btn btn-default" id="dele">삭제하기</button>
@@ -223,6 +213,16 @@
 		$('button[name^=update_').hide();
 		$('button[name^=edit_').hide();
 		$('button[name^=dele2_').hide();
+		
+		$('#contentM').on( 'keyup', 'textarea', function (e){
+			$(this).css('height', 'auto' );
+			$(this).height( this.scrollHeight );
+		});
+		$('#contentM').find( 'textarea' ).keyup();
+		
+		var contents=$('#contentS').html();
+		contents=contents.replace(/(\n|\r\n)/g, '<br>');
+		$('#contentS').html(contents);
 		
 		// 이미지가 없을 때 출력되지 않도록
 		var img=$('#hiddenI').val();
@@ -491,7 +491,6 @@
       }
       
    });
-   
 </script>
 </body>
 </html>
