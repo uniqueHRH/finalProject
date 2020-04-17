@@ -80,10 +80,10 @@
 	}
 /* content */
 	#contentM {
-		margin:20px 75px;
+		margin:20 0 20 130;
 		border:2px solid #e8e8e8;
 		border-radius:10px;
-		width:800px;
+		width:850px;
 		padding:28;
 	}
 	#contentS {

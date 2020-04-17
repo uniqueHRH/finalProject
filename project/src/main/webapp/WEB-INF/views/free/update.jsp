@@ -12,11 +12,7 @@
 <link rel="stylesheet" type="text/css" href="${root }css/travel.css" />
 <link rel="stylesheet" type="text/css" href="${root }css/boardUpdate.css" />
 <style type="text/css">
-	.swal-text {
-		text-align:center;
-		font-size:25px;
-		font-weight:bold;
-	}
+
 </style>
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="${root }js/bootstrap.js"></script>
@@ -33,31 +29,25 @@
 	      
 	<!-- 제목 -->
 	<form class="form-inline" method="POST" enctype="multipart/form-data">
-		<div>
+		<div class="form-group" id="sub">
+			<label for="exampleInputName2" id="subject">제 &nbsp; 목</label>
 			<input type="text" class="form-control" id="board_sub" name="free_sub" value="${bean.free_sub }">
 			<input type="hidden" id="board_no" name="board_no" value="${bean.board_no }">
 		</div>
-		<p></p>
-		<div class="form-group">
+		<div id="sub_sub">
 			<label for="exampleInputName2">닉네임</label>
 			<input type="text" class="form-control" id="client_nick1" name="client_nick1" value="${bean.client_nick1 }" style="cursor:default" disabled>
-		</div>
-		<div class="form-group">
-		<fmt:formatDate value="${bean.free_date}" pattern="yyyy-MM-dd HH:mm" var="date"/>
 		&nbsp; &nbsp;
+			<fmt:formatDate value="${bean.free_date}" pattern="yyyy-MM-dd HH:mm" var="date"/>
 			<label for="exampleInputEmail2">작성일</label>
 			<input type="email" class="form-control" id="board_date" name="free_date" value="${date }" style="cursor:default" disabled>
-		</div>
-		<div class="form-group">
 		&nbsp; &nbsp;
 			<label for="exampleInputEmail2">조회수</label>
 			<input type="email" class="form-control" id="board_count" name="free_count" value="${bean.free_count }" style="cursor:default" disabled>
 		</div>
-		<p></p>
-		<div>
+		<div id="textarea">
 			<textarea class="form-control" id="board_content" name="free_content">${bean.free_content }</textarea>
 		</div>
-		<p></p>
 	<!-- 이미지 수정 -->
 		<div class="upload">
 			<input type="file" id="board_img" name="file" />
@@ -69,7 +59,6 @@
 			</div>
 			
 		</div>
-		<p></p>	
 		
 		<div id="btn">
 			<button type="submit" class="btn btn-default" id="subm">수정완료</button> &nbsp;
@@ -85,8 +74,11 @@
 <jsp:include page="/WEB-INF/socket.jsp"/>
 <jsp:include page="/WEB-INF/footer.jsp"/>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script type="text/javascript" src="${root }ckeditor/ckeditor.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
+		CKEDITOR.replace('board_content');
+		
 		// 이미지 수정
 		$('#board_img').change(function(){
 			if(this.files && this.files[0]) {

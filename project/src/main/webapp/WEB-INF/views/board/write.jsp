@@ -31,7 +31,7 @@
 	label {
 		font-weight:normal;
 		padding:0;
-		width:70px;
+		width:80px;
 	}
 	#sub {
          width:1000px;
@@ -76,6 +76,7 @@
 	.upload {
 		width:800px;
 		padding:10 0 0 0;
+		margin:0 auto;
 	}
 	#board_img {
       display:inline-block;
@@ -115,7 +116,6 @@
    
    <!-- 입력 -->
       <div class="form-group" id="sub">
-         <p></p>
          <label for="exampleInputName2" id="subject">제 &nbsp; 목</label>
          <input type="text" class="form-control" id="board_sub" name="board_sub" style="width:670px;">
          <input type="hidden" id="client_nick1" name="client_nick1" value="${sessionScope.check.client_nick1}">
@@ -125,24 +125,30 @@
       </div>
       
    <!-- 테마 선택 -->   
-      <div id="theme">
-         <input type="checkbox" name="theme" class="custom-control-input" value="힐링">
-         <label class="custom-control-label" for="jb-checkbox">힐링</label>
-         &nbsp; 
-         <input type="checkbox" name="theme" class="custom-control-input" value="스냅">
-         <label class="custom-control-label" for="jb-checkbox">스냅</label>
-         &nbsp;
-         <input type="checkbox" name="theme" class="custom-control-input" value="액티비티">
-         <label class="custom-control-label" for="jb-checkbox">액티비티</label>
-         &nbsp;
-         <input type="checkbox" name="theme" class="custom-control-input" value="식도락">
-         <label class="custom-control-label" for="jb-checkbox">식도락</label>
-         &nbsp;
-         <input type="checkbox" name="theme" class="custom-control-input" value="영화">
-         <label class="custom-control-label" for="jb-checkbox">영화</label>
-         &nbsp;
-         <input type="checkbox" name="theme" class="custom-control-input" value="스포츠">
-         <label class="custom-control-label" for="jb-checkbox">스포츠</label>
+	<div id="theme">
+		<label class="checkbox-inline">
+			<input type="checkbox" id="inlineCheckbox1" name="theme" value="힐링">힐링
+		</label>
+		&nbsp; 
+		<label class="checkbox-inline">
+			<input type="checkbox" id="inlineCheckbox2" name="theme" value="스냅">스냅
+		</label>
+		&nbsp; 
+		<label class="checkbox-inline">
+			<input type="checkbox" id="inlineCheckbox3" name="theme" value="액티비티">액티비티
+		</label>
+		&nbsp; 
+		<label class="checkbox-inline">
+			<input type="checkbox" id="inlineCheckbox4" name="theme" value="식도락">식도락
+		</label>
+		&nbsp; 
+		<label class="checkbox-inline">
+			<input type="checkbox" id="inlineCheckbox5" name="theme" value="영화">영화
+		</label>
+		&nbsp; 
+		<label class="checkbox-inline">
+			<input type="checkbox" id="inlineCheckbox6" name="theme" value="스포츠">스포츠
+		</label>
          
          <input type="hidden" id="board_theme" name="board_theme">
       </div>
@@ -213,7 +219,7 @@
 		// 체크박스 값 넘기기
 		var pick=Array();
 		var pick_cnt=0;
-		var chkbox=$('.custom-control-input');
+		var chkbox=$('input[type=checkbox]');
 			
 		for(i=0; i<chkbox.length; i++) {
             if(chkbox[i].checked==true) {

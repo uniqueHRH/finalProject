@@ -14,64 +14,88 @@
 	#allContain {
 		width:950px;
 		margin:0 auto;
-		padding-left:200px;
-		font-family: 'Jua';
+		padding-left:100px;
+		font-family:"Jua";
 	}
 	form {
-      width:750px;      
-      margin:0 auto;
-      font-size:15px;
+     	width:1000px;
+		padding:0;
+		font-size:17px;
 	}
-	#board_content {
-		width:750px;
-		height:300px;
-		resize:none;
+	.form-group {
+		width:1100px;
 	}
-	.custom-control-label {
-      font-size:15px;
-      font-weight:normal;
-      padding:0 0 10 0;
-      width:50px;
+	#select {
+		width:800px;
+		margin:0 auto;
 	}
-	#the {
-		width:750px;
+	label {
+		font-weight:normal;
+		padding:0;
+		width:80px;
+	}
+	#sub {
+		width:1000px;
+		margin:0 auto;
+		text-align:center;      
+	}
+	#sub_sub {
+		width:1000px;
+		margin:0 auto;
+		text-align:center;      
+		padding:5 0;
+	}
+	#textarea {
+		width:1000px;
+		margin:0 auto;
+		padding:10 0 10 100;
+	}
+	#theme {
+		width:800px;
+		margin:0 auto;
 		text-align:center;
-		padding:15 0;
+		padding:20 0 20 200;
 	}
-/* 나라 드롭창 div */
-	#pl {
-		padding:0px 620px 0px 0px;
-	}
-/* 나라 드롭창 */
-	#board_land {
-		align:left;
-		display:inline-block;
+/* 나라 선택 */   
+	#land {
 		border-radius:5px;
 		font-size:14px;
-		height:30px;
+		text-align:center;
+		width:85px;
+		height:33px;
+		padding:0px 0px 0px 5px;
+	}
+	#land:hover {
+		background-color:#e8e8e8;
+	}
+	#land>option {
+		font-size:13px;
+		text-align:center;
+		font-weight:normal;
 	}
 	#board_sub, #client_nick1, #board_date, #board_count, #board_content {
 		background-color:white;
 	}
-	label {
-		width:40px;
-	}
 	#board_sub {
-		width:750px;
+		width:670px;
 		align:left;
 		text-align:left;
 	}
 	#client_nick1, #board_date, #board_count {
 		width:161px;
 	}
-/* 테마 선택 */
 	#btn {
-		width:750px;
+		width:1100px;
 		text-align:center;
 	}
 /* 이미지 수정 */
+	.board_img img {
+		margin:20px 0;
+	}
 	.upload {
-		padding:20 0 10 0;
+		width:800px;
+		padding:10 0 0 0;
+		margin:0 auto;
 	}
 	#board_img {
 		display:inline-block;
@@ -86,12 +110,9 @@
 		font-weight:bold;
 	}
 </style>
-<script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
-<script type="text/javascript" src="${root }js/bootstrap.js"></script>
 </head>
 <body>
 <jsp:include page="/WEB-INF/menubar.jsp"/>
-
 
 <!-- contents start -->
 <div id="allContain">
@@ -101,8 +122,8 @@
 	      
 	<!-- 제목 -->
 	<form class="form-inline" method="POST" enctype="multipart/form-data">
-		<div id="pl">
-			<select id="board_land" name="board_land" style="cursor:pointer">
+		<div id="select">
+			<select id="land" name="board_land" style="cursor:pointer">
 				<option value="${bean.board_land }">${bean.board_land }</option>
 				<option value="중국/일본">중국/일본</option>
 				<option value="동남아시아">동남아시아</option>
@@ -112,51 +133,45 @@
 				<option value="아프리카">아프리카</option>
 			</select>
 		</div>
-		<p></p>
-		<div>
+		<div class="form-group" id="sub">
+			<label for="exampleInputName2" id="subject">제 &nbsp; 목</label>
 			<input type="text" class="form-control" id="board_sub" name="board_sub" value="${bean.board_sub }">
 			<input type="hidden" id="board_no" name="board_no" value="${bean.board_no }">
 		</div>
-		<p></p>
-		<div class="form-group">
+		<div id="sub_sub">
 			<label for="exampleInputName2">닉네임</label>
 			<input type="text" class="form-control" id="client_nick1" value="${bean.client_nick1 }" style="cursor:default" disabled>
-		</div>
-		<div class="form-group">
 		&nbsp; &nbsp;
-		<fmt:formatDate value="${bean.board_date}" pattern="yyyy-MM-dd HH:mm" var="date"/>
+			<fmt:formatDate value="${bean.board_date}" pattern="yyyy-MM-dd HH:mm" var="date"/>
 			<label for="exampleInputEmail2">작성일</label>
 			<input type="email" class="form-control" id="board_date" value="${date }" style="cursor:default" disabled>
-		</div>
-		<div class="form-group">
 		&nbsp; &nbsp;
 			<label for="exampleInputEmail2">조회수</label>
 			<input type="email" class="form-control" id="board_count" value="${bean.board_count }" style="cursor:default" disabled>
 		</div>
-		<p></p>
-		<div>
+		<div id="textarea">
 			<textarea class="form-control" id="board_content" name="board_content">${bean.board_content }</textarea>
 		</div>
-		<p></p>
 		<!-- 테마 선택 -->	
-		<div class="custom-control custom-checkbox" align="center" id="the">
-			<input type="checkbox" name="theme" class="custom-control-input" value="힐링">
-			<label class="custom-control-label" for="jb-checkbox">힐링</label>
-			&nbsp; 
-			<input type="checkbox" name="theme" class="custom-control-input" value="스냅">
-			<label class="custom-control-label" for="jb-checkbox">스냅</label>
-			&nbsp;
-			<input type="checkbox" name="theme" class="custom-control-input" value="액티비티">
-			<label class="custom-control-label" for="jb-checkbox">액티비티</label>
-			&nbsp;
-			<input type="checkbox" name="theme" class="custom-control-input" value="식도락">
-			<label class="custom-control-label" for="jb-checkbox">식도락</label>
-			&nbsp;
-			<input type="checkbox" name="theme" class="custom-control-input" value="영화">
-			<label class="custom-control-label" for="jb-checkbox">영화</label>
-			&nbsp;
-			<input type="checkbox" name="theme" class="custom-control-input" value="스포츠">
-			<label class="custom-control-label" for="jb-checkbox">스포츠</label>
+		<div class="checkbox" align="center" id="theme">
+			<label class="checkbox-inline">
+				<input type="checkbox" id="inlineCheckbox1" name="theme" value="힐링">힐링
+			</label>
+			<label class="checkbox-inline">
+				<input type="checkbox" id="inlineCheckbox2" name="theme" value="스냅">스냅
+			</label>
+			<label class="checkbox-inline">
+				<input type="checkbox" id="inlineCheckbox3" name="theme" value="액티비티">액티비티
+			</label>
+			<label class="checkbox-inline">
+				<input type="checkbox" id="inlineCheckbox4" name="theme" value="식도락">식도락
+			</label>
+			<label class="checkbox-inline">
+				<input type="checkbox" id="inlineCheckbox5" name="theme" value="영화">영화
+			</label>
+			<label class="checkbox-inline">
+				<input type="checkbox" id="inlineCheckbox6" name="theme" value="스포츠">스포츠
+			</label>
 			
 			<input type="hidden" id="board_theme" name="board_theme" value="${bean.board_theme }">
 		</div>
@@ -170,7 +185,6 @@
 				<input type="hidden" name="board_thumb" value="${bean.board_img }"/>
 			</div>
 		</div>
-		<p></p>	
 		
 		<div id="btn">
 			<button type="submit" class="btn btn-default" id="subm">수정완료</button> &nbsp;
@@ -182,16 +196,18 @@
 <jsp:include page="/WEB-INF/remote.jsp"/>
 <jsp:include page="/WEB-INF/socket.jsp"/>
 <jsp:include page="/WEB-INF/footer.jsp"/>
-</body>
+<script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="${root }js/bootstrap.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script type="text/javascript" src="${root }ckeditor/ckeditor.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		CKEDITOR.replace('board_content');
+		
 		$('#dele').hide();
 		// 테마 불러오기
 		var theme=$('#board_theme').val();
-		var chkbox=$('.custom-control-input');
+		var chkbox=$('input[type=checkbox]');
 		
  		theme=theme.split(',');
 		
@@ -211,7 +227,7 @@
 				$(this).attr('checked',false);
 				swal({
 					text:'테마는 최대\n"세 개까지 선택이 가능합니다',
-					icon:'error',
+					icon:'warning',
 					button:'확인'
 				})
 			}
@@ -221,7 +237,7 @@
 		$('#subm').on('click',function() {
 			var pick=Array();
 			var pick_cnt=0;
-			var chkbox=$('.custom-control-input');
+			var chkbox=$('input[type=checkbox]');
 			
 			for(i=0; i<chkbox.length; i++) {
 				if(chkbox[i].checked==true) {
@@ -265,4 +281,5 @@
 		});      
    });
 </script>
+</body>
 </html>
