@@ -178,30 +178,31 @@
 		// 페이징
 		//이전 버튼 이벤트
 		var uri='${url}';
-      	uri=uri.split('board/')[1];
+		uri=uri.split('main/')[1];
+			console.log(uri);
 		function prev(page, range, rangeSize) {
 			var page=((range-2)*rangeSize)+1;
 			var range=range-1;
-			var url='${root }board/'+uri;
-			url=url+"?page="+page;
+			var url='${root }main/'+uri+'?id=${sessionScope.check.client_name}';
+			url=url+"&page="+page;
 			url=url+"&range="+range;
 			location.href=url;
 		}
 		//페이지 번호 클릭
 		function pagination(page, range, rangeSize, searchType, keyword) {
-			var url='${root }board/'+uri;
-			url=url+"?page="+page;
+			var url='${root }main/'+uri+'?id=${sessionScope.check.client_name}';
+			url=url+"&page="+page;
 			url=url+"&range="+range;
 			url=url+"&searchType="+$('#searchType').val();
 			url=url+"&keyword="+keyword;
-			location.href = url;	
+			location.href = url;
 		}
 		//다음 버튼 이벤트
 		function next(page, range, rangeSize) {
 			var page=parseInt((range*rangeSize))+1;
 			var range=parseInt(range)+1;
-			var url='${root }board/'+uri;
-			url=url+"?page="+page;
+			var url='${root }main/'+uri+'?id=${sessionScope.check.client_name}';
+			url=url+"&page="+page;
 			url=url+"&range="+range;
 			location.href=url;
 		}

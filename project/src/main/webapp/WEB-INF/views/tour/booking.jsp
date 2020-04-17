@@ -62,7 +62,7 @@
        width: 200px;
        position: relative;
        left: 400px;
-       top: 500px;
+       top: 430px;
     }
     #bookbtn{
        width: 300px;
@@ -192,7 +192,7 @@
             <div class="form-group">
                <label for="paid_birth1" class="col-sm-2 control-label">여행자 생년월일</label>
                <div class="col-sm-10">
-                  <input type="text" class="form-control" id="paid_birth1" placeholder="대표자 생년월일을 입력하세요" style="width:300px" >
+                  <input type="text" class="form-control" id="paid_birth1" placeholder="대표자 생년월일을 입력하세요 ex)19920216" style="width:300px" >
                <div id="birth_check"></div>
                </div>
             </div>
@@ -269,11 +269,18 @@
    
          if(tour_date=="" | paid_name=="" | paid_count=="" | paid_phone=="" | paid_birth==""){
             swal({
-                  title: "예약자정보를 입력해주세요",
+                  title: "예약자정보를 확인해주세요",
                   icon: "warning"
                   })
             return false;
          }else{
+        		 swal({
+                     title: "작성한 정보 재확인요청",
+                     text: "확인 이후 수정이 불가능합니다.",
+                     icon: "info",
+                     buttons: ["아니요","네"],
+                     })
+                     .then((네) => {
          //hidden input 값 받아오는 함수
          $('#bookform').append('<input type="hidden" id="client_name" name="client_name" value="'+'${sessionScope.check.client_name}'+'">');
          $('#bookform').append('<input type="hidden" id="tour_date" name="tour_date" value="'+tour_date+'">');
@@ -291,8 +298,9 @@
          $('#paid_phone1').attr('readonly',true);
          $('#paid_birth1').attr('readonly',true);
          $('#paid_kakaoid1').attr('readonly',true);
-         
-         }
+                  
+        	 });
+         }	 
         });
       $('#bookbtn').click(function(){
          var tour_date=$('#tour_date1').val();
@@ -303,7 +311,7 @@
       
          if(tour_date=="" | paid_name=="" | paid_count=="" | paid_phone=="" | paid_birth==""){
             swal({
-                  title: "예약자정보를 입력해주세요",
+                  title: "예약자정보를 확인해주세요",
                   icon: "warning"
                   })
             return false;
@@ -317,9 +325,9 @@
                 return false;
             }else{
                swal({
-                     title: "예약이 완료되었습니다",
-                     icon: "success"
-                     })
+                     title: "예약이 완료되었습니다?",
+                     icon: "success",
+                      })
                return true;
             }
          });
@@ -343,65 +351,6 @@
          $('#infor2 tr:nth-child(1)').append('<td style="color: red;">'+paid_total+'&nbsp원</td>');
          //총금액함수 end
       });
-      //날짜 유효성검사
-      $('#tour_date1').blur(function(){
-         var tour_date1 = /^(19|20)\d{2}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[0-1])$/; 
-         var datecheck = tour_date1.test($("#tour_date1").val());
-         
-         if(datecheck){
-            $('#date_check').text('');
-         }else{
-            $('#date_check').text('날짜를 선택해주세요');
-            $('#date_check').css('color', 'red');
-         }
-      });
-      //이름 유효성검사
-      $('#paid_name1').blur(function(){
-         var name = /^[가-힣]{2,4}$/;
-         var namecheck = name.test($("#paid_name1").val());
-         
-         if(namecheck){
-            $('#name_check').text('');
-         }else{
-            $('#name_check').text('이름을 확인해주세요');
-            $('#name_check').css('color', 'red');
-         }
-      });
-      $('#paid_count1').blur(function(){
-         if($('#paid_count1').val()==""){
-            $('#count_check').text('인원수를 선택해주세요');
-            $('#count_check').css('color', 'red');
-            return false;
-         }else{
-            $('#count_check').text('');
-         }
-      });
-      $('#paid_phone1').blur(function(){
-         var phone = /(01[016789])([1-9]{1}[0-9]{2,3})([0-9]{4})$/;
-         var phonecheck = phone.test($("#paid_phone1").val());
-         
-         if(phonecheck){
-            $('#phone_check').text('');
-            return true;
-         }else{
-            $('#phone_check').text('양식에 맞게 작성해주세요 ex)01012345678');
-            $('#phone_check').css('color', 'red');
-            return false;
-         }
-      
-      });
-      $('#paid_birth1').blur(function(){
-         var birth = /^(19[0-9][0-9]|20\d{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$/;
-         var birthcheck = birth.test($("#paid_birth1").val());
-         
-         if(birthcheck){
-            $('#birth_check').text('');
-         }else{
-            $('#birth_check').text('8자리로 입력하세요 ex)19920216');
-            $('#birth_check').css('color', 'red');
-         }
-      });
-      
       
    });
 </script>

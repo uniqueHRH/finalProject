@@ -188,6 +188,7 @@
 //////////////////////////////////////////////////////////////////////////////////////////
 		var uri='${url}';
 		uri=uri.split('main/')[1];
+		console.log(uri);
 		// 페이징
 		//이전 버튼 이벤트
 		function prev(page, range, rangeSize) {
