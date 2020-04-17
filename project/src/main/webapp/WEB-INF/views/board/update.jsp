@@ -182,6 +182,7 @@
 <jsp:include page="/WEB-INF/remote.jsp"/>
 <jsp:include page="/WEB-INF/socket.jsp"/>
 <jsp:include page="/WEB-INF/footer.jsp"/>
+</body>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -207,8 +208,8 @@
 			if(cnt>3) {
 				$(this).attr('checked',false);
 				swal({
-					text:'테마는 최대 세 개까지\n선택이 가능합니다',
-					icon:'warning',
+					text:'테마는 최대\n"세 개까지 선택이 가능합니다',
+					icon:'error',
 					button:'확인'
 				})
 			}
@@ -251,7 +252,7 @@
 		// 취소버튼
 		$('#goList').on('click',function() {
 			swal({
-				text: "작성내용이 사라집니다\n그래도 돌아가시겠습니까?",
+				title: "작성내용이 사라집니다\n그래도 돌아가시겠습니까?",
 				icon: "warning",
 				buttons: ["아니요", "네"]
 			}).then((네) => {
@@ -262,5 +263,4 @@
 		});      
    });
 </script>
-</body>
 </html>

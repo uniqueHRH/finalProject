@@ -113,12 +113,8 @@
 		width:900px;
 		padding:28;
 	}
-	#textarea {
-		width: 100%;
-		resize: none;
-		overflow-y: hidden;
-		border:0;
-		outline:none;
+	#contentS {
+		text-align:left;
 		font-size:15px;
 	}
 	#board_thumb {
@@ -163,7 +159,7 @@
 	   <div contenteditable="false" id="contentM">
 			<img src="${root }resources/${bean.board_thumb }" id="board_thumb"/>
 			<input type="hidden" id="hiddenI" value="${bean.board_thumb }"/>
-			<textarea id="textarea" readonly>${bean.board_content }</textarea>
+			<div id="contentS">${bean.board_content }</div>
 	   </div>
 	   <div id="btn">
 	      <button type="button" class="btn btn-default" id="subm">수정하기</button>
@@ -223,6 +219,10 @@
 			$(this).height( this.scrollHeight );
 		});
 		$('#contentM').find( 'textarea' ).keyup();
+		
+		var contents=$('#contentS').html();
+		contents=contents.replace(/(\n|\r\n)/g, '<br>');
+		$('#contentS').html(contents);
 		
 		// 이미지가 없을 때 출력되지 않도록
 		var img=$('#hiddenI').val();
@@ -491,7 +491,6 @@
       }
       
    });
-   
 </script>
 </body>
 </html>

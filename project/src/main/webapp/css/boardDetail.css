@@ -86,12 +86,8 @@
 		width:800px;
 		padding:28;
 	}
-	#textarea {
-		width: 100%;
-		resize: none;
-		overflow-y: hidden;
-		border:0;
-		outline:none;
+	#contentS {
+		text-align:left;
 		font-size:15px;
 	}
 	#board_thumb {
