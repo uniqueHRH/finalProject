@@ -34,10 +34,10 @@
 	}
 	/* ´ñ±Û */
 	#table {
-		width:800px;
+		width:900px;
 		margin:0 auto;
 		border-color:gray;
-		padding:10px;
+		padding:10 15;
 		border:0;
 		outline:0;
 		background-color:#e8e8e8;
@@ -47,14 +47,13 @@
 		height:100px;
 	}
 	#reply {
-		width:700px;
+		width:800px;
 		height:30px;
-		font-family:'Jua';
 		border:0;
 		outline:0;
 	}
 	#reply_content {
-		width:700px;
+		width:800px;
 	}
 	#edit, #update, #cancel, #dele2, #insert {
 		text-align:center;

@@ -102,7 +102,6 @@
 <jsp:include page="/WEB-INF/remote.jsp"/>
 <jsp:include page="/WEB-INF/socket.jsp"/>
 <jsp:include page="/WEB-INF/footer.jsp"/>
-</body>
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="${root }js/bootstrap.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
@@ -265,7 +264,8 @@
 		            error:function() {
 		            	swal({
 			  				   title: "다시 시도해주세요",
-			  				   icon: "warning"
+			  				   icon: "warning",
+			  				   button:'확인'
 						})
 		            }
 	         	});
@@ -301,8 +301,7 @@
 						  title: "수정하시겠습니까?",
 						  icon: "warning",
 						  buttons: ["아니요", "네"]
-						})
-						.then((네) => {
+					}).then((네) => {
 						  if (네) {
 								    $.ajax({
 								    	 url:'../partnerRepUp',
@@ -319,6 +318,11 @@
 											    });	
 						                  },
 						                  error:function() {
+						                	  swal({
+													title:'다시 시도해주세요',
+													icon:'errer',
+													button:'확인'
+												})
 						                  }
 						            });//ajax
 							  } else {
@@ -355,16 +359,21 @@
   									    swal({
   									      title: "삭제되었습니다.",
   									      icon: "success",
-  									    })
+										  button:'확인'
+  									  }).then((확인) => {
+  									  	reload();
+  									  })
   				                  },
   				                  error:function() {
+  				                	swal({
+  		    		            		title:'다시 시도해주세요',
+  		    		            		icon:'warning',
+  		    		            		button:'확인'
+  		    		            	}).then((확인) => {
+  		    		            		reload();
+  		    		            	})
   				                  }
   				            });//ajax
-  					  } else {
-  						    swal({
-  						    	title: "다시 시도해주세요",
-  						    	icon: "error",
-  						    })
   					  }//if 
   				});
      			
@@ -378,4 +387,5 @@
    });
    
 </script>
+</body>
 </html>

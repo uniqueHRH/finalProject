@@ -71,7 +71,6 @@
 					$('.board_img img').attr('src', data.target.result).width(200);        
 				}
 				reader.readAsDataURL(this.files[0]);
-				$('#dele').toggle();
 			}
 		});
 		// 이미지 삭제

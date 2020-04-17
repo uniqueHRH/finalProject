@@ -71,7 +71,6 @@
 					$('.board_img img').attr('src', data.target.result).width(200);        
 				}
 				reader.readAsDataURL(this.files[0]);
-				$('#dele').toggle();
 			}
 		});
 		// 이미지 삭제
@@ -108,11 +107,10 @@
 			
 			swal({
 				  title: "작성을 취소하시겠습니까?",
-				  //text: "", (""안에 내용쓰면 title 밑에 작은 글씨로 들어감)
-				  icon: "warning", //"info,success,warning,error" 중 택1
-				  buttons: ["아니요", "네"]//버튼 내용 작성가능
+				  icon: "warning",
+				  buttons: ["아니요", "네"]
 				})
-				.then((네) => {//네 클릭했을 때 이벤트
+				.then((네) => {
 					location.href="../board/partner";
 			});
 		});

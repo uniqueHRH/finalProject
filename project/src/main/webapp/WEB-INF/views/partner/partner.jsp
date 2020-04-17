@@ -50,7 +50,7 @@
 	   </thead>
 	   <tbody>
 			<c:forEach items="${list }" var="bean">
-			<fmt:formatDate value="${bean.partner_date}" pattern="yyyy-MM-dd" var="date"/>
+			<fmt:formatDate value="${bean.partner_date}" pattern="yyyy-MM-dd HH:mm" var="date"/>
 			<tr>
 				<td>${bean.board_no }</td>
 				<td><a href="partnerDe/${bean.board_no }">${bean.partner_sub }</a></td>

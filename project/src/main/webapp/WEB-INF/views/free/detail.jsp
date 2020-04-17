@@ -252,8 +252,6 @@
 		            		title:'다시 시도해주세요',
 		            		icon:'warning',
 		            		button:'확인'
-		            	}).then((확인) => {
-		            		reload();
 		            	})
 		            }
 	         	});
@@ -298,15 +296,19 @@
 			            type:'POST',
 			            data:{reply_no:num, reply_content:text},
 			            success:function() {
-			            	reload();
+			            	swal({
+							      title: "수정되었습니다.",
+							      icon: "success",
+							      button: "확인"
+							 }).then((확인) => {
+							    reload();
+							 });
 						},
 						error:function() {
 							swal({
 			            		title:'다시 시도해주세요',
 			            		icon:'warning',
 			            		button:'확인'
-			            	}).then((확인) => {
-			            		reload();
 			            	})
 						}
 					});

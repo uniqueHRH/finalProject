@@ -51,7 +51,7 @@
 			if(content=='') {
 				swal({
 	  				   title: "내용을 입력해주세요",
-	  				   icon: "warning" //"info,success,warning,error" 중 택1
+	  				   icon: "warning"
 	  				  })
 				return false();
 			}
@@ -65,13 +65,13 @@
 					window.close();
 					swal({
 		  				   title: "메세지가 전송되었습니다",
-		  				   icon: "success" //"info,success,warning,error" 중 택1
+		  				   icon: "success"
 		  				  })
 				},
 				error:function() {
 					swal({
 		  				   title: "다시 시도해주세요",
-		  				   icon: "warning" //"info,success,warning,error" 중 택1
+		  				   icon: "warning"
 		  				  })
 				}
 			});
