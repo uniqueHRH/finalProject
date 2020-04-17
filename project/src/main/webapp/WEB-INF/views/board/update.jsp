@@ -184,8 +184,10 @@
 <jsp:include page="/WEB-INF/footer.jsp"/>
 </body>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script type="text/javascript" src="${root }ckeditor/ckeditor.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
+		CKEDITOR.replace('board_content');
 		$('#dele').hide();
 		// 테마 불러오기
 		var theme=$('#board_theme').val();

@@ -49,6 +49,9 @@
 	#recentImg {
 		width:210px;
 	}
+	#rightSide{
+		margin-top: -1000px;
+	}
 
 </style>
 </head>
@@ -78,7 +81,7 @@
 		 if(list4 ==''){
 		 }else{
 		 	for(var i=0; i<list4.length-(4*i-1); i++){
-				 $('#right_zzim ul').append('<li><a href="/project/tour/detail/'+list4[4*i+1]+'" id="recentName"><img src="'+list4[4*i]+'" id="recentImg"><p>'+list4[4*i+2]+'('+list4[4*i+3]+')</p></a></li>');
+				 $('#right_zzim ul').append('<li><a href="/project/tour/detail/'+list4[4*i+1]+'" id="recentName"><img src="'+list4[4*i]+'" id="recentImg"><p>'+list4[4*i+2]+'('+list4[4*i+3]+' )</p></a></li>');
 	 	 	}
 		 }
 		
