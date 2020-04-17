@@ -73,10 +73,10 @@
 	}
 	.answer {
 		width:900px;
-		padding:25 0 25 35;
-		font-size:17px;
+		padding:20 0 25 35;
+		font-size:15px;
+		font-weight:normal;
 		background-color:white;
-		white-space:normal;
 		resize:none;
 		outline:none;
 		border:0;
@@ -154,18 +154,6 @@
 			$('#theme').hide();
 	    }
 	    
-	    $('.answer').each(function() {
-		    var btn=$(this).attr('id');
-			var num=btn.split('_');
-			var num=num[1];
-
-			var content=$('textarea[id=ans_'+num+']').val();
-			console.log(content);
-			content.replace(/\r\n/g,"<br/>");
-			console.log(content);
-			
-			$('textarea[id=ans_'+num+']').val(content)
-	    });
 	   $('#ins').on('click',function() {
 		   var question=$('#queIns').val();
 		   var answer=$('#ansIns').val();
@@ -215,7 +203,7 @@
 		
 //////////////////////////////////////////////////////////////////////////////////////		
 		// 리스트 출력
-		//$('textarea[id^=ans_]').hide();
+		$('textarea[id^=ans_]').hide();
 		$('a[id^=upd_]').hide();
 		$('a[id^=ins_]').hide();
 		$('a[id^=can_]').hide();
