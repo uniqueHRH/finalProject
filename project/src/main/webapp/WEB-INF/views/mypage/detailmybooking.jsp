@@ -107,8 +107,16 @@
 <script type="text/javascript" src="${root }js/bootstrap.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.js"></script>
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script type="text/javascript">	
 //////////////////////////////////////////////////////////////////////////////////////////
+$(document).ready(function(){
+		var paid_state='${bean.paid_state}';	
+		if(paid_state == '결제완료'){
+			$('#paybtn').hide();
+			
+		}	
+	});
 
 $("#paybtn").click(function () {
 
@@ -128,25 +136,29 @@ $("#paybtn").click(function () {
 	}, function(rsp) {
 	    if ( rsp.success ) {
 	        var msg = '결제가 완료되었습니다.';
-	        msg += '고유ID : ' + rsp.imp_uid;
+	        msg1 = '고유ID : ' + rsp.imp_uid;
 	        msg += '상점 거래ID : ' + rsp.merchant_uid;
 	        msg += '결제 금액 : ' + rsp.paid_amount;
 	        msg += '카드 승인번호 : ' + rsp.apply_num;
 	    
 	        jQuery.ajax({
-	        url: '../paidconfirm', // 가맹점 서버
-	          method: "POST",
-	          data: {
-	        	  paid_no:${bean.paid_no}
-	          }
-	      }).done(function (data) {
-	    	  location.href="/project/main/mybooking/?id=${sessionScope.check.client_name}";
-	      })
-	    } else {
-	        var msg = '결제에 실패하였습니다.';
-	        msg += '에러내용 : ' + rsp.error_msg;
-	    }
-	    alert(msg);
+			        url: '../paidconfirm', // 가맹점 서버
+			          method: "POST",
+			          data: {
+			        	  paid_no:${bean.paid_no}
+			          }
+	        }).done(function (data) {
+		    	  location.href="/project/main/mybooking/?id=${sessionScope.check.client_name}";
+		      })
+		    } else {
+		        var msg = '결제에 실패하였습니다.';
+		        msg1 = '에러내용 : ' + rsp.error_msg;
+		    }
+	    swal({
+            title: msg,
+            text: msg1,
+            icon: "info"
+            })
 	});
 });
 </script>
