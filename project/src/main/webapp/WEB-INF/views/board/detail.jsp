@@ -12,15 +12,14 @@
 <link rel="stylesheet" type="text/css" href="${root }css/travel.css" />
 <style type="text/css">
 	#allContain {
-		width:1000px;
+		width:1100px;
 		margin:0 auto;
-		padding-left:170px;
+		padding-left:150px;
 		font-family: 'Jua';
 	}
 	form {
-		width:950px;      
+		width:1100px;      
 		margin:0 auto;
-		font-family: 'Jua';
 		font-size:18px;
 		align:center;
 		text-align:center;
@@ -30,7 +29,7 @@
 		background-color:white;
 	}
 	#board_sub {
-		width:650px;
+		width:700px;
 		align:left;
 		text-align:left;
 	}
@@ -42,10 +41,10 @@
 		border-color:white;
 	}
 	#board_date {
-		width:150px;
+		width:170px;
 	}
 	#client_nick1, #board_count {
-		width:140px;
+		width:160px;
 	}
 	#btn {
 		text-align:center;
@@ -68,7 +67,6 @@
 	#reply {
 		width:700px;
 		height:30px;
-		font-family:'Jua';
 		border:0;
 		outline:0;
 	}
@@ -114,6 +112,7 @@
 		border-radius:10px;
 		width:800px;
 		padding:28;
+		background-color:green;
 	}
 	#contentC {
 		width:670px;
@@ -122,6 +121,11 @@
 		border:0;
 		outline:0;
 		text-align:left;
+	}
+	textarea {
+		width:700px;
+		/*border:0;
+		outline:none;*/
 	}
 	#board_thumb {
 		margin:20px 5px;
@@ -162,15 +166,11 @@
 			<input type="hidden" id="log" name="log" value="${sessionScope.check.client_nick1}">
 			<input type="hidden" id="staffLog" name="staffLog" value="${sessionScope.staffcheck.staff_name}">
 	   </div>
-	   <p></p>
 	   <div contenteditable="false" id="contentM">
 			<img src="${root }resources/${bean.board_thumb }" id="board_thumb"/>
 			<input type="hidden" id="hiddenI" value="${bean.board_thumb }"/>
-			<div>
-				${bean.board_content }
-			</div>
+				<textarea readonly>${bean.board_content }</textarea>
 	   </div>
-	   <p></p>
 	   <div id="btn">
 	      <button type="button" class="btn btn-default" id="subm">수정하기</button>
 	      <button type="button" class="btn btn-default" id="dele">삭제하기</button>

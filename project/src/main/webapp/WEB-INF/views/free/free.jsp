@@ -29,7 +29,7 @@
    
 	
    
-	<table class="table table-hover" id="table">
+	<table class="table table-hover" id="containerTable">
 		<div class="topMenu" id="theme">
 			<input type="text" value="<c:out value="${listCnt}"></c:out>개의 게시물이 조회되었습니다" id="listCnt" disabled/>
 			<div id="fff"></div>
@@ -49,7 +49,7 @@
 	   </thead>
 	   <tbody>
 			<c:forEach items="${list }" var="bean">
-			<fmt:formatDate value="${bean.free_date}" pattern="yyyy-MM-dd" var="date"/>
+			<fmt:formatDate value="${bean.free_date}" pattern="yyyy-MM-dd HH:mm" var="date"/>
 			<tr>
 				<td>${bean.board_no }</td>
 				<td><a href="freeDe/${bean.board_no }">${bean.free_sub }</a></td>

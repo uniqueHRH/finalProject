@@ -10,79 +10,85 @@
 <link rel="stylesheet" type="text/css" href="${root }css/bootstrap.css" />
 <link rel="stylesheet" type="text/css" href="${root }css/travel.css" />
 <style type="text/css">
-   #allContain {
-      width:950px;
-      margin:0 auto;
-      padding-left:180px;
-      font-family: 'Jua';
-   }
-   form {
-      width:950px;      
-      margin:0 auto;
-      font-size:18px;
-   }
-   #select {
-      padding:0 0 0 40px;
-   }
-   #sub {
-         width:800px;
+	#allContain {
+		width:950px;
+		margin:0 auto;
+		padding-left:100px;
+		font-family: 'Jua';
+	}
+	form {
+     	width:1000px;
+		padding:0;
+		font-size:17px;
+	}
+	#select {
+		width:800px;
+		margin:0 auto;
+	}
+	.form-group {
+		width:1100px;
+	}
+	label {
+		font-weight:normal;
+		padding:0;
+		width:70px;
+	}
+	#sub {
+         width:1000px;
+         margin:0 auto;
          text-align:center;      
-   }
-   label {
-      font-size:15px;
-      font-weight:normal;
-      padding:0 0 10 0;
-      width:50px;
-   }
-   #textarea {
-      padding-left:50px;
-   }
-   #board_content {
-      width:750px;
-      height:300px;
-      resize:none;
-   }
+	}
+	#textarea {
+		width:1000px;
+		margin:0 auto;
+		padding:10 0 10 100;
+	}
 /* 나라 선택 */   
-   #land {
-      border-radius:5px;
-      font-size:14px;
-      text-align:center;
-      width:85px;
-      height:33px;
-      padding:0px 0px 0px 5px;
-   }
-   #land:hover {
-      background-color:#e8e8e8;
-   }
-   #land>option {
-      font-size:13px;
-      text-align:center;
-      font-weight:normal;
-   }
-   #theme {
-      width:800px;
-      text-align:center;
-      padding:15 0;
-   }
-   .board_img img {
-      margin:20px 0;
-   }
-   #btn {
-      width:800px;
-      text-align:center;
-   }
-   #board_img {
+	#land {
+		border-radius:5px;
+		font-size:14px;
+		text-align:center;
+		width:85px;
+		height:33px;
+		padding:0px 0px 0px 5px;
+	}
+	#land:hover {
+		background-color:#e8e8e8;
+	}
+	#land>option {
+		font-size:13px;
+		text-align:center;
+		font-weight:normal;
+	}
+	#theme {
+		width:800px;
+		margin:0 auto;
+		text-align:center;
+		padding:20 0;
+	}
+	.board_img img {
+		margin:20px 0;
+	}
+	#btn {
+		width:1100px;
+		text-align:center;
+	}
+	.upload {
+		width:800px;
+		padding:10 0 0 0;
+	}
+	#board_img {
       display:inline-block;
       width:245px;
-   }
-   #deleImg {
-      display:inline-block;
-   }
-   .swal-text {
-      text-align:center;
-      font-size:25px;
-      font-weight:bold;
-   }
+	}
+	#deleImg {
+		display:inline-block;
+	}
+	.swal-text {
+		text-align:center;
+		font-size:25px;
+		font-weight:bold;
+	}	
 </style>
 </head>
 <body>
@@ -110,12 +116,12 @@
    <!-- 입력 -->
       <div class="form-group" id="sub">
          <p></p>
-         <label for="exampleInputName2">제 &nbsp; 목</label>
+         <label for="exampleInputName2" id="subject">제 &nbsp; 목</label>
          <input type="text" class="form-control" id="board_sub" name="board_sub" style="width:670px;">
          <input type="hidden" id="client_nick1" name="client_nick1" value="${sessionScope.check.client_nick1}">
       </div>
       <div id="textarea">
-         &nbsp; <textarea class="form-control" id="board_content" name="board_content"></textarea>
+		<textarea class="form-control" id="board_content" name="board_content"></textarea>
       </div>
       
    <!-- 테마 선택 -->   
@@ -204,16 +210,6 @@
       
       
       $('#subm').on('click',function() {
-    	// 체크박스 미선택시
-    	var num=$('input:checkbox[name=theme]:checked').length;
-    	if(num==0) {
-    		swal({
-				text:'테마를 선택해주세요',
-				icon:'warning',
-				button:'확인'
-			})
-			return false;
-    	}
 		// 체크박스 값 넘기기
 		var pick=Array();
 		var pick_cnt=0;
@@ -237,28 +233,38 @@
 				})
 				return false;
 			}
+	         var sub=$('#board_sub').val();
+	         var content=$('#board_content').val();
+	         
+	         if(sub=='') {
+	            swal({
+	               title: "제목을 입력해주세요",
+	               icon: "warning",
+	               button:"확인"
+	            })
+	            return false;
+	         } else if(CKEDITOR.instances.board_content.getData()=='') {
+	            swal({
+	               title: "내용을 입력해주세요",
+	               icon: "warning",
+	               button:"확인"
+	            })
+	            return false;
+	         }
+	         
+    	// 체크박스 미선택시
+    	var num=$('input:checkbox[name=theme]:checked').length;
+    	if(num==0) {
+    		swal({
+				text:'테마를 선택해주세요',
+				icon:'warning',
+				button:'확인'
+			})
+			return false;
+    	}
       });
 
-      $('#subm').on('click', function() {
-         var sub=$('#board_sub').val();
-         var content=$('#board_content').val();
-         
-         if(sub=='') {
-            swal({
-               title: "제목을 입력해주세요",
-               icon: "warning",
-               button:"확인"
-            })
-            return false;
-         } else if(CKEDITOR.instances.board_content.getData()=='') {
-            swal({
-               title: "내용을 입력해주세요",
-               icon: "warning",
-               button:"확인"
-            })
-            return false;
-         }
-      });
+
       
       // 뒤로 버튼
       $('#btn2').on('click',function() {
@@ -275,5 +281,5 @@
    });
    
 </script>
-
+</body>
 </html>

@@ -1,26 +1,20 @@
 	#allContain {
-		width:1000px;
+		width:1100px;
 		margin:0 auto;
-		padding-left:130px
+		padding-left:130px;
+		font-family: 'Jua';
 	}
 	#containerTable {
-		width:950px;
+		width:1100px;
 		margin:0 auto;
-		padding:0px;
-		font-family: 'Jua';
-		font-size:15px;
-	}
-	h1, input {
-		font-family: 'Jua';
-	}
-	select, button, a {
-		font-family: 'Jua';
+		padding:10 0;
+		font-size:16px;
 	}
 /* 나라정렬 버튼 */
 	#theme {
-		width:950px;
+		width:1100px;
 		margin:0 auto;
-		padding:0px;
+		padding:8 0;
 	}
 /* 정렬버튼 */
 	#dropdownMenu1:hover {
@@ -38,7 +32,7 @@
 	}
 /* 글쓰기 버튼 div */
 	#fff {
-		padding:0px 238px;
+		padding:0px 311px;
 		display:inline-block;
 	}
 /* 글쓰기 <a> 너비 */
@@ -62,16 +56,16 @@
 		width:100px;
 	}
 	.active>th:nth-child(3) {
-		width:140px;
+		width:180px;
 	}
 	.active>th:nth-child(4) {
-		width:390px;
+		width:450px;
 	}
 	.active>th:nth-child(5) {
 		width:80px;
 	}
 	.active>th:nth-child(6) {
-		width:100px;
+		width:180px;
 	}
 	.active>th:nth-child(7) {
 		width:60px;
@@ -85,6 +79,9 @@
 	#table>tbody td>a:hover {
 		color:black;
 	}
+	#pageNum {
+		padding:20 0;
+	}
 	#pageNum, #search {
 		width:350px;      
 		margin:0 auto;
@@ -94,7 +91,3 @@
 		color:black;
 		text-decoration:none;
    }
-	.dropdown {
-		font-family: 'Jua';
-		font-size: 18px;
-	}

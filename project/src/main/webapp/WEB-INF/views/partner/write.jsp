@@ -26,19 +26,18 @@
 	<form class="form-inline" method="POST" enctype="multipart/form-data">
 	<!-- 입력 -->
 		<div class="form-group">
-			<p></p>
 			<label for="exampleInputName2">&nbsp; 제 &nbsp;목</label>
 			<input type="text" class="form-control" id="board_sub" name="partner_sub">
 			<input type="hidden" id="client_nick1" name="client_nick1" value="${sessionScope.check.client_nick1}">
 		</div>
-		<div><p></p>
+		<div>
 			&nbsp; <textarea class="form-control" id="board_content" name="partner_content"></textarea>
 		</div>
 		<p></p>
 	<!-- file upload -->
 		<div class="upload">
-			<label for="board_img">이미지</label> &nbsp; &nbsp; <a class="btn btn-default" role="button" id="dele">삭제</a>
 			<input type="file" id="board_img" name="file" />
+			<a class="btn btn-default" role="button" id="dele">삭제</a>
 			<div class="board_img"><img src=""/></div>
 		</div>
 	
@@ -83,24 +82,25 @@
 		});
 		
 		$('#subm').on('click', function() {
-			var sub=$('#board_sub').val();
-			var content=$('#board_content').val();
+	         var sub=$('#board_sub').val();
+	         var content=$('#board_content').val();
+	         
+	         if(sub=='') {
+	            swal({
+	               title: "제목을 입력해주세요",
+	               icon: "warning",
+	               button:"확인"
+	            })
+	            return false;
+	         } else if(CKEDITOR.instances.board_content.getData()=='') {
+	            swal({
+	               title: "내용을 입력해주세요",
+	               icon: "warning",
+	               button:"확인"
+	            })
+	            return false;
+	         }
 			
-			if(sub=='') {
-				swal({
-					title: "제목을 입력해주세요",
-					icon: "warning",
-					button:"확인"
-				})
-				return false;
-			} else if(content=='') {
-				swal({
-					title: "내용을 입력해주세요",
-					icon: "warning",
-					button:"확인"
-				})
-				return false;
-			}
 		});
 		
 		// 뒤로 버튼
