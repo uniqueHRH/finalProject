@@ -1,25 +1,40 @@
 	#allContain {
 		width:950px;
 		margin:0 auto;
-		padding-left:200px;
-		font-family: 'Jua';
+		padding-left:100px;
+		font-family:"Jua";
 	}
 	form {
-      width:750px;      
-      margin:0 auto;
-      font-family: 'Jua';
-      font-size:15px;
+     	width:1000px;
+		padding:0;
+		font-size:17px;
 	}
-	#board_content {
-		width:750px;
-		height:300px;
-		resize:none;
+	.form-group {
+		width:1100px;
 	}
 	#board_sub, #client_nick1, #board_date, #board_count, #board_content {
 		background-color:white;
 	}
 	label {
-		width:40px;
+		font-weight:normal;
+		padding:0;
+		width:80px;
+	}
+	#sub {
+		width:1000px;
+		margin:0 auto;
+		text-align:center;      
+	}
+	#sub_sub {
+		width:1000px;
+		margin:0 auto;
+		text-align:center;      
+		padding:5 0;
+	}
+	#textarea {
+		width:1000px;
+		margin:0 auto;
+		padding:10 0 10 100;
 	}
 	#board_sub {
 		width:750px;
@@ -29,13 +44,29 @@
 	#client_nick1, #board_date, #board_count {
 		width:161px;
 	}
-/* 테마 선택 */
-	label {
-		width:40px;
-	}	
-	#btn {
-		width:750px;
+		#btn {
+		width:1100px;
 		text-align:center;
 	}
 /* 이미지 수정 */
+	.board_img img {
+		margin:20px 0;
+	}
+	.upload {
+		width:800px;
+		padding:10 0 0 0;
+		margin:0 auto;
+	}
+	#board_img {
+		display:inline-block;
+		width:245px;
+	}
+	#deleImg {
+		display:inline-block;
+	}
+	.swal-text {
+		text-align:center;
+		font-size:25px;
+		font-weight:bold;
+	}
 	

@@ -416,7 +416,7 @@ public class BoardController {
    		String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
    		String fileName = null;
 
-   		if(file!=null) {
+   		if(file.getOriginalFilename() != null && file.getOriginalFilename() != "") {
    			fileName=UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath); 
    		} else {
    			fileName = uploadPath + File.separator + "images" + File.separator + "none.png";

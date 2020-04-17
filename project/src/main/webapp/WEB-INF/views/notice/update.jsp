@@ -11,11 +11,7 @@
 <link rel="stylesheet" type="text/css" href="${root }css/travel.css" />
 <link rel="stylesheet" type="text/css" href="${root }css/boardUpdate.css" />
 <style type="text/css">
-	.swal-text {
-		text-align:center;
-		font-size:25px;
-		font-weight:bold;
-	}
+
 </style>
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="${root }js/bootstrap.js"></script>
@@ -32,30 +28,24 @@
 	      
 	<!-- 제목 -->
 	<form class="form-inline" method="POST" enctype="multipart/form-data">
-		<div>
+		<div class="form-group" id="sub">
+			<label for="exampleInputName2" id="subject">제 &nbsp; 목</label>
 			<input type="text" class="form-control" id="board_sub" name="notice_sub" value="${bean.notice_sub }">
-			<input type="hidden" id="board_no" name="notice_no" value="${bean.notice_no }">
+			<input type="hidden" id="notice_no" name="notice_no" value="${bean.notice_no }">
 		</div>
-		<p></p>
-		<div class="form-group">
+		<div id="sub_sub">
 			<label for="exampleInputName2">닉네임</label>
 			<input type="text" class="form-control" id="client_nick1" value="관리자" style="cursor:default" disabled>
-		</div>
-		<div class="form-group">
 		&nbsp; &nbsp;
 			<label for="exampleInputEmail2">작성일</label>
 			<input type="email" class="form-control" id="board_date" name="notice_date" value="${bean.notice_date }" style="cursor:default" disabled>
-		</div>
-		<div class="form-group">
 		&nbsp; &nbsp;
 			<label for="exampleInputEmail2">조회수</label>
 			<input type="email" class="form-control" id="board_count" name="notice_count" value="${bean.notice_count }" style="cursor:default" disabled>
 		</div>
-		<p></p>
-		<div>
+		<div id="textarea">
 			<textarea class="form-control" id="board_content" name="notice_content">${bean.notice_content }</textarea>
 		</div>
-		<p></p>
 	<!-- 이미지 수정 -->
 		<div class="upload">
 			<input type="file" id="board_img" name="file" />
@@ -67,7 +57,6 @@
 			</div>
 			
 		</div>
-		<p></p>	
 		
 		<div id="btn">
 			<button type="submit" class="btn btn-default" id="subm">수정완료</button> &nbsp;
@@ -82,10 +71,12 @@
 <jsp:include page="/WEB-INF/remote.jsp"/>
 <jsp:include page="/WEB-INF/socket.jsp"/>
 <jsp:include page="/WEB-INF/footer.jsp"/>
-</body>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script type="text/javascript" src="${root }ckeditor/ckeditor.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
+		CKEDITOR.replace('board_content');
+		
 		// 이미지 수정
 		$('#board_img').change(function(){
 			if(this.files && this.files[0]) {
@@ -110,10 +101,11 @@
 				  buttons: ["아니요", "네"]
 			}).then((네) => {
 				if(네) {
-				  location.href="../noticeDe/${bean.board_no}";    				  
+				  location.href="../noticeDe/${bean.notice_no}";    				  
 				}
 			})
 		});      
    });
 </script>
+</body>
 </html>
