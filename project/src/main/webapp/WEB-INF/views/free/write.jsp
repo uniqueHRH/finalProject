@@ -59,8 +59,10 @@
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="${root }js/bootstrap.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script type="text/javascript" src="${root }ckeditor/ckeditor.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
+		CKEDITOR.replace('free_content');
 		// 파일업로드
 		$('#board_img').change(function(){
 			if(this.files && this.files[0]) {

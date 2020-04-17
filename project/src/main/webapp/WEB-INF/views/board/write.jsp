@@ -166,7 +166,7 @@
 <script type="text/javascript">
    $(document).ready(function() {
       CKEDITOR.replace('board_content');
-      
+     
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
       // 파일업로드
       $('#board_img').change(function(){
