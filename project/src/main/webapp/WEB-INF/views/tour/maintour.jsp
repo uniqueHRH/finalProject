@@ -1,6 +1,8 @@
+<%@page import="org.springframework.web.context.annotation.SessionScope"%>
+<%@page import="java.nio.channels.SeekableByteChannel"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ page pageEncoding="utf-8" %>
+<%@ page pageEncoding="utf-8" import="com.bit.project.model.entity.*, java.util.List"%>
 <link href="https://fonts.googleapis.com/css?family=Jua&display=swap&subset=korean" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Jua|Noto+Sans+KR&display=swap" rel="stylesheet">
 <c:url value="/" var="root"></c:url>
@@ -18,7 +20,7 @@
 		margin-left: 330px;
 	}
 	.thumbnail{
-		margin-left: 13px;
+		margin-left: -30px;
 		width: 330px;
 	}
 	#mainimg{
@@ -31,6 +33,42 @@
 	.caption div{
 		width:100%;
 		height:30px;		
+	}
+	#right_zzim {
+		position: fixed;
+		top: 120px;
+		left: 54%;
+		margin-left: 530px;
+		border:1px solid #B0B5BD;
+		width:265px;
+		height:600px;
+		font-family:"Jua";
+	}
+	#rightSide #right_zzim  div {
+		text-align:center;
+	}
+	#rightSide #right_zzim  div.recTit{
+		line-height:1.5em;
+		padding:5px;
+		color:white;
+		background-color:#505A69;
+	}
+	#rightSide #right_zzim ul {
+		list-style: none;
+		padding-left:0px;
+		min-height: 300px;
+	}
+	#rightSide #right_zzim  li{
+		text-align:center;
+		padding:5px;
+		position:relative;
+	}
+	#recentName {
+		color:black;
+		text-decoration:none;
+	}
+	#recentImg {
+		width:210px;
 	}
 </style>
 
@@ -68,14 +106,33 @@
   </div>
  </div>
 </div>
-
+<div id="rightSide">
+	<div style="overflow: scroll;width:270px; height:600px;" id="right_zzim">
+		<div  class="recTit">최근본상품 <span id=recentCnt></span></div>
+			<ul>
+			   <!-- 본 상품이 뿌려질 부분  -->
+			</ul> 
+	</div>
+</div> 
 <jsp:include page="/WEB-INF/footer.jsp"/>
-<jsp:include page="/WEB-INF/recentview.jsp"/>
 <jsp:include page="/WEB-INF/remote.jsp"/>
 <jsp:include page="/WEB-INF/socket.jsp"/>
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="${root }js/bootstrap.js"></script>
 <script type="text/javascript">
+$(document).ready(function() {
+	 var list= '${sessionScope.Coolist2}';
+	 var list2 = list.replace('[','');
+	 var list3 = list2.replace(']','');
+	 var list4 = list3.split(',');
+	 if(list4 ==''){
+	 }else{
+	 	for(var i=0; i<list4.length-(4*i-1); i++){
+			 $('#right_zzim ul').append('<li><a href="/project/tour/detail/'+list4[4*i+1]+'" id="recentName"><img src="'+list4[4*i]+'" id="recentImg"><p>'+list4[4*i+2]+'('+list4[4*i+3]+' )</p></a></li>');
+	 	}
+	 }
+	
+});
 var uri='<%= request.getRequestURI() %>';
 console.log(uri);
 </script>
