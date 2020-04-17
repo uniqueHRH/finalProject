@@ -14,7 +14,7 @@
 	#allContain {
 		width:1100px;
 		margin:0 auto;
-		padding-left:150px;
+		padding-left:140px;
 		font-family: 'Jua';
 	}
 	form {
@@ -107,25 +107,19 @@
 	}
 /* content */
 	#contentM {
-		margin:20px 75px;
+		margin:20 0 20 100;
 		border:2px solid #e8e8e8;
 		border-radius:10px;
-		width:800px;
+		width:900px;
 		padding:28;
-		background-color:green;
 	}
-	#contentC {
-		width:670px;
-		margin:20px 5px;
-		background-color:white;
+	#textarea {
+		width: 100%;
+		resize: none;
+		overflow-y: hidden;
 		border:0;
-		outline:0;
-		text-align:left;
-	}
-	textarea {
-		width:700px;
-		/*border:0;
-		outline:none;*/
+		outline:none;
+		font-size:15px;
 	}
 	#board_thumb {
 		margin:20px 5px;
@@ -169,7 +163,7 @@
 	   <div contenteditable="false" id="contentM">
 			<img src="${root }resources/${bean.board_thumb }" id="board_thumb"/>
 			<input type="hidden" id="hiddenI" value="${bean.board_thumb }"/>
-				<textarea readonly>${bean.board_content }</textarea>
+			<textarea id="textarea" readonly>${bean.board_content }</textarea>
 	   </div>
 	   <div id="btn">
 	      <button type="button" class="btn btn-default" id="subm">수정하기</button>
@@ -223,6 +217,12 @@
 		$('button[name^=update_').hide();
 		$('button[name^=edit_').hide();
 		$('button[name^=dele2_').hide();
+		
+		$('#contentM').on( 'keyup', 'textarea', function (e){
+			$(this).css('height', 'auto' );
+			$(this).height( this.scrollHeight );
+		});
+		$('#contentM').find( 'textarea' ).keyup();
 		
 		// 이미지가 없을 때 출력되지 않도록
 		var img=$('#hiddenI').val();

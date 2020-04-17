@@ -52,9 +52,7 @@
 	   <div contenteditable="false" id="contentM">
 			<img src="${root }resources/${bean.notice_thumb }" id="board_thumb"/>
 			<input type="hidden" id="hiddenI" value="${bean.notice_thumb }"/>
-			<div>
-				${bean.notice_content }
-			</div>
+			<textarea id="textarea" readonly>${bean.notice_content }</textarea>
 	   </div>
 	   <p></p>
 	   <div id="btn">
@@ -78,6 +76,12 @@
 		// 이미지가 없을 때 출력되지 않도록
 		var img=$('#hiddenI').val();
 		var text='none.png';
+		
+		$('#contentM').on( 'keyup', 'textarea', function (e){
+			$(this).css('height', 'auto' );
+			$(this).height( this.scrollHeight );
+		});
+		$('#contentM').find( 'textarea' ).keyup();
 		
 		if(img.indexOf(text)!=-1) {
 			$('#board_thumb').remove();

@@ -55,8 +55,7 @@
 	   <div contenteditable="false" id="contentM">
 			<img src="${root }resources/${bean.free_thumb }" id="board_thumb"/>
 			<input type="hidden" id="hiddenI" value="${bean.free_thumb }"/>
-			<div>
-				${bean.free_content }
+			<textarea id="textarea" readonly>${bean.free_content }</textarea>
 			</div>
 	   </div>
 	   <p></p>
@@ -109,6 +108,12 @@
    $(document).ready(function() {
 	   $('#subm').hide();
 		$('#dele').hide();
+		
+		$('#contentM').on( 'keyup', 'textarea', function (e){
+			$(this).css('height', 'auto' );
+			$(this).height( this.scrollHeight );
+		});
+		$('#contentM').find( 'textarea' ).keyup();
 		
 		$('button[name^=cancel_').hide();
 		$('button[name^=update_').hide();
