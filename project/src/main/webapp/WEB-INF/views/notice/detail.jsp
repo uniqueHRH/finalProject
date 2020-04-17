@@ -112,7 +112,7 @@
 		                  success:function() {
 		                	  swal({
 		                			title:'삭제되었습니다',
-		                			icon:'error',
+		                			icon:'warning',
 		                			button:'확인'
 		                		}).then((확인) => {
 				                      location.href="../notice";

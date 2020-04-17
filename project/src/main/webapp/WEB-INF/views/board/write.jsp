@@ -184,25 +184,10 @@
          $('#img').attr('src','');
 
       });
-      // 나라선택 (드롭창)
-      $('#fir').on('click',function() {
-         $('#dropdownMenu1').html('중국  / 일본');
-      });
-      $('#sec').on('click',function() {
-         $('#dropdownMenu1').html('동남아시아');
-      });
-      $('#thr').on('click',function() {
-         $('#dropdownMenu1').html('아 메 리 카');
-      });
-      $('#for').on('click',function() {
-         $('#dropdownMenu1').html('유 &nbsp; &nbsp; &nbsp; 럽');
-      });
-      $('#fiv').on('click',function() {
-         $('#dropdownMenu1').html('남 태 평 양');
-      });
-      $('#six').on('click',function() {
-         $('#dropdownMenu1').html('아 프 리 카');
-      });
+      
+		$('#subm').on('click', function() {
+			
+		});
       
       // 체크박스 선택 개수 제한
       $('input[type=checkbox]').on('click',function() {
@@ -211,26 +196,47 @@
             $(this).attr('checked',false);
             swal({
                text:'테마는 최대 세 개까지\n선택이 가능합니다',
-               icon:'error',
+               icon:'warning',
                button:'확인'
             })
          }
       });
       
       
-      // 체크박스 값 넘기기
       $('#subm').on('click',function() {
-         var pick=Array();
-         var pick_cnt=0;
-         var chkbox=$('.custom-control-input');
-         
-         for(i=0; i<chkbox.length; i++) {
+    	// 체크박스 미선택시
+    	var num=$('input:checkbox[name=theme]:checked').length;
+    	if(num==0) {
+    		swal({
+				text:'테마를 선택해주세요',
+				icon:'warning',
+				button:'확인'
+			})
+			return false;
+    	}
+		// 체크박스 값 넘기기
+		var pick=Array();
+		var pick_cnt=0;
+		var chkbox=$('.custom-control-input');
+			
+		for(i=0; i<chkbox.length; i++) {
             if(chkbox[i].checked==true) {
                pick[pick_cnt]=chkbox[i].value;
                pick_cnt++;
             }
          }
          $('#board_theme').val(pick);
+         
+       // 나라 미선택시
+         var land=$('#land').val();
+			if(land=='나라 선택') {
+				swal({
+					text:'나라를 선택해주세요',
+					icon:'warning',
+					button:'확인'
+				})
+				return false;
+			}
       });
 
       $('#subm').on('click', function() {
@@ -258,7 +264,7 @@
       $('#btn2').on('click',function() {
          swal({
             title: "작성을 취소하시겠습니까?",
-            icon: "warning",   //"info,success,warning,error" 중 택1
+            icon: "warning",
             buttons: ["아니요", "네"]   //버튼 내용 작성가능
          }).then((네) => {
             if(네) {

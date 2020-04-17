@@ -208,7 +208,7 @@
 				$(this).attr('checked',false);
 				swal({
 					text:'테마는 최대 세 개까지\n선택이 가능합니다',
-					icon:'error',
+					icon:'warning',
 					button:'확인'
 				})
 			}
