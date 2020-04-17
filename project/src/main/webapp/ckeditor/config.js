@@ -41,7 +41,7 @@ CKEDITOR.editorConfig = function( config ) {
 	
 	config.language = 'ko';
 	config.height = '300px';		//Editor 높이  
-	config.width = '720px';			//Editor 넓이
+	config.width = '1000px';			//Editor 넓이
 	
 	
 };
