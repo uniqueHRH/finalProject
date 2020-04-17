@@ -273,7 +273,7 @@
          swal({
             title: "작성을 취소하시겠습니까?",
             icon: "warning",
-            buttons: ["아니요", "네"]   //버튼 내용 작성가능
+            buttons: ["아니요", "네"]
          }).then((네) => {
             if(네) {
                location.href="../board/review";

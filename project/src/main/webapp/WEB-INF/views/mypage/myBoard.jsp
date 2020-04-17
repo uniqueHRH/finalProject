@@ -17,51 +17,50 @@
 	#allContain {
 		width:1000px;
 		margin:0 auto;
-		padding-left:150px;
+		padding-left:120px;
 		font-family: 'Jua';
 	}
-	#table>thead th:nth-child(1) {
+	#containerTable {
+		width:1000px;
+		margin:0 auto;
+		padding:10 0;
+		font-size:16px;
+	}
+	#containerTable>thead th:nth-child(1) {
+		width:120;
+	}
+	#containerTable>thead th:nth-child(2) {
+		width:600;
+	}
+	#containerTable>thead th:nth-child(3) {
+		width:180;
+	}
+	#containerTable>thead th:nth-child(4) {
 		width:100;
 	}
-	#table>thead th:nth-child(2) {
-		width:560;
+	#containerTable>tbody td:nth-child(3) {
+		text-align:left;
 	}
-	#table>thead th:nth-child(3) {
-		width:135;
-	}
-	#table>thead th:nth-child(4) {
-		width:100;
-	}
-	#table>tbody td:nth-child(2),
-	#table>tbody td:nth-child(3) {
+	#containerTable>tbody td:nth-child(2),
+	#containerTable>tbody td:nth-child(3) {
 		text-align:left; 
 	}
-	#table>tbody td>a {
+	#containerTable>tbody td>a {
 		text-decoration:none;
 	}
-	#table>tbody td>a:hover {
+	#containerTable>tbody td>a:hover {
 		color:black;
 	}
 	.board_id {
 		border:0;
 		outline:0;
-		width:73;
+		width:75;
 		background-color:rgba(1,1,1,0);
 		padding:0 0 0 13;
 		margin:0;
 	}
 	td {
 		cursor:pointer;
-	}
-/* 리모컨 */ 
-	#remote {
-		position:fixed;
-		left:1350px;
-		top:245px;
-		width:100px;
-	}
-	#kakaoChat, #top {
-		height:40px;
 	}
 	img {
 		width:100px;
@@ -82,7 +81,7 @@
    
 	
    
-	<table class="table table-hover" id="table">
+	<table class="table table-hover" id="containerTable">
 	<!-- 정렬 드롭다운 -->
 		<div class="topMenu" id="theme">
 			<input type="text" value="<c:out value="${listCnt}"></c:out>개의 게시물이 조회되었습니다" id="listCnt" disabled/>
@@ -102,7 +101,7 @@
 	   <tbody>
 			<c:forEach items="${list }" var="bean">
 			<c:set var="i" value="${i+1 }"/>
-			<fmt:formatDate value="${bean.board_date}" pattern="yyyy-MM-dd" var="date"/>
+			<fmt:formatDate value="${bean.board_date}" pattern="yyyy-MM-dd HH:mm" var="date"/>
 			<tr>
 				<td name="num_${i }" class="num_${i }"><input type="text" class="board_id" name="boardId_${bean.board_id }" value="${bean.board_id }" disabled></td>
 				<td name="num_${i }">${bean.board_no }<input type="hidden" class="num_${i }" value="${bean.board_no }"></td>

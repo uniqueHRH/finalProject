@@ -35,9 +35,9 @@
 	}
 	#board_theme1, #board_theme2, #board_theme3 {
 		text-align:center;
-		font-size:15px;
+		font-size:16px;
 		font-weight:normal;
-		width:90px;
+		width:100px;
 		border-color:white;
 	}
 	#board_date {
@@ -52,10 +52,10 @@
 	}
 	/* 댓글 */
 	#table {
-		width:800px;
+		width:900px;
 		margin:0 auto;
 		border-color:gray;
-		padding:10px;
+		padding:10 15;
 		border:0;
 		outline:0;
 		background-color:#e8e8e8;
@@ -65,13 +65,13 @@
 		height:100px;
 	}
 	#reply {
-		width:700px;
+		width:800px;
 		height:30px;
 		border:0;
 		outline:0;
 	}
 	#reply_content {
-		width:700px;
+		width:800px;
 	}
 	#edit, #update, #cancel, #dele2, #insert {
 		text-align:center;
@@ -379,8 +379,6 @@
 		            		title:'다시 시도해주세요',
 		            		icon:'errer',
 		            		button:'확인'
-		            	}).then((네) => {
-		            		reload();
 		            	})
 		            }
 	         	});
@@ -399,18 +397,12 @@
 				$('button[name^=cancel_'+num+']').show();
 				$('button[name=cancel_'+num+']').on('click',function() {
 					swal({
-						title: "수정하시겠습니까?",
+						title: "수정을 취소하시겠습니까?",
 						icon: "warning",
 						buttons: ["아니요", "네"]
 					}).then((네) => {
 						if(네) {
-							swal({
-							      title: "수정되었습니다.",
-							      icon: "success",
-							      button: "확인"
-							}).then((확인) => {
-						    	reload();
-						    });	
+							reload();
 						}
 					})
 				});		
@@ -429,14 +421,19 @@
 				            type:'POST',
 				            data:{reply_no:num, reply_content:text},
 				            success:function() {
+				            	swal({
+				            		title:'수정되었습니다',
+				            		icon:'success',
+				            		button:'확인'
+				            	}).then((확인) => {
+				            		reload();
+				            	})
 							},
 							error:function() {
 								swal({
 									title:'다시 시도해주세요',
 									icon:'errer',
 									button:'확인'
-								}).then((네) => {
-									reload();
 								})
 							}
 						});
