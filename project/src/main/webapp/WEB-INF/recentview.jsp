@@ -12,7 +12,6 @@
 <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width"/>
 <link rel="stylesheet" type="text/css" href="${root }css/bootstrap.css" />
 <style type="text/css">
-
 	#right_zzim {
 		position: fixed;
 		top: 120px;
@@ -21,6 +20,7 @@
 		border:1px solid #B0B5BD;
 		width:265px;
 		height:600px;
+		font-family:"Jua";
 	}
 	#rightSide #right_zzim  div {
 		text-align:center;
@@ -41,6 +41,10 @@
 		text-align:center;
 		padding:5px;
 		position:relative;
+	}
+	#recentName {
+		color:black;
+		text-decoration:none;
 	}
 	#recentImg {
 		width:210px;
@@ -74,7 +78,7 @@
 		 if(list4 ==''){
 		 }else{
 		 	for(var i=0; i<list4.length-(4*i-1); i++){
-				 $('#right_zzim ul').append('<li><a href="/project/tour/detail/'+list4[4*i+1]+'"><img src="'+list4[4*i]+'" id="recentImg"><p>'+list4[4*i+2]+'('+list4[4*i+3]+')</p></a></li>');
+				 $('#right_zzim ul').append('<li><a href="/project/tour/detail/'+list4[4*i+1]+'" id="recentName"><img src="'+list4[4*i]+'" id="recentImg"><p>'+list4[4*i+2]+'('+list4[4*i+3]+')</p></a></li>');
 	 	 	}
 		 }
 		
