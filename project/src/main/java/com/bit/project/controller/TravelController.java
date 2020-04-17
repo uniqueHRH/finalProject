@@ -61,7 +61,6 @@ public class TravelController {
 		
 		HttpSession session = req.getSession();
 		StaffVo login= staffService.loginCheck(bean);
-		System.out.println(login);
 		ModelAndView mav=new ModelAndView();
 		if(login!=null) {
 			//로그인 성공 시

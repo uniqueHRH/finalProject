@@ -85,9 +85,7 @@
 						<input type="password" class="form-control" id="client_pw" name="client_pw" placeholder="비밀번호를 입력하세요" style="width:350px">
 					</div>
 				</div>
-				<%-- <c:if test="${msg == 'fail' }">
-     				<%out.println("<script>alert('아이디와 비밀번호를 확인해주세요');</script>");%>
-    			 </c:if> --%>
+				
     			 <input type="hidden" id="msg" value="${msg }">
     		
 				<button type="submit" id="loginbtn" class="btn btn-default btn-lg btn-block">로그인</button>
@@ -131,9 +129,6 @@
 			   title: "아이디와 비밀번호를 확인해주세요",
 			   icon: "warning"
 			})
-		return false;
-	}else{
-		return true;
 	}
 	
 	// 카카오 로그인

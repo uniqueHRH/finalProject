@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Home</title>
+<title>Stafflogin</title>
 <link rel="stylesheet" type="text/css" href="${root }css/bootstrap.css" />
 <link rel="stylesheet" type="text/css" href="${root }css/travel.css" />
 <style type="text/css">
@@ -58,7 +58,7 @@
   			 <!-- loginbar end -->
       
    	<!-- 직원로그인start -->
-   <form class="form-horizontal" name="sac" method="post">
+   <form action="../main/stafflogin" class="form-horizontal" name="sac" method="post">
      <div class="form-group" id="insertid">
        <label for="staff_no" class="col-sm-2 control-label" id="idd">사번</label>
        <div class="col-sm-10">
@@ -71,9 +71,7 @@
          <input type="password" class="form-control" id="staff_pw" name="staff_pw" placeholder="비밀번호를 입력하세요" style="width:350px">
        </div>
      </div>
-     <c:if test="${msg == 'fail' }">
-     		<%out.println("<script>alert('사번과 비밀번호를 확인해주세요');</script>");%>
-     </c:if>
+     <input type="hidden" id="msg" value="${msg }">
      <button type="submit" id="loginbtn" class="btn btn-default btn-lg btn-block">로그인</button>
      </form>
     </div>
@@ -84,18 +82,37 @@
 <jsp:include page="/WEB-INF/footer.jsp"/> 
  <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="${root }js/bootstrap.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script type="text/javascript">
-$('form[name="sac"]').bind('submit',function(){
-	var id = $("#staff_no").val();
-	var pw = $("#staff_pw").val();
-	if(!id || !pw){
+$(document).ready(function() {
+	
+	$('form[name="sac"]').bind('submit',function(){
+		var id = $("#staff_no").val();
+		var pw = $("#staff_pw").val();
+		var sabun = /^[0-9]*$/;
+        var sabuncheck = sabun.test($("#staff_no").val());
+		if(!id || !pw){
+			swal({
+				   title: "사번과 비밀번호를 확인해주세요",
+				   icon: "warning"
+				})
+			return false;
+		}else if(sabuncheck == false){
+			swal({
+				   title: "사번과 비밀번호를 확인해주세요",
+				   icon: "warning"
+				})
+			return false;
+		}else{
+			return true;
+		}
+	});
+	var message = $("#msg").val();
+	if(message=='fail'){
 		swal({
 			   title: "사번과 비밀번호를 확인해주세요",
 			   icon: "warning"
-				})
-		return false;
-	}else{
-		return true;
+			})
 	}
 	
 });

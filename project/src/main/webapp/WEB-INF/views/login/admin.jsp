@@ -103,22 +103,22 @@
 			</div>
 		</div>
 		<div class="form-group">
+			<label for="client_phone" class="col-sm-2 control-label">연락처</label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" id="client_phone" name="client_phone" placeholder="연락처를 입력하세요 ex)01012345678" style="width:400px" maxlength="11">
+				<div id="phone_check"></div>
+			</div>
+		</div>
+		<div class="form-group">
 		<label for="client_birth" class="col-sm-2 control-label">생년월일</label>
 		<div class="col-sm-10">
 			<input type="text" class="form-control" id="client_birth" name="client_birth" placeholder="8자리로 입력하세요 ex)19920216" style="width:400px" maxlength="8">
 			<div id="birth_check"></div>
 		</div>
 		</div>
-		<div class="form-group">
-			<label for="client_phone" class="col-sm-2 control-label">연락처</label>
-			<div class="col-sm-10">
-				<input type="text" class="form-control" id="client_phone" name="client_phone" placeholder="연락처를 입력하세요 ex)01012345678" style="width:400px">
-				<div id="phone_check"></div>
-			</div>
-		</div>
 		<ul class="list-group">
 			<li class="list-group-item disabled">
-				<label><input type="checkbox" id="allclause" value="allclause">&nbsp;전체 약관 동의</label>
+				<label><input type="checkbox" id="allclause" name="allclause" value="allclause">&nbsp;전체 약관 동의</label>
 			</li>
 			<li class="list-group-item"><input type="checkbox" id="chk1" name="clause" value="clause1">&nbsp;<span data-toggle="modal" data-target="#myModal1">회원 가입 및 운영약관 동의 (필수)></span></li>
 			<li class="list-group-item"><input type="checkbox" id="chk2" name="clause" value="clause2">&nbsp;<span data-toggle="modal" data-target="#myModal2">개인정보 수집 및 이용 (필수)></span></li>
@@ -288,7 +288,7 @@
       //유효성검사
       
       //이름 정규식
-      $('#client_name').blur(function(){
+      /* $('#client_name').blur(function(){
          var name = /^[가-힣]{2,4}$/;
          var namecheck = name.test($("#client_name").val());
          
@@ -405,7 +405,8 @@
                return false;
             }
          
-         });
+         }); */
+       
          
       $('form[name="adm"]').bind('submit',function(){
          var name = /^[가-힣]{2,4}$/;
@@ -438,6 +439,11 @@
          
          var duplicheck1 = $("#duplicheck1").val();
          var duplicheck2 = $("#duplicheck2").val();
+         
+         var agree1 = $("input[name=allclause]").is(':checked');
+         var agree2 = $("input[id=chk1]").is(':checked');
+         var agree3 = $("input[id=chk2]").is(':checked');
+         var agree4 = $("input[id=chk3]").is(':checked');
          
          if(namecheck != true){
             swal({
@@ -493,6 +499,24 @@
 				   icon: "info"
 				  })
             return false;
+         }else if(phonecheck != true){
+        	 swal({
+				   title: "연락처를 확인해주세요",
+				   icon: "info"
+				  })
+            return false;
+         }else if($("#client_phone").val() == ""){
+        	 swal({
+				   title: "연락처를 확인해주세요",
+				   icon: "info"
+				  })
+		    return false;
+         }else if(agree1 != true && (agree2 != true || agree3 != true || agree4 != true)){
+        	 swal({
+				   title: "약관에 동의해주세요",
+				   icon: "info"
+				  })
+        	 return false;
          }else if(client_birth.length <=8){
             if( year>2019 || year<1900){ // 1900년 - 2019년까지만 입력가능
             	swal({
@@ -533,12 +557,6 @@
             }else{
                return true;
             }
-            return false;
-         }else if(phonecheck != true){
-        	 swal({
-				   title: "연락처를 확인해주세요",
-				   icon: "info"
-				  })
             return false;
          }else{
         	 swal({
