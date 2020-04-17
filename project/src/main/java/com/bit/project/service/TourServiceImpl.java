@@ -1,5 +1,7 @@
 package com.bit.project.service;
 
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,32 +44,24 @@ public class TourServiceImpl implements TourService{
 	public void selectOne_tour(Model model, int tour_no, HttpServletResponse res, HttpServletRequest req) {
 		try {
 			model.addAttribute("bean",tourDao.selectOne_tour(tour_no));
-//			HttpSession session = req.getSession();
-//			if(coolist.size() == 0) {
-//				session.setAttribute("img"+i, tourDao.selectOne_tour(tour_no).getMainimg());
-//				session.setAttribute("idx"+i, tourDao.selectOne_tour(tour_no).getTour_no());
-//			}
-//			for(int i=0; i<3;i++) {
-//				session.setAttribute("img"+i, tourDao.selectOne_tour(tour_no).getMainimg());
-//				session.setAttribute("idx"+i, tourDao.selectOne_tour(tour_no).getTour_no());
-//			}
 				Cookie[] cookies = req.getCookies();
 				Cookie cookie = new Cookie("imgs"+0,tourDao.selectOne_tour(tour_no).getMainimg());
 				Cookie idx = new Cookie("idx"+0, Integer.toString(tourDao.selectOne_tour(tour_no).getTour_no()));
-				cookie.setMaxAge(10);
-				cookie.setPath("/");
+				Cookie name = new Cookie("name"+0, URLEncoder.encode(tourDao.selectOne_tour(tour_no).getName(), "UTF-8"));
+				Cookie city = new Cookie("city"+0, URLEncoder.encode(tourDao.selectOne_tour(tour_no).getCity(), "UTF-8"));
 				res.addCookie(cookie);
-				idx.setMaxAge(10);
-				idx.setPath("/");
 				res.addCookie(idx);
+				res.addCookie(name);
+				res.addCookie(city);
 				coolist.add(cookie.getValue());
 				coolist.add(idx.getValue());
+				coolist.add(URLDecoder.decode( name.getValue() , "UTF-8"));
+				coolist.add(URLDecoder.decode( city.getValue() , "UTF-8"));
 				for(int i=0; i<coolist.size(); i++) {
 					if(!coolist2.contains(coolist.get(i))) {
 						coolist2.add(coolist.get(i));
 					}
 				}
-				System.out.println("coolist2 : "+coolist2);
 				HttpSession session = req.getSession();
 				session.setAttribute("Coolist2", coolist2);
 		} catch (Exception e) {

@@ -50,7 +50,7 @@
 </head>
 <body>
 <div id="rightSide">
-	<div style="overflow: scroll;width:265px; height:600px;" id="right_zzim">
+	<div style="overflow: scroll;width:270px; height:600px;" id="right_zzim">
 		<div  class="recTit">최근본상품 <span id=recentCnt></span></div>
 			<ul>
 			   <!-- 본 상품이 뿌려질 부분  -->
@@ -73,8 +73,8 @@
 		 var list4 = list3.split(',');
 		 if(list4 ==''){
 		 }else{
-		 	for(var i=0; i<list4.length-(2*i-1); i++){
-				 $('#right_zzim ul').append('<li><a href="/project/tour/detail/'+list4[2*i+1]+'"><img src="'+list4[2*i]+'" id="recentImg"></a></li>');
+		 	for(var i=0; i<list4.length-(4*i-1); i++){
+				 $('#right_zzim ul').append('<li><a href="/project/tour/detail/'+list4[4*i+1]+'"><img src="'+list4[4*i]+'" id="recentImg"><p>'+list4[4*i+2]+'('+list4[4*i+3]+')</p></a></li>');
 	 	 	}
 		 }
 		

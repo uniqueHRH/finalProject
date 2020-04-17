@@ -85,9 +85,10 @@
 						<input type="password" class="form-control" id="client_pw" name="client_pw" placeholder="비밀번호를 입력하세요" style="width:350px">
 					</div>
 				</div>
-				<c:if test="${msg == 'fail' }">
+				<%-- <c:if test="${msg == 'fail' }">
      				<%out.println("<script>alert('아이디와 비밀번호를 확인해주세요');</script>");%>
-    			 </c:if>
+    			 </c:if> --%>
+    			 <input type="hidden" id="msg" value="${msg }">
     		
 				<button type="submit" id="loginbtn" class="btn btn-default btn-lg btn-block">로그인</button>
 			<div>
@@ -110,10 +111,10 @@
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script type="text/javascript">
    $(document).ready(function() {
-	   
 	$('form[name="lac"]').bind('submit',function(){
 		var id = $("#client_id").val();
 		var pw = $("#client_pw").val();
+		
 		if(!id || !pw){
 			swal({
 				   title: "아이디와 비밀번호를 확인해주세요",
@@ -123,9 +124,17 @@
 		}else{
 			return true;
 		}
-		
 	});
-	
+	var message = $("#msg").val();
+	if(message=='fail'){
+		swal({
+			   title: "아이디와 비밀번호를 확인해주세요",
+			   icon: "warning"
+			})
+		return false;
+	}else{
+		return true;
+	}
 	
 	// 카카오 로그인
 	// 카카오 로그인으로 받아올 수 있는 정보
