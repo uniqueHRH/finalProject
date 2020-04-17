@@ -186,7 +186,7 @@
 		                  error:function() {
 		                	  swal({
 		                			title:'삭제에 실패했습니다',
-		                			icon:'error',
+		                			icon:'warning',
 		                			button:'확인'
 		                		}).then((확인) => {
 		                			reload();
@@ -242,7 +242,7 @@
 		            error:function() {
 		            	swal({
 		            		title:'다시 시도해주세요',
-		            		icon:'error',
+		            		icon:'warning',
 		            		button:'확인'
 		            	}).then((확인) => {
 		            		reload();
@@ -295,7 +295,7 @@
 						error:function() {
 							swal({
 			            		title:'다시 시도해주세요',
-			            		icon:'error',
+			            		icon:'warning',
 			            		button:'확인'
 			            	}).then((확인) => {
 			            		reload();
@@ -335,7 +335,7 @@
 	     		            error:function() {
 	     		            	swal({
 	    		            		title:'다시 시도해주세요',
-	    		            		icon:'error',
+	    		            		icon:'warning',
 	    		            		button:'확인'
 	    		            	}).then((확인) => {
 	    		            		reload();

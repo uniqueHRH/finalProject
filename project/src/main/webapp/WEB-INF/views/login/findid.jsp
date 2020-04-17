@@ -191,7 +191,7 @@
                error:function(){
                   swal({
     				   title: "요청에 실패하였습니다.",
-    				   icon: "error"
+    				   icon: "warning"
     					})
                }
             });
@@ -221,7 +221,7 @@
          }else if(code != dice){
             swal({
 				   title: "인증번호가 일치하지않습니다",
-				   icon: "error"
+				   icon: "warning"
 					})
             return false;
          }else{

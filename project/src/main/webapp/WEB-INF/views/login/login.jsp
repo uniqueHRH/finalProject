@@ -117,7 +117,7 @@
 		if(!id || !pw){
 			swal({
 				   title: "아이디와 비밀번호를 확인해주세요",
-				   icon: "error"
+				   icon: "warning"
 				})
 			return false;
 		}else{

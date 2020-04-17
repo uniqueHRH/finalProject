@@ -326,7 +326,7 @@
 					  } else {
 						    swal({
 						    	title: "삭제에 실패했습니다",
-						    	icon: "error",
+						    	icon: "warning",
 						    	button: "확인"
 						    })
 					  }//if 

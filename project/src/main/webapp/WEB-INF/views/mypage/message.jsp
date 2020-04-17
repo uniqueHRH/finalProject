@@ -263,44 +263,47 @@
 		});*/
 		// 모두 읽기
 		$('#read').on('click',function() {
+			var num=Array();
 			
 			$('input[name^=chk_]:checked').each(function() {
 				num=$(this).attr('name');
 				num=num.split('_')[1];
-				console.log(num);
+
 				swal({
 					text: "선택된 쪽지를 모두\n읽음처리 하시겠습니까?",
 					icon: "warning",
 					buttons: ["아니요", "네"]
 				}).then((네) => {
 					if (네) {
-						$.ajax({
-							url:'../allMsg',
-							type:'Get',
-							data:{key:num},
-							success:function() {
-									console.log(num);
-								swal({
-									title:'읽음처리 되었습니다',
-									icon:'success',
-									button:'확인'
-								}).then((확인) => {
-									reload();
-								})
-							},
-							error:function() {
-								swal({
-									title:'다시 시도해주세요',
-									icon:'warning',
-									button:'확인'
-								}).then((확인) => {
-									reload();
-								})
-							}
+						$.each(function() {
+							$.ajax({
+								url:'../allMsg',
+								type:'Get',
+								data:{key:num},
+								success:function() {
+									swal({
+										title:'읽음처리 되었습니다',
+										icon:'success',
+										button:'확인'
+									}).then((확인) => {
+										reload();
+									})
+								},
+								error:function() {
+									swal({
+										title:'다시 시도해주세요',
+										icon:'warning',
+										button:'확인'
+									}).then((확인) => {
+										reload();
+									})
+								}
+							});   // ajax
+							
 						});
 					}
 				})
-			});   // each
+			});
 		});
 			/* $('input[name^=chk_').each(function() {
 				var feed=Array();
