@@ -18,6 +18,7 @@
 		margin-left: 330px;
 	}
 	.thumbnail{
+		margin-left: 45px;
 		width: 330px;
 	}
 	#mainimg{
