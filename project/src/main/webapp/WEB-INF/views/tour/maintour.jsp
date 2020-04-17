@@ -64,13 +64,11 @@
   </div> 
   </a> 
 </c:forEach>
- 
   </div>
  </div>
 </div>
 
 <jsp:include page="/WEB-INF/footer.jsp"/>
-<jsp:include page="/WEB-INF/recentview.jsp"/>
 <jsp:include page="/WEB-INF/remote.jsp"/>
 <jsp:include page="/WEB-INF/socket.jsp"/>
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>

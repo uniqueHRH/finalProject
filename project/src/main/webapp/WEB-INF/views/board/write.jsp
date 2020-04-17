@@ -197,10 +197,6 @@
 
       });
       
-		$('#subm').on('click', function() {
-			
-		});
-      
       // 체크박스 선택 개수 제한
       $('input[type=checkbox]').on('click',function() {
          var cnt=$('input[type=checkbox]:checked').length;
