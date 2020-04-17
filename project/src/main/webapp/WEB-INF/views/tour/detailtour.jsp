@@ -209,7 +209,6 @@
 <script type="text/javascript" src="${root }js/bootstrap.js"></script>
  <script type="text/javascript">
    $(document).ready(function() {
-	   
 	   var id=$('#session').val();
 	   if(id){
 	   var client_name="${sessionScope.check.client_name}";
