@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,48 +36,40 @@ public class TourServiceImpl implements TourService{
 		
 	}
 
+	List coolist = new ArrayList();
+	List coolist2 = new ArrayList();
 	@Override
 	public void selectOne_tour(Model model, int tour_no, HttpServletResponse res, HttpServletRequest req) {
 		try {
 			model.addAttribute("bean",tourDao.selectOne_tour(tour_no));
-			Cookie[] cookies = req.getCookies();
-			List<String> coolist = new ArrayList<>();
-			if(cookies.length>0) {
-				
-				for(int i=0; i<cookies.length; i++) {
-					Cookie cookie = new Cookie("imgs",tourDao.selectOne_tour(tour_no).getMainimg());
-					Cookie idx = new Cookie("idx", Integer.toString(tourDao.selectOne_tour(tour_no).getTour_no()));
-					System.out.println("url : "+cookie.getValue());
-					System.out.println("idx : "+idx.getValue());
-					cookie.setMaxAge(60*60);
-					cookie.setPath("/");
-					res.addCookie(cookie);
-					idx.setMaxAge(60*60);
-					idx.setPath("/");
-					res.addCookie(idx);
-					
-					coolist.add(cookies[i].getValue());
-					System.out.println("coolist : " + coolist.get(i));
-				}
-				
-			}else {
-				for(int i=0; i<cookies.length; i++) {
-					if(!coolist.contains(cookies[i].getValue())) {
-						Cookie cookie = new Cookie("imgs"+i,tourDao.selectOne_tour(tour_no).getMainimg());
-						Cookie idx = new Cookie("idx", Integer.toString(tourDao.selectOne_tour(tour_no).getTour_no()));
-						System.out.println("1 : "+cookie.getValue());
-						System.out.println("2 : "+idx.getValue());
-						cookie.setMaxAge(60);
-						cookie.setPath("/");
-						res.addCookie(cookie);
-						idx.setMaxAge(60);
-						idx.setPath("/");
-						res.addCookie(idx);
-					}else {
-						System.out.println("3rd : "+cookies[i].getValue());
+//			HttpSession session = req.getSession();
+//			if(coolist.size() == 0) {
+//				session.setAttribute("img"+i, tourDao.selectOne_tour(tour_no).getMainimg());
+//				session.setAttribute("idx"+i, tourDao.selectOne_tour(tour_no).getTour_no());
+//			}
+//			for(int i=0; i<3;i++) {
+//				session.setAttribute("img"+i, tourDao.selectOne_tour(tour_no).getMainimg());
+//				session.setAttribute("idx"+i, tourDao.selectOne_tour(tour_no).getTour_no());
+//			}
+				Cookie[] cookies = req.getCookies();
+				Cookie cookie = new Cookie("imgs"+0,tourDao.selectOne_tour(tour_no).getMainimg());
+				Cookie idx = new Cookie("idx"+0, Integer.toString(tourDao.selectOne_tour(tour_no).getTour_no()));
+				cookie.setMaxAge(10);
+				cookie.setPath("/");
+				res.addCookie(cookie);
+				idx.setMaxAge(10);
+				idx.setPath("/");
+				res.addCookie(idx);
+				coolist.add(cookie.getValue());
+				coolist.add(idx.getValue());
+				for(int i=0; i<coolist.size(); i++) {
+					if(!coolist2.contains(coolist.get(i))) {
+						coolist2.add(coolist.get(i));
 					}
 				}
-			}
+				System.out.println("coolist2 : "+coolist2);
+				HttpSession session = req.getSession();
+				session.setAttribute("Coolist2", coolist2);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
