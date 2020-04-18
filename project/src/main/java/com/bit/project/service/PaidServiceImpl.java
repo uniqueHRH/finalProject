@@ -78,4 +78,9 @@ public class PaidServiceImpl implements PaidService {
 		return paidDao.selectAll_paidDate(search);
 	}
 
+	@Override
+	public int getPaidListCnt(Search search) throws Exception {
+		return paidDao.getPaidListCnt(search);
+	}
+
 }

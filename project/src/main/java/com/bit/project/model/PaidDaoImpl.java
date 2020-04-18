@@ -25,6 +25,10 @@ public class PaidDaoImpl implements PaidDao {
 	public List<PaidVo> selectAll_paid(Search search) throws Exception {
 		return sqlSession.selectList("paid.selectAll_paid",search);
 	}
+	@Override
+	public int getPaidListCnt(Search search) throws Exception {
+		return sqlSession.selectOne("paid.getPaidListCnt", search);
+	}
 
 	@Override
 	public int getallPaidListCnt(Search search) throws Exception {

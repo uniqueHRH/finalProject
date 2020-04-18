@@ -13,7 +13,7 @@ public interface PaidDao {
 	
 	List<PaidVo> selectAll_paid(Search search) throws Exception;
 	int paid_confirm(PaidVo bean) throws Exception;
-	
+	public int getPaidListCnt(Search search) throws Exception;
 	
 //	관리자용
 	// 기본정렬

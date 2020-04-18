@@ -271,7 +271,7 @@ public class TravelController {
 	 		// 전체 게시글 갯수
 	 		int listCnt=0;
 			try {
-				listCnt=paidservice.getallPaidListCnt(search);
+				listCnt=paidservice.getPaidListCnt(search);
 				search.pageInfo(page, range, listCnt);
 			} catch (Exception e) {
 				e.printStackTrace();

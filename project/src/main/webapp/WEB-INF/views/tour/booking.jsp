@@ -324,11 +324,11 @@
                      })
                 return false;
             }else{
+               return true;
                swal({
-                     title: "예약이 완료되었습니다?",
+                     title: "예약이 완료되었습니다",
                      icon: "success",
                       })
-               return true;
             }
          });
          

@@ -14,7 +14,7 @@ public interface PaidService {
 	void selectOne_paid(Model model,int paid_no);
 	List<PaidVo> selectAll_paid(Search search) throws Exception;
 	void paid_confirm(PaidVo bean);
-	
+	public int getPaidListCnt(Search search) throws Exception;
 //	관리자용
 	List<PaidVo> selectAll_allpaid(Search search) throws Exception;
 	List<PaidVo> selectAll_paidState(Search search) throws Exception;
