@@ -118,6 +118,7 @@
 		font-size:15px;
 	}
 	#board_thumb {
+		width:300px;
 		margin:20px 5px;
 	}
    

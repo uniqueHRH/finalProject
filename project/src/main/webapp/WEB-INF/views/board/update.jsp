@@ -109,6 +109,9 @@
 		font-size:25px;
 		font-weight:bold;
 	}
+	#uploadI {
+		width:300px;
+	}
 </style>
 </head>
 <body>
