@@ -23,8 +23,9 @@
 		font-family: 'Jua';
 	}
 	#theme {
-		width:900px;
+	width:900px;
 		margin:0 auto;
+		padding:8 0;
 	}
 	#table {
 		width:900px;
@@ -224,125 +225,60 @@
 			
 			window.open('../messageDe/'+feed, '쪽지보기', 'width=470, height=340, left=500, top=50');
 		});
-		/*
-		// 삭제버튼 클릭
-		$('#dele').on('click',function() {
-			var num=Array();
-			
-			$('input[name^=chk_]:checked').each(function() {
-				num=$(this).attr('name');
-				num=num.split('_')[1];
-				
-				swal({
-					title: "선택된 쪽지를 삭제하시겠습니까?",
-					icon: "warning",
-					buttons: ["아니요", "네"]
-				})
-				.then((네) => {
-					if (네) {
-						$.ajax({
-							url:'../messageDele',
-							type:'POST',
-							data:{key:num},
-							success:function() {
-								swal({
-									title:'삭제되었습니다',
-									icon:'success',
-									button:'확인'
-								}).then((확인) => {
-									reload();
-								})
-							},
-							error:function() {
-								alert('다시 시도해 주세요');
-							}
-						});
-					}
-				})
-			});
-		});*/
+		
 		// 모두 읽기
 		$('#read').on('click',function() {
-			var num=Array();
+			var con=confirm('선택된 쪽지를 모두\n읽음처리 하시겠습니까?');
 			
-			$('input[name^=chk_]:checked').each(function() {
-				num=$(this).attr('name');
-				num=num.split('_')[1];
-
-				swal({
-					text: "선택된 쪽지를 모두\n읽음처리 하시겠습니까?",
-					icon: "warning",
-					buttons: ["아니요", "네"]
-				}).then((네) => {
-					if (네) {
-						$.each(function() {
-							$.ajax({
-								url:'../allMsg',
-								type:'Get',
-								data:{key:num},
-								success:function() {
-									swal({
-										title:'읽음처리 되었습니다',
-										icon:'success',
-										button:'확인'
-									}).then((확인) => {
-										reload();
-									})
-								},
-								error:function() {
-									swal({
-										title:'다시 시도해주세요',
-										icon:'warning',
-										button:'확인'
-									}).then((확인) => {
-										reload();
-									})
-								}
-							});   // ajax
-							
-						});
-					}
-				})
-			});
-		});
-			/* $('input[name^=chk_').each(function() {
-				var feed=Array();
-				var num=$(this).attr('name');
-				num=num.split('_')[1];
-				//console.log('each...'+num)
-
-				if($('input[name=chk_'+num+']:checked')==true) {
-					console.log(num);
-				}
-				/* if($('input[name=chk_'+num+']:checked')==true) {
-					console.log(this);
-				}
-			});
-		});
-			
-
-		$('#dele').on('click',function() {
-			var feed=$('input[type=checkbox]:checked').attr('name');
-			feed=feed.split('_');
-			feed=feed[1];
-			
-			var con=confirm('선택된 쪽지를 삭제하시겠습니까?');
 			if(con) {
-				$.ajax({
-					url:'../messageDele',
-					type:'POST',
-					data:{key:feed},
-					success:function() {
-						alert('삭제되었습니다');
-						reload();
-					},
-					error:function() {
-						alert('다시 시도해 주세요');
-					}
+				$('input[name^=chk_]:checked').each(function() {
+					var num=$(this).attr('name');
+					num=num.split('_')[1];
+					
+					$.ajax({
+						url:'../allMsg',
+						type:'Get',
+						data:{key:num},
+						success:function() {
+						},
+						error:function() {
+							alert('다시 시도해주세요');
+						}
+					
+					});   // ajax
 				});
+				alert('읽음처리 되었습니다');
+				reload();
+			} else {
+				reload();
+			}   // if
+		});
+		
+		$('#dele').on('click',function() {
+			var con=confirm('선택된 쪽지를 삭제하시겠습니까?');
+			
+			if(con) {
+				$('input[name^=chk_]:checked').each(function() {
+					var num=$(this).attr('name');
+					num=num.split('_')[1];
+	
+					$.ajax({
+						url:'../messageDele',
+						type:'POST',
+						data:{key:num},
+						success:function() {
+						},
+						error:function() {
+							alert('다시 시도해 주세요');
+						}
+					});
+				});
+				alert('삭제되었습니다');
+				reload();
+			} else {
+				reload();
 			}
 		});
-		 */
 //////////////////////////////////////////////////////////////////////////////////////////		
 		// 검색
 		$('#searchGo').on('click',function() {
@@ -365,14 +301,14 @@
 		function prev(page, range, rangeSize) {
 			var page=((range-2)*rangeSize)+1;
 			var range=range-1;
-			var url='${root }main/'+uri+'/?id=${sessionScope.check.client_nick1}';
+			var url='${root }main/'+uri+'?id=${sessionScope.check.client_nick1}';
 			url=url+"&page="+page;
 			url=url+"&range="+range;
 			location.href=url;
 		}
 		//페이지 번호 클릭
 		function pagination(page, range, rangeSize, searchType, keyword) {
-			var url='${root }main/'+uri+'/?id=${sessionScope.check.client_nick1}';
+			var url='${root }main/'+uri+'?id=${sessionScope.check.client_nick1}';
 			url=url+"&page="+page;
 			url=url+"&range="+range;
 			url=url+"&searchType="+$('#searchType').val();
@@ -383,7 +319,7 @@
 		function next(page, range, rangeSize) {
 			var page=parseInt((range*rangeSize))+1;
 			var range=parseInt(range)+1;
-			var url='${root }main/'+uri+'/?id=${sessionScope.check.client_nick1}';
+			var url='${root }main/'+uri+'?id=${sessionScope.check.client_nick1}';
 			url=url+"&page="+page;
 			url=url+"&range="+range;
 			location.href=url;
