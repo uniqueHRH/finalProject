@@ -228,7 +228,7 @@
 					
 				},
 				error:function(){
-				 	alert('¾ÈµÊ');
+					console.log('error');
 				}	
 			});
 		}	
