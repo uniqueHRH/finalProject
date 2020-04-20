@@ -45,7 +45,7 @@
 			<label for="exampleInputEmail2">조회수</label>
 			<input type="email" class="form-control" id="board_count" name="partner_count" value="${bean.partner_count }" style="cursor:default" disabled>
 		</div>
-		<div>
+		<div id="textarea">
 			<textarea class="form-control" id="board_content" name="partner_content">${bean.partner_content }</textarea>
 		</div>
 	<!-- 이미지 수정 -->

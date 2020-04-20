@@ -53,7 +53,7 @@
 	   <div contenteditable="false" id="contentM">
 			<img src="${root }resources/${bean.event_thumb }" id="board_thumb"/>
 			<input type="hidden" id="hiddenI" value="${bean.event_thumb }"/>
-			<div>
+			<div id="contentS">
 				${bean.event_content }
 			</div>
 	   </div>

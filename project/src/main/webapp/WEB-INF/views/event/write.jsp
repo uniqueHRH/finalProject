@@ -18,30 +18,25 @@
 <jsp:include page="/WEB-INF/menubar.jsp"/>
 
 
-
 <!-- contents start -->
 <div id="allContain">
 	<div class="page-header" id="page-header" align="center">
 		<h1>INSERT</h1>
    </div>
       
-<!-- 나라 선택 -->
 	<form class="form-inline" method="POST" enctype="multipart/form-data">
 	<!-- 입력 -->
 		<div class="form-group">
-			<p></p>
 			<label for="exampleInputName2">&nbsp; 제 목</label>
 			<input type="text" class="form-control" id="board_sub" name="event_sub">
-			<input type="hidden" id="client_nick1" name="client_nick1" value="${sessionScope.check.client_nick1}">
 		</div>
-		<div><p></p>
+		<div>
 			&nbsp; <textarea class="form-control" id="board_content" name="event_content"></textarea>
 		</div>
-		<p></p>
 	<!-- file upload -->
 		<div class="upload">
-			<label for="board_img">이미지</label> &nbsp; &nbsp; <a class="btn btn-default" role="button" id="dele">삭제</a>
 			<input type="file" id="board_img" name="file" />
+			<a class="btn btn-default" role="button" id="dele">삭제</a>
 			<div class="board_img"><img src=""/></div>
 		</div>
 	
@@ -58,11 +53,14 @@
 <jsp:include page="/WEB-INF/remote.jsp"/>
 <jsp:include page="/WEB-INF/socket.jsp"/>
 <jsp:include page="/WEB-INF/footer.jsp"/>
-
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="${root }js/bootstrap.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script type="text/javascript" src="${root }ckeditor/ckeditor.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
+		CKEDITOR.replace('board_content');
+		
 		// 파일업로드
 		$('#board_img').change(function(){
 			if(this.files && this.files[0]) {
@@ -91,21 +89,27 @@
 					button:"확인"
 				})
 				return false;
-			} else if(content=='') {
-				swal({
-					title: "내용을 입력해주세요",
-					icon: "warning",
-					button:"확인"
-				})
-				return false;
-			}
+			} else if(CKEDITOR.instances.board_content.getData()=='') {
+	            swal({
+	               title: "내용을 입력해주세요",
+	               icon: "warning",
+	               button:"확인"
+	            })
+	            return false;
+	         }
 		});
 		
 		// 뒤로 버튼
 		$('#btn2').on('click',function() {
-			if(confirm('작성을 취소하시겠습니까?')) {
-				location.href="../board/review";
-			}
+			swal({
+	            title: "작성을 취소하시겠습니까?",
+	            icon: "warning",
+	            buttons: ["아니요", "네"]
+	         }).then((네) => {
+	            if(네) {
+	               location.href="../board/event";
+	            }
+	         })
 		});
 	});
 	

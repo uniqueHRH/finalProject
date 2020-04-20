@@ -10,8 +10,8 @@
 <link rel="stylesheet" type="text/css" href="${root }css/bootstrap.css" />
 <link rel="stylesheet" type="text/css" href="${root }css/travel.css" />
 <link rel="stylesheet" type="text/css" href="${root }css/boardWrite.css" />
-
 <style type="text/css">
+
 </style>
 </head>
 <body>
@@ -24,18 +24,15 @@
 		<h1>INSERT</h1>
 	</div>
       
-	<!-- 나라 선택 -->
 	<form class="form-inline" method="POST" enctype="multipart/form-data">
 	<!-- 입력 -->
 		<div class="form-group">
-			<p></p>
 			<label for="exampleInputName2">&nbsp; 제 목</label>
 			<input type="text" class="form-control" id="board_sub" name="notice_sub">
 		</div>
-		<div><p></p>
+		<div>
 			&nbsp; <textarea class="form-control" id="board_content" name="notice_content"></textarea>
 		</div>
-		<p></p>
 	<!-- file upload -->
 		<div class="upload">
 			<input type="file" id="board_img" name="file" />
@@ -55,14 +52,13 @@
 <jsp:include page="/WEB-INF/remote.jsp"/>
 <jsp:include page="/WEB-INF/socket.jsp"/>
 <jsp:include page="/WEB-INF/footer.jsp"/>
-</body>
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="${root }js/bootstrap.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script type="text/javascript" src="${root }ckeditor/ckeditor.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-		CKEDITOR.replace('notice_content');
+		CKEDITOR.replace('board_content');
 		// 파일업로드
 		$('#board_img').change(function(){
 			if(this.files && this.files[0]) {
@@ -103,12 +99,18 @@
 		
 		// 뒤로 버튼
 		$('#btn2').on('click',function() {
-			if(confirm('작성을 취소하시겠습니까?')) {
-				location.href="../board/partner";
-			}
+			swal({
+	            title: "작성을 취소하시겠습니까?",
+	            icon: "warning",
+	            buttons: ["아니요", "네"]
+	         }).then((네) => {
+	            if(네) {
+	               location.href="../board/notice";
+	            }
+	         })
 		});
 	});
 	
 </script>
-
+</body>
 </html>
