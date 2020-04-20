@@ -35,7 +35,7 @@
 	#theme {
 		width:1050px;
 		margin:0 auto;
-		padding:0px;
+		padding:8px 0;
 	}
 /* 정렬버튼 */
 	#dropdownMenu1:hover {
