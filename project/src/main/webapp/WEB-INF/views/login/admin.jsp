@@ -277,7 +277,7 @@
                    }else{
                 	   swal({
       					   title: "이미 사용중인 닉네임입니다",
-      					   icon: "info"
+      					   icon: "warning"
       					  })
                    }
                 }
