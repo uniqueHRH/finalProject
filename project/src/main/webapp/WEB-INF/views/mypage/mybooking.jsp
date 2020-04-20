@@ -16,11 +16,11 @@
 	#allContain {
 		width:1000px;
 		margin:0 auto;
-		padding-left:140px;
+		padding-left:50px;
 		font-family: 'Jua';
 	}
 	#table {
-		width:950px;
+		width:1100px;
 		margin:0 auto;
 		padding:0px;
 		text-align:center;
@@ -109,7 +109,7 @@
 <!-- contents start -->
 <div id="allContain">
 	<div class="page-header" id="page-header" align="center">
-		<h1>나의예약</h1>
+		<h1>나의 예약 보기</h1>
 	</div>
 
 	<table class="table table-hover" id="table">

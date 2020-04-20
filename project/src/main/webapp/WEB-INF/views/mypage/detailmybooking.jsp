@@ -129,7 +129,7 @@ $("#paybtn").click(function () {
 	    pay_method : 'card',
 	    merchant_uid : 'merchant_' + new Date().getTime(),
 	    name : '주문명:${bean.tourVo.name }',
-	    amount : 100,
+	    amount : ${bean.paid_total},
 	    buyer_name : '${bean.client_name }',
 	    buyer_tel : '${bean.paid_phone }',
 	    
@@ -137,9 +137,9 @@ $("#paybtn").click(function () {
 	    if ( rsp.success ) {
 	        var msg = '결제가 완료되었습니다.';
 	        msg1 = '고유ID : ' + rsp.imp_uid;
-	        msg += '상점 거래ID : ' + rsp.merchant_uid;
-	        msg += '결제 금액 : ' + rsp.paid_amount;
-	        msg += '카드 승인번호 : ' + rsp.apply_num;
+	        msg1 += '상점 거래ID : ' + rsp.merchant_uid;
+	        msg1 += '결제 금액 : ' + rsp.paid_amount;
+	        msg1 += '카드 승인번호 : ' + rsp.apply_num;
 	    
 	        jQuery.ajax({
 			        url: '../paidconfirm', // 가맹점 서버
@@ -148,17 +148,25 @@ $("#paybtn").click(function () {
 			        	  paid_no:${bean.paid_no}
 			          }
 	        }).done(function (data) {
-		    	  location.href="/project/main/mybooking/?id=${sessionScope.check.client_name}";
-		      })
+	        	swal({
+		            title: msg,
+		            text: msg1,
+		            icon: "success",
+		            button: "확인"
+	        	}).then((확인) => {
+	        			location.href="/project/main/mybooking/?id=${sessionScope.check.client_name}";	
+	        		})
+	        	})
 		    } else {
 		        var msg = '결제에 실패하였습니다.';
 		        msg1 = '에러내용 : ' + rsp.error_msg;
+				    swal({
+			            title: msg,
+			            text: msg1,
+			            icon: "warning",
+			            button: '확인'
+			            })
 		    }
-	    swal({
-            title: msg,
-            text: msg1,
-            icon: "info"
-            })
 	});
 });
 </script>
