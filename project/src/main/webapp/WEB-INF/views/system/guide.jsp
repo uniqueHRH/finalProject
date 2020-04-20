@@ -165,7 +165,7 @@
 		// 페이징
 		//이전 버튼 이벤트
 		var uri='${url}';
-      uri=uri.split('system/')[1];
+		uri=uri.split('system/')[1];
 		function prev(page, range, rangeSize) {
 			var page=((range-2)*rangeSize)+1;
 			var range=range-1;

@@ -256,8 +256,9 @@ public class StaffController {
  			HttpServletRequest req
  	          ) throws Exception {
 
- 	       String value=req.getServletPath();
- 	       model.addAttribute("url", value);
+ 		String value=req.getServletPath();
+ 		model.addAttribute("url", value);
+ 		
  		model.addAttribute("search", search);
  		search.setSearchType(searchType);
  		search.setKeyword(keyword);

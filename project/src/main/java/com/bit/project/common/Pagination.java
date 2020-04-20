@@ -16,8 +16,6 @@ public class Pagination {
 	private int endPage;   // 각 페이지 범위 끝 번호
 	private boolean prev;
 	private boolean next;
-	private int NO;
-	private String Team;
 	
 
 
@@ -98,7 +96,7 @@ public class Pagination {
 		this.prev=range==1?false:true;
 		
 		//다음 버튼 상태
-		this.next=endPage>pageCnt?false:true;
+		this.next=endPage>=pageCnt?false:true;
 		
 		if (this.endPage>this.pageCnt) {
 			this.endPage=this.pageCnt;
