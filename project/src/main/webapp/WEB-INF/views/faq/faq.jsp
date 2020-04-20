@@ -61,6 +61,7 @@
 	}
 	#tab_s {
 		width:850px;
+		padding:3px 0;
 	}
 	.question {
 		width:900px;
@@ -235,6 +236,8 @@
 			$('a[id=ins_'+num+']').toggle();
 			$('a[id=can_'+num+']').toggle();
 			$('a[id=del_'+num+']').toggle();
+			
+			$('textarea[id=ans_'+num+']').css('border-radius','10px').css('border','2px solid #6A8DED');
 			
 			$('a[id=ins_'+num+']').on('click',function() {
 				var question=$('input[id=qus_'+num+']').val();
