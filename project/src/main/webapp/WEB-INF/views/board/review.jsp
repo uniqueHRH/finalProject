@@ -22,7 +22,7 @@
 <!-- contents start -->
 <div id="allContain">
 	<div class="page-header" id="page-header" align="center">
-		<h1>REVIEW</h1>
+		<h1>여행다녀온 후기</h1>
 	</div>
    
 	

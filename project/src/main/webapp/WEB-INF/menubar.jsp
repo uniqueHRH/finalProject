@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>Insert title here</title>
+<title>여행사용설명서</title>
 <style type="text/css">
 	#logo {
 		position:fixed;
