@@ -172,12 +172,12 @@
                           var sec = num - (60 * min);
                           var $input = $('.input').val(min + '분' + sec + '초');
                             if(num == 0){
-                              clearInterval(myVar);
                               swal({
                   				   title: "요청 시간이 만료되었습니다.",
                   				   icon: "info",
                   				   button: "확인"
                   					})
+                              clearInterval(myVar);
                               // num 이 0초가 되었을대 clearInterval로 타이머 종료
                           }
                           num--;

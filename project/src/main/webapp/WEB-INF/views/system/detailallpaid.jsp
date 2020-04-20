@@ -103,20 +103,32 @@
 <script type="text/javascript" src="${root }js/bootstrap.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.js"></script>
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script type="text/javascript">	
 
 $("#confirmbtn").click(function () {
-	$.ajax({
-		url:'../paid/confirm',
-		type:'POST',
-		data:{ paid_no:${bean.paid_no}},
-		success:function() {
-			location.href="../paid";
-		},
-		error:function() {
-			
-		}
-	});
+	var check = '${bean.paid_state }';
+	if(check == '미결제'){
+		swal({
+			   title: "미결제입니다",
+			   icon: "warning",
+			   button: "확인"
+			})
+		
+	}else{
+		
+		$.ajax({
+			url:'../paid/confirm',
+			type:'POST',
+			data:{ paid_no:${bean.paid_no}},
+			success:function() {
+				location.href="../paid";
+			},
+			error:function() {
+				
+			}
+		});
+	}
 
 });
 </script>

@@ -159,7 +159,7 @@
        				   button: "확인"
        					})
                    }else{
-                  var num = 60 * 3; // 몇분을 설정할지의 대한 변수 선언
+                   var num = 60 * 3; // 몇분을 설정할지의 대한 변수 선언
                    var myVar;
                       function time(){
                           myVar = setInterval(alertFunc, 1000); 
@@ -176,9 +176,10 @@
                				   title: "요청 시간이 만료되었습니다",
                				   icon: "warning",
                				   button: "확인"
-               					})
+               				})
                            // num 이 0초가 되었을대 clearInterval로 타이머 종료
-                       }
+							clearInterval(myVar);
+                         }
                        num--;
                      }
                    $('#loading').css('display','none');
