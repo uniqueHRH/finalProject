@@ -60,6 +60,7 @@
      	<button type="button" id="resetbtn" class="btn btn-default btn-lg" onclick="location.href='../myinfo'">취소</button>
      </div>
     </form>
+    <input type="hidden" id="msg1" value="${msg2 }">
     </c:if>
    <c:if test="${sessionScope.staffcheck ne null and sessionScope.check eq null}">
    <form action="../mypage/lock2" class="form-horizontal" method="post">
@@ -73,10 +74,9 @@
      	<button type="button" id="resetbtn" class="btn btn-default btn-lg" onclick="location.href='../myinfo'">취소</button>
      </div>
      </form>
+     <input type="hidden" id="msg2" value="${msg }">
       </c:if>
-      <c:if test="${msg == 'fail' }">
-       	<%out.println("<script>alert('비밀번호를 확인해주세요');</script>");%>
-       </c:if>
+      
 </div>   
 
 <!-- contents end -->
@@ -85,8 +85,19 @@
 <jsp:include page="/WEB-INF/footer.jsp"/>
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="${root }js/bootstrap.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script type="text/javascript">
-  
+$(document).ready(function() {
+var msg1 = $("#msg1").val();
+var msg2 = $("#msg2").val();
+if(msg1=='fail' || msg2=='fail'){
+	swal({
+		   title: "비밀번호를 확인해주세요",
+		   icon: "warning",
+		   button: "확인"
+		})
+}
+});
 </script>
 </body>
 </html>

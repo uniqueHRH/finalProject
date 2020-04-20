@@ -61,12 +61,16 @@
 	</resultMap>
 	
 	<select id="selectOne_paid" parameterType="PaidBean" resultMap="PaidMap" >
-		select paid.paid_no,paid.tour_no,paid.client_name,paid.paid_name,paid.paid_phone,paid.paid_birth,paid.paid_count,paid.paid_kakaoid,paid.tour_date,paid.book_date,paid.paid_total,paid.paid_date,paid.paid_state,paid.paid_confirm,tour.city,tour.name from paid inner join tour on paid.tour_no=tour.tour_no where paid_no=#{value}
+		select paid.paid_no, paid.tour_no, paid.client_name, paid.paid_name, paid.paid_phone, paid.paid_birth, paid.paid_count, paid.paid_kakaoid, paid.tour_date, paid.book_date, paid.paid_total, paid.paid_date,paid.paid_state,paid.paid_confirm,tour.city,tour.name from paid inner join tour on paid.tour_no=tour.tour_no where paid_no=#{value}
 	</select>
+
+	
+
 
 	<update id="paid_confirm" parameterType="PaidBean">
 		update paid set paid_date=now(),paid_state='결제완료' where paid_no=#{paid_no}
 	</update>
+	
 	
 <!-- 시스템에서 결제내역(총) -->	
 	<select id="selectAll_allpaid" resultType="PaidBean">

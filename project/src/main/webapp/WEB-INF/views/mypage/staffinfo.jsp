@@ -73,6 +73,9 @@
 			<td>입사일</td>
 			<td>${sessionScope.staffcheck.staff_joindate }</td>
 		</tr>
+		<tr>
+			<img src="${root}${sessionScope.staffcheck.staff_thumb }">
+		</tr>
 	   </table>
 	 </div>  
 </div>

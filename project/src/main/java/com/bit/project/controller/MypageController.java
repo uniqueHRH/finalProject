@@ -158,7 +158,7 @@ public class MypageController {
   		if(pwcheck != null) {
   			mav.setViewName("mypage/changemyinfo");
   		}else {
-  			mav.addObject("msg", "fail");
+  			mav.addObject("msg2", "fail");
   			mav.setViewName("mypage/lock");
   		}
   		return mav;
@@ -174,7 +174,6 @@ public class MypageController {
   		update.setClient_nick1(bean.getClient_nick1());
   		update.setClient_nick2(bean.getClient_nick1());
   		update.setClient_phone(bean.getClient_phone());
-  		System.out.println(session.getAttribute("check"));
   		ModelAndView mav=new ModelAndView();
   		mav.setViewName("redirect:/main/myinfo");
   		return mav;
