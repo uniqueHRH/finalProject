@@ -106,8 +106,8 @@
  </div>
 </div>
 <div id="rightSide">
-	<div style="overflow: scroll;width:270px; height:600px;" id="right_zzim">
-		<div  class="recTit">최근본상품 <span id=recentCnt></span></div>
+	<div style="overflow-y:auto; width:270px; height:600px;" id="right_zzim">
+		<div class="recTit">최근본상품 <span id=recentCnt></span></div>
 			<ul>
 			   <!-- 본 상품이 뿌려질 부분  -->
 			</ul> 
