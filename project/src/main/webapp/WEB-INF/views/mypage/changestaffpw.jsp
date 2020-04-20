@@ -77,47 +77,71 @@
 <jsp:include page="/WEB-INF/footer.jsp"/>
 <script type="text/javascript" src="${root }js/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="${root }js/bootstrap.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script type="text/javascript">
    $(document).ready(function() {
      
       
       
-      $("#changepwbtn").on('click',function(){
-         var no = $('#staff_no').val();
-         var pw = $('#staff_pw').val();
-         var pw2 = $('#staff_pw2').val();
-         var newpw1 = $('#staff_newpw1').val();
-         var newpw2 = $('#staff_newpw2').val();
-         
-          var newpw = /^.*(?=.{8,20})(?=.*[0-9])(?=.*[a-zA-Z]).*$/;
-            var pwcheck = newpw.test($("#staff_newpw1").val());
-         
-         if(!pw || !newpw1 || !newpw2){
-            alert('빈칸을 입력해주세요');
-            return false;
-         }else if(newpw1 != newpw2){
-            alert('새비밀번호가 일치하지않습니다');
-            return false;
-         }else if(pw2 != pw){
-            alert('현재비밀번호가 일치하지않습니다');
-            return false;
-         }else if(!pwcheck){
-            alert('비밀번호는 영문+숫자 조합 8자리이상입니다');
-            return false;
-         }else{
-            $.ajax({
-               url:'../mypage/changestaffpw',
-               type:'POST',
-               data:{staff_pw:newpw1, staff_no:no},
-               success:function(){
-                  alert('비밀번호 변경이 완료되었습니다. 로그인을 다시 해주세요');
-                  location.href="../login";
-               },
-            });
-         }
-      });
-      
-   });
-</script>
-</body>
-</html>
+	   $("#changepwbtn").on('click',function(){
+	         var no = $('#staff_no').val();
+	         var pw = $('#staff_pw').val();
+	         var pw2 = $('#staff_pw2').val();
+	         var newpw1 = $('#staff_newpw1').val();
+	         var newpw2 = $('#staff_newpw2').val();
+	         
+	          var newpw = /^.*(?=.{8,20})(?=.*[0-9])(?=.*[a-zA-Z]).*$/;
+	            var pwcheck = newpw.test($("#staff_newpw1").val());
+	         
+	         if(!pw || !newpw1 || !newpw2){
+	        	 swal({
+	  			   title: "비밀번호를 확인해주세요",
+	  			   icon: "warning",
+	  			   button: "확인"
+	  			})
+	            return false;
+	         }else if(newpw1 != newpw2){
+	        	 swal({
+	  			   title: "새 비밀번호가 일치하지않습니다",
+	  			   icon: "warning",
+	  			   button: "확인"
+	  			})
+	            return false;
+	         }else if(pw2 != pw){
+	        	 swal({
+	  			   title: "현재 비밀번호를 확인해주세요",
+	  			   icon: "warning",
+	  			   button: "확인"
+	  			})
+	            return false;
+	         }else if(!pwcheck){
+	        	 swal({
+	  			   title: "새비밀번호를 확인해주세요",
+	  			   icon: "warning",
+	  			   button: "확인"
+	  			})
+	            return false;
+	         }else{
+	        	 swal({
+						title: "비밀번호를 변경하시겠습니까?",
+						icon: "warning",
+						buttons: ["아니요", "네"]
+				 }).then((네) => {
+						if(네) {
+	           				 $.ajax({
+	            			   url:'../mypage/changestaffpw',
+	               			   type:'POST',
+	              			   data:{staff_pw:newpw1, staff_no:no},
+	              			   success:function(){
+	                  				location.href="../login";
+	              			   }
+	           				 });
+						}
+				 })
+	         }
+	      });
+	      
+	   });
+	</script>
+	</body>
+	</html>

@@ -61,7 +61,6 @@ public class TravelController {
 		
 		HttpSession session = req.getSession();
 		StaffVo login= staffService.loginCheck(bean);
-		System.out.println(login);
 		ModelAndView mav=new ModelAndView();
 		if(login!=null) {
 			//로그인 성공 시
@@ -114,7 +113,6 @@ public class TravelController {
 	@RequestMapping(value="/main/nickdupli", method=RequestMethod.POST)
 	public ModelAndView NickDupli(ClientVo bean) throws Exception{
 		ClientVo nickdupli = clientService.nickDupli(bean);
-		System.out.println(nickdupli);
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("Nickdupli", nickdupli);
 		mav.setViewName("jsonView");
