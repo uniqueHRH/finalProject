@@ -50,7 +50,7 @@
                      <!-- contents start -->
 <div id="allContain">
 	<div class="page-header" align="center">
-		<h1>아이디찾기 결과</h1>
+		<h1>아이디 조회 안내</h1>
 	</div>
    
 	<form class="form-horizontal" method="post">

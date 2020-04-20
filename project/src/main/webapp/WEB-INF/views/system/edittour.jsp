@@ -48,7 +48,7 @@
 <!-- contents start -->
 <div id="allContain">
 	<div class="page-header" id="page-header" align="center">
-		<h1>상품 상세 정보 수정</h1>
+		<h1>여행상품 관리</h1>
 	</div>
   	 
 	<h3 style="text-align: center; font-family: 'Jua'; margin-top: 30px;">지역기본정보</h3>

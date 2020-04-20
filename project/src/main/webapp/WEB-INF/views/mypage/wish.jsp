@@ -49,7 +49,7 @@
  <div class="row">
 	<div class="col-md-12">	
 		<div class="page-header" align="center">
-	  <h1>내가 찜한 상품 보기</h1>
+	  <h1>찜한 상품</h1>
  </div>
 	</div>
 </div>

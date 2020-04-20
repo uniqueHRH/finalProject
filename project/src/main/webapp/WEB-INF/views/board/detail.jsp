@@ -130,7 +130,7 @@
 <!-- contents start -->
 <div id="allContain">
 	<div class="page-header" id="page-header" align="center">
-		<h1>DETAIL</h1>
+		<h1>나의 여행기</h1>
 	</div>
       
 <!-- 제목 -->

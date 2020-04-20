@@ -94,7 +94,7 @@
 <!-- contents start -->
 <div id="allContain">
 	<div class="page-header" id="page-header" align="center">
-		<h1>F A Q</h1>
+		<h1>자주묻는질문</h1>
 	</div>
 
 	<div class="topMenu" id="theme" align="left">

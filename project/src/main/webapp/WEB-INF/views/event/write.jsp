@@ -20,7 +20,7 @@
 <!-- contents start -->
 <div id="allContain">
 	<div class="page-header" id="page-header" align="center">
-		<h1>INSERT</h1>
+		<h1>이벤트</h1>
    </div>
       
 	<form class="form-inline" method="POST" enctype="multipart/form-data">

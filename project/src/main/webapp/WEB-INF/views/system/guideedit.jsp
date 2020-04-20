@@ -58,7 +58,7 @@
 
 <div id="allContain">
 	<div class="page-header" align="center">
-		<h1>직원 정보</h1>
+		<h1>가이드 정보</h1>
 	</div>
 	<form class="form-horizontal" method="post" enctype="multipart/form-data">
 		<div class="upload">

@@ -107,7 +107,7 @@
 <!-- contents start -->
 <div id="allContain">
 	<div class="page-header" id="page-header" align="center">
-		<h1>MESSAGE</h1>
+		<h1>쪽지함</h1>
 	</div>
    
    

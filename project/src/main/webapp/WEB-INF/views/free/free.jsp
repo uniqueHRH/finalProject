@@ -24,7 +24,7 @@
 <!-- contents start -->
 <div id="allContain">
 	<div class="page-header" id="page-header" align="center">
-		<h1>FREE</h1>
+		<h1>아무말대잔치</h1>
 	</div>
    
 	

@@ -22,7 +22,7 @@
 <!-- contents start -->
 <div id="allContain">
 	<div class="page-header" id="page-header" align="center">
-		<h1>UPDATE</h1>
+		<h1>공지사항</h1>
 	</div>
 	      
 	<!-- 제목 -->

@@ -109,7 +109,7 @@
 <!-- contents start -->
 <div id="allContain">
 	<div class="page-header" id="page-header" align="center">
-		<h1>나의 예약 보기</h1>
+		<h1>나의 예약 조회</h1>
 	</div>
 
 	<table class="table table-hover" id="table">

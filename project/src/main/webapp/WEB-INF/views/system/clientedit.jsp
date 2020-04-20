@@ -48,7 +48,6 @@
 <body>
 <jsp:include page="/WEB-INF/menubar.jsp"/>
 
-<!-- menubar end -->
                      <!-- contents start -->
  
  <div id="allContain">

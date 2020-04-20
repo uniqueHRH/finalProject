@@ -47,7 +47,7 @@
                      <!-- contents start -->
   <div id="table">
       <div class="page-header" align="center">
-     <h1>로그인</h1>
+     <h1>직원로그인</h1>
    </div>
    			<!-- loginbar start-->
    <ul class="nav nav-tabs nav-justified" id="loginbar">

@@ -23,7 +23,7 @@
 <!-- contents start -->
 <div id="allContain">
 	<div class="page-header" id="page-header" align="center">
-		<h1>EVENT</h1>
+		<h1>이벤트</h1>
 	</div>
    
 	<table class="table table-hover" id="containerTable">

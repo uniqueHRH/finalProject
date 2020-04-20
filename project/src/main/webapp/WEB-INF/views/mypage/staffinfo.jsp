@@ -49,7 +49,7 @@
  
  <div id="allContain">
  	 <div class="page-header" align="center">
-    	 <h1>내 정보관리(직원용)</h1>
+    	 <h1>내 정보관리</h1>
   	 </div>
   	 <div id="changebtn">
 		<a href="${root }main/mypage/lock2"><button type="button" id="changeinfobtn" class="btn btn-default">비밀번호 변경</button></a>

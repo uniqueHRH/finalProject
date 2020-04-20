@@ -22,7 +22,7 @@
 <!-- contents start -->
 <div id="allContain">
 	<div class="page-header" id="page-header" align="center">
-		<h1>DETAIL</h1>
+		<h1>나의 여행메이트</h1>
 	</div>
       
 <!-- 제목 -->

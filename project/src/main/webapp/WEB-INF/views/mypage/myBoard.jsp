@@ -76,7 +76,7 @@
 <!-- contents start -->
 <div id="allContain">
 	<div class="page-header" id="page-header" align="center">
-		<h1>MyBoard</h1>
+		<h1>내가 쓴 글</h1>
 	</div>
    
 	
