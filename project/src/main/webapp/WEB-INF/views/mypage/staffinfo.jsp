@@ -20,9 +20,11 @@
     	font-size: 20px;
     }
 	#table {
-    	width:800px;
+    	width:750px;
     	margin:0px auto;
     	text-align: center;
+    	padding:40 0 0 0;
+    	position: relative;
     }
 	#table tr{
 		text-align: center;
@@ -38,6 +40,15 @@
 		width: 150px;
 		left: 1180px;
 		margin-bottom: 20px;
+	}
+	#staff_thumb {
+		width:200px;
+		height:200px;
+		border:1px solid #e8e8e8;
+		border-radius:2%;
+		position: relative;
+		left: 300px;
+		
 	}
    		
 </style>
@@ -56,25 +67,24 @@
 		<a href="${root }main/mypage/lock2"><button type="button" id="changeinfobtn" class="btn btn-default">비밀번호 변경</button></a>
 	</div>
 	
+	<img src="${root }resources/${sessionScope.staffcheck.staff_thumb }" id="staff_thumb"/>
+	
 	<div id="table">
 		<table class="table table-hover">
 		<tr>
-			<td width="30%">사번/이름</td>
+			<td width="30%" style="font-size: 20px;">사번/이름</td>
 			<td width="40%">사번<br/></br>이름</td>
 			<td width="50%">${sessionScope.staffcheck.staff_no }<br/></br>${sessionScope.staffcheck.staff_name }</td>
 		</tr>
 		<tr>
-			<td>연락처/이메일</td>
+			<td style="font-size: 20px;">연락처/이메일</td>
 			<td>연락처<br/><br/>이메일</td>
 			<td>${sessionScope.staffcheck.staff_phone }<br/><br/>${sessionScope.staffcheck.staff_email }</td>
 		</tr>
 		<tr>
-			<td>입사일</td>
+			<td style="font-size: 20px;">입사일</td>
 			<td>입사일</td>
 			<td>${sessionScope.staffcheck.staff_joindate }</td>
-		</tr>
-		<tr>
-			<img src="${root}${sessionScope.staffcheck.staff_thumb }">
 		</tr>
 	   </table>
 	 </div>  

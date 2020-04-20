@@ -21,6 +21,8 @@
 		height:200px;
 		border:1px solid #e8e8e8;
 		border-radius:2%;
+		position: relative;
+		left: 350px;
 	}
 	#table {
 		width:900px;      
@@ -58,7 +60,7 @@
  	 <div class="page-header" align="center">
     	 <h1>가이드 정보</h1>
   	 </div>
-  	 <img src="${root }resources/${bean.guide_thumb }" id="guide_thumb"/>
+  	 <img src="${root }${bean.guide_thumb }" id="guide_thumb"/>
 	<div id="table">
 		<table class="table table-hover">
 		<tr>

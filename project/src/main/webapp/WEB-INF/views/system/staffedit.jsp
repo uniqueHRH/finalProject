@@ -17,7 +17,7 @@
 		font-family: 'Jua';
 	}
 	form {
-		width:900px;      
+		width:700px;      
 		margin:0 auto;
 		font-family: 'Jua';
 		font-size:17px;
@@ -35,6 +35,8 @@
 		border:1px solid #e8e8e8;
 		border-radius:2%;
     	border:1px solid gray;
+    	position: relative;
+    	left: 230px;
     }
 	#board_img, #dele {
     	display:inline-block;
@@ -51,6 +53,14 @@
 	}
 	#changeinfobtn{
 		width: 150px;
+	}
+	#staff_email{
+		margin-top: -30px;
+	}
+	#board_img{
+		position: relative;
+		left: 230px;
+		padding-bottom: 30px;
 	}
 </style>
 </head>
@@ -69,21 +79,20 @@
 				<input type="hidden" name="staff_thumb" value="${bean.staff_img }"/>
 			</div>
 			<input type="file" id="board_img" name="file" />
-			<a class="btn btn-default" role="button" id="dele">삭제</a>
 		</div>
 		
 		<div id="table">
 			<table class="table table-hover">
 				<tr>
-					<td width="30%">사번/이름</td>
-					<td width="40%">사번<br/></br>이름</td>
-					<td width="50%">${bean.staff_no }<br/></br><input type="text" id="staff_name" name="staff_name" value="${bean.staff_name }"/></td>
-				<input type="hidden" id="staff_no" name="staff_no" value="${bean.staff_no }"/>
+					<td width="150px">사번/이름</td>
+					<td width="200px">사번<br/></br>이름</td>
+					<td width="350px">${bean.staff_no }<br/></br><input type="text" class="form-control" id="staff_name" name="staff_name" value="${bean.staff_name }"/></td>
+				<input type="hidden" class="form-control" id="staff_no" name="staff_no" value="${bean.staff_no }"/>
 				</tr>
 				<tr>
 					<td>연락처/이메일</td>
 					<td>연락처<br><br>이메일</td>
-					<td><input type="text" id="staff_phone" name="staff_phone" value="${bean.staff_phone }"/><br><br><input type="text" id="staff_email" name="staff_email" value="${bean.staff_email }"/></td>
+					<td><input type="text" class="form-control" id="staff_phone" name="staff_phone" value="${bean.staff_phone }"/><br><br><input type="text" class="form-control" id="staff_email" name="staff_email" value="${bean.staff_email }"/></td>
 				</tr>
 				<tr>
 					<td>부서/입사일</td>

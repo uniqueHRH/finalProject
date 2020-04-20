@@ -35,6 +35,8 @@
 		border:1px solid #e8e8e8;
 		border-radius:2%;
     	border:1px solid gray;
+    	position: relative;
+    	left: 300px;
     }
 	#board_img, #dele {
     	display:inline-block;
@@ -51,6 +53,14 @@
 	}
 	#changeinfobtn{
 		width: 150px;
+	}
+	#guide_city{
+		margin-top: -30px;
+	}
+	#board_img{
+		position: relative;
+		left: 300px;
+		padding-bottom: 30px; 
 	}
 </style>
 </head>
@@ -69,7 +79,6 @@
 				<input type="hidden" name="guide_thumb" value="${bean.guide_img }"/>
 			</div>
 			<input type="file" id="board_img" name="file" />
-			<a class="btn btn-default" role="button" id="dele">삭제</a>
 		</div>
 		
 	<div id="table">
@@ -77,18 +86,18 @@
 		<tr>
 			<td width="30%">번호/이름</td>
 			<td width="40%">번호<br/></br>이름</td>
-			<td width="50%">${bean.guide_no }<br/></br><input type="text" id="guide_name" name="guide_name" value="${bean.guide_name }"/></td>
-			<input type="hidden" id="guide_no" name="guide_no" value="${bean.guide_no }"/>
+			<td width="50%">${bean.guide_no }<br/></br><input type="text" class="form-control" id="guide_name" name="guide_name" value="${bean.guide_name }"/></td>
+			<input type="hidden" class="form-control" id="guide_no" name="guide_no" value="${bean.guide_no }"/>
 		</tr>
 		<tr>
 			<td>연락처/지역</td>
 			<td>연락처<br/><br/>지역</td>
-			<td><input type="text" id="guide_phone" name="guide_phone" value="${bean.guide_phone }"/><br/><br/><input type="text" id="guide_city" name="guide_city" value="${bean.guide_city }"/></td>
+			<td><input type="text"  class="form-control" id="guide_phone" name="guide_phone" value="${bean.guide_phone }"/><br/><br/><input type="text" class="form-control" id="guide_city" name="guide_city" value="${bean.guide_city }"/></td>
 		</tr>
 		<tr>
 			<td>이메일</td>
 			<td>이메일</td>
-			<td><input type="text" id="guide_email" name="guide_email" value="${bean.guide_email }"/></td>
+			<td><input type="text" class="form-control" id="guide_email" name="guide_email" value="${bean.guide_email }"/></td>
 		</tr>
 	   </table>
 	 <button type="submit" id="changeinfobtn" class="btn btn-default">수정완료</button>
