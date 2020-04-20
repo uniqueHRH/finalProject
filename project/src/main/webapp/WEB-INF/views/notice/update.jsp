@@ -6,7 +6,6 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>DETAIL</title>
 <link rel="stylesheet" type="text/css" href="${root }css/bootstrap.css" />
 <link rel="stylesheet" type="text/css" href="${root }css/travel.css" />
 <link rel="stylesheet" type="text/css" href="${root }css/boardUpdate.css" />

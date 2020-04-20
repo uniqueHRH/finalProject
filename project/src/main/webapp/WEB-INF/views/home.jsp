@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Home</title>
+<title>여행사용설명서</title>
 <link rel="stylesheet" type="text/css" href="${root }css/bootstrap.css" />
 <link rel="stylesheet" type="text/css" href="${root }css/travel.css" />
 <style type="text/css">

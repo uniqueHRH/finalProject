@@ -7,11 +7,10 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>DETAIL</title>
+<title>쪽지가 도착했습니다</title>
 <link rel="stylesheet" type="text/css" href="${root }css/bootstrap.css" />
 <link rel="stylesheet" type="text/css" href="${root }css/travel.css" />
 <link rel="stylesheet" type="text/css" href="${root }css/message.css" />
-   <title>쪽지가 도착했습니다</title>
    <style type="text/css">
    	
 </style>

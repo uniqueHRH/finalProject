@@ -10,13 +10,9 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width"/>
 
-<title>Login</title>
 <link rel="stylesheet" type="text/css" href="${root }css/bootstrap.css" />
 <link rel="stylesheet" type="text/css" href="${root }css/travel.css" />
 <!-- 카카오 API -->
-
-<title>Login Demo - Kakao JavaScript SDK</title>
-
 <style type="text/css">
     #table {
       	font-family:"Jua";
