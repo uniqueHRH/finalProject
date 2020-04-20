@@ -111,7 +111,8 @@
 		if(!id || !pw){
 			swal({
 				   title: "아이디와 비밀번호를 확인해주세요",
-				   icon: "warning"
+				   icon: "warning",
+				   button: "확인"
 				})
 			return false;
 		}else{
@@ -122,7 +123,8 @@
 	if(message=='fail'){
 		swal({
 			   title: "아이디와 비밀번호를 확인해주세요",
-			   icon: "warning"
+			   icon: "warning",
+			   button: "확인"
 			})
 	}
 	

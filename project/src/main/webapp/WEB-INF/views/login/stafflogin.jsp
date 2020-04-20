@@ -94,13 +94,15 @@ $(document).ready(function() {
 		if(!id || !pw){
 			swal({
 				   title: "사번과 비밀번호를 확인해주세요",
-				   icon: "warning"
+				   icon: "warning",
+				   button: "확인"
 				})
 			return false;
 		}else if(sabuncheck == false){
 			swal({
 				   title: "사번과 비밀번호를 확인해주세요",
-				   icon: "warning"
+				   icon: "warning",
+				   button: "확인"
 				})
 			return false;
 		}else{
@@ -111,7 +113,8 @@ $(document).ready(function() {
 	if(message=='fail'){
 		swal({
 			   title: "사번과 비밀번호를 확인해주세요",
-			   icon: "warning"
+			   icon: "warning",
+			   button: "확인"
 			})
 	}
 	

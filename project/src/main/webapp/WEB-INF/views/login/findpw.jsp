@@ -155,7 +155,8 @@
                       $('#imgs').css('display','none');
                       swal({
        				   title: "가입하신 이름,아이디,이메일을 입력해주세요",
-       				   icon: "warning"
+       				   icon: "warning",
+       				   button: "확인"
        					})
                    }else{
                   var num = 60 * 3; // 몇분을 설정할지의 대한 변수 선언
@@ -173,7 +174,8 @@
                          if(num == 0){
                            swal({
                				   title: "요청 시간이 만료되었습니다",
-               				   icon: "warning"
+               				   icon: "warning",
+               				   button: "확인"
                					})
                            // num 이 0초가 되었을대 clearInterval로 타이머 종료
                        }
@@ -184,12 +186,17 @@
                    $('input[name=dice2]').attr('value',data.Dice2);
                    swal({
        				   title: "인증번호를 발송했습니다.이메일을 확인해주세요",
-       				   icon: "info"
+       				   icon: "info",
+       				   button: "확인"
        					})
                    }
                 },
                error:function(){
-                  alert('요청 실패');
+            	   swal({
+       				   title: "요청에 실패하였습니다.",
+       				   icon: "warning",
+       				   button: "확인"
+       					})
                }
             });
          }
@@ -206,19 +213,22 @@
          if(!name || !id || !email){
             swal({
 				   title: "이름,아이디,이메일을 확인해주세요",
-				   icon: "warning"
+				   icon: "warning",
+				   button: "확인"
 					})
             return false;
          }else if(!code){
             swal({
 				   title: "인증번호를 입력해주세요",
-				   icon: "info"
+				   icon: "info",
+				   button: "확인"
 					})
             return false;
          }else if(code != dice){
         	 swal({
 				   title: "인증번호가 일치하지않습니다",
-				   icon: "error"
+				   icon: "error",
+				   button: "확인"
 					})
             return false;
          }else{

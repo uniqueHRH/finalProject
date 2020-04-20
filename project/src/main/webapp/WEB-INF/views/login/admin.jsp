@@ -229,18 +229,21 @@
                    if(check == null && nickcheck != false){
                 	   swal({
     					   title: "사용가능한 닉네임입니다.",
-    					   icon: "info"
+    					   icon: "info",
+    					   button:"확인"
     				  		})
                       $('input[name=duplicheck1]').attr('value', 1);
                    }else if(nickcheck == false){
                       swal({
    					   title: "형식에 맞게 입력하세요",
-   					   icon: "warning"
+   					   icon: "warning",
+   					   button:"확인"
    					 	 })
                    }else{
                       swal({
       					   title: "이미 사용중인 닉네임입니다",
-      					   icon: "info"
+      					   icon: "warning",
+      					   button:"확인"
       					  })
                    }
                 }
@@ -266,18 +269,21 @@
                    if(check == null && idcheck != false){
                 	   swal({
     					   title: "사용가능한 닉네임입니다.",
-    					   icon: "info"
+    					   icon: "info",
+    					   button:"확인"
     				  		})
                        $('input[name=duplicheck2]').attr('value', 1);
                    }else if(idcheck == false){
                 	   swal({
        					   title: "형식에 맞게 입력하세요",
-       					   icon: "warning"
+       					   icon: "warning",
+       					   button:"확인"
        					 	 })
                    }else{
                 	   swal({
       					   title: "이미 사용중인 닉네임입니다",
-      					   icon: "warning"
+      					   icon: "warning",
+      					   button:"확인"
       					  })
                    }
                 }
@@ -448,98 +454,114 @@
          if(namecheck != true){
             swal({
 				   title: "이름을 확인해주세요",
-				   icon: "info"
+				   icon: "warning",
+				   button:"확인"
 				  })
             return false;
          }else if(nickcheck != true){
             swal({
 				   title: "닉네임을 확인해주세요",
-				   icon: "info"
+				   icon: "warning",
+				   button:"확인"
 				  })
             return false;
          }else if(duplicheck1 == 0){
             swal({
 				   title: "닉네임 중복 확인을 해주세요",
-				   icon: "info"
+				   icon: "warning",
+				   button:"확인"
 				  })
             return false;
          }else if(idcheck != true){
             swal({
 				   title: "아이디를 확인해주세요",
-				   icon: "info"
+				   icon: "warning",
+				   button:"확인"
 				  })
             return false;
          }else if(duplicheck2 == 0){
         	 swal({
 				   title: "아이디 중복 확인을 해주세요",
-				   icon: "info"
+				   icon: "warning",
+				   button:"확인"
 				  })
             return false;
          }else if(pwcheck != true){
         	 swal({
 				   title: "비밀번호를 확인해주세요",
-				   icon: "info"
+				   icon: "warning",
+				   button:"확인"
 				  })
             return false;
          }else if(pw1 != pw2){
             swal({
 				   title: "비밀번호가 일치하지 않습니다",
-				   icon: "warning"
+				   icon: "warning",
+				   button:"확인"
 				  })
             return false;
          }else if($('#man').prop('checked') == false && $('#woman').prop('checked') == false){
             swal({
 				   title: "성별을 체크해주세요",
-				   icon: "info"
+				   icon: "warning",
+				   button:"확인"
 				  })
             return false;
          }else if(emailcheck != true){
             swal({
 				   title: "이메일을 확인해주세요",
-				   icon: "info"
+				   icon: "warning",
+				   button:"확인"
 				  })
             return false;
          }else if(phonecheck != true){
         	 swal({
 				   title: "연락처를 확인해주세요",
-				   icon: "info"
+				   icon: "warning",
+				   button:"확인"
 				  })
             return false;
          }else if($("#client_phone").val() == ""){
         	 swal({
 				   title: "연락처를 확인해주세요",
-				   icon: "info"
+				   icon: "warning",
+				   button:"확인"
 				  })
 		    return false;
          }else if(agree1 != true && (agree2 != true || agree3 != true || agree4 != true)){
         	 swal({
 				   title: "약관에 동의해주세요",
-				   icon: "info"
+				   icon: "warning",
+				   button:"확인"
 				  })
         	 return false;
          }else if(client_birth.length <=8){
             if( year>2019 || year<1900){ // 1900년 - 2019년까지만 입력가능
             	swal({
  				   title: "생년월일을 확인해주세요",
- 				   icon: "info"
+ 				   icon: "warning",
+ 				   button:"확인"
  				  })
                return false;
             }else if(month<1 || month>12){ // 1월 - 12월까지만 입력가능
             	swal({
   				   title: "생년월일을 확인해주세요",
-  				   icon: "info"
+  				   icon: "warning",
+  				   button:"확인"
   				  })
                return false;
             }else if(day<1 || day>31){ // 1일 - 31일까지 입력가능
             	swal({
   				   title: "생년월일을 확인해주세요",
-  				   icon: "info"
+  				   icon: "warning",
+  				   button:"확인"
   				  })
                return false;
             }else if((month==4 || month==6 || month==9 || month==11) && day == 31){ // 30일까지 있는 달에 31일이 들어가지못하게
             	swal({
   				   title: "생년월일을 확인해주세요",
-  				   icon: "info"
+  				   icon: "warning",
+  				   button:"확인"
   				  })
                return false;
             }else if(month==2){
@@ -548,7 +570,8 @@
                if (day>29 || (day==29 && !isleap)) { // 28일까지 입력 가능, 윤년은 29일까지 가능
             	   swal({
      				   title: "생년월일을 확인해주세요",
-     				   icon: "info"
+     				   icon: "warning",
+     				   button:"확인"
      				  })
                   return false;
                }else{
@@ -561,7 +584,8 @@
          }else{
         	 swal({
 				   title: "회원가입이 완료되었습니다.",
-				   icon: "success"
+				   icon: "success",
+				   button:"확인"
 				  })
             return true;
          }

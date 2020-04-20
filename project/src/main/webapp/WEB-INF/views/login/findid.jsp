@@ -133,7 +133,8 @@
          if(!name || !email){
             swal({
 				   title: "이름과 이메일을 확인해주세요",
-				   icon: "warning"
+				   icon: "warning",
+				   button: "확인"
 				})
             return false;
             event.preventDefault();
@@ -154,7 +155,8 @@
                       $('#imgs').css('display','none');
                       swal({
        				   title: "가입하신 이름과 이메일을 입력해주세요",
-       				   icon: "info"
+       				   icon: "info",
+       				  button: "확인"
        					})
                    }else{
                      var num = 60 * 3; // 몇분을 설정할지의 대한 변수 선언
@@ -173,7 +175,8 @@
                               clearInterval(myVar);
                               swal({
                   				   title: "요청 시간이 만료되었습니다.",
-                  				   icon: "info"
+                  				   icon: "info",
+                  				   button: "확인"
                   					})
                               // num 이 0초가 되었을대 clearInterval로 타이머 종료
                           }
@@ -184,14 +187,16 @@
                       $('input[name=dice]').attr('value',data.Dice);
                       swal({
          				   title: "인증번호를 발송했습니다.이메일을 확인해주세요",
-         				   icon: "info"
+         				   icon: "info",
+         				   button: "확인"
          					})
                    }
                 },
                error:function(){
                   swal({
     				   title: "요청에 실패하였습니다.",
-    				   icon: "warning"
+    				   icon: "warning",
+    				   button: "확인"
     					})
                }
             });
@@ -209,19 +214,22 @@
          if(!name || !email){
         	 swal({
 				   title: "이름과 이메일을 확인해주세요",
-				   icon: "warning"
+				   icon: "warning",
+				   button: "확인"
 					})
             return false;
          }else if(!code){
         	 swal({
 				   title: "인증번호를 입력해주세요",
-				   icon: "info"
+				   icon: "info",
+				   button: "확인"
 					})
             return false;
          }else if(code != dice){
             swal({
 				   title: "인증번호가 일치하지않습니다",
-				   icon: "warning"
+				   icon: "warning",
+				   button: "확인"
 					})
             return false;
          }else{
