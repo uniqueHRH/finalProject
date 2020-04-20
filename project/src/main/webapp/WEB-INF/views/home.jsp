@@ -4,13 +4,14 @@
 <%@page pageEncoding="utf-8" %>
 <link href="https://fonts.googleapis.com/css?family=Jua&display=swap&subset=korean" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Jua|Noto+Sans+KR&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="${root }css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="${root }css/travel.css" />
+<link href="https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/shortlogo.png?raw=true" rel="shortcut icon" type="image/x-icon">
 <c:url value="/" var="root"></c:url>
 <html>
 <head>
 <meta charset="utf-8">
 <title>여행사용설명서</title>
-<link rel="stylesheet" type="text/css" href="${root }css/bootstrap.css" />
-<link rel="stylesheet" type="text/css" href="${root }css/travel.css" />
 <style type="text/css">
 	.jumbotron {
 		background-image:url(https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/background.jpg?raw=true);

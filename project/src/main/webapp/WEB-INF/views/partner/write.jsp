@@ -9,6 +9,7 @@
 <link rel="stylesheet" type="text/css" href="${root }css/bootstrap.css" />
 <link rel="stylesheet" type="text/css" href="${root }css/travel.css" />
 <link rel="stylesheet" type="text/css" href="${root }css/boardWrite.css" />
+<link href="https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/shortlogo.png?raw=true" rel="shortcut icon" type="image/x-icon">
 <style type="text/css">
 	
 </style>
