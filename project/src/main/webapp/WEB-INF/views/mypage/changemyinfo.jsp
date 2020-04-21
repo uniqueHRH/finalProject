@@ -17,7 +17,7 @@
 		font-family: 'Jua';
 	}
 	form {
-		width:800px;      
+		width:900px;      
 		margin:0 auto;
 		font-family: 'Jua';
 		font-size:18px;
@@ -61,10 +61,10 @@
 				<tr>
 					<td>닉네임/연락처</td>
 					<td>닉네임<br/></br>연락처</td>
-					<td><input type="text" id="client_nick1" name="client_nick1" placeholder="2-15자 이내만 가능합니다" maxlength="15">
+					<td><input type="text" class="form-control" id="client_nick1" name="client_nick1" placeholder="2-15자 이내만 가능합니다" maxlength="15">
 				<button type="button" id="nickdupli" class="btn btn-default">중복 확인</button>
 				<input type="hidden" id="duplicheck1" name="duplicheck1" value="0" style="display: none;"><br/><br/>
-					<input type="text" id="client_phone" name="client_phone" value="${sessionScope.check.client_phone }"/></td>
+					<input type="text" class="form-control" id="client_phone" name="client_phone" value="${sessionScope.check.client_phone }"/></td>
 				</tr>
 				<tr>
 					<td>이름/생년월일</td>

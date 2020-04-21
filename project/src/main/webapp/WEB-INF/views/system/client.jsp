@@ -30,7 +30,6 @@
 			<select id="dropdownMenu1">
 			    <option value="정렬">정 렬</option>
 			    <option value="이름">이 름</option>
-			    <option value="등급">등 급</option>
 			</select>
 			<a class="btn btn-default" href="#" role="button" id="sel">조회</a>
 			<input type="text" value="<c:out value="${listCnt}"></c:out>개의 게시물이 조회되었습니다" id="listCnt" disabled/>
@@ -44,7 +43,7 @@
 	         <th style="width: 100px">ID</th>
 	         <th style="width: 200px">이 름</th>
 	         <th style="width: 250px">연락처</th>
-	         <th style="width: 100px">등 급</th>
+	         <th style="width: 100px">가입일</th>
 	      </tr>
 	   </thead>
 	   <tbody>
@@ -54,7 +53,7 @@
 				<td><a href="../system/clientDe/${bean.client_no }">${bean.client_id }</a></td>
 				<td><a href="../system/clientDe/${bean.client_no }">${bean.client_name }</a></td>
 				<td><a href="../system/clientDe/${bean.client_no }">${bean.client_phone }</a></td>
-				<td><a href="../system/clientDe/${bean.client_no }">${bean.client_level}</a></td>
+				<td><a href="../system/clientDe/${bean.client_no }">${bean.client_joindate}</a></td>
 			</tr>
 			</c:forEach>
 	   </tbody>

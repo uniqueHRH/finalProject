@@ -69,11 +69,6 @@
 			<td>${bean.client_phone }<br><br>${bean.client_email }</td>
 		</tr>
 		<tr>
-			<td>등급/포인트</td>
-			<td>등급<br><br>포인트</td>
-			<td>${bean.client_level }<br><br>${bean.client_point }</td>
-		</tr>
-		<tr>
 			<td>생년월일/가입일</td>
 			<td>생년월일<br><br>가입일</td>
 			<td>${bean.client_birth }<br><br>${bean.client_joindate }</td>

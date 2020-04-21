@@ -19,7 +19,7 @@
 
 	//╪рдо
 	var id=$('#sock').val();
-	var sock=new WebSocket("ws://192.168.56.1:8080/project/echo");
+	var sock=new WebSocket("ws://192.168.3.10:8080/project/echo");
 	
 	sock.onmessage=function(msg) {
 		var message=msg.data;

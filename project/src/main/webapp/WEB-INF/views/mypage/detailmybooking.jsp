@@ -129,7 +129,7 @@ $("#paybtn").click(function () {
 	    pay_method : 'card',
 	    merchant_uid : 'merchant_' + new Date().getTime(),
 	    name : '주문명:${bean.tourVo.name }',
-	    amount : 100,
+	    amount : ${bean.paid_total},
 	    buyer_name : '${bean.client_name }',
 	    buyer_tel : '${bean.paid_phone }',
 	    

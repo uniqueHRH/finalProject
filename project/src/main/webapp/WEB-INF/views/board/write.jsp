@@ -165,6 +165,7 @@
         <button type="button" class="btn btn-default" id="btn2">취 &nbsp; &nbsp;소</button>
       </div>
    </form>
+<%=request.getRealPath("/") %>
 </div>
 
 <jsp:include page="/WEB-INF/remote.jsp"/>

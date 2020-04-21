@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 <style type="text/css">
 	#footer{
-		width: 1500px;
+		width: 1498px;
 		font-family:"Jua";
 		font-size: 15px;
 		color: silver;
@@ -21,15 +21,15 @@
 	}
 	#footer1{
 		padding-top: 20px;
-		padding-left: 90px;
+		padding-left: 92px;
 	}
 	#footer2{
 		margin-top: 10px;
-		padding-left: 90px;
+		padding-left: 92px;
 	}
 	#footer3{
 		padding-top: 23px;
-		padding-left: 90px;
+		padding-left: 92px;
 		padding-bottom: 20px;
 	}
 </style>
