@@ -128,7 +128,7 @@ $("#paybtn").click(function () {
 		pg : 'inicis', // version 1.1.0부터 지원.
 	    pay_method : 'card',
 	    merchant_uid : 'merchant_' + new Date().getTime(),
-	    name : '주문명:${bean.tourVo.name }',
+	    name : '${bean.tourVo.name }',
 	    amount : ${bean.paid_total},
 	    buyer_name : '${bean.client_name }',
 	    buyer_tel : '${bean.paid_phone }',
