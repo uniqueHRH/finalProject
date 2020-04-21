@@ -72,7 +72,7 @@
 					<td width="400px;">${sessionScope.check.client_id }</td>
 				</tr>
 				<tr>
-					<td style="font: bold; font-size: 20px;">닉네임/연락처</td>
+					<td style="font: bold; font-size: 20px;"><br/>닉네임/연락처</td>
 					<td>닉네임<br/><br/><br/>연락처</td>
 					<td><input type="text" class="form-control" id="client_nick1" name="client_nick1" placeholder="2-15자 이내만 가능합니다" maxlength="15">
 				<button type="button" id="nickdupli" class="btn btn-default">중복 확인</button>
