@@ -17,13 +17,16 @@
 		font-family: 'Jua';
 	}
 	form {
-		width:900px;      
+		width:800px;      
 		margin:0 auto;
 		font-family: 'Jua';
 		font-size:18px;
 		align:center;
 		text-align:center;
 		padding:0px;
+	}
+	#table{
+		margin-top: 50px;
 	}
     #infocomm{
     	font-size: 20px;
@@ -38,6 +41,16 @@
 		display:inline;
 		margin-top: 30px;
 		width: 200px;
+	}
+	.form-control{
+		width: 250px;
+	}
+	#nickdupli,#client_nick1{
+		display: inline;
+	}
+	#client_phone{
+		position: relative;
+		left: 28px;
 	}
 </style>
 </head>
@@ -54,25 +67,25 @@
 		<div id="table">
 			<table class="table table-hover">
 				<tr>
-					<td width="30%">아이디</td>
-					<td width="40%">여행사용설명서 아이디</td>
-					<td width="50%">${sessionScope.check.client_id }</td>
+					<td width="150px;" style="font: bold; font-size: 20px;">아이디</td>
+					<td width="250px;">여행사용설명서 아이디</td>
+					<td width="400px;">${sessionScope.check.client_id }</td>
 				</tr>
 				<tr>
-					<td>닉네임/연락처</td>
-					<td>닉네임<br/></br>연락처</td>
+					<td style="font: bold; font-size: 20px;">닉네임/연락처</td>
+					<td>닉네임<br/><br/><br/>연락처</td>
 					<td><input type="text" class="form-control" id="client_nick1" name="client_nick1" placeholder="2-15자 이내만 가능합니다" maxlength="15">
 				<button type="button" id="nickdupli" class="btn btn-default">중복 확인</button>
 				<input type="hidden" id="duplicheck1" name="duplicheck1" value="0" style="display: none;"><br/><br/>
 					<input type="text" class="form-control" id="client_phone" name="client_phone" value="${sessionScope.check.client_phone }"/></td>
 				</tr>
 				<tr>
-					<td>이름/생년월일</td>
+					<td style="font: bold; font-size: 20px;">이름/생년월일</td>
 					<td>이름<br/><br/>생년월일</td>
 					<td>${sessionScope.check.client_name }<br/><br/>${sessionScope.check.client_birth }</td>
 				</tr>
 				<tr>
-					<td>알림설정</td>
+					<td style="font: bold; font-size: 20px;">알림설정</td>
 					<td>소식/광고알림</td>
 					<td>수신함</td>
 				</tr>
@@ -160,4 +173,3 @@
 </script>
 </body>
 </html>
-
