@@ -305,7 +305,7 @@
          var paid_phone=$('#paid_phone1').val();
          var paid_birth=$('#paid_birth1').val();
       
-         /* if(tour_date=="" | paid_name=="" | paid_count=="" | paid_phone=="" | paid_birth==""){
+          if(tour_date=="" | paid_name=="" | paid_count=="" | paid_phone=="" | paid_birth==""){
             swal({
                   title: "예약자정보를 확인해주세요",
                   icon: "warning"
@@ -320,7 +320,7 @@
                      })
                 return false;
             }
-         }); */
+         });
          
       });
            
