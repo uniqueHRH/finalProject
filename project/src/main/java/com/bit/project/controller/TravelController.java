@@ -1,6 +1,9 @@
 package com.bit.project.controller;
 
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -216,10 +219,10 @@ public class TravelController {
 	}
 	//예약하기(INSERT)
 	@RequestMapping(value = "/tour/{idx}/booking", method = RequestMethod.POST)
-	public String bookingtour(@ModelAttribute PaidVo bean) {
+	public String bookingtour(@ModelAttribute PaidVo bean) throws UnsupportedEncodingException {
 		tourservice.insertOne_tour(bean);
 		System.out.println(bean);
-		return "redirect:../detail/"+bean.getTour_no();
+		return "redirect:../../main/mybooking/?id="+URLEncoder.encode(bean.getClient_name(), "UTF-8");
 	}
 	//투어예약관리
 	//테마 메인,힐링페이지
