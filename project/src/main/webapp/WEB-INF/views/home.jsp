@@ -93,7 +93,7 @@
 		padding:40 0;
 	}
 	#mainI2 {
-		background-image:url(https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/mainBack.jpg?raw=true);
+		background-image:url(https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/main2img.jpg?raw=true);
 		background-size:cover;
 	}
 	#mainP {
