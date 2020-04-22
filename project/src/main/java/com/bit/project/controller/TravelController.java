@@ -218,7 +218,8 @@ public class TravelController {
 	@RequestMapping(value = "/tour/{idx}/booking", method = RequestMethod.POST)
 	public String bookingtour(@ModelAttribute PaidVo bean) {
 		tourservice.insertOne_tour(bean);
-		return "home";
+		System.out.println(bean);
+		return "redirect:../detail/"+bean.getTour_no();
 	}
 	//투어예약관리
 	//테마 메인,힐링페이지
