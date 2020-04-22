@@ -320,19 +320,11 @@
                      icon: "warning"
                      })
                 return false;
-            }else{
-               		return true;
-               		swal({
-                        title: "예약이 완료되었습니다.",
-                        icon: " success",
-                        button: "확인"
-                        })
             }
          });
          
       });
-      
-      
+           
       $('#checkcostbtn').click(function(){
          
          var paid_count=$("#paid_count1 option:selected").val();

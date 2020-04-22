@@ -154,7 +154,7 @@ $("#paybtn").click(function () {
 		            icon: "success",
 		            button: "확인"
 	        	}).then((확인) => {
-	        			location.href="/project/main/mybooking/?id=${sessionScope.check.client_name}";	
+	        			location.href="/project/";	
 	        		})
 	        	})
 		    } else {
