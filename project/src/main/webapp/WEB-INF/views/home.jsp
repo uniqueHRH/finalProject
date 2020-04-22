@@ -93,7 +93,7 @@
 		padding:40 0;
 	}
 	#mainI2 {
-		background-image:url("${root}imgs/mainBack.jpg");
+		background-image:url(https://github.com/uniqueHRH/final/blob/master/project/src/main/webapp/imgs/mainBack.jpg?raw=true);
 		background-size:cover;
 	}
 	#mainP {
@@ -298,7 +298,7 @@
 		</c:forEach>	
 	</div>	
 	<div id="mainI2">
-		<p id="mainP">봄 여행지 즐기기</p><p id="star"> &nbsp;♬</p>
+		<p id="mainP" style="color:white">봄 여행지 즐기기</p><p id="star" style="color:white"> &nbsp;♬</p>
 			<c:forEach items="${list2 }" var="bean2">
 			<div id="main1">
 					<img src="${bean2.mainimg }" id="recommimg2"/><br/>
@@ -309,7 +309,6 @@
 	</div>	
 	<div id="mainI3">
 		<p id="mainP">2020 핫 여행지</p><p id="star"> &nbsp;♬</p>
-		<div id="main1">
 			<c:forEach items="${list3 }" var="bean3">
 			<div id="main1">
 					<img src="${bean3.mainimg }" id="recommimg3"/><br/>
@@ -317,8 +316,7 @@
 					<div style="font-size: 22px;">${bean3.city }(${bean3.country })</div><a href="${root }tour/detail/${bean3.tour_no}"><div id="go">바로가기 ▶</div></a>
 			</div>	
 		</c:forEach>	
-	</div>
-</div>		
+	</div>		
 <!-- footer -->
 <div id="footer">
 <hr style="border: solid 1px silver;">
