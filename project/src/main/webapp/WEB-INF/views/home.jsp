@@ -92,6 +92,10 @@
 		font-family: 'Jua';
 		padding:40 0;
 	}
+	#mainI2 {
+		background-image:url("${root}imgs/mainBack.jpg");
+		background-size:cover;
+	}
 	#mainP {
 		text-align: left;
 		font-size: 48px;
@@ -115,6 +119,7 @@
 		padding:20 20;
 		border:1px solid #e8e8e8;
 		margin:0 10px;
+		background-color:white;
  	}
  	img {
  		width:330px;
