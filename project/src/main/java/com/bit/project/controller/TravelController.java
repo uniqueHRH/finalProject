@@ -221,7 +221,6 @@ public class TravelController {
 	@RequestMapping(value = "/tour/{idx}/booking", method = RequestMethod.POST)
 	public String bookingtour(@ModelAttribute PaidVo bean) throws UnsupportedEncodingException {
 		tourservice.insertOne_tour(bean);
-		System.out.println(bean);
 		return "redirect:../../main/mybooking/?id="+URLEncoder.encode(bean.getClient_name(), "UTF-8");
 	}
 	//투어예약관리

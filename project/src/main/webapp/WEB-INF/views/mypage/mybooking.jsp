@@ -25,11 +25,7 @@
 		margin:0 auto;
 		padding:0px;
 		text-align:center;
-		font-family: 'Jua';
 		font-size:18px;
-	}
-	select, button, a {
-		font-family: 'Jua';
 	}
 /* 나라정렬 버튼 */
 	#theme {

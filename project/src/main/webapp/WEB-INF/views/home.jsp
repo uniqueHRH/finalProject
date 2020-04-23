@@ -355,7 +355,6 @@
 					
 				},
 				error:function(){
-				 	alert('안됨');
 				}	
 			});
 		}	
