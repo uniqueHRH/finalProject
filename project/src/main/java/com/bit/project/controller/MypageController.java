@@ -124,20 +124,7 @@ public class MypageController {
 		model.addAttribute("listCnt",listCnt);
   		return "mypage/myBoard";
   	}
-  	
-  	// 찜하기
-  	@RequestMapping(value="/main/wishOn", method=RequestMethod.POST)
-  	public String wishOn(WishVo bean) {
-  		wishService.insert_wish(bean);
-  		return "mypage/wish";
-  	}
-  	// 찜취소
-  	@RequestMapping(value="/main/wishOff", method=RequestMethod.POST)
-  	public String wishOff(int key) {
-  		wishService.delete_wish(key);
-  		return "mypage/wish";
-  	}
-  	
+
   	//내정보관리
   	@RequestMapping(value="/main/myinfo", method=RequestMethod.GET)
   	public String Myinfo() {
