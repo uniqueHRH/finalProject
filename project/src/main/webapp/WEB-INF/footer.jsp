@@ -9,7 +9,8 @@
 <title>Insert title here</title>
 <style type="text/css">
 	#footer{
-		width: 1498px;
+		/* width: 1498px; */
+		width: 1650px;
 		font-family:"Jua";
 		font-size: 15px;
 		color: silver;

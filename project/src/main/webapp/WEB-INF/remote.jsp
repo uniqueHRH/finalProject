@@ -11,8 +11,8 @@
 /* ¸®¸ðÄÁ */ 
 	#remote {
 		position:fixed;
-		left:1580px;
-		top:730px;
+		left:1670px;
+		top:750px; 
 		width:150px;
 	}
 	#kakao-talk-channel-chat-button {

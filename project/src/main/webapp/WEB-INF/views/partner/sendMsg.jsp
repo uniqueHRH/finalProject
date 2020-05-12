@@ -6,6 +6,7 @@
 <html>
 <head>
 <meta charset="utf-8">
+<title>쪽지 보내기</title>
 <link rel="stylesheet" type="text/css" href="${root }css/bootstrap.css" />
 <link rel="stylesheet" type="text/css" href="${root }css/travel.css" />
 <link rel="stylesheet" type="text/css" href="${root }css/message.css" />

@@ -82,7 +82,7 @@ public class BoardController {
  		search.setSearchType(searchType);
  		search.setKeyword(keyword);
  		
- 		// �쟾泥� 寃뚯떆湲� 媛��닔
+ 		// 전체 게시글 갯수
  		int listCnt=0;
 		try {
 			listCnt = boardService.getBoardListCnt(search);
@@ -114,7 +114,7 @@ public class BoardController {
  		search.setSearchType(searchType);
  		search.setKeyword(keyword);
  		
- 		// �쟾泥� 寃뚯떆湲� 媛��닔
+ 		// 전체 게시글 갯수
  		int listCnt=0;
 		try {
 			listCnt = boardService.getBoardListCnt(search);
@@ -145,7 +145,7 @@ public class BoardController {
  		search.setSearchType(searchType);
  		search.setKeyword(keyword);
  		
- 		// �쟾泥� 寃뚯떆湲� 媛��닔
+ 		// 전체 게시글 갯수
  		int listCnt=0;
 		try {
 			listCnt = boardService.getBoardListCnt(search);
@@ -176,7 +176,7 @@ public class BoardController {
  		search.setSearchType(searchType);
  		search.setKeyword(keyword);
  		
- 		// �쟾泥� 寃뚯떆湲� 媛��닔
+ 		// 전체 게시글 갯수
  		int listCnt=0;
 		try {
 			listCnt = partnerService.getPartnerListCnt(search);
@@ -207,7 +207,7 @@ public class BoardController {
  		search.setSearchType(searchType);
  		search.setKeyword(keyword);
  		
- 		// �쟾泥� 寃뚯떆湲� 媛��닔
+ 		// 전체 게시글 갯수
  		int listCnt=0;
 		try {
 			listCnt = freeService.getFreeListCnt(search);
@@ -238,7 +238,7 @@ public class BoardController {
  		search.setSearchType(searchType);
  		search.setKeyword(keyword);
  		
- 		// �쟾泥� 寃뚯떆湲� 媛��닔
+ 		// 전체 게시글 갯수
  		int listCnt=0;
 		try {
 			listCnt = eventService.getEventListCnt(search);
@@ -269,7 +269,7 @@ public class BoardController {
   		search.setSearchType(searchType);
   		search.setKeyword(keyword);
   		
-  		// �쟾泥� 寃뚯떆湲� 媛��닔
+  		// 전체 게시글 갯수
   		int listCnt=0;
  		try {
  			listCnt = noticeService.getNoticeListCnt(search);
@@ -283,7 +283,7 @@ public class BoardController {
  		model.addAttribute("listCnt",listCnt);
   		return "notice/notice";
   	}
-  	// �옄二쇰Щ�뒗吏덈Ц
+  	// 자주묻는질문
   	@RequestMapping(value="/board/faq", method=RequestMethod.GET)
   	public String faq(Model model, @RequestParam(required=false, defaultValue="faq_question") String searchType,
   			@RequestParam(required=false) String keyword,
@@ -300,7 +300,7 @@ public class BoardController {
   		return "faq/faq";
   	}
   	
-//	湲��벐湲고럹�씠吏�
+//	글쓰기 페이지
  	// 후기
  	@RequestMapping(value = "/board/reviewIns", method = RequestMethod.GET)
  	public String reviewIns() {
@@ -327,7 +327,7 @@ public class BoardController {
  		return "notice/write";
  	}
  	
-//	�옉�꽦�셿猷�
+//	작성 완료후 리스트
  	// 후기
  	@RequestMapping(value = "/board/reviewIns", method = RequestMethod.POST)
  	public String reviewIns(@ModelAttribute BoardVo bean, MultipartFile file) throws Exception {
@@ -428,14 +428,14 @@ public class BoardController {
    		noticeService.insertOne_notice(bean);
    		return "redirect:notice";
    	}
-   	// �옄二쇰Щ�뒗吏덈Ц
+   	// 자주묻는질문
    	@RequestMapping(value="/board/faqIns", method=RequestMethod.POST)
    	public String faqIns(@ModelAttribute FaqVo bean) {
    		faqService.insertOne_faq(bean);
    		return "redirect:faq";
    	}
    	
-//	�긽�꽭�럹�씠吏�濡� �씠�룞
+//	수정페이지 이동
   	// 후기
  	@RequestMapping(value="/board/reviewDe/{idx}",method=RequestMethod.GET)
  	public String detailReview(@PathVariable("idx") int key, Model model) {
@@ -470,7 +470,7 @@ public class BoardController {
   		noticeService.selectOne_notice(key, model);
   		return "notice/detail";
   	}
-//	�닔�젙�럹�씠吏� �씠�룞
+//	수정완료, 디테일 이동
  	// 후기
  	@RequestMapping(value = "/board/reviewUp/{idx}", method = RequestMethod.GET)
  	public String update(@PathVariable("idx") int key, Model model) {
@@ -501,7 +501,7 @@ public class BoardController {
  		noticeService.selectOne_notice(key, model);
  		return "notice/update";
  	}
-//	후기 �닔�젙�럹�씠吏� (selectbox)
+//	후기 나라선택 (selectbox)
  	@RequestMapping(value="/board/updateLand", method=RequestMethod.POST)
  	public String updateLand(int key, Model model) {
  		boardService.select_land(key, model);
@@ -513,13 +513,13 @@ public class BoardController {
  	@RequestMapping(value="/board/reviewUp/{idx}", method=RequestMethod.POST)
 	public String reviewUp(@ModelAttribute BoardVo bean, MultipartFile file, HttpServletRequest req) throws IOException, Exception {
  		
- 		// �깉濡쒖슫 �뙆�씪�씠 �벑濡앸릺�뿀�뒗吏� �솗�씤
+ 		// 새로운 파일이 등록되었는지 확인
  		if(file.getOriginalFilename()!= null && file.getOriginalFilename()!="") {
- 			// 湲곗〈 �뙆�씪 �궘�젣
+ 			// 기존 파일 삭제
  			new File(uploadPath + req.getParameter("board_img")).delete();
  			new File(uploadPath + req.getParameter("board_thumb")).delete();
  		  
- 			// �깉濡� 泥⑤��븳 �뙆�씪 �벑濡�
+ 			// 새로 첨부한 파일 등록
  			String imgUploadPath = uploadPath + File.separator + "imgUpload";
  			String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
  			String fileName = UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath);
@@ -528,7 +528,7 @@ public class BoardController {
  			bean.setBoard_thumb(File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
  		  
  		} else {
- 			// 湲곗〈 �씠誘몄� 洹몃�濡� �궗�슜
+ 			// 기존 이미지 그대로 사용
  			bean.setBoard_img(req.getParameter("board_img"));
  			bean.setBoard_thumb(req.getParameter("board_thumb"));
  		 }
@@ -540,13 +540,13 @@ public class BoardController {
  	@RequestMapping(value="/board/partnerUp/{idx}", method=RequestMethod.POST)
 	public String partnerUp(@ModelAttribute PartnerVo bean, MultipartFile file, HttpServletRequest req) throws IOException, Exception {
  		
- 		// �깉濡쒖슫 �뙆�씪�씠 �벑濡앸릺�뿀�뒗吏� �솗�씤
+ 		// 새로운 파일이 등록되었는지 확인
  		if(file.getOriginalFilename()!= null && file.getOriginalFilename()!="") {
- 			// 湲곗〈 �뙆�씪 �궘�젣
+ 			// 기존 파일 삭제
  			new File(uploadPath + req.getParameter("partner_img")).delete();
  			new File(uploadPath + req.getParameter("partner_thumb")).delete();
  		  
- 			// �깉濡� 泥⑤��븳 �뙆�씪 �벑濡�
+ 			// 새로 첨부한 파일 등록
  			String imgUploadPath = uploadPath + File.separator + "imgUpload";
  			String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
  			String fileName = UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath);
@@ -555,7 +555,7 @@ public class BoardController {
  			bean.setPartner_thumb(File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
  		  
  		} else {
- 			// 湲곗〈 �씠誘몄� 洹몃�濡� �궗�슜
+ 			// 기존 이미지 그대로 사용
  			bean.setPartner_img(req.getParameter("partner_img"));
  			bean.setPartner_thumb(req.getParameter("partner_thumb"));
  		 }
@@ -567,13 +567,13 @@ public class BoardController {
  	@RequestMapping(value="/board/freeUp/{idx}", method=RequestMethod.POST)
 	public String freeUp(@ModelAttribute FreeVo bean, MultipartFile file, HttpServletRequest req) throws IOException, Exception {
  		
- 		// �깉濡쒖슫 �뙆�씪�씠 �벑濡앸릺�뿀�뒗吏� �솗�씤
+ 		// 새로운 파일이 등록되었는지 확인
  		if(file.getOriginalFilename()!= null && file.getOriginalFilename()!="") {
- 			// 湲곗〈 �뙆�씪 �궘�젣
+ 			// 기존 파일 삭제
  			new File(uploadPath + req.getParameter("free_img")).delete();
  			new File(uploadPath + req.getParameter("free_thumb")).delete();
  		  
- 			// �깉濡� 泥⑤��븳 �뙆�씪 �벑濡�
+ 			// 새로 첨부한 파일 등록
  			String imgUploadPath = uploadPath + File.separator + "imgUpload";
  			String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
  			String fileName = UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath);
@@ -582,7 +582,7 @@ public class BoardController {
  			bean.setFree_thumb(File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
  		  
  		} else {
- 			// 湲곗〈 �씠誘몄� 洹몃�濡� �궗�슜
+ 			// 기존 이미지 그대로 사용
  			bean.setFree_img(req.getParameter("free_img"));
  			bean.setFree_thumb(req.getParameter("free_thumb"));
  		 }
@@ -594,13 +594,13 @@ public class BoardController {
  	@RequestMapping(value="/board/eventUp/{idx}", method=RequestMethod.POST)
 	public String eventUp(@ModelAttribute EventVo bean, MultipartFile file, HttpServletRequest req) throws IOException, Exception {
  		
- 		// �깉濡쒖슫 �뙆�씪�씠 �벑濡앸릺�뿀�뒗吏� �솗�씤
+ 		// 새로운 파일이 등록되었는지 확인
  		if(file.getOriginalFilename()!= null && file.getOriginalFilename()!="") {
- 			// 湲곗〈 �뙆�씪 �궘�젣
+ 			// 기존 파일 삭제
  			new File(uploadPath + req.getParameter("event_img")).delete();
  			new File(uploadPath + req.getParameter("event_thumb")).delete();
  		  
- 			// �깉濡� 泥⑤��븳 �뙆�씪 �벑濡�
+ 			// 새로 첨부한 파일 등록
  			String imgUploadPath = uploadPath + File.separator + "imgUpload";
  			String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
  			String fileName = UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath);
@@ -609,7 +609,7 @@ public class BoardController {
  			bean.setEvent_thumb(File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
  		  
  		} else {
- 			// 湲곗〈 �씠誘몄� 洹몃�濡� �궗�슜
+ 			// 기존 이미지 그대로 사용
  			bean.setEvent_img(req.getParameter("event_img"));
  			bean.setEvent_thumb(req.getParameter("event_thumb"));
  		 }
@@ -621,13 +621,13 @@ public class BoardController {
  	@RequestMapping(value="/board/noticeUp/{idx}", method=RequestMethod.POST)
 	public String noticeUp(@ModelAttribute NoticeVo bean, MultipartFile file, HttpServletRequest req) throws IOException, Exception {
  		
- 		// �깉濡쒖슫 �뙆�씪�씠 �벑濡앸릺�뿀�뒗吏� �솗�씤
+ 		// 새로운 파일이 등록되었는지 확인
  		if(file.getOriginalFilename()!= null && file.getOriginalFilename()!="") {
- 			// 湲곗〈 �뙆�씪 �궘�젣
+ 			// 기존 파일 삭제
  			new File(uploadPath + req.getParameter("notice_img")).delete();
  			new File(uploadPath + req.getParameter("notice_thumb")).delete();
  		  
- 			// �깉濡� 泥⑤��븳 �뙆�씪 �벑濡�
+ 			// 새로 첨부한 파일 등록
  			String imgUploadPath = uploadPath + File.separator + "imgUpload";
  			String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
  			String fileName = UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath);
@@ -636,7 +636,7 @@ public class BoardController {
  			bean.setNotice_thumb(File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
  		  
  		} else {
- 			// 湲곗〈 �씠誘몄� 洹몃�濡� �궗�슜
+ 			// 기존 이미지 그대로 사용
  			bean.setNotice_img(req.getParameter("notice_img"));
  			bean.setNotice_thumb(req.getParameter("notice_thumb"));
  		 }

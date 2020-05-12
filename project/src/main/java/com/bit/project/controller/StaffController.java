@@ -336,6 +336,7 @@ public class StaffController {
 		model.addAttribute("listCnt",listCnt);
  		return "/system/guide";
  	}
+ 	
  	//가이드 지역별 정렬
  	@RequestMapping(value="/system/guideCity", method=RequestMethod.GET)
  	public String guideCity(Model model, @RequestParam(required = false, defaultValue = "1") int page,
@@ -367,192 +368,195 @@ public class StaffController {
  	}
  	
  	//가이드 등록 페이지
- 	 	@RequestMapping(value = "/system/guideIns", method = RequestMethod.GET)
- 	 	public String guideIns() {
- 	 		return "/system/guideenroll";
- 	 	}
+ 	@RequestMapping(value = "/system/guideIns", method = RequestMethod.GET)
+ 	public String guideIns() {
+ 		return "/system/guideenroll";
+ 	}
  	
  	//가이드 등록
- 	 	@RequestMapping(value="/system/guideIns",method=RequestMethod.POST)
- 	    public String guideIns(@ModelAttribute GuideVo bean, MultipartFile file) throws Exception {
- 	  		
- 	  		String imgUploadPath = uploadPath + File.separator + "imgUpload";
- 	  		String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
- 	  		String fileName = null;
+ 	@RequestMapping(value="/system/guideIns",method=RequestMethod.POST)
+    public String guideIns(@ModelAttribute GuideVo bean, MultipartFile file) throws Exception {
+  		
+  		String imgUploadPath = uploadPath + File.separator + "imgUpload";
+  		String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
+  		String fileName = null;
 
- 	  		if(file.getOriginalFilename() != null && file.getOriginalFilename() != "") {
- 	  			fileName=UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath); 
- 	  		} else {
- 	  			fileName = uploadPath + File.separator + "images" + File.separator + "none.png";
- 	  		}
+  		if(file.getOriginalFilename() != null && file.getOriginalFilename() != "") {
+  			fileName=UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath); 
+  		} else {
+  			fileName = uploadPath + File.separator + "images" + File.separator + "none.png";
+  		}
 
- 	  		bean.setGuide_img(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
- 	  		bean.setGuide_thumb(File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
- 	 		guideService.insertOne_guide(bean);
- 	 		return "redirect:/system/guide";
- 	 	}
+  		bean.setGuide_img(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
+  		bean.setGuide_thumb(File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
+ 		guideService.insertOne_guide(bean);
+ 		return "redirect:/system/guide";
+ 	}
  	 	
- 	 //가이드 정보
- 	 	@RequestMapping(value="/system/guideDe/{idx}",method=RequestMethod.GET)
- 	 	public String guideDetail(@PathVariable("idx") int key, Model model) {
- 	 		guideService.selectOne_guide(key, model);
- 	 		return "/system/guidedetail";
- 	 	}
- 	 //가이드 정보 수정페이지
- 	 	@RequestMapping(value="/system/guideEdit/{idx}",method=RequestMethod.GET)
- 		public String guideEdit(@PathVariable("idx") int key, Model model) {
- 	 		guideService.selectOne_guide(key, model);
- 			return "/system/guideedit";
- 		}
- 	 //가이드정보 수정
- 	 	@RequestMapping(value="/system/guideEdit/{idx}", method=RequestMethod.POST)
- 		public String guideEdit(@ModelAttribute GuideVo bean, MultipartFile file, HttpServletRequest req) throws IOException, Exception {
- 	 		
- 	 		// 새로운 파일이 등록되었는지 확인
- 	 		if(file.getOriginalFilename()!= null && file.getOriginalFilename()!="") {
- 	 			// 기존 파일 삭제
- 	 			new File(uploadPath + req.getParameter("guide_img")).delete();
- 	 			new File(uploadPath + req.getParameter("guide_thumb")).delete();
- 	 		  
- 	 			// 새로 첨부한 파일 등록
- 	 			String imgUploadPath = uploadPath + File.separator + "imgUpload";
- 	 			String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
- 	 			String fileName = UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath);
- 	 		  
- 	 			bean.setGuide_img(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
- 	 			bean.setGuide_thumb(File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
- 	 		  
- 	 		} else {
- 	 			// 기존 이미지 그대로 사용
- 	 			bean.setGuide_img(req.getParameter("guide_img"));
- 	 			bean.setGuide_thumb(req.getParameter("guide_thumb"));
- 	 		 }
- 	 		 
- 	 		guideService.updateOne_guide(bean);
- 	 		return "redirect:../guideDe/"+bean.getGuide_no();
- 	 	}
- 	 //가이드 삭제
- 	 	@RequestMapping(value="/system/guideDel", method=RequestMethod.POST)
- 		public String guideDel(int key) {
- 	 		guideService.deleteOne_guide(key);
- 			return "redirect:/system/guide";
- 		}
- 	 	
- 	 	
- 	 //회원 목록
- 	 	@RequestMapping(value = "/system/client", method = RequestMethod.GET)
- 	 	public String client(Model model, @RequestParam(required = false, defaultValue = "1") int page,
- 	 			@RequestParam(required=false, defaultValue="1") int range,
- 	 			@RequestParam(required=false, defaultValue="client_name") String searchType,
- 	 			@RequestParam(required=false) String keyword,
- 	 			@ModelAttribute("search") Search search,
- 	 			HttpServletRequest req
- 	           ) throws Exception {
+ 	//가이드 정보
+ 	@RequestMapping(value="/system/guideDe/{idx}",method=RequestMethod.GET)
+ 	public String guideDetail(@PathVariable("idx") int key, Model model) {
+ 		guideService.selectOne_guide(key, model);
+ 		return "/system/guidedetail";
+ 	}
+ 	
+ 	//가이드 정보 수정페이지
+ 	@RequestMapping(value="/system/guideEdit/{idx}",method=RequestMethod.GET)
+	public String guideEdit(@PathVariable("idx") int key, Model model) {
+ 		guideService.selectOne_guide(key, model);
+		return "/system/guideedit";
+	}
+ 	
+ 	//가이드정보 수정
+ 	@RequestMapping(value="/system/guideEdit/{idx}", method=RequestMethod.POST)
+	public String guideEdit(@ModelAttribute GuideVo bean, MultipartFile file, HttpServletRequest req) throws IOException, Exception {
+ 		
+ 		// 새로운 파일이 등록되었는지 확인
+ 		if(file.getOriginalFilename()!= null && file.getOriginalFilename()!="") {
+ 			// 기존 파일 삭제
+ 			new File(uploadPath + req.getParameter("guide_img")).delete();
+ 			new File(uploadPath + req.getParameter("guide_thumb")).delete();
+ 		  
+ 			// 새로 첨부한 파일 등록
+ 			String imgUploadPath = uploadPath + File.separator + "imgUpload";
+ 			String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
+ 			String fileName = UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath);
+ 		  
+ 			bean.setGuide_img(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
+ 			bean.setGuide_thumb(File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
+ 		  
+ 		} else {
+ 			// 기존 이미지 그대로 사용
+ 			bean.setGuide_img(req.getParameter("guide_img"));
+ 			bean.setGuide_thumb(req.getParameter("guide_thumb"));
+ 		 }
+ 		 
+ 		guideService.updateOne_guide(bean);
+ 		return "redirect:../guideDe/"+bean.getGuide_no();
+ 	}
+	//가이드 삭제
+ 	@RequestMapping(value="/system/guideDel", method=RequestMethod.POST)
+	public String guideDel(int key) {
+ 		guideService.deleteOne_guide(key);
+		return "redirect:/system/guide";
+	}
+ 	
+ 	
+	//회원 목록
+ 	@RequestMapping(value = "/system/client", method = RequestMethod.GET)
+ 	public String client(Model model, @RequestParam(required = false, defaultValue = "1") int page,
+ 			@RequestParam(required=false, defaultValue="1") int range,
+ 			@RequestParam(required=false, defaultValue="client_name") String searchType,
+ 			@RequestParam(required=false) String keyword,
+ 			@ModelAttribute("search") Search search,
+ 			HttpServletRequest req
+           ) throws Exception {
 
- 	        String value=req.getServletPath();
- 	        model.addAttribute("url", value);
- 	 		model.addAttribute("search", search);
- 	 		search.setSearchType(searchType);
- 	 		search.setKeyword(keyword);
- 	 		
- 	 		int listCnt=0;
- 			try {
- 				listCnt = clientService.getClientListCnt(search);
- 				search.pageInfo(page, range, listCnt);
- 			} catch (Exception e) {
- 				e.printStackTrace();
- 			}
+        String value=req.getServletPath();
+        model.addAttribute("url", value);
+ 		model.addAttribute("search", search);
+ 		search.setSearchType(searchType);
+ 		search.setKeyword(keyword);
+ 		
+ 		int listCnt=0;
+		try {
+			listCnt = clientService.getClientListCnt(search);
+			search.pageInfo(page, range, listCnt);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
- 			model.addAttribute("pagination", search);
- 			model.addAttribute("list",clientService.selectAll_client(search));
- 			model.addAttribute("listCnt",listCnt);
- 	 		return "/system/client";
- 	 	}
+		model.addAttribute("pagination", search);
+		model.addAttribute("list",clientService.selectAll_client(search));
+		model.addAttribute("listCnt",listCnt);
+ 		return "/system/client";
+ 	}
+ 	
+	//회원 이름별 정렬
+ 	@RequestMapping(value="/system/clientName", method=RequestMethod.GET)
+ 	public String clientNo(Model model, @RequestParam(required = false, defaultValue = "1") int page,
+ 			@RequestParam(required=false, defaultValue="1") int range,
+ 			@RequestParam(required=false, defaultValue="client_name") String searchType,
+ 			@RequestParam(required=false) String keyword,
+ 			@ModelAttribute("search") Search search,
+ 			HttpServletRequest req
+           ) throws Exception {
+
+        String value=req.getServletPath();
+        model.addAttribute("url", value);
+ 		model.addAttribute("search", search);
+ 		search.setSearchType(searchType);
+ 		search.setKeyword(keyword);
+ 		
+ 		int listCnt=0;
+		try {
+			listCnt = clientService.getClientListCnt(search);
+			search.pageInfo(page, range, listCnt);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		model.addAttribute("pagination", search);
+		model.addAttribute("list",clientService.selectAll_clientName(search));
+		model.addAttribute("listCnt",listCnt);
+ 		return "/system/client";
+ 	}
  	 	
- 		//회원 이름별 정렬
- 	 	@RequestMapping(value="/system/clientName", method=RequestMethod.GET)
- 	 	public String clientNo(Model model, @RequestParam(required = false, defaultValue = "1") int page,
- 	 			@RequestParam(required=false, defaultValue="1") int range,
- 	 			@RequestParam(required=false, defaultValue="client_name") String searchType,
- 	 			@RequestParam(required=false) String keyword,
- 	 			@ModelAttribute("search") Search search,
- 	 			HttpServletRequest req
- 	           ) throws Exception {
+ 	//회원 등급별 정렬
+ 	@RequestMapping(value="/system/clientLevel", method=RequestMethod.GET)
+ 	public String clientLevel(Model model, @RequestParam(required = false, defaultValue = "1") int page,
+ 			@RequestParam(required=false, defaultValue="1") int range,
+ 			@RequestParam(required=false, defaultValue="client_name") String searchType,
+ 			@RequestParam(required=false) String keyword,
+ 			@ModelAttribute("search") Search search,
+ 			HttpServletRequest req
+           ) throws Exception {
 
- 	        String value=req.getServletPath();
- 	        model.addAttribute("url", value);
- 	 		model.addAttribute("search", search);
- 	 		search.setSearchType(searchType);
- 	 		search.setKeyword(keyword);
- 	 		
- 	 		int listCnt=0;
- 			try {
- 				listCnt = clientService.getClientListCnt(search);
- 				search.pageInfo(page, range, listCnt);
- 			} catch (Exception e) {
- 				e.printStackTrace();
- 			}
+        String value=req.getServletPath();
+        model.addAttribute("url", value);
+ 		model.addAttribute("search", search);
+ 		search.setSearchType(searchType);
+ 		search.setKeyword(keyword);
+ 		
+ 		int listCnt=0;
+		try {
+			listCnt = clientService.getClientListCnt(search);
+			search.pageInfo(page, range, listCnt);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
- 			model.addAttribute("pagination", search);
- 			model.addAttribute("list",clientService.selectAll_clientName(search));
- 			model.addAttribute("listCnt",listCnt);
- 	 		return "/system/client";
- 	 	}
+		model.addAttribute("pagination", search);
+		model.addAttribute("list",clientService.selectAll_clientLevel(search));
+		model.addAttribute("listCnt",listCnt);
+ 		return "/system/client";
+ 	}
  	 	
- 	 	//회원 등급별 정렬
- 	 	@RequestMapping(value="/system/clientLevel", method=RequestMethod.GET)
- 	 	public String clientLevel(Model model, @RequestParam(required = false, defaultValue = "1") int page,
- 	 			@RequestParam(required=false, defaultValue="1") int range,
- 	 			@RequestParam(required=false, defaultValue="client_name") String searchType,
- 	 			@RequestParam(required=false) String keyword,
- 	 			@ModelAttribute("search") Search search,
- 	 			HttpServletRequest req
- 	           ) throws Exception {
-
- 	        String value=req.getServletPath();
- 	        model.addAttribute("url", value);
- 	 		model.addAttribute("search", search);
- 	 		search.setSearchType(searchType);
- 	 		search.setKeyword(keyword);
- 	 		
- 	 		int listCnt=0;
- 			try {
- 				listCnt = clientService.getClientListCnt(search);
- 				search.pageInfo(page, range, listCnt);
- 			} catch (Exception e) {
- 				e.printStackTrace();
- 			}
-
- 			model.addAttribute("pagination", search);
- 			model.addAttribute("list",clientService.selectAll_clientLevel(search));
- 			model.addAttribute("listCnt",listCnt);
- 	 		return "/system/client";
- 	 	}
+	//회원 정보
+ 	@RequestMapping(value="/system/clientDe/{idx}",method=RequestMethod.GET)
+ 	public String clientDetail(@PathVariable("idx") int key, Model model) {
+ 		clientService.selectOne_client(key, model);
+ 		return "/system/clientdetail";
+ 	}
  	 	
- 	 //회원 정보
- 	 	@RequestMapping(value="/system/clientDe/{idx}",method=RequestMethod.GET)
- 	 	public String clientDetail(@PathVariable("idx") int key, Model model) {
- 	 		clientService.selectOne_client(key, model);
- 	 		return "/system/clientdetail";
- 	 	}
- 	 	
- 	 //회원 정보 수정페이지
- 	 	@RequestMapping(value="/system/clientEdit/{idx}",method=RequestMethod.GET)
- 		public String clientEdit(@PathVariable("idx") int key, Model model) {
- 	 		clientService.selectOne_client(key, model);
- 			return "/system/clientedit";
- 		}
- 	 //회원정보 수정
- 	 	@RequestMapping(value="/system/clientEdit/{idx}", method=RequestMethod.POST)
- 		public String clientEdit(@PathVariable("idx") int key, ClientVo bean){
- 	 		 
- 	 		clientService.updateOne_client(bean);
- 	 		return "redirect:../clientDe/"+bean.getClient_no();
- 	 	}
- 	 //회원 삭제
- 	 	@RequestMapping(value="/system/clientDel", method=RequestMethod.POST)
- 		public String clientDel(int key) {
- 	 		clientService.deleteOne_client(key);
- 			return "redirect:/system/client";
- 		}
+	//회원 정보 수정페이지
+	@RequestMapping(value="/system/clientEdit/{idx}",method=RequestMethod.GET)
+	public String clientEdit(@PathVariable("idx") int key, Model model) {
+		clientService.selectOne_client(key, model);
+		return "/system/clientedit";
+	}
+	
+	//회원정보 수정
+	@RequestMapping(value="/system/clientEdit/{idx}", method=RequestMethod.POST)
+	public String clientEdit(@PathVariable("idx") int key, ClientVo bean){
+		clientService.updateOne_client(bean);
+		return "redirect:../clientDe/"+bean.getClient_no();
+	}
+	
+	//회원 삭제
+	@RequestMapping(value="/system/clientDel", method=RequestMethod.POST)
+	public String clientDel(int key) {
+		clientService.deleteOne_client(key);
+		return "redirect:/system/client";
+	}
 }
