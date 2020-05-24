@@ -30,7 +30,6 @@ public class EchoHandler {
 	@OnOpen
 	public void handleOpen(Session userSession) {
 		users.add(userSession);
-		System.out.println("session 이 연결되었다");
 	}
 	
 	@OnMessage
@@ -54,7 +53,6 @@ public class EchoHandler {
 	@OnClose
 	public void handleClose(Session userSession) {
 		users.remove(userSession);
-		System.out.println("session 종료");
 	}
 	
 	@OnError

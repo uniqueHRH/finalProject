@@ -69,6 +69,7 @@
 		height:30px;
 		border:0;
 		outline:0;
+		background-color:rgba(1,1,1,0);
 	}
 	#reply_content {
 		width:800px;
@@ -408,7 +409,7 @@
 					})
 				});		
 			});		
-				
+			
 			$('button[name=update_'+num+']').on('click',function() {
 				var text=$('input[name=reply_'+num+']').val();
 				swal({
