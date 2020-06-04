@@ -71,17 +71,23 @@
 	</table>
 	
 	<nav id="pageNum">
-	<!-- 페이지넘버링 -->
+	<!-- 페이징 -->
 		<div id="paginationBox">
 			<ul class="pagination">
 				<c:if test="${pagination.prev}">
-					<li class="page-item"><a class="page-link" href="#" onClick="prev('${pagination.page}', '${pagination.range}', '${pagination.rangeSize}')">Prev</a></li>
+					<li class="page-item">
+						<a class="page-link" href="#" onClick="prev('${pagination.page}', '${pagination.range}', '${pagination.rangeSize}')">Prev</a>
+					</li>
 				</c:if>
 				<c:forEach begin="${pagination.startPage}" end="${pagination.endPage}" var="idx">
-					<li class="page-item <c:out value="${pagination.page==idx?'active' : ''}"/>"><a class="page-link" href="#" onClick="pagination('${idx}', '${pagination.range}', '${pagination.rangeSize}', '${search.searchType}', '${search.keyword }' )">${idx}</a></li>
+					<li class="page-item <c:out value="${pagination.page==idx?'active' : ''}"/>">
+						<a class="page-link" href="#" onClick="pagination('${idx}', '${pagination.range}', '${pagination.rangeSize}', '${search.searchType}', '${search.keyword }' )">${idx}</a>
+					</li>
 				</c:forEach>
 				<c:if test="${pagination.next}">
-					<li class="page-item"><a class="page-link" href="#" onClick="next('${pagination.range}', '${pagination.range}', '${pagination.rangeSize}')" >Next</a></li>
+					<li class="page-item">
+						<a class="page-link" href="#" onClick="next('${pagination.range}', '${pagination.range}', '${pagination.rangeSize}')" >Next</a>
+					</li>
 				</c:if>
 			</ul>
 		</div>
